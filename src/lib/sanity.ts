@@ -17,9 +17,17 @@ export const client = createClient({
     projectId,
     dataset,
     apiVersion,
-    // CRITICAL: false to bypass the 402-locked apicdn.sanity.io endpoint.
-    // Non-CDN api.sanity.io has separate quota and is healthy.
-    useCdn: false,
+    // 2026-06-19 — flipped back to useCdn:true. The PR #124-#127 useCdn:false
+    // strategy worked tactically when apicdn.sanity.io (100K/mo) was 402-locked
+    // last month, but routed traffic through api.sanity.io which has a 10×
+    // smaller quota (10K/mo). The smaller quota then exhausted under normal
+    // crawl + traffic ~30 days later, locking /api/debug-seo with
+    // "plan_limit_reached - API Requests quota limit reached". The CDN-quota
+    // cycle has since reset, so we route back to the higher-headroom endpoint.
+    // 60s CDN staleness is acceptable for a marketing blog. Long-term, Plan C
+    // (full content snapshot in PR #128) removes this Sanity dependency
+    // entirely — once that snapshot is populated, neither quota matters.
+    useCdn: true,
 });
 
 const builder = imageUrlBuilder(client);
