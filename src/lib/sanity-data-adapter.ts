@@ -326,8 +326,27 @@ const fetchPostsRaw = unstable_cache(
 );
 
 export async function sanityGetPosts(limit?: number): Promise<Post[]> {
-    const posts = await fetchPostsRaw(limit);
-    return posts.map(adaptSanityPost);
+    // Snapshot-first (Plan C). Snapshot stores posts keyed by slug; restore
+    // publishedAt-desc order before applying limit.
+    if (snapshotHasMap('posts')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const docs: any[] = Object.values(contentSnapshot.posts);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const sorted = docs.sort((a: any, b: any) => {
+            const at = a?.publishedAt || '';
+            const bt = b?.publishedAt || '';
+            return bt.localeCompare(at);
+        });
+        const sliced = limit ? sorted.slice(0, limit) : sorted;
+        return sliced.map(adaptSanityPost);
+    }
+    try {
+        const posts = await fetchPostsRaw(limit);
+        return posts.map(adaptSanityPost);
+    } catch (err) {
+        console.error('Sanity live posts fetch failed:', err);
+        return [];
+    }
 }
 
 export async function sanityGetPostBySlug(slug: string, draft = false) {
@@ -336,6 +355,14 @@ export async function sanityGetPostBySlug(slug: string, draft = false) {
     // Next's draftMode see unpublished changes. When false (the default),
     // behavior is unchanged from before — production-CDN client serving
     // published documents only. Backwards-compatible signature.
+
+    // Snapshot-first (Plan C) — only for published reads (draft mode must
+    // always go live so editors see fresh unpublished changes).
+    if (!draft) {
+        const snap = contentSnapshot.posts?.[slug];
+        if (snap) return adaptSanityPost(snap);
+    }
+
     const c = draft ? previewClient : client;
     try {
         const post = await c.fetch(queries.postBySlugQuery, { slug });
@@ -356,23 +383,49 @@ const fetchCategoriesRaw = unstable_cache(
 );
 
 export async function sanityGetCategories(): Promise<Category[]> {
-    const categories = await fetchCategoriesRaw();
-    return categories.map(adaptSanityCategory);
+    // Snapshot-first (Plan C)
+    if (snapshotHasMap('categories')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const docs: any[] = Object.values(contentSnapshot.categories);
+        return docs.map(adaptSanityCategory);
+    }
+    try {
+        const categories = await fetchCategoriesRaw();
+        return categories.map(adaptSanityCategory);
+    } catch (err) {
+        console.error('Sanity live categories fetch failed:', err);
+        return [];
+    }
 }
 
 export async function sanityGetPostsBySlugs(slugs: string[]): Promise<Post[]> {
-    // Sanity doesn't need a specific "by slugs" query usually, we can filter
-    // const query = groq`*[_type == "post" && slug.current in $slugs]{ ... }`; // simplified
-    // Ideally reuse the full projection from postsQuery
+    // Snapshot-first (Plan C)
+    if (snapshotHasMap('posts')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const hits: any[] = slugs
+            .map((s) => contentSnapshot.posts?.[s])
+            .filter(Boolean);
+        if (hits.length > 0) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hits.sort((a: any, b: any) => (b?.publishedAt || '').localeCompare(a?.publishedAt || ''));
+            return hits.map(adaptSanityPost);
+        }
+    }
+
     const fullQuery = groq`*[_type == "post" && slug.current in $slugs] | order(publishedAt desc) {
         _id, title, slug, mainImage, excerpt, publishedAt, _updatedAt,
         "author": author->{name, slug, image, bio},
         "categories": categories[]->{title, slug, colorTheme, icon, description},
         "tags": tags[]->{title, slug}
     }`;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const posts: any[] = await client.fetch(fullQuery, { slugs });
-    return posts.map(adaptSanityPost);
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const posts: any[] = await client.fetch(fullQuery, { slugs });
+        return posts.map(adaptSanityPost);
+    } catch (err) {
+        console.error('Sanity live posts-by-slugs fetch failed:', err);
+        return [];
+    }
 }
 
 // Build-time snapshot (refreshed via `npm run sanity:snapshot`). Reading from
@@ -380,6 +433,22 @@ export async function sanityGetPostsBySlugs(slugs: string[]): Promise<Post[]> {
 // `generateStaticParams` — the dominant source of free-tier 402 quota burn.
 // Falls back to live Sanity if snapshot is empty (first run / pre-snapshot).
 import buildSnapshot from './sanity-build-snapshot.json';
+
+// Plan C — full content snapshot (refreshed alongside slug snapshot). Reading
+// from this eliminates RUNTIME Sanity API calls for published content (posts,
+// case studies, authors, categories, tags, jobs). The site now survives a
+// fully quota-locked Sanity project. Refresh via `npm run sanity:snapshot`.
+// Each `sanityGet*` function below tries the snapshot first and only falls
+// back to live Sanity if the snapshot is empty (first run / unpopulated entry).
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+import contentSnapshotRaw from './sanity-content-snapshot.json';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const contentSnapshot = contentSnapshotRaw as any;
+
+function snapshotHasMap(field: string): boolean {
+    const v = contentSnapshot?.[field];
+    return v && typeof v === 'object' && Object.keys(v).length > 0;
+}
 
 export async function sanityGetAllPostSlugs(): Promise<string[]> {
     if (buildSnapshot.postSlugs && buildSnapshot.postSlugs.length > 0) {
@@ -426,6 +495,10 @@ function adaptSanityAuthor(raw: any): Author {
 }
 
 export async function sanityGetAuthorBySlug(slug: string): Promise<Author | null> {
+    // Snapshot-first (Plan C)
+    const snap = contentSnapshot.authors?.[slug];
+    if (snap) return adaptSanityAuthor(snap);
+
     try {
         const raw = await client.fetch(queries.authorBySlugQuery, { slug });
         return raw ? adaptSanityAuthor(raw) : null;
@@ -448,6 +521,16 @@ export async function sanityGetAllAuthorSlugs(): Promise<string[]> {
 }
 
 export async function sanityGetPostsByAuthor(authorSlug: string): Promise<Post[]> {
+    // Snapshot-first (Plan C) via denormalized index
+    const slugList: string[] = contentSnapshot.indexes?.postsByAuthor?.[authorSlug] || [];
+    if (slugList.length > 0 && snapshotHasMap('posts')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const hits: any[] = slugList
+            .map((s) => contentSnapshot.posts?.[s])
+            .filter(Boolean);
+        return hits.map(adaptSanityPost);
+    }
+
     try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const posts: any[] = await client.fetch(queries.postsByAuthorQuery, { authorSlug });
@@ -459,28 +542,57 @@ export async function sanityGetPostsByAuthor(authorSlug: string): Promise<Post[]
 }
 
 export async function sanityGetTotalPostCount() {
-    const count = await client.fetch(groq`count(*[_type == "post"])`);
-    return count;
+    // Snapshot-first (Plan C) — derive from posts map keys.
+    if (snapshotHasMap('posts')) {
+        return Object.keys(contentSnapshot.posts).length;
+    }
+    try {
+        return await client.fetch(groq`count(*[_type == "post"])`);
+    } catch (err) {
+        console.error('Sanity live post count fetch failed:', err);
+        return 0;
+    }
 }
 
 export async function sanityGetTotalCategoryCount() {
-    const count = await client.fetch(groq`count(*[_type == "category"])`);
-    return count;
+    // Snapshot-first (Plan C)
+    if (snapshotHasMap('categories')) {
+        return Object.keys(contentSnapshot.categories).length;
+    }
+    try {
+        return await client.fetch(groq`count(*[_type == "category"])`);
+    } catch (err) {
+        console.error('Sanity live category count fetch failed:', err);
+        return 0;
+    }
 }
 
 export async function sanityGetPages(): Promise<Page[]> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const pages: any[] = await client.fetch(groq`*[_type == "page"] {
-        _id, title, slug, content, publishedAt, mainImage, seo
-    }`);
-    return pages.map(adaptSanityPage);
+    // No `page` doc type exists in the schema currently — left as defensive
+    // future-use. Plan C: snapshot doesn't store these. Wrap live call to
+    // survive 402 quota state.
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const pages: any[] = await client.fetch(groq`*[_type == "page"] {
+            _id, title, slug, content, publishedAt, mainImage, seo
+        }`);
+        return pages.map(adaptSanityPage);
+    } catch (err) {
+        console.error('Sanity live pages fetch failed:', err);
+        return [];
+    }
 }
 
 export async function sanityGetPageBySlug(slug: string): Promise<Page | null> {
-    const page = await client.fetch(groq`*[_type == "page" && slug.current == $slug][0] {
-        _id, title, slug, content, publishedAt, mainImage, seo
-    }`, { slug });
-    return page ? adaptSanityPage(page) : null;
+    try {
+        const page = await client.fetch(groq`*[_type == "page" && slug.current == $slug][0] {
+            _id, title, slug, content, publishedAt, mainImage, seo
+        }`, { slug });
+        return page ? adaptSanityPage(page) : null;
+    } catch (err) {
+        console.error('Sanity live page-by-slug fetch failed:', err);
+        return null;
+    }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -522,19 +634,74 @@ const fetchCategoryDataRaw = unstable_cache(
 );
 
 export async function sanityGetAdaptedCategoryData(categorySlug: string) {
-    const raw = await fetchCategoryDataRaw(categorySlug);
-    if (!raw) return null;
-    return {
-        category: adaptSanityCategory(raw.category),
-        posts: raw.posts.map(adaptSanityPost),
-        pageInfo: { hasNextPage: false } // Basic support for now
-    };
+    // Snapshot-first (Plan C) via denormalized index
+    const snapCat = contentSnapshot.categories?.[categorySlug];
+    if (snapCat) {
+        const slugList: string[] = contentSnapshot.indexes?.postsByCategory?.[categorySlug] || [];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const posts: any[] = slugList
+            .map((s) => contentSnapshot.posts?.[s])
+            .filter(Boolean);
+        return {
+            category: adaptSanityCategory(snapCat),
+            posts: posts.map(adaptSanityPost),
+            pageInfo: { hasNextPage: false },
+        };
+    }
+
+    try {
+        const raw = await fetchCategoryDataRaw(categorySlug);
+        if (!raw) return null;
+        return {
+            category: adaptSanityCategory(raw.category),
+            posts: raw.posts.map(adaptSanityPost),
+            pageInfo: { hasNextPage: false } // Basic support for now
+        };
+    } catch (err) {
+        console.error('Sanity live category-data fetch failed:', err);
+        return null;
+    }
 }
 
 export async function sanitySearchPosts(term: string): Promise<Post[]> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const posts: any[] = await client.fetch(queries.searchPostsQuery, { searchTerm: term });
-    return posts.map(adaptSanityPost);
+    // Snapshot-first (Plan C) — simple case-insensitive title/excerpt/body substring match.
+    // Plain-text body match is approximate (PortableText children only); good enough for
+    // free-tier search until we wire a proper index. Results sorted by publishedAt desc.
+    if (snapshotHasMap('posts') && term) {
+        const needle = term.toLowerCase();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const matches = Object.values(contentSnapshot.posts).filter((p: any) => {
+            if (!p) return false;
+            if ((p.title || '').toLowerCase().includes(needle)) return true;
+            if ((p.excerpt || '').toLowerCase().includes(needle)) return true;
+            if (Array.isArray(p.body)) {
+                const text = p.body
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    .map((block: any) => Array.isArray(block?.children)
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        ? block.children.map((c: any) => c?.text || '').join(' ')
+                        : '')
+                    .join(' ')
+                    .toLowerCase();
+                if (text.includes(needle)) return true;
+            } else if (typeof p.body === 'string' && p.body.toLowerCase().includes(needle)) {
+                return true;
+            }
+            return false;
+        });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        matches.sort((a: any, b: any) => (b?.publishedAt || '').localeCompare(a?.publishedAt || ''));
+        return matches.map(adaptSanityPost);
+    }
+
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const posts: any[] = await client.fetch(queries.searchPostsQuery, { searchTerm: term });
+        return posts.map(adaptSanityPost);
+    } catch (err) {
+        console.error('Sanity live search fetch failed:', err);
+        return [];
+    }
 }
 
 // F-48: cached. Cache key = tag slug; each /blog/tag/X gets its own
@@ -554,18 +721,43 @@ const fetchTagDataRaw = unstable_cache(
 );
 
 export async function sanityGetPostsByTag(tagSlug: string) {
-    const raw = await fetchTagDataRaw(tagSlug);
-    if (!raw) return { tag: null, posts: [] };
-    return {
-        tag: {
-            id: raw.tag.slug.current,
-            name: raw.tag.title,
-            slug: raw.tag.slug.current,
-            description: `Explore all articles tagged with ${raw.tag.title}.`,
-            count: raw.posts.length
-        },
-        posts: raw.posts.map(adaptSanityPost) // Return adapted posts directly
-    };
+    // Snapshot-first (Plan C) via denormalized index
+    const snapTag = contentSnapshot.tags?.[tagSlug];
+    if (snapTag) {
+        const slugList: string[] = contentSnapshot.indexes?.postsByTag?.[tagSlug] || [];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const posts: any[] = slugList
+            .map((s) => contentSnapshot.posts?.[s])
+            .filter(Boolean);
+        return {
+            tag: {
+                id: tagSlug,
+                name: snapTag.title || tagSlug,
+                slug: tagSlug,
+                description: `Explore all articles tagged with ${snapTag.title || tagSlug}.`,
+                count: posts.length,
+            },
+            posts: posts.map(adaptSanityPost),
+        };
+    }
+
+    try {
+        const raw = await fetchTagDataRaw(tagSlug);
+        if (!raw) return { tag: null, posts: [] };
+        return {
+            tag: {
+                id: raw.tag.slug.current,
+                name: raw.tag.title,
+                slug: raw.tag.slug.current,
+                description: `Explore all articles tagged with ${raw.tag.title}.`,
+                count: raw.posts.length
+            },
+            posts: raw.posts.map(adaptSanityPost) // Return adapted posts directly
+        };
+    } catch (err) {
+        console.error('Sanity live tag-data fetch failed:', err);
+        return { tag: null, posts: [] };
+    }
 }
 
 // F-48: cached — used by sidebars across blog routes.
@@ -578,22 +770,56 @@ const fetchTagsRaw = unstable_cache(
 );
 
 export async function sanityGetTags(): Promise<Tag[]> {
-    const tags = await fetchTagsRaw();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return tags.map((t: any) => ({
-        id: t.slug.current,
-        name: t.title,
-        slug: t.slug.current,
-        count: t.count
-    }));
+    // Snapshot-first (Plan C)
+    if (snapshotHasMap('tags')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const docs: any[] = Object.values(contentSnapshot.tags);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return docs.map((t: any) => ({
+            id: t.slug?.current || '',
+            name: t.title || '',
+            slug: t.slug?.current || '',
+            count: t.count || 0,
+        }));
+    }
+    try {
+        const tags = await fetchTagsRaw();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return tags.map((t: any) => ({
+            id: t.slug.current,
+            name: t.title,
+            slug: t.slug.current,
+            count: t.count
+        }));
+    } catch (err) {
+        console.error('Sanity live tags fetch failed:', err);
+        return [];
+    }
 }
 
 export async function sanityGetRelatedPosts(currentPostId: string, limit: number = 6): Promise<Post[]> {
-    // Determine query to fetch latest posts excluding current
+    // Snapshot-first (Plan C) — currentPostId is treated as a slug here (matches the
+    // existing live query that compares to slug.current). Pick latest N excluding self.
+    if (snapshotHasMap('posts')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const docs: any[] = Object.values(contentSnapshot.posts).filter(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (p: any) => p?.slug?.current !== currentPostId,
+        );
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        docs.sort((a: any, b: any) => (b?.publishedAt || '').localeCompare(a?.publishedAt || ''));
+        return docs.slice(0, limit).map(adaptSanityPost);
+    }
+
     const query = groq`*[_type == "post" && slug.current != $currentPostId] | order(publishedAt desc)[0...${limit}]`;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const posts: any[] = await client.fetch(query, { currentPostId, limit });
-    return posts.map(adaptSanityPost);
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const posts: any[] = await client.fetch(query, { currentPostId, limit });
+        return posts.map(adaptSanityPost);
+    } catch (err) {
+        console.error('Sanity live related-posts fetch failed:', err);
+        return [];
+    }
 }
 
 // =============================================
@@ -844,14 +1070,36 @@ export function adaptSanityCaseStudy(raw: any): CaseStudy {
 // --- Case Study Data Fetching Functions ---
 
 export async function sanityGetAllCaseStudies(): Promise<CaseStudy[]> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rawData: any[] = await client.fetch(queries.allCaseStudiesQuery);
-    return rawData.map(adaptSanityCaseStudy);
+    // Snapshot-first (Plan C). Preserve _createdAt asc ordering used by the live query.
+    if (snapshotHasMap('caseStudies')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const docs: any[] = Object.values(contentSnapshot.caseStudies);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        docs.sort((a: any, b: any) => (a?._createdAt || '').localeCompare(b?._createdAt || ''));
+        return docs.map(adaptSanityCaseStudy);
+    }
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rawData: any[] = await client.fetch(queries.allCaseStudiesQuery);
+        return rawData.map(adaptSanityCaseStudy);
+    } catch (err) {
+        console.error('Sanity live case-studies fetch failed:', err);
+        return [];
+    }
 }
 
 export async function sanityGetCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
-    const raw = await client.fetch(queries.caseStudyBySlugQuery, { slug });
-    return raw ? adaptSanityCaseStudy(raw) : null;
+    // Snapshot-first (Plan C)
+    const snap = contentSnapshot.caseStudies?.[slug];
+    if (snap) return adaptSanityCaseStudy(snap);
+
+    try {
+        const raw = await client.fetch(queries.caseStudyBySlugQuery, { slug });
+        return raw ? adaptSanityCaseStudy(raw) : null;
+    } catch (err) {
+        console.error('Sanity live case-study-by-slug fetch failed:', err);
+        return null;
+    }
 }
 
 export async function sanityGetAllCaseStudySlugs(): Promise<string[]> {
@@ -870,9 +1118,23 @@ export async function sanityGetRelatedCaseStudies(
     currentSlug: string,
     limit: number = 3
 ): Promise<CaseStudy[]> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rawData: any[] = await client.fetch(queries.relatedCaseStudiesQuery, { slug: currentSlug, limit });
-    return rawData.map(adaptSanityCaseStudy);
+    // Snapshot-first (Plan C). Live query matches "_type == caseStudy && slug.current != $slug" with [0...$limit].
+    if (snapshotHasMap('caseStudies')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const docs: any[] = Object.values(contentSnapshot.caseStudies).filter(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (cs: any) => cs?.slug?.current !== currentSlug,
+        );
+        return docs.slice(0, limit).map(adaptSanityCaseStudy);
+    }
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rawData: any[] = await client.fetch(queries.relatedCaseStudiesQuery, { slug: currentSlug, limit });
+        return rawData.map(adaptSanityCaseStudy);
+    } catch (err) {
+        console.error('Sanity live related-case-studies fetch failed:', err);
+        return [];
+    }
 }
 
 // =============================================
@@ -925,13 +1187,37 @@ export function adaptSanityJobPosting(raw: any, index: number): SanityJobOpening
 // --- Job Posting Data Fetching Functions ---
 
 export async function sanityGetAllJobOpenings(): Promise<SanityJobOpening[]> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rawData: any[] = await client.fetch(queries.allJobPostingsQuery);
-    return rawData.map((raw, index) => adaptSanityJobPosting(raw, index));
+    // Snapshot-first (Plan C). Preserve _createdAt desc ordering used by the live query
+    // and the `isActive == true` filter (snapshot already only stores active jobs since
+    // the script query bakes that filter in).
+    if (snapshotHasMap('jobs')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const docs: any[] = Object.values(contentSnapshot.jobs);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        docs.sort((a: any, b: any) => (b?._createdAt || '').localeCompare(a?._createdAt || ''));
+        return docs.map((raw, index) => adaptSanityJobPosting(raw, index));
+    }
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rawData: any[] = await client.fetch(queries.allJobPostingsQuery);
+        return rawData.map((raw, index) => adaptSanityJobPosting(raw, index));
+    } catch (err) {
+        console.error('Sanity live job-openings fetch failed:', err);
+        return [];
+    }
 }
 
 export async function sanityGetJobOpeningBySlug(slug: string): Promise<SanityJobOpening | null> {
-    const raw = await client.fetch(queries.jobPostingBySlugQuery, { slug });
-    return raw ? adaptSanityJobPosting(raw, 0) : null;
+    // Snapshot-first (Plan C)
+    const snap = contentSnapshot.jobs?.[slug];
+    if (snap) return adaptSanityJobPosting(snap, 0);
+
+    try {
+        const raw = await client.fetch(queries.jobPostingBySlugQuery, { slug });
+        return raw ? adaptSanityJobPosting(raw, 0) : null;
+    } catch (err) {
+        console.error('Sanity live job-by-slug fetch failed:', err);
+        return null;
+    }
 }
 
