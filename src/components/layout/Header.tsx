@@ -10,6 +10,9 @@ import Testriq_Logo from "../../../public/images/Testriq_Logo.png";
 type SubmenuItem = {
   label: string;
   link: string;
+  // Optional one-line subtitle. Rendered under the label in the desktop
+  // Products hover panel; safely ignored by every other submenu renderer.
+  description?: string;
 };
 
 type Submenu = SubmenuItem[] | { heading: string; services: SubmenuItem[] }[];
@@ -183,6 +186,15 @@ const Navbar = () => {
         },
       ],
     },
+    {
+      label: "Products",
+      link: "",
+      // Products submenu — add new products here as { label, link, description? }.
+      // `description` is optional and shows as a subtitle in the desktop hover panel.
+      submenu: [
+        { label: "LLMQA", link: "/llmqa", description: "LLM & chatbot validation — test, certify, and trust your AI." },
+      ],
+    },
     { label: "Tools", link: "/technology-stack" },
     { label: "Case Studies", link: "/case-studies" },
     { label: "Careers", link: "/careers" },
@@ -312,9 +324,54 @@ const Navbar = () => {
                   </div>
                 )}
 
+              {/* Hover panel for 'Products'. Items come from the menuItems
+                  array above (currently placeholders) — the panel renders
+                  each product's label plus an optional description line. */}
+              {item.label === "Products" &&
+                item.submenu &&
+                activeDesktopSubmenu === idx && (
+                  <div className="absolute top-full left-0 z-[60] w-80 pt-2">
+                    <div className="bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-2">
+                      <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 pt-2 pb-1">
+                        Our Products
+                      </h3>
+                      {item.submenu.map((subItem, subIdx) => {
+                        if (!("link" in subItem)) return null;
+                        return (
+                          <Link
+                            key={subIdx}
+                            href={subItem.link}
+                            onClick={() => handleLinkClick(subItem.link, item.label)}
+                            aria-label={subItem.label}
+                            className="group flex items-start gap-3 px-3 py-2.5 rounded-lg border border-transparent hover:bg-blue-50/50 hover:border-blue-100 transition-colors"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-200 mt-2 shrink-0 group-hover:bg-[theme(color.brand.blue)] transition-colors"></div>
+                            <div className="flex flex-col">
+                              <span
+                                className={`text-[15px] font-semibold leading-snug transition-colors group-hover:text-[theme(color.brand.blue)] ${activeLink === subItem.link
+                                  ? "text-[theme(color.brand.blue)]"
+                                  : "text-gray-700"
+                                  }`}
+                              >
+                                {subItem.label}
+                              </span>
+                              {subItem.description && (
+                                <span className="text-xs text-gray-500 leading-snug mt-0.5">
+                                  {subItem.description}
+                                </span>
+                              )}
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
               {/* Dropdown for other items */}
               {item.submenu &&
                 item.label !== "Services" &&
+                item.label !== "Products" &&
                 activeDesktopSubmenu === idx && (
                   <ul className="absolute top-full left-0 bg-white shadow-md rounded-md py-2 w-max z-[55]">
                     {item.submenu.map((subItem, subIdx) => (

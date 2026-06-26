@@ -94,6 +94,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { slug: 'contact-us', title: 'Contact Us' },
       { slug: 'case-studies', title: 'Case Studies' },
       { slug: 'technology-stack', title: 'Tools' },
+      { slug: 'llmqa', title: 'LLMQA' },
       { slug: 'roi-calculator', title: 'ROI Calculator' },
       { slug: 'locations-we-serve', title: 'Locations We Serve' },
       { slug: 'privacy-policy', title: 'Privacy Policy' },
