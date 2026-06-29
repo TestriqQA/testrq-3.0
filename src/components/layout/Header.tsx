@@ -192,7 +192,7 @@ const Navbar = () => {
       // Products submenu — add new products here as { label, link, description? }.
       // `description` is optional and shows as a subtitle in the desktop hover panel.
       submenu: [
-        { label: "LLMQA", link: "/llmqa", description: "LLM & chatbot validation — test, certify, and trust your AI." },
+        { label: "llmqa.ai", link: "/llmqa", description: "LLM/GenAI/Chat Bot/Chat Agent Validation Tool | Test, Clarify, and Trust your AI" },
       ],
     },
     { label: "Tools", link: "/technology-stack" },
