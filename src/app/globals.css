@@ -172,3 +172,74 @@ body {
 
 
 
+/* ===================================================================
+   LLMQA "watch it run" console illustration (used on the /llmqa hero).
+   Scoped under `.console`; keyframes namespaced (console-blink/-scan)
+   so they don't collide. JS in LLMQAConsole.tsx drives the typing.
+   =================================================================== */
+.console {
+  --con-bg: #0F172A;
+  --con-surface: #1E293B;
+  --con-border: #334155;
+  --con-text: #E2E8F0;
+  --con-muted: #94A3B8;
+  --con-tag: #67E8F9;     /* cyan-light */
+  --con-violet: #A78BFA;  /* violet-light */
+  --con-pass: #34D399;    /* emerald */
+  --con-fail: #F87171;    /* red */
+  --con-mono: var(--font-geist-mono), "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  position: relative; width: 100%; max-width: 760px; margin: 0 auto; overflow: hidden;
+  border: 1px solid var(--con-border); border-radius: 16px; color: var(--con-text);
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px),
+    var(--con-bg);
+  box-shadow: 0 28px 70px -34px rgba(79, 38, 160, 0.30);
+}
+.console__bar {
+  display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+  border-bottom: 1px solid var(--con-border); background: var(--con-surface);
+}
+.console__dot { width: 11px; height: 11px; border-radius: 50%; }
+.console__dot:nth-child(1) { background: #ff5f57; }
+.console__dot:nth-child(2) { background: #febc2e; }
+.console__dot:nth-child(3) { background: #28c840; }
+.console__path {
+  margin-left: 10px; font-family: var(--con-mono); font-size: 0.8rem; color: var(--con-muted);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.console__body {
+  padding: 22px 22px 26px; font-family: var(--con-mono); font-size: clamp(0.74rem, 1.6vw, 0.9rem);
+  line-height: 1.9; min-height: 320px; white-space: pre-wrap; word-break: break-word; color: var(--con-text);
+}
+.console__line { display: block; }
+.console__line .tag { color: var(--con-tag); }
+.console__line .pass { color: var(--con-pass); font-weight: 600; }
+.console__line .fail { color: var(--con-fail); font-weight: 600; }
+.console__line .dim { color: var(--con-muted); }
+.console__line--cert {
+  margin-top: 12px; padding: 10px 14px; border: 1px solid var(--con-violet);
+  border-radius: 10px; color: var(--con-violet); display: inline-block; background: rgba(167,139,250,0.10);
+}
+.console__caret {
+  display: inline-block; width: 9px; height: 1.05em; vertical-align: text-bottom;
+  background: var(--con-tag); animation: console-blink 1.1s steps(1) infinite;
+}
+.console__scanline {
+  position: absolute; left: 0; right: 0; top: 0; height: 90px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(103,232,249,0.10), transparent);
+  animation: console-scan 7s linear infinite;
+}
+@keyframes console-blink { 50% { opacity: 0; } }
+@keyframes console-scan {
+  from { top: 0;    transform: translateY(-100%); }
+  to   { top: 100%; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .console__scanline { display: none; }
+  .console__caret { animation: none; }
+}
+
+
+
+
