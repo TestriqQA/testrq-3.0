@@ -20,7 +20,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Software Testing & QA Case Studies | Testriq QA Lab",
   description:
-    "Explore our library of software testing case studies. See how Testriq helped Canva, Ragnar, and Fintech startups achieve 99% bug-free releases with our Manual & Automation testing strategies.",
+    "Explore our library of software testing case studies. See how Testriq helped Canva, Ragnar, and fintech startups ship higher-quality releases with our Manual & Automation testing strategies.",
   keywords:
     "client case studies, success stories, software testing results, QA case studies, testing testimonials, client testimonials, software quality results, testing ROI, QA success metrics",
   metadataBase: new URL("https://www.testriq.com/"),

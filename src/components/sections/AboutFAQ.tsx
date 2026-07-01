@@ -16,7 +16,7 @@ const AboutFAQ: React.FC = () => {
         {
             question: "What makes Testriq a trusted QA partner with over 15 years of experience?",
             answer: ["Testriq is a trusted QA partner with 15+ years of delivering software quality assurance, serving startups and enterprises globally. Our certified QA engineers combine manual testing and test automation services using advanced frameworks tailored to your business needs.",
-                "We have executed 500K+ tests across SaaS, Fintech, and Ecommerce, ensuring reduced bugs and faster releases for our clients.",
+                "We have delivered large-scale test execution across SaaS, Fintech, and Ecommerce, ensuring reduced bugs and faster releases for our clients.",
                 "Our structured QA processes improve product stability and performance across platforms and devices, enhancing user trust.",
                 "We offer transparent reporting with measurable results, providing clear insights at every stage of the testing lifecycle."
             ]

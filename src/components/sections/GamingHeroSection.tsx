@@ -102,7 +102,7 @@ const GamingHeroSection: React.FC = () => {
               services. From mobile games to AAA titles, our gaming software
               testing solutions ensure optimal{" "}
               <Link href="/performance-testing-services">performance</Link>,
-              engaging gameplay, and bug-free launches through{" "}
+              engaging gameplay, and reliable launches through{" "}
               <Link href="/blog/post/cross-platform-testing-ensuring-seamless-gaming-experiences-across-devices">
                 cross-platform compatibility
               </Link>

@@ -58,7 +58,7 @@ const CaseStudiesOverviewSection = () => {
       title: "Client Satisfaction",
       description: (
         <>
-          Maintained 100% client satisfaction rate through dedicated support and
+          Earned strong client satisfaction through dedicated support and
           exceptional service delivery
         </>
       ),

@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     site: '@testriq',
     creator: '@testriq',
     title: 'Gaming App Testing Solutions | Mobile Game QA & Performance Testing | Testriq',
-    description: 'Deliver immersive, bug-free gaming experiences with Testriq’s expert QA testing—covering mobile, console, VR, and multiplayer games.',
+    description: 'Deliver immersive, high-quality gaming experiences with Testriq’s expert QA testing—covering mobile, console, VR, and multiplayer games.',
     images: ['https://www.testriq.com/OG/Gaming-App-Testing-Service-Twitter.webp'],
   },
   robots: {

@@ -151,7 +151,7 @@ const GamingCaseStudiesSection: React.FC = () => {
             Real-world examples of how our specialized game testing services
             have helped developers achieve successful game launches, exceptional
             player experiences, and long-term commercial success through
-            flawless gameplay, bug-free releases, and optimized game
+            smooth gameplay, reliable releases, and optimized game
             performance.
           </p>
         </div>

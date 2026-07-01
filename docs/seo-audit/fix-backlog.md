@@ -12,13 +12,26 @@ Priority: P0 (traffic-blocking) · P1 (ranking impact) · P2 (compounding) · P3
 
 | ID | Area | File(s) | Issue | Fix | Prio | Status |
 |---|---|---|---|---|---|---|
-| C-1 | Claims | `src/app/lib/CityData.tsx` + `src/components/sections/*` (315 hits) | "500K+ test cases executed/delivered" stated as fact, unsourced, on ~86 city pages + sections | Reframe to capability ("large-scale test execution across projects") OR cite a real, named figure if one exists | P1 | ⛔ blocked by H1 city decision |
+| C-1 | Claims | `src/app/lib/CityData.tsx` + `src/components/sections/*` (315 hits) | "500K+ test cases executed/delivered" stated as fact, unsourced, on ~86 city pages + sections | Reframe to capability ("large-scale test execution") OR cite a real figure. **Non-city prose/meta done** (AboutFAQ, about-us meta). **Displayed stat cards held** (see Held list). City instances blocked by H1. | P1 | 🟡 prose/meta done; stat-cards + city held |
 | C-2 | Claims | ~50 `src/components/sections/*` (68 hits) | "99.9% uptime/success" — some are Testriq guarantees (non-defensible), some describe *client SLA targets* (defensible) | Per-context: keep where it describes what Testriq *tests for*; remove where it's a Testriq guarantee | P1 | ⬜ |
-| C-3 | Claims | sections (42 hits) | "zero-defect / bug-free / crash-free" absolute guarantees | Reframe to "defect reduction", "fewer production incidents" | P1 | ⬜ |
+| C-3 | Claims | sections (42 hits) | "zero-defect / bug-free / crash-free" absolute guarantees | Reframe to "reliable", "defect reduction". **Prose/meta done** (sap meta, gaming meta+prose ×3, e-commerce, case-studies meta). Metric-card labels ("Bug-Free Launch Rate") held. | P1 | 🟡 prose/meta done; metric labels held |
 | C-4 | Claims | sections + CityData (47 hits) | "50+ / trusted by N companies" unsourced counts | Qualitative ("trusted by teams across BFSI, health, e-commerce…") unless a real number exists | P2 | ⬜ |
-| C-5 | Claims | sections (7 hits) | "100% client satisfaction" | Remove/replace with real testimonial evidence | P1 | ⬜ |
+| C-5 | Claims | sections (7 hits) | "100% client satisfaction" / "100% Satisfaction Guaranteed" | Reframe to "strong client satisfaction". **Prose/badge done** (AboutMission, CaseStudiesOverview prose, CaseStudyTestimonial, CaseStudiesReadyToStart badge, Telecom). Metric card `"100% Satisfaction"` held. | P1 | 🟡 prose done; metric card held |
 | C-6 | Claims | company-level copy (subset of 133 "years" hits) | "15+ years of experience" at **company** level — verify vs Testriq's real founding date; individual-bio uses are fine if real | Owner to confirm founding year; auditor fixes company-level claims to match | P1 | ⬜ needs owner input |
 | C-7 | Superlatives | `CityData.tsx` + sections (~40 marketing "leading"/"best") | Puffery in titles/descriptions ("Leading software testing company in {city}") | Neutral descriptive, keep keyword ("Software testing company in {city}") | P2 | ⛔ blocked by H1 |
+
+### Held: displayed stat/metric cards (need a real number OR a design decision)
+These render as big-number cards (`{ number: "500K+", label: … }`, `metric: "100% Satisfaction"`,
+`99.9%` + "Bug-Free Launch Rate"). Rewording them to qualitative text breaks the visual grid, and
+I won't fabricate a replacement number. **Owner: provide a real, defensible figure per card, or
+approve replacing these with non-numeric trust signals (e.g., "ISTQB-certified", "SOC2", "50+ testing
+services").** Locations (non-city): `HomeHeroSection:74`, `AboutHeroSection:68,111`, `AboutStorySection:141`,
+`CaseStudyCallToActionSection:91`, `ApiCaseStudies:120`, `ManagedTestingHeroSection:78`,
+`ManagedTestingStrategy:31`, `UATHeroSection:62`, `UATWhyChooseSection:21,73`,
+`CaseStudiesOverviewSection:65` (100% Satisfaction), `GamingTestingServicesSection:405-408` (99.9% Bug-Free),
+`GamingChallengesSection:173`, `GamingTestingProcessSection:367`, `GamingCaseStudiesSection:28,114`.
+> Note: `$500K`-style figures in the ROI calculators (Banking/Ecommerce/Gaming/Healthcare/IoT/SaaS ROI
+> sections) are **cost estimates, not Testriq claims** — intentionally left as-is.
 
 ## Technical SEO (Phase 2) — remaining
 
