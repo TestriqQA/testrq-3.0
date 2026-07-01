@@ -41,7 +41,7 @@ Priority: P0 (traffic-blocking) · P1 (ranking impact) · P2 (compounding) · P3
 
 | ID | Area | Issue | Fix | Prio | Status |
 |---|---|---|---|---|---|
-| A-1 | Authority | Deliverable pending | Produce `ranking-action-plan.md` (GBP, directories, reviews, listicles, backlinks, GSC monitoring) | P1 | ⬜ safe-to-proceed |
+| A-1 | Authority | Deliverable pending | Produced [`ranking-action-plan.md`](./ranking-action-plan.md) (P0/P1/P2: GSC, GBP, directories, reviews, listicles, backlinks, monitoring) | P1 | ✅ done 2026-07-01 |
 
 ---
 
