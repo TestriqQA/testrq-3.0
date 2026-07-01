@@ -14,10 +14,10 @@
 |---|---|---|---|---|
 | 0 | Discovery / baseline (fresh code) | ✅ Done | 2026-07-01 | Extends [`01-baseline.md`](./01-baseline.md); confirmed against live `origin/main`. See [`ranking-drop-diagnosis.md`](./ranking-drop-diagnosis.md) §1. |
 | 0.5 | **Ranking-drop diagnosis** | 🟡 Code-side done; **awaiting owner GSC/GA data** | 2026-07-01 | Ranked hypotheses + owner data-pull checklist in [`ranking-drop-diagnosis.md`](./ranking-drop-diagnosis.md). **This is the gate for Phases 1–3.** |
-| 1 | Non-defensible claims cleanup | ⬜ Not started | — | Confirmed **NOT done**: 315× "500K", 68× "99.9%", 42× "zero-defect/bug-free", 47× "50+ clients", 7× "100% satisfaction". Backlog rows C-1…C-6. **Blocked on city-page decision (H1).** |
-| 2 | Technical SEO audit + fix | 🟡 Partial (much already shipped) | — | Remaining: redirect chains (9), sitemap `lastmod` freshness, `[slug]` collision risk. Backlog T-*. |
+| 1 | Non-defensible claims cleanup | 🟡 Prose/meta done; stat-cards + city held | 2026-07-01 | Reframed 15 non-city prose/meta claims (commit `7bdada86`). Held: displayed big-number stat cards (need real figures/design) + all city instances (H1). Backlog C-1/C-3/C-5. Still open: C-2 (99.9% per-context), C-4 (50+), C-6 (15+ years, owner). |
+| 2 | Technical SEO audit + fix | 🟡 Partial (much already shipped) | 2026-07-01 | ✅ T-1 redirect chains flattened (commit `dd651658`). Remaining: T-2 sitemap `lastmod`, T-3 `[slug]` collision, T-4 case-study Review rating (owner), T-5 canonicals (GSC). |
 | 3 | On-page / content SEO (cannibalization) | ⬜ Not started | — | Depends on H1/H3 (city + cannibalization) decisions. |
-| 4 | Off-page / authority (owner action plan) | ⬜ Not started | — | To be delivered as `ranking-action-plan.md`. |
+| 4 | Off-page / authority (owner action plan) | ✅ Done | 2026-07-01 | Delivered [`ranking-action-plan.md`](./ranking-action-plan.md) (commit `87ef82ab`). |
 | 5 | Lead-gen / conversion (light-touch) | ⬜ Not started | — | Low priority until 0.5 resolved. |
 
 Legend: ✅ done · 🟡 in progress / partial · ⬜ not started
