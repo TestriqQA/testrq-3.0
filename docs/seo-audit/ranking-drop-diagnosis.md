@@ -150,3 +150,59 @@ Once §4 is in, we assign the dominant hypothesis and **only then** prioritize f
 
 **Nothing in Phases 1–3 is mass-applied before this gate.** See [`progress.md`](./progress.md) for
 the safe-to-proceed subset (off-page plan, redirect-chain flattening, non-city claims cleanup).
+
+---
+
+## 6. GSC data received — 2026-07-01 (owner screenshots)
+
+### 6.1 Performance (two consecutive ~3-month windows)
+
+| Metric | Jan 1 – ~Mar 29 (prior) | Mar 30 – Jun 28 (recent) | Change |
+|---|---|---|---|
+| Clicks | 5.23K | 5.05K | ≈ flat (−3%) |
+| Impressions | 1.6M | 1.97M | **+23% (up)** |
+| Avg CTR | 0.3% | 0.3% | flat (very low) |
+| Avg position | 17.2 | 14 | **improved (better)** |
+
+**Reading:** This is **not** a penalty/manual-action cliff — aggregate position *improved* and
+impressions *rose*. **H5 (manual action) effectively ruled out.** BUT: (a) the recent-window graph
+shows a **downward trend in the last ~2 weeks of June** (both clicks and impressions falling) — a
+*recent* softening masked by strong Apr–May; and (b) **CTR is abnormally low at 0.3%** — 1.97M
+impressions producing only ~5K clicks. That combination (huge impressions, tiny CTR, position ~14 =
+page 2) is the signature of **a large volume of thin pages ranking poorly for many queries** — lots
+of visibility, almost no clicks.
+
+### 6.2 Indexing — "Why pages aren't indexed" (the smoking gun)
+
+| Reason | Pages | Note |
+|---|---|---|
+| **Crawled – currently not indexed** | **2,178** | **Trend RISING.** Google crawled them and *refused to index* → thin/duplicate/low-value signal at scale. |
+| **Not found (404)** | **551** | Google is crawling 551 dead URLs → crawl waste + quality drag. Source list needed (exportable). |
+| Page with redirect | 36 | expected (redirect map) |
+| Excluded by 'noindex' tag | 5 | intended (category/tag/author/verify-cert) |
+| Soft 404 | 4 | investigate |
+| Alternate page w/ proper canonical | 4 | fine |
+| Blocked by robots.txt | 2 | intended (/cms etc.) |
+| Duplicate, Google chose different canonical | 1 | negligible |
+
+### 6.3 Updated conclusion — root cause is **content quality + crawl waste, not a penalty**
+
+- **H1 CONFIRMED and BROADER than cities.** 2,178 "Crawled – not indexed" (and rising) ≫ the 86 city
+  pages. The thin/duplicate problem spans **city pages + blog tag/category pages + other programmatic
+  URLs**. Google is spending crawl budget on thousands of low-value pages and indexing few of them.
+  This dilutes site-wide quality signals and is the best explanation for the perceived decline.
+- **New P0/P1 finding: 551 "Not found (404)".** Broken/old URLs Google keeps hitting — wastes crawl
+  budget and drags quality. Fixable once the URL list is exported.
+- **CTR 0.3% → title/meta opportunity** on the pages that *do* rank (position ~14).
+- **H2 (May deploy)** downgraded: no cliff aligned to it. **H4 (core update)** still worth a date
+  check but secondary to the thin-content story.
+
+### 6.4 What this means for the fix priority
+1. **Thin-content reduction (P0):** decide the fate of the city pages + blog tag/category pages +
+   whatever else feeds the 2,178. Consolidate / `noindex` / improve. (owner decision → backlog O-2)
+2. **Fix the 551 404s (P1):** export the list from GSC → redirect the good ones, let truly-dead ones
+   stay 404 but remove internal links/sitemap refs. (auditor can act once list is provided)
+3. **CTR uplift (P2):** intent-led titles/descriptions on the pages that rank on page 2.
+
+**Still useful to pull:** GSC → Performance → **Pages** tab and **Queries** tab, sorted by *click
+change* (which specific pages/queries lost) — to target the CTR + cannibalization work precisely.

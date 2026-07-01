@@ -42,6 +42,8 @@ services").** Locations (non-city): `HomeHeroSection:74`, `AboutHeroSection:68,1
 | T-3 | Routing | `src/app/[slug]/page.tsx` | Polymorphic catch-all mixes cities + case studies in one namespace → slug-collision risk | Namespace or guard against collision; document precedence | P2 | ⬜ |
 | T-4 | Schema | `src/app/[slug]/page.tsx:214` | Per-case-study `Review.ratingValue` — verify each rating is real/attributable | Confirm data source; remove if not verifiable | P1 | ⬜ needs owner input |
 | T-5 | Canonicals | dropped pages (TBD from GSC) | Verify Google-selected canonical == self on pages that lost rank (H2) | Audit per URL once GSC list is in | P1 | ⛔ blocked on GSC |
+| T-6 | Crawl / 404 | GSC "Not found (404)" = **551 URLs** | Google crawling 551 dead URLs → crawl waste + quality drag | Export list from GSC → 301 the good ones to live targets, remove internal-link/sitemap refs to truly-dead ones | P1 | ⛔ needs 404 URL export |
+| T-7 | Thin content | GSC "Crawled – not indexed" = **2,178 (rising)** | Large volume of thin/duplicate pages Google won't index (cities + blog tag/category + programmatic) | Reduce/consolidate/noindex thin pages; improve the keepers. Ties to O-2. | P0 | ⛔ needs city/taxonomy decision |
 
 ## On-page / cannibalization (Phase 3)
 
