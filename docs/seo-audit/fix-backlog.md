@@ -24,7 +24,7 @@ Priority: P0 (traffic-blocking) · P1 (ranking impact) · P2 (compounding) · P3
 
 | ID | Area | File(s) | Issue | Fix | Prio | Status |
 |---|---|---|---|---|---|---|
-| T-1 | Redirects | `src/lib/seo/redirect-map.ts` | 9 redirect **chains** (destination is also a source) — mostly `/blog/post/*`, `/blog/tag/*` | Flatten each chain to a single hop (source → final destination) | P2 | ⬜ safe-to-proceed |
+| T-1 | Redirects | `src/lib/seo/redirect-map.ts` | 10 redirect **chains** (destination is also a source) — mostly `/blog/post/*`, `/blog/tag/*` | Flattened each chain to a single hop (source → terminal destination); intermediates left intact | P2 | ✅ done 2026-07-01 |
 | T-2 | Sitemap | `src/app/sitemap.ts:104,138,152,162` | `lastModified: currentDate` for all non-blog URLs → artificial freshness, discounted | Use real content mtime (file/Sanity/manifest) | P2 | ⬜ |
 | T-3 | Routing | `src/app/[slug]/page.tsx` | Polymorphic catch-all mixes cities + case studies in one namespace → slug-collision risk | Namespace or guard against collision; document precedence | P2 | ⬜ |
 | T-4 | Schema | `src/app/[slug]/page.tsx:214` | Per-case-study `Review.ratingValue` — verify each rating is real/attributable | Confirm data source; remove if not verifiable | P1 | ⬜ needs owner input |
