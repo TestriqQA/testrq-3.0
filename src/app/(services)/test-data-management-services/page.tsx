@@ -19,7 +19,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/test-data-management-services",
-        title: "Test Data Management Services | TDM QA & Synthetic Data | Testriq",
+        title: "Test Data Management | TDM & Synthetic Data | Testriq",
         description:
             "Power your QA with Testriq's test data management. Secure data masking, synthetic data generation, and GDPR-compliant TDM for safe, scalable testing pipelines.",
         ogImage: {

@@ -87,7 +87,7 @@ const AboutMissionSection = () => {
                   "Transparent project communication and real-time status updates",
                   "Tailored QA strategies customized for your product lifecycle",
                   "24/7 QA support and dedicated project coordination for agile delivery",
-                  "100% Client Satisfaction, backed by results across 500K+ test cases",
+                  "A results-driven approach focused on measurable quality across every engagement",
                 ].map((commitment, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-[theme(color.brand.blue)] rounded-full mt-2 flex-shrink-0"></div>

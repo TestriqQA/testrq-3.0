@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/appium-mobile-testing-services";
 export const metadata: Metadata = {
   title: "Appium Mobile Testing Services — iOS + Android Automation",
   description:
-    "Appium mobile test automation services — real-device + emulator/simulator coverage, iOS XCUITest + Android UiAutomator2 drivers, hybrid + native, cloud device farms, CI/CD. ISTQB + ISO certified.",
+    "Appium mobile test automation: real-device and emulator coverage, iOS XCUITest and Android UiAutomator2, hybrid and native apps, cloud device farms, and CI/CD.",
   keywords: [
     "Appium Testing Services",
     "Appium Mobile Automation",

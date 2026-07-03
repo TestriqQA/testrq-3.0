@@ -45,7 +45,7 @@ const AccessibilityHeroSection: React.FC = () => {
                                 <div className="w-12 h-12 rounded-full bg-blue-400/20 flex items-center justify-center">
                                     <FaUniversalAccess className="text-2xl" />
                                 </div>
-                                <span className="text-sm">Trusted by <br /><strong>150+ Companies</strong></span>
+                                <span className="text-sm">Trusted by <br /><strong>Teams Worldwide</strong></span>
                             </div>
                         </div>
                     </div>

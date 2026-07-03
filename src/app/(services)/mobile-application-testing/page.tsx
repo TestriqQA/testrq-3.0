@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/mobile-application-testing",
     title:
-      "Mobile Application Testing Services | iOS & Android QA | Testriq",
+      "Mobile Application Testing | iOS & Android QA | Testriq",
     description:
       "Validate iOS and Android performance with Testriq's mobile testing services. 5G optimization, security pen-testing, and ISO 29119-compliant QA for global teams.",
     ogImage: {

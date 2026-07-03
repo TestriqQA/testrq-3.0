@@ -36,7 +36,7 @@ const services = [
 const benefits = [
   {
     title: 'Boost Conversions',
-    description: 'A bug-free, fast platform reduces cart abandonment and drives higher sales.',
+    description: 'A reliable, fast platform reduces cart abandonment and drives higher sales.',
   },
   {
     title: 'Build Customer Trust',

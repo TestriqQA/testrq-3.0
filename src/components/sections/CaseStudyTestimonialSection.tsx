@@ -114,7 +114,7 @@ const CaseStudyTestimonialSection: React.FC<
               Client Satisfaction
             </h3>
             <p className="text-gray-600">
-              Maintaining 100% client satisfaction through dedicated service and
+              Earning strong client satisfaction through dedicated service and
               expert solutions
             </p>
           </div>

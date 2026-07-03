@@ -66,12 +66,12 @@ const RoboticFAQs: React.FC = () => {
           information from emails, ERPs, and spreadsheets, then verify that the
           data remains consistent across all your software systems. Our{" "}
           <Link
-            href="/database-testing-services"
+            href="/etl-testing-services"
             className="text-brand-blue hover:underline font-medium"
           >
             data validation
           </Link>{" "}
-          protocols ensure 100% integrity.
+          protocols help ensure data integrity.
         </>
       ),
     },

@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/selenium-testing-services";
 export const metadata: Metadata = {
   title: "Selenium Testing Services — Selenium WebDriver Automation",
   description:
-    "Selenium WebDriver test automation services — Grid scale-out, Page Object architecture, CI integration, cross-browser + cross-device, framework migration. ISTQB + ISO 9001 + ISO 27001 certified.",
+    "Selenium WebDriver test automation services: Grid scale-out, Page Object architecture, CI integration, cross-browser and cross-device, and framework migration.",
   keywords: [
     "Selenium Testing Services",
     "Selenium WebDriver",

@@ -159,7 +159,7 @@ const CaseStudiesReadyToStartSection = () => {
             <div className="flex items-center justify-center gap-2">
               <FaCheckCircle className="w-4 h-4 text-green-500" />
               <span className="text-gray-700">
-                100% Satisfaction Guaranteed
+                Client-First Approach
               </span>
             </div>
             <div className="flex items-center justify-center gap-2">

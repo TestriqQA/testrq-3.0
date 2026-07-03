@@ -314,7 +314,7 @@ const AIWhyChooseTestriq: React.FC = () => {
                 Ready to Unleash AI Excellence?
               </h3>
               <p className="text-purple-100 mb-6 max-w-2xl mx-auto">
-                Join 150+ companies who trust our AI testing expertise. Get
+                Join the companies who trust our AI testing expertise. Get
                 started with a comprehensive AI model assessment and ensure your
                 intelligent systems are accurate, fair, and reliable.
               </p>

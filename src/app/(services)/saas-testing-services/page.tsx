@@ -9,7 +9,7 @@ import StructuredData, {
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-    title: "SaaS Testing Services | Expert Cloud Application QA & Security",
+    title: "SaaS Testing Services | Cloud Application QA | Testriq",
     description:
         "Premium SaaS testing services for cloud-first companies. Multi-tenant testing, GDPR HIPAA compliance, performance testing, and security audits.",
     keywords: [

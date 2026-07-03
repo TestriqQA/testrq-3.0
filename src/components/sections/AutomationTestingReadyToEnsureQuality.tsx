@@ -194,7 +194,7 @@ const AutomationTestingReadyToEnsureQuality: React.FC = () => {
               {/* Trust Indicators */}
               <div className="pt-6 border-t border-gray-200">
                 <div className="text-center text-sm text-gray-600 mb-4">
-                  Trusted by 50+ companies for automation excellence
+                  Trusted for automation testing excellence
                 </div>
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "Trading App Certification",
 
   description:
-    "Get your trading app certified with Testriq's comprehensive QA services. Ensure regulatory compliance (FINRA, SEC, MiFID II), algorithm validation, low-latency performance, and data security. Trusted by 500+ trading platforms.",
+    "Certify your trading app with Testriq QA: regulatory compliance (FINRA, SEC, MiFID II), algorithm validation, low-latency performance, and data security.",
   keywords: [
     "Trading App Certification",
     "Trading platform compliance testing",

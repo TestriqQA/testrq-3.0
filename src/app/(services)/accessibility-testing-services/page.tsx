@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/accessibility-testing-services",
-        title: "Accessibility Testing Services | WCAG 2.2 & ADA Compliance | Testriq",
+        title: "Accessibility Testing Services | WCAG 2.2 & ADA | Testriq",
         description:
             "Ensure your digital products are inclusive with Testriq's expert Accessibility Testing Services. We specialize in WCAG 2.2, Section 508, and ADA compliance.",
         ogImage: {

@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     url: 'https://www.testriq.com/about-us',
     siteName: 'Testriq QA Lab',
     title: 'About Testriq | ISO 9001 Certified Software Testing Company',
-    description: '15+ Years Experience. 500K+ Test Cases Executed. Partner with the world\'s most trusted QA experts.',
+    description: '15+ years of QA expertise. ISTQB-certified experts partnering with global teams to ship reliable, well-tested software.',
     images: [
       {
         url: 'https://www.testriq.com/OG/About-Us-og.webp',

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Launch-Fast QA Services for Companies",
 
   description:
-    "Testriq provides Launch-Fast QA services for startups and MVPs. Accelerate your software release cycle with agile QA, rapid testing sprints, and 24/7 support. Ensure investor-ready quality and global compliance.",
+    "Launch-Fast QA for startups and MVPs: agile QA, rapid testing sprints, and 24/7 support to accelerate your release cycle with investor-ready quality.",
   keywords: [
     "Launch-Fast QA",
     "rapid QA testing services",

@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/playwright-testing-services";
 export const metadata: Metadata = {
   title: "Playwright Testing Services — Cross-Browser E2E Automation",
   description:
-    "Playwright end-to-end testing services — multi-browser (Chromium, Firefox, WebKit), trace viewer, network interception, parallel sharding, CI/CD integration. ISTQB + ISO 9001 + ISO 27001 certified.",
+    "Playwright end-to-end testing services: multi-browser (Chromium, Firefox, WebKit), trace viewer, network interception, parallel sharding, and CI/CD integration.",
   keywords: [
     "Playwright Testing Services",
     "Playwright Automation",

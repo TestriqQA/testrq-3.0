@@ -249,11 +249,11 @@ const TelecomCaseStudiesSection: React.FC = () => {
             <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
               <FaUsers className="w-12 h-12 mx-auto mb-4 text-[theme(color.brand.blue)]" />
               <h4 className="text-lg font-bold mb-2 text-gray-900">
-                Customer Satisfaction Leader
+                Strong Customer Satisfaction
               </h4>
               <p className="text-sm text-gray-600">
-                Achieved 100% satisfaction rating in telecom software QA
-                services in independent surveys.
+                Consistently strong satisfaction ratings across our telecom
+                software QA engagements.
               </p>
             </div>
 

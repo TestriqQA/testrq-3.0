@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/functional-testing-services",
-        title: "Functional Testing Services | Software QA & Automation | Testriq",
+        title: "Functional Testing Services | QA & Automation | Testriq",
         description:
             "Validate every workflow with Testriq's functional testing services. Web, mobile, and enterprise QA — manual and automated, ISO 29119-aligned for global teams.",
         ogImage: {

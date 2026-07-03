@@ -19,7 +19,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/timezone-testing-services",
-        title: "Timezone Testing Services | Follow-the-Sun & Real-Time QA | Testriq",
+        title: "Timezone Testing Services | Follow-the-Sun QA | Testriq",
         description:
             "Sync global delivery with Testriq's timezone testing. Real-time QA, follow-the-sun cycles, and localized support for distributed enterprise engineering teams.",
         ogImage: {

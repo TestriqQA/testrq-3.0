@@ -21,7 +21,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/shift-left-testing",
-        title: "Shift-Left Testing Services | Early Defect Detection | Testriq",
+        title: "Shift-Left Testing | Early Defect Detection | Testriq",
         description:
             "Detect defects early with Testriq's shift-left testing services. CI/CD integration, TDD coaching, and BDD consulting for Agile and DevOps teams.",
         ogImage: {

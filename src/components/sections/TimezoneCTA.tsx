@@ -35,7 +35,7 @@ const TimezoneCTA: React.FC = () => {
                     </Link>
 
                     <p className="text-blue-100 font-medium">
-                        Join 150+ companies crushing their launch goals.
+                        Join the companies crushing their launch goals.
                     </p>
                 </div>
 

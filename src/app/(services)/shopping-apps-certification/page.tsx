@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Shopping App Certification",
 
   description:
-    "Get your shopping and e-commerce apps certified for security, performance, and global compliance. Testriq’s PCI DSS, GDPR, and CCPA-aligned testing ensures trust, data safety, and conversion optimization.",
+    "Certify your shopping and e-commerce apps for security, performance, and global compliance with PCI DSS, GDPR and CCPA-aligned testing that builds user trust.",
   keywords: [
     "shopping app certification",
     "e-commerce app testing",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title:
       "Shopping App Certification | Secure E-Commerce Testing & PCI Compliance | Testriq",
     description:
-      "Get your shopping and e-commerce apps certified for security, performance, and global compliance. Testriq’s PCI DSS, GDPR, and CCPA-aligned testing ensures trust, data safety, and conversion optimization.",
+      "Certify your shopping and e-commerce apps for security, performance, and global compliance with PCI DSS, GDPR and CCPA-aligned testing that builds user trust.",
     images: [
       {
         url: "https://www.testriq.com/OG/shoping-adds-certification-og-image.webp",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title:
       "Shopping App Certification | Secure E-Commerce Testing & PCI Compliance | Testriq",
     description:
-      "Get your shopping and e-commerce apps certified for security, performance, and global compliance. Testriq’s PCI DSS, GDPR, and CCPA-aligned testing ensures trust, data safety, and conversion optimization.",
+      "Certify your shopping and e-commerce apps for security, performance, and global compliance with PCI DSS, GDPR and CCPA-aligned testing that builds user trust.",
     images: ["https://www.testriq.com/OG/shoping-adds-certification-og-image.webp"],
   },
   robots: {
