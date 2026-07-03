@@ -33,6 +33,15 @@ type RedirectsReturn = Awaited<ReturnType<NonNullable<NextConfig["redirects"]>>>
 export type RedirectRule = RedirectsReturn[number];
 
 export const redirects: RedirectRule[] = [
+      // GSC "Not found (404)" report (2026-07-03) — legacy/typo URLs → live equivalents (backlog T-6)
+      { source: "/ai-testing", destination: "/ai-application-testing", permanent: true },
+      { source: "/test-automation-services", destination: "/automation-testing-services", permanent: true },
+      { source: "/mobile-app-testing-services", destination: "/mobile-application-testing", permanent: true },
+      { source: "/banking-finance-industry-testing-servicess", destination: "/banking-finance-industry-testing-services", permanent: true },
+      { source: "/learning-paths", destination: "/blog", permanent: true },
+      { source: "/case-study/pro-ficiency-qa-case-study", destination: "/case-studies", permanent: true },
+      { source: "/www.testriq.com/contact-us", destination: "/contact-us", permanent: true },
+      { source: "/www.testriq.com/e-commerce-testing-services", destination: "/e-commerce-testing-services", permanent: true },
       {
         source: "/software-qa-testing-services-in-bengaluru",
         destination: "/software-qa-testing-services-in-bangalore",
