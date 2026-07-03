@@ -54,6 +54,18 @@ services").** Locations (non-city): `HomeHeroSection:74`, `AboutHeroSection:68,1
 | O-1 | Cannibalization | services × solutions × cities × comparisons | Overlapping keyword targets (H3) | One keyword-owner per page; intent-based title/meta remap; interlink | P1 | ⛔ blocked on GSC |
 | O-2 | City architecture | `CityData.tsx` / `[slug]` | 86 doorway pages (H1) | Consolidate to differentiated regional hubs OR noindex thin ones + keep 5–10 unique | P0/P1 | ⛔ blocked on H1 decision |
 
+## Service pages on-page (Phase 3) — see [`service-pages-audit.md`](./service-pages-audit.md)
+
+| ID | Area | Scope | Issue | Fix | Prio | Status |
+|---|---|---|---|---|---|---|
+| S-1 | Titles | 26 service pages | Title > 60 chars → truncated in SERP | Trim to ≤60, keep primary keyword front-loaded + "\| Testriq" | P1 | ⬜ |
+| S-2 | Meta desc | 18 service pages (all manual-metadata) | Description > 160 chars (up to 269) → truncated | Trim to ≤160 | P1 | ⬜ |
+| S-3 | Schema | 6 tool pages (postman, jmeter, playwright, appium, cypress, selenium) | **No structured data at all** (no Service/FAQ JSON-LD) | Add Service + FAQPage schema like the other 45 | P1 | ⬜ |
+| S-4 | Consistency | 19 manual-metadata pages | Off the shared `buildPageMetadata` helper → drift, no brand in title | Migrate to helper | P2 | ⬜ |
+| S-5 | Schema | saas-testing-services | No FAQ schema | Add FAQPage | P2 | ⬜ |
+
+> H1 (51/51 exactly one ✓), canonical + OG (all present ✓) verified clean — no action needed.
+
 ## Off-page (Phase 4) — owner action plan
 
 | ID | Area | Issue | Fix | Prio | Status |

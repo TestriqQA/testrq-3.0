@@ -16,7 +16,7 @@
 | 0.5 | **Ranking-drop diagnosis** | 🟡 Code-side done; **awaiting owner GSC/GA data** | 2026-07-01 | Ranked hypotheses + owner data-pull checklist in [`ranking-drop-diagnosis.md`](./ranking-drop-diagnosis.md). **This is the gate for Phases 1–3.** |
 | 1 | Non-defensible claims cleanup | 🟡 Prose/meta done; stat-cards + city held | 2026-07-01 | Reframed 15 non-city prose/meta claims (commit `7bdada86`). Held: displayed big-number stat cards (need real figures/design) + all city instances (H1). Backlog C-1/C-3/C-5. Still open: C-2 (99.9% per-context), C-4 (50+), C-6 (15+ years, owner). |
 | 2 | Technical SEO audit + fix | 🟡 Partial (much already shipped) | 2026-07-01 | ✅ T-1 redirect chains flattened (commit `dd651658`). Remaining: T-2 sitemap `lastmod`, T-3 `[slug]` collision, T-4 case-study Review rating (owner), T-5 canonicals (GSC). |
-| 3 | On-page / content SEO (cannibalization) | ⬜ Not started | — | Depends on H1/H3 (city + cannibalization) decisions. |
+| 3 | On-page / content SEO (cannibalization) | 🟡 Service-page audit done | 2026-07-03 | Delivered [`service-pages-audit.md`](./service-pages-audit.md) (all 51 pages). Findings: 26 titles >60, 18 desc >160, 6 no-schema tool pages; H1/canonical clean. Fixes S-1…S-5 pending. Cannibalization remap still depends on H3. |
 | 4 | Off-page / authority (owner action plan) | ✅ Done | 2026-07-01 | Delivered [`ranking-action-plan.md`](./ranking-action-plan.md) (commit `87ef82ab`). |
 | 5 | Lead-gen / conversion (light-touch) | ⬜ Not started | — | Low priority until 0.5 resolved. |
 
