@@ -11,16 +11,16 @@ const AdHocTestingReadyToStart: React.FC = () => {
     ];
 
     return (
-        <section className="py-12 sm:py-20 px-4 sm:px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
             {/* Background Accent */}
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-[100px] -z-10 translate-x-1/2 translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-blue/10 rounded-full blur-[100px] -z-10 translate-x-1/2 translate-y-1/2"></div>
 
             <div className="max-w-7xl mx-auto">
-                <div className="bg-gradient-to-br from-indigo-900 via-blue-900 to-indigo-800 rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-10 md:p-16 lg:p-20 text-white shadow-2xl relative">
+                <div className="bg-gradient-to-br from-indigo-900 via-blue-900 to-indigo-800 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-white shadow-2xl relative">
                     <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
                         <div>
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 sm:mb-8 leading-[1.2] sm:leading-[1.1]">
-                                Ready to Deploy <span className="text-blue-400">On-Demand QA</span> Today?
+                            <h2 className="text-3xl md:text-4xl font-bold mb-6 sm:mb-8 leading-[1.2] sm:leading-[1.1]">
+                                Ready to Deploy <span className="text-brand-blue">On-Demand QA</span> Today?
                             </h2>
                             <p className="text-blue-100 text-base sm:text-lg mb-8 sm:mb-10 leading-relaxed">
                                 Don&#39;t let unplanned scenarios or critical hotfixes slow you down.
@@ -30,8 +30,8 @@ const AdHocTestingReadyToStart: React.FC = () => {
                             <div className="space-y-4 mb-8 sm:mb-12">
                                 {steps.map((step, index) => (
                                     <div key={index} className="flex items-start sm:items-center gap-3 sm:gap-4">
-                                        <div className="w-6 h-6 sm:w-8 sm:h-8 mt-0.5 sm:mt-0 rounded-xl bg-blue-500/20 flex items-center justify-center border border-blue-500/30 flex-shrink-0">
-                                            <FaCheckCircle className="text-blue-400 text-xs sm:text-base" />
+                                        <div className="w-6 h-6 sm:w-8 sm:h-8 mt-0.5 sm:mt-0 rounded-xl bg-brand-blue/20 flex items-center justify-center border border-brand-blue/30 flex-shrink-0">
+                                            <FaCheckCircle className="text-brand-blue text-xs sm:text-base" />
                                         </div>
                                         <span className="text-sm font-medium text-blue-50 leading-snug">{step}</span>
                                     </div>
@@ -40,13 +40,13 @@ const AdHocTestingReadyToStart: React.FC = () => {
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Link href="/contact-us" className="w-full sm:w-auto">
-                                    <button className="w-full px-6 py-4 sm:px-10 sm:py-5 bg-white text-blue-900 rounded-full font-bold hover:bg-blue-50 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-blue-900/40">
+                                    <button className="cursor-pointer w-full px-6 py-4 sm:px-10 sm:py-5 bg-white text-brand-blue rounded-full font-bold hover:bg-gray-100 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-blue-900/40">
                                         Initiate Rapid Testing
                                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 </Link>
                                 <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                                    <button className="w-full px-6 py-4 sm:px-10 sm:py-5 border-2 border-white/20 hover:border-white text-white rounded-full font-bold transition-all flex items-center justify-center gap-2">
+                                    <button className="cursor-pointer w-full px-6 py-4 sm:px-10 sm:py-5 border-2 border-white/20 hover:border-white text-white rounded-full font-bold transition-all flex items-center justify-center gap-2">
                                         <FaCalendarAlt />
                                         Schedule an Intro
                                     </button>
@@ -55,15 +55,15 @@ const AdHocTestingReadyToStart: React.FC = () => {
                         </div>
 
                         {/* Contact Quick-Card */}
-                        <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 sm:p-10 rounded-3xl overflow-hidden w-full max-w-full">
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 sm:p-10 rounded-2xl overflow-hidden w-full max-w-full">
                             <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Contact Testriq Now</h3>
                             <div className="space-y-6 sm:space-y-8">
                                 <Link href="mailto:contact@testriq.com" className="group flex items-center gap-4 sm:gap-6 w-full">
-                                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 rounded-2xl flex items-center justify-center text-xl sm:text-2xl group-hover:bg-blue-500 transition-colors flex-shrink-0">
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 rounded-2xl flex items-center justify-center text-xl sm:text-2xl group-hover:bg-brand-blue transition-colors flex-shrink-0">
                                         <FaEnvelope />
                                     </div>
                                     <div className="min-w-0 flex-1">
-                                        <div className="text-xs text-blue-300 font-bold uppercase tracking-wider mb-1">Email Support</div>
+                                        <div className="text-xs text-brand-blue font-bold uppercase tracking-wider mb-1">Email Support</div>
                                         <div className="text-base sm:text-xl font-bold truncate">contact@testriq.com</div>
                                     </div>
                                 </Link>
@@ -73,7 +73,7 @@ const AdHocTestingReadyToStart: React.FC = () => {
                                         <FaPhoneAlt />
                                     </div>
                                     <div className="min-w-0 flex-1">
-                                        <div className="text-xs text-blue-300 font-bold uppercase tracking-wider mb-1">24/7 Hotline</div>
+                                        <div className="text-xs text-brand-blue font-bold uppercase tracking-wider mb-1">24/7 Hotline</div>
                                         <div className="text-base sm:text-xl font-bold truncate">(+91) 915-2929-343</div>
                                     </div>
                                 </Link>
@@ -81,7 +81,7 @@ const AdHocTestingReadyToStart: React.FC = () => {
                                 <div className="pt-6 sm:pt-8 border-t border-white/10 mt-6 sm:mt-8">
                                     <div className="flex -space-x-3 sm:-space-x-4 mb-4">
                                         {[1, 2, 3, 4].map(i => (
-                                            <div key={i} className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-indigo-900 bg-blue-700 flex items-center justify-center text-[10px] sm:text-xs font-bold`}>
+                                            <div key={i} className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-indigo-900 bg-brand-blue flex items-center justify-center text-[10px] sm:text-xs font-bold`}>
                                                 QA 0{i}
                                             </div>
                                         ))}

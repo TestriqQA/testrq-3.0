@@ -36,11 +36,11 @@ const UATScenariosSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 bg-white relative">
-            <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-4">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white relative">
+            <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-                        Real-World <span className="text-blue-600 italic">UAT Scenarios</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                        Real-World <span className="text-brand-blue italic">UAT Scenarios</span>
                     </h2>
                     <p className="text-gray-600 text-lg max-w-2xl">
                         See how our structured user acceptance testing approach delivers tangible value across
@@ -52,13 +52,13 @@ const UATScenariosSection: React.FC = () => {
                     {scenarios.map((item, idx) => (
                         <div
       key={idx}
-      className="flex gap-6 p-8 rounded-3xl border border-slate-200 bg-slate-50/50 hover:bg-white hover:shadow-2xl hover:border-blue-400 transition-all group"
+      className="flex gap-6 p-8 rounded-2xl border border-slate-200 bg-gray-50/50 hover:bg-white hover:shadow-2xl hover:border-brand-blue transition-all group"
     >
-                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-3xl shadow-lg shadow-blue-200 group-hover:rotate-6 transition-transform">
+                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-brand-blue text-white flex items-center justify-center text-3xl shadow-lg shadow-blue-200 group-hover:rotate-6 transition-transform">
                                 {item.icon}
                             </div>
                             <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors tracking-tight">{item.title}</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors tracking-tight">{item.title}</h3>
 
                                 <div className="space-y-3">
                                     <div>
@@ -66,7 +66,7 @@ const UATScenariosSection: React.FC = () => {
                                         <p className="text-sm font-medium text-gray-700 leading-relaxed">{item.challenge}</p>
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-blue-400 mb-1">Our Approach</p>
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-brand-blue mb-1">Our Approach</p>
                                         <p className="text-sm font-medium text-gray-700 leading-relaxed">{item.approach}</p>
                                     </div>
                                     <div className="pt-2">

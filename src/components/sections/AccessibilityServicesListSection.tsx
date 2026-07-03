@@ -26,13 +26,16 @@ const AccessibilityServicesListSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-10 lg:py-20 bg-white relative overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-100 to-transparent"></div>
 
-            <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
+                        <span className="text-sm">● Our Services</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Comprehensive <span className="text-brand-blue">Accessibility</span> Testing Services
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

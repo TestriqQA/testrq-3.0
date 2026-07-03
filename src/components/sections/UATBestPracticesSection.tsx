@@ -43,15 +43,15 @@ const UATBestPracticesSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 md:py-24 bg-slate-900 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-4">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-slate-900 text-white">
+            <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-start">
                     <div className="lg:col-span-4 lg:sticky lg:top-24">
-                        <div className="inline-block bg-blue-600 text-white text-[10px] font-black uppercase tracking-[3px] px-3 py-1 rounded-md mb-6">
+                        <div className="inline-block bg-brand-blue text-white text-[10px] font-black uppercase tracking-[3px] px-3 py-1 rounded-md mb-6">
                             Best Practices
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 tracking-tight leading-tight">
-                            Ensuring <span className="text-blue-500 italic">Success</span> through Proven Methods
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 tracking-tight leading-tight">
+                            Ensuring <span className="text-brand-blue italic">Success</span> through Proven Methods
                         </h2>
                         <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-6 md:mb-8">
                             Organizations can maximize the effectiveness of their user acceptance testing by following these
@@ -68,9 +68,9 @@ const UATBestPracticesSection: React.FC = () => {
                         {practices.map((item, idx) => (
                             <div
       key={idx}
-      className={`group p-6 md:p-8 rounded-3xl border transition-all duration-300 w-full ${idx === 0 ? 'sm:col-span-2 bg-blue-600 border-blue-500' : 'bg-slate-800/50 border-slate-700 hover:border-blue-500'}`}
+      className={`group p-6 md:p-8 rounded-2xl border transition-all duration-300 w-full ${idx === 0 ? 'sm:col-span-2 bg-brand-blue border-brand-blue' : 'bg-slate-800/50 border-slate-700 hover:border-brand-blue'}`}
     >
-                                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 transition-transform group-hover:scale-110 flex-shrink-0 ${idx === 0 ? 'bg-white text-blue-600' : 'bg-blue-600/20 text-blue-400'}`}>
+                                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 transition-transform group-hover:scale-110 flex-shrink-0 ${idx === 0 ? 'bg-white text-brand-blue' : 'bg-brand-blue/20 text-brand-blue'}`}>
                                     {item.icon}
                                 </div>
                                 <h3 className={`text-lg md:text-xl font-bold mb-2 md:mb-3 break-words ${idx === 0 ? 'text-white' : 'text-slate-100'}`}>{item.title}</h3>

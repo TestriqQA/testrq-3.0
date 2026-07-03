@@ -48,10 +48,10 @@ const AdHocTestingScenarios: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-white">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         5 Scenarios Where <span className="text-brand-blue">Ad-Hoc Testing Excels</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -61,11 +61,11 @@ const AdHocTestingScenarios: React.FC = () => {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {scenarios.map((scenario, index) => (
-                        <div key={index} className="relative group p-8 rounded-3xl bg-gray-50 border border-transparent hover:border-blue-100 hover:bg-white hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+                        <div key={index} className="relative group p-8 rounded-2xl bg-gray-50 border border-transparent hover:border-brand-blue/20 hover:bg-white hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
                             {/* Color Header */}
                             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-8 transition-transform group-hover:scale-110
                                 ${scenario.color === 'red' ? 'bg-red-100 text-red-600' :
-                                    scenario.color === 'blue' ? 'bg-blue-100 text-blue-600' :
+                                    scenario.color === 'blue' ? 'bg-brand-blue/10 text-brand-blue' :
                                         scenario.color === 'green' ? 'bg-green-100 text-green-600' :
                                             scenario.color === 'purple' ? 'bg-purple-100 text-purple-600' :
                                                 'bg-orange-100 text-orange-600'}`}
@@ -93,11 +93,11 @@ const AdHocTestingScenarios: React.FC = () => {
                     ))}
 
                     {/* CTA Card */}
-                    <div className="p-8 rounded-3xl bg-gradient-to-br from-brand-blue to-indigo-700 text-white flex flex-col justify-center items-center text-center">
+                    <div className="p-8 rounded-2xl bg-gradient-to-br from-brand-blue to-indigo-700 text-white flex flex-col justify-center items-center text-center">
                         <h3 className="text-2xl font-bold mb-4">Facing an urgent QA challenge?</h3>
                         <p className="text-blue-100 text-sm mb-8">Deploy our experienced ad-hoc testers within hours to resolve your crisis.</p>
                         <Link href="/contact-us" className="w-full">
-                            <button className="w-full py-4 bg-white text-brand-blue rounded-xl font-bold hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 group">
+                            <button className="cursor-pointer w-full py-4 bg-white text-brand-blue rounded-xl font-bold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 group">
                                 Start Rapid Testing
                                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </button>

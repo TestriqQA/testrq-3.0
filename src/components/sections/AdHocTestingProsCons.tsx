@@ -18,10 +18,10 @@ const AdHocTestingProsCons: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-50">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Advantages and <span className="text-brand-blue">Disadvantages</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -31,7 +31,7 @@ const AdHocTestingProsCons: React.FC = () => {
 
                 <div className="grid lg:grid-cols-2 gap-8 items-stretch">
                     {/* Advantages Column */}
-                    <div className="bg-white rounded-[2.5rem] p-10 border border-transparent hover:border-green-100 shadow-lg transition-all">
+                    <div className="bg-white rounded-2xl p-10 border border-transparent hover:border-green-100 shadow-lg transition-all">
                         <div className="flex items-center gap-4 mb-10">
                             <div className="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl">
                                 <FaCheckCircle />
@@ -55,7 +55,7 @@ const AdHocTestingProsCons: React.FC = () => {
                     </div>
 
                     {/* Disadvantages Column */}
-                    <div className="bg-white rounded-[2.5rem] p-10 border border-transparent hover:border-red-100 shadow-lg transition-all">
+                    <div className="bg-white rounded-2xl p-10 border border-transparent hover:border-red-100 shadow-lg transition-all">
                         <div className="flex items-center gap-4 mb-10">
                             <div className="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl">
                                 <FaMinusCircle />

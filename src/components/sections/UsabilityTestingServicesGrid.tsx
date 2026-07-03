@@ -18,8 +18,8 @@ const UsabilityTestingServicesGrid: React.FC = () => {
         {
             title: "Mobile App Usability Testing",
             desc: "Gesture analysis, real-device testing, and performance assessments to guarantee a seamless platform experience.",
-            icon: <FaMobileAlt className="text-blue-600" />,
-            color: "bg-blue-50"
+            icon: <FaMobileAlt className="text-brand-blue" />,
+            color: "bg-brand-blue/10"
         },
         {
             title: "Website Conversion Optimization",
@@ -54,10 +54,10 @@ const UsabilityTestingServicesGrid: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-gray-50 overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-20">
-                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                         Comprehensive <span className="text-brand-blue">Usability Solutions</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto mt-4">
@@ -69,16 +69,16 @@ const UsabilityTestingServicesGrid: React.FC = () => {
                     {services.map((service, index) => (
                         <div
       key={index}
-      className="bg-white p-10 rounded-[3rem] border border-gray-100 hover:shadow-2xl transition-all group h-full flex flex-col"
+      className="bg-white p-10 rounded-2xl border border-gray-100 hover:shadow-2xl transition-all group h-full flex flex-col"
     >
                             <div className={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:rotate-6 transition-transform`}>
                                 {service.icon}
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 mb-4">{service.title}</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
                             <p className="text-gray-600 leading-relaxed mb-8 flex-grow">
                                 {service.desc}
                             </p>
-                            <button className="flex items-center gap-2 text-brand-blue font-bold group-hover:gap-4 transition-all uppercase tracking-widest text-xs">
+                            <button className="flex items-center gap-2 text-brand-blue font-bold group-hover:gap-4 transition-all uppercase tracking-widest text-xs cursor-pointer">
                                 Learn More <FaArrowRight />
                             </button>
                         </div>
@@ -86,10 +86,10 @@ const UsabilityTestingServicesGrid: React.FC = () => {
 
                     {/* Special Industry Card */}
                     <div
-      className="bg-brand-blue p-10 rounded-[3rem] text-white flex flex-col justify-between shadow-2xl"
+      className="bg-brand-blue p-10 rounded-2xl text-white flex flex-col justify-between shadow-2xl"
     >
                         <div>
-                            <h3 className="text-2xl font-black mb-6">Specialized Industry Usability Testing</h3>
+                            <h3 className="text-2xl font-bold mb-6">Specialized Industry Usability Testing</h3>
                             <div className="space-y-4">
                                 {industryVerticals.map((industry, i) => (
                                     <div key={i} className="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm border border-white/10">

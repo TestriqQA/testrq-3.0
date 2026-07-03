@@ -34,10 +34,10 @@ const AdHocTestingFAQs: React.FC = () => {
     };
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-50">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 font-primary">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-primary">
                         Featured Snippet <span className="text-brand-blue">FAQs</span>
                     </h2>
                     <p className="text-lg text-gray-600">
@@ -49,11 +49,11 @@ const AdHocTestingFAQs: React.FC = () => {
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className={`rounded-3xl border border-gray-100 bg-white transition-all duration-300 ${openIndex === index ? "shadow-xl ring-1 ring-blue-100" : "hover:border-blue-100"
+                            className={`rounded-2xl border border-gray-100 bg-white transition-all duration-300 ${openIndex === index ? "shadow-xl ring-1 ring-brand-blue/20" : "hover:border-brand-blue/20"
                                 }`}
                         >
                             <button
-                                className="w-full px-8 py-6 flex items-center justify-between text-left"
+                                className="w-full px-8 py-6 flex items-center justify-between text-left cursor-pointer"
                                 onClick={() => toggleFAQ(index)}
                             >
                                 <span className="text-lg font-bold text-gray-900 pr-8">{faq.question}</span>

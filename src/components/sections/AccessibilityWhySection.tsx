@@ -43,11 +43,25 @@ const AccessibilityWhySection: React.FC = () => {
         }
     ];
 
+    // Static color lookup — Tailwind's JIT compiler cannot see class names
+    // built at runtime (e.g. `bg-${color}-50`), so they never get generated.
+    // Mapping to complete literal class strings keeps the icon tiles colored.
+    const colorMap: Record<string, { bg: string; text: string }> = {
+        blue: { bg: "bg-blue-50", text: "text-blue-600" },
+        green: { bg: "bg-green-50", text: "text-green-600" },
+        purple: { bg: "bg-purple-50", text: "text-purple-600" },
+        orange: { bg: "bg-orange-50", text: "text-orange-600" },
+        red: { bg: "bg-red-50", text: "text-red-600" },
+    };
+
     return (
-        <section className="py-10 lg:py-20 bg-gray-50">
-            <div className="container mx-auto px-6 lg:px-12">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
+                        <span className="text-sm">● Why It Matters</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Why Accessibility Testing is <span className="text-brand-blue">Essential</span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto font-medium">
@@ -56,18 +70,21 @@ const AccessibilityWhySection: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {benefits.map((benefit, index) => (
-                        <div
-      key={index}
-      className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-blue-100 group"
-    >
-                            <div className={`w-14 h-14 rounded-2xl bg-${benefit.color}-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                                <benefit.icon className={`text-2xl text-${benefit.color}-600`} />
+                    {benefits.map((benefit, index) => {
+                        const c = colorMap[benefit.color] || colorMap.blue;
+                        return (
+                            <div
+                                key={index}
+                                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-blue-100 group"
+                            >
+                                <div className={`w-14 h-14 rounded-2xl ${c.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                    <benefit.icon className={`text-2xl ${c.text}`} />
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
+                                <p className="text-gray-600 leading-relaxed italic">&quot;{benefit.text}&quot;</p>
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-                            <p className="text-gray-600 leading-relaxed italic">&quot;{benefit.text}&quot;</p>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

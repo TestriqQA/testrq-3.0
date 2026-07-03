@@ -42,7 +42,7 @@ const AdHocTestingBestPractices: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
             {/* Decorative Side Text */}
             <div className="absolute left-[-2rem] top-1/2 -rotate-90 text-[10rem] font-bold text-gray-50 select-none -z-10 tracking-widest leading-none">
                 BESTPRACTICE
@@ -50,7 +50,7 @@ const AdHocTestingBestPractices: React.FC = () => {
 
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Best Practices for <span className="text-brand-blue">Effective QA</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -60,9 +60,9 @@ const AdHocTestingBestPractices: React.FC = () => {
 
                 <div className="flex flex-col gap-6 max-w-4xl mx-auto">
                     {practices.map((item, index) => (
-                        <div key={index} className="group relative flex items-center gap-6 p-6 rounded-[2rem] bg-gray-50 hover:bg-white hover:shadow-xl border border-gray-100 hover:border-blue-100 transition-all duration-300">
+                        <div key={index} className="group relative flex items-center gap-6 p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl border border-gray-100 hover:border-brand-blue/20 transition-all duration-300">
                             {/* Number Badge */}
-                            <div className="absolute top-4 right-6 text-2xl font-black text-gray-100 group-hover:text-blue-50 transition-colors">
+                            <div className="absolute top-4 right-6 text-2xl font-bold text-gray-100 group-hover:text-blue-50 transition-colors">
                                 0{index + 1}
                             </div>
 

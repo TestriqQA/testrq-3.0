@@ -37,10 +37,10 @@ const AdHocTestingWhyTestriq: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-white relative">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white relative">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Why Choose Testriq for <span className="text-brand-blue">Ad-Hoc Testing</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -50,7 +50,7 @@ const AdHocTestingWhyTestriq: React.FC = () => {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {reasons.map((item, index) => (
-                        <div key={index} className="group p-8 rounded-[2rem] bg-gray-50 hover:bg-white hover:shadow-2xl border border-transparent hover:border-blue-100 transition-all duration-300">
+                        <div key={index} className="group p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-2xl border border-transparent hover:border-brand-blue/20 transition-all duration-300">
                             <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl text-brand-blue mb-8 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
                                 {item.icon}
                             </div>

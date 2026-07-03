@@ -39,16 +39,16 @@ const UsabilityTestingHeroSection: React.FC = () => {
                     {/* Left Content */}
                     <div className="space-y-8">
                         <div
-      className="inline-flex items-center px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-sm font-bold border border-purple-100 uppercase tracking-wide"
+      className="inline-flex items-center px-4 py-2 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-bold border border-brand-blue/20 uppercase tracking-wide"
     >
                             <FaMagic className="mr-2" />
                             Elevate User Experience & Drive Conversions
                         </div>
 
                         <h1
-      className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight"
+      className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-tight"
     >
-                            Usability Testing <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-purple-600">Services</span>
+                            Usability Testing <span className="text-brand-blue">Services</span>
                         </h1>
 
                         <div
@@ -73,7 +73,7 @@ const UsabilityTestingHeroSection: React.FC = () => {
                             </Link>
                             <button
                                 onClick={openLightbox}
-                                className="w-full sm:w-auto border-2 cursor-pointer border-brand-blue text-brand-blue px-8 py-5 rounded-2xl font-bold hover:bg-blue-50 transition-all duration-300 flex items-center justify-center text-lg"
+                                className="w-full sm:w-auto border-2 cursor-pointer border-brand-blue text-brand-blue px-8 py-5 rounded-2xl font-bold hover:bg-brand-blue/10 transition-all duration-300 flex items-center justify-center text-lg"
                             >
                                 <FaPlay className="mr-2" />
                                 Watch UX Lab Demo
@@ -98,7 +98,7 @@ const UsabilityTestingHeroSection: React.FC = () => {
       className="absolute top-1/2 -right-8 bg-white p-6 rounded-3xl shadow-2xl border border-gray-100 hidden md:block"
     >
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 font-black">
+                                    <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 font-bold">
                                         +42%
                                     </div>
                                     <div>
@@ -112,7 +112,7 @@ const UsabilityTestingHeroSection: React.FC = () => {
       className="absolute bottom-12 -left-8 bg-white p-6 rounded-3xl shadow-2xl border border-gray-100 hidden md:block"
     >
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-brand-blue">
+                                    <div className="w-12 h-12 bg-brand-blue/10 rounded-2xl flex items-center justify-center text-brand-blue">
                                         <FaUserAstronaut />
                                     </div>
                                     <div>

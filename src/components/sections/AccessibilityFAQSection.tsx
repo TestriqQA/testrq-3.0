@@ -30,23 +30,23 @@ const AccessibilityFAQSection: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
     return (
-        <section className="py-10 lg:py-20 bg-gray-50">
-            <div className="container mx-auto px-6 lg:px-12">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
+            <div className="max-w-4xl mx-auto">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-brand-blue mb-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue text-white mb-4">
                             <FaQuestionCircle />
                             <span className="text-sm font-bold uppercase tracking-wider">Quick Guide</span>
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Featured Snippet <span className="text-brand-blue">Questions</span></h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Featured Snippet <span className="text-brand-blue">Questions</span></h2>
                     </div>
 
                     <div className="space-y-4">
                         {faqs.map((faq, index) => (
-                            <div key={index} className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm transition-shadow hover:shadow-md">
+                            <div key={index} className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-shadow hover:shadow-md">
                                 <button
                                     onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                                    className="w-full flex items-center justify-between p-6 md:p-8 text-left"
+                                    className="w-full flex items-center justify-between p-6 md:p-8 text-left cursor-pointer"
                                 >
                                     <span className="text-lg md:text-xl font-bold text-gray-900 pr-8">{faq.question}</span>
                                     <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${activeIndex === index ? 'bg-brand-blue text-white' : 'bg-blue-50 text-brand-blue'}`}>

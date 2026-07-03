@@ -26,26 +26,26 @@ const UATFAQs: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
     return (
-        <section className="py-24 bg-slate-50">
-            <div className="max-w-4xl mx-auto px-8 md:px-12 lg:px-4">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
+            <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-2 text-blue-600 font-black tracking-[4px] uppercase text-[10px] mb-4">
+                    <div className="inline-flex items-center gap-2 text-brand-blue font-black tracking-[4px] uppercase text-[10px] mb-4">
                         <FaQuestionCircle /> FAQ
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight">
-                        User Acceptance Testing <span className="text-blue-600 italic">Quick Answers</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                        User Acceptance Testing <span className="text-brand-blue italic">Quick Answers</span>
                     </h2>
                 </div>
 
                 <div className="space-y-4">
                     {faqs.map((faq, i) => (
-                        <div key={i} className="bg-white border border-slate-200 rounded-3xl overflow-hidden transition-all hover:border-blue-400">
+                        <div key={i} className="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all hover:border-brand-blue">
                             <button
                                 onClick={() => setActiveIndex(activeIndex === i ? null : i)}
-                                className="w-full flex items-center justify-between p-6 lg:p-8 text-left"
+                                className="w-full flex items-center justify-between p-6 lg:p-8 text-left cursor-pointer"
                             >
                                 <span className="text-lg lg:text-xl font-bold text-gray-900 pr-8">{faq.q}</span>
-                                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${activeIndex === i ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'}`}>
+                                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${activeIndex === i ? 'bg-brand-blue text-white' : 'bg-slate-100 text-slate-600'}`}>
                                     {activeIndex === i ? <FaMinus /> : <FaPlus />}
                                 </div>
                             </button>

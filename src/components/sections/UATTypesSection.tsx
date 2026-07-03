@@ -30,11 +30,11 @@ const UATTypesSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-4 text-center">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
+            <div className="max-w-7xl mx-auto text-center">
                 <div className="max-w-3xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-                        The <span className="text-blue-600 italic">Four Types</span> of Acceptance Testing
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                        The <span className="text-brand-blue italic">Four Types</span> of Acceptance Testing
                     </h2>
                     <p className="text-gray-600 text-lg">
                         Acceptance Testing encompasses four distinct types, each serving specific validation purposes in
@@ -46,11 +46,11 @@ const UATTypesSection: React.FC = () => {
                     {types.map((type, idx) => (
                         <div
       key={idx}
-      className="bg-slate-50 border border-slate-200 rounded-2xl p-8 text-left hover:shadow-xl hover:border-blue-400 transition-all group"
+      className="bg-gray-50 border border-slate-200 rounded-2xl p-8 text-left hover:shadow-xl hover:border-brand-blue transition-all group"
     >
                             <div className="flex justify-between items-start mb-6">
-                                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{type.title}</h3>
-                                <span className="text-[10px] uppercase font-black bg-blue-100 text-blue-700 px-2 py-1 rounded">TYPE-0{idx + 1}</span>
+                                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors">{type.title}</h3>
+                                <span className="text-[10px] uppercase font-black bg-brand-blue/10 text-brand-blue px-2 py-1 rounded">TYPE-0{idx + 1}</span>
                             </div>
 
                             <div className="space-y-4">

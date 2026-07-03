@@ -5,11 +5,11 @@ import { FaGlobe, FaHandshake, FaBullseye } from "react-icons/fa";
 
 const AccessibilitySolutionsSection: React.FC = () => {
     return (
-        <section className="py-10 lg:py-20 bg-white">
-            <div className="container mx-auto px-6 lg:px-12">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
+            <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div>
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-8">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-8">
                             The Imperative of <span className="text-brand-blue">Digital Inclusion</span>: Making Technology Accessible to All
                         </h2>
                         <p className="text-lg text-gray-600 leading-relaxed mb-6">
@@ -20,9 +20,7 @@ const AccessibilitySolutionsSection: React.FC = () => {
                         </p>
                     </div>
 
-                    <div
-      className="bg-blue-50 rounded-3xl p-8 lg:p-12 border border-blue-100 relative overflow-hidden"
-    >
+                    <div className="bg-blue-50 rounded-2xl p-8 lg:p-12 border border-blue-100 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-4">
                             <FaGlobe className="text-8xl text-blue-100 opacity-50" />
                         </div>

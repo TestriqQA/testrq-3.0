@@ -56,11 +56,11 @@ const UATApplicationsSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-4">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
+            <div className="max-w-7xl mx-auto">
                 <div className="text-center max-w-3xl mx-auto mb-20">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-                        Industry-Specific <span className="text-blue-600 italic">Implementations</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                        Industry-Specific <span className="text-brand-blue italic">Implementations</span>
                     </h2>
                     <p className="text-gray-600 text-lg leading-relaxed">
                         From complex ERP migrations to rapid-growth mobile apps, our professional UAT testing services
@@ -72,9 +72,9 @@ const UATApplicationsSection: React.FC = () => {
                     {apps.map((app, idx) => (
                         <div
       key={idx}
-      className="bg-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col hover:bg-white hover:shadow-xl hover:border-blue-400 transition-all group"
+      className="bg-gray-50 border border-slate-200 rounded-2xl p-6 flex flex-col hover:bg-white hover:shadow-xl hover:border-brand-blue transition-all group"
     >
-                            <div className="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                            <div className="w-14 h-14 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
                                 {app.icon}
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-tight">{app.title}</h3>

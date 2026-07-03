@@ -44,11 +44,11 @@ const UATProcessSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 bg-slate-50">
-            <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-4">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
                 <div className="text-center max-w-3xl mx-auto mb-20">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-                        A <span className="text-blue-600 italic">Structured Approach</span> to UAT Success
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                        A <span className="text-brand-blue italic">Structured Approach</span> to UAT Success
                     </h2>
                     <p className="text-gray-600 text-lg">
                         Successful user acceptance testing doesn&apos;t happen by accident. Our 6-phase process ensures
@@ -66,14 +66,14 @@ const UATProcessSection: React.FC = () => {
       key={idx}
       className="relative flex flex-col items-center text-center group"
     >
-                                <div className={`w-28 h-28 rounded-3xl ${step.color === 'blue' ? 'bg-blue-600 shadow-blue-200' : 'bg-slate-900 shadow-slate-300'} text-white flex items-center justify-center text-3xl mb-6 shadow-xl relative z-10 transition-transform group-hover:-translate-y-2 duration-300`}>
+                                <div className={`w-28 h-28 rounded-2xl ${step.color === 'blue' ? 'bg-brand-blue shadow-blue-200' : 'bg-slate-900 shadow-slate-300'} text-white flex items-center justify-center text-3xl mb-6 shadow-xl relative z-10 transition-transform group-hover:-translate-y-2 duration-300`}>
                                     {step.icon}
                                     <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full border-4 border-slate-50 bg-white flex items-center justify-center text-sm font-black text-gray-900">
                                         {idx + 1}
                                     </div>
                                 </div>
 
-                                <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors leading-snug">
+                                <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-brand-blue transition-colors leading-snug">
                                     {step.title}
                                 </h3>
                                 <p className="text-sm text-gray-600 leading-relaxed font-medium">
@@ -84,14 +84,14 @@ const UATProcessSection: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="mt-20 bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                <div className="mt-20 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                         <div className="lg:col-span-2">
                             <h4 className="text-xl font-bold text-gray-900 mb-2">Need help planning your UAT?</h4>
                             <p className="text-gray-600">Our ISTQB-certified professionals can help you design a custom UAT strategy tailored to your industry and scale.</p>
                         </div>
                         <div className="flex justify-end">
-                            <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200">
+                            <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-brand-blue transition-colors shadow-lg shadow-slate-200 cursor-pointer">
                                 Request Strategy Session
                             </button>
                         </div>

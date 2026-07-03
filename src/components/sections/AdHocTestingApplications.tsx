@@ -5,7 +5,7 @@ import { FaMobile, FaHistory, FaShieldAlt, FaUserCheck, FaShoppingCart, FaPlug, 
 const AdHocTestingApplications: React.FC = () => {
     const apps = [
         {
-            icon: <FaMobile className="text-blue-500" />,
+            icon: <FaMobile className="text-brand-blue" />,
             title: "Mobile Applications",
             desc: "Rapid validation across 10+ devices for weekly updates.",
             approach: "Unscripted cross-device probes for stability/UI bugs.",
@@ -63,10 +63,10 @@ const AdHocTestingApplications: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-white">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Industry-Specific <span className="text-brand-blue">Use Cases</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -76,7 +76,7 @@ const AdHocTestingApplications: React.FC = () => {
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {apps.map((app, index) => (
-                        <div key={index} className="group p-6 rounded-3xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
+                        <div key={index} className="group p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
                             <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
                                 {app.icon}
                             </div>

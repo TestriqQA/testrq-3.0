@@ -70,10 +70,10 @@ const AdHocTestingMethodologies: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-50">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 font-primary">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-primary">
                         Types of <span className="text-brand-blue">Ad-Hoc Testing</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -88,7 +88,7 @@ const AdHocTestingMethodologies: React.FC = () => {
                         <button
                             key={index}
                             onClick={() => setActiveTab(index)}
-                            className={`whitespace-nowrap px-6 py-3 rounded-full text-sm font-bold transition-all flex items-center gap-2 snap-center shrink-0
+                            className={`whitespace-nowrap cursor-pointer px-6 py-3 rounded-full text-sm font-bold transition-all flex items-center gap-2 snap-center shrink-0
                                 ${activeTab === index
                                     ? "bg-brand-blue text-white shadow-lg shadow-blue-500/30"
                                     : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200"}`}
@@ -100,12 +100,12 @@ const AdHocTestingMethodologies: React.FC = () => {
                 </div>
 
                 {/* Content Area */}
-                <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-gray-100 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -z-10 -mr-32 -mt-32"></div>
+                <div className="bg-white rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-100 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl -z-10 -mr-32 -mt-32"></div>
 
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
-                            <div className="inline-block px-4 py-1.5 rounded-lg bg-blue-50 text-brand-blue text-xs font-bold uppercase tracking-widest mb-4">
+                            <div className="inline-block px-4 py-1.5 rounded-lg bg-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-widest mb-4">
                                 {methods[activeTab].subtitle}
                             </div>
                             <h3 className="text-3xl font-bold text-gray-900 mb-6">{methods[activeTab].title}</h3>
@@ -130,7 +130,7 @@ const AdHocTestingMethodologies: React.FC = () => {
                         </div>
 
                         <div className="grid sm:grid-cols-2 gap-6">
-                            <div className="bg-green-50/50 border border-green-100 p-6 rounded-3xl">
+                            <div className="bg-green-50/50 border border-green-100 p-6 rounded-2xl">
                                 <h4 className="text-green-700 font-bold mb-4 flex items-center gap-2">
                                     <FaCheck />
                                     <span>Advantages</span>
@@ -144,7 +144,7 @@ const AdHocTestingMethodologies: React.FC = () => {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="bg-red-50/50 border border-red-100 p-6 rounded-3xl">
+                            <div className="bg-red-50/50 border border-red-100 p-6 rounded-2xl">
                                 <h4 className="text-red-700 font-bold mb-4 flex items-center gap-2">
                                     <FaExclamationTriangle />
                                     <span>Disadvantages</span>

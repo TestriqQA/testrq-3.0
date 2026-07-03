@@ -6,7 +6,7 @@ import UATAnimation from "./UATAnimation";
 
 const UATHeroSection: React.FC = () => {
     return (
-        <section className="bg-white text-black py-10 px-8 md:px-12 lg:px-24">
+        <section className="bg-white text-black pt-8 pb-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 {/* Breadcrumb */}
                 <div className="flex items-center gap-2 text-sm font-medium text-gray-600 mb-6">
@@ -40,14 +40,14 @@ const UATHeroSection: React.FC = () => {
                             <p className="text-gray-700 text-base md:text-lg max-w-xl">
                                 Does your software actually meet business needs and enable users to perform real-world tasks? <strong>UAT</strong> represents the final, critical phase where actual end-users validate production readiness through the lens of business value.
                             </p>
-                            <p className="text-gray-700 text-base md:text-lg max-w-xl italic border-l-4 border-blue-500 pl-4 bg-gray-50 py-2 rounded-r-lg">
+                            <p className="text-gray-700 text-base md:text-lg max-w-xl italic border-l-4 border-brand-blue pl-4 bg-gray-50 py-2 rounded-r-lg">
                                 &ldquo;Failed UAT often reveals critical business process misalignments that technical testing never identifies.&rdquo;
                             </p>
                         </div>
 
                         <div className="flex flex-col sm:flex-row justify-center xl:justify-start items-center gap-4 mt-8 mb-8 w-full sm:w-auto">
                             <Link href="/contact-us" className="w-full sm:w-auto">
-                                <button className="group flex items-center justify-center gap-2 py-3 px-6 bg-[theme(color.brand.blue)] text-white font-semibold text-lg rounded-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto overflow-hidden relative">
+                                <button className="group flex items-center justify-center gap-2 py-3 px-6 bg-[theme(color.brand.blue)] text-white font-semibold text-lg rounded-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto overflow-hidden relative cursor-pointer">
                                     <span className="relative z-10 transition-transform group-hover:scale-105">Ensure Deployment Success</span>
                                     <FaArrowRight className="w-4 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
                                     <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />

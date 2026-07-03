@@ -39,10 +39,10 @@ const UsabilityTestingMethodology: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-white overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-20">
-                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         A User-Centric <span className="text-brand-blue">Blueprint</span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -64,8 +64,8 @@ const UsabilityTestingMethodology: React.FC = () => {
                                     {step.icon}
                                 </div>
                                 <div className="space-y-4">
-                                    <span className="text-xs font-black text-brand-blue/30 uppercase tracking-[0.2em]">Step {index + 1}</span>
-                                    <h3 className="text-xl font-black text-gray-900 leading-tight">{step.title}</h3>
+                                    <span className="text-xs font-bold text-brand-blue/30 uppercase tracking-[0.2em]">Step {index + 1}</span>
+                                    <h3 className="text-xl font-bold text-gray-900 leading-tight">{step.title}</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed px-4">{step.desc}</p>
                                 </div>
                             </div>

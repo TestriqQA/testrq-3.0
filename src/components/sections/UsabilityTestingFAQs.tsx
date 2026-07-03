@@ -26,23 +26,23 @@ const UsabilityTestingFAQs: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-gray-50">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16 space-y-4">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold uppercase tracking-wider">
                         <FaQuestionCircle /> Expert Guidance
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                         Usability Testing <span className="text-brand-blue">FAQ</span>
                     </h2>
                 </div>
 
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all">
+                        <div key={index} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all">
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full p-8 text-left flex items-center justify-between gap-6 group"
+                                className="w-full p-8 text-left flex items-center justify-between gap-6 group cursor-pointer"
                             >
                                 <span className="text-lg font-bold text-gray-900 group-hover:text-brand-blue transition-colors leading-snug">
                                     {faq.question}

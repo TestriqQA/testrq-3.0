@@ -22,12 +22,12 @@ const AdHocTestingWhatIs: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-50">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
             <div className="max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                     {/* Left Side: Definition */}
                     <div>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-brand-blue text-sm font-bold mb-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold mb-6">
                             <FaLightbulb />
                             <span>Understanding Methodology</span>
                         </div>
@@ -51,7 +51,7 @@ const AdHocTestingWhatIs: React.FC = () => {
                     </div>
 
                     {/* Right Side: Comparison Table */}
-                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                    <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
                         <div className="flex items-center gap-3 mb-8">
                             <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl">
                                 <FaExchangeAlt />
@@ -65,7 +65,7 @@ const AdHocTestingWhatIs: React.FC = () => {
                         <div className="space-y-4">
                             {comparisonData.map((row, index) => (
                                 <div key={index} className="group relative">
-                                    <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row sm:items-start lg:items-stretch xl:items-start gap-2 sm:gap-4 lg:gap-3 xl:gap-4 p-4 rounded-2xl bg-gray-50 group-hover:bg-blue-50 transition-colors">
+                                    <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row sm:items-start lg:items-stretch xl:items-start gap-2 sm:gap-4 lg:gap-3 xl:gap-4 p-4 rounded-2xl bg-gray-50 group-hover:bg-brand-blue/10 transition-colors">
                                         <div className="text-sm font-bold text-gray-400 uppercase tracking-wider mt-0 sm:mt-1 lg:mt-0 xl:mt-1 w-full sm:w-36 md:w-40 lg:w-full xl:w-40 shrink-0">
                                             {row.aspect}
                                         </div>
