@@ -43,7 +43,7 @@ const SecurityTestingReadyToEnsureQuality: React.FC = () => {
           </div>
 
           <div className="text-center text-gray-500">
-            <p className="mb-2">Trusted by 50+ companies worldwide</p>
+            <p className="mb-2">Trusted by companies worldwide</p>
             <div className="flex flex-col md:flex-row justify-center items-center space-x-8 text-sm">
               <div className="flex items-center space-x-2 py-2">
                 <FaCheckCircle className="text-green-600" />

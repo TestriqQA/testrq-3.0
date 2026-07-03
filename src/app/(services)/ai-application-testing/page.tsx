@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Testriq - AI Testing Services",
     title: "AI Application Testing Services - Accurate, Fair, and Reliable ",
     description:
-      "Ensure your AI models are accurate, unbiased, explainable, and secure with our expert AI testing services. Trusted by 150+ companies.",
+      "Ensure your AI models are accurate, unbiased, explainable, and secure with our expert AI testing services. Trusted by teams across industries.",
     images: [
       {
         url: "https://www.testriq.com/OG/AI-Aplication-Tesing-Service-og.webp",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "AI Application Testing Services - Accurate, Fair, and Reliable",
     description:
-      "Ensure your AI models are accurate, unbiased, explainable, and secure with our expert AI testing services. Trusted by 150+ companies.",
+      "Ensure your AI models are accurate, unbiased, explainable, and secure with our expert AI testing services. Trusted by teams across industries.",
     images: ["https://www.testriq.com/OG/AI-Application-Testing-service-Twitter.webp"],
   },
   robots: {

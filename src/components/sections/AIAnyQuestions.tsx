@@ -83,7 +83,7 @@ const AIAnyQuestions: React.FC = () => {
             Ready to Test Your AI?
           </h3>
           <p className="text-gray-700 text-lg mb-6 max-w-2xl mx-auto">
-            Join 150+ companies who trust our AI testing expertise. Schedule a
+            Join the companies who trust our AI testing expertise. Schedule a
             free consultation to discuss your AI testing needs and get a
             customized solution for your AI project.
           </p>
