@@ -21,7 +21,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/performance-testing-services",
-        title: "Performance Testing Services | Load & Stress Testing | Testriq",
+        title: "Performance Testing Services | Load & Stress | Testriq",
         description:
             "Validate application resilience at scale with Testriq's performance testing services. ISO 29119-compliant load, stress, and endurance testing for DevOps teams.",
         ogImage: {

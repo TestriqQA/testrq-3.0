@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/migration-testing",
-        title: "Migration Testing Services | Data & Cloud Migration QA | Testriq",
+        title: "Migration Testing Services | Data & Cloud QA | Testriq",
         description:
             "Prevent data loss and ensure seamless transitions with Testriq's migration testing. Expert ETL validation, data integrity checks, and cloud migration QA.",
         ogImage: {

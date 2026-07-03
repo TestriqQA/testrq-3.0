@@ -7,7 +7,7 @@ export const revalidate = 3600;
 const PAGE_URL = "https://www.testriq.com/postman-api-testing-services";
 
 export const metadata: Metadata = {
-  title: "Postman API Testing Services — Collections, Newman CI, Contract QA",
+  title: "Postman API Testing Services | Contract QA | Testriq",
   description:
     "Postman API testing services: collection design, environment strategy, Newman CI runs, OpenAPI/Pact contract testing, mock servers, and monitors.",
   keywords: [

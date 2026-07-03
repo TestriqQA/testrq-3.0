@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/usability-testing-services",
-        title: "Usability Testing Services | UX Audit & User Research | Testriq",
+        title: "Usability Testing Services | UX Audit & Research | Testriq",
         description:
             "Drive engagement with Testriq's usability testing services. UX audits, mobile and web user research, and ISTQB-certified QA for evidence-driven product teams.",
         ogImage: {

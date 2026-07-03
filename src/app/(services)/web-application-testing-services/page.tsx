@@ -21,7 +21,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/web-application-testing-services",
-    title: "Web Application Testing Services | Cross-Browser & Security QA | Testriq",
+    title: "Web Application Testing | Cross-Browser & Security | Testriq",
     description:
       "Validate web applications with Testriq's testing. Cross-browser compatibility, OWASP Top 10 security, and Playwright/Cypress automation for global QA teams.",
     ogImage: {

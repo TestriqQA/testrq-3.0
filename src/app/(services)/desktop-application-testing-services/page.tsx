@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/desktop-application-testing-services",
-    title: "Desktop Application Testing Services | Cross-Platform QA | Testriq",
+    title: "Desktop Application Testing | Cross-Platform QA | Testriq",
     description:
       "Validate desktop apps across Windows, macOS, and Linux with Testriq's testing. Installer, performance, and security QA for enterprise software.",
     ogImage: {

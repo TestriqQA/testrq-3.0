@@ -27,7 +27,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/microservices-testing",
-        title: "Microservices Testing Services | Contract & API Testing | Testriq",
+        title: "Microservices Testing Services | Contract & API QA | Testriq",
         description:
             "Validate distributed systems with Testriq's microservices testing. Contract testing, chaos engineering, and Kubernetes API QA for cloud-native architectures.",
         ogImage: {

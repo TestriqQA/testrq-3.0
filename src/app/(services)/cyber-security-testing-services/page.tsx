@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/cyber-security-testing-services",
-        title: "Cyber Security Testing Services & Penetration Testing | Testriq",
+        title: "Cyber Security Testing & Penetration Testing | Testriq",
         description:
             "Fortify your defenses with Testriq's cyber security testing. VAPT, vulnerability assessments, and ISTQB & CEH-certified ethical hacking for enterprise teams.",
         ogImage: {

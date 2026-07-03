@@ -12,7 +12,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title:
-    "ISO/IEC 42001:2023 Compliance Testing Services | AI Governance & AIMS Certification | Testriq",
+    "ISO/IEC 42001 AI Compliance Testing Services | Testriq",
   description:
     "ISO/IEC 42001:2023 compliance testing for AI Management Systems: gap analysis, AI risk and bias assessment, explainability validation, and EU AI Act alignment.",
   keywords: [

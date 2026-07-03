@@ -19,7 +19,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/blockchain-app-testing-services",
-        title: "Blockchain App Testing Services | Smart Contract Audit & dApp QA | Testriq",
+        title: "Blockchain App Testing | Smart Contract & dApp QA | Testriq",
         description:
             "Secure your Web3 stack with Testriq's blockchain testing. Smart contract audits, dApp security testing, and decentralized network validation for enterprises.",
         ogImage: {

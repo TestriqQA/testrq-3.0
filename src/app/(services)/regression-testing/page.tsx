@@ -22,7 +22,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/regression-testing",
-        title: "Regression Testing Services | Automated & Risk-Based QA | Testriq",
+        title: "Regression Testing | Automated & Risk-Based QA | Testriq",
         description:
             "Prevent release failures with Testriq's regression testing. Automated, selective, and risk-based QA for CI/CD pipelines and enterprise release cycles.",
         ogImage: {

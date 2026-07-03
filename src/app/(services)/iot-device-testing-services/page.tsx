@@ -23,7 +23,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/iot-device-testing-services",
-    title: "IoT Testing Services | Firmware, MQTT & Smart Device QA | Testriq",
+    title: "IoT Testing Services | Firmware, MQTT & Device QA | Testriq",
     description:
       "Validate connected devices with Testriq's IoT testing services. Firmware security (ISO 27404), MQTT/Zigbee compatibility, and 5G-edge resilience testing.",
     ogImage: {

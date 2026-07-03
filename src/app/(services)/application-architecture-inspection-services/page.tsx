@@ -19,7 +19,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/application-architecture-inspection-services",
-        title: "Application Architecture Inspection | Microservices Audit | Testriq",
+        title: "App Architecture Inspection | Microservices Audit | Testriq",
         description:
             "Engineer resilience with Testriq's architecture inspection. Microservices reviews, technical-debt audits, and cloud-native validation for scaling teams.",
         ogImage: {

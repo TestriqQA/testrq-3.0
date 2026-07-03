@@ -21,7 +21,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/data-analysis-services",
-    title: "Data Analysis Services | QA Metrics & Predictive Analytics | Testriq",
+    title: "Data Analysis Services | QA Metrics & Analytics | Testriq",
     description:
       "Turn QA data into action with Testriq's data analysis services. Predictive modeling, ISO 8000-1 quality, and ETL diagnostics for data-driven engineering teams.",
     ogImage: {

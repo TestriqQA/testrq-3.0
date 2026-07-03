@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/compatibility-testing-services",
-        title: "Compatibility Testing Services | Cross-Browser & Device QA | Testriq",
+        title: "Compatibility Testing Services | Cross-Browser QA | Testriq",
         description:
             "Validate software across browsers, OS, and devices with Testriq's compatibility testing services. ISO 29119-certified QA for global, multi-platform launches.",
         ogImage: {

@@ -25,7 +25,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/ad-hoc-testing",
-        title: "Ad-Hoc Testing Services | On-Demand QA & Error Guessing | Testriq",
+        title: "Ad-Hoc Testing Services | On-Demand QA | Testriq",
         description:
             "Rapid, on-demand QA with Testriq's ad-hoc testing. Error guessing, monkey testing, and exploratory testing for hotfix validation and fast CI/CD feedback.",
         ogImage: {
