@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "SAP Testing Services: S/4HANA Migrations & Upgrades",
 
     description:
-        "Enterprise-grade SAP QA for S/4HANA transitions. End-to-end testing services for complex implementations, ensuring global compliance and high-confidence deployments.",
+        "Enterprise SAP QA for S/4HANA transitions: end-to-end testing for complex implementations, ensuring global compliance and high-confidence deployments.",
     keywords: [
         "SAP Testing Services",
         "SAP Quality Assurance",

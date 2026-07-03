@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/jmeter-performance-testing-services";
 export const metadata: Metadata = {
   title: "JMeter Performance Testing Services — Load + Stress + Soak",
   description:
-    "Apache JMeter performance testing services — load, stress, soak, spike, scalability testing with realistic production-shape traffic, distributed load generation, CI integration, and APM correlation. ISTQB + ISO certified.",
+    "Apache JMeter performance testing services: load, stress, soak, spike and scalability testing with realistic traffic, distributed load generation, plus CI runs.",
   keywords: [
     "JMeter Performance Testing",
     "JMeter Load Testing",

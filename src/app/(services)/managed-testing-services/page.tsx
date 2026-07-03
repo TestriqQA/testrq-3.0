@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title:
         "Managed Testing Services | QA Outsourcing & Dedicated Teams | Testriq",
     description:
-        "Testriq's managed testing services provide dedicated QA teams, end-to-end testing solutions, and SLA-backed quality assurance for enterprises. Reduce costs, accelerate time-to-market, and scale testing with confidence.",
+        "Testriq managed testing services: dedicated QA teams, end-to-end testing, and SLA-backed quality assurance to help enterprises cut costs and scale confidently.",
     keywords: [
         "managed testing services",
         "QA outsourcing",

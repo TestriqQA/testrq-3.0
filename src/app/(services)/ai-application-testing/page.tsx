@@ -14,7 +14,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Global AI Testing Services | Reliable Systems for the Future",
   description:
-    "At Testriq, our AI Application Testing Services help you make sure your models are safe, fair, and compliant. We connect ML Ops with Quality Assurance for high-stakes AI.",
+    "Testriq AI Application Testing services help ensure your ML models are safe, fair, and compliant, connecting MLOps with QA for high-stakes AI systems.",
   keywords: [
     "AI application testing",
     "AI testing services",

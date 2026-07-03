@@ -14,7 +14,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Matrimonial App Certification  ",
 
-  description: "Get your matrimonial app certified for privacy, security, and performance. Testriq’s certification ensures GDPR, ISO 27001, and CCPA compliance while boosting user trust and reducing security risks.",
+  description: "Certify your matrimonial app for privacy, security, and performance. Testriq testing ensures GDPR, ISO 27001, and CCPA compliance while boosting user trust.",
   keywords: [
     "Matrimonial App Certification",
     "matrimonial platform security",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     url: 'https://www.testriq.com/matrimonial-apps-certification',
     siteName: 'Testriq - Professional Software Testing Services',
     title: 'Matrimonial App Certification | Security, Privacy & Quality Compliance - Testriq',
-    description: 'Get your matrimonial app certified for privacy, security, and performance. Testriq’s certification ensures GDPR, ISO 27001, and CCPA compliance while boosting user trust and reducing security risks.',
+    description: 'Certify your matrimonial app for privacy, security, and performance. Testriq testing ensures GDPR, ISO 27001, and CCPA compliance while boosting user trust.',
     images: [
       {
         url: 'https://www.testriq.com/OG/Matrimonial-App-Certification-OG.webp',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     site: '@testriq',
     creator: '@testriq',
     title: 'Matrimonial App Certification | Security, Privacy & Quality Compliance - Testriq',
-    description: 'Get your matrimonial app certified for privacy, security, and performance. Testriq’s certification ensures GDPR, ISO 27001, and CCPA compliance while boosting user trust and reducing security risks.',
+    description: 'Certify your matrimonial app for privacy, security, and performance. Testriq testing ensures GDPR, ISO 27001, and CCPA compliance while boosting user trust.',
     images: ['https://www.testriq.com/OG/Matrimonial-App-Certification-Twitter.webp'],
   },
   robots: {

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Dating App Certification",
 
   description:
-    "Get your dating app certified for security, privacy, algorithm fairness, and compliance. Testriq’s certification improves trust, boosts downloads, and meets GDPR, CCPA, and ISO 27001 standards.",
+    "Certify your dating app for security, privacy, algorithm fairness, and compliance. Testriq testing builds trust and meets GDPR, CCPA, and ISO 27001 standards.",
   keywords: [
     "Dating App Certification",
     "dating app security",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title:
       "Dating App Certification | Security, Privacy, Trust Compliance - Testriq",
     description:
-      "Get your dating app certified for security, privacy, algorithm fairness, and compliance. Testriq’s certification improves trust, boosts downloads, and meets GDPR, CCPA, and ISO 27001 standards.",
+      "Certify your dating app for security, privacy, algorithm fairness, and compliance. Testriq testing builds trust and meets GDPR, CCPA, and ISO 27001 standards.",
     images: [
       {
         url: "https://www.testriq.com/OG/Dating-App-Certification-Og.webp",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title:
       "Dating App Certification | Security, Privacy, Trust Compliance - Testriq",
     description:
-      "Get your dating app certified for security, privacy, algorithm fairness, and compliance. Testriq’s certification improves trust, boosts downloads, and meets GDPR, CCPA, and ISO 27001 standards.",
+      "Certify your dating app for security, privacy, algorithm fairness, and compliance. Testriq testing builds trust and meets GDPR, CCPA, and ISO 27001 standards.",
     images: ["https://www.testriq.com/OG/Dating-App-Certification-Twiiter.webp"],
   },
   robots: {

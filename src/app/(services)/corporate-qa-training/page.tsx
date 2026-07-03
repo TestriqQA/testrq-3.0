@@ -11,7 +11,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Corporate QA Training Services Professional Software Testing",
   description:
-    "Future-proof your team for 2026 with Testriq's enterprise-grade corporate QA training. Specialist quality engineering programs aligning with ISO 29119 and ISTQB standards.",
+    "Enterprise corporate QA training from Testriq: specialist quality-engineering programs aligned with ISO 29119 and ISTQB standards to upskill your team.",
   keywords: [
     "corporate qa training",
     "software testing training",

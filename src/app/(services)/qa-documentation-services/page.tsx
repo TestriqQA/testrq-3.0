@@ -15,7 +15,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Analyze Data to Improve QA Team Performance",
-  description: "Testriq provides professional QA documentation services. We bridge the gap between rapid deployment and quality assurance with audit-ready, scalable systems aligning with ISO/IEC/IEEE 29119-3 standards.",
+  description: "Professional QA documentation services: audit-ready, scalable test documentation aligned with ISO/IEC/IEEE 29119-3 standards for fast, quality-assured delivery.",
   keywords: [
     "QA documentation services",
     "test management",

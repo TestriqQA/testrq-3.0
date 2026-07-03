@@ -12,7 +12,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
     title: "Enterprise Azure Testing Services | Cloud-Native QA & DevOps",
     description:
-        "Secure and optimize your cloud ecosystem with Testriq's Azure testing services. From seamless cloud migrations to continuous Azure DevOps QA, our certified experts ensure enterprise-grade excellence.",
+        "Testriq Azure testing services: secure cloud migrations and continuous Azure DevOps QA delivered by certified experts for enterprise-grade cloud quality.",
     keywords: [
         "Azure testing services",
         "Azure DevOps QA",

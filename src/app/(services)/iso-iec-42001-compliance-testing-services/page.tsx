@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title:
     "ISO/IEC 42001:2023 Compliance Testing Services | AI Governance & AIMS Certification | Testriq",
   description:
-    "Expert ISO/IEC 42001:2023 compliance testing for AI Management Systems (AIMS). We help organizations achieve certification readiness with gap analysis, AI risk assessment, bias testing, explainability validation, and regulatory alignment with EU AI Act and NIST AI RMF.",
+    "ISO/IEC 42001:2023 compliance testing for AI Management Systems: gap analysis, AI risk and bias assessment, explainability validation, and EU AI Act alignment.",
   keywords: [
     "ISO 42001 Compliance Testing",
     "ISO/IEC 42001:2023 Certification",

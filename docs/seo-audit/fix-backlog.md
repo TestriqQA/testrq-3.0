@@ -59,7 +59,7 @@ services").** Locations (non-city): `HomeHeroSection:74`, `AboutHeroSection:68,1
 | ID | Area | Scope | Issue | Fix | Prio | Status |
 |---|---|---|---|---|---|---|
 | S-1 | Titles | 26 service pages | Title > 60 chars → truncated in SERP | Trim to ≤60, keep primary keyword front-loaded + "\| Testriq" | P1 | ⬜ |
-| S-2 | Meta desc | 18 service pages (all manual-metadata) | Description > 160 chars (up to 269) → truncated | Trim to ≤160 | P1 | ⬜ |
+| S-2 | Meta desc | 18 service pages (all manual-metadata) | Description > 160 chars (up to 269) → truncated | Trimmed all 18 to ≤160 (145–160), keywords kept; dropped "500+ trading platforms" claim. desc>160 now 0. | P1 | ✅ done 2026-07-03 |
 | S-3 | Schema | 6 tool pages (postman, jmeter, playwright, appium, cypress, selenium) | **No structured data at all** (no Service/FAQ JSON-LD) | Add Service + FAQPage schema like the other 45 | P1 | ⬜ |
 | S-4 | Consistency | 19 manual-metadata pages | Off the shared `buildPageMetadata` helper → drift, no brand in title | Migrate to helper | P2 | ⬜ |
 | S-5 | Schema | saas-testing-services | No FAQ schema | Add FAQPage | P2 | ⬜ |

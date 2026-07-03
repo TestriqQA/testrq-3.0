@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/cypress-testing-services";
 export const metadata: Metadata = {
   title: "Cypress Testing Services — Modern E2E + Component Testing",
   description:
-    "Cypress E2E + component testing services — Cypress Cloud, custom commands, network stubbing, accessibility scans, CI/CD integration. ISTQB + ISO 9001 + ISO 27001 certified.",
+    "Cypress E2E and component testing services: Cypress Cloud, custom commands, network stubbing, accessibility scans, and CI/CD integration for reliable web apps.",
   keywords: [
     "Cypress Testing Services",
     "Cypress E2E",
