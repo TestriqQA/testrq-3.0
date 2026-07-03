@@ -185,7 +185,7 @@ const QAKnowledgeHub: React.FC<QAKnowledgeHubProps> = ({ trendingPosts = [] }) =
                                 </div>
                                 Curated Learning Paths
                             </h3>
-                            <Link href="/learning-paths" className="text-blue-400 hover:text-blue-300 text-sm font-semibold flex items-center gap-2 transition-colors">
+                            <Link href="/blog" className="text-blue-400 hover:text-blue-300 text-sm font-semibold flex items-center gap-2 transition-colors">
                                 View All
                                 <FaArrowRight className="w-3 h-3" />
                             </Link>
