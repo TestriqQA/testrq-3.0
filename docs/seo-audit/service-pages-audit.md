@@ -6,8 +6,13 @@
 > **Headline:** The site's service pages fall into two clearly different groups. The **32 pages built
 > with the `buildPageMetadata` helper are healthy** (well-sized descriptions, canonical+OG+schema+FAQ,
 > brand in title). The **19 pages using hand-written ("manual") metadata are the problem set** —
-> overlong descriptions, missing brand in the title, and **6 with no structured data at all.**
+> overlong descriptions and missing brand in the title.
 > Fixing the audit = mostly bringing the 19 manual pages up to the standard the other 32 already meet.
+>
+> **Correction (2026-07-03):** an earlier draft flagged 6 tool pages as "no structured data" — **that
+> was a false positive.** The audit script only grepped each `page.tsx`; those 6 render **Service +
+> FAQPage + BreadcrumbList** JSON-LD via the shared `ToolLandingPage` component. **All 51 pages have
+> structured data.** Titles/descriptions (S-1, S-2) are now fixed.
 
 ---
 
@@ -16,35 +21,30 @@
 **✅ Good across (nearly) all pages:**
 - **H1:** all **51/51 pages have exactly one `<h1>`** — heading top-level is clean.
 - **Canonical + OG:** every page emits a canonical + Open Graph (helper or manual). None missing.
-- **Schema:** 45/51 have JSON-LD structured data; 44/51 have FAQ schema.
+- **Schema:** **51/51 have JSON-LD structured data** (45 in-page, 6 via the shared `ToolLandingPage`); FAQ schema on every page that has a FAQ section.
 - **Descriptions on the 32 helper pages:** all sit in the ideal 143–160 char band.
 
 **⚠️ Issues found:**
 | Issue | Count | Which |
 |---|---|---|
-| **Title > 60 chars** (Google truncates in SERP) | **26** | mostly helper pages with long "keyword \| keyword \| Testriq" titles |
-| **Title missing brand ("Testriq")** | **17** | all the manual-metadata pages |
-| **Meta description > 160 chars** (truncated) | **18** | all manual-metadata pages (up to 269 chars) |
-| **No structured data at all** | **6** | postman-api-testing-services, jmeter-performance-testing-services, playwright-testing-services, appium-mobile-testing-services, cypress-testing-services, selenium-testing-services |
-| **No FAQ schema** | **1** | saas-testing-services |
-| **Hand-written metadata (off the shared helper)** | **19** | inconsistent; source of most issues above |
+| **Title > 60 chars** (Google truncates in SERP) → ✅ **FIXED (S-1)** | ~~26~~ **0** | trimmed to ≤60 on 2026-07-03 |
+| **Title missing brand ("Testriq")** | **15** | manual-metadata pages (down from 17; brand added to postman + saas) |
+| **Meta description > 160 chars** → ✅ **FIXED (S-2)** | ~~18~~ **0** | trimmed to ≤160 on 2026-07-03 |
+| ~~No structured data~~ **(false positive — corrected)** | ~~6~~ **0** | 6 tool pages render schema via `ToolLandingPage`; script checked page files only |
+| No FAQ schema (verify) | 1? | saas-testing-services has Service schema; confirm whether it needs FAQPage |
+| **Hand-written metadata (off the shared helper)** | **19** | inconsistent; still worth migrating to helper (S-4) |
 
 ---
 
-## 2. The 6 highest-priority pages (no schema + off-pattern)
+## 2. Correction: the 6 "tool" pages are NOT missing schema
 
-These 6 **tool pages** were added without the shared pattern — no `StructuredData`, no FAQ schema,
-em-dash titles with no brand, descriptions 172–221 chars. They are the weakest service pages on the site:
-
-- **postman-api-testing-services** — title 66 chars, desc 195 chars, no schema. Title: "Postman API Testing Services — Collections, Newman CI, Contract QA"
-- **jmeter-performance-testing-services** — title 58 chars, desc 221 chars, no schema. Title: "JMeter Performance Testing Services — Load + Stress + Soak"
-- **playwright-testing-services** — title 58 chars, desc 197 chars, no schema. Title: "Playwright Testing Services — Cross-Browser E2E Automation"
-- **appium-mobile-testing-services** — title 57 chars, desc 195 chars, no schema. Title: "Appium Mobile Testing Services — iOS + Android Automation"
-- **cypress-testing-services** — title 57 chars, desc 172 chars, no schema. Title: "Cypress Testing Services — Modern E2E + Component Testing"
-- **selenium-testing-services** — title 57 chars, desc 194 chars, no schema. Title: "Selenium Testing Services — Selenium WebDriver Automation"
-
-**Fix:** migrate to `buildPageMetadata` (fixes brand + description structure) and add `Service` +
-`FAQPage` JSON-LD like the other 45 pages.
+The 6 tool pages — `postman`, `jmeter`, `playwright`, `appium`, `cypress`, `selenium` — were flagged
+"no schema" by an early automated pass that only grepped each `page.tsx`. In fact **all 6 use the
+shared `ToolLandingPage` component** ([src/components/sections/ToolLandingPage.tsx](../../src/components/sections/ToolLandingPage.tsx)),
+which renders **BreadcrumbList + Service + FAQPage** JSON-LD from the `serviceTypeForSchema`,
+`schemaDescription`, and `faqs` props each page passes. **No schema fix was needed.** Their over-length
+titles and descriptions *were* real and have been fixed (S-1, S-2). Lesson logged: schema audits must
+resolve shared wrapper components, not just page files.
 
 ---
 
@@ -52,12 +52,12 @@ em-dash titles with no brand, descriptions 172–221 chars. They are the weakest
 
 | Prio | Fix | Pages | Effort |
 |---|---|---|---|
-| **P1** | Trim titles to ≤60 chars, keep primary keyword front-loaded + "\| Testriq" | 26 | 1 line each |
-| **P1** | Trim descriptions to ≤160 chars | 18 | 1 line each |
-| **P1** | Add "Testriq" brand to titles missing it | 17 | folded into title trim |
-| **P1** | Add `Service` + `FAQPage` schema to the 6 no-schema pages | 6 | moderate |
-| **P2** | Migrate 19 manual pages → `buildPageMetadata` helper (consistency, drift-proof) | 19 | moderate |
-| **P2** | Add FAQ schema to saas-testing-services | 1 | small |
+| ✅ done | Trim titles to ≤60 chars, keyword front-loaded + "\| Testriq" (S-1) | 26 | done 2026-07-03 |
+| ✅ done | Trim descriptions to ≤160 chars (S-2) | 18 | done 2026-07-03 |
+| ✅ done | Add "Testriq" brand to titles missing it | postman, saas | folded into S-1 |
+| ~~P1~~ | ~~Add schema to 6 tool pages~~ — **not needed (false positive; schema present via `ToolLandingPage`)** | 0 | — |
+| **P2** | Migrate remaining manual pages → `buildPageMetadata` helper (consistency, drift-proof) | ~17 | moderate |
+| **P2** | Confirm/​add FAQ schema on saas-testing-services | 1 | small |
 
 > Note: content depth, keyword-in-body coverage, and internal-link density were **not** machine-graded
 > here (they need per-page human/LLM review). The scripted layer covers titles, meta, schema, H1,
@@ -67,7 +67,9 @@ em-dash titles with no brand, descriptions 172–221 chars. They are the weakest
 
 ## 4. Full per-page table (sorted by title length, longest first)
 
-| Page (slug) | Title len | Desc len | Method | Schema | FAQ | Issues |
+> **Snapshot at audit time (pre-fix).** Title-len and desc-len columns show the *original* values;
+> S-1/S-2 have since brought all to ≤60/≤160. The **Schema `N`** on the 6 tool pages is the corrected
+> false positive (§2) — they do have schema via `ToolLandingPage`.
 |---|---|---|---|---|---|---|
 | iso-iec-42001-compliance-testing-services | 93 ⚠ | 269 ⚠ | manual | Y | Y | title>60, desc>160 |
 | blockchain-app-testing-services | 74 ⚠ | 157 | helper | Y | Y | title>60 |
@@ -124,8 +126,9 @@ em-dash titles with no brand, descriptions 172–221 chars. They are the weakest
 
 ---
 
-## 5. Recommended order of execution
-1. **P1 title trims** (26 pages) — biggest SERP/CTR win, lowest risk.
-2. **P1 description trims** (18 pages).
-3. **Schema for the 6 tool pages** — closes the structured-data gap.
-4. **P2 helper migration** for the 19 manual pages — makes future drift impossible.
+## 5. Status / remaining
+1. ✅ **Title trims** (26 pages) — done (S-1).
+2. ✅ **Description trims** (18 pages) — done (S-2).
+3. ✅ **Schema for the 6 tool pages** — no action needed (false positive; schema present via `ToolLandingPage`).
+4. ⬜ **P2 helper migration** for the remaining manual pages — makes future drift impossible (optional, consistency).
+5. ⬜ **Deeper per-page content review** (word depth, keyword-in-body, internal links) — not machine-graded; can follow.
