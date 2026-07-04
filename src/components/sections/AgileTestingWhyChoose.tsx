@@ -23,7 +23,7 @@ const AgileTestingWhyChoose: React.FC = () => {
             description: "Our deep-rooted expertise allows us to navigate complexities from Scrum and Kanban to Scaled Agile Framework (SAFe).",
             stats: "15+ Years",
             color: "sky",
-            gradient: "from-sky-500 to-sky-600",
+            gradient: "from-brand-blue to-brand-blue/80",
             features: [
                 "Scrum & Kanban",
                 "SAFe Framework",
@@ -79,16 +79,16 @@ const AgileTestingWhyChoose: React.FC = () => {
     ];
 
     return (
-        <section className="bg-gradient-to-br from-white to-sky-50 py-16 px-8 md:px-12 lg:px-24 overflow-hidden">
+        <section className="bg-gray-50 py-16 px-8 md:px-12 lg:px-24 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <div className="inline-flex items-center bg-sky-600 gap-2 text-white px-4 py-2 rounded-full mb-6 shadow-lg transform hover:scale-105 transition-transform">
+                    <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-4 py-2 rounded-full mb-6 shadow-lg transform hover:scale-105 transition-transform">
                         <FaAward />
                         <span className="text-sm font-bold uppercase tracking-wider">The Testriq Edge</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
                         Why Choose Testriq for Your{" "}
-                        <span className="text-sky-600">Agile QA Needs?</span>
+                        <span className="text-brand-blue">Agile QA Needs?</span>
                     </h2>
                     <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed">
                         Agile testing is not just a phase; it&apos;s a mindset. At Testriq, we go beyond traditional bug-finding to deliver value early and often.
@@ -105,7 +105,7 @@ const AgileTestingWhyChoose: React.FC = () => {
                             onMouseEnter={() => setHoveredCard(index)}
                             onMouseLeave={() => setHoveredCard(null)}
                         >
-                            <div className="bg-white rounded-3xl shadow-xl border border-sky-100 overflow-hidden h-full flex flex-col transition-all duration-500 group-hover:shadow-2xl">
+                            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden h-full flex flex-col transition-all duration-500 group-hover:shadow-2xl">
                                 {/* Header Section */}
                                 <div className={`bg-gradient-to-r ${benefit.gradient} p-8 text-white relative`}>
                                     <div className="relative z-10 flex justify-between items-start mb-4">
@@ -128,7 +128,7 @@ const AgileTestingWhyChoose: React.FC = () => {
                                     <div className="space-y-3">
                                         {benefit.features.map((feature, fIdx) => (
                                             <div key={fIdx} className="flex items-center text-sm text-gray-700">
-                                                <div className={`w-2 h-2 rounded-full mr-3 bg-sky-500 animate-pulse`} />
+                                                <div className={`w-2 h-2 rounded-full mr-3 bg-brand-blue animate-pulse`} />
                                                 {feature}
                                             </div>
                                         ))}
@@ -145,7 +145,7 @@ const AgileTestingWhyChoose: React.FC = () => {
                                     <p className="text-center text-sky-50 mb-8 text-sm leading-relaxed">
                                         {benefit.description}
                                     </p>
-                                    <Link href="/contact-us" className="bg-white text-sky-600 px-6 py-3 rounded-xl font-bold hover:bg-sky-50 transition-colors flex items-center gap-2">
+                                    <Link href="/contact-us" className="bg-white text-brand-blue px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors flex items-center gap-2 cursor-pointer">
                                         Get Started <FaArrowRight />
                                     </Link>
                                 </div>
@@ -155,23 +155,23 @@ const AgileTestingWhyChoose: React.FC = () => {
                 </div>
 
                 {/* Velocity Stats */}
-                <div className="bg-sky-900 rounded-[3rem] p-12 text-white shadow-2xl relative overflow-hidden group">
+                <div className="bg-slate-900 rounded-[3rem] p-12 text-white shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-sky-800 rounded-full -mr-32 -mt-32 blur-3xl opacity-50 group-hover:scale-110 transition-transform duration-1000"></div>
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-800 rounded-full -ml-32 -mb-32 blur-3xl opacity-50 group-hover:scale-110 transition-transform duration-1000"></div>
 
                     <div className="relative z-10 grid md:grid-cols-3 gap-12 text-center items-center">
                         <div className="space-y-2">
-                            <div className="text-6xl font-black text-sky-400">3x</div>
+                            <div className="text-6xl font-black text-brand-blue">3x</div>
                             <div className="text-lg font-bold uppercase tracking-widest text-sky-100">Release Velocity</div>
                             <p className="text-xs text-sky-200/60 max-w-[200px] mx-auto">Faster time-to-market with automated CI/CD pipelines</p>
                         </div>
-                        <div className="space-y-2 border-y md:border-y-0 md:border-x border-sky-800 py-8 md:py-0">
-                            <div className="text-6xl font-black text-sky-400">0%</div>
+                        <div className="space-y-2 border-y md:border-y-0 md:border-x border-white/10 py-8 md:py-0">
+                            <div className="text-6xl font-black text-brand-blue">0%</div>
                             <div className="text-lg font-bold uppercase tracking-widest text-sky-100">Sprint Bottlenecks</div>
                             <p className="text-xs text-sky-200/60 max-w-[200px] mx-auto">Continuous integration prevents late-stage quality issues</p>
                         </div>
                         <div className="space-y-2">
-                            <div className="text-6xl font-black text-sky-400">100%</div>
+                            <div className="text-6xl font-black text-brand-blue">100%</div>
                             <div className="text-lg font-bold uppercase tracking-widest text-sky-100">Visibility</div>
                             <p className="text-xs text-sky-200/60 max-w-[200px] mx-auto">Real-time quality metrics throughout the sprint cycle</p>
                         </div>

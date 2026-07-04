@@ -51,14 +51,16 @@ const AzureTestingAnimation = () => {    // Azure-themed Color Palette
 
                 {/* --- CONNECTIONS --- */}
                 {/* On-Prem to DevOps */}
-                <path d="M 140 150 Q 200 150, 260 230" fill="none" stroke={colors.sky} strokeWidth="3" strokeDasharray="8 6" />
+                <path id="path-onprem-devops" d="M 140 150 Q 200 150, 260 230" fill="none" stroke={colors.sky} strokeWidth="3" strokeDasharray="8 6">
+                    <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                </path>
 
                 {/* DevOps to Azure */}
-                <line x1="340" y1="250" x2="510" y2="250" stroke={colors.azureBlue} strokeWidth="4" />
+                <path id="path-devops-azure" d="M 340 250 L 510 250" stroke={colors.azureBlue} strokeWidth="4" />
 
                 {/* Azure to AI/Networking */}
-                <line x1="595" y1="250" x2="670" y2="180" stroke={colors.sky} strokeWidth="2" />
-                <line x1="595" y1="250" x2="670" y2="320" stroke={colors.indigo} strokeWidth="2" />
+                <path id="path-azure-ai" d="M 595 250 L 670 180" stroke={colors.sky} strokeWidth="2" />
+                <path id="path-azure-net" d="M 595 250 L 670 320" stroke={colors.indigo} strokeWidth="2" />
 
                 {/* --- NODES --- */}
                 {nodes.map((node) => (
@@ -74,10 +76,37 @@ const AzureTestingAnimation = () => {    // Azure-themed Color Palette
                 ))}
 
                 {/* --- DATA PACKETS --- */}
-                <circle r="6" fill={colors.azureBlue} />
+                <circle r="6" fill={colors.sky} filter="url(#azure-shadow)">
+                    <animateMotion dur="2s" repeatCount="indefinite">
+                        <mpath href="#path-onprem-devops" />
+                    </animateMotion>
+                </circle>
+                <circle r="6" fill={colors.azureBlue} filter="url(#azure-shadow)">
+                    <animateMotion dur="1.5s" repeatCount="indefinite">
+                        <mpath href="#path-devops-azure" />
+                    </animateMotion>
+                </circle>
+                <circle r="6" fill={colors.sky} filter="url(#azure-shadow)">
+                    <animateMotion dur="1.2s" repeatCount="indefinite">
+                        <mpath href="#path-azure-ai" />
+                    </animateMotion>
+                </circle>
+                <circle r="6" fill={colors.indigo} filter="url(#azure-shadow)">
+                    <animateMotion dur="1.2s" repeatCount="indefinite">
+                        <mpath href="#path-azure-net" />
+                    </animateMotion>
+                </circle>
 
                 {/* --- VALIDATION WAVES --- */}
-                <circle cx="550" cy="250" r="40" fill="none" stroke={colors.success} strokeWidth="2" />
+                <circle cx="550" cy="250" r="40" fill="none" stroke={colors.success} strokeWidth="2">
+                    <animate attributeName="r" values="40; 70; 40" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="1; 0; 1" dur="3s" repeatCount="indefinite" />
+                </circle>
+                
+                <circle cx="550" cy="250" r="40" fill="none" stroke={colors.success} strokeWidth="2">
+                    <animate attributeName="r" values="40; 90; 40" dur="3s" begin="1.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="1; 0; 1" dur="3s" begin="1.5s" repeatCount="indefinite" />
+                </circle>
 
                 {/* --- SECURITY SHIELD --- */}
                 <g>
@@ -96,6 +125,7 @@ const AzureTestingAnimation = () => {    // Azure-themed Color Palette
 
                 {/* --- SUCCESS OVERLAY --- */}
                 <g>
+                    <animate attributeName="opacity" values="0.7; 1; 0.7" dur="2s" repeatCount="indefinite" />
                     <rect x="250" y="50" width="300" height="50" rx="25" fill="white" filter="url(#azure-shadow)" />
                     <text x="400" y="82" textAnchor="middle" fontSize="16" fontWeight="800" fill={colors.azureBlue}>CLOUD-NATIVE QA VERIFIED</text>
                 </g>
@@ -103,10 +133,13 @@ const AzureTestingAnimation = () => {    // Azure-themed Color Palette
             </svg>
 
             {/* Cloud Background Elements */}
-            <div className="absolute top-10 left-10 text-sky-200/40 text-6xl">
+            <div className="absolute top-10 left-10 text-sky-200/40 text-6xl" style={{ animation: 'bounce 3s infinite' }}>
                 <FaCloud />
             </div>
-            <div className="absolute bottom-20 right-10 text-indigo-200/30 text-8xl">
+            <div className="absolute bottom-20 right-10 text-indigo-200/30 text-8xl" style={{ animation: 'bounce 3s infinite 1s' }}>
+                <FaCloud />
+            </div>
+            <div className="absolute top-1/3 right-1/4 text-sky-300/20 text-4xl" style={{ animation: 'bounce 3s infinite 2s' }}>
                 <FaCloud />
             </div>
         </div>

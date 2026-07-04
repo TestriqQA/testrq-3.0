@@ -58,7 +58,9 @@ const IoTTestingAnimation = () => {    // Corporate Color Palette
                     const from = getDevicePos(conn.from);
                     const to = getDevicePos(conn.to);
                     return (
-                        <line key={`conn-${i}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={colors.connection} strokeWidth="2" strokeDasharray="5 5" />
+                        <line key={`conn-${i}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={colors.connection} strokeWidth="2" strokeDasharray="5 5">
+                            <animate attributeName="stroke-dashoffset" values="10; 0" dur="1s" repeatCount="indefinite" />
+                        </line>
                     );
                 })}
 
@@ -67,7 +69,10 @@ const IoTTestingAnimation = () => {    // Corporate Color Palette
                     const from = getDevicePos(conn.from);
                     const to = getDevicePos(conn.to);
                     return (
-                        <circle key={`packet-${i}`} r="4" fill={colors.accentLight} filter="url(#iot-glow)" />
+                        <g key={`packet-${i}`}>
+                            <animateTransform attributeName="transform" type="translate" values={`${from.x} ${from.y}; ${to.x} ${to.y}; ${from.x} ${from.y}`} dur="3s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+                            <circle r="4" fill={colors.accentLight} filter="url(#iot-glow)" />
+                        </g>
                     );
                 })}
 
@@ -93,7 +98,9 @@ const IoTTestingAnimation = () => {    // Corporate Color Palette
                         </text>
 
                         {/* Status Indicator */}
-                        <circle cx={device.x + device.size * 0.7} cy={device.y - device.size * 0.7} r="8" fill={colors.success} stroke="white" strokeWidth="2" />
+                        <circle cx={device.x + device.size * 0.7} cy={device.y - device.size * 0.7} r="8" fill={colors.success} stroke="white" strokeWidth="2" opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${i * 0.3 + 1}s`} fill="freeze" />
+                        </circle>
                     </g>
                 ))}
 
@@ -113,22 +120,28 @@ const IoTTestingAnimation = () => {    // Corporate Color Palette
 
                     {/* Mini bars */}
                     <rect x="640" y="160" width="110" height="10" rx="5" fill="#e2e8f0" />
-                    <rect x="640" y="160" width="100" height="10" rx="5" fill={colors.success} />
+                    <rect x="640" y="160" width="0" height="10" rx="5" fill={colors.success}>
+                        <animate attributeName="width" values="0; 100" dur="1.5s" begin="2s" fill="freeze" />
+                    </rect>
                     <text x="640" y="185" fontSize="9" fill={colors.textSecondary}>Latency: 12ms</text>
 
                     <rect x="640" y="195" width="110" height="10" rx="5" fill="#e2e8f0" />
-                    <rect x="640" y="195" width="105" height="10" rx="5" fill={colors.accent} />
+                    <rect x="640" y="195" width="0" height="10" rx="5" fill={colors.accent}>
+                        <animate attributeName="width" values="0; 105" dur="1.5s" begin="2.5s" fill="freeze" />
+                    </rect>
                     <text x="640" y="220" fontSize="9" fill={colors.textSecondary}>Uptime: 99.9%</text>
                 </g>
 
                 {/* --- ALERT BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="2s" repeatCount="indefinite" />
                     <rect x="420" y="340" width="120" height="35" rx="6" fill={colors.error} />
                     <text x="480" y="362" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">⚠ Anomaly Detected</text>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect x="300" y="30" width="200" height="40" rx="8" fill={colors.success} filter="url(#iot-shadow)" />
                     <text x="400" y="55" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ All Systems Healthy</text>
                 </g>

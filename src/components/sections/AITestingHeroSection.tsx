@@ -6,7 +6,7 @@ import AITestingAnimation from "./AITestingAnimation";
 
 const AITestingHeroSection: React.FC = () => {
   return (
-    <section className="bg-white text-black pt-8 pb-24 lg:pb-32 px-8 md:px-12 lg:px-24">
+    <section className="bg-white text-black pt-8 pb-24 lg:pb-32 px-8 md:px-12 lg:px-24 overflow-x-clip">
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm font-medium text-gray-600 mb-6">
@@ -22,7 +22,7 @@ const AITestingHeroSection: React.FC = () => {
             AI Application Testing
           </span>
         </div>
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="flex flex-col items-center xl:items-start text-center xl:text-left mx-auto xl:mx-0">
             <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
@@ -72,7 +72,7 @@ const AITestingHeroSection: React.FC = () => {
           </div>
 
           {/* Right Content - AI Model Testing Dashboard */}
-          <div className="relative xl:-mt-32 xl:-translate-y-24 mt-8 flex justify-center">
+          <div className="relative mt-8 xl:mt-0 flex justify-center">
             <AITestingAnimation />
           </div>
         </div>

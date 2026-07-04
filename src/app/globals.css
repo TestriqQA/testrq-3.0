@@ -1,12 +1,48 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-
-@theme{
+@theme {
   --color-background-gray: #F5F5F5; 
-  
   --color-brand-blue: #25A8E0; 
   --color-brand-grey: #25A8E0;
+
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-marquee2: marquee2 25s linear infinite;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+  --animate-pulse-slow: pulse-slow 4s infinite alternate;
+  --animate-spin-slow: spin-slow 20s linear infinite;
+  --animate-spin-reverse-slow: spin-reverse-slow 25s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes marquee2 {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0%); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse-slow {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes spin-reverse-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }
 }
 
 :root {
@@ -43,82 +79,12 @@ body {
   color: #ffffff;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-.animate-marquee {
-  animation: marquee 25s linear infinite;
-}
-@keyframes marquee2 {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-.animate-marquee2 {
-  animation: marquee2 25s linear infinite;
-}
+
 .overflow-x-hidden {
   overflow-x: hidden;
 }
 .whitespace-nowrap {
   white-space: nowrap;
-}
-
-
-
-/* Custom animations for CategoryHeroSection */
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse-slow {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.1); opacity: 1; }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes spin-reverse-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-}
-
-.animate-fade-in {
-  animation: fade-in 1s ease-out forwards;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 4s infinite alternate;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-spin-reverse-slow {
-  animation: spin-reverse-slow 25s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
 }
 
 

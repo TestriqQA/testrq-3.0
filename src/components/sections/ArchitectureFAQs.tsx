@@ -26,11 +26,11 @@ const ArchitectureFAQs: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-white">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-                        Architecture <span className="text-[theme(color.brand.blue)]">Expertise</span> FAQ
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        Architecture <span className="text-brand-blue">Expertise</span> FAQ
                     </h2>
                     <p className="text-gray-600 text-lg">
                         Essential insights into our Application Architecture Inspection process.
@@ -42,16 +42,16 @@ const ArchitectureFAQs: React.FC = () => {
                         <div
                             key={index}
                             className={`border rounded-2xl transition-all duration-300 ${activeIndex === index
-                                    ? "border-blue-200 bg-blue-50/30 shadow-sm"
-                                    : "border-slate-200 bg-white hover:border-slate-300"
+                                    ? "border-brand-blue/30 bg-brand-blue/10 shadow-sm"
+                                    : "border-gray-200 bg-white hover:border-gray-300"
                                 }`}
                         >
                             <button
                                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                                className="w-full flex items-center justify-between p-6 text-left"
+                                className="w-full flex items-center justify-between p-6 text-left cursor-pointer"
                             >
                                 <span className="text-lg font-bold text-gray-900 pr-8">{faq.question}</span>
-                                <span className="flex-shrink-0 text-blue-600">
+                                <span className="flex-shrink-0 text-brand-blue">
                                     {activeIndex === index ? <FaChevronUp /> : <FaChevronDown />}
                                 </span>
                             </button>

@@ -28,8 +28,7 @@ const AzureTestingSolutions: React.FC = () => {
                 "Quality Gates & Approval Flows",
                 "Azure Test Plans Integration",
             ],
-            color: "blue",
-            gradient: "from-blue-600 to-sky-500",
+            gradient: "from-brand-blue to-brand-blue/80",
             metric: "Ready for Prompt Release",
         },
         {
@@ -99,15 +98,15 @@ const AzureTestingSolutions: React.FC = () => {
     };
 
     return (
-        <section className="bg-white py-20 px-8 md:px-12 lg:px-24">
+        <section className="bg-white py-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <div className="inline-flex items-center bg-[#0078d4] gap-2 text-white px-4 py-2 rounded-full mb-6 shadow-lg shadow-blue-100">
+                    <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-4 py-2 rounded-full mb-6 shadow-lg shadow-blue-100">
                         <VscAzure />
                         <span className="text-sm font-bold uppercase tracking-widest">Enterprise Solutions</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6">
-                        Comprehensive <span className="text-[#0078d4]">Azure Testing</span> Solutions
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        Comprehensive <span className="text-brand-blue">Azure Testing</span> Solutions
                     </h2>
                     <p className="text-gray-600 text-lg max-w-3xl mx-auto">
                         Testriq offers a full suite of services to optimize your Azure-based digital infrastructure, from individual service validation to end-to-end cloud ecosystem audits.
@@ -115,7 +114,7 @@ const AzureTestingSolutions: React.FC = () => {
                 </div>
 
                 {/* Desktop Tabbed View */}
-                <div className="bg-gray-50 rounded-[3rem] p-4 shadow-inner">
+                <div className="bg-gray-50 rounded-3xl p-4 shadow-inner">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch min-h-[500px]">
                         {/* Sidebar Navigation */}
                         <div className="lg:col-span-4 flex flex-col gap-3 p-4">
@@ -123,12 +122,12 @@ const AzureTestingSolutions: React.FC = () => {
                                 <button
                                     key={index}
                                     onClick={() => setActiveTab(index)}
-                                    className={`flex items-center gap-4 p-5 rounded-2xl text-left transition-all duration-300 ${activeTab === index
+                                    className={`flex items-center gap-4 p-5 rounded-2xl text-left cursor-pointer transition-all duration-300 ${activeTab === index
                                         ? `bg-gradient-to-r ${sol.gradient} text-white shadow-xl scale-[1.02]`
                                         : "bg-white hover:bg-white/80 text-gray-600 hover:shadow-md"
                                         }`}
                                 >
-                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${activeTab === index ? "bg-white/20" : "bg-gray-100 text-[#0078d4]"}`}>
+                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${activeTab === index ? "bg-white/20" : "bg-gray-100 text-brand-blue"}`}>
                                         {sol.icon}
                                     </div>
                                     <span className="font-bold text-sm leading-tight">{sol.title}</span>
@@ -149,7 +148,7 @@ const AzureTestingSolutions: React.FC = () => {
                                         {solutions[activeTab].metric}
                                     </div>
 
-                                    <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
                                         {solutions[activeTab].title}
                                     </h3>
 
@@ -160,7 +159,7 @@ const AzureTestingSolutions: React.FC = () => {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
                                         {solutions[activeTab].features.map((feat, i) => (
                                             <div key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-                                                <FaCheckCircle className={`text-xl ${activeTab === 0 ? "text-blue-500" :
+                                                <FaCheckCircle className={`text-xl ${activeTab === 0 ? "text-brand-blue" :
                                                     activeTab === 1 ? "text-indigo-500" :
                                                         activeTab === 2 ? "text-sky-500" :
                                                             activeTab === 3 ? "text-emerald-500" :
@@ -172,11 +171,11 @@ const AzureTestingSolutions: React.FC = () => {
                                     </div>
 
                                     <div className="flex flex-col sm:flex-row items-center gap-4">
-                                        <Link href="/contact-us" className={`group relative inline-flex items-center gap-3 px-8 py-4 bg-gray-900 text-white font-bold rounded-full overflow-hidden transition-all hover:pr-10`}>
+                                        <Link href="/contact-us" className={`group relative inline-flex items-center gap-3 px-8 py-4 bg-gray-900 text-white font-bold rounded-full overflow-hidden transition-all hover:pr-10 cursor-pointer`}>
                                             <span className="relative z-10">Deploy Quality Now</span>
                                             <FaArrowRight className="relative z-10 transform group-hover:translate-x-1 transition-transform" />
                                         </Link>
-                                        <button onClick={nextTab} className="p-4 text-gray-400 hover:text-gray-900 font-bold transition-colors">
+                                        <button onClick={nextTab} className="p-4 text-gray-400 hover:text-gray-900 font-bold transition-colors cursor-pointer">
                                             Next Solution
                                         </button>
                                     </div>

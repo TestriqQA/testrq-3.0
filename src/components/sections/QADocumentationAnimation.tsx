@@ -34,6 +34,7 @@ const QADocumentationAnimation = () => {    // Corporate Color Palette
                         { x: 260, y: 50, icon: "📊", label: "Reports" },
                     ].map((doc, i) => (
                         <g key={i}>
+                            <animateTransform attributeName="transform" type="translate" values={`0 0; 0 -5; 0 0`} dur={`${2 + i * 0.5}s`} repeatCount="indefinite" />
                             <rect x={doc.x} y={doc.y} width="80" height="50" rx="8" fill="white" filter="url(#doc-shadow)" />
                             <text x={doc.x + 40} y={doc.y + 28} textAnchor="middle" fontSize="18">{doc.icon}</text>
                             <text x={doc.x + 40} y={doc.y + 45} textAnchor="middle" fontSize="8" fill={colors.textSecondary}>{doc.label}</text>
@@ -64,13 +65,14 @@ const QADocumentationAnimation = () => {    // Corporate Color Palette
                         { id: "TC-003", name: "User Profile", status: "review" },
                         { id: "TC-004", name: "Dashboard Load", status: "pass" },
                     ].map((tc, i) => (
-                        <g key={tc.id}>
+                        <g key={tc.id} opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${1 + i * 0.5}s`} fill="freeze" />
                             <rect x="65" y={200 + i * 35} width="320" height="28" rx="4" fill={i % 2 === 0 ? "#f8fafc" : "#faf5ff"} />
                             <text x="80" y={218 + i * 35} fontSize="9" fontWeight="600" fill={colors.primary}>{tc.id}</text>
                             <text x="140" y={218 + i * 35} fontSize="9" fill={colors.textPrimary}>{tc.name}</text>
 
-                            <rect x="310" y={205 + i * 35} width="60" height="18" rx="3" />
-                            <text x="340" y={217 + i * 35} textAnchor="middle" fontSize="8" fontWeight="600">{tc.status === "pass" ? "PASSED" : "REVIEW"}</text>
+                            <rect x="310" y={205 + i * 35} width="60" height="18" rx="3" fill={tc.status === "pass" ? colors.success : colors.warning} opacity="0.2" />
+                            <text x="340" y={217 + i * 35} textAnchor="middle" fontSize="8" fontWeight="600" fill={tc.status === "pass" ? colors.success : colors.warning}>{tc.status === "pass" ? "PASSED" : "REVIEW"}</text>
                         </g>
                     ))}
 
@@ -114,7 +116,9 @@ const QADocumentationAnimation = () => {    // Corporate Color Palette
 
                     {/* Connection lines */}
                     {[0, 1, 2].map((i) => (
-                        <line key={i} x1="550" y1={112 + i * 45} x2="640" y2={112 + i * 45} stroke={colors.secondary} strokeWidth="2" strokeDasharray="4 2" />
+                        <line key={i} x1="550" y1={112 + i * 45} x2="640" y2={112 + i * 45} stroke={colors.secondary} strokeWidth="2" strokeDasharray="4 2">
+                            <animate attributeName="stroke-dashoffset" values="6; 0" dur="0.5s" repeatCount="indefinite" />
+                        </line>
                     ))}
                 </g>
 
@@ -144,7 +148,8 @@ const QADocumentationAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="280" y="420" width="240" height="50" rx="10" fill={colors.success} filter="url(#doc-shadow)" />
                     <text x="400" y="450" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ Documentation Complete</text>
                 </g>

@@ -27,7 +27,7 @@ const AgileTestingSolutions: React.FC = () => {
                 "Instant Feedback Loops",
             ],
             color: "sky",
-            gradientColor: "from-sky-500 to-sky-600",
+            gradientColor: "from-brand-blue to-brand-blue/80",
             metric: "Zero-Day Feedback",
         },
         {
@@ -89,14 +89,14 @@ const AgileTestingSolutions: React.FC = () => {
     ];
 
     return (
-        <section className="bg-white py-20 px-8 md:px-12 lg:px-24">
+        <section className="bg-white py-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <div className="inline-flex items-center bg-sky-100 text-sky-700 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-widest shadow-sm">
+                    <div className="inline-flex items-center bg-brand-blue/10 text-brand-blue px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-widest shadow-sm">
                         Our Solutions
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-                        Our Suite of <span className="text-sky-600">Agile Testing</span> Solutions
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        Our Suite of <span className="text-brand-blue">Agile Testing</span> Solutions
                     </h2>
                     <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
                         From early-stage planning to continuous deployment, we provide the tools and expertise to ensure your Agile journey is a success.
@@ -116,9 +116,9 @@ const AgileTestingSolutions: React.FC = () => {
                                         : "bg-gray-50 text-gray-700 hover:bg-gray-100 border-gray-100"
                                     }`}
                             >
-                                <div className={`p-3 rounded-xl ${activeTab === index ? "bg-white/20" : "bg-white shadow-sm group-hover:bg-sky-50"}`}>
+                                <div className={`p-3 rounded-xl ${activeTab === index ? "bg-white/20" : "bg-white shadow-sm group-hover:bg-brand-blue/10"}`}>
                                     {React.cloneElement(type.icon as React.ReactElement, {
-                                        className: `w-6 h-6 ${activeTab === index ? "text-white" : "text-sky-600"}`
+                                        className: `w-6 h-6 ${activeTab === index ? "text-white" : "text-brand-blue"}`
                                     })}
                                 </div>
                                 <span className="font-bold text-lg leading-tight">{type.title}</span>
@@ -127,18 +127,18 @@ const AgileTestingSolutions: React.FC = () => {
                     </div>
 
                     {/* Content Area */}
-                    <div className="lg:col-span-8 bg-gray-50 rounded-[3rem] p-12 shadow-inner border border-gray-100 relative overflow-hidden group">
+                    <div className="lg:col-span-8 bg-gray-50 rounded-3xl p-12 shadow-inner border border-gray-100 relative overflow-hidden group">
                         {/* Background Accent */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-sky-200/20 rounded-full -mr-32 -mt-32 blur-3xl"></div>
 
                         <div className="relative z-10">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                                <div className="inline-block bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
+                                <div className="inline-block bg-brand-blue/10 text-brand-blue px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
                                     {testingTypes[activeTab].metric}
                                 </div>
                                 <div className="flex gap-2">
                                     {[0, 1, 2, 3, 4].map((i) => (
-                                        <div key={i} className={`h-1.5 w-8 rounded-full transition-all duration-500 ${i === activeTab ? "bg-sky-600 w-12" : "bg-gray-300"}`} />
+                                        <div key={i} className={`h-1.5 w-8 rounded-full transition-all duration-500 ${i === activeTab ? "bg-brand-blue w-12" : "bg-gray-300"}`} />
                                     ))}
                                 </div>
                             </div>
@@ -154,7 +154,7 @@ const AgileTestingSolutions: React.FC = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                                 {testingTypes[activeTab].features.map((feature, idx) => (
                                     <div key={idx} className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-sm border border-sky-50/50 hover:shadow-md transition-shadow">
-                                        <FaCheckCircle className="text-sky-500 text-xl flex-shrink-0" />
+                                        <FaCheckCircle className="text-brand-blue text-xl flex-shrink-0" />
                                         <span className="text-gray-800 font-bold text-sm tracking-tight">{feature}</span>
                                     </div>
                                 ))}
@@ -166,7 +166,7 @@ const AgileTestingSolutions: React.FC = () => {
                                 </Link>
                                 <button
                                     onClick={() => setActiveTab((prev) => (prev + 1) % testingTypes.length)}
-                                    className="flex items-center justify-center gap-3 px-10 py-5 bg-white text-gray-700 font-black rounded-2xl hover:bg-gray-100 transition-all border border-gray-200"
+                                    className="flex items-center justify-center gap-3 px-10 py-5 bg-white text-gray-700 font-black rounded-2xl hover:bg-gray-100 transition-all border border-gray-200 cursor-pointer"
                                 >
                                     Explore Next
                                 </button>

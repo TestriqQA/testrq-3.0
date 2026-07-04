@@ -80,6 +80,7 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
 
                     {/* Game Character - Simple Player */}
                     <g>
+                        <animateTransform attributeName="transform" type="translate" values="0 0; 90 0; 170 -20; 230 0; 0 0" dur="4s" repeatCount="indefinite" />
                         {/* Player Body */}
                         <rect x="220" y="230" width="25" height="35" rx="6" fill={colors.primary} />
                         {/* Player Head */}
@@ -91,6 +92,7 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
 
                     {/* Collectible Items */}
                     <g>
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
                         <circle cx="320" cy="200" r="8" fill={colors.warning} />
                         <circle cx="380" cy="180" r="8" fill={colors.warning} />
                         <circle cx="440" cy="200" r="8" fill={colors.warning} />
@@ -134,10 +136,13 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
                     <rect x="671" y="99" width="8" height="20" rx="2" fill="#475569" />
 
                     {/* Action Buttons */}
-                    <circle cx="740" cy="100" r="8" fill={colors.success} />
-                    <circle cx="755" cy="115" r="8" fill={colors.error} />
-                    <circle cx="725" cy="115" r="8" fill={colors.warning} />
-                    <circle cx="740" cy="130" r="8" fill={colors.secondary} />
+                    <g>
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin="1s" repeatCount="indefinite" />
+                        <circle cx="740" cy="100" r="8" fill={colors.success} />
+                        <circle cx="755" cy="115" r="8" fill={colors.error} />
+                        <circle cx="725" cy="115" r="8" fill={colors.warning} />
+                        <circle cx="740" cy="130" r="8" fill={colors.secondary} />
+                    </g>
 
                     {/* Label */}
                     <text x="710" y="165" textAnchor="middle" fontSize="9" fill={colors.textSecondary}>
@@ -155,7 +160,9 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
 
                     {/* FPS Bar */}
                     <rect x="665" y="235" width="90" height="12" rx="4" fill="#e2e8f0" />
-                    <rect x="665" y="235" width="0" height="12" rx="4" fill={colors.success} />
+                    <rect x="665" y="235" width="0" height="12" rx="4" fill={colors.success}>
+                        <animate attributeName="width" values="0; 90" dur="1.5s" begin="2s" fill="freeze" />
+                    </rect>
 
                     {/* FPS Value */}
                     <text x="710" y="263" textAnchor="middle" fontSize="14" fontWeight="bold" fill={colors.success}>
@@ -192,7 +199,8 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
                     </text>
 
                     {/* Bug Indicator on Tablet */}
-                    <g>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="2s" repeatCount="indefinite" />
                         <circle cx="410" cy="400" r="18" fill={colors.error} opacity="0.2" />
                         <circle cx="410" cy="400" r="12" fill={colors.error} />
                         <text x="410" y="405" textAnchor="middle" fontSize="12" fill="white" fontWeight="bold">
@@ -205,7 +213,8 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
                     </g>
 
                     {/* Success Indicators */}
-                    <g>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="5s" fill="freeze" />
                         {/* Mobile Success */}
                         <circle cx="170" cy="420" r="15" fill={colors.success} />
                         <text x="170" y="425" textAnchor="middle" fontSize="14" fill="white">
@@ -225,7 +234,8 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
                 </g>
 
                 {/* === SUCCESS COMPLETION BADGE === */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect
                         x="250"
                         y="560"
@@ -262,7 +272,9 @@ const GamingTestingAnimation = () => {    // Corporate Color Palette - Testriq 
                         { label: "Cross-Device", phase: "deviceView" },
                     ].map((item, i) => (
                         <g key={item.phase}>
-                            <circle cx="50" cy={82 + i * 25} r="6" fill="#e2e8f0" />
+                            <circle cx="50" cy={82 + i * 25} r="6" fill="#e2e8f0">
+                                <animate attributeName="fill" values={`#e2e8f0; ${colors.success}`} dur="0.5s" begin={`${i * 1.5 + 1}s`} fill="freeze" />
+                            </circle>
                             <text x="62" y={86 + i * 25} fontSize="9" fill={colors.textSecondary}>
                                 {item.label}
                             </text>

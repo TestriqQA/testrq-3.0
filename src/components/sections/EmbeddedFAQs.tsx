@@ -30,10 +30,10 @@ const EmbeddedFAQs: React.FC = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-50 border-t border-gray-100">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50 border-t border-gray-100">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
                         Your Quick Guide to <br />
                         <span className="text-brand-blue">Embedded Testing</span>
                     </h2>
@@ -51,7 +51,7 @@ const EmbeddedFAQs: React.FC = () => {
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full flex items-center justify-between p-6 text-left"
+                                className="w-full flex items-center justify-between p-6 text-left cursor-pointer"
                             >
                                 <span className={`text-lg font-bold transition-colors ${openIndex === index ? "text-brand-blue" : "text-gray-900"
                                     }`}>

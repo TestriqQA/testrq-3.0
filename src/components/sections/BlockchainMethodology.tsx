@@ -33,10 +33,10 @@ const BlockchainMethodology: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-slate-900 text-white overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-slate-900 text-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         The Immutable <span className="text-blue-400">Standard</span>
                     </h2>
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg">

@@ -5,7 +5,7 @@ import { FaArrowRight, FaShieldAlt } from "react-icons/fa";
 
 const ArchitectureCTASection: React.FC = () => {
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-indigo-900 relative overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-indigo-900 relative overflow-hidden">
             {/* Abstract Architectural Shapes */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] border border-white/5 rounded-full -mr-64 -mt-64" />
             <div className="absolute bottom-0 left-0 w-[300px] h-[300px] border border-white/5 rounded-full -ml-32 -mb-32" />
@@ -16,9 +16,9 @@ const ArchitectureCTASection: React.FC = () => {
                     <span className="text-sm font-semibold tracking-wide">Secure Your Architectural Legacy</span>
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
                     Ready to Forge a <br className="hidden md:block" />
-                    <span className="text-blue-400 font-extrabold italic">Resilient Digital Foundation?</span>
+                    <span className="text-blue-400 font-bold italic">Resilient Digital Foundation?</span>
                 </h2>
 
                 <p className="text-indigo-100 text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed opacity-90">
@@ -28,7 +28,7 @@ const ArchitectureCTASection: React.FC = () => {
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-8">
                     <Link
                         href="/contact-us"
-                        className="group inline-flex items-center gap-3 py-4 px-10 bg-blue-600 text-white font-bold text-lg rounded-full hover:bg-blue-500 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto"
+                        className="group inline-flex items-center gap-3 py-4 px-10 bg-brand-blue text-white font-bold text-lg rounded-full hover:bg-brand-blue/90 hover:shadow-[0_0_30px_rgba(37,168,224,0.4)] transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto cursor-pointer"
                     >
                         <span>Talk to Senior Architects</span>
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -41,15 +41,15 @@ const ArchitectureCTASection: React.FC = () => {
 
                 <div className="mt-16 pt-16 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div className="text-center group">
-                        <p className="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors italic">Actionable</p>
+                        <p className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors italic">Actionable</p>
                         <p className="text-sm text-indigo-200">Modernization roadmaps</p>
                     </div>
                     <div className="text-center group">
-                        <p className="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors italic">Complimentary</p>
+                        <p className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors italic">Complimentary</p>
                         <p className="text-sm text-indigo-200">Architecture health check</p>
                     </div>
                     <div className="text-center group">
-                        <p className="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors italic">ROI-Focused</p>
+                        <p className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors italic">ROI-Focused</p>
                         <p className="text-sm text-indigo-200">Driven by engineering rigor</p>
                     </div>
                 </div>

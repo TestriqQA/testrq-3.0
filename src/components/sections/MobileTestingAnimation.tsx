@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-const MobileTestingAnimation = () => {    const [statusText, setStatusText] = useState("");
-
-
+const MobileTestingAnimation = () => {
     // Corporate Color Palette
     const colors = {
         bg: "#f8fafc",
@@ -64,7 +62,10 @@ const MobileTestingAnimation = () => {    const [statusText, setStatusText] = u
                                 <rect x="210" y={210 + i * 55} width="50" height="6" rx="3" fill={colors.textSecondary} opacity="0.5" />
 
                                 {/* Checkmarks for validated items */}
-                                <circle cx="325" cy={207 + i * 55} r="10" fill={i === 2 ? colors.error : colors.success} />
+                                <g opacity="0">
+                                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${2 + i * 0.5}s`} fill="freeze" />
+                                    <circle cx="325" cy={207 + i * 55} r="10" fill={i === 2 ? colors.error : colors.success} />
+                                </g>
                             </g>
                         ))}
                     </g>
@@ -96,7 +97,9 @@ const MobileTestingAnimation = () => {    const [statusText, setStatusText] = u
                                 <rect x="468" y={215 + i * 75} width="40" height="6" rx="3" fill={colors.textSecondary} opacity="0.3" />
 
                                 {/* Status indicator */}
-                                <rect x="580" y={190 + i * 75} width="14" height="14" rx="3" />
+                                <rect x="580" y={190 + i * 75} width="14" height="14" rx="3" fill={colors.success} opacity="0">
+                                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${3 + i * 0.5}s`} fill="freeze" />
+                                </rect>
                             </g>
                         ))}
                     </g>
@@ -105,11 +108,18 @@ const MobileTestingAnimation = () => {    const [statusText, setStatusText] = u
                 {/* --- TOUCH GESTURE INDICATOR --- */}
                 <g>
                     {/* Tap Ripple on iOS */}
-                    <circle cx="270" cy="300" r="20" fill={colors.accentLight} opacity="0.3" />
-                    <circle cx="270" cy="300" r="8" fill={colors.accentLight} />
+                    <g>
+                        <circle cx="270" cy="300" r="20" fill={colors.accentLight} opacity="0">
+                            <animate attributeName="r" values="8; 25" dur="1.5s" repeatCount="indefinite" />
+                            <animate attributeName="opacity" values="0.6; 0" dur="1.5s" repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="270" cy="300" r="8" fill={colors.accentLight} />
+                    </g>
 
                     {/* Swipe Gesture on Android */}
-                    <path d="M 530 250 L 530 350" stroke={colors.accentLight} strokeWidth="3" strokeLinecap="round" strokeDasharray="10 5" />
+                    <path d="M 530 250 L 530 350" stroke={colors.accentLight} strokeWidth="3" strokeLinecap="round" strokeDasharray="10 5">
+                        <animate attributeName="stroke-dashoffset" values="15; 0" dur="1s" repeatCount="indefinite" />
+                    </path>
                 </g>
 
                 {/* --- QA ENGINEER SILHOUETTE --- */}
@@ -127,7 +137,12 @@ const MobileTestingAnimation = () => {    const [statusText, setStatusText] = u
                 <g>
                     <rect x="300" y="30" width="200" height="50" rx="8" fill="white" filter="url(#mobile-shadow)" />
                     <text x="400" y="60" textAnchor="middle" fontSize="14" fontWeight="600">
-                        {statusText}
+                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                        Testing UI Gestures...
+                    </text>
+                    <text x="400" y="60" textAnchor="middle" fontSize="14" fontWeight="600" fill={colors.success} opacity="0">
+                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                        ✓ Cross-Platform Ready
                     </text>
                 </g>
 

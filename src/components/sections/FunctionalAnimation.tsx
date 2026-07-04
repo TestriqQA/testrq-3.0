@@ -13,7 +13,7 @@ const FunctionalAnimation: React.FC = () => {
      />
                         <div className="grid grid-cols-2 gap-1 p-2">
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="w-2 h-2 bg-gray-200 rounded-full" />
+                                <div key={i} className="w-2 h-2 bg-gray-200 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
                             ))}
                         </div>
                     </div>
@@ -24,8 +24,8 @@ const FunctionalAnimation: React.FC = () => {
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                     <div className="w-32 h-32 bg-white rounded-3xl border-2 border-brand-blue/20 relative flex items-center justify-center shadow-lg">
                         <div
-      className="absolute inset-0 rounded-3xl border-2 border-brand-blue border-dashed"
-     />
+                            className="absolute inset-0 rounded-3xl border-2 border-brand-blue border-dashed animate-[spin_10s_linear_infinite]"
+                        />
                         <div className="relative z-10 space-y-2">
                             <div
       className="w-12 h-1 bg-green-400 rounded-full mx-auto"
@@ -36,14 +36,14 @@ const FunctionalAnimation: React.FC = () => {
                 </div>
 
                 {/* Validated Output */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col items-center animate-fade-in" style={{ animationDelay: '2s' }}>
                     <div className="w-16 h-16 bg-green-50 rounded-xl border-2 border-green-100 flex items-center justify-center shadow-sm">
                         <svg
-      className="w-8 h-8 text-green-500"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
+                            className="w-8 h-8 text-green-500"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
@@ -53,19 +53,23 @@ const FunctionalAnimation: React.FC = () => {
                 {/* Data Flow Lines */}
                 <svg className="absolute inset-0 w-full h-full -z-0 pointer-events-none" style={{ filter: "drop-shadow(0 0 4px rgba(37, 168, 224, 0.2))" }}>
                     <path
-      d="M 64 80 L 160 80"
-      stroke="#25A8E0"
-      strokeWidth="2"
-      strokeDasharray="4 4"
-      fill="none"
-     />
+                        d="M 64 80 L 160 80"
+                        stroke="#25A8E0"
+                        strokeWidth="2"
+                        strokeDasharray="4 4"
+                        fill="none"
+                    >
+                        <animate attributeName="stroke-dashoffset" values="8; 0" dur="0.5s" repeatCount="indefinite" />
+                    </path>
                     <path
-      d="M 288 80 L 384 80"
-      stroke="#10b981"
-      strokeWidth="2"
-      strokeDasharray="4 4"
-      fill="none"
-     />
+                        d="M 288 80 L 384 80"
+                        stroke="#10b981"
+                        strokeWidth="2"
+                        strokeDasharray="4 4"
+                        fill="none"
+                    >
+                        <animate attributeName="stroke-dashoffset" values="8; 0" dur="0.5s" repeatCount="indefinite" />
+                    </path>
                 </svg>
             </div>
 

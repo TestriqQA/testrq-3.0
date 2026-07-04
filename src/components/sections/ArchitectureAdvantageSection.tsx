@@ -28,11 +28,11 @@ const ArchitectureAdvantageSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-slate-50">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                        Why Trust Testriq for Your <span className="text-[theme(color.brand.blue)]">Architecture Review?</span>
+                        Why Trust Testriq for Your <span className="text-brand-blue">Architecture Review?</span>
                     </h2>
                     <p className="text-gray-600 text-lg max-w-3xl mx-auto">
                         A flawed architecture is a silent killer of innovation, leading to soaring maintenance costs and performance bottlenecks. Testriq ensures your systems are built to scale, endure, and evolve.
@@ -43,9 +43,9 @@ const ArchitectureAdvantageSection: React.FC = () => {
                     {advantages.map((adv, index) => (
                         <div
       key={index}
-      className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-all border border-slate-100"
+      className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100"
     >
-                            <div className="text-[theme(color.brand.blue)] mb-6">
+                            <div className="text-brand-blue mb-6">
                                 {adv.icon}
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-4">{adv.title}</h3>

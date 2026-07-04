@@ -73,16 +73,21 @@ const LaunchFastQAAnimation = () => {    // Corporate Color Palette (Speed/Laun
 
                 {/* --- PARALLEL TEST DOTS (Manual) --- */}
                 {[0, 1, 2, 3, 4].map((i) => (
-                    <circle key={`manual-${i}`} cy="227" r="8" fill={colors.manual} />
+                    <circle key={`manual-${i}`} cx={120 + i * 30} cy="227" r="8" fill={colors.manual}>
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin={`${i * 0.2}s`} repeatCount="indefinite" />
+                    </circle>
                 ))}
 
                 {/* --- PARALLEL TEST DOTS (Automation) --- */}
                 {[0, 1, 2, 3, 4, 5].map((i) => (
-                    <circle key={`auto-${i}`} cy="272" r="8" fill={colors.auto} />
+                    <circle key={`auto-${i}`} cx={120 + i * 30} cy="272" r="8" fill={colors.auto}>
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
+                    </circle>
                 ))}
 
                 {/* --- DEFECT INDICATOR --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="2s" fill="freeze" />
                     <circle cx="350" cy="227" r="12" fill={colors.error} />
                     <text x="350" y="232" textAnchor="middle" fontSize="14" fill="white">!</text>
                     <rect x="290" y="240" width="120" height="20" rx="4" fill={colors.error} />
@@ -90,7 +95,8 @@ const LaunchFastQAAnimation = () => {    // Corporate Color Palette (Speed/Laun
                 </g>
 
                 {/* --- FIX INDICATOR --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <circle cx="350" cy="227" r="12" fill={colors.success} />
                     <text x="350" y="232" textAnchor="middle" fontSize="12" fill="white">✓</text>
                     <rect x="300" y="240" width="100" height="20" rx="4" fill={colors.success} />
@@ -108,7 +114,8 @@ const LaunchFastQAAnimation = () => {    // Corporate Color Palette (Speed/Laun
                         { y: 225, label: "Security ✓", color: colors.success },
                         { y: 245, label: "Regression ✓", color: colors.success },
                     ].map((item, i) => (
-                        <g key={`gate-${i}`}>
+                        <g key={`gate-${i}`} opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${2 + i * 0.5}s`} fill="freeze" />
                             <rect x="485" y={item.y - 10} width="110" height="18" rx="4" fill={item.color} opacity="0.15" />
                             <text x="540" y={item.y + 2} textAnchor="middle" fontSize="9" fontWeight="500" fill={item.color}>{item.label}</text>
                         </g>
@@ -117,6 +124,7 @@ const LaunchFastQAAnimation = () => {    // Corporate Color Palette (Speed/Laun
 
                 {/* --- ROCKET LAUNCH --- */}
                 <g>
+                    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -400" dur="2s" begin="7s" fill="freeze" />
                     {/* Rocket body */}
                     <ellipse cx="540" cy="380" rx="25" ry="40" fill="url(#rocket-gradient)" filter="url(#launch-glow)" />
                     <ellipse cx="540" cy="360" rx="15" ry="20" fill="white" />
@@ -127,14 +135,18 @@ const LaunchFastQAAnimation = () => {    // Corporate Color Palette (Speed/Laun
                     <polygon points="565,400 575,420 560,405" fill={colors.accent} />
 
                     {/* Flame */}
-                    <ellipse cx="540" cy="430" rx="12" ry="20" fill="#fbbf24" />
-                    <ellipse cx="540" cy="435" rx="8" ry="15" fill="#f97316" />
+                    <g>
+                        <animate attributeName="opacity" values="0.6; 1; 0.6" dur="0.5s" repeatCount="indefinite" />
+                        <ellipse cx="540" cy="430" rx="12" ry="20" fill="#fbbf24" />
+                        <ellipse cx="540" cy="435" rx="8" ry="15" fill="#f97316" />
+                    </g>
 
                     <text x="540" y="460" textAnchor="middle" fontSize="11" fontWeight="700" fill={colors.accent}>🚀 LAUNCH READY</text>
                 </g>
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="8s" fill="freeze" />
                     <rect x="250" y="15" width="200" height="40" rx="10" fill={colors.success} filter="url(#launch-shadow)" />
                     <text x="350" y="41" textAnchor="middle" fontSize="12" fontWeight="700" fill="white">✓ MVP Launch Successful</text>
                 </g>
@@ -162,7 +174,9 @@ const LaunchFastQAAnimation = () => {    // Corporate Color Palette (Speed/Laun
                         <React.Fragment key={`progress-${i}`}>
                             <text x="60" y={bar.y + 4} fontSize="8" fill={colors.textSecondary}>{bar.label}</text>
                             <rect x="60" y={bar.y + 8} width="150" height="6" rx="3" fill="#e2e8f0" />
-                            <rect x="60" y={bar.y + 8} height="6" rx="3" fill={bar.color} />
+                            <rect x="60" y={bar.y + 8} width="0" height="6" rx="3" fill={bar.color}>
+                                <animate attributeName="width" values={`0; ${bar.w}`} dur="1.5s" begin={`${i * 0.5 + 1}s`} fill="freeze" />
+                            </rect>
                         </React.Fragment>
                     ))}
                 </g>

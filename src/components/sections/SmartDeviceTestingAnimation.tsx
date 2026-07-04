@@ -55,16 +55,21 @@ const SmartDeviceTestingAnimation = () => {    // Corporate Color Palette
                     const from = getDevicePos(conn.from);
                     const to = getDevicePos(conn.to);
                     return (
-                        <line key={`conn-${i}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={colors.connection} strokeWidth="2" strokeDasharray="6 6" />
+                        <line key={`conn-${i}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={colors.connection} strokeWidth="2" strokeDasharray="6 6">
+                            <animate attributeName="stroke-dashoffset" values="12; 0" dur="0.5s" repeatCount="indefinite" />
+                        </line>
                     );
                 })}
 
                 {/* --- DATA PACKETS --- */}
-                {connections.slice(0, 3).map((conn, i) => {
+                {connections.map((conn, i) => {
                     const from = getDevicePos(conn.from);
                     const to = getDevicePos(conn.to);
                     return (
-                        <circle key={`packet-${i}`} r="5" fill={colors.wifi} filter="url(#hub-glow)" />
+                        <g key={`packet-${i}`}>
+                            <animateTransform attributeName="transform" type="translate" values={`${from.x} ${from.y}; ${to.x} ${to.y}; ${from.x} ${from.y}`} dur={`${2 + i * 0.2}s`} repeatCount="indefinite" />
+                            <circle r="5" fill={colors.wifi} filter="url(#hub-glow)" />
+                        </g>
                     );
                 })}
 
@@ -98,13 +103,20 @@ const SmartDeviceTestingAnimation = () => {    // Corporate Color Palette
 
                         {/* Status Indicator */}
                         {device.id !== "hub" && (
-                            <circle cx={device.x + device.size * 0.7} cy={device.y - device.size * 0.7} r="8" fill={colors.success} stroke="white" strokeWidth="2" />
+                            <circle cx={device.x + device.size * 0.7} cy={device.y - device.size * 0.7} r="8" fill={device.id === "camera" ? colors.error : colors.success} stroke="white" strokeWidth="2">
+                                {device.id === "camera" && (
+                                    <animate attributeName="fill" values={`${colors.error}; ${colors.error}; ${colors.success}; ${colors.success}`} dur="8s" repeatCount="indefinite" />
+                                )}
+                            </circle>
                         )}
                     </g>
                 ))}
 
                 {/* --- HUB PULSE EFFECT --- */}
-                <circle cx={400} cy={230} r="55" fill="none" stroke={colors.hubGlow} strokeWidth="6" />
+                <circle cx={400} cy={230} r="55" fill="none" stroke={colors.hubGlow} strokeWidth="6">
+                    <animate attributeName="r" values="55; 70; 55" dur="2s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="1; 0; 1" dur="2s" repeatCount="indefinite" />
+                </circle>
 
                 {/* --- QA ENGINEER --- */}
                 <g>
@@ -119,23 +131,31 @@ const SmartDeviceTestingAnimation = () => {    // Corporate Color Palette
                     <text x="700" y="405" textAnchor="middle" fontSize="11" fontWeight="700" fill={colors.textPrimary}>Testing Status</text>
 
                     <text x="635" y="430" fontSize="9" fill={colors.textSecondary}>WiFi:</text>
-                    <rect x="665" y="422" width="100" height="8" rx="4" fill={colors.wifi} />
+                    <rect x="665" y="422" width="100" height="8" rx="4" fill={colors.wifi}>
+                        <animate attributeName="width" values="0; 100" dur="2s" begin="0.5s" fill="freeze" />
+                    </rect>
 
                     <text x="635" y="452" fontSize="9" fill={colors.textSecondary}>BLE:</text>
-                    <rect x="665" y="444" width="90" height="8" rx="4" fill={colors.bluetooth} />
+                    <rect x="665" y="444" width="90" height="8" rx="4" fill={colors.bluetooth}>
+                        <animate attributeName="width" values="0; 90" dur="2s" begin="1s" fill="freeze" />
+                    </rect>
 
                     <text x="635" y="474" fontSize="9" fill={colors.textSecondary}>Sync:</text>
-                    <rect x="665" y="466" width="95" height="8" rx="4" fill={colors.success} />
+                    <rect x="665" y="466" width="95" height="8" rx="4" fill={colors.success}>
+                        <animate attributeName="width" values="0; 95" dur="2s" begin="1.5s" fill="freeze" />
+                    </rect>
                 </g>
 
                 {/* --- ANOMALY ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="8s" repeatCount="indefinite" />
                     <rect x="560" y="230" width="150" height="35" rx="8" fill={colors.error} />
                     <text x="635" y="252" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">⚠ Camera Offline</text>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="280" y="40" width="240" height="45" rx="10" fill={colors.success} filter="url(#device-shadow)" />
                     <text x="400" y="68" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ All Devices Validated</text>
                 </g>

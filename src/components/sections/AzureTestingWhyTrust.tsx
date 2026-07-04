@@ -84,27 +84,27 @@ const AzureTestingWhyTrust: React.FC = () => {
     ];
 
     return (
-        <section className="bg-gray-50 py-20 px-8 md:px-12 lg:px-24">
+        <section className="bg-gray-50 py-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row items-center gap-16 mb-16">
                     <div className="lg:w-1/2">
-                        <div className="inline-flex items-center bg-[#0078d4] gap-2 text-white px-4 py-2 rounded-full mb-6">
+                        <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-4 py-2 rounded-full mb-6">
                             <FaAward />
                             <span className="text-sm font-bold uppercase tracking-wider">The Testriq Azure Advantage</span>
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-                            Why Trust Testriq for Your <span className="text-[#0078d4]">Azure QA Journey?</span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                            Why Trust Testriq for Your <span className="text-brand-blue">Azure QA Journey?</span>
                         </h2>
                         <p className="text-gray-700 text-lg leading-relaxed mb-8">
                             Azure testing requires more than just standard QA; it demands a deep understanding of cloud architecture, distributed systems, and Microsoft&apos;s evolving ecosystem. Testriq&apos;s team of Azure-certified specialists provides a holistic approach to Azure DevOps QA, ensuring your cloud investments deliver maximum value with minimum risk.
                         </p>
                         <div className="grid grid-cols-2 gap-6">
                             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                <div className="text-3xl font-black text-[#0078d4] mb-1">15+</div>
+                                <div className="text-3xl font-black text-brand-blue mb-1">15+</div>
                                 <div className="text-gray-600 text-sm font-bold uppercase">Years Excellence</div>
                             </div>
                             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                <div className="text-3xl font-black text-[#0078d4] mb-1">100%</div>
+                                <div className="text-3xl font-black text-brand-blue mb-1">100%</div>
                                 <div className="text-gray-600 text-sm font-bold uppercase">Azure Focused</div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@ const AzureTestingWhyTrust: React.FC = () => {
                         {advantages.map((adv, index) => (
                             <div
                                 key={index}
-                                className="group relative bg-white p-8 rounded-3xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 overflow-hidden"
+                                className="group relative bg-white p-8 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 overflow-hidden"
                                 onMouseEnter={() => setHoveredCard(index)}
                                 onMouseLeave={() => setHoveredCard(null)}
                             >
@@ -141,12 +141,12 @@ const AzureTestingWhyTrust: React.FC = () => {
                 </div>
 
                 {/* Impact strip */}
-                <div className="bg-[#0078d4] rounded-[2.5rem] p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-blue-200">
+                <div className="bg-brand-blue rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-blue-200">
                     <div className="max-w-2xl">
-                        <h3 className="text-2xl md:text-3xl font-black mb-4">Empowering Your Cloud Transformation</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Empowering Your Cloud Transformation</h3>
                         <p className="text-blue-50 opacity-90">Our managed Azure testing solutions empower your team to deliver seamless, secure, and high-performing cloud experiences, reducing technical debt and maximizing your Microsoft Azure investment.</p>
                     </div>
-                    <Link href="/contact-us" className="whitespace-nowrap bg-white text-[#0078d4] px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-colors flex items-center gap-3">
+                    <Link href="/contact-us" className="whitespace-nowrap bg-white text-brand-blue px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors flex items-center gap-3 cursor-pointer">
                         <span>Talk to a Strategist</span>
                         <FaArrowRight />
                     </Link>

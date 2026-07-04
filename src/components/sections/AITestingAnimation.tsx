@@ -63,25 +63,32 @@ const AITestingAnimation = () => {    // Corporate Color Palette
                 {/* Input to Hidden */}
                 {inputNodes.map((input, i) =>
                     hiddenNodes.map((hidden, j) => (
-                        <line key={`ih-${i}-${j}`} x1={input.x} y1={input.y} x2={hidden.x} y2={hidden.y} stroke={colors.accentLight} strokeWidth="1.5" />
+                        <line key={`ih-${i}-${j}`} x1={input.x} y1={input.y} x2={hidden.x} y2={hidden.y} stroke={colors.accentLight} strokeWidth="1.5">
+                            <animate attributeName="opacity" values="0.3; 1; 0.3" dur={`${1.5 + (i * 0.2)}s`} repeatCount="indefinite" />
+                        </line>
                     ))
                 )}
 
                 {/* Hidden to Output */}
                 {hiddenNodes.map((hidden, i) =>
                     outputNodes.map((output, j) => (
-                        <line key={`ho-${i}-${j}`} x1={hidden.x} y1={hidden.y} x2={output.x} y2={output.y} stroke={colors.accentLight} strokeWidth="1.5" />
+                        <line key={`ho-${i}-${j}`} x1={hidden.x} y1={hidden.y} x2={output.x} y2={output.y} stroke={colors.accentLight} strokeWidth="1.5">
+                            <animate attributeName="opacity" values="0.3; 1; 0.3" dur={`${1.2 + (j * 0.3)}s`} repeatCount="indefinite" />
+                        </line>
                     ))
                 )}
 
                 {/* Output to Core */}
                 {outputNodes.map((output, i) => (
-                    <line key={`oc-${i}`} x1={output.x} y1={output.y} x2={corePos.x} y2={corePos.y} stroke={colors.accent} strokeWidth="2" />
+                    <line key={`oc-${i}`} x1={output.x} y1={output.y} x2={corePos.x} y2={corePos.y} stroke={colors.accent} strokeWidth="2">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="1s" repeatCount="indefinite" />
+                    </line>
                 ))}
 
                 {/* --- INPUT NODES --- */}
                 {inputNodes.map((node, i) => (
                     <g key={node.id}>
+                        <animate attributeName="opacity" values="0.5; 1; 0.5" dur="2s" begin={`${i * 0.2}s`} repeatCount="indefinite" />
                         <circle cx={node.x} cy={node.y} r="18" fill="white" stroke={colors.neuron} strokeWidth="2" filter="url(#ai-shadow)" />
                         <circle cx={node.x} cy={node.y} r="10" fill={colors.neuron} />
                         <text x={node.x - 45} y={node.y + 4} fontSize="10" fill={colors.textSecondary}>Data {i + 1}</text>
@@ -109,8 +116,11 @@ const AITestingAnimation = () => {    // Corporate Color Palette
 
                 {/* --- AI CORE --- */}
                 <g>
+                    <animate attributeName="opacity" values="0.8; 1; 0.8" dur="3s" repeatCount="indefinite" />
                     {/* Glow Ring */}
-                    <circle cx={corePos.x} cy={corePos.y} r="55" fill="none" stroke={colors.coreGlow} strokeWidth="10" />
+                    <circle cx={corePos.x} cy={corePos.y} r="55" fill="none" stroke={colors.coreGlow} strokeWidth="10">
+                        <animateTransform attributeName="transform" type="rotate" from={`0 ${corePos.x} ${corePos.y}`} to={`360 ${corePos.x} ${corePos.y}`} dur="8s" repeatCount="indefinite" />
+                    </circle>
                     {/* Core Circle */}
                     <circle cx={corePos.x} cy={corePos.y} r="45" fill="url(#core-gradient)" filter="url(#ai-glow)" />
                     <text x={corePos.x} y={corePos.y + 5} textAnchor="middle" fontSize="18" fontWeight="700" fill="white">AI</text>
@@ -125,16 +135,21 @@ const AITestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- VALIDATION PANEL --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1" dur="1s" fill="freeze" />
                     <rect x="620" y="380" width="150" height="80" rx="8" fill="white" filter="url(#ai-shadow)" />
                     <text x="695" y="405" textAnchor="middle" fontSize="11" fontWeight="700" fill={colors.textPrimary}>Validation</text>
 
                     <rect x="640" y="415" width="100" height="8" rx="4" fill="#e2e8f0" />
-                    <rect x="640" y="415" width="90" height="8" rx="4" fill={colors.success} />
+                    <rect x="640" y="415" width="90" height="8" rx="4" fill={colors.success}>
+                        <animate attributeName="width" values="0; 90" dur="1s" fill="freeze" />
+                    </rect>
                     <text x="640" y="435" fontSize="9" fill={colors.textSecondary}>Accuracy: 94%</text>
 
                     <rect x="640" y="445" width="100" height="8" rx="4" fill="#e2e8f0" />
-                    <rect x="640" y="445" width="95" height="8" rx="4" fill={colors.accent} />
+                    <rect x="640" y="445" width="95" height="8" rx="4" fill={colors.accent}>
+                        <animate attributeName="width" values="0; 95" dur="1s" begin="0.5s" fill="freeze" />
+                    </rect>
                     <text x="640" y="465" fontSize="9" fill={colors.textSecondary}>Fairness: 97%</text>
                 </g>
 
@@ -146,6 +161,7 @@ const AITestingAnimation = () => {    // Corporate Color Palette
 
                 {/* --- SUCCESS BADGE --- */}
                 <g>
+                    <animate attributeName="opacity" values="0.6; 1; 0.6" dur="2s" repeatCount="indefinite" />
                     <rect x="300" y="30" width="200" height="40" rx="8" fill={colors.success} filter="url(#ai-shadow)" />
                     <text x="400" y="55" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ Model Validated</text>
                 </g>

@@ -18,7 +18,7 @@ const EmbeddedTestingHeroSection: React.FC = () => {
     };
 
     return (
-        <section className="bg-white text-black pt-8 pb-16 px-4 md:px-12 lg:px-24">
+        <section className="bg-white text-black pt-8 pb-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <Breadcrumb items={[{ label: "Embedded Testing Services" }]} />
 
@@ -30,8 +30,8 @@ const EmbeddedTestingHeroSection: React.FC = () => {
                             <span className="text-sm">Embedded QA Specialists</span>
                         </div>
 
-                        <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
-                            <span className="text-[theme(color.brand.blue)]">
+                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                            <span className="text-brand-blue">
                                 Embedded Testing Services:&nbsp;
                             </span>
                             <br className="md:hidden" />
@@ -53,7 +53,7 @@ const EmbeddedTestingHeroSection: React.FC = () => {
                             </Link>
                             <button
                                 onClick={openLightbox}
-                                className="cursor-pointer border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-300 flex items-center justify-center"
+                                className="cursor-pointer border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center"
                             >
                                 <FaPlay className="w-4 h-4 mr-2" />
                                 Watch Demo
@@ -69,7 +69,7 @@ const EmbeddedTestingHeroSection: React.FC = () => {
                                 ["V&V", "Expertise"],
                             ].map(([value, label], i) => (
                                 <div key={i} className="text-center xl:text-left">
-                                    <p className="text-[theme(color.brand.blue)] font-bold text-2xl md:text-3xl">
+                                    <p className="text-brand-blue font-bold text-2xl md:text-3xl">
                                         {value}
                                     </p>
                                     <p className="text-gray-700 text-base">{label}</p>
@@ -78,19 +78,41 @@ const EmbeddedTestingHeroSection: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Right Content - Placeholder for Animation/Image */}
-                    <div className="hidden lg:flex items-center justify-center p-6 bg-gray-50 rounded-3xl relative overflow-hidden h-[450px]">
-                        {/* Simple visual representation of embedded systems */}
-                        <div className="relative w-full h-full flex items-center justify-center">
-                            <div className="w-64 h-64 bg-brand-blue/10 rounded-full animate-pulse absolute"></div>
-                            <FaMicrochip className="text-9xl text-brand-blue z-10 animate-spin-slow" />
-                            {/* Orbital nodes */}
-                            <div className="absolute w-full h-full animate-spin-slow">
-                                <div className="absolute top-10 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-blue rounded-full"></div>
-                                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-4 h-4 bg-green-500 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.5)]"></div>
-                                <div className="absolute left-10 top-1/2 -translate-y-1/2 w-4 h-4 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.5)]"></div>
-                                <div className="absolute right-10 top-1/2 -translate-y-1/2 w-4 h-4 bg-yellow-500 rounded-full shadow-[0_0_15px_rgba(234,179,8,0.5)]"></div>
-                            </div>
+                    {/* Right Content - SVG Animation */}
+                    <div className="hidden lg:flex items-center justify-center relative overflow-hidden">
+                        <div className="w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-50 to-slate-100 relative shadow-xl border border-blue-200 flex items-center justify-center">
+                            <svg viewBox="0 0 800 500" className="w-full h-full absolute inset-0 z-10">
+                                <defs>
+                                    <filter id="embed-shadow" x="-10%" y="-10%" width="120%" height="120%">
+                                        <feDropShadow dx="0" dy="2" stdDeviation="4" floodOpacity="0.15" />
+                                    </filter>
+                                    <filter id="embed-glow" x="-50%" y="-50%" width="200%" height="200%">
+                                        <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                
+                                {/* Background Pulse */}
+                                <circle cx="400" cy="250" r="140" fill="#25A8E0" opacity="0.1">
+                                    <animate attributeName="opacity" values="0.05; 0.15; 0.05" dur="3s" repeatCount="indefinite" />
+                                </circle>
+
+                                {/* Orbital Nodes */}
+                                <g>
+                                    <animateTransform attributeName="transform" type="rotate" from="0 400 250" to="360 400 250" dur="10s" repeatCount="indefinite" />
+                                    
+                                    <circle cx="400" cy="80" r="12" fill="#25A8E0" filter="url(#embed-shadow)" />
+                                    <circle cx="400" cy="420" r="12" fill="#22c55e" filter="url(#embed-shadow)" />
+                                    <circle cx="230" cy="250" r="12" fill="#ef4444" filter="url(#embed-shadow)" />
+                                    <circle cx="570" cy="250" r="12" fill="#eab308" filter="url(#embed-shadow)" />
+                                    
+                                    <path d="M 400 80 A 170 170 0 1 1 399.9 80" fill="none" stroke="#25A8E0" strokeWidth="1" strokeDasharray="4 4" opacity="0.3" />
+                                </g>
+                            </svg>
+                            <FaMicrochip className="text-9xl text-brand-blue z-20 relative bg-white rounded-xl shadow-lg p-4" style={{ width: '160px', height: '160px' }} />
                         </div>
                     </div>
                 </div>

@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 const BlockchainAnimation = () => {
 
     const colors = {
-        primary: "#2563eb", // blue-600
-        secondary: "#3b82f6", // blue-500
+        primary: "#25A8E0", // brand-blue
+        secondary: "#25A8E0", // brand-blue
         accent: "#60a5fa", // blue-400
         success: "#10b981",
         connection: "#93c5fd",
@@ -35,7 +35,9 @@ const BlockchainAnimation = () => {
                         strokeWidth="2"
                         strokeDasharray="10,10"
                         {...line}
-                    />
+                    >
+                        <animate attributeName="stroke-dashoffset" values="20; 0" dur="1s" repeatCount="indefinite" />
+                    </line>
                 ))}
 
                 {/* Blockchain Blocks */}
@@ -46,7 +48,8 @@ const BlockchainAnimation = () => {
                     { x: 300, y: 300, label: "Smart Contract" },
                     { x: 500, y: 300, label: "dApp Logic" },
                 ].map((block, i) => (
-                    <g key={i}>
+                    <g key={i} opacity="0">
+                        <animate attributeName="opacity" values="0; 1" dur="0.5s" begin={`${i * 0.5}s`} fill="freeze" />
                         <rect x={block.x - 50} y={block.y - 30} width="100" height="60" rx="8" fill="white" stroke={colors.primary} strokeWidth="2" className="shadow-md" />
                         <text
                             x={block.x}
@@ -56,15 +59,18 @@ const BlockchainAnimation = () => {
                         >
                             {block.label}
                         </text>
-                        <circle cx={block.x + 40} cy={block.y - 20} r="6" fill={colors.success} />
+                        <circle cx={block.x + 40} cy={block.y - 20} r="6" fill={colors.success}>
+                            <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin={`${i * 0.2}s`} repeatCount="indefinite" />
+                        </circle>
                     </g>
                 ))}
 
                 {/* Security Shield Overlay */}
                 <g>
+                    <animate attributeName="opacity" values="0.7; 1; 0.7" dur="3s" repeatCount="indefinite" />
                     <path
                         d="M 400 200 L 440 220 V 260 C 440 280 400 300 400 300 C 400 300 360 280 360 260 V 220 L 400 200 Z"
-                        fill="none"
+                        fill="rgba(37, 168, 224, 0.1)"
                         stroke={colors.primary}
                         strokeWidth="3"
                         strokeLinecap="round"
@@ -83,7 +89,7 @@ const BlockchainAnimation = () => {
             </div>
 
             <div className="absolute bottom-4 right-4 space-y-2 transition-all duration-300">
-                <div className="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full shadow-lg">
+                <div className="bg-brand-blue text-white text-[10px] px-3 py-1 rounded-full shadow-lg">
                     Smart Contract Verified
                 </div>
                 <div className="bg-indigo-600 text-white text-[10px] px-3 py-1 rounded-full shadow-lg">

@@ -44,17 +44,23 @@ const RoboticTestingAnimation = () => {    // Corporate Color Palette
                     {/* Code Lines */}
                     {[0, 1, 2, 3, 4].map((i) => (
                         <g key={`code-${i}`}>
-                            <rect x="65" y={160 + i * 25} width={80 + (i % 3) * 20} height="10" rx="5" fill={colors.accent} opacity="0.5" />
+                            <rect x="65" y={160 + i * 25} width={80 + (i % 3) * 20} height="10" rx="5" fill={colors.accent} opacity="0.5">
+                                <animate attributeName="opacity" values="0.2; 1; 0.2" dur="2s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+                            </rect>
                         </g>
                     ))}
 
                     {/* Status Indicators */}
-                    <circle cx="200" cy="360" r="10" fill={colors.textSecondary} />
+                    <circle cx="200" cy="360" r="10" fill={colors.success}>
+                        <animate attributeName="fill" values={`${colors.success}; ${colors.error}; ${colors.success}`} dur="8s" repeatCount="indefinite" />
+                    </circle>
                     <text x="190" y="380" fontSize="9" fill={colors.textSecondary}>Status</text>
                 </g>
 
                 {/* --- ROBOTIC ARM PATH --- */}
-                <path d="M 400 400 Q 500 200 600 300" fill="none" stroke={colors.path} strokeWidth="2" strokeDasharray="8 8" />
+                <path d="M 400 400 Q 500 200 600 300" fill="none" stroke={colors.path} strokeWidth="2" strokeDasharray="8 8">
+                    <animate attributeName="stroke-dashoffset" values="16; 0" dur="1s" repeatCount="indefinite" />
+                </path>
 
                 {/* --- ROBOTIC ARM --- */}
                 <g>
@@ -63,14 +69,16 @@ const RoboticTestingAnimation = () => {    // Corporate Color Palette
                     <ellipse cx="400" cy="420" rx="40" ry="10" fill={colors.armJoint} />
 
                     {/* Arm Segment 1 */}
-                    <g style={{ transformOrigin: "400px 420px" }}>
+                    <g>
+                        <animateTransform attributeName="transform" type="rotate" values="0 400 420; 30 400 420; -15 400 420; 0 400 420" dur="8s" repeatCount="indefinite" />
                         <rect x="385" y="320" width="30" height="100" rx="8" fill="url(#arm-gradient)" filter="url(#robot-shadow)" />
 
                         {/* Joint 1 */}
                         <circle cx="400" cy="320" r="18" fill="url(#joint-gradient)" filter="url(#robot-shadow)" />
 
                         {/* Arm Segment 2 */}
-                        <g style={{ transformOrigin: "400px 320px" }}>
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" values="0 400 320; 45 400 320; -30 400 320; 0 400 320" dur="8s" repeatCount="indefinite" />
                             <rect x="388" y="230" width="24" height="90" rx="6" fill={colors.armSegment} filter="url(#robot-shadow)" />
 
                             {/* Joint 2 */}
@@ -78,8 +86,12 @@ const RoboticTestingAnimation = () => {    // Corporate Color Palette
 
                             {/* End Effector / Gripper */}
                             <g>
-                                <rect x="390" y="200" width="8" height="35" rx="2" fill={colors.armBase} />
-                                <rect x="402" y="200" width="8" height="35" rx="2" fill={colors.armBase} />
+                                <rect x="390" y="200" width="8" height="35" rx="2" fill={colors.armBase}>
+                                    <animate attributeName="x" values="390; 385; 390" dur="2s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="402" y="200" width="8" height="35" rx="2" fill={colors.armBase}>
+                                    <animate attributeName="x" values="402; 407; 402" dur="2s" repeatCount="indefinite" />
+                                </rect>
                                 <rect x="385" y="195" width="30" height="10" rx="3" fill={colors.armJoint} />
                             </g>
                         </g>
@@ -100,7 +112,9 @@ const RoboticTestingAnimation = () => {    // Corporate Color Palette
                         <g key={`sensor-${i}`}>
                             <text x="565" y={165 + i * 45} fontSize="10" fill={colors.textSecondary}>{sensor.label}</text>
                             <rect x="565" y={175 + i * 45} width="170" height="12" rx="6" fill="#e2e8f0" />
-                            <rect x="565" y={175 + i * 45} width="0" height="12" rx="6" fill={sensor.color} />
+                            <rect x="565" y={175 + i * 45} width="0" height="12" rx="6" fill={sensor.color}>
+                                <animate attributeName="width" values={`0; ${(sensor.value / 100) * 170}`} dur="2s" begin={`${1 + i * 0.3}s`} fill="freeze" />
+                            </rect>
                             <text x="720" y={185 + i * 45} fontSize="10" fontWeight="600" fill={colors.textPrimary}>{sensor.value}%</text>
                         </g>
                     ))}
@@ -114,13 +128,15 @@ const RoboticTestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- ANOMALY ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="8s" repeatCount="indefinite" />
                     <rect x="320" y="130" width="160" height="40" rx="8" fill={colors.error} />
                     <text x="400" y="155" textAnchor="middle" fontSize="12" fontWeight="700" fill="white">⚠ Joint Error Detected</text>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="280" y="50" width="240" height="45" rx="10" fill={colors.success} filter="url(#robot-shadow)" />
                     <text x="400" y="78" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ Robot System Validated</text>
                 </g>

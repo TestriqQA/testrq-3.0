@@ -60,8 +60,9 @@ const AutomationTestingAnimation = () => {    // Corporate Color Palette
                         { text: "  });", color: "#60a5fa" },
                         { text: "});", color: "#c084fc" },
                     ].map((line, i) => (
-                        <text key={`code-${i}`} x="65" y={105 + i * 25} fontSize="11" fontFamily="monospace" fill={line.color}>
+                        <text key={`code-${i}`} x="65" y={105 + i * 25} fontSize="11" fontFamily="monospace" fill={line.color} opacity="0">
                             {line.text}
+                            <animate attributeName="opacity" values="0; 1" dur="0.1s" begin={`${i * 0.3}s`} fill="freeze" />
                         </text>
                     ))}
 
@@ -88,13 +89,18 @@ const AutomationTestingAnimation = () => {    // Corporate Color Palette
                             <text x="420" y={120 + i * 40} fontSize="11" fontWeight="500" fill={colors.textPrimary}>{test.name}</text>
 
                             {/* Status Indicator */}
-                            <circle cx="720" cy={116 + i * 40} r="10" fill={colors.textSecondary} />
-                            <text x="720" y={120 + i * 40} textAnchor="middle" fontSize="10" fill="white">
+                            <circle cx="720" cy={116 + i * 40} r="10" fill={test.status === "pass" ? colors.success : colors.error} opacity="0">
+                                <animate attributeName="opacity" values="0; 1" dur="0.2s" begin={`${3 + i * 0.5}s`} fill="freeze" />
+                            </circle>
+                            <text x="720" y={120 + i * 40} textAnchor="middle" fontSize="10" fill="white" opacity="0">
                                 {test.status === "pass" ? "✓" : "✗"}
+                                <animate attributeName="opacity" values="0; 1" dur="0.2s" begin={`${3 + i * 0.5}s`} fill="freeze" />
                             </text>
 
                             {/* Progress bar for each test */}
-                            <rect x="520" y={110 + i * 40} width="0" height="12" rx="3" fill={test.status === "pass" ? colors.success : colors.error} opacity="0.3" />
+                            <rect x="520" y={110 + i * 40} width="0" height="12" rx="3" fill={test.status === "pass" ? colors.success : colors.error} opacity="0.6">
+                                <animate attributeName="width" values="0; 150" dur="0.5s" begin={`${2.5 + i * 0.5}s`} fill="freeze" />
+                            </rect>
                         </g>
                     ))}
 
@@ -131,15 +137,17 @@ const AutomationTestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- FAILURE ALERT --- */}
-                <g>
+                <g opacity="0">
                     <rect x="450" y="340" width="160" height="35" rx="8" fill={colors.error} />
                     <text x="530" y="362" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">⚠ Checkout Failed</text>
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="2s" begin="4.5s" repeatCount="indefinite" />
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
                     <rect x="500" y="340" width="240" height="50" rx="10" fill={colors.success} filter="url(#auto-shadow)" />
                     <text x="620" y="370" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ All Tests Passing</text>
+                    <animate attributeName="opacity" values="0; 1" dur="0.5s" begin="6s" fill="freeze" />
                 </g>
 
             </svg>

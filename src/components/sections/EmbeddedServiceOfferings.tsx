@@ -17,10 +17,10 @@ const EmbeddedServiceOfferings: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-900 text-white">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-900 text-white">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
                         Testriq’s Comprehensive <br />
                         <span className="text-brand-blue">Embedded Testing Services</span>
                     </h2>
@@ -31,7 +31,7 @@ const EmbeddedServiceOfferings: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, i) => (
-                        <div key={i} className="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-brand-blue/50 transition-all duration-300">
+                        <div key={i} className="group bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-brand-blue/50 transition-all duration-300">
                             <div className="text-brand-blue text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                 {service.icon}
                             </div>

@@ -56,7 +56,9 @@ const PerformanceTestingAnimation = () => {    // Corporate Color Palette
 
                     {/* Request arrows */}
                     {[0, 1, 2].map((i) => (
-                        <line key={`arrow-${i}`} x1={130 + i * 40} y1="120" x2="300" y2="90" stroke={colors.primary} strokeWidth="2" strokeDasharray="4 2" />
+                        <line key={`arrow-${i}`} x1={130 + i * 40} y1="120" x2="300" y2="90" stroke={colors.primary} strokeWidth="2" strokeDasharray="4 2">
+                            <animate attributeName="stroke-dashoffset" values="6; 0" dur="0.5s" repeatCount="indefinite" />
+                        </line>
                     ))}
                 </g>
 
@@ -77,10 +79,14 @@ const PerformanceTestingAnimation = () => {    // Corporate Color Palette
                     <text x="60" y="325" textAnchor="end" fontSize="8" fill={colors.textSecondary}>0s</text>
 
                     {/* Response time line - animated */}
-                    <path d="M 70 320 L 150 310 L 230 305 L 310 300 L 390 310 L 470 340 L 550 310 L 630 295 L 720 290" fill="none" stroke={colors.primary} strokeWidth="3" strokeLinecap="round" />
+                    <path d="M 70 320 L 150 310 L 230 305 L 310 300 L 390 310 L 470 340 L 550 310 L 630 295 L 720 290" fill="none" stroke={colors.primary} strokeWidth="3" strokeLinecap="round" strokeDasharray="1000" strokeDashoffset="1000">
+                        <animate attributeName="stroke-dashoffset" values="1000; 0" dur="4s" fill="freeze" />
+                    </path>
 
                     {/* Throughput line */}
-                    <path d="M 70 340 L 150 335 L 230 330 L 310 325 L 390 320 L 470 315 L 550 320 L 630 315 L 720 310" fill="none" stroke={colors.secondary} strokeWidth="2" strokeDasharray="5 3" />
+                    <path d="M 70 340 L 150 335 L 230 330 L 310 325 L 390 320 L 470 315 L 550 320 L 630 315 L 720 310" fill="none" stroke={colors.secondary} strokeWidth="2" strokeDasharray="5 3">
+                        <animate attributeName="stroke-dashoffset" values="8; 0" dur="1s" repeatCount="indefinite" />
+                    </path>
 
                     {/* Legend */}
                     <rect x="550" y="195" width="10" height="10" rx="2" fill={colors.primary} />
@@ -101,7 +107,23 @@ const PerformanceTestingAnimation = () => {    // Corporate Color Palette
                     ].map((metric, i) => (
                         <g key={metric.label}>
                             <text x="570" y={metric.y} fontSize="9" fill={colors.textSecondary}>{metric.label}</text>
-                            <text x="720" y={metric.y} textAnchor="end" fontSize="11" fontWeight="600">{i === 2 ? "4.5%" : metric.value}</text>
+                            
+                            {i === 2 ? (
+                                <>
+                                    <text x="720" y={metric.y} textAnchor="end" fontSize="11" fontWeight="600" fill={colors.error}>
+                                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                                        4.5%
+                                    </text>
+                                    <text x="720" y={metric.y} textAnchor="end" fontSize="11" fontWeight="600" fill={colors.success} opacity="0">
+                                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                                        {metric.value}
+                                    </text>
+                                </>
+                            ) : (
+                                <text x="720" y={metric.y} textAnchor="end" fontSize="11" fontWeight="600">
+                                    {metric.value}
+                                </text>
+                            )}
                         </g>
                     ))}
                 </g>
@@ -114,14 +136,16 @@ const PerformanceTestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- BOTTLENECK ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="8s" repeatCount="indefinite" />
                     <rect x="520" y="380" width="230" height="50" rx="8" fill={colors.error} />
                     <text x="635" y="400" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">⚠ Performance Bottleneck</text>
                     <text x="635" y="418" textAnchor="middle" fontSize="9" fill="white" opacity="0.9">Response time exceeded 3s threshold</text>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="520" y="380" width="230" height="50" rx="10" fill={colors.success} filter="url(#perf-shadow)" />
                     <text x="635" y="410" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ Performance Optimized</text>
                 </g>

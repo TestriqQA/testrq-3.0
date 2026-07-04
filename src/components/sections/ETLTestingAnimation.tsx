@@ -57,24 +57,30 @@ const ETLTestingAnimation = () => {    // Corporate Color Palette
                 <g>
                     <rect x="200" y="160" width="100" height="140" rx="12" fill="url(#extract-gradient)" filter="url(#etl-shadow)" />
                     <text x="250" y="210" textAnchor="middle" fontSize="24">📤</text>
-                    <text x="250" y="250" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">EXTRACT</text>
                     <rect x="210" y="270" width="80" height="8" rx="4" fill="rgba(255,255,255,0.3)" />
+                    <rect x="210" y="270" width="0" height="8" rx="4" fill="rgba(255,255,255,0.9)">
+                        <animate attributeName="width" values="0; 80" dur="1s" begin="1s" fill="freeze" />
+                    </rect>
                 </g>
 
                 {/* --- TRANSFORM STAGE --- */}
                 <g>
                     <rect x="350" y="160" width="100" height="140" rx="12" fill="url(#transform-gradient)" filter="url(#etl-shadow)" />
                     <text x="400" y="210" textAnchor="middle" fontSize="24">🔄</text>
-                    <text x="400" y="250" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">TRANSFORM</text>
                     <rect x="360" y="270" width="80" height="8" rx="4" fill="rgba(255,255,255,0.3)" />
+                    <rect x="360" y="270" width="0" height="8" rx="4" fill="rgba(255,255,255,0.9)">
+                        <animate attributeName="width" values="0; 80" dur="1s" begin="2.5s" fill="freeze" />
+                    </rect>
                 </g>
 
                 {/* --- LOAD STAGE --- */}
                 <g>
                     <rect x="500" y="160" width="100" height="140" rx="12" fill="url(#load-gradient)" filter="url(#etl-shadow)" />
                     <text x="550" y="210" textAnchor="middle" fontSize="24">📥</text>
-                    <text x="550" y="250" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">LOAD</text>
                     <rect x="510" y="270" width="80" height="8" rx="4" fill="rgba(255,255,255,0.3)" />
+                    <rect x="510" y="270" width="0" height="8" rx="4" fill="rgba(255,255,255,0.9)">
+                        <animate attributeName="width" values="0; 80" dur="1s" begin="4s" fill="freeze" />
+                    </rect>
                 </g>
 
                 {/* --- DATA WAREHOUSE --- */}
@@ -86,27 +92,40 @@ const ETLTestingAnimation = () => {    // Corporate Color Palette
 
                     {/* Mini data rows */}
                     {[0, 1, 2].map((i) => (
-                        <rect key={`row-${i}`} x="675" y={295 + i * 12} width="80" height="8" rx="2" fill={colors.success} />
+                        <rect key={`row-${i}`} x="675" y={295 + i * 12} width="80" height="8" rx="2" fill={colors.success} opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${5 + i * 0.3}s`} fill="freeze" />
+                        </rect>
                     ))}
                 </g>
 
                 {/* --- FLOW ARROWS (Extract to Transform to Load to Warehouse) --- */}
                 {/* Source to Extract */}
                 {sources.map((source, i) => (
-                    <path key={`flow-src-${i}`} d={`M ${source.x + 35} ${source.y} L 200 230`} fill="none" stroke={colors.dataFlow} strokeWidth="2" strokeDasharray="6 4" />
+                    <path key={`flow-src-${i}`} d={`M ${source.x + 35} ${source.y} L 200 230`} fill="none" stroke={colors.dataFlow} strokeWidth="2" strokeDasharray="6 4">
+                        <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+                    </path>
                 ))}
 
                 {/* Extract to Transform */}
-                <path d="M 300 230 L 350 230" fill="none" stroke={colors.dataFlow} strokeWidth="3" />
+                <path d="M 300 230 L 350 230" fill="none" stroke={colors.dataFlow} strokeWidth="3">
+                    <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2s" begin="2s" repeatCount="indefinite" />
+                </path>
 
                 {/* Transform to Load */}
-                <path d="M 450 230 L 500 230" fill="none" stroke={colors.dataFlow} strokeWidth="3" />
+                <path d="M 450 230 L 500 230" fill="none" stroke={colors.dataFlow} strokeWidth="3">
+                    <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2s" begin="3.5s" repeatCount="indefinite" />
+                </path>
 
                 {/* Load to Warehouse */}
-                <path d="M 600 230 L 660 230" fill="none" stroke={colors.dataFlow} strokeWidth="3" />
+                <path d="M 600 230 L 660 230" fill="none" stroke={colors.dataFlow} strokeWidth="3">
+                    <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2s" begin="5s" repeatCount="indefinite" />
+                </path>
 
                 {/* --- DATA PACKETS --- */}
-                <circle r="8" fill={colors.extract} />
+                <g>
+                    <animateTransform attributeName="transform" type="translate" values="180 230; 325 230; 475 230; 630 230; 180 230" dur="6s" repeatCount="indefinite" />
+                    <circle r="8" fill={colors.extract} />
+                </g>
 
                 {/* --- QA ENGINEER --- */}
                 <g>
@@ -116,20 +135,23 @@ const ETLTestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- VALIDATION PANEL --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect x="200" y="380" width="160" height="60" rx="10" fill="white" filter="url(#etl-shadow)" />
                     <text x="280" y="405" textAnchor="middle" fontSize="11" fontWeight="700" fill={colors.textPrimary}>Data Reconciliation</text>
                     <text x="280" y="425" textAnchor="middle" fontSize="10" fill={colors.success}>✓ 2.4M Records Validated</text>
                 </g>
 
                 {/* --- ANOMALY ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="2s" repeatCount="indefinite" />
                     <rect x="400" y="380" width="160" height="40" rx="8" fill={colors.error} />
                     <text x="480" y="405" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">⚠ Data Mismatch Found</text>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="7s" fill="freeze" />
                     <rect x="280" y="40" width="240" height="45" rx="10" fill={colors.success} filter="url(#etl-shadow)" />
                     <text x="400" y="68" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ Pipeline Validated</text>
                 </g>

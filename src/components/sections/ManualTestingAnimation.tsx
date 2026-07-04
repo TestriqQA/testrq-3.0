@@ -69,24 +69,34 @@ const ManualTestingAnimation = () => {    // Corporate Color Palette
                     {/* Email Field */}
                     <text x="230" y="210" fontSize="10" fill={colors.textSecondary}>Email</text>
                     <rect x="230" y="215" width="180" height="28" rx="4" fill="white" stroke={colors.formField} strokeWidth="2" />
-                    <text x="240" y="233" fontSize="10" fill={colors.textPrimary}>invalid@email</text>
+                    <text x="240" y="233" fontSize="10" fill={colors.textPrimary}>
+                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                        invalid@email
+                    </text>
+                    <text x="240" y="233" fontSize="10" fill={colors.textPrimary} opacity="0">
+                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                        valid@email.com
+                    </text>
 
                     {/* Submit Button */}
                     <rect x="230" y="260" width="100" height="32" rx="6" fill={colors.primary} />
                     <text x="280" y="280" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">Submit</text>
 
                     {/* Validation Checkmarks */}
-                    <g>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 1; 1; 1" dur="8s" repeatCount="indefinite" />
                         <circle cx="425" cy="174" r="10" fill={colors.success} />
                         <text x="425" y="178" textAnchor="middle" fontSize="10" fill="white">✓</text>
                     </g>
 
-                    <g>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 1; 0; 0" dur="8s" repeatCount="indefinite" />
                         <circle cx="425" cy="229" r="10" fill={colors.error} />
                         <text x="425" y="233" textAnchor="middle" fontSize="10" fill="white">✗</text>
                     </g>
 
-                    <g>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                         <circle cx="425" cy="229" r="10" fill={colors.success} />
                         <text x="425" y="233" textAnchor="middle" fontSize="10" fill="white">✓</text>
                     </g>
@@ -94,6 +104,7 @@ const ManualTestingAnimation = () => {    // Corporate Color Palette
 
                 {/* --- CURSOR --- */}
                 <g>
+                    <animateTransform attributeName="transform" type="translate" values="400 300; 280 270; 280 270; 635 242; 635 242; 280 270; 280 270" dur="8s" repeatCount="indefinite" />
                     <polygon points="0,0 0,16 5,12 8,20 12,18 9,10 16,10" fill={colors.cursor} stroke="white" strokeWidth="1" />
                 </g>
 
@@ -105,7 +116,8 @@ const ManualTestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- DEFECT LOG PANEL --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="580" y="100" width="190" height="200" rx="10" fill="white" filter="url(#manual-shadow)" />
                     <rect x="580" y="100" width="190" height="35" rx="10" fill={colors.error} />
                     <rect x="580" y="120" width="190" height="15" fill={colors.error} />
@@ -114,17 +126,32 @@ const ManualTestingAnimation = () => {    // Corporate Color Palette
                     <text x="595" y="155" fontSize="10" fontWeight="600" fill={colors.textPrimary}>ID: DEF-001</text>
                     <text x="595" y="175" fontSize="9" fill={colors.textSecondary}>Email validation error</text>
                     <text x="595" y="195" fontSize="9" fill={colors.textSecondary}>Severity: High</text>
-                    <text x="595" y="215" fontSize="9" fill={colors.textSecondary}>Status: Open</text>
+                    
+                    <g>
+                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                        <text x="595" y="215" fontSize="9" fill={colors.textSecondary}>Status: Open</text>
+                    </g>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                        <text x="595" y="215" fontSize="9" fill={colors.success}>Status: Fixed</text>
+                    </g>
 
-                    <rect x="595" y="235" width="80" height="25" rx="5" fill={colors.primary} />
-                    <text x="635" y="252" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">Mark Fixed</text>
+                    <g>
+                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                        <rect x="595" y="235" width="80" height="25" rx="5" fill={colors.primary} />
+                        <text x="635" y="252" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">Mark Fixed</text>
+                    </g>
 
-                    <rect x="595" y="270" width="160" height="20" rx="4" fill={colors.success} opacity="0.2" />
-                    <text x="675" y="284" textAnchor="middle" fontSize="9" fontWeight="600" fill={colors.success}>✓ Verified Fixed</text>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                        <rect x="595" y="270" width="160" height="20" rx="4" fill={colors.success} opacity="0.2" />
+                        <text x="675" y="284" textAnchor="middle" fontSize="9" fontWeight="600" fill={colors.success}>✓ Verified Fixed</text>
+                    </g>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 0; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="220" y="330" width="220" height="45" rx="10" fill={colors.success} filter="url(#manual-shadow)" />
                     <text x="330" y="358" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ All Tests Passed</text>
                 </g>

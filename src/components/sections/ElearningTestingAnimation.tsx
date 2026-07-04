@@ -64,7 +64,7 @@ const ElearningTestingAnimation = () => {    // Corporate Color Palette (E-Lear
 
                 {/* --- COURSE MODULES --- */}
                 {modules.map((module, i) => (
-                    <g key={module.id}>
+                    <g key={module.id} className="animate-fade-in" style={{ animationDelay: `${i * 0.2}s` }}>
                         <rect
                             x={module.x - 40}
                             y={module.y - 35}
@@ -81,7 +81,9 @@ const ElearningTestingAnimation = () => {    // Corporate Color Palette (E-Lear
 
                         {/* Progress bar */}
                         <rect x={module.x - 30} y={module.y + 30} width="60" height="6" rx="3" fill="#e2e8f0" />
-                        <rect x={module.x - 30} y={module.y + 30} height="6" rx="3" fill={module.progress === 100 ? colors.success : colors.progress} />
+                        <rect x={module.x - 30} y={module.y + 30} width="0" height="6" rx="3" fill={module.progress === 100 ? colors.success : colors.progress}>
+                            <animate attributeName="width" values={`0; ${(module.progress / 100) * 60}`} dur="1.5s" begin={`${i * 0.2 + 0.5}s`} fill="freeze" />
+                        </rect>
                         <text x={module.x} y={module.y + 48} textAnchor="middle" fontSize="8" fill={colors.textSecondary}>{module.progress}%</text>
                     </g>
                 ))}
@@ -97,7 +99,9 @@ const ElearningTestingAnimation = () => {    // Corporate Color Palette (E-Lear
 
                     {/* Progress bar */}
                     <rect x="410" y="195" width="160" height="4" rx="2" fill="#374151" />
-                    <rect x="410" y="195" height="4" rx="2" fill={colors.video} />
+                    <rect x="410" y="195" width="0" height="4" rx="2" fill={colors.video}>
+                        <animate attributeName="width" values="0; 160" dur="8s" repeatCount="indefinite" />
+                    </rect>
                 </g>
 
                 {/* --- QUIZ SECTION --- */}
@@ -110,7 +114,9 @@ const ElearningTestingAnimation = () => {    // Corporate Color Palette (E-Lear
                         <g key={opt}>
                             <rect x="415" y={265 + i * 20} width="150" height="16" rx="4" fill="#f1f5f9" />
                             <text x="425" y={276 + i * 20} fontSize="9" fill={colors.textSecondary}>Option {opt}</text>
-                            <circle cx="555" cy={273 + i * 20} r="6" fill={i === 1 ? colors.success : "transparent"} stroke={i === 1 ? colors.success : "#cbd5e1"} strokeWidth="2" />
+                            <circle cx="555" cy={273 + i * 20} r="6" fill={i === 1 ? colors.success : "transparent"} stroke={i === 1 ? colors.success : "#cbd5e1"} strokeWidth="2" opacity="0">
+                                <animate attributeName="opacity" values={i === 1 ? "0; 1; 1" : "0; 0; 0"} dur="1s" begin="3s" fill="freeze" />
+                            </circle>
                         </g>
                     ))}
                 </g>
@@ -122,24 +128,28 @@ const ElearningTestingAnimation = () => {    // Corporate Color Palette (E-Lear
 
                     {/* Circular progress */}
                     <circle cx="125" cy="310" r="25" fill="none" stroke="#e2e8f0" strokeWidth="6" />
-                    <circle cx="125" cy="310" r="25" fill="none" stroke={colors.success} strokeWidth="6" strokeLinecap="round" strokeDasharray="157" transform="rotate(-90 125 310)" />
+                    <circle cx="125" cy="310" r="25" fill="none" stroke={colors.success} strokeWidth="6" strokeLinecap="round" strokeDasharray="157" strokeDashoffset="157" transform="rotate(-90 125 310)">
+                        <animate attributeName="stroke-dashoffset" values="157; 47" dur="2s" begin="1s" fill="freeze" />
+                    </circle>
                     <text x="125" y="315" textAnchor="middle" fontSize="12" fontWeight="700" fill={colors.success}>70%</text>
                 </g>
 
                 {/* --- ACCESSIBILITY CHECK --- */}
-                <g>
+                <g className="animate-fade-in" style={{ animationDelay: '2s' }}>
                     <rect x="220" y="250" width="150" height="50" rx="8" fill={colors.accessibility} filter="url(#learn-shadow)" />
                     <text x="295" y="280" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">♿ WCAG 2.1 AA ✓</text>
                 </g>
 
                 {/* --- DEFECT INDICATOR --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="2s" fill="freeze" />
                     <rect x="220" y="310" width="150" height="30" rx="6" fill={colors.error} />
                     <text x="295" y="330" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">⚠️ Quiz Submit Issue</text>
                 </g>
 
                 {/* --- RETEST SUCCESS --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect x="220" y="310" width="150" height="30" rx="6" fill={colors.success} />
                     <text x="295" y="330" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">✓ Issue Resolved</text>
                 </g>
@@ -157,7 +167,8 @@ const ElearningTestingAnimation = () => {    // Corporate Color Palette (E-Lear
                 </g>
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="7s" fill="freeze" />
                     <rect x="180" y="360" width="280" height="40" rx="10" fill={colors.success} filter="url(#learn-shadow)" />
                     <text x="320" y="386" textAnchor="middle" fontSize="12" fontWeight="700" fill="white">✓ E-Learning Platform Validated</text>
                 </g>
@@ -165,7 +176,9 @@ const ElearningTestingAnimation = () => {    // Corporate Color Palette (E-Lear
                 {/* --- LIVE INDICATOR --- */}
                 <g>
                     <rect x="500" y="350" width="90" height="24" rx="12" fill={colors.primary} />
-                    <circle cx="515" cy="362" r="5" fill="white" />
+                    <circle cx="515" cy="362" r="5" fill="white">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="555" y="367" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">TESTING</text>
                 </g>
 

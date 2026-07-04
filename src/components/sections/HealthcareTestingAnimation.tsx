@@ -68,21 +68,29 @@ const HealthcareTestingAnimation = () => {    // Healthcare Color Palette (Blue
                         <text x={sys.x} y={sys.y + 15} textAnchor="middle" fontSize="9" fontWeight="600" fill={colors.textPrimary}>{sys.label}</text>
 
                         {/* Validation checkmarks */}
-                        <circle cx={sys.x + 40} cy={sys.y - 30} r="10" fill={colors.success} />
-                        <text x={sys.x + 40} y={sys.y - 26} textAnchor="middle" fontSize="10" fill="white">
-                            ✓
-                        </text>
+                        <g opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${i * 1 + 1}s`} fill="freeze" />
+                            <circle cx={sys.x + 40} cy={sys.y - 30} r="10" fill={colors.success} />
+                            <text x={sys.x + 40} y={sys.y - 26} textAnchor="middle" fontSize="10" fill="white">
+                                ✓
+                            </text>
+                        </g>
                     </g>
                 ))}
 
                 {/* --- PATIENT DATA FLOW --- */}
                 <g>
                     {/* Connection lines */}
-                    <line x1="175" y1="150" x2="225" y2="150" stroke={colors.accent} strokeWidth="3" strokeDasharray="8,4" />
-                    <line x1="335" y1="150" x2="385" y2="150" stroke={colors.accent} strokeWidth="3" strokeDasharray="8,4" />
+                    <line x1="175" y1="150" x2="225" y2="150" stroke={colors.accent} strokeWidth="3" strokeDasharray="8,4">
+                        <animate attributeName="stroke-dashoffset" values="12; 0" dur="1s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="335" y1="150" x2="385" y2="150" stroke={colors.accent} strokeWidth="3" strokeDasharray="8,4">
+                        <animate attributeName="stroke-dashoffset" values="12; 0" dur="1s" repeatCount="indefinite" />
+                    </line>
 
                     {/* Data packet */}
                     <g>
+                        <animateTransform attributeName="transform" type="translate" values="0 0; 50 0; 160 0; 210 0; 0 0" dur="4s" repeatCount="indefinite" />
                         <rect x="175" y="140" width="20" height="20" rx="4" fill={colors.patient} />
                         <text x="185" y="154" textAnchor="middle" fontSize="10" fill="white">📄</text>
                     </g>
@@ -96,7 +104,10 @@ const HealthcareTestingAnimation = () => {    // Healthcare Color Palette (Blue
                     <text x="140" y="255" textAnchor="middle" fontSize="11" fontWeight="700" fill={colors.textPrimary}>🛡️ Security Scan</text>
 
                     {/* Shield animation */}
-                    <circle cx="140" cy="295" r="25" fill={colors.security} opacity="0.2" />
+                    <circle cx="140" cy="295" r="25" fill={colors.security} opacity="0.2">
+                        <animate attributeName="r" values="25; 35" dur="1.5s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.3; 0" dur="1.5s" repeatCount="indefinite" />
+                    </circle>
                     <circle cx="140" cy="295" r="18" fill={colors.security} />
                     <text x="140" y="300" textAnchor="middle" fontSize="14" fill="white">🔒</text>
 
@@ -116,19 +127,23 @@ const HealthcareTestingAnimation = () => {    // Healthcare Color Palette (Blue
                         <React.Fragment key={`compliance-${i}`}>
                             <text x="260" y={bar.y + 4} fontSize="8" fill={colors.textSecondary}>{bar.label}</text>
                             <rect x="260" y={bar.y + 8} width="130" height="6" rx="3" fill="#e2e8f0" />
-                            <rect x="260" y={bar.y + 8} height="6" rx="3" fill={bar.color} />
+                            <rect x="260" y={bar.y + 8} width="0" height="6" rx="3" fill={bar.color}>
+                                <animate attributeName="width" values={`0; ${bar.w}`} dur="1.5s" begin={`${3 + i * 0.5}s`} fill="freeze" />
+                            </rect>
                         </React.Fragment>
                     ))}
                 </g>
 
                 {/* --- DEFECT INDICATOR --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="2s" fill="freeze" />
                     <rect x="430" y="230" width="150" height="50" rx="8" fill={colors.error} filter="url(#health-shadow)" />
                     <text x="505" y="260" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">⚠️ Data Sync Issue</text>
                 </g>
 
                 {/* --- RETEST SUCCESS --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect x="430" y="230" width="150" height="50" rx="8" fill={colors.success} filter="url(#health-shadow)" />
                     <text x="505" y="260" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">✓ Sync Verified</text>
                 </g>
@@ -143,7 +158,8 @@ const HealthcareTestingAnimation = () => {    // Healthcare Color Palette (Blue
                 </g>
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="7s" fill="freeze" />
                     <rect x="180" y="350" width="280" height="40" rx="10" fill={colors.success} filter="url(#health-shadow)" />
                     <text x="320" y="376" textAnchor="middle" fontSize="12" fontWeight="700" fill="white">✓ Healthcare System Validated</text>
                 </g>
@@ -151,7 +167,9 @@ const HealthcareTestingAnimation = () => {    // Healthcare Color Palette (Blue
                 {/* --- LIVE INDICATOR --- */}
                 <g>
                     <rect x="500" y="350" width="90" height="24" rx="12" fill={colors.primary} />
-                    <circle cx="515" cy="362" r="5" fill="white" />
+                    <circle cx="515" cy="362" r="5" fill="white">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="555" y="367" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">TESTING</text>
                 </g>
 

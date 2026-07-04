@@ -82,17 +82,39 @@ const WebAppTestingAnimation = () => {    // Corporate Color Palette (Web/Brows
                         <text x={browser.x} y={browser.y + 45} textAnchor="middle" fontSize="9" fontWeight="500" fill={colors.textPrimary}>{browser.label}</text>
 
                         {/* Check marks appear on browsers */}
-                        <circle cx={browser.x + 20} cy={browser.y - 20} r="10" fill={colors.success} />
-                        <text x={browser.x + 20} y={browser.y - 16} textAnchor="middle" fontSize="10" fill="white">
-                            ✓
-                        </text>
+                        <g opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${1 + i * 0.5}s`} fill="freeze" />
+                            {browser.id === "safari" ? (
+                                <>
+                                    <circle cx={browser.x + 20} cy={browser.y - 20} r="10" fill={colors.error}>
+                                        <animate attributeName="fill" values={`${colors.error}; ${colors.error}; ${colors.success}; ${colors.success}`} dur="8s" repeatCount="indefinite" />
+                                    </circle>
+                                    <text x={browser.x + 20} y={browser.y - 16} textAnchor="middle" fontSize="10" fill="white">
+                                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                                        !
+                                    </text>
+                                    <text x={browser.x + 20} y={browser.y - 16} textAnchor="middle" fontSize="10" fill="white" opacity="0">
+                                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                                        ✓
+                                    </text>
+                                </>
+                            ) : (
+                                <>
+                                    <circle cx={browser.x + 20} cy={browser.y - 20} r="10" fill={colors.success} />
+                                    <text x={browser.x + 20} y={browser.y - 16} textAnchor="middle" fontSize="10" fill="white">✓</text>
+                                </>
+                            )}
+                        </g>
                     </g>
                 ))}
 
                 {/* --- FUNCTIONAL FLOW INDICATORS --- */}
                 <g>
                     {/* Click indicator on button */}
-                    <circle cx="100" cy="156" r="15" fill="none" stroke={colors.accent} strokeWidth="2" />
+                    <circle cx="100" cy="156" r="15" fill="none" stroke={colors.accent} strokeWidth="2">
+                        <animate attributeName="r" values="15; 25; 15" dur="1.5s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="1; 0; 1" dur="1.5s" repeatCount="indefinite" />
+                    </circle>
                     <text x="170" y="180" fontSize="9" fill={colors.accent}>🖱️ Click Flow Testing</text>
                 </g>
 
@@ -103,12 +125,18 @@ const WebAppTestingAnimation = () => {    // Corporate Color Palette (Web/Brows
 
                     {/* Speed meter arc */}
                     <path d="M 360 330 A 40 40 0 0 1 440 330" fill="none" stroke="#e2e8f0" strokeWidth="8" strokeLinecap="round" />
-                    <path d="M 360 330 A 40 40 0 0 1 440 330" fill="none" stroke={colors.success} strokeWidth="8" strokeLinecap="round" />
-                    <text x="400" y="325" textAnchor="middle" fontSize="12" fontWeight="700" fill={colors.success}>85ms</text>
+                    <path d="M 360 330 A 40 40 0 0 1 440 330" fill="none" stroke={colors.success} strokeWidth="8" strokeLinecap="round" strokeDasharray="125" strokeDashoffset="125">
+                        <animate attributeName="stroke-dashoffset" values="125; 20" dur="2s" begin="2s" fill="freeze" />
+                    </path>
+                    <text x="400" y="325" textAnchor="middle" fontSize="12" fontWeight="700" fill={colors.success}>
+                        <animate attributeName="opacity" values="0; 1" dur="0.5s" begin="4s" fill="freeze" />
+                        85ms
+                    </text>
                 </g>
 
                 {/* --- DEFECT INDICATOR --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="8s" repeatCount="indefinite" />
                     <circle cx="520" cy="120" r="12" fill={colors.error} />
                     <text x="520" y="125" textAnchor="middle" fontSize="12" fill="white">!</text>
                     <rect x="490" y="140" width="80" height="24" rx="4" fill={colors.error} />
@@ -116,7 +144,8 @@ const WebAppTestingAnimation = () => {    // Corporate Color Palette (Web/Brows
                 </g>
 
                 {/* --- RETEST SUCCESS --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <circle cx="520" cy="120" r="12" fill={colors.success} />
                     <text x="520" y="125" textAnchor="middle" fontSize="10" fill="white">✓</text>
                     <rect x="485" y="140" width="90" height="24" rx="4" fill={colors.success} />
@@ -148,19 +177,23 @@ const WebAppTestingAnimation = () => {    // Corporate Color Palette (Web/Brows
                         <React.Fragment key={`bar-${i}`}>
                             <text x="60" y={bar.y + 4} fontSize="8" fill={colors.textSecondary}>{bar.label}</text>
                             <rect x="60" y={bar.y + 8} width="115" height="6" rx="3" fill="#e2e8f0" />
-                            <rect x="60" y={bar.y + 8} height="6" rx="3" fill={bar.color} />
+                            <rect x="60" y={bar.y + 8} width="0" height="6" rx="3" fill={bar.color}>
+                                <animate attributeName="width" values={`0; ${bar.w}`} dur="1.5s" begin={`${1 + i * 0.4}s`} fill="freeze" />
+                            </rect>
                         </React.Fragment>
                     ))}
                 </g>
 
                 {/* --- UI CONSISTENCY BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="3.5s" fill="freeze" />
                     <rect x="50" y="185" width="110" height="28" rx="6" fill={colors.accent} />
                     <text x="105" y="204" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">✓ UI Consistent</text>
                 </g>
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="200" y="370" width="240" height="40" rx="10" fill={colors.success} filter="url(#web-shadow)" />
                     <text x="320" y="396" textAnchor="middle" fontSize="12" fontWeight="700" fill="white">✓ Web App Fully Validated</text>
                 </g>
@@ -168,7 +201,9 @@ const WebAppTestingAnimation = () => {    // Corporate Color Palette (Web/Brows
                 {/* --- LIVE INDICATOR --- */}
                 <g>
                     <rect x="510" y="260" width="90" height="24" rx="12" fill={colors.primary} />
-                    <circle cx="525" cy="272" r="5" fill="white" />
+                    <circle cx="525" cy="272" r="5" fill="white">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="565" y="277" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">TESTING</text>
                 </g>
 

@@ -13,19 +13,19 @@ import { VscAzure } from "react-icons/vsc";
 
 const AzureTestingCTA: React.FC = () => {
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-900 overflow-hidden relative">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-900 overflow-hidden relative">
             {/* Decorative Cloud Background */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-[#0078d4]/10 blur-[120px] rounded-full -mr-1/4 -mt-1/4" />
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/10 blur-[120px] rounded-full -mr-1/4 -mt-1/4" />
             <div className="absolute bottom-0 left-0 w-1/2 h-full bg-indigo-500/10 blur-[120px] rounded-full -ml-1/4 -mb-1/4" />
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center text-white mb-16">
-                    <div className="inline-flex items-center gap-2 bg-[#0078d4] px-4 py-2 rounded-full mb-6 text-sm font-black uppercase tracking-widest shadow-xl shadow-blue-900/40">
+                    <div className="inline-flex items-center gap-2 bg-brand-blue px-4 py-2 rounded-full mb-6 text-sm font-black uppercase tracking-widest shadow-xl shadow-blue-900/40">
                         <VscAzure className="animate-spin-slow" />
                         <span>Scale with Confidence</span>
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
-                        Elevate Your <span className="text-[#0078d4]">Cloud Quality</span> <br /> with Testriq
+                    <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
+                        Elevate Your <span className="text-brand-blue">Cloud Quality</span> <br /> with Testriq
                     </h2>
                     <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
                         Partner with global Azure testing specialists to secure your digital future. From comprehensive cloud migrations to continuous DevOps QA, we help you deliver excellence.
@@ -35,7 +35,7 @@ const AzureTestingCTA: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Left Content - Benefits */}
                     <div>
-                        <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-[#0078d4] pl-6">
+                        <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-brand-blue pl-6">
                             The Testriq Azure Commitment
                         </h3>
 
@@ -80,15 +80,15 @@ const AzureTestingCTA: React.FC = () => {
                     </div>
 
                     {/* Right Content - CTA Card */}
-                    <div className="bg-white rounded-[3rem] p-10 md:p-12 shadow-2xl relative overflow-hidden group">
-                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#0078d4] to-indigo-600" />
+                    <div className="bg-white rounded-3xl p-10 md:p-12 shadow-2xl relative overflow-hidden group">
+                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-blue to-indigo-600" />
 
-                        <h3 className="text-3xl font-black text-gray-900 mb-8 text-center md:text-left">
-                            Book Your Free Azure <br /> <span className="text-[#0078d4]">QA Strategy Session</span>
+                        <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center md:text-left">
+                            Book Your Free Azure <br /> <span className="text-brand-blue">QA Strategy Session</span>
                         </h3>
 
                         <div className="space-y-6">
-                            <Link href="/contact-us" className="w-full flex items-center justify-center gap-3 py-5 bg-[#0078d4] text-white font-black text-xl rounded-2xl hover:bg-[#005a9e] transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-100">
+                            <Link href="/contact-us" className="w-full flex items-center justify-center gap-3 py-5 bg-brand-blue text-white font-black text-xl rounded-2xl hover:bg-brand-blue/90 transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-100 cursor-pointer">
                                 <span>Request Session</span>
                                 <FaArrowRight />
                             </Link>
@@ -99,16 +99,16 @@ const AzureTestingCTA: React.FC = () => {
                             </div>
 
                             <div className="grid grid-cols-1 gap-4">
-                                <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-blue-200 hover:bg-blue-50 transition-all font-bold text-gray-700">
-                                    <FaCalendarAlt className="text-[#0078d4]" />
+                                <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-blue-200 hover:bg-blue-50 transition-all font-bold text-gray-700 cursor-pointer">
+                                    <FaCalendarAlt className="text-brand-blue" />
                                     <span>Schedule on Calendar</span>
                                 </Link>
                                 <div className="flex flex-col md:flex-row gap-4">
-                                    <button onClick={() => window.location.href = "tel:+919152929343"} className="flex-1 flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50 transition-all font-bold text-gray-700">
+                                    <button onClick={() => window.location.href = "tel:+919152929343"} className="flex-1 flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50 transition-all font-bold text-gray-700 cursor-pointer">
                                         <FaPhone className="text-emerald-500" />
                                         <span>Call Experts</span>
                                     </button>
-                                    <button onClick={() => window.location.href = "mailto:contact@testriq.com"} className="flex-1 flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-indigo-200 hover:bg-indigo-50 transition-all font-bold text-gray-700">
+                                    <button onClick={() => window.location.href = "mailto:contact@testriq.com"} className="flex-1 flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-indigo-200 hover:bg-indigo-50 transition-all font-bold text-gray-700 cursor-pointer">
                                         <FaEnvelope className="text-indigo-500" />
                                         <span>Email Us</span>
                                     </button>
@@ -118,7 +118,7 @@ const AzureTestingCTA: React.FC = () => {
                             <div className="pt-8 border-t border-gray-100 mt-8">
                                 <div className="flex justify-between items-center px-4">
                                     <div className="text-center">
-                                        <div className="text-2xl font-black text-[#0078d4]">15+</div>
+                                        <div className="text-2xl font-black text-brand-blue">15+</div>
                                         <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Years Exp</div>
                                     </div>
                                     <div className="text-center">

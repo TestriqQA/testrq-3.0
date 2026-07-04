@@ -45,8 +45,10 @@ const CompatibilityTestingAnimation = () => {
                 {/* --- Devices --- */}
                 {devices.map((device, idx) => (
                     <g
-      key={device.id}
-    >
+                        key={device.id}
+                        className="animate-fade-in"
+                        style={{ animationDelay: `${idx * 0.4}s` }}
+                    >
                         {/* Device Frame */}
                         <rect
                             x={device.x}
@@ -72,11 +74,13 @@ const CompatibilityTestingAnimation = () => {
 
                         {/* Status Dots */}
                         <circle
-      cx={device.x + device.width - 20}
-      cy={device.y + device.height - 15}
-      r="5"
-      fill="#22c55e"
-     />
+                            cx={device.x + device.width - 20}
+                            cy={device.y + device.height - 15}
+                            r="5"
+                            fill="#22c55e"
+                        >
+                            <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin={`${idx * 0.2}s`} repeatCount="indefinite" />
+                        </circle>
 
                         {/* Browser Icons on Screen */}
                         <g opacity="0.6">
@@ -111,27 +115,31 @@ const CompatibilityTestingAnimation = () => {
 
                 {/* --- Animation: Data Flow/Checkmark --- */}
                 <circle
-      cx="100"
-      cy="100"
-      r="3"
-      fill="#3b82f6"
-     />
+                    r="3"
+                    fill="#3b82f6"
+                >
+                    <animate attributeName="cx" values="100; 450; 620; 100" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="cy" values="100; 150; 200; 100" dur="4s" repeatCount="indefinite" />
+                </circle>
 
                 {/* Success Indicator appearing at the end */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="6s" begin="2s" repeatCount="indefinite" />
                     <rect x="300" y="380" width="200" height="40" rx="20" fill="#22c55e" />
                     <text x="400" y="405" textAnchor="middle" fill="white" fontSize="14" fontWeight="700">✓ Compatibility Verified</text>
                 </g>
 
                 {/* Scanning Line */}
                 <rect
-      x="0"
-      y="0"
-      width="800"
-      height="2"
-      fill="url(#scanning-gradient)"
-      opacity="0.3"
-     />
+                    x="0"
+                    y="0"
+                    width="800"
+                    height="2"
+                    fill="url(#scanning-gradient)"
+                    opacity="0.3"
+                >
+                    <animate attributeName="y" values="0; 500; 0" dur="4s" repeatCount="indefinite" />
+                </rect>
                 <defs>
                     <linearGradient id="scanning-gradient" x1="0" y1="0" x2="1" y2="0">
                         <stop offset="0%" stopColor="transparent" />

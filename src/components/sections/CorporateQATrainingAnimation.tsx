@@ -77,7 +77,10 @@ const CorporateQATrainingAnimation = () => {    // Corporate Color Palette (Blu
                     <circle cx="320" cy="175" r="18" fill={colors.secondary} />
 
                     {/* Instructor pointer animation */}
-                    <line x1="340" y1="180" x2="380" y2="140" stroke={colors.accent} strokeWidth="3" strokeLinecap="round" />
+                    <line x1="340" y1="180" x2="380" y2="140" stroke={colors.accent} strokeWidth="3" strokeLinecap="round">
+                        <animate attributeName="x2" values="380; 360; 380" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="140; 120; 140" dur="2s" repeatCount="indefinite" />
+                    </line>
                 </g>
 
                 {/* --- TRAINING MODULES ON SCREEN --- */}
@@ -98,13 +101,15 @@ const CorporateQATrainingAnimation = () => {    // Corporate Color Palette (Blu
 
                         {/* Progress bar */}
                         <rect x={module.x - 40} y={module.y + 8} width="80" height="6" rx="3" fill="rgba(255,255,255,0.3)" />
-                        <rect x={module.x - 40} y={module.y + 8} height="6" rx="3" fill="rgba(255,255,255,0.9)" />
+                        <rect x={module.x - 40} y={module.y + 8} width="0" height="6" rx="3" fill="rgba(255,255,255,0.9)">
+                            <animate attributeName="width" values="0; 80" dur="2s" begin={`${i * 1}s`} fill="freeze" />
+                        </rect>
                     </g>
                 ))}
 
                 {/* --- TRAINEES --- */}
                 {trainees.map((trainee, i) => (
-                    <g key={trainee.id}>
+                    <g key={trainee.id} className="animate-fade-in" style={{ animationDelay: `${i * 0.2}s` }}>
                         {/* Desk */}
                         <rect
                             x={trainee.x - 30}
@@ -131,6 +136,7 @@ const CorporateQATrainingAnimation = () => {    // Corporate Color Palette (Blu
                 {/* --- COLLABORATION BUBBLES --- */}
                 {[trainees[1], trainees[2], trainees[5]].map((trainee, i) => (
                     <g key={`bubble-${i}`}>
+                        <animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0" dur="1.5s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
                         <ellipse
                             cx={trainee.x + 25}
                             cy={trainee.y - 30}
@@ -158,14 +164,17 @@ const CorporateQATrainingAnimation = () => {    // Corporate Color Palette (Blu
                         <React.Fragment key={`bar-${i}`}>
                             <text x="530" y={bar.y + 4} fontSize="8" fill={colors.textSecondary}>{bar.label}</text>
                             <rect x="530" y={bar.y + 8} width="80" height="8" rx="4" fill="#e2e8f0" />
-                            <rect x="530" y={bar.y + 8} height="8" rx="4" fill={bar.color} />
+                            <rect x="530" y={bar.y + 8} width="0" height="8" rx="4" fill={bar.color}>
+                                <animate attributeName="width" values={`0; ${bar.w}`} dur="1s" begin={`${i * 0.5 + 2}s`} fill="freeze" />
+                            </rect>
                         </React.Fragment>
                     ))}
                 </g>
 
                 {/* --- CERTIFICATION BADGES --- */}
                 {trainees.slice(0, 5).map((trainee, i) => (
-                    <g key={`cert-${i}`}>
+                    <g key={`cert-${i}`} opacity="0">
+                        <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${i * 0.5 + 4}s`} fill="freeze" />
                         <circle
                             cx={trainee.x}
                             cy={trainee.y - 35}
@@ -186,7 +195,8 @@ const CorporateQATrainingAnimation = () => {    // Corporate Color Palette (Blu
                 ))}
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1.5s" begin="6s" fill="freeze" />
                     <rect x="170" y="15" width="300" height="35" rx="8" fill={colors.success} filter="url(#training-shadow)" />
                     <text x="320" y="38" textAnchor="middle" fontSize="13" fontWeight="700" fill="white">🎓 Training Completed Successfully!</text>
                 </g>
@@ -194,7 +204,9 @@ const CorporateQATrainingAnimation = () => {    // Corporate Color Palette (Blu
                 {/* --- LIVE INDICATOR --- */}
                 <g>
                     <rect x="555" y="65" width="70" height="22" rx="11" fill={colors.error} />
-                    <circle cx="570" cy="76" r="5" fill="white" />
+                    <circle cx="570" cy="76" r="5" fill="white">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="595" y="80" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">LIVE</text>
                 </g>
 

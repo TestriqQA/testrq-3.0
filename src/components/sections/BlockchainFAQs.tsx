@@ -26,11 +26,11 @@ const BlockchainFAQs: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-white">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-                        Blockchain QA <span className="text-blue-600">Common Questions</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        Blockchain QA <span className="text-brand-blue">Common Questions</span>
                     </h2>
                     <p className="text-gray-600 text-lg">
                         Everything you need to know about securing your Web3 ecosystem.
@@ -41,17 +41,17 @@ const BlockchainFAQs: React.FC = () => {
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className="border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                            className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full flex items-center justify-between p-6 text-left focus:outline-none bg-white hover:bg-slate-50 transition-colors"
+                                className="w-full flex items-center justify-between p-6 text-left focus:outline-none bg-white hover:bg-gray-50 transition-colors cursor-pointer"
                                 aria-expanded={openIndex === index}
                             >
                                 <span className="text-lg font-bold text-gray-900 pr-8">
                                     {faq.question}
                                 </span>
-                                <div className="flex-shrink-0 bg-blue-50 w-8 h-8 rounded-full flex items-center justify-center text-blue-600 group">
+                                <div className="flex-shrink-0 bg-brand-blue/10 w-8 h-8 rounded-full flex items-center justify-center text-brand-blue group">
                                     {openIndex === index ? <FaMinus /> : <FaPlus />}
                                 </div>
                             </button>

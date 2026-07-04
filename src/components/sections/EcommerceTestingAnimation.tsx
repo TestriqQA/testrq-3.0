@@ -65,7 +65,8 @@ const EcommerceTestingAnimation = () => {    // Corporate Color Palette (E-comm
 
                 {/* --- PRODUCT CARDS --- */}
                 {products.map((product, i) => (
-                    <g key={product.id}>
+                    <g key={product.id} opacity="0">
+                        <animate attributeName="opacity" values="0; 1" dur="1s" begin={`${i * 0.2}s`} fill="freeze" />
                         <rect
                             x={product.x - 40}
                             y={product.y - 40}
@@ -84,10 +85,15 @@ const EcommerceTestingAnimation = () => {    // Corporate Color Palette (E-comm
                 ))}
 
                 {/* --- SEARCH HIGHLIGHT --- */}
-                <rect x="160" y="45" width="200" height="20" rx="10" fill="none" stroke={colors.primary} strokeWidth="2" />
+                <rect x="160" y="45" width="200" height="20" rx="10" fill="none" stroke={colors.primary} strokeWidth="2">
+                    <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                </rect>
 
                 {/* --- CART ANIMATION (product flies to cart) --- */}
-                <circle r="12" fill={colors.primary} filter="url(#ecom-glow)" />
+                <g>
+                    <animateTransform attributeName="transform" type="translate" values="300 140; 540 55; 300 140" dur="4s" repeatCount="indefinite" />
+                    <circle r="12" fill={colors.primary} filter="url(#ecom-glow)" />
+                </g>
 
                 {/* --- CHECKOUT PANEL --- */}
                 <g>
@@ -103,7 +109,9 @@ const EcommerceTestingAnimation = () => {    // Corporate Color Palette (E-comm
                         <React.Fragment key={`checkout-${i}`}>
                             <rect x="395" y={item.y - 12} width="170" height="28" rx="6" fill="#f8fafc" stroke={colors.primary} strokeWidth="1" />
                             <text x="410" y={item.y + 3} fontSize="11" fill={colors.textPrimary}>{item.label}</text>
-                            <circle cx="550" cy={item.y - 1} r="8" fill={colors.success} />
+                            <circle cx="550" cy={item.y - 1} r="8" fill={colors.success} opacity="0">
+                                <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${i * 1 + 1}s`} fill="freeze" />
+                            </circle>
                         </React.Fragment>
                     ))}
 
@@ -114,6 +122,7 @@ const EcommerceTestingAnimation = () => {    // Corporate Color Palette (E-comm
 
                 {/* --- PAYMENT SECURE LOCK --- */}
                 <g>
+                    <animate attributeName="opacity" values="0.6; 1; 0.6" dur="2s" repeatCount="indefinite" />
                     <rect x="420" y="320" width="120" height="30" rx="8" fill={colors.success} />
                     <text x="480" y="340" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">🔒 Payment Secure</text>
                 </g>
@@ -143,13 +152,16 @@ const EcommerceTestingAnimation = () => {    // Corporate Color Palette (E-comm
                         <React.Fragment key={`bar-${i}`}>
                             <text x="60" y={bar.y + 4} fontSize="8" fill={colors.textSecondary}>{bar.label}</text>
                             <rect x="60" y={bar.y + 8} width="110" height="6" rx="3" fill="#e2e8f0" />
-                            <rect x="60" y={bar.y + 8} height="6" rx="3" fill={bar.color} />
+                            <rect x="60" y={bar.y + 8} width="0" height="6" rx="3" fill={bar.color}>
+                                <animate attributeName="width" values={`0; ${bar.w}`} dur="1s" begin={`${i * 0.5 + 4}s`} fill="freeze" />
+                            </rect>
                         </React.Fragment>
                     ))}
                 </g>
 
                 {/* --- ORDER CONFIRMATION --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="5s" fill="freeze" />
                     <rect x="200" y="280" width="160" height="80" rx="10" fill="white" filter="url(#ecom-shadow)" />
                     <circle cx="280" cy="310" r="18" fill={colors.success} />
                     <text x="280" y="316" textAnchor="middle" fontSize="16" fill="white">✓</text>
@@ -158,7 +170,8 @@ const EcommerceTestingAnimation = () => {    // Corporate Color Palette (E-comm
                 </g>
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect x="150" y="10" width="340" height="40" rx="10" fill={colors.success} filter="url(#ecom-shadow)" />
                     <text x="320" y="36" textAnchor="middle" fontSize="13" fontWeight="700" fill="white">✓ E-commerce Flow Validated</text>
                 </g>
@@ -166,7 +179,9 @@ const EcommerceTestingAnimation = () => {    // Corporate Color Palette (E-comm
                 {/* --- LIVE INDICATOR --- */}
                 <g>
                     <rect x="510" y="10" width="80" height="22" rx="11" fill={colors.primary} />
-                    <circle cx="525" cy="21" r="5" fill="white" />
+                    <circle cx="525" cy="21" r="5" fill="white">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="560" y="26" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">TESTING</text>
                 </g>
 

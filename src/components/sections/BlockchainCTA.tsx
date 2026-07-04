@@ -6,10 +6,10 @@ import { FaArrowRight, FaShieldAlt } from "react-icons/fa";
 
 const BlockchainCTA: React.FC = () => {
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24">
+        <section className="py-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <div
-      className="relative rounded-[2rem] bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 p-12 md:p-20 text-white overflow-hidden shadow-2xl"
+      className="relative rounded-3xl bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 p-12 md:p-20 text-white overflow-hidden shadow-2xl"
     >
                     {/* Decorative elements */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px] -mr-48 -mt-48" />
@@ -20,7 +20,7 @@ const BlockchainCTA: React.FC = () => {
                             <FaShieldAlt className="text-white text-3xl" />
                         </div>
 
-                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-8 max-w-4xl leading-[1.1]">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-8 max-w-4xl leading-[1.1]">
                             Ready to Secure Your <span className="text-blue-300">Blockchain Innovation?</span>
                         </h2>
 
@@ -31,7 +31,7 @@ const BlockchainCTA: React.FC = () => {
                         <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
                             <Link
                                 href="/contact-us"
-                                className="inline-flex items-center justify-center gap-3 py-5 px-10 bg-white text-blue-800 font-bold text-lg rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1 shadow-lg w-full sm:w-auto"
+                                className="inline-flex items-center justify-center gap-3 py-5 px-10 bg-white text-blue-800 font-bold text-lg rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 shadow-lg w-full sm:w-auto cursor-pointer"
                             >
                                 <span>Get a ROI-Focused Audit</span>
                                 <FaArrowRight />

@@ -11,7 +11,7 @@ const BlockchainSolutions: React.FC = () => {
             title: "Smart Contract Audit",
             description: "Code audit with automated formal verification to identify logic flaws and gas optimization issues.",
             features: ["Manual Code Review", "Formal Verification", "Gas Optimization"],
-            color: "bg-blue-600",
+            color: "bg-brand-blue",
         },
         {
             icon: <FaAppStoreIos />,
@@ -25,7 +25,7 @@ const BlockchainSolutions: React.FC = () => {
             title: "Performance & Load",
             description: "Simulating thousands of TPS to validate consensus latency and network throughput.",
             features: ["Throughput Analysis", "Scalability Testing", "Stress Simulation"],
-            color: "bg-blue-500",
+            color: "bg-brand-blue/80",
         },
         {
             icon: <FaWallet />,
@@ -44,12 +44,12 @@ const BlockchainSolutions: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-white overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row items-end justify-between mb-16 gap-8">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Comprehensive <span className="text-blue-600">Blockchain Testing</span> Solutions
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                            Comprehensive <span className="text-brand-blue">Blockchain Testing</span> Solutions
                         </h2>
                         <p className="text-gray-600 text-lg">
                             Testriq provides an immutable standard of quality for your decentralized infrastructure, ensuring integrity at every node.
@@ -57,7 +57,7 @@ const BlockchainSolutions: React.FC = () => {
                     </div>
                     <Link
                         href="/contact-us"
-                        className="flex items-center gap-2 text-blue-600 font-bold hover:gap-4 transition-all duration-300 group whitespace-nowrap"
+                        className="flex items-center gap-2 text-brand-blue font-bold hover:gap-4 transition-all duration-300 group whitespace-nowrap"
                     >
                         Explore all solutions <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </Link>
@@ -67,7 +67,7 @@ const BlockchainSolutions: React.FC = () => {
                     {solutions.map((solution, index) => (
                         <div
       key={index}
-      className="group relative bg-slate-50 rounded-3xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-blue-100"
+      className="group relative bg-gray-50 rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-brand-blue/20"
     >
                             <div className={`${solution.color} w-14 h-14 rounded-2xl flex items-center justify-center text-white text-2xl mb-8 group-hover:scale-110 transition-transform duration-300`}>
                                 {solution.icon}
@@ -79,7 +79,7 @@ const BlockchainSolutions: React.FC = () => {
                             <ul className="space-y-3">
                                 {solution.features.map((feature, fIndex) => (
                                     <li key={fIndex} className="flex items-center gap-3 text-sm font-semibold text-gray-700">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-blue" />
                                         {feature}
                                     </li>
                                 ))}
@@ -89,13 +89,13 @@ const BlockchainSolutions: React.FC = () => {
 
                     {/* Custom Card for "Start Audit" */}
                     <div
-      className="bg-blue-600 rounded-3xl p-8 flex flex-col justify-center items-center text-center text-white"
+      className="bg-brand-blue rounded-2xl p-8 flex flex-col justify-center items-center text-center text-white"
     >
                         <h3 className="text-2xl font-bold mb-4">NFT Marketplace Security?</h3>
                         <p className="mb-8 opacity-90">We offer specialized audits for creators and collectors to ensure safe trading environments.</p>
                         <Link
                             href="/contact-us"
-                            className="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition-colors"
+                            className="bg-white text-brand-blue font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
                         >
                             Secure Your Marketplace
                         </Link>

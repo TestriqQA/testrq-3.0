@@ -1,76 +1,110 @@
 "use client";
 
 import React from "react";
-const MigrationAnimation: React.FC = () => {
+
+const MigrationAnimation = () => {
+    // Migration Theme Colors
+    const colors = {
+        bg: "#f8fafc",
+        legacy: "#94a3b8",
+        legacyDark: "#64748b",
+        cloud: "#3b82f6",
+        cloudLight: "#eff6ff",
+        success: "#22c55e",
+        data: "#0ea5e9",
+        textPrimary: "#1e293b",
+        textSecondary: "#64748b",
+        path: "#cbd5e1"
+    };
+
     return (
-        <div className="relative w-full h-[400px] bg-slate-50 rounded-[2rem] overflow-hidden flex items-center justify-center p-8 border border-gray-100 shadow-inner">
-            <div className="max-w-md w-full relative h-40">
-                {/* Source System */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div className="w-20 h-24 bg-gray-200 rounded-lg border-2 border-gray-300 relative flex items-center justify-center overflow-hidden">
-                        <div className="grid grid-cols-2 gap-1 p-2">
-                            {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div
-      key={i}
-      className="w-3 h-3 bg-gray-400 rounded-sm"
-    ></div>
-                            ))}
-                        </div>
-                    </div>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase mt-2 tracking-widest">Legacy / On-Prem</span>
-                </div>
+        <div className="w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden relative shadow-xl border border-blue-100">
+            <svg viewBox="0 0 800 500" className="w-full h-full relative z-10">
+                <defs>
+                    <filter id="migration-shadow" x="-10%" y="-10%" width="120%" height="120%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="4" floodOpacity="0.1" />
+                    </filter>
+                    <filter id="migration-glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+                        <feMerge>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
 
-                {/* Target System (Cloud) */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div className="w-24 h-24 bg-blue-50 rounded-full border-2 border-blue-100 relative flex items-center justify-center">
-                        <div
-      className="absolute inset-0 rounded-full border-2 border-brand-blue border-dashed"
-    ></div>
-                        <svg className="w-12 h-12 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                        </svg>
-                    </div>
-                    <span className="text-[10px] font-bold text-brand-blue uppercase mt-2 tracking-widest">Target / Cloud</span>
-                </div>
+                {/* --- LEGACY SYSTEM (On-Prem) --- */}
+                <g>
+                    {/* Server Rack */}
+                    <rect x="100" y="150" width="140" height="200" rx="10" fill="white" filter="url(#migration-shadow)" stroke={colors.legacy} strokeWidth="2" />
+                    
+                    {/* Servers */}
+                    {[0, 1, 2].map(i => (
+                        <g key={`server-${i}`}>
+                            <rect x="110" y={170 + i * 50} width="120" height="30" rx="4" fill={colors.legacy} opacity="0.2" />
+                            <rect x="110" y={170 + i * 50} width="10" height="30" fill={colors.legacyDark} />
+                            {/* Blinking lights */}
+                            <circle cx="210" cy={185 + i * 50} r="3" fill={colors.success}>
+                                <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="220" cy={185 + i * 50} r="3" fill={colors.success}>
+                                <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+                            </circle>
+                        </g>
+                    ))}
+                    <text x="170" y="380" textAnchor="middle" fontSize="12" fontWeight="700" fill={colors.textPrimary}>Legacy / On-Prem</text>
+                </g>
 
-                {/* Moving Data Particles */}
-                {[1, 2, 3, 4].map((i) => (
-                    <div
-      key={i}
-      className="absolute w-4 h-4 bg-brand-blue rounded shadow-lg flex items-center justify-center text-[8px] text-white font-bold"
-    >
-                        101
-                    </div>
-                ))}
+                {/* --- MIGRATION PATH --- */}
+                <g>
+                    {/* Data Pipe */}
+                    <path d="M 240 250 Q 400 250 560 250" stroke={colors.path} strokeWidth="2" strokeDasharray="6 6" fill="none" />
+                    
+                    {/* Data Packets Moving */}
+                    {[0, 1, 2, 3].map(i => (
+                        <g key={`data-${i}`}>
+                            <animateTransform attributeName="transform" type="translate" values="240 250; 560 250" dur="2.5s" begin={`${i * 0.6}s`} repeatCount="indefinite" />
+                            <rect x="-15" y="-12" width="30" height="24" rx="4" fill={colors.data} filter="url(#migration-glow)" />
+                            <text x="0" y="3" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">101</text>
+                        </g>
+                    ))}
+                </g>
 
-                {/* Validation Checkmarks */}
-                <div
-      className="absolute left-1/2 top-0 -translate-x-1/2"
-    >
-                    <div className="px-3 py-1 bg-green-500 text-white rounded-full text-[10px] font-bold flex items-center gap-1 shadow-md">
-                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        Verified Integrity
-                    </div>
-                </div>
-            </div>
+                {/* --- TARGET SYSTEM (Cloud) --- */}
+                <g>
+                    {/* Cloud Container */}
+                    <circle cx="630" cy="250" r="90" fill={colors.cloudLight} filter="url(#migration-shadow)" />
+                    <circle cx="630" cy="250" r="90" fill="none" stroke={colors.cloud} strokeWidth="2" strokeDasharray="10 5">
+                        <animateTransform attributeName="transform" type="rotate" from="0 630 250" to="360 630 250" dur="20s" repeatCount="indefinite" />
+                    </circle>
+                    
+                    {/* Cloud Icon */}
+                    <path d="M 600 250 Q 600 220 630 220 Q 660 220 660 250 Q 680 250 680 270 Q 680 290 660 290 L 600 290 Q 580 290 580 270 Q 580 250 600 250 Z" fill={colors.cloud} filter="url(#migration-shadow)" />
+                    
+                    <text x="630" y="380" textAnchor="middle" fontSize="12" fontWeight="700" fill={colors.cloud}>Target / Cloud</text>
+                </g>
 
-            {/* Background Stats */}
-            <div className="absolute bottom-6 left-8 right-8 flex justify-between px-4">
-                <div className="text-center">
-                    <div className="text-gray-400 font-bold text-sm tracking-tighter uppercase mb-1">Downtime</div>
-                    <div className="text-brand-blue font-bold text-lg">0%</div>
-                </div>
-                <div className="text-center">
-                    <div className="text-gray-400 font-bold text-sm tracking-tighter uppercase mb-1">Integrity</div>
-                    <div className="text-brand-blue font-bold text-lg">100%</div>
-                </div>
-                <div className="text-center">
-                    <div className="text-gray-400 font-bold text-sm tracking-tighter uppercase mb-1">Speed</div>
-                    <div className="text-brand-blue font-bold text-lg">Fast</div>
-                </div>
-            </div>
+                {/* --- VALIDATION OVERLAYS --- */}
+                <g>
+                    {/* Verified Integrity Badge */}
+                    <rect x="330" y="100" width="140" height="30" rx="15" fill={colors.success} filter="url(#migration-shadow)" />
+                    <text x="400" y="120" textAnchor="middle" fontSize="11" fontWeight="700" fill="white">✓ Verified Integrity</text>
+                </g>
+
+                {/* --- STATS PANEL --- */}
+                <g>
+                    <rect x="250" y="420" width="300" height="50" rx="8" fill="white" filter="url(#migration-shadow)" />
+                    
+                    <text x="300" y="440" textAnchor="middle" fontSize="10" fill={colors.textSecondary} fontWeight="600">DOWNTIME</text>
+                    <text x="300" y="458" textAnchor="middle" fontSize="16" fill={colors.cloud} fontWeight="700">0%</text>
+
+                    <text x="400" y="440" textAnchor="middle" fontSize="10" fill={colors.textSecondary} fontWeight="600">INTEGRITY</text>
+                    <text x="400" y="458" textAnchor="middle" fontSize="16" fill={colors.cloud} fontWeight="700">100%</text>
+
+                    <text x="500" y="440" textAnchor="middle" fontSize="10" fill={colors.textSecondary} fontWeight="600">SPEED</text>
+                    <text x="500" y="458" textAnchor="middle" fontSize="16" fill={colors.cloud} fontWeight="700">FAST</text>
+                </g>
+            </svg>
         </div>
     );
 };

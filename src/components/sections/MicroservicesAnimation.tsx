@@ -61,7 +61,9 @@ const MicroservicesAnimation = () => {    // Microservices Color Palette
                     const from = getServicePos(conn.from);
                     const to = getServicePos(conn.to);
                     return (
-                        <line key={`conn-${i}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={colors.connection} strokeWidth="2" />
+                        <line key={`conn-${i}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={colors.connection} strokeWidth="2" strokeDasharray="4 4">
+                            <animate attributeName="stroke-dashoffset" values="8; 0" dur="1s" repeatCount="indefinite" />
+                        </line>
                     );
                 })}
 
@@ -94,9 +96,12 @@ const MicroservicesAnimation = () => {    // Microservices Color Palette
                         </text>
 
                         {/* Contract Icon - Only during contract test phase */}
-                        <text x={service.x + service.size - 5} y={service.y - service.size + 15} fontSize="12">
-                            📜
-                        </text>
+                        <g opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1; 0; 0; 0" dur="9s" repeatCount="indefinite" />
+                            <text x={service.x + service.size - 5} y={service.y - service.size + 15} fontSize="12">
+                                📜
+                            </text>
+                        </g>
                     </g>
                 ))}
 
@@ -105,30 +110,37 @@ const MicroservicesAnimation = () => {    // Microservices Color Palette
                     const from = getServicePos(conn.from);
                     const to = getServicePos(conn.to);
                     return (
-                        <circle key={`packet-${i}`} r="4" fill={colors.dataPacket} filter="url(#glow)" />
+                        <g key={`packet-${i}`}>
+                            <animateTransform attributeName="transform" type="translate" values={`${from.x} ${from.y}; ${to.x} ${to.y}; ${from.x} ${from.y}`} dur="3s" begin={`${i * 0.4}s`} repeatCount="indefinite" />
+                            <circle r="4" fill={colors.dataPacket} filter="url(#glow)" />
+                        </g>
                     );
                 })}
 
                 {/* --- STATUS OVERLAYS --- */}
 
                 {/* Contract Testing Phase */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0; 0; 0" dur="9s" repeatCount="indefinite" />
                     <rect x="300" y="30" width="200" height="30" rx="15" fill={colors.contract} />
                     <text x="400" y="50" textAnchor="middle" fontSize="12" fontWeight="700" fill="white">CONTRACT VALIDATION</text>
                 </g>
 
                 {/* Chaos Engineering Phase */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 0; 1; 1; 0" dur="9s" repeatCount="indefinite" />
                     <rect x="580" y="150" width="140" height="40" rx="8" fill={colors.error} />
                     <text x="650" y="175" textAnchor="middle" fontSize="12" fontWeight="700" fill="white">SERVICE FAILURE</text>
 
                     <text x="600" y="140" fontSize="30">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
                         ⚡
                     </text>
                 </g>
 
                 {/* Resilience Phase */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 0; 0; 0; 1" dur="9s" repeatCount="indefinite" />
                     <rect x="250" y="30" width="300" height="40" rx="20" fill={colors.success} filter="url(#glow)" />
                     <text x="400" y="55" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">RESILIENCE RECOVERY OK</text>
                 </g>

@@ -63,8 +63,12 @@ const APITestingAnimation = () => {    // Corporate Color Palette
                     <text x="400" y="245" textAnchor="middle" fontSize="11" fill="white" opacity="0.9">Gateway</text>
 
                     {/* Animated rings */}
-                    <circle cx="400" cy="230" r="75" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.3" />
-                    <circle cx="400" cy="230" r="90" fill="none" stroke={colors.primary} strokeWidth="1" opacity="0.2" />
+                    <circle cx="400" cy="230" r="75" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.3">
+                        <animate attributeName="r" values="75; 85; 75" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="400" cy="230" r="90" fill="none" stroke={colors.primary} strokeWidth="1" opacity="0.2">
+                        <animate attributeName="r" values="90; 105; 90" dur="2.5s" repeatCount="indefinite" />
+                    </circle>
                 </g>
 
                 {/* --- BACKEND SERVICE --- */}
@@ -86,14 +90,24 @@ const APITestingAnimation = () => {    // Corporate Color Palette
 
                 {/* --- DATA PACKETS --- */}
                 {/* Request packet (Client to API) */}
-                <circle r="10" fill={colors.primary} filter="url(#api-shadow)" />
+                <circle r="10" fill={colors.primary} filter="url(#api-shadow)">
+                    <animate attributeName="cx" values="200; 340; 200" dur="2s" repeatCount="indefinite" />
+                    <animate attributeName="cy" values="230; 230; 230" dur="2s" repeatCount="indefinite" />
+                </circle>
 
-                {/* Response packet (Backend to Client) */}
-                <circle r="10" fill={colors.success} filter="url(#api-shadow)" />
+                {/* Response packet (API to Backend) */}
+                <circle r="10" fill={colors.success} filter="url(#api-shadow)">
+                    <animate attributeName="cx" values="460; 600; 460" dur="2s" begin="1s" repeatCount="indefinite" />
+                    <animate attributeName="cy" values="230; 230; 230" dur="2s" begin="1s" repeatCount="indefinite" />
+                </circle>
 
                 {/* --- CONNECTION LINES --- */}
-                <line x1="200" y1="230" x2="340" y2="230" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4" />
-                <line x1="460" y1="230" x2="600" y2="230" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4" />
+                <line x1="200" y1="230" x2="340" y2="230" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4">
+                    <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                </line>
+                <line x1="460" y1="230" x2="600" y2="230" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4">
+                    <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin="1s" repeatCount="indefinite" />
+                </line>
 
                 {/* --- ENDPOINTS PANEL --- */}
                 <g>
@@ -101,14 +115,14 @@ const APITestingAnimation = () => {    // Corporate Color Palette
                     <text x="70" y="378" fontSize="12" fontWeight="700" fill={colors.textPrimary}>API Endpoints</text>
 
                     {endpoints.map((ep, i) => (
-                        <g key={i}>
+                        <g key={i} className="animate-fade-in" style={{ animationDelay: `${i * 0.5}s` }}>
                             <rect x={70 + i * 170} y="395" width="155" height="55" rx="6" fill="#f8fafc" stroke={ep.color} strokeWidth="2" />
                             <rect x={70 + i * 170} y="395" width="50" height="20" rx="4" fill={ep.color} />
                             <text x={95 + i * 170} y="409" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">{ep.method}</text>
                             <text x={147 + i * 170} y="420" textAnchor="middle" fontSize="10" fontWeight="600" fill={colors.textPrimary}>{ep.path}</text>
 
-                            <rect x={80 + i * 170} y="425" width="35" height="16" rx="3" />
-                            <text x={97 + i * 170} y="437" textAnchor="middle" fontSize="8" fontWeight="600">{i === 3 ? "500" : ep.status}</text>
+                            <rect x={80 + i * 170} y="425" width="35" height="16" rx="3" fill={i === 3 ? colors.error : colors.success} opacity="0.2" />
+                            <text x={97 + i * 170} y="437" textAnchor="middle" fontSize="8" fontWeight="600" fill={i === 3 ? colors.error : colors.success}>{i === 3 ? "500" : ep.status}</text>
 
                             <text x={170 + i * 170} y="437" textAnchor="middle" fontSize="8" fill={colors.textSecondary}>{ep.time}</text>
                         </g>
@@ -123,15 +137,17 @@ const APITestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- ERROR ALERT --- */}
-                <g>
+                <g opacity="0">
                     <rect x="550" y="320" width="180" height="40" rx="8" fill={colors.error} />
                     <text x="640" y="345" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">⚠ DELETE /item: 500</text>
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="3s" begin="2s" repeatCount="indefinite" />
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
                     <rect x="280" y="90" width="240" height="45" rx="10" fill={colors.success} filter="url(#api-shadow)" />
                     <text x="400" y="118" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ All APIs Healthy</text>
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="5s" fill="freeze" />
                 </g>
 
             </svg>

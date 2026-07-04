@@ -55,9 +55,15 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                     <rect x="105" y="250" width="30" height="4" rx="2" fill={colors.towerBg} />
                     {/* Signal Waves */}
                     <g>
-                        <path d="M 90 175 Q 120 155 150 175" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.6" />
-                        <path d="M 80 165 Q 120 140 160 165" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.4" />
-                        <path d="M 70 155 Q 120 125 170 155" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.2" />
+                        <path d="M 90 175 Q 120 155 150 175" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.6">
+                            <animate attributeName="opacity" values="0.2; 0.8; 0.2" dur="1.5s" repeatCount="indefinite" />
+                        </path>
+                        <path d="M 80 165 Q 120 140 160 165" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.4">
+                            <animate attributeName="opacity" values="0.1; 0.6; 0.1" dur="1.5s" begin="0.2s" repeatCount="indefinite" />
+                        </path>
+                        <path d="M 70 155 Q 120 125 170 155" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.2">
+                            <animate attributeName="opacity" values="0; 0.4; 0" dur="1.5s" begin="0.4s" repeatCount="indefinite" />
+                        </path>
                     </g>
                     <text x="120" y="380" textAnchor="middle" fontSize="8" fill={colors.textSecondary}>
                         Tower A
@@ -72,9 +78,15 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                     <rect x="660" y="220" width="40" height="5" rx="2" fill={colors.towerBg} />
                     <rect x="665" y="250" width="30" height="4" rx="2" fill={colors.towerBg} />
                     <g>
-                        <path d="M 650 175 Q 680 155 710 175" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.6" />
-                        <path d="M 640 165 Q 680 140 720 165" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.4" />
-                        <path d="M 630 155 Q 680 125 730 155" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.2" />
+                        <path d="M 650 175 Q 680 155 710 175" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.6">
+                            <animate attributeName="opacity" values="0.2; 0.8; 0.2" dur="1.5s" repeatCount="indefinite" />
+                        </path>
+                        <path d="M 640 165 Q 680 140 720 165" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.4">
+                            <animate attributeName="opacity" values="0.1; 0.6; 0.1" dur="1.5s" begin="0.2s" repeatCount="indefinite" />
+                        </path>
+                        <path d="M 630 155 Q 680 125 730 155" fill="none" stroke={colors.primary} strokeWidth="2" opacity="0.2">
+                            <animate attributeName="opacity" values="0; 0.4; 0" dur="1.5s" begin="0.4s" repeatCount="indefinite" />
+                        </path>
                     </g>
                     <text x="680" y="380" textAnchor="middle" fontSize="8" fill={colors.textSecondary}>
                         Tower B
@@ -106,7 +118,9 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                     <rect x="548" y="310" width="54" height="25" rx="3" fill={colors.dataCenterBg} />
                     {/* Port Lights */}
                     {[0, 1, 2, 3].map((i) => (
-                        <circle key={`port-${i}`} cx={558 + i * 12} cy="328" r="3" fill={colors.success} />
+                        <circle key={`port-${i}`} cx={558 + i * 12} cy="328" r="3" fill={colors.success}>
+                            <animate attributeName="opacity" values="0.4; 1; 0.4" dur="1s" begin={`${i * 0.2}s`} repeatCount="indefinite" />
+                        </circle>
                     ))}
                     <text x="575" y="360" textAnchor="middle" fontSize="8" fill={colors.textSecondary}>
                         Switch Node
@@ -137,27 +151,36 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                 {/* === COMMUNICATION FLOW LINES === */}
                 <g>
                     {/* Tower A to Data Center */}
-                    <path d="M 145 190 Q 250 100 350 150" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4" fill="none" />
+                    <path d="M 145 190 Q 250 100 350 150" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="12; 0" dur="0.5s" repeatCount="indefinite" />
+                    </path>
                     {/* Data Center to Tower B */}
-                    <path d="M 450 150 Q 550 100 655 190" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4" fill="none" />
+                    <path d="M 450 150 Q 550 100 655 190" stroke={colors.primary} strokeWidth="2" strokeDasharray="8 4" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="12; 0" dur="0.5s" repeatCount="indefinite" />
+                    </path>
                     {/* Data Center to Switch */}
-                    <path d="M 450 180 Q 500 260 540 310" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none" />
+                    <path d="M 450 180 Q 500 260 540 310" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="9; 0" dur="0.5s" repeatCount="indefinite" />
+                    </path>
                 </g>
 
                 {/* === DATA PACKETS === */}
                 <g>
                     {/* Voice Packet */}
                     <g>
+                        <animateTransform attributeName="transform" type="translate" values="0 0; 200 -40; 0 0" dur="2s" repeatCount="indefinite" />
                         <circle cx="150" cy="140" r="8" fill={colors.success} />
                         <text x="150" y="143" textAnchor="middle" fontSize="8" fill="white">📞</text>
                     </g>
                     {/* Data Packet */}
                     <g>
-                        <rect x="180" cy="120" width="14" height="14" rx="3" fill={colors.primary} />
+                        <animateTransform attributeName="transform" type="translate" values="0 0; 270 40; 0 0" dur="3s" repeatCount="indefinite" />
+                        <rect x="180" y="120" width="14" height="14" rx="3" fill={colors.primary} />
                         <text x="187" y="131" textAnchor="middle" fontSize="8" fill="white">📊</text>
                     </g>
                     {/* Message Packet */}
                     <g>
+                        <animateTransform attributeName="transform" type="translate" values="0 0; 155 75; 0 0" dur="2.5s" repeatCount="indefinite" />
                         <rect x="500" y="115" width="14" height="14" rx="3" fill={colors.warning} />
                         <text x="507" y="126" textAnchor="middle" fontSize="8" fill="white">💬</text>
                     </g>
@@ -171,7 +194,10 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                     </text>
                     {/* Signal Bars */}
                     {[0, 1, 2, 3, 4].map((i) => (
-                        <rect key={`bar-${i}`} x={45 + i * 16} y={160 - (i + 1) * 12} width="10" height={(i + 1) * 12} rx="2" fill="#e2e8f0" />
+                        <rect key={`bar-${i}`} x={45 + i * 16} y={160 - (i + 1) * 12} width="10" height={(i + 1) * 12} rx="2" fill={colors.success}>
+                            <animate attributeName="height" values={`0; ${(i + 1) * 12}`} dur="1s" begin={`${0.2 * i}s`} fill="freeze" />
+                            <animate attributeName="y" values={`160; ${160 - (i + 1) * 12}`} dur="1s" begin={`${0.2 * i}s`} fill="freeze" />
+                        </rect>
                     ))}
                     <text x="80" y="175" textAnchor="middle" fontSize="10" fontWeight="bold" fill={colors.success}>
                         Excellent
@@ -186,8 +212,11 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                     </text>
                     {/* Speed Gauge */}
                     <circle cx="725" cy="455" r="25" fill="none" stroke="#e2e8f0" strokeWidth="6" />
-                    <circle cx="725" cy="455" r="25" fill="none" stroke={colors.success} strokeWidth="6" strokeDasharray="120 160" strokeLinecap="round" />
-                    <text x="725" y="460" textAnchor="middle" fontSize="11" fontWeight="bold" fill={colors.success}>
+                    <circle cx="725" cy="455" r="25" fill="none" stroke={colors.success} strokeWidth="6" strokeDasharray="160" strokeDashoffset="160" strokeLinecap="round">
+                        <animate attributeName="stroke-dashoffset" values="160; 40" dur="2s" begin="2s" fill="freeze" />
+                    </circle>
+                    <text x="725" y="460" textAnchor="middle" fontSize="11" fontWeight="bold" fill={colors.success} opacity="0">
+                        <animate attributeName="opacity" values="0; 1" dur="0.5s" begin="4s" fill="freeze" />
                         12ms
                     </text>
                 </g>
@@ -205,7 +234,8 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                 </g>
 
                 {/* === FAULT DETECTION ON SWITCH === */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="8s" repeatCount="indefinite" />
                     <circle cx="610" cy="295" r="14" fill={colors.error} opacity="0.2" />
                     <circle cx="610" cy="295" r="10" fill={colors.error} />
                     <text x="610" y="300" textAnchor="middle" fontSize="12" fill="white" fontWeight="bold">
@@ -218,7 +248,8 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                 </g>
 
                 {/* === SUCCESS CHECKMARKS === */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     {/* Checkmarks on towers and data center */}
                     {[
                         { x: 145, y: 170 },
@@ -236,7 +267,8 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                 </g>
 
                 {/* === COMPLETION SUCCESS BADGE === */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect
                         x="230"
                         y="550"
@@ -273,7 +305,9 @@ const TelecomTestingAnimation = () => {    // Corporate Color Palette - Telecom
                         { label: "Fault Check", phase: "faultDetect" },
                     ].map((item, i) => (
                         <g key={item.phase}>
-                            <circle cx="50" cy={248 + i * 22} r="6" fill="#e2e8f0" />
+                            <circle cx="50" cy={248 + i * 22} r="6" fill={colors.success}>
+                                <animate attributeName="fill" values={`#e2e8f0; ${colors.success}`} dur="0.5s" begin={`${1 + i}s`} fill="freeze" />
+                            </circle>
                             <text x="62" y={252 + i * 22} fontSize="9" fill={colors.textSecondary}>
                                 {item.label}
                             </text>

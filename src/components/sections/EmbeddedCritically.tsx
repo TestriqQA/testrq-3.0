@@ -10,7 +10,7 @@ const EmbeddedCritically: React.FC = () => {
             desc: "Validate that systems perform flawlessly in environments where failure is not an option (e.g., medical devices, automotive)."
         },
         {
-            icon: <FaUserShield className="text-blue-600" />,
+            icon: <FaUserShield className="text-brand-blue" />,
             title: "Guarantee Security",
             desc: "Identify and mitigate vulnerabilities in embedded software and firmware to protect against cyber threats."
         },
@@ -32,11 +32,11 @@ const EmbeddedCritically: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-white">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row gap-12 items-center">
                     <div className="lg:w-1/2">
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-8">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-8">
                             Why Embedded Testing is Critical: <br />
                             <span className="text-brand-blue">Beyond Functionality, Towards Safety and Security</span>
                         </h2>

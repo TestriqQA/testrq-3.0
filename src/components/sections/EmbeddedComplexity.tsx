@@ -4,10 +4,10 @@ import { FaCogs, FaShieldAlt, FaRocket, FaClock } from "react-icons/fa";
 
 const EmbeddedComplexity: React.FC = () => {
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-50 overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                         The Unseen Complexity: <br />
                         <span className="text-brand-blue">Guaranteeing Flawless Performance</span>
                     </h2>

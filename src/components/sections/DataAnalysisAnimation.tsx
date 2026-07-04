@@ -75,7 +75,9 @@ const DataAnalysisAnimation = () => {    // Corporate Color Palette (Purple/Blu
 
                 {/* --- FLOW ARROWS from sources to Collect --- */}
                 {dataSources.map((source, i) => (
-                    <path key={`flow-${i}`} d={`M ${source.x + 35} ${source.y} L 180 230`} fill="none" stroke={colors.dataFlow} strokeWidth="2" strokeDasharray="6 4" />
+                    <path key={`flow-${i}`} d={`M ${source.x + 35} ${source.y} L 180 230`} fill="none" stroke={colors.dataFlow} strokeWidth="2" strokeDasharray="6 4">
+                        <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+                    </path>
                 ))}
 
                 {/* --- PROCESSING STAGES --- */}
@@ -101,7 +103,9 @@ const DataAnalysisAnimation = () => {    // Corporate Color Palette (Purple/Blu
 
                         {/* Progress Bar */}
                         <rect x={stage.x - 35} y={stage.y + 30} width="70" height="8" rx="4" fill="rgba(255,255,255,0.3)" />
-                        <rect x={stage.x - 35} y={stage.y + 30} height="8" rx="4" fill="rgba(255,255,255,0.9)" />
+                        <rect x={stage.x - 35} y={stage.y + 30} width="0" height="8" rx="4" fill="rgba(255,255,255,0.9)">
+                            <animate attributeName="width" values="0; 70" dur="1s" begin={`${i * 1.5}s`} fill="freeze" />
+                        </rect>
                     </g>
                 ))}
 
@@ -111,7 +115,10 @@ const DataAnalysisAnimation = () => {    // Corporate Color Palette (Purple/Blu
                 ))}
 
                 {/* --- DATA PACKET --- */}
-                <circle r="8" fill={colors.primary} filter="url(#data-glow)" />
+                <circle r="8" fill={colors.primary} filter="url(#data-glow)">
+                    <animate attributeName="cx" values="180; 370; 520; 670; 180" dur="6s" repeatCount="indefinite" />
+                    <animate attributeName="cy" values="230; 230; 230; 230; 230" dur="6s" repeatCount="indefinite" />
+                </circle>
 
                 {/* --- INSIGHTS CHART --- */}
                 <g>
@@ -126,7 +133,10 @@ const DataAnalysisAnimation = () => {    // Corporate Color Palette (Purple/Blu
                         { x: 690, h: 80, color: colors.chart4 },
                         { x: 720, h: 65, color: colors.primary },
                     ].map((bar, i) => (
-                        <rect key={`bar-${i}`} x={bar.x} y={430 - bar.h} width="20" height={bar.h} rx="3" fill={bar.color} />
+                        <rect key={`bar-${i}`} x={bar.x} y="430" width="20" height="0" rx="3" fill={bar.color}>
+                            <animate attributeName="height" values={`0; ${bar.h}`} dur="1s" begin={`${i * 0.2 + 4.5}s`} fill="freeze" />
+                            <animate attributeName="y" values={`430; ${430 - bar.h}`} dur="1s" begin={`${i * 0.2 + 4.5}s`} fill="freeze" />
+                        </rect>
                     ))}
                 </g>
 
@@ -146,20 +156,24 @@ const DataAnalysisAnimation = () => {    // Corporate Color Palette (Purple/Blu
 
                     <text x="70" y="390" fontSize="10" fill={colors.textSecondary}>Accuracy</text>
                     <rect x="70" y="395" width="110" height="8" rx="4" fill="#e2e8f0" />
-                    <rect x="70" y="395" height="8" rx="4" fill={colors.success} />
+                    <rect x="70" y="395" width="0" height="8" rx="4" fill={colors.success}>
+                        <animate attributeName="width" values="0; 108" dur="1.5s" begin="2s" fill="freeze" />
+                    </rect>
                     <text x="70" y="420" fontSize="9" fill={colors.success}>98.5%</text>
 
                     <text x="70" y="433" fontSize="10" fill={colors.textSecondary}>Completeness</text>
                 </g>
 
                 {/* --- ANOMALY ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="3s" repeatCount="indefinite" />
                     <rect x="460" y="140" width="140" height="40" rx="8" fill={colors.error} />
                     <text x="530" y="165" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">⚠ Outlier Detected</text>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect x="280" y="40" width="240" height="45" rx="10" fill={colors.success} filter="url(#data-shadow)" />
                     <text x="400" y="68" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ Analysis Complete</text>
                 </g>

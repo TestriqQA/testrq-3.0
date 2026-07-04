@@ -155,22 +155,35 @@ const IoTApplianceTestingAnimation = () => {    // Corporate Color Palette - Io
                 {/* === CONNECTIVITY LINES === */}
                 <g>
                     {/* Lines from devices to cloud */}
-                    <path d="M 280 165 Q 280 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none" />
-                    <path d="M 385 165 Q 385 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none" />
-                    <path d="M 480 140 Q 480 90 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none" />
-                    <path d="M 572 175 Q 572 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none" />
-                    <path d="M 657 155 Q 620 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none" />
+                    <path d="M 280 165 Q 280 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="9; 0" dur="1s" repeatCount="indefinite" />
+                    </path>
+                    <path d="M 385 165 Q 385 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="9; 0" dur="1s" repeatCount="indefinite" />
+                    </path>
+                    <path d="M 480 140 Q 480 90 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="9; 0" dur="1s" repeatCount="indefinite" />
+                    </path>
+                    <path d="M 572 175 Q 572 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="9; 0" dur="1s" repeatCount="indefinite" />
+                    </path>
+                    <path d="M 657 155 Q 620 100 400 55" stroke={colors.secondary} strokeWidth="2" strokeDasharray="6 3" fill="none">
+                        <animate attributeName="stroke-dashoffset" values="9; 0" dur="1s" repeatCount="indefinite" />
+                    </path>
                 </g>
 
                 {/* === SENSOR DATA PULSES === */}
                 <g>
                     {[280, 385, 480, 572, 657].map((x, i) => (
-                        <circle key={`pulse-${i}`} cx={x} cy={i === 2 ? 130 : i === 4 ? 145 : 155} r="6" fill={colors.success} />
+                        <circle key={`pulse-${i}`} cx={x} cy={i === 2 ? 130 : i === 4 ? 145 : 155} r="6" fill={colors.success}>
+                            <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" begin={`${i * 0.2}s`} repeatCount="indefinite" />
+                        </circle>
                     ))}
                 </g>
 
                 {/* === SECURITY SCAN SHIELD === */}
                 <g>
+                    <animate attributeName="opacity" values="0.6; 1; 0.6" dur="2s" repeatCount="indefinite" />
                     <path
                         d="M 0 -25 L 20 -15 L 20 10 L 0 25 L -20 10 L -20 -15 Z"
                         fill={colors.primary}
@@ -182,7 +195,8 @@ const IoTApplianceTestingAnimation = () => {    // Corporate Color Palette - Io
                 </g>
 
                 {/* === DEFECT DETECTION ON WASHER === */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="2s" repeatCount="indefinite" />
                     <circle cx="685" cy="165" r="14" fill={colors.error} opacity="0.2" />
                     <circle cx="685" cy="165" r="10" fill={colors.error} />
                     <text x="685" y="170" textAnchor="middle" fontSize="12" fill="white" fontWeight="bold">
@@ -204,7 +218,8 @@ const IoTApplianceTestingAnimation = () => {    // Corporate Color Palette - Io
                         { x: 595, y: 180 },
                         { x: 680, y: 165 },
                     ].map((pos, i) => (
-                        <g key={`check-${i}`}>
+                        <g key={`check-${i}`} opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${5 + i * 0.2}s`} fill="freeze" />
                             <circle cx={pos.x} cy={pos.y} r="10" fill={colors.success} />
                             <text x={pos.x} y={pos.y + 4} textAnchor="middle" fontSize="10" fill="white">
                                 ✓
@@ -214,7 +229,8 @@ const IoTApplianceTestingAnimation = () => {    // Corporate Color Palette - Io
                 </g>
 
                 {/* === COMPLETION SUCCESS BADGE === */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin="6s" fill="freeze" />
                     <rect
                         x="230"
                         y="560"
@@ -251,7 +267,9 @@ const IoTApplianceTestingAnimation = () => {    // Corporate Color Palette - Io
                         { label: "Firmware", phase: "defectDetect" },
                     ].map((item, i) => (
                         <g key={item.phase}>
-                            <circle cx="50" cy={450 + i * 25} r="6" fill="#e2e8f0" />
+                            <circle cx="50" cy={450 + i * 25} r="6" fill="#e2e8f0">
+                                <animate attributeName="fill" values={`#e2e8f0; ${colors.success}`} dur="0.5s" begin={`${i * 1 + 1}s`} fill="freeze" />
+                            </circle>
                             <text x="62" y={454 + i * 25} fontSize="9" fill={colors.textSecondary}>
                                 {item.label}
                             </text>

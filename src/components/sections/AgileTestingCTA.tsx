@@ -14,7 +14,7 @@ const AgileTestingCTA: React.FC = () => {
     ];
 
     return (
-        <section className="bg-gradient-to-br from-sky-600 to-indigo-700 text-white py-20 px-8 md:px-12 lg:px-24 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-brand-blue to-indigo-700 text-white py-16 px-8 md:px-12 lg:px-24 relative overflow-hidden">
             {/* Abstract Background Shapes */}
             <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-sky-400/20 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
@@ -28,7 +28,7 @@ const AgileTestingCTA: React.FC = () => {
                             Scale Your Sprint Velocity
                         </div>
 
-                        <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
                             Ready to Embed <span className="text-sky-300">Continuous Quality</span> Into Your Agile Process?
                         </h2>
 
@@ -50,7 +50,7 @@ const AgileTestingCTA: React.FC = () => {
                         <div className="pt-8">
                             <Link
                                 href="/contact-us"
-                                className="inline-flex items-center justify-center gap-4 px-12 py-5 bg-white text-sky-600 font-black rounded-[2rem] hover:bg-sky-50 transition-all shadow-[0_20px_50px_rgba(255,255,255,0.2)] transform hover:-translate-y-1 active:scale-95 text-lg"
+                                className="inline-flex items-center justify-center gap-4 px-12 py-5 bg-white text-brand-blue font-black rounded-xl hover:bg-gray-100 transition-all shadow-[0_20px_50px_rgba(255,255,255,0.2)] transform hover:-translate-y-1 active:scale-95 text-lg cursor-pointer"
                             >
                                 <span>Start Your Sprint</span>
                                 <FaArrowRight className="w-5 h-5" />
@@ -60,26 +60,26 @@ const AgileTestingCTA: React.FC = () => {
 
                     {/* Right Content - Visual Metrics Card */}
                     <div className="relative group">
-                        <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-6 sm:p-8 md:p-12 shadow-2xl border border-white/20 relative overflow-hidden">
+                        <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/20 relative overflow-hidden">
                             {/* Accent line */}
                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-sky-400 to-indigo-500"></div>
 
                             <div className="space-y-10">
                                 <div className="text-center">
-                                    <div className="text-xs font-black text-sky-600 uppercase tracking-widest mb-2">Quality Maturity</div>
+                                    <div className="text-xs font-black text-brand-blue uppercase tracking-widest mb-2">Quality Maturity</div>
                                     <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 break-words">Tier 1 Compliance</div>
                                 </div>
 
                                 <div className="space-y-6">
                                     {[
-                                        { label: "Automation Readiness", val: 100, color: "bg-sky-500" },
+                                        { label: "Automation Readiness", val: 100, color: "bg-brand-blue" },
                                         { label: "Deployment Velocity", val: 95, color: "bg-blue-600" },
                                         { label: "Regression Speed", val: 98, color: "bg-indigo-600" },
                                     ].map((item, i) => (
                                         <div key={i} className="space-y-2">
                                             <div className="flex justify-between font-black text-xs text-gray-400 uppercase tracking-tight">
                                                 <span>{item.label}</span>
-                                                <span className="text-sky-600">{item.val}%</span>
+                                                <span className="text-brand-blue">{item.val}%</span>
                                             </div>
                                             <div className="h-3 w-full bg-gray-100 rounded-full overflow-hidden border border-gray-50">
                                                 <div

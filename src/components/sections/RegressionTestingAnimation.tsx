@@ -62,6 +62,7 @@ const RegressionTestingAnimation = () => {    // Corporate Color Palette
 
                 {/* --- NEW CHANGE INDICATOR --- */}
                 <g>
+                    <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
                     <rect x="265" y="160" width="90" height="60" rx="6" fill="#fef9c3" stroke={colors.warning} strokeWidth="2" />
                     <text x="310" y="185" textAnchor="middle" fontSize="9" fontWeight="600" fill={colors.warning}>NEW</text>
                     <text x="310" y="200" textAnchor="middle" fontSize="8" fill={colors.textSecondary}>Feature</text>
@@ -85,13 +86,42 @@ const RegressionTestingAnimation = () => {    // Corporate Color Palette
 
                             {/* Progress bar */}
                             <rect x="630" y={98 + i * 42} width="60" height="8" rx="2" fill="#e2e8f0" />
-                            <rect x="630" y={98 + i * 42} width="0" height="8" rx="2" />
+                            <rect x="630" y={98 + i * 42} width="0" height="8" rx="2" fill={mod.status === "pass" ? colors.success : colors.error}>
+                                <animate attributeName="width" values={mod.status === "pass" ? "0; 60" : "0; 30; 30; 60"} dur={mod.status === "pass" ? "1.5s" : "8s"} begin={`${1 + i * 0.3}s`} repeatCount={mod.status === "pass" ? "1" : "indefinite"} fill="freeze" />
+                                {mod.status === "fail" && (
+                                    <animate attributeName="fill" values={`${colors.error}; ${colors.error}; ${colors.success}; ${colors.success}`} dur="8s" repeatCount="indefinite" />
+                                )}
+                            </rect>
 
                             {/* Status indicator */}
-                            <circle cx="720" cy={107 + i * 42} r="10" />
-                            <text x="720" y={111 + i * 42} textAnchor="middle" fontSize="9" fill="white">
-                                {mod.status === "pass" ? "✓" : "✗"}
-                            </text>
+                            <g opacity="0">
+                                {mod.status === "pass" ? (
+                                    <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${2.5 + i * 0.3}s`} fill="freeze" />
+                                ) : (
+                                    <animate attributeName="opacity" values="0; 1; 1; 1; 1" dur="8s" repeatCount="indefinite" />
+                                )}
+                                
+                                {mod.status === "pass" ? (
+                                    <>
+                                        <circle cx="720" cy={107 + i * 42} r="10" fill={colors.success} />
+                                        <text x="720" y={111 + i * 42} textAnchor="middle" fontSize="9" fill="white">✓</text>
+                                    </>
+                                ) : (
+                                    <>
+                                        <circle cx="720" cy={107 + i * 42} r="10" fill={colors.error}>
+                                            <animate attributeName="fill" values={`${colors.error}; ${colors.error}; ${colors.success}; ${colors.success}`} dur="8s" repeatCount="indefinite" />
+                                        </circle>
+                                        <text x="720" y="111 + i * 42" textAnchor="middle" fontSize="9" fill="white">
+                                            <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                                            ✗
+                                        </text>
+                                        <text x="720" y="111 + i * 42" textAnchor="middle" fontSize="9" fill="white" opacity="0">
+                                            <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                                            ✓
+                                        </text>
+                                    </>
+                                )}
+                            </g>
                         </g>
                     ))}
                 </g>
@@ -110,7 +140,33 @@ const RegressionTestingAnimation = () => {    // Corporate Color Palette
                     ].map((stat, i) => (
                         <g key={stat.label}>
                             <rect x={80 + i * 175} y="375" width="150" height="65" rx="8" fill="#f8fafc" stroke={stat.color} strokeWidth="2" />
-                            <text x={155 + i * 175} y="415" textAnchor="middle" fontSize="18" fontWeight="700" fill={stat.color}>{stat.value}</text>
+                            
+                            {stat.label === "Failed" ? (
+                                <>
+                                    <text x={155 + i * 175} y="415" textAnchor="middle" fontSize="18" fontWeight="700" fill={stat.color}>
+                                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                                        16
+                                    </text>
+                                    <text x={155 + i * 175} y="415" textAnchor="middle" fontSize="18" fontWeight="700" fill={colors.success} opacity="0">
+                                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                                        0
+                                    </text>
+                                </>
+                            ) : stat.label === "Passed" ? (
+                                <>
+                                    <text x={155 + i * 175} y="415" textAnchor="middle" fontSize="18" fontWeight="700" fill={stat.color}>
+                                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                                        1,231
+                                    </text>
+                                    <text x={155 + i * 175} y="415" textAnchor="middle" fontSize="18" fontWeight="700" fill={stat.color} opacity="0">
+                                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                                        1,247
+                                    </text>
+                                </>
+                            ) : (
+                                <text x={155 + i * 175} y="415" textAnchor="middle" fontSize="18" fontWeight="700" fill={stat.color}>{stat.value}</text>
+                            )}
+                            
                             <text x={155 + i * 175} y="432" textAnchor="middle" fontSize="10" fill={colors.textSecondary}>{stat.label}</text>
                         </g>
                     ))}
@@ -124,14 +180,16 @@ const RegressionTestingAnimation = () => {    // Corporate Color Palette
                 </g>
 
                 {/* --- REGRESSION FAILURE ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="8s" repeatCount="indefinite" />
                     <rect x="250" y="255" width="200" height="45" rx="8" fill={colors.error} />
                     <text x="350" y="275" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">⚠ Regression Detected</text>
                     <text x="350" y="290" textAnchor="middle" fontSize="9" fill="white" opacity="0.9">Payment Flow: 16 failures</text>
                 </g>
 
                 {/* --- SUCCESS BADGE --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="270" y="255" width="260" height="50" rx="10" fill={colors.success} filter="url(#reg-shadow)" />
                     <text x="400" y="285" textAnchor="middle" fontSize="14" fontWeight="700" fill="white">✓ All Regressions Resolved</text>
                 </g>

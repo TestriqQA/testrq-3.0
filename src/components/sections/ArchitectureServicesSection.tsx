@@ -6,7 +6,7 @@ import { FaNetworkWired, FaServer, FaCode, FaRocket, FaExchangeAlt } from "react
 const ArchitectureServicesSection: React.FC = () => {
     const services = [
         {
-            icon: <FaNetworkWired className="text-4xl text-blue-500" />,
+            icon: <FaNetworkWired className="text-4xl text-brand-blue" />,
             title: "1. Microservices & Distributed Systems Review",
             description: "Navigate the complexities of distributed computing with our microservices architecture inspection. We evaluate service boundaries, communication patterns, and data consistency models to ensure your system remains loosely coupled and highly scalable.",
         },
@@ -33,12 +33,12 @@ const ArchitectureServicesSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-white">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
                     <div className="w-full lg:w-1/3 relative lg:sticky lg:top-24 z-10 bg-white lg:bg-transparent">
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
-                            Comprehensive <span className="text-[theme(color.brand.blue)]">Architecture Inspection</span> Solutions
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
+                            Comprehensive <span className="text-brand-blue">Architecture Inspection</span> Solutions
                         </h2>
                         <p className="text-gray-600 text-lg mb-12">
                             Testriq offers a full suite of services to ensure your application architecture is a catalyst for growth, not a constraint.
@@ -55,7 +55,7 @@ const ArchitectureServicesSection: React.FC = () => {
                         {services.map((service, index) => (
                             <div
       key={index}
-      className="group relative flex flex-col sm:flex-row gap-6 sm:gap-8 p-6 sm:p-8 rounded-2xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100 shadow-sm hover:shadow-md"
+      className="group relative flex flex-col sm:flex-row gap-6 sm:gap-8 p-6 sm:p-8 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100 shadow-sm hover:shadow-md"
     >
                                 <div className="flex-shrink-0">
                                     <div className="w-16 h-16 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">

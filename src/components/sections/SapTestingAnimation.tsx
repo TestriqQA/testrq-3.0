@@ -54,7 +54,9 @@ const SapTestingAnimation = () => {    // Corporate Color Palette (SAP Blue/Ora
                     {/* Hub outer ring */}
                     <circle cx={hubCenter.x} cy={hubCenter.y} r="65" fill="white" stroke={colors.sapBlue} strokeWidth="4" filter="url(#sap-shadow)" />
                     {/* Hub inner */}
-                    <circle cx={hubCenter.x} cy={hubCenter.y} r="50" fill="url(#sap-hub-gradient)" />
+                    <circle cx={hubCenter.x} cy={hubCenter.y} r="50" fill="url(#sap-hub-gradient)">
+                        <animate attributeName="r" values="48; 52; 48" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     {/* SAP Logo placeholder */}
                     <text x={hubCenter.x} y={hubCenter.y - 8} textAnchor="middle" fontSize="16" fontWeight="700" fill="white">SAP</text>
                     <text x={hubCenter.x} y={hubCenter.y + 12} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.9)">S/4HANA</text>
@@ -62,7 +64,9 @@ const SapTestingAnimation = () => {    // Corporate Color Palette (SAP Blue/Ora
 
                 {/* --- CONNECTION LINES TO MODULES --- */}
                 {modules.map((module, i) => (
-                    <line key={`line-${module.id}`} x1={hubCenter.x} y1={hubCenter.y} x2={module.x} y2={module.y} stroke={colors.dataFlow} strokeWidth="2" strokeDasharray="6 4" />
+                    <line key={`line-${module.id}`} x1={hubCenter.x} y1={hubCenter.y} x2={module.x} y2={module.y} stroke={colors.dataFlow} strokeWidth="2" strokeDasharray="6 4">
+                        <animate attributeName="stroke-dashoffset" values="10; 0" dur="1s" repeatCount="indefinite" />
+                    </line>
                 ))}
 
                 {/* --- SAP MODULES --- */}
@@ -80,13 +84,23 @@ const SapTestingAnimation = () => {    // Corporate Color Palette (SAP Blue/Ora
                         </text>
 
                         {/* Status indicator */}
-                        <circle cx={module.x + 35} cy={module.y - 25} r="8" fill={colors.success} stroke="white" strokeWidth="2" />
+                        <g opacity="0">
+                            <animate attributeName="opacity" values="0; 1; 1" dur="1s" begin={`${1 + i * 0.5}s`} fill="freeze" />
+                            <circle cx={module.x + 35} cy={module.y - 25} r="8" fill={module.id === "scm" ? colors.error : colors.success} stroke="white" strokeWidth="2">
+                                {module.id === "scm" && (
+                                    <animate attributeName="fill" values={`${colors.error}; ${colors.error}; ${colors.success}; ${colors.success}`} dur="8s" repeatCount="indefinite" />
+                                )}
+                            </circle>
+                        </g>
                     </g>
                 ))}
 
                 {/* --- DATA FLOW PACKETS --- */}
                 {modules.map((module, i) => (
-                    <circle key={`packet-${module.id}`} r="5" fill={module.color} filter="url(#sap-glow)" />
+                    <g key={`packet-${module.id}`}>
+                        <animateTransform attributeName="transform" type="translate" values={`${hubCenter.x} ${hubCenter.y}; ${module.x} ${module.y}; ${hubCenter.x} ${hubCenter.y}`} dur="3s" begin={`${i * 0.4}s`} repeatCount="indefinite" />
+                        <circle r="5" fill={module.color} filter="url(#sap-glow)" />
+                    </g>
                 ))}
 
                 {/* --- QA ENGINEER --- */}
@@ -115,28 +129,40 @@ const SapTestingAnimation = () => {    // Corporate Color Palette (SAP Blue/Ora
                         <React.Fragment key={`result-${i}`}>
                             <text x="510" y={bar.y + 4} fontSize="8" fill={colors.textSecondary}>{bar.label}</text>
                             <rect x="510" y={bar.y + 8} width="100" height="6" rx="3" fill="#e2e8f0" />
-                            <rect x="510" y={bar.y + 8} height="6" rx="3" fill={bar.color} />
+                            <rect x="510" y={bar.y + 8} width="0" height="6" rx="3" fill={bar.color}>
+                                <animate attributeName="width" values={`0; ${bar.w}`} dur="2s" begin={`${2 + i * 0.5}s`} fill="freeze" />
+                            </rect>
                         </React.Fragment>
                     ))}
                 </g>
 
                 {/* --- DEFECT ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="8s" repeatCount="indefinite" />
                     <rect x="240" y="380" width="160" height="40" rx="8" fill={colors.error} />
                     <text x="320" y="405" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">⚠ SCM Defect Detected</text>
                 </g>
 
                 {/* --- DEFECT LOG PANEL --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="480" y="320" width="140" height="80" rx="8" fill="white" filter="url(#sap-shadow)" />
                     <text x="550" y="340" textAnchor="middle" fontSize="10" fontWeight="700" fill={colors.textPrimary}>Defect Log</text>
                     <text x="490" y="360" fontSize="9" fill={colors.error}>• SCM-4521: Data sync error</text>
                     <text x="490" y="375" fontSize="9" fill={colors.textSecondary}>Priority: High</text>
-                    <text x="490" y="390" fontSize="9" fill={colors.warning}>Status: In Progress</text>
+                    <g>
+                        <animate attributeName="opacity" values="1; 1; 0; 0" dur="8s" repeatCount="indefinite" />
+                        <text x="490" y="390" fontSize="9" fill={colors.warning}>Status: In Progress</text>
+                    </g>
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
+                        <text x="490" y="390" fontSize="9" fill={colors.success}>Status: Resolved</text>
+                    </g>
                 </g>
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1" dur="8s" repeatCount="indefinite" />
                     <rect x="170" y="20" width="300" height="40" rx="10" fill={colors.success} filter="url(#sap-shadow)" />
                     <text x="320" y="46" textAnchor="middle" fontSize="13" fontWeight="700" fill="white">✓ SAP System Validated</text>
                 </g>
@@ -144,7 +170,9 @@ const SapTestingAnimation = () => {    // Corporate Color Palette (SAP Blue/Ora
                 {/* --- LIVE INDICATOR --- */}
                 <g>
                     <rect x="20" y="20" width="80" height="24" rx="12" fill={colors.sapBlue} />
-                    <circle cx="35" cy="32" r="5" fill="white" />
+                    <circle cx="35" cy="32" r="5" fill="white">
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="65" y="37" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">TESTING</text>
                 </g>
 

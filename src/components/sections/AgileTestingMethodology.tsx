@@ -28,7 +28,7 @@ const AgileTestingMethodology: React.FC = () => {
                 "Tool Selection",
             ],
             color: "sky",
-            gradient: "from-sky-500 to-sky-600",
+            gradient: "from-brand-blue to-brand-blue/80",
             duration: "Sprint 0 / Day 1",
         },
         {
@@ -98,12 +98,12 @@ const AgileTestingMethodology: React.FC = () => {
     ];
 
     return (
-        <section className="bg-gradient-to-br from-white to-sky-50 py-20 px-8 md:px-12 lg:px-24">
+        <section className="bg-gray-50 py-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
                         Our Proven{" "}
-                        <span className="text-sky-600">Agile QA Methodology</span>
+                        <span className="text-brand-blue">Agile QA Methodology</span>
                     </h2>
                     <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
                         Our systematic approach ensures quality is baked into every sprint, not bolted on at the end.
@@ -120,7 +120,7 @@ const AgileTestingMethodology: React.FC = () => {
                                 <button
                                     key={index}
                                     onClick={() => setActiveStep(index)}
-                                    className={`w-20 h-20 rounded-2xl flex items-center justify-center text-white font-bold transition-all duration-500 transform ${activeStep === index ? `bg-gradient-to-br ${step.gradient} shadow-2xl scale-125 rotate-6` : activeStep > index ? "bg-sky-500" : "bg-gray-300"
+                                    className={`w-20 h-20 rounded-2xl flex items-center justify-center text-white font-bold transition-all duration-500 transform ${activeStep === index ? `bg-gradient-to-br ${step.gradient} shadow-2xl scale-125 rotate-6` : activeStep > index ? "bg-brand-blue" : "bg-gray-300"
                                         }`}
                                 >
                                     {activeStep > index ? <FaCheckCircle className="text-2xl" /> : step.icon}
@@ -129,7 +129,7 @@ const AgileTestingMethodology: React.FC = () => {
                         </div>
                         {/* Progress Fill */}
                         <div
-                            className="absolute top-1/2 left-0 h-1 bg-sky-500 -translate-y-1/2 rounded-full transition-all duration-700"
+                            className="absolute top-1/2 left-0 h-1 bg-brand-blue -translate-y-1/2 rounded-full transition-all duration-700"
                             style={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}
                         ></div>
                     </div>
@@ -140,7 +140,7 @@ const AgileTestingMethodology: React.FC = () => {
                             <button
                                 key={index}
                                 onClick={() => setActiveStep(index)}
-                                className={`flex-shrink-0 px-6 py-3 rounded-xl font-bold transition-all ${activeStep === index ? `bg-sky-600 text-white shadow-lg` : "bg-white text-gray-500 border border-gray-100"
+                                className={`flex-shrink-0 px-6 py-3 rounded-xl font-bold transition-all ${activeStep === index ? `bg-brand-blue text-white shadow-lg` : "bg-white text-gray-500 border border-gray-100"
                                     }`}
                             >
                                 {step.shortTitle}
@@ -150,7 +150,7 @@ const AgileTestingMethodology: React.FC = () => {
                 </div>
 
                 {/* Detailed Content Card */}
-                <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-sky-50">
+                <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                     <div className="grid lg:grid-cols-2">
                         {/* Left Content */}
                         <div className="p-12 lg:p-16 space-y-8">
@@ -159,19 +159,19 @@ const AgileTestingMethodology: React.FC = () => {
                                     {steps[activeStep].number}
                                 </div>
                                 <div>
-                                    <div className="text-sky-600 font-black text-xs uppercase tracking-widest mb-1 italic">Phase {steps[activeStep].number}</div>
+                                    <div className="text-brand-blue font-black text-xs uppercase tracking-widest mb-1 italic">Phase {steps[activeStep].number}</div>
                                     <h3 className="text-3xl font-black text-gray-900">{steps[activeStep].title}</h3>
                                 </div>
                             </div>
 
-                            <p className="text-gray-600 text-xl leading-relaxed italic border-l-4 border-sky-200 pl-6">
+                            <p className="text-gray-600 text-xl leading-relaxed italic border-l-4 border-brand-blue/30 pl-6">
                                 &quot;{steps[activeStep].description}&quot;
                             </p>
 
                             <div className="grid md:grid-cols-2 gap-4">
                                 {steps[activeStep].details.map((detail, idx) => (
-                                    <div key={idx} className="flex items-center p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:bg-sky-50 transition-colors group">
-                                        <div className={`w-2 h-2 rounded-full mr-3 bg-sky-600 group-hover:scale-150 transition-transform`} />
+                                    <div key={idx} className="flex items-center p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:bg-gray-100 transition-colors group">
+                                        <div className={`w-2 h-2 rounded-full mr-3 bg-brand-blue group-hover:scale-150 transition-transform`} />
                                         <span className="text-gray-700 font-bold text-sm tracking-tight">{detail}</span>
                                     </div>
                                 ))}
@@ -180,7 +180,7 @@ const AgileTestingMethodology: React.FC = () => {
                             <div className="flex justify-between items-center pt-8 border-t border-gray-100">
                                 <div className="flex items-center gap-2">
                                     <span className="text-xs font-bold text-gray-400 uppercase tracking-widest items-center flex">Timeline:</span>
-                                    <span className="text-sky-600 font-black text-sm tracking-tight">{steps[activeStep].duration}</span>
+                                    <span className="text-brand-blue font-black text-sm tracking-tight">{steps[activeStep].duration}</span>
                                 </div>
                                 <button
                                     onClick={() => setActiveStep((activeStep + 1) % steps.length)}

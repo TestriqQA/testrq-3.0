@@ -82,7 +82,9 @@ const ExploratoryTestingAnimation = () => {    // Color Palette
                 </g>
 
                 {/* --- TRAVERSAL PATH (Bug Path) --- */}
-                <path d={`M ${nodes[0].x} ${nodes[0].y} L ${nodes[1].x} ${nodes[1].y} L ${nodes[3].x} ${nodes[3].y} L ${nodes[7].x} ${nodes[7].y}`} fill="none" stroke={colors.nodeActive} strokeWidth="4" strokeLinecap="round" filter="url(#glow-filter)" />
+                <path d={`M ${nodes[0].x} ${nodes[0].y} L ${nodes[1].x} ${nodes[1].y} L ${nodes[3].x} ${nodes[3].y} L ${nodes[7].x} ${nodes[7].y}`} fill="none" stroke={colors.nodeActive} strokeWidth="4" strokeLinecap="round" filter="url(#glow-filter)" strokeDasharray="800" strokeDashoffset="800">
+                    <animate attributeName="stroke-dashoffset" values="800; 0" dur="3s" repeatCount="indefinite" />
+                </path>
 
                 {/* --- NODES --- */}
                 {nodes.map((node, i) => (
@@ -105,23 +107,34 @@ const ExploratoryTestingAnimation = () => {    // Color Palette
 
                     {/* Thinking Particles */}
                     {[0, 1, 2].map(i => (
-                        <circle key={`thought-${i}`} cx="400" cy="500" r="4" fill={colors.nodeActive} />
+                        <circle key={`thought-${i}`} cx="400" cy="500" r="4" fill={colors.nodeActive} opacity="0">
+                            <animate attributeName="cy" values="500; 450" dur="2s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+                            <animate attributeName="opacity" values="0; 1; 0" dur="2s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+                            <animate attributeName="cx" values={`400; ${380 + i * 20}`} dur="2s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+                        </circle>
                     ))}
                 </g>
 
                 {/* --- BUG INDICATOR --- */}
-                <g>
+                <g transform="translate(180, 470)" opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="6s" repeatCount="indefinite" />
                     <path d="M16 26C16 26 18 26 20 26C22 26 24 26 24 26C24.55 26 25 26.45 25 27V42H15V27C15 26.45 15.45 26 16 26ZM15 42H25V43C25 45.76 22.76 48 20 48C17.24 48 15 45.76 15 43V42ZM20 25C22.76 25 25 22.76 25 20C25 17.24 22.76 15 20 15C17.24 15 15 17.24 15 20C15 22.76 17.24 25 20 25ZM13 28H10V26H13V28ZM30 28H27V26H30V28ZM13 36H9V34H13V36ZM31 36H27V34H31V36ZM13 44H10V42H13V44ZM30 44H27V42H30V44Z"
-                        fill={colors.nodeBug} transform="translate(0,0)" />
+                        fill={colors.nodeBug} />
 
-                    <circle cx="20" cy="30" r="30" stroke={colors.nodeBug} strokeWidth="2" fill="none" opacity="0.5" />
+                    <circle cx="20" cy="30" r="30" stroke={colors.nodeBug} strokeWidth="2" fill="none" opacity="0.5">
+                        <animate attributeName="r" values="20; 40" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="1; 0" dur="1s" repeatCount="indefinite" />
+                    </circle>
                 </g>
 
                 {/* --- SCANNER BEAM --- */}
-                <rect x="0" y="0" width="20" height="600" fill="url(#scanner-gradient)" opacity="0" />
+                <rect x="-20" y="0" width="40" height="600" fill="url(#scanner-gradient)" opacity="1">
+                    <animate attributeName="x" values="-40; 840; -40" dur="6s" repeatCount="indefinite" />
+                </rect>
 
                 {/* --- LEARNING INDICATOR --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 0; 0; 1; 1; 0" dur="6s" repeatCount="indefinite" />
                     <text x="400" y="100" textAnchor="middle" fill={colors.nodeTraversed} fontSize="24" fontFamily="monospace" fontWeight="bold">
                         INSIGHT RECORDED
                     </text>

@@ -50,7 +50,9 @@ const BankingTestingAnimation = () => {    // Corporate Color Palette (Banking 
                     <text x="80" y="53" fontSize="14" fontWeight="700" fill="white">🏦 Core Banking System</text>
 
                     {/* Status indicator */}
-                    <circle cx="530" cy="47" r="8" fill={colors.success} />
+                    <circle cx="530" cy="47" r="8" fill={colors.success}>
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="545" y="52" fontSize="10" fill="white">Online</text>
                 </g>
 
@@ -83,15 +85,17 @@ const BankingTestingAnimation = () => {    // Corporate Color Palette (Banking 
 
                 {/* --- MONEY PACKET ANIMATION --- */}
                 <g>
+                    <animateTransform attributeName="transform" type="translate" values="210 180; 430 180; 210 180" dur="2.5s" repeatCount="indefinite" />
                     <circle r="15" fill={colors.gold} filter="url(#bank-glow)" />
-                    <text fontSize="12" fill="white" fontWeight="700" textAnchor="middle">
+                    <text fontSize="12" fill="white" fontWeight="700" textAnchor="middle" dy="4">
                         $
                     </text>
                 </g>
 
                 {/* --- VALIDATION CHECKMARKS --- */}
                 {accounts.map((account, i) => (
-                    <g key={`check-${account.id}`}>
+                    <g key={`check-${account.id}`} opacity="0">
+                        <animate attributeName="opacity" values="0; 1; 1" dur="2s" begin={`${1 + i * 0.5}s`} repeatCount="indefinite" />
                         <circle
                             cx={account.x + 45}
                             cy={account.y - 35}
@@ -106,15 +110,14 @@ const BankingTestingAnimation = () => {    // Corporate Color Palette (Banking 
 
                 {/* --- SECURITY SHIELD SCAN --- */}
                 <g>
+                    <animate attributeName="opacity" values="0.6; 1; 0.6" dur="2s" repeatCount="indefinite" />
                     <rect x="260" y="260" width="120" height="50" rx="8" fill={colors.security} filter="url(#bank-shadow)" />
                     <text x="320" y="290" textAnchor="middle" fontSize="11" fontWeight="600" fill="white">🛡️ Security Scan</text>
                 </g>
 
-                {/* --- SECURITY SCAN LINE --- */}
-                <line x1="60" y1="285" x2="60" y2="285" stroke={colors.security} strokeWidth="3" />
-
                 {/* --- FRAUD ALERT --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1; 0" dur="4s" begin="3s" repeatCount="indefinite" />
                     <rect x="400" y="260" width="160" height="40" rx="8" fill={colors.error} />
                     <text x="480" y="285" textAnchor="middle" fontSize="10" fontWeight="600" fill="white">⚠️ Suspicious Activity</text>
                 </g>
@@ -153,13 +156,16 @@ const BankingTestingAnimation = () => {    // Corporate Color Palette (Banking 
                         <React.Fragment key={`bar-${i}`}>
                             <text x="60" y={bar.y + 4} fontSize="8" fill={colors.textSecondary}>{bar.label}</text>
                             <rect x="60" y={bar.y + 8} width="115" height="6" rx="3" fill="#e2e8f0" />
-                            <rect x="60" y={bar.y + 8} height="6" rx="3" fill={bar.color} />
+                            <rect x="60" y={bar.y + 8} width="0" height="6" rx="3" fill={bar.color}>
+                                <animate attributeName="width" values={`0; ${bar.w}`} dur="1s" begin={`${i * 0.3}s`} fill="freeze" />
+                            </rect>
                         </React.Fragment>
                     ))}
                 </g>
 
                 {/* --- SUCCESS BANNER --- */}
-                <g>
+                <g opacity="0">
+                    <animate attributeName="opacity" values="0; 1; 1" dur="1.5s" begin="2s" fill="freeze" />
                     <rect x="170" y="85" width="300" height="40" rx="10" fill={colors.success} filter="url(#bank-shadow)" />
                     <text x="320" y="111" textAnchor="middle" fontSize="13" fontWeight="700" fill="white">✓ Banking System Secured</text>
                 </g>
@@ -167,7 +173,9 @@ const BankingTestingAnimation = () => {    // Corporate Color Palette (Banking 
                 {/* --- LIVE INDICATOR --- */}
                 <g>
                     <rect x="500" y="85" width="90" height="24" rx="12" fill={colors.navy} />
-                    <circle cx="515" cy="97" r="5" fill={colors.success} />
+                    <circle cx="515" cy="97" r="5" fill={colors.success}>
+                        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+                    </circle>
                     <text x="555" y="102" textAnchor="middle" fontSize="9" fontWeight="600" fill="white">MONITORING</text>
                 </g>
 
