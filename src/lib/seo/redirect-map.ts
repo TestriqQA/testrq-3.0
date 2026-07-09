@@ -33,8 +33,6 @@ type RedirectsReturn = Awaited<ReturnType<NonNullable<NextConfig["redirects"]>>>
 export type RedirectRule = RedirectsReturn[number];
 
 export const redirects: RedirectRule[] = [
-      // LLMQA product moved to its own site (llmqa.ai); page removed from Testriq (2026-07).
-      { source: "/llmqa", destination: "https://llmqa.ai/", permanent: true, basePath: false },
       // GSC "Not found (404)" report (2026-07-03) — legacy/typo URLs → live equivalents (backlog T-6)
       { source: "/ai-testing", destination: "/ai-application-testing", permanent: true },
       { source: "/test-automation-services", destination: "/automation-testing-services", permanent: true },
