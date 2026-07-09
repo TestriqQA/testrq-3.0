@@ -44,7 +44,7 @@ services").** Locations (non-city): `HomeHeroSection:74`, `AboutHeroSection:68,1
 | T-5 | Canonicals | dropped pages (TBD from GSC) | Verify Google-selected canonical == self on pages that lost rank (H2) | Audit per URL once GSC list is in | P1 | ⛔ blocked on GSC |
 | T-6 | Crawl / 404 | GSC "Not found (404)" (490 as of 2026-06-30, down from 626) | Analyzed full export. Breakdown: **368 dead blog *tag* pages** (noindexed/deleted — 404 is correct, Google already dropping them), 32 `_next` assets (normal), 6 junk (`/debug` etc. — correct 404), ~20 real page URLs. **Many real ones already redirected** (added May 15; Google last crawled Apr → will clear on recrawl). Added **8 new** redirects for uncovered legacy/typo URLs → live pages. Redirect map confirmed live (`next.config.ts:57`). | P1 | ✅ done 2026-07-03 |
 | T-6a | Crawl / 404 | `RoboticFAQs.tsx`, `BlogQAKnowledgeHub.tsx` | 2 broken internal links (`/database-testing-services`, `/learning-paths`) → 404 | Repointed to `/etl-testing-services` and `/blog`. (Code-side scan found only these 2 — rest of 551 are external/legacy URLs.) | P1 | ✅ done 2026-07-01 |
-| T-7 | Thin content | GSC "Crawled – not indexed" = **2,178 (rising)** | Large volume of thin/duplicate pages Google won't index (cities + blog tag/category + programmatic) | Reduce/consolidate/noindex thin pages; improve the keepers. Ties to O-2. | P0 | ⛔ needs city/taxonomy decision |
+| T-7 | Thin content | GSC "Crawled – not indexed" = **2,178 (rising)** | Large volume of thin/duplicate pages Google won't index (cities + blog tag/category + programmatic) | City part done (O-2 — 70 city pages noindexed). Blog tag/category part still open (T-8). | P0 | 🟡 city part done; tags open |
 | T-8 | Blog tags | `blog/tag/[tag]` slug generation | Many 404 tag URLs have malformed slugs: slashes (`ci/cd`, `ai/ml-validation`), `&`, `,`, trailing `.`/`(...)`. Slash-containing tags break the single-segment route. Root cause of a big share of the 368 tag 404s. | Sanitize tag slugs (strip/encode `/ & , .` etc.); consider consolidating the ~360 thin tag pages (they're noindexed anyway). | P2 | ⬜ (recommend: reduce tag sprawl) |
 
 ## On-page / cannibalization (Phase 3)
@@ -52,7 +52,8 @@ services").** Locations (non-city): `HomeHeroSection:74`, `AboutHeroSection:68,1
 | ID | Area | Scope | Issue | Fix | Prio | Status |
 |---|---|---|---|---|---|---|
 | O-1 | Cannibalization | services × solutions × cities × comparisons | Overlapping keyword targets (H3) | One keyword-owner per page; intent-based title/meta remap; interlink | P1 | ⛔ blocked on GSC |
-| O-2 | City architecture | `CityData.tsx` / `[slug]` | 86 doorway pages (H1) | Consolidate to differentiated regional hubs OR noindex thin ones + keep 5–10 unique | P0/P1 | ⛔ blocked on H1 decision |
+| O-2 | City architecture | `CityData.tsx` / `[slug]` / `sitemap.ts` | 86 doorway pages (H1) | **Owner decision: keep 16 lead-gen India cities indexed, noindex the other 70** (tier-2 long-tail + all international + tiny UAE towns) + drop them from sitemap. `INDEXED_CITY_SLUGS` set drives both. Reversible. Commit `53c27cd2`. | P0/P1 | ✅ done 2026-07-03 |
+| O-3 | City content | 16 kept city pages | Follow-up: give the 16 kept cities genuinely unique local content + clean their held claims (500K etc.) so they rank + convert | Owner to provide real local angles; then differentiate content | P2 | ⬜ follow-up |
 
 ## Service pages on-page (Phase 3) — see [`service-pages-audit.md`](./service-pages-audit.md)
 
