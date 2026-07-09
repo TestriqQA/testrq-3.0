@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getCityData, getAllCities, CityData } from '@/app/lib/CityData';
+import { getCityData, getAllCities, CityData, isCityIndexed } from '@/app/lib/CityData';
 import { sanityGetCaseStudyBySlug, sanityGetAllCaseStudySlugs, sanityGetRelatedCaseStudies, CaseStudy } from '@/lib/sanity-data-adapter';
 import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
@@ -414,6 +414,9 @@ export async function generateMetadata({ params }: PageProps) {
   const pageDescription = cityData.metadata.description;
   const canonicalUrl = `https://www.testriq.com/${cityData.slug}`;
   const ogImageUrl = getCityOgImage(resolvedParams.slug);
+  // H1 thin-content cleanup: only lead-generating cities stay indexed; every
+  // other city page is noindex (still follow, so internal links are crawled).
+  const cityIndexed = isCityIndexed(cityData.slug);
 
   return {
     // Bypass root layout's title.template — CityData entries already end with
@@ -444,10 +447,10 @@ export async function generateMetadata({ params }: PageProps) {
       images: [ogImageUrl],
     },
     robots: {
-      index: true,
+      index: cityIndexed,
       follow: true,
       googleBot: {
-        index: true,
+        index: cityIndexed,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",

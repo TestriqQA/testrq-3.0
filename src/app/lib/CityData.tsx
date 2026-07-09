@@ -16004,3 +16004,38 @@ export function getCityData(slug: string): CityData | undefined {
 export function getAllCities(): CityData[] {
   return Object.values(cityData);
 }
+
+// ---------------------------------------------------------------------------
+// City-page indexing policy (H1 — thin/duplicate-content cleanup, 2026-07).
+//
+// Only these lead-generating markets stay in Google's index. Every OTHER city
+// page is set to `robots: noindex` (see src/app/[slug]/page.tsx) and dropped
+// from the sitemap (see src/app/sitemap.ts). Those were near-duplicate
+// templated pages that never ranked — Search Console reported them as
+// "Crawled – currently not indexed" — and dragged down site-wide quality.
+// Reversible: add a slug here (and give the page real, unique local content)
+// to bring a city back into the index.
+// ---------------------------------------------------------------------------
+export const INDEXED_CITY_SLUGS: ReadonlySet<string> = new Set([
+  "software-qa-testing-services-in-mumbai",
+  "software-qa-testing-services-in-navi-mumbai",
+  "software-qa-testing-services-in-pune",
+  "software-qa-testing-services-in-delhi",
+  "software-qa-testing-services-in-gurgaon",
+  "software-qa-testing-services-in-noida",
+  "software-qa-testing-services-in-bangalore",
+  "software-qa-testing-services-in-hyderabad",
+  "software-qa-testing-services-in-chennai",
+  "software-qa-testing-services-in-kolkata",
+  "software-qa-testing-services-in-ahmedabad",
+  "software-qa-testing-services-in-jaipur",
+  "software-qa-testing-services-in-indore",
+  "software-qa-testing-services-in-surat",
+  "software-qa-testing-services-in-nagpur",
+  "software-qa-testing-services-in-lucknow",
+]);
+
+/** Whether a city page should be indexed by search engines (see policy above). */
+export function isCityIndexed(slug: string): boolean {
+  return INDEXED_CITY_SLUGS.has(slug);
+}

@@ -7,7 +7,7 @@ import {
   sanityGetAllCaseStudies,
   CaseStudy
 } from '@/lib/sanity-data-adapter';
-import { getAllCities, CityData } from '@/app/lib/CityData';
+import { getAllCities, CityData, isCityIndexed } from '@/app/lib/CityData';
 import { redirects } from '@/lib/redirects';
 // F-31: discoverRoutes extracted to a shared lib so /website-map (HTML
 // sitemap) can use the same auto-discovery instead of a hardcoded
@@ -136,7 +136,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic City Pages
-    const allCities = getAllCities();
+    // H1 thin-content cleanup: only indexed (lead-gen) cities go in the sitemap;
+    // the noindexed city pages are excluded so we don't advertise them to Google.
+    const allCities = getAllCities().filter((city: CityData) => isCityIndexed(city.slug));
     const cityPages = allCities.map((city: CityData) => ({
       url: `${baseUrl}/${encodeURIComponent(city.slug)}`,
       lastModified: currentDate,
