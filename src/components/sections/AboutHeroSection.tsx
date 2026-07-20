@@ -56,7 +56,7 @@ const AboutHeroSection = () => {
 
             <p className="mt-4 xl:mt-0 text-gray-700 text-base md:text-lg xl:mx-0 mb-6 max-w-xl mx-auto">
               Testriq QA Lab LLP is a globally trusted software testing company with
-              over 15 years of experience. We deliver expert-led QA solutions across
+              over 15 years of experience. We deliver <Link title="QA Outsourcing Services" href="/qa-outsourcing-services">expert-led QA solutions</Link> across
               the <Link title="Understanding SDLC & STLC in QA Process" href="blog/post/understanding-the-sdlc-and-stlc-in-qa">SDLC</Link>, combining ISTQB-certified talent, <Link title="agile practices" href="blog/post/how-does-exploratory-testing-align-with-agile-methodology">agile practices</Link>, and a
               commitment to innovation and software quality.
             </p>
