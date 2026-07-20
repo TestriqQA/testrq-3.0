@@ -16,7 +16,7 @@ const IoTCaseStudies: React.FC = () => {
       solution: (
         <>
           Comprehensive testing of the MILTON Smart Stainless Steel Water Bottle and its{" "}
-          <Link href='blog/post/ios-vs-android-testing-key-differences-every-qa-should-know' className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">iOS/Android apps</Link>, focusing on <Link href='blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks' className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">connectivity</Link>, functionality, and measurement accuracy.
+          <Link href='blog/post/ios-vs-android-testing-key-differences-every-qa-should-know' className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">iOS/Android apps</Link>, focusing on <Link href='blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks' className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">connectivity</Link>, functionality, and measurement accuracy.
         </>
       ),
       results: {
@@ -59,7 +59,7 @@ const IoTCaseStudies: React.FC = () => {
       challenge: "Validating Secure Drone Communication System",
       solution: (
         <>
-          Comprehensive <Link href='security-testing' className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">security</Link> and <Link href='performance-testing-services' className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">performance testing</Link> of encrypted drone-to-ground communication and Android-based ground control app, in collaboration with Audix Technologies.
+          Comprehensive <Link href='security-testing' className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">security</Link> and <Link href='performance-testing-services' className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">performance testing</Link> of encrypted drone-to-ground communication and Android-based ground control app, in collaboration with Audix Technologies.
         </>
       ),
       results: {
@@ -103,7 +103,7 @@ const IoTCaseStudies: React.FC = () => {
       challenge: "Ensuring Seamless Smart Video Doorbell Performance",
       solution: (
         <>
-          End-to-end QA testing of mobile apps, <Link href='api-testing' className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">APIs</Link>, <Link href='blog/post/cloud-integration-testing-for-iot-aws-iot-azure-iot-google-iot-core' className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">cloud integration</Link>, and device communication for a smart video doorbell system.
+          End-to-end QA testing of mobile apps, <Link href='api-testing' className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">APIs</Link>, <Link href='blog/post/cloud-integration-testing-for-iot-aws-iot-azure-iot-google-iot-core' className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">cloud integration</Link>, and device communication for a smart video doorbell system.
         </>
       ),
       results: {

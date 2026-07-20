@@ -20,9 +20,9 @@ const LaunchFastCaseStudies: React.FC = () => {
       industry: "Financial Technology",
       icon: <FaRocket className="text-2xl" />,
       challenge:
-        (<>A <Link title="fintech" href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] hover:underline">fintech</Link> startup needed to launch their MVP within 6 weeks to secure Series A funding and outperform competitors in a fast-moving go-to-market race.</>),
+        (<>A <Link title="fintech" href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] underline">fintech</Link> startup needed to launch their MVP within 6 weeks to secure Series A funding and outperform competitors in a fast-moving go-to-market race.</>),
       solution:
-        (<>We implemented LaunchFast QA with parallel testing streams, automated <Link title="regression testing" href='regression-testing' className="text-[theme(color.brand.blue)] hover:underline">regression testing</Link>, and continuous security validation to support agile QA workflows and rapid release cycles.</>),
+        (<>We implemented LaunchFast QA with parallel testing streams, automated <Link title="regression testing" href='regression-testing' className="text-[theme(color.brand.blue)] underline">regression testing</Link>, and continuous security validation to support agile QA workflows and rapid release cycles.</>),
       results: [
         {
           metric: "Launch Timeline",
@@ -53,9 +53,9 @@ const LaunchFastCaseStudies: React.FC = () => {
       industry: "Retail & E-commerce",
       icon: <FaMobile className="text-2xl" />,
       challenge:
-        (<>An <Link title="e-commerce" href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] hover:underline">e-commerce</Link> company needed to launch their <Link title="mobile app" href='mobile-application-testing' className="text-[theme(color.brand.blue)] hover:underline">mobile app</Link> during Black Friday season with zero downtime and perfect performance.</>),
+        (<>An <Link title="e-commerce" href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] underline">e-commerce</Link> company needed to launch their <Link title="mobile app" href='mobile-application-testing' className="text-[theme(color.brand.blue)] underline">mobile app</Link> during Black Friday season with zero downtime and perfect performance.</>),
       solution:
-        (<>Deployed LaunchFast QA with <Link title="load testing" href='blog/post/load-testing-in-performance-testing-complete-guide' className="text-[theme(color.brand.blue)] hover:underline">load testing</Link>, device compatibility testing, and real-time performance monitoring.</>),
+        (<>Deployed LaunchFast QA with <Link title="load testing" href='blog/post/load-testing-in-performance-testing-complete-guide' className="text-[theme(color.brand.blue)] underline">load testing</Link>, device compatibility testing, and real-time performance monitoring.</>),
       results: [
         {
           metric: "Launch Success",
@@ -86,9 +86,9 @@ const LaunchFastCaseStudies: React.FC = () => {
       industry: "Software as a Service",
       icon: <FaCloud className="text-2xl" />,
       challenge:
-        (<>A <Link title="SaaS" href='sotware-testing-guide' className="text-[theme(color.brand.blue)] hover:underline">SaaS</Link> startup needed to launch their platform quickly to onboard their first enterprise client and validate their business model.</>),
+        (<>A <Link title="SaaS" href='sotware-testing-guide' className="text-[theme(color.brand.blue)] underline">SaaS</Link> startup needed to launch their platform quickly to onboard their first enterprise client and validate their business model.</>),
       solution:
-        (<>Implemented LaunchFast QA with <Link title="API testing" href='api-testing' className="text-[theme(color.brand.blue)] hover:underline">API testing</Link> automation, scalability validation, and enterprise security compliance testing.</>),
+        (<>Implemented LaunchFast QA with <Link title="API testing" href='api-testing' className="text-[theme(color.brand.blue)] underline">API testing</Link> automation, scalability validation, and enterprise security compliance testing.</>),
       results: [
         {
           metric: "API Reliability",
@@ -142,7 +142,7 @@ const LaunchFastCaseStudies: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Discover how our LaunchFast QA services help startups and agile
-            teams achieve successful product launches, <Link title="secure funding" href='blog/post/security-validation-in-mvp-startup-qa-best-practices' className="text-[theme(color.brand.blue)] hover:underline">secure funding</Link>, and
+            teams achieve successful product launches, <Link title="secure funding" href='blog/post/security-validation-in-mvp-startup-qa-best-practices' className="text-[theme(color.brand.blue)] underline">secure funding</Link>, and
             accelerate growth with go-to-market QA and investor-ready QA
             support.
           </p>

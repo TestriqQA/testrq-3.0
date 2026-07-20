@@ -49,7 +49,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-gray-700 text-base md:text-lg xl:mx-0 mb-6 max-w-2xl mx-auto">
-              With global regulations tightening and AI evolving rapidly, software needs more than just basic testing. Testriq delivers end-to-end <Link title="Quality Assurance Solutions" href="/manual-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Quality Assurance</Link> to ensure your rapid development never compromises on reliability.
+              With global regulations tightening and AI evolving rapidly, software needs more than just basic testing. Testriq delivers end-to-end <Link title="Quality Assurance Solutions" href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline">Quality Assurance</Link> to ensure your rapid development never compromises on reliability.
               We use DevSecOps and advanced quality engineering to reduce risk for global enterprises. As an ISTQB Certified partner, we serve clients across the US, UK, EU, India, Asia, and the UAE.
             </p>
 

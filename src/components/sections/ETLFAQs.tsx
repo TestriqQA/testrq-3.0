@@ -22,7 +22,7 @@ const ETLFAQs: React.FC = () => {
       question: "What is the difference between ETL testing and database testing?",
       answer: (
         <>
-          The difference between <Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">ETL testing</Link> and database testing lies in the scope. Database testing verifies static storage elements like tables and stored procedures. ETL testing ensures data stays accurate as it transforms and flows from multiple sources into a central warehouse.
+          The difference between <Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">ETL testing</Link> and database testing lies in the scope. Database testing verifies static storage elements like tables and stored procedures. ETL testing ensures data stays accurate as it transforms and flows from multiple sources into a central warehouse.
         </>
       ),
     },

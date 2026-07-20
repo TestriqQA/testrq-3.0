@@ -37,7 +37,7 @@ const AIComprehensiveSlider: React.FC = () => {
       title: (<Link href='blog/post/model-validation-for-ai-applications'>Solving the &quot;Oracle Problem&quot;</Link>),
       description: (
         <>
-          <Link href="/qa-documentation-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Traditional QA</Link> uses fixed logic. AI works on likelihoods. We verify model reasoning using industry-standard tools and establish limits for incorrect AI outputs to ensure reliability.
+          <Link href="/qa-documentation-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Traditional QA</Link> uses fixed logic. AI works on likelihoods. We verify model reasoning using industry-standard tools and establish limits for incorrect AI outputs to ensure reliability.
         </>
       ),
       features: [
@@ -88,7 +88,7 @@ const AIComprehensiveSlider: React.FC = () => {
       title: (<Link href='blog/post/ci-cd-test-automation-integration-deliver-faster-with-confidence'>Seamless SDLC & CI/CD Integration</Link>),
       description: (
         <>
-          We use intelligent <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">automation testing</Link> to validate your AI workflows via custom data pipelines. These tools connect to your current CI/CD systems for quick results.
+          We use intelligent <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">automation testing</Link> to validate your AI workflows via custom data pipelines. These tools connect to your current CI/CD systems for quick results.
         </>
       ),
       features: [
@@ -124,7 +124,7 @@ const AIComprehensiveSlider: React.FC = () => {
             {" "}of Machine Learning Testing
           </h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
-            The complexity of modern AI requires solving challenges that <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">traditional testing</Link> cannot reach. Our methodology is built to tackle the biggest global hurdles identified in 2026.
+            The complexity of modern AI requires solving challenges that <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">traditional testing</Link> cannot reach. Our methodology is built to tackle the biggest global hurdles identified in 2026.
           </p>
         </div>
 

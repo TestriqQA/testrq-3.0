@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics"; // Import the new component
+import RecaptchaLoader from "@/components/RecaptchaLoader"; // Route-scoped reCAPTCHA v3 loader
 import ApolloTracking from "@/components/ApolloTracking"; // Apollo tracking script
 import { RecaptchaProvider } from "@/lib/recaptcha/RecaptchaContext";
 
@@ -125,26 +125,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans flex min-h-screen flex-col antialiased bg-[theme(color.background.gray)]`}
       >
-        {/* Google reCAPTCHA v3 Script.
-            F-25: strategy was "afterInteractive" — eagerly competing with hydration
-            on every route, including the ~95 % of pages that have no form. Dropped
-            to "lazyOnload" so the script loads after the rest of the page (window.load)
-            settles. RecaptchaContext gates executeRecaptcha behind isRecaptchaReady,
-            so any form submit before the script lands is a no-op rather than an error
-            (consistent with reCAPTCHA v3 invisible-on-action semantics). */}
-        {recaptchaSiteKey && (
-          <Script
-            src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}&onload=onloadCallback`}
-            strategy="lazyOnload"
-          />
-        )}
+        {/* Google reCAPTCHA v3.
+            F-25 moved this <Script> to "lazyOnload", but it still loaded on all ~101
+            routes including the ~91 with no form. PageSpeed attributed 9 of the
+            homepage's 13 long main-thread tasks and 1,281 ms of JS execution to
+            recaptcha__en.js — essentially all of its 590 ms Total Blocking Time — plus
+            100 % of its unused CSS. RecaptchaLoader keeps the identical script and the
+            same onloadCallback handshake, but only injects it on the 10 routes that
+            actually render a reCAPTCHA-protected form. */}
+        <RecaptchaLoader />
 
         <GoogleAnalytics /> {/* Render the GoogleAnalytics component here */}
         <ApolloTracking /> {/* Render the ApolloTracking component here */}

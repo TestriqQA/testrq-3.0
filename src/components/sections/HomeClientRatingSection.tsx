@@ -45,7 +45,7 @@ const ClientRatingSection = () => {
           <>
             Trusted by global startups and enterprises, Testriq is a leading QA
             outsourcing partner known for ISTQB certified experts, dependable{" "}
-            <Link href="blog/post/what-is-the-best-emerging-technology-to-learn-in-qa-support" className="text-[theme(color.brand.blue)] hover:underline">
+            <Link href="blog/post/what-is-the-best-emerging-technology-to-learn-in-qa-support" className="text-[theme(color.brand.blue)] underline">
               QA support
             </Link>
             , and consistent software quality across every project.

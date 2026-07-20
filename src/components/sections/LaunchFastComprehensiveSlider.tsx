@@ -155,7 +155,7 @@ const LaunchFastComprehensiveSlider: React.FC = () => {
             <span className="text-brand-blue">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Our LaunchFast QA services cover every aspect of rapid product development, delivering quality, <Link title="performance" href='performance-testing-services' className="text-[theme(color.brand.blue)] hover:underline">performance</Link>, and <Link title="security" href='security-testing' className="text-[theme(color.brand.blue)] hover:underline">security</Link> across all platforms with pre-launch testing, MVP QA, and go-to-market QA for successful launches.
+            Our LaunchFast QA services cover every aspect of rapid product development, delivering quality, <Link title="performance" href='performance-testing-services' className="text-[theme(color.brand.blue)] underline">performance</Link>, and <Link title="security" href='security-testing' className="text-[theme(color.brand.blue)] underline">security</Link> across all platforms with pre-launch testing, MVP QA, and go-to-market QA for successful launches.
           </p>
         </div>
 

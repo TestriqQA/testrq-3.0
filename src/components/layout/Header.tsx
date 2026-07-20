@@ -422,7 +422,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className="bg-[#25A8E0] text-white px-3 xl:px-4 py-2 rounded-xl hover:bg-[#057db0] cursor-pointer flex items-center gap-2">
+            <button className="bg-[theme(color.brand.blue)] text-white px-3 xl:px-4 py-2 rounded-xl hover:bg-[#057db0] cursor-pointer flex items-center gap-2">
               <span className="text-sm xl:text-base">Talk to Expert</span>
               <FaArrowRight className="w-3 h-3 xl:w-4 xl:h-5" />
             </button>
@@ -574,7 +574,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               onClick={() => handleLinkClick("", "")}
             >
-              <button className="bg-[#25A8E0] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center gap-2">
+              <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center gap-2">
                 <span className="text-sm">Talk to Expert</span>
                 <FaArrowRight className="w-3 h-3" />
               </button>
@@ -720,7 +720,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               onClick={() => handleLinkClick("", "")}
             >
-              <button className="bg-[#25A8E0] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center justify-center gap-2">
+              <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center justify-center gap-2">
                 <span className="text-sm">Talk to Expert</span>
                 <FaArrowRight className="w-3 h-3" />
               </button>

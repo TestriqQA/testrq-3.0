@@ -95,7 +95,7 @@ const AIProvenTestingProcess: React.FC = () => {
       shortTitle: "Monitoring",
       description: (
         <>
-          We plug intelligent <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">automation testing</Link> checks into your <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">CI/CD pipeline</Link>, including AI regression testing to catch data drift immediately.
+          We plug intelligent <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">automation testing</Link> checks into your <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">CI/CD pipeline</Link>, including AI regression testing to catch data drift immediately.
         </>
       ),
       details: [

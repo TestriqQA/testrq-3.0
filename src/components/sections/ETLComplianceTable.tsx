@@ -12,12 +12,12 @@ const ETLComplianceTable: React.FC = () => {
         },
         {
             standard: "SOC2 Type II",
-            focus: (<>Processing <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Integrity</Link></>),
+            focus: (<>Processing <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Integrity</Link></>),
             relevance: "Ensuring the security, availability, and integrity of private data systems.",
         },
         {
             standard: "GDPR & CCPA",
-            focus: (<Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Data Privacy & PII</Link>),
+            focus: (<Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Data Privacy & PII</Link>),
             relevance: "Specialized data cleansing and masking validation for international data protection.",
         },
         {

@@ -13,7 +13,7 @@ const AICardSlider: React.FC = () => {
       ),
       description: (
         <>
-          We test your models against malicious inputs to ensure they stay secure and reliable against modern <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">security risks</Link>.
+          We test your models against malicious inputs to ensure they stay secure and reliable against modern <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">security risks</Link>.
         </>
       ),
       features: [
