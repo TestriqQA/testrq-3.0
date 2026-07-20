@@ -17,7 +17,12 @@ const nextConfig: NextConfig = {
   experimental: {
     cssChunking: true,     // Split + reorder CSS per route
     optimizeCss: true,     // Inline critical CSS (Critters)
-    inlineCss: true        // Alternative inlining flag present in newer versions
+    // inlineCss disabled: it embedded the full route stylesheet into the HTML
+    // *three* times (once in <style>, twice more serialized into the RSC flight
+    // payload), which accounted for 76% of a 1.18 MB homepage document and
+    // dominated mobile LCP. Serving CSS as a normal external file also lets it
+    // be cached across the ~101 routes instead of re-sent per navigation.
+    // inlineCss: true
   },
 
 

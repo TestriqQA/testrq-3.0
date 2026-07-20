@@ -16,12 +16,17 @@ const images = [
 const ImageSlider = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  // Autoplay
+  // Autoplay. Held still for visitors who ask for reduced motion (WCAG 2.3.3);
+  // they see the first slide only, which is the LCP/priority image anyway.
   useEffect(() => {
+    const reduceMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduceMotion) return;
+
     const interval = setInterval(() => {
       setCurrentIdx((prevIndex) => (prevIndex + 1) % images.length);
-    }, 2500); // 3.5 seconds for a dynamic yet comfortable pace
-
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
@@ -60,6 +65,11 @@ const ImageSlider = () => {
       {/* Slides */}
       <div className="w-full h-full">
         {images.map((image, index) => (
+          /* Slides stay in normal flow. They must: the hero's right column is a
+             flex item under `items-center`, so below `xl` it shrinks to fit its
+             in-flow content — taking the slides out of flow collapses the whole
+             column to width 0 and the slider vanishes. The homepage layout shift
+             was the header logo's wrong height attribute, not this carousel. */
           <div
             key={index}
             className={`flex flex-col justify-center text-center w-full h-full ${index === currentIdx ? 'slide-enter' : 'slide-exit hidden'
