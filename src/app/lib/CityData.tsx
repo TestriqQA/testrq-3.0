@@ -16033,6 +16033,41 @@ export const INDEXED_CITY_SLUGS: ReadonlySet<string> = new Set([
   "software-qa-testing-services-in-surat",
   "software-qa-testing-services-in-nagpur",
   "software-qa-testing-services-in-lucknow",
+
+  // H1 follow-up (2026-07-20): seven cities restored to the index.
+  //
+  // The original H1 sweep noindexed these along with the rest of the long
+  // tail, but Search Console shows they were never the "never ranked"
+  // case the policy above describes — they were ranking and earning clicks
+  // when the noindex landed. GSC, 19 Apr – 19 Jul 2026, all countries:
+  //
+  //     chandigarh      pos  9.7   2,177 impr    22 clicks   <- page 1
+  //     coimbatore      pos 10.1     830 impr    15 clicks   <- page 1
+  //     greater-noida   pos 11.6   1,144 impr    13 clicks
+  //     abu-dhabi       pos 18.9   1,900 impr    15 clicks
+  //     kochi           pos 24.3   1,659 impr    19 clicks
+  //     vadodara        pos 29.3     504 impr    14 clicks
+  //     bhubaneswar     pos 34.4     703 impr    19 clicks
+  //
+  // Combined they carried 206 clicks/quarter — 37% of all city-page clicks —
+  // at a better CTR (0.58%) than the 16 cities that stayed indexed (0.51%).
+  //
+  // The policy above requires "real, unique local content" before restoring.
+  // Verified on the live pages: each carries ~2,400 words of genuinely
+  // city-specific copy, not a name-swapped template — e.g. Chandigarh covers
+  // the Mohali/Panchkula tricity, Coimbatore covers textile-loom and pump
+  // manufacturing QA. That condition is met.
+  //
+  // Deliberately NOT restored: chicago (pos 41.8), new-york (pos 23.1),
+  // sydney (35.9), melbourne (26.9), manchester (27.9, 0 clicks). Those rank
+  // too deep to earn clicks — a market-presence problem, not a content one.
+  "software-qa-testing-services-in-chandigarh",
+  "software-qa-testing-services-in-coimbatore",
+  "software-qa-testing-services-in-greater-noida",
+  "software-qa-testing-services-in-abu-dhabi",
+  "software-qa-testing-services-in-kochi",
+  "software-qa-testing-services-in-vadodara",
+  "software-qa-testing-services-in-bhubaneswar",
 ]);
 
 /** Whether a city page should be indexed by search engines (see policy above). */
