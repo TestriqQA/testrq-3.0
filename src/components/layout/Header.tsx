@@ -106,6 +106,7 @@ const Navbar = () => {
           services: [
             { label: "Accessibility Testing", link: "/accessibility-testing-services" },
             { label: "SaaS Testing", link: "/saas-testing-services" },
+            { label: "QA Outsourcing Services", link: "/qa-outsourcing-services" },
             { label: "Managed Testing", link: "/managed-testing-services" },
             { label: "Ad-hoc Testing", link: "/ad-hoc-testing" },
             { label: "User Acceptance Testing (UAT)", link: "/user-acceptance-testing" },
@@ -200,11 +201,17 @@ const Navbar = () => {
         {/* Logo */}
         <Link href="/" onClick={() => handleLinkClick("/", "")} aria-label="Testriq Home">
           <div className="text-xl sm:text-2xl md:text-3xl font-bold cursor-pointer">
+            {/* height must match the source's real aspect ratio (7959x2178 =
+                3.654:1), i.e. 120/3.654 = 33. It previously declared height={100},
+                so the browser reserved a 120x100 box and then collapsed it to the
+                actual 120x33 on decode — a ~67px shift of everything below the
+                header, and the largest layout shift on the site. Rendered size is
+                unchanged; only the reserved box is now correct. */}
             <Image
               title="Testriq Logo"
               src={Testriq_Logo}
               alt="Testriq logo"
-              height={100}
+              height={33}
               width={120}
               priority
             />
