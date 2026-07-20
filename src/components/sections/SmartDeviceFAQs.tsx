@@ -12,7 +12,7 @@ const SmartDeviceFAQs: React.FC = () => {
       question: "What are the best practices for IoT security testing in 2026?",
       answer: (
         <>
-          To meet 2026 <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">security standards</Link>, you must implement m-TLS device identities and secure all OTA updates. Additionally, regular penetration testing is essential to find and patch firmware vulnerabilities before they can be exploited in the field.
+          To meet 2026 <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">security standards</Link>, you must implement m-TLS device identities and secure all OTA updates. Additionally, regular penetration testing is essential to find and patch firmware vulnerabilities before they can be exploited in the field.
         </>
       ),
     },
@@ -25,7 +25,7 @@ const SmartDeviceFAQs: React.FC = () => {
       question: "Why is battery life optimization critical for wearable health trackers?",
       answer: (
         <>
-          <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Performance testing</Link> for wearable health trackers is vital because users expect a &apos;set it and forget it&apos; experience. Inefficient sensor polling frequency or background syncs can cause battery consumption issues that lead to high product return rates and brand dissatisfaction.
+          <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Performance testing</Link> for wearable health trackers is vital because users expect a &apos;set it and forget it&apos; experience. Inefficient sensor polling frequency or background syncs can cause battery consumption issues that lead to high product return rates and brand dissatisfaction.
         </>
       ),
     },

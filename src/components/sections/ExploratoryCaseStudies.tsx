@@ -16,11 +16,11 @@ const ExploratoryCaseStudies: React.FC = () => {
   const caseStudies = [
     {
       id: 1,
-      title: (<><Link href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] hover:underline">E-commerce</Link> Platform UX Discovery</>),
-      industry: (<>Retail & <Link href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] hover:underline">E-commerce</Link></>),
+      title: (<><Link href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] underline">E-commerce</Link> Platform UX Discovery</>),
+      industry: (<>Retail & <Link href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] underline">E-commerce</Link></>),
       icon: <FaDesktop className="text-2xl" />,
       challenge:
-        (<>An <Link href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] hover:underline">e-commerce</Link> platform was experiencing high cart abandonment rates and poor user engagement despite passing all functional tests.</>),
+        (<>An <Link href='e-commerce-testing-services' className="text-[theme(color.brand.blue)] underline">e-commerce</Link> platform was experiencing high cart abandonment rates and poor user engagement despite passing all functional tests.</>),
       solution:
         "We conducted comprehensive exploratory testing with a focus on user journey exploration, usability investigation, and checkout flow analysis to uncover hidden friction points and critical UX issues.",
       results: [
@@ -49,11 +49,11 @@ const ExploratoryCaseStudies: React.FC = () => {
     },
     {
       id: 2,
-      title: (<><Link href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] hover:underline">Banking App Security & Usability</Link></>),
-      industry: (<><Link href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] hover:underline">Financial Services</Link></>),
+      title: (<><Link href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] underline">Banking App Security & Usability</Link></>),
+      industry: (<><Link href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] underline">Financial Services</Link></>),
       icon: <FaMobile className="text-2xl" />,
       challenge:
-        (<>A <Link href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] hover:underline">mobile banking app</Link> needed comprehensive security and usability validation before launch to ensure regulatory compliance and user adoption.</>),
+        (<>A <Link href='banking-finance-industry-testing-services' className="text-[theme(color.brand.blue)] underline">mobile banking app</Link> needed comprehensive security and usability validation before launch to ensure regulatory compliance and user adoption.</>),
       solution:
         "Implemented session-based exploratory testing with focus on security edge cases, accessibility evaluation, and persona-based testing.",
       results: [
@@ -87,11 +87,11 @@ const ExploratoryCaseStudies: React.FC = () => {
     },
     {
       id: 3,
-      title: (<><Link href='healthcare-testing-services' className="text-[theme(color.brand.blue)] hover:underline">Healthcare SaaS Edge Case Discovery</Link></>),
-      industry: (<><Link href='healthcare-testing-services' className="text-[theme(color.brand.blue)] hover:underline">Healthcare Technology</Link></>),
+      title: (<><Link href='healthcare-testing-services' className="text-[theme(color.brand.blue)] underline">Healthcare SaaS Edge Case Discovery</Link></>),
+      industry: (<><Link href='healthcare-testing-services' className="text-[theme(color.brand.blue)] underline">Healthcare Technology</Link></>),
       icon: <FaSearch className="text-2xl" />,
       challenge:
-        (<>A <Link href='healthcare-testing-services' className="text-[theme(color.brand.blue)] hover:underline">healthcare management SaaS platform</Link> needed thorough edge case testing to ensure reliability in critical healthcare workflows.</>),
+        (<>A <Link href='healthcare-testing-services' className="text-[theme(color.brand.blue)] underline">healthcare management SaaS platform</Link> needed thorough edge case testing to ensure reliability in critical healthcare workflows.</>),
       solution:
         "Deployed heuristic evaluation and systematic bug hunting focusing on data integrity, workflow edge cases, and integration points.",
       results: [
@@ -149,7 +149,7 @@ const ExploratoryCaseStudies: React.FC = () => {
             Discover how our exploratory testing services help companies uncover
             critical issues, enhance user experiences, and prevent costly
             critical issues, enhance user experiences, and prevent costly
-            <Link href='blog/post/web-application-automation-testing-tools-frameworks-best-practices' className="text-[theme(color.brand.blue)] hover:underline"> post-release bugs</Link> through systematic investigation and deep
+            <Link href='blog/post/web-application-automation-testing-tools-frameworks-best-practices' className="text-[theme(color.brand.blue)] underline"> post-release bugs</Link> through systematic investigation and deep
             application insight.
             application insight.
           </p>

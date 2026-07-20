@@ -66,7 +66,7 @@ const WebappTechStack: React.FC = () => {
             icon: <FaTachometerAlt className="text-3xl text-orange-500" size={30} />,
         },
         {
-            category: <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline">Security & Pen Testing</Link>,
+            category: <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline">Security & Pen Testing</Link>,
             tools: [
                 { name: "Burp Suite", icon: <SiBurpsuite className="text-[#FF6633]" size={30} /> },
                 {
@@ -86,7 +86,7 @@ const WebappTechStack: React.FC = () => {
             icon: <FaShieldAlt className="text-3xl text-red-500" size={30} />,
         },
         {
-            category: <Link href="/api-testing" className="text-[theme(color.brand.blue)] hover:underline">API Testing</Link>,
+            category: <Link href="/api-testing" className="text-[theme(color.brand.blue)] underline">API Testing</Link>,
             tools: [
                 { name: "Postman", icon: <SiPostman className="text-[#FF6C37]" size={30} /> },
                 {
@@ -157,7 +157,7 @@ const WebappTechStack: React.FC = () => {
                         Testriq’s Web QA <span className="text-brand-blue">Tech Stack</span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        To provide the best web application <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline">performance testing services</Link>, we utilize a cutting-edge, multi-tool stack:
+                        To provide the best web application <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline">performance testing services</Link>, we utilize a cutting-edge, multi-tool stack:
                     </p>
                 </div>
 

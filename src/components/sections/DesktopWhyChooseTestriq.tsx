@@ -11,21 +11,21 @@ const DesktopWhyChooseTestriq: React.FC = () => {
   const advantages = [
     {
       icon: <FaAward className="w-8 h-8" />,
-      title: <Link href="healthcare-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Enterprise Experts</Link>,
+      title: <Link href="healthcare-testing-services" className="text-[theme(color.brand.blue)] underline">Enterprise Experts</Link>,
       description:
         "With over 10 years of experience, we specialize in WPF and WinForms testing. We focus specifically on high-stakes requirements for the financial and industrial sectors.",
       stats: "10+ Years Experience",
     },
     {
       icon: <FaDesktop className="w-8 h-8" />,
-      title: <Link href="manual-testing" className="text-[theme(color.brand.blue)] hover:underline">Cross-Platform Mastery</Link>,
+      title: <Link href="manual-testing" className="text-[theme(color.brand.blue)] underline">Cross-Platform Mastery</Link>,
       description:
         "We provide the dedicated infrastructure to test applications across Linux environments and the latest macOS updates.",
       stats: "Linux & macOS Ready",
     },
     {
       icon: <FaShieldAlt className="w-8 h-8" />,
-      title: <Link href="security-testing" className="text-[theme(color.brand.blue)] hover:underline">End-to-End Solutions</Link>,
+      title: <Link href="security-testing" className="text-[theme(color.brand.blue)] underline">End-to-End Solutions</Link>,
       description:
         "We provide full-lifecycle testing, including rigorous validation of your final .MSI and .EXE installers.",
       stats: "Full MSI/EXE Coverage",
@@ -95,7 +95,7 @@ const DesktopWhyChooseTestriq: React.FC = () => {
                 {[
                   {
                     feature: (
-                      <Link href="blog/post/performance-testing-for-ai-applications" className="text-[theme(color.brand.blue)] hover:underline">
+                      <Link href="blog/post/performance-testing-for-ai-applications" className="text-[theme(color.brand.blue)] underline">
                         Testing Speed
                       </Link>
                     ),
@@ -105,7 +105,7 @@ const DesktopWhyChooseTestriq: React.FC = () => {
                   },
                   {
                     feature: (
-                      <Link href="blog/post/cross-platform-regression-testing-ensuring-consistency-across-devices-os" className="text-[theme(color.brand.blue)] hover:underline">
+                      <Link href="blog/post/cross-platform-regression-testing-ensuring-consistency-across-devices-os" className="text-[theme(color.brand.blue)] underline">
                         Platform Coverage
                       </Link>
                     ),
@@ -115,7 +115,7 @@ const DesktopWhyChooseTestriq: React.FC = () => {
                   },
                   {
                     feature: (
-                      <Link href="blog/post/bug-discovery-find-hidden-defects-with-heuristic-exploratory-testing" className="text-[theme(color.brand.blue)] hover:underline">
+                      <Link href="blog/post/bug-discovery-find-hidden-defects-with-heuristic-exploratory-testing" className="text-[theme(color.brand.blue)] underline">
                         Bug Detection Rate
                       </Link>
                     ),

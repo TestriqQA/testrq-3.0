@@ -43,9 +43,9 @@ const IoTWhyChooseTestriq: React.FC = () => {
       color: "blue",
       gradient: "from-blue-500 to-blue-600",
       features: [
-        <span key="automated-testing"><Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Automated Testing</Link></span>,
+        <span key="automated-testing"><Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Automated Testing</Link></span>,
         "Device Simulation",
-        <span key="protocol-testing"><Link href="/api-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Protocol Testing</Link></span>,
+        <span key="protocol-testing"><Link href="/api-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Protocol Testing</Link></span>,
         "Quick Validation",
       ],
     },
@@ -59,7 +59,7 @@ const IoTWhyChooseTestriq: React.FC = () => {
       color: "red",
       gradient: "from-red-500 to-red-600",
       features: [
-        <span key="device-security"><Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Device Security</Link></span>,
+        <span key="device-security"><Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Device Security</Link></span>,
         "Network Protection",
         "Data Encryption",
         "Firmware Testing",
@@ -75,7 +75,7 @@ const IoTWhyChooseTestriq: React.FC = () => {
       color: "purple",
       gradient: "from-purple-500 to-purple-600",
       features: [
-        <span key="connectivity-testing"><Link href="/blog/post/connectivity-protocol-testing-for-iot-wifi-ble-zigbee-mqtt-more" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Connectivity Testing</Link></span>,
+        <span key="connectivity-testing"><Link href="/blog/post/connectivity-protocol-testing-for-iot-wifi-ble-zigbee-mqtt-more" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Connectivity Testing</Link></span>,
         "Latency Optimization",
         "Battery Life",
         "Scalability",
@@ -91,7 +91,7 @@ const IoTWhyChooseTestriq: React.FC = () => {
       color: "green",
       gradient: "from-green-500 to-green-600",
       features: [
-        <span key="device-expertise"><Link href="/iot-appliances-and-apps-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Device Expertise</Link></span>,
+        <span key="device-expertise"><Link href="/iot-appliances-and-apps-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Device Expertise</Link></span>,
         "Protocol Support",
         "Network Analysis",
         "Troubleshooting",
@@ -110,7 +110,7 @@ const IoTWhyChooseTestriq: React.FC = () => {
         "Rapid Testing",
         "Device Profiling",
         "Quick Reports",
-        <span key="fast-feedback"><Link href="/launchfast-qa" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Fast Feedback</Link></span>,
+        <span key="fast-feedback"><Link href="/launchfast-qa" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Fast Feedback</Link></span>,
       ],
     },
   ];

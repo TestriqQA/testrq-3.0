@@ -38,7 +38,7 @@ const MicroservicesHeroSection: React.FC = () => {
                         </h1>
 
                         <p className="text-gray-700 text-base md:text-lg mb-6 max-w-xl">
-                            In 2026, distributed architectures are the backbone of modern enterprise. Testriq&apos;s <span className="text-[theme(color.brand.blue)] font-semibold">Microservices Testing Services</span> provide the validation needed to navigate complex network dependencies. From <Link href="/services/api-testing" className="text-[theme(color.brand.blue)] hover:underline">API integrity</Link> to Kubernetes-native resilience, we ensure your services are secure and scalable.
+                            In 2026, distributed architectures are the backbone of modern enterprise. Testriq&apos;s <span className="text-[theme(color.brand.blue)] font-semibold">Microservices Testing Services</span> provide the validation needed to navigate complex network dependencies. From <Link href="/services/api-testing" className="text-[theme(color.brand.blue)] underline">API integrity</Link> to Kubernetes-native resilience, we ensure your services are secure and scalable.
                             <br /><br />
                             We mitigate the risks of independent deployment and service fragmentation. Our approach combines contract testing, chaos engineering, and observability-driven validation to guarantee seamless communication across your entire ecosystem.
                         </p>

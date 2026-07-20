@@ -51,7 +51,7 @@ const SmartDeviceProvenTestingProcess: React.FC = () => {
       title: "Sensor and Edge Computing Validation",
       description: (
         <>
-          We test the accuracy of motion, light, and temperature sensors while confirming precise and efficient <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">edge-level data processing</Link>.
+          We test the accuracy of motion, light, and temperature sensors while confirming precise and efficient <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">edge-level data processing</Link>.
         </>
       ),
       icon: <FaCog className="w-6 h-6" />,

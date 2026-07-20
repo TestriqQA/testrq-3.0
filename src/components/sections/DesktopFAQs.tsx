@@ -12,7 +12,7 @@ const DesktopFAQs: React.FC = () => {
       question: "What are the best practices for desktop application performance testing?",
       answer: (
         <>
-          To test desktop performance effectively, we first establish a baseline on a &apos;clean&apos; OS. We then simulate resource-heavy background tasks and monitor for memory leaks during extended &apos;soak&apos; periods, ensuring <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline">optimal performance</Link>.
+          To test desktop performance effectively, we first establish a baseline on a &apos;clean&apos; OS. We then simulate resource-heavy background tasks and monitor for memory leaks during extended &apos;soak&apos; periods, ensuring <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline">optimal performance</Link>.
         </>
       ),
     },
@@ -20,7 +20,7 @@ const DesktopFAQs: React.FC = () => {
       question: "How to test desktop software without an internet connection?",
       answer: (
         <>
-          To ensure a reliable user experience, we <Link href="/manual-testing" className="text-[theme(color.brand.blue)] hover:underline">test</Link> local data caching and offline stability. We then confirm that all data syncs correctly the moment the application reconnects to the internet.
+          To ensure a reliable user experience, we <Link href="/manual-testing" className="text-[theme(color.brand.blue)] underline">test</Link> local data caching and offline stability. We then confirm that all data syncs correctly the moment the application reconnects to the internet.
         </>
       ),
     },
@@ -36,7 +36,7 @@ const DesktopFAQs: React.FC = () => {
       question: "Can I use Selenium for desktop app testing?",
       answer: (
         <>
-          Selenium is primarily for web browsers. Appium (WinAppDriver) and TestComplete are our preferred tools for <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Windows 11 UI automation</Link>. They provide the deep integration needed to handle native desktop elements.
+          Selenium is primarily for web browsers. Appium (WinAppDriver) and TestComplete are our preferred tools for <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline">Windows 11 UI automation</Link>. They provide the deep integration needed to handle native desktop elements.
         </>
       ),
     },
@@ -44,7 +44,7 @@ const DesktopFAQs: React.FC = () => {
       question: "Why is hardware compatibility (RAM, CPU, GPU) testing important?",
       answer: (
         <>
-          Desktop applications interact directly with local system resources. <Link href="/desktop-application-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Hardware compatibility testing</Link> is essential for enterprise software to ensure stability across legacy CPUs and diverse GPU configurations.
+          Desktop applications interact directly with local system resources. <Link href="/desktop-application-testing-services" className="text-[theme(color.brand.blue)] underline">Hardware compatibility testing</Link> is essential for enterprise software to ensure stability across legacy CPUs and diverse GPU configurations.
         </>
       ),
     },

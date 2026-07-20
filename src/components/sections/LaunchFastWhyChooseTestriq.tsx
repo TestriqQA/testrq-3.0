@@ -266,7 +266,7 @@ const LaunchFastWhyChooseTestriq: React.FC = () => {
               LaunchFast QA Excellence Network
             </h3>
             <p className="text-gray-600 mb-8">
-              <Link title="Rapid testing methodologies" href='blog/post/rapid-functional-testing-why-speed-matters-in-agile-qa' className="text-[theme(color.brand.blue)] hover:underline">Rapid testing methodologies</Link> and technologies we&apos;ve
+              <Link title="Rapid testing methodologies" href='blog/post/rapid-functional-testing-why-speed-matters-in-agile-qa' className="text-[theme(color.brand.blue)] underline">Rapid testing methodologies</Link> and technologies we&apos;ve
               successfully implemented
             </p>
 
@@ -296,7 +296,7 @@ const LaunchFastWhyChooseTestriq: React.FC = () => {
             Ready to Accelerate Your Launch?
           </h3>
           <p className="text-gray-600 mb-6">
-            Join 300+ startups that trust our LaunchFast QA expertise. Start your journey with rapid testing sprints, <Link title="pre-launch testing" href='blog/post/performance-optimization-for-pre-launch-software-testing' className="text-[theme(color.brand.blue)] hover:underline">pre-launch testing</Link>, and <Link title="go-to-market" href="blog/post/how-automated-testing-boosted-fortune-500-company-productivity" className="text-[theme(color.brand.blue)] hover:underline">go-to-market</Link> QA to ensure on-time, successful launches.
+            Join 300+ startups that trust our LaunchFast QA expertise. Start your journey with rapid testing sprints, <Link title="pre-launch testing" href='blog/post/performance-optimization-for-pre-launch-software-testing' className="text-[theme(color.brand.blue)] underline">pre-launch testing</Link>, and <Link title="go-to-market" href="blog/post/how-automated-testing-boosted-fortune-500-company-productivity" className="text-[theme(color.brand.blue)] underline">go-to-market</Link> QA to ensure on-time, successful launches.
           </p>
           <Link title="Contact Us – Testriq QA Lab" href={"/contact-us"}>
             <button className="cursor-pointer bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">

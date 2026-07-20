@@ -14,7 +14,7 @@ const ExploratoryFAQs: React.FC = () => {
       answer: (
         <>
           The benefits of exploratory testing in{" "}
-          <Link href="blog/post/why-exploratory-testing-is-essential-for-agile-teams" className="text-[theme(color.brand.blue)] hover:underline">
+          <Link href="blog/post/why-exploratory-testing-is-essential-for-agile-teams" className="text-[theme(color.brand.blue)] underline">
             agile development
           </Link>{" "}
           lie in its flexibility. Exploratory testing adapts to mid-sprint

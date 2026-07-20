@@ -35,10 +35,10 @@ const challenges = [
         title: "Quantifying Coverage and ROI",
         icon: <FaChartBar className="text-3xl text-blue-600" />,
         description:
-            <>Proving the value of <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] hover:underline">manual QA</Link> exploration can be subjective if not quantified.</>,
+            <>Proving the value of <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline">manual QA</Link> exploration can be subjective if not quantified.</>,
         solutionLabel: "Our Solution",
         solutionContent:
-            <>We leverage <Link href="/qa-documentation-services" className="text-[theme(color.brand.blue)] hover:underline">ISO/IEC/IEEE 29119-3</Link> templates to track coverage. We use exploratory testing checklists and session metrics to provide tangible proof of our work. These reports clearly show how we uncover bugs that automated suites miss, demonstrating the value to your stakeholders.</>,
+            <>We leverage <Link href="/qa-documentation-services" className="text-[theme(color.brand.blue)] underline">ISO/IEC/IEEE 29119-3</Link> templates to track coverage. We use exploratory testing checklists and session metrics to provide tangible proof of our work. These reports clearly show how we uncover bugs that automated suites miss, demonstrating the value to your stakeholders.</>,
     },
     {
         id: 4,
@@ -55,7 +55,7 @@ const challenges = [
         title: "Balancing Creativity with ISO Structure",
         icon: <FaBalanceScale className="text-3xl text-indigo-600" />,
         description:
-            <>Too much structure stifles intuition; too little breeds chaos. In 2026, the rise of <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline">automated exploratory testing</Link> requires a hybrid approach.</>,
+            <>Too much structure stifles intuition; too little breeds chaos. In 2026, the rise of <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline">automated exploratory testing</Link> requires a hybrid approach.</>,
         solutionLabel: "Our Solution",
         solutionContent:
             "We act as the 29119-compliant bridge. Our exploratory testing methods include state transition and error guessing. These techniques allow our team to use their intuition while staying within a structured framework of planning and debriefing.",

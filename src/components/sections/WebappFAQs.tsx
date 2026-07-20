@@ -7,22 +7,22 @@ const faqs = [
   {
     question: "Which web application testing frameworks offer the highest ROI for startups in the 2026 ecosystem?",
     answer:
-      (<>We recommend a mix of <Link href='/blog/post/how-to-write-maintainable-test-scripts-in-selenium-or-cypress' className="text-[theme(color.brand.blue)] hover:underline">Cypress</Link> or Playwright for fast UI automation and OWASP ZAP for baseline security. These are the best web application testing tools for startups in 2026.</>),
+      (<>We recommend a mix of <Link href='/blog/post/how-to-write-maintainable-test-scripts-in-selenium-or-cypress' className="text-[theme(color.brand.blue)] underline">Cypress</Link> or Playwright for fast UI automation and OWASP ZAP for baseline security. These are the best web application testing tools for startups in 2026.</>),
   },
   {
     question: "How do I automate web application testing for Next.js?",
     answer:
-      (<>To automate web application testing for Next.js, We recommend using Playwright because of its excellent support for Server-Side Rendering (SSR) and <Link href='/web-application-testing-services' className="text-[theme(color.brand.blue)] hover:underline">React components</Link>.</>),
+      (<>To automate web application testing for Next.js, We recommend using Playwright because of its excellent support for Server-Side Rendering (SSR) and <Link href='/web-application-testing-services' className="text-[theme(color.brand.blue)] underline">React components</Link>.</>),
   },
   {
     question: "What is the difference between Front-end and Back-end testing?",
     answer:
-      (<>Front-end testing focuses on the UI and browser compatibility. <Link href='/blog/post/front-end-testing-vs-back-end-testing-key-differences-and-integrations' className="text-[theme(color.brand.blue)] hover:underline">Back-end testing</Link> involves <Link href='/api-testing' className="text-[theme(color.brand.blue)] hover:underline">API testing</Link> for web apps, database validation, and server-side logic.</>),
+      (<>Front-end testing focuses on the UI and browser compatibility. <Link href='/blog/post/front-end-testing-vs-back-end-testing-key-differences-and-integrations' className="text-[theme(color.brand.blue)] underline">Back-end testing</Link> involves <Link href='/api-testing' className="text-[theme(color.brand.blue)] underline">API testing</Link> for web apps, database validation, and server-side logic.</>),
   },
   {
     question: "Analyzing the Persistence: Why SQL Injection Remains a Critical Risk Assessment in 2026?",
     answer:
-      (<>Our <Link href='/security-testing' className="text-[theme(color.brand.blue)] hover:underline">web application penetration testing services</Link> specialize in identifying these vulnerabilities in legacy systems and rapid, unreviewed code pushes, ensuring your data remains secure.</>),
+      (<>Our <Link href='/security-testing' className="text-[theme(color.brand.blue)] underline">web application penetration testing services</Link> specialize in identifying these vulnerabilities in legacy systems and rapid, unreviewed code pushes, ensuring your data remains secure.</>),
   },
   {
     question: "How does cross-browser compatibility testing impact SEO?",

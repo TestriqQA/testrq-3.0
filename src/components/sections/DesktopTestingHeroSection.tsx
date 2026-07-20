@@ -52,7 +52,7 @@ const DesktopTestingHeroSection: React.FC = () => {
             <p className="text-gray-700 text-base md:text-lg mb-6 max-w-xl">
               In the high-stakes world of enterprise software, a desktop
               application&apos;s failure can halt global operations. Testriq
-              provides <Link href="/desktop-application-testing-services" className="text-[theme(color.brand.blue)] hover:underline">desktop application testing</Link> to ensure your
+              provides <Link href="/desktop-application-testing-services" className="text-[theme(color.brand.blue)] underline">desktop application testing</Link> to ensure your
               software is stable, secure, and resilient. As a leading desktop
               testing services provider, we specialize in the unique
               complexities of local hardware interactions, operating system (OS)
