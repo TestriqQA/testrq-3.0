@@ -8,7 +8,7 @@ const challenges = [
         id: 1,
         title: "Navigating Resource & Budget Constraints (ISO 29119-6 Alignment)",
         icon: <FaMoneyBillWave className="text-3xl text-emerald-600" />,
-        description: <>Startups face severe pressure to skip structured QA to meet aggressive timelines. Statistics show that 72% of organizations now embed <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline">QA into their CI/CD pipelines</Link>. However, only those using dedicated Rapid QA Testing Services see a 30-40% increase in release velocity without sacrificing quality.</>,
+        description: <>Startups face severe pressure to skip structured QA to meet aggressive timelines. Statistics show that 72% of organizations now embed <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline">QA into their CI/CD pipelines</Link>. However, only those using dedicated Rapid QA Testing Services see a 30-40% increase in release velocity without sacrificing quality.</>,
         solution: "Our Solution: We align with ISO/IEC TR 29119-6:2021, which provides agile-specific guidelines for lightweight test planning. We prioritize the 'Critical Path' of your MVP. This ensures your budget focuses on the high-risk features that impact your launch readiness.",
     },
     {
@@ -29,7 +29,7 @@ const challenges = [
         id: 4,
         title: "Balancing Speed with Comprehensive Coverage",
         icon: <FaCheckDouble className="text-3xl text-orange-600" />,
-        description: <>Agile demands often strain traditional QA processes. This strain leads to &apos;Technical Debt&apos; and leaves gaps in coverage for both <Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] hover:underline">mobile</Link> and <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] hover:underline">web applications</Link>.</>,
+        description: <>Agile demands often strain traditional QA processes. This strain leads to &apos;Technical Debt&apos; and leaves gaps in coverage for both <Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] underline">mobile</Link> and <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] underline">web applications</Link>.</>,
         solution: "Our Solution: We use a sprint-aligned, risk-based approach that reduces testing cycles to 48-72 hours. By using AI to automate regression, we empower our team to perform deep exploratory testing. This comprehensive approach ensures your MVP is free of both functional bugs and subtle usability flaws.",
     },
     {

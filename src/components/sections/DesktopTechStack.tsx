@@ -73,7 +73,7 @@ const DesktopTechStack: React.FC = () => {
             icon: <FaLaptopCode className="text-3xl text-brand-blue" />,
         },
         {
-            category: <Link href="/ai-application-testing" className="text-[theme(color.brand.blue)] hover:underline">Visual AI Testing</Link>,
+            category: <Link href="/ai-application-testing" className="text-[theme(color.brand.blue)] underline">Visual AI Testing</Link>,
             tools: [
                 {
                     name: "Applitools",
@@ -92,7 +92,7 @@ const DesktopTechStack: React.FC = () => {
             icon: <FaEye className="text-3xl text-purple-500" />,
         },
         {
-            category: <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Performance Tools</Link>,
+            category: <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline">Performance Tools</Link>,
             tools: [
                 {
                     name: "JMeter",
@@ -162,7 +162,7 @@ const DesktopTechStack: React.FC = () => {
                         Testriq&rsquo;s Desktop QA <span className="text-brand-blue">Tech Stack</span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        We utilize the most advanced desktop <Link href="/technology-stack" className="text-[theme(color.brand.blue)] hover:underline">automation and diagnostic tools</Link> to ensure your software is &quot;Market-Ready&quot; (2026 Trends):
+                        We utilize the most advanced desktop <Link href="/technology-stack" className="text-[theme(color.brand.blue)] underline">automation and diagnostic tools</Link> to ensure your software is &quot;Market-Ready&quot; (2026 Trends):
                     </p>
                 </div>
 

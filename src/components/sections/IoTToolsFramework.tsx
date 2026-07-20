@@ -84,7 +84,7 @@ const IoTToolsFramework: React.FC = () => {
       tools: [
         {
           name: "OWASP ZAP",
-          description: <span>Security scanning for IoT <Link href="/api-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">cloud APIs</Link></span>,
+          description: <span>Security scanning for IoT <Link href="/api-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">cloud APIs</Link></span>,
           icon: <SiOwasp className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
         {
@@ -99,12 +99,12 @@ const IoTToolsFramework: React.FC = () => {
         },
         {
           name: "Nessus",
-          description: <span><Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Firmware Security</Link> & vulnerability assessment</span>,
+          description: <span><Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Firmware Security</Link> & vulnerability assessment</span>,
           icon: <Image src="/Nessus_Logo.png" alt="Nessus Logo" width={20} height={20} className="object-contain" />,
         },
         {
           name: "k6",
-          description: <span>Developer-centric <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">load testing</Link> for MQTT/HTTP</span>,
+          description: <span>Developer-centric <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">load testing</Link> for MQTT/HTTP</span>,
           icon: <svg stroke="currentColor" fill="currentColor" strokeWidth="0" role="img" aria-label="k6 Logo" viewBox="0 0 24 24" height="20" width="20" className="text-[theme(color.brand.blue)]" xmlns="http://www.w3.org/2000/svg"><path d="M24 23.646H0L7.99 6.603l4.813 3.538L19.08.354Zm-8.8-3.681h.052a2.292 2.292 0 0 0 1.593-.64 2.088 2.088 0 0 0 .685-1.576 1.912 1.912 0 0 0-.66-1.511 2.008 2.008 0 0 0-1.37-.59h-.04a.716.716 0 0 0-.199.027l1.267-1.883-1.01-.705-.477.705-1.22 1.864c-.21.31-.386.582-.495.77-.112.2-.21.41-.29.625a1.942 1.942 0 0 0-.138.719 2.086 2.086 0 0 0 .676 1.558c.422.411.989.641 1.578.64Zm-5.365-2.027 1.398 1.978h1.496l-1.645-2.295 1.46-2.029-.97-.671-.427.565-1.314 1.853v-3.725l-1.31-1.068v7.37h1.31v-1.98Zm5.367.792a.963.963 0 1 1 0-1.927h.009a.941.941 0 0 1 .679.29.897.897 0 0 1 .29.668.978.978 0 0 1-.977.967Z"></path></svg>,
         },
         {
@@ -146,7 +146,7 @@ const IoTToolsFramework: React.FC = () => {
       tools: [
         {
           name: "Appium",
-          description: <span><Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Mobile-IoT</Link> interaction automation</span>,
+          description: <span><Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Mobile-IoT</Link> interaction automation</span>,
           icon: <SiAppium className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
         {

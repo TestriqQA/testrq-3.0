@@ -62,7 +62,7 @@ const ExploratoryTestingHeroSection: React.FC = () => {
               testing is more than just &apos;clicking around.&apos; Exploratory
               testing combines learning, test design, and execution into a
               single, sophisticated process. At Testriq, our{" "}
-              <Link href="exploratory-testing" className="text-[theme(color.brand.blue)] hover:underline">
+              <Link href="exploratory-testing" className="text-[theme(color.brand.blue)] underline">
                 exploratory testing software
               </Link>{" "}
               solutions bridge the gap between scripted coverage and real-world

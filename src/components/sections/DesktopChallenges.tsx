@@ -24,7 +24,7 @@ const challenges = [
         title: "Overcoming Automation and Tooling Limitations",
         icon: <FaRobot className="text-3xl text-blue-600" />,
         description:
-            <>Desktop apps often resist standard <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] hover:underline">web-based automation</Link> logic, requiring specialized handling for native controls and legacy stacks (WPF, WinForms, Qt). Most web-centric QA firms cannot handle this.</>,
+            <>Desktop apps often resist standard <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] underline">web-based automation</Link> logic, requiring specialized handling for native controls and legacy stacks (WPF, WinForms, Qt). Most web-centric QA firms cannot handle this.</>,
         solution:
             "Our Solution: Following ISO/IEC/IEEE 29119-5:2024, we implement keyword-driven testing frameworks utilizing tools like TestComplete and Appium (WinAppDriver) to reduce script flakiness for legacy regresson testing.",
     },
@@ -42,7 +42,7 @@ const challenges = [
         title: "Managing Performance and Resource Differences",
         icon: <FaTachometerAlt className="text-3xl text-orange-600" />,
         description:
-            <>Downtime and <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline">performance lags</Link> cost billions. Desktop apps must remain responsive despite background system load. CPU spikes and memory leaks are critical risks.</>,
+            <>Downtime and <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline">performance lags</Link> cost billions. Desktop apps must remain responsive despite background system load. CPU spikes and memory leaks are critical risks.</>,
         solution:
             "Our Solution: We use ISO 29119-3 Test Procedure Specifications to guide load simulations. We benchmark CPU spikes and detect memory leaks, ensuring your app remains stable under low-resource conditions.",
     },

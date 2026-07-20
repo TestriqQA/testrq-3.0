@@ -41,7 +41,7 @@ const WebappTestingHeroSection: React.FC = () => {
             </h1>
 
             <p className="text-gray-700 text-base md:text-lg mb-6 max-w-xl">
-              In the digital-first economy of 2026, a web application is only as strong as its weakest line of code. At Testriq, we provide comprehensive <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] hover:underline">web application testing</Link>. Our manual specialists and automated frameworks ensure your platform stays secure, high-performing, and resilient. As a premier testing partner, we bridge the gap between <Link href="/launchfast-qa" className="text-[theme(color.brand.blue)] hover:underline">rapid development</Link> and reliability through continuous software testing.
+              In the digital-first economy of 2026, a web application is only as strong as its weakest line of code. At Testriq, we provide comprehensive <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] underline">web application testing</Link>. Our manual specialists and automated frameworks ensure your platform stays secure, high-performing, and resilient. As a premier testing partner, we bridge the gap between <Link href="/launchfast-qa" className="text-[theme(color.brand.blue)] underline">rapid development</Link> and reliability through continuous software testing.
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center xl:justify-start items-center gap-4 mb-8 w-full sm:w-auto">

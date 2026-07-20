@@ -27,7 +27,7 @@ const techStack = {
   title: "The Testriq Tech Stack: Engineering Excellence Technology",
   subtitle: (
     <>
-      We don’t just use tools; we build <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Test Automation Frameworks</Link> that scale. From AI-driven validation to DevSecOps integration, we ensure your global infrastructure is robust.
+      We don’t just use tools; we build <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline">Test Automation Frameworks</Link> that scale. From AI-driven validation to DevSecOps integration, we ensure your global infrastructure is robust.
     </>
   ),
   categories: [

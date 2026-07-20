@@ -9,7 +9,7 @@ export default function CardSlider() {
 
   const headings = {
     title: "Our Step-by-Step Web QA Methodology",
-    info: (<>We follow <Link href='https://www.iso.org/standard/81291.html' target='_blank' className="text-[theme(color.brand.blue)] hover:underline">ISO 29119</Link> to prioritize testing for high-risk modules. For example, we focus heavily on functional testing for critical checkout pages. Our security risk assessment dives deep into your application’s armor.</>),
+    info: (<>We follow <Link href='https://www.iso.org/standard/81291.html' target='_blank' className="text-[theme(color.brand.blue)] underline">ISO 29119</Link> to prioritize testing for high-risk modules. For example, we focus heavily on functional testing for critical checkout pages. Our security risk assessment dives deep into your application’s armor.</>),
   };
 
   const cards = [

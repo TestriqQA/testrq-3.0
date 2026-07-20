@@ -51,10 +51,10 @@ const IoTTestingHeroSection: React.FC = () => {
 
             <div className="space-y-4 mb-6">
               <p className="text-gray-700 text-base md:text-lg">
-                The Internet of Things (IoT) landscape has reached a critical inflection point in 2026. As the number of global connected devices reaches <span className="font-semibold">21.1 billion</span>, providing seamless integrated testing services has become increasingly difficult. At Testriq, we offer expert <Link href="/iot-appliances-and-apps-testing-services" className="text-[theme(color.brand.blue)] hover:underline">IoT testing</Link> to stop device failures and network lag, securing your hardware against major security breaches.
+                The Internet of Things (IoT) landscape has reached a critical inflection point in 2026. As the number of global connected devices reaches <span className="font-semibold">21.1 billion</span>, providing seamless integrated testing services has become increasingly difficult. At Testriq, we offer expert <Link href="/iot-appliances-and-apps-testing-services" className="text-[theme(color.brand.blue)] underline">IoT testing</Link> to stop device failures and network lag, securing your hardware against major security breaches.
               </p>
               <p className="text-gray-700 text-base md:text-lg italic font-medium">
-                &quot;Our smart device testing methodology goes beyond simple functional checks. From firmware & protocols to <Link href="/api-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">cloud APIs</Link> & edge computing, we deliver deep technical expertise across consumer wearables and industrial systems.&quot;
+                &quot;Our smart device testing methodology goes beyond simple functional checks. From firmware & protocols to <Link href="/api-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">cloud APIs</Link> & edge computing, we deliver deep technical expertise across consumer wearables and industrial systems.&quot;
               </p>
             </div>
 
