@@ -106,6 +106,7 @@ const Navbar = () => {
           services: [
             { label: "Accessibility Testing", link: "/accessibility-testing-services" },
             { label: "SaaS Testing", link: "/saas-testing-services" },
+            { label: "QA Outsourcing Services", link: "/qa-outsourcing-services" },
             { label: "Managed Testing", link: "/managed-testing-services" },
             { label: "Ad-hoc Testing", link: "/ad-hoc-testing" },
             { label: "User Acceptance Testing (UAT)", link: "/user-acceptance-testing" },
