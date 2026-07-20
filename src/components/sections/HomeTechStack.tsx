@@ -27,7 +27,7 @@ const techStack = {
   title: "The Testriq Tech Stack: Engineering Excellence Technology",
   subtitle: (
     <>
-      We don’t just use tools; we build <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Test Automation Frameworks</Link> that scale. From AI-driven validation to DevSecOps integration, we ensure your global infrastructure is robust.
+      We don’t just use tools; we build <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline">Test Automation Frameworks</Link> that scale. From AI-driven validation to DevSecOps integration, we ensure your global infrastructure is robust.
     </>
   ),
   categories: [
@@ -358,7 +358,8 @@ const HeroTechStack = () => {
     <section className="py-16 px-8 sm:px-8 md:px-12 lg:px-24 bg-[theme(color.background.gray)] text-center">
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">{renderTitle()}</h2>
-        <p className="mt-4 text-gray-500 text-base sm:text-lg">
+        {/* gray-600: on the #F5F5F5 section background gray-500 is 4.43:1, under AA. */}
+        <p className="mt-4 text-gray-600 text-base sm:text-lg">
           {techStack.subtitle}
         </p>
       </div>

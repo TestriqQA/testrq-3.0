@@ -12,12 +12,12 @@ const SmartDeviceComplianceTable: React.FC = () => {
         },
         {
             standard: "SOC2 Type II",
-            focus: (<>Processing <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Integrity</Link></>),
+            focus: (<>Processing <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Integrity</Link></>),
             relevance: "Secure data handling during device QA cycles.",
         },
         {
             standard: "GDPR & CCPA",
-            focus: (<Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Data Privacy</Link>),
+            focus: (<Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Data Privacy</Link>),
             relevance: "Encrypting sensitive sensor data for health & home tech.",
         },
         {

@@ -57,7 +57,7 @@ const LaunchFastQAHeroSection: React.FC = () => {
             <div className="space-y-4 text-xl text-gray-600 leading-relaxed">
               <p>
                 Speed is critical for 2026 startups, but moving too fast without quality creates technical debt. This often leads to investor skepticism during funding rounds. Testriq’s{" "}
-                <Link title="Launch-Fast QA" href="/launchfast-qa" className="text-[theme(color.brand.blue)] hover:underline font-medium">
+                <Link title="Launch-Fast QA" href="/launchfast-qa" className="text-[theme(color.brand.blue)] underline font-medium">
                   Launch-Fast QA
                 </Link>{" "}
                 provides the specialized testing your early-stage team needs. We ensure you maintain velocity without compromising your product’s integrity.

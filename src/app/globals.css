@@ -2,8 +2,38 @@
 @tailwind utilities;
 
 @theme {
-  --color-background-gray: #F5F5F5; 
-  --color-brand-blue: #25A8E0; 
+  --color-background-gray: #F5F5F5;
+
+  /* Brand blue, darkened for accessibility.
+     Was #25A8E0, which measures only 2.71:1 on white — well under the WCAG AA
+     minimum of 4.5:1 — and produced 80 colour-contrast failures on the homepage
+     alone. It capped Accessibility at 93 no matter what else was fixed.
+
+     #1777A1 keeps the same hue (198 deg) and saturation (75%) and clears every
+     measured failing pair:
+       brand text on white        2.71 -> 5.01  (need 4.5)
+       brand text on #F5F5F5      2.48 -> 4.60  (need 4.5)
+       white text on brand fill   2.71 -> 5.01  (need 4.5)
+       brand text on sky-50       2.54 -> 4.70  (need 4.5)
+       sky-50 text on brand fill  2.54 -> 4.70  (need 4.5)
+       sky-200 on brand fill      2.04 -> 3.77  (need 3.0, large bold text)
+
+     Changed here at the token rather than at the call sites on purpose: the token
+     has 1,389 usages across 225 files (858 text, 226 bg, 227 decorative), so a
+     per-call-site split would have meant ~1,100 edits across the whole site for the
+     same result. Redefining the token fixes every page at once with one line. */
+  --color-brand-blue: #1777A1;
+
+  /* The original lighter brand blue, kept as an opt-in for purely decorative use
+     (gradient stops, rings, borders, blur accents) where no text sits on or beside
+     it and the lighter tone is preferred. Nothing uses it yet — decorative call
+     sites currently inherit the darker --color-brand-blue, which is safe because
+     contrast rules do not apply to them. Switch individual spots to
+     `theme(color.brand.blue-soft)` if the deeper tone reads too heavy. */
+  --color-brand-blue-soft: #25A8E0;
+
+  /* Unused anywhere in src/ (0 references); left in place rather than removed as
+     part of an unrelated change. */
   --color-brand-grey: #25A8E0;
 
   --animate-marquee: marquee 25s linear infinite;
@@ -204,6 +234,34 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .console__scanline { display: none; }
   .console__caret { animation: none; }
+}
+
+/* Homepage hero carousel (src/components/ImageSlider.tsx).
+   Moved out of a styled-jsx block so the hero does not depend on the styled-jsx
+   runtime injecting CSS at hydration. Rules are byte-identical to the originals.
+
+   IMPORTANT: ImageSlider only applies .slide-enter AFTER the carousel first
+   advances. slideIn starts at opacity:0, and Chromium excludes opacity-0
+   elements from LCP candidacy — so applying this to the first-rendered hero
+   image would push LCP out by up to the 1s animation duration on the metric
+   carrying the most weight. Do not remove that gate.
+
+   Kept at top level, NOT inside @theme: Tailwind v4 only emits @theme keyframes
+   when a matching --animate-* token is referenced. */
+@keyframes slideIn {
+  0%   { opacity: 0; transform: translateX(0) scale(0.85) rotateY(15deg); }
+  100% { opacity: 1; transform: translateX(0) scale(1) rotateY(0deg); }
+}
+@keyframes slideOut {
+  0%   { opacity: 1; transform: translateX(0) scale(1) rotateY(0deg); }
+  100% { opacity: 0; transform: translateX(-70%) scale(0.85) rotateY(-15deg); }
+}
+.slide-enter { animation: slideIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+.slide-exit  { animation: slideOut 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  /* The JS guard stops the autoplay timer, but the mount-time enter animation
+     still ran. animation:none falls back to opacity 1, so the slide stays visible. */
+  .slide-enter, .slide-exit { animation: none; }
 }
 
 

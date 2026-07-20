@@ -22,7 +22,7 @@ const ETLComprehensiveSlider: React.FC = () => {
       coverage: "ISO 8000-1:2022 Aligned",
       description: (
         <>
-          Poor <Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">data quality</Link> is the leading cause of ETL failures. Gartner reports that bad data costs organizations an average of $15 million every year. Challenge: Validating completeness and accuracy across billions of records. Our Solution: We align our ETL quality assurance with the ISO 8000-1:2022 benchmark. We use Query-Surge and i-CEDQ to automate checks at every ETL stage, ensuring your data remains accurate, timely, and portable.
+          Poor <Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">data quality</Link> is the leading cause of ETL failures. Gartner reports that bad data costs organizations an average of $15 million every year. Challenge: Validating completeness and accuracy across billions of records. Our Solution: We align our ETL quality assurance with the ISO 8000-1:2022 benchmark. We use Query-Surge and i-CEDQ to automate checks at every ETL stage, ensuring your data remains accurate, timely, and portable.
         </>
       ),
       features: [

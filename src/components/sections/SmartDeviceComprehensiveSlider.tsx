@@ -16,7 +16,7 @@ const SmartDeviceComprehensiveSlider: React.FC = () => {
       coverage: "ISO 29119-3 Compliant",
       description: (
         <>
-          The exponential growth of wearables, home appliances, and sensors has created a fragmentation crisis. To ensure global compatibility, organizations must expand their validation scope beyond a limited selection of flagship devices. Our Fix: We implement <Link href="/qa-documentation-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">ISO/IEC/IEEE 29119-3</Link> standardized test design. Our team maps coverage across hundreds of hardware configurations using a real device cloud, preventing failures before you launch.
+          The exponential growth of wearables, home appliances, and sensors has created a fragmentation crisis. To ensure global compatibility, organizations must expand their validation scope beyond a limited selection of flagship devices. Our Fix: We implement <Link href="/qa-documentation-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">ISO/IEC/IEEE 29119-3</Link> standardized test design. Our team maps coverage across hundreds of hardware configurations using a real device cloud, preventing failures before you launch.
         </>
       ),
       features: [
@@ -35,7 +35,7 @@ const SmartDeviceComprehensiveSlider: React.FC = () => {
       coverage: "ISO 27001 & NTIA Baselines",
       description: (
         <>
-          Security is the top restraint for IoT growth in 2026. With unpatched firmware and weak encryption being the primary attack vectors, distributed networks are more vulnerable than ever. Our Fix: Our IoT security protocols align with ISO/IEC 27001 and emerging NTIA baselines. We identify vulnerabilities using OWASP ZAP, Burp Suite, and Nmap, performing deep <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">penetration testing</Link> on your hardware.
+          Security is the top restraint for IoT growth in 2026. With unpatched firmware and weak encryption being the primary attack vectors, distributed networks are more vulnerable than ever. Our Fix: Our IoT security protocols align with ISO/IEC 27001 and emerging NTIA baselines. We identify vulnerabilities using OWASP ZAP, Burp Suite, and Nmap, performing deep <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">penetration testing</Link> on your hardware.
         </>
       ),
       features: [

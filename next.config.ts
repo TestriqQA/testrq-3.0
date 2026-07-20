@@ -16,7 +16,19 @@ const nextConfig: NextConfig = {
   poweredByHeader: false, // Suppress X-Powered-By: Next.js framework fingerprint on all responses
   experimental: {
     cssChunking: true,     // Split + reorder CSS per route
-    optimizeCss: true,     // Inline critical CSS (Critters)
+
+    // Note for future work: react-icons/tb and react-icons/vsc are the only
+    // subpaths this codebase imports that are NOT in Next 16's default
+    // optimizePackageImports list. Adding them was measured and is a no-op under
+    // Turbopack — Script bytes were identical at 269.5 KiB before and after — so it
+    // is deliberately not configured. Turbopack already tree-shakes these barrels.
+    // optimizeCss removed: it is inert on the App Router. Its only consumer is
+    // postProcessHTML() in next/dist/server/post-process.js, which is imported
+    // solely by the Pages Router's render.js — verified that nothing under
+    // next/dist/server/app-render/ references it, and this repo has no pages/
+    // directory. The deployed HTML confirms it: zero <style> tags, two
+    // unmodified <link rel=stylesheet>. The `critters` dependency it would have
+    // used is removed from package.json in the same commit.
     // inlineCss disabled: it embedded the full route stylesheet into the HTML
     // *three* times (once in <style>, twice more serialized into the RSC flight
     // payload), which accounted for 76% of a 1.18 MB homepage document and

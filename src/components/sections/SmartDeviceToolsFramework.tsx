@@ -60,7 +60,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
           name: "OWASP ZAP",
           description: (
             <>
-              <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Application security</Link> vulnerability testing
+              <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Application security</Link> vulnerability testing
             </>
           ),
           icon: <Image src="/Owasp_Zap_Logo.png" alt="OWASP ZAP Logo" width={20} height={20} className="object-contain" />,
@@ -90,7 +90,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
           name: "Apache JMeter",
           description: (
             <>
-              High-tier device <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">performance and load testing</Link>
+              High-tier device <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">performance and load testing</Link>
             </>
           ),
           icon: <SiApachejmeter className="w-5 h-5 text-purple-500" />,
@@ -146,7 +146,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
           name: "Appium",
           description: (
             <>
-              <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Automated testing</Link> for smart home ecosystems
+              <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Automated testing</Link> for smart home ecosystems
             </>
           ),
           icon: <SiAppium className="w-5 h-5 text-green-500" />,

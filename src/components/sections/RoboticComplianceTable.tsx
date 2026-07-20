@@ -17,12 +17,12 @@ const RoboticComplianceTable: React.FC = () => {
         },
         {
             standard: "SOC2 Type II & GDPR",
-            focus: (<>Data & Telemetry <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Security</Link></>),
-            relevance: (<>Safeguarding <Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">sensor data</Link> and private telemetry.</>),
+            focus: (<>Data & Telemetry <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Security</Link></>),
+            relevance: (<>Safeguarding <Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">sensor data</Link> and private telemetry.</>),
         },
         {
             standard: "IEC 61508 / 62061",
-            focus: (<Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Functional Safety</Link>),
+            focus: (<Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Functional Safety</Link>),
             relevance: "Validating electrical control systems functionality.",
         },
         {

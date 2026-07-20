@@ -12,7 +12,7 @@ const IoTFAQs: React.FC = () => {
       question: "What is the most critical challenge in testing IoT devices in 2026?",
       answer: (
         <>
-          The most critical challenge is device diversity and <Link href="/blog/post/interoperability-testing-for-iot-ensuring-seamless-protocol-device-interaction" className="text-[theme(color.brand.blue)] hover:underline">interoperability</Link>. To ensure your product works across various protocols (Zigbee, MQTT) and firmware versions, we use a standardized <Link href="/blog/post/iso-iec-29119-as-a-standardized-framework-for-modern-software-testing" className="text-[theme(color.brand.blue)] hover:underline">ISO/IEC 29119</Link> approach for consistent test design.
+          The most critical challenge is device diversity and <Link href="/blog/post/interoperability-testing-for-iot-ensuring-seamless-protocol-device-interaction" className="text-[theme(color.brand.blue)] underline">interoperability</Link>. To ensure your product works across various protocols (Zigbee, MQTT) and firmware versions, we use a standardized <Link href="/blog/post/iso-iec-29119-as-a-standardized-framework-for-modern-software-testing" className="text-[theme(color.brand.blue)] underline">ISO/IEC 29119</Link> approach for consistent test design.
         </>
       ),
     },
@@ -28,7 +28,7 @@ const IoTFAQs: React.FC = () => {
       question: "Why is security testing for medical IoT devices so important?",
       answer: (
         <>
-          Security testing for medical IoT devices is vital because a breach can directly impact patient safety. Adhering to <Link href="/healthcare-testing-services" className="text-[theme(color.brand.blue)] hover:underline">HIPAA</Link> and the <span className="font-semibold">Cyber Resilience Act (CRA)</span> ensures we encrypt patient data and harden devices against OT ransomware and unauthorized firmware tampering.
+          Security testing for medical IoT devices is vital because a breach can directly impact patient safety. Adhering to <Link href="/healthcare-testing-services" className="text-[theme(color.brand.blue)] underline">HIPAA</Link> and the <span className="font-semibold">Cyber Resilience Act (CRA)</span> ensures we encrypt patient data and harden devices against OT ransomware and unauthorized firmware tampering.
         </>
       ),
     },
@@ -36,7 +36,7 @@ const IoTFAQs: React.FC = () => {
       question: "What are the benefits of automating firmware regression tests for smart sensors?",
       answer: (
         <>
-          Automating firmware regression tests ensures that every new update (<Link href="/blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks" className="text-[theme(color.brand.blue)] hover:underline">FOTA</Link>) does not break existing features. Automation slashes testing cycles from weeks to hours, speeding up development and getting your IoT products to market faster.
+          Automating firmware regression tests ensures that every new update (<Link href="/blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks" className="text-[theme(color.brand.blue)] underline">FOTA</Link>) does not break existing features. Automation slashes testing cycles from weeks to hours, speeding up development and getting your IoT products to market faster.
         </>
       ),
     },
@@ -44,7 +44,7 @@ const IoTFAQs: React.FC = () => {
       question: "How do you perform performance testing for smart home ecosystems?",
       answer: (
         <>
-          We simulate a connected device environment where multiple <Link href="/smart-device-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">smart devices</Link> (lights, thermostats, cameras) interact simultaneously. We measure <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline">edge computing latency</Link> and the cloud backend&apos;s ability to handle data spikes without service degradation under peak workloads.
+          We simulate a connected device environment where multiple <Link href="/smart-device-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">smart devices</Link> (lights, thermostats, cameras) interact simultaneously. We measure <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline">edge computing latency</Link> and the cloud backend&apos;s ability to handle data spikes without service degradation under peak workloads.
         </>
       ),
     },

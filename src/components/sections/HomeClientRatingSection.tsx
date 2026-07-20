@@ -45,7 +45,7 @@ const ClientRatingSection = () => {
           <>
             Trusted by global startups and enterprises, Testriq is a leading QA
             outsourcing partner known for ISTQB certified experts, dependable{" "}
-            <Link href="blog/post/what-is-the-best-emerging-technology-to-learn-in-qa-support" className="text-[theme(color.brand.blue)] hover:underline">
+            <Link href="blog/post/what-is-the-best-emerging-technology-to-learn-in-qa-support" className="text-[theme(color.brand.blue)] underline">
               QA support
             </Link>
             , and consistent software quality across every project.
@@ -222,11 +222,20 @@ const ClientRatingSection = () => {
                 key={index}
                 className={`px-2 ${isMobile ? "min-w-full" : isTablet ? "min-w-1/2" : "min-w-1/4"
                   }`}
-                aria-label={`Read case study of ${card.company}`}
+                /* aria-label deliberately removed. It was "Read case study of {company}",
+                   which overrode ~200 chars of visible card text — a WCAG 2.5.3
+                   (Label in Name) failure. With no explicit label the accessible name
+                   is derived from the card's own content, which takes the element out
+                   of the rule's scope entirely and still names the company, since
+                   card.company is visible text inside the card. An sr-only span was
+                   considered and rejected: this component is server-rendered, so the
+                   span would become crawlable anchor text on every case-study link. */
               >
+                {/* gray-600 throughout this card: the card background is
+                    #F5F5F5, where gray-500 measures 4.43:1 — just under AA. */}
                 <div className="flex flex-col h-full ring-sky-200 ring-1 bg-[theme(color.background.gray)] rounded-lg p-5 gap-y-6 transition duration-300 transform hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-2">
                   {card.icon}
-                  <p className="text-gray-500 italic text-sm md:text-base">
+                  <p className="text-gray-600 italic text-sm md:text-base">
                     {card.Comment}
                   </p>
                   <div className="flex flex-col xl:justify-between mt-auto gap-1">
@@ -234,10 +243,10 @@ const ClientRatingSection = () => {
                       <h3 className="text-base md:text-lg font-semibold">
                         {card.clientName}
                       </h3>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-600">
                         {card.designation}
                       </p>
-                      <p className="text-sm text-gray-500 font-semibold">
+                      <p className="text-sm text-gray-600 font-semibold">
                         {card.company}
                       </p>
                     </div>

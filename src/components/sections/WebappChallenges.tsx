@@ -15,7 +15,7 @@ const challenges = [
         title: "Mastering Cross-Browser and Device Fragmentation",
         icon: <FaMobileAlt className="text-3xl text-emerald-600" />,
         description:
-            <><Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] hover:underline">Mobile devices</Link> now account for over 58% of global web traffic. Testing across endless combinations of Chrome, Safari, and Firefox has become a logistical nightmare for QA teams. Layout bugs and inconsistent UX often lead to high churn rates.</>,
+            <><Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] underline">Mobile devices</Link> now account for over 58% of global web traffic. Testing across endless combinations of Chrome, Safari, and Firefox has become a logistical nightmare for QA teams. Layout bugs and inconsistent UX often lead to high churn rates.</>,
         solution:
             "Our Solution: We align with ISO/IEC/IEEE 29119-2:2021, utilizing multi-environment validation and Responsive design testing. Our cross-browser checklist ensures your app performs flawlessly. We cover everything from legacy desktop browsers to the latest mobile operating systems.",
     },
@@ -24,7 +24,7 @@ const challenges = [
         title: "Defending Against Escalating Security Threats",
         icon: <FaUserShield className="text-3xl text-red-600" />,
         description:
-            <>Web applications are the primary target for 36% of all penetration tests. With cyberattacks now costing businesses an average of $4.88M per breach, <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] hover:underline">web app testing</Link> must be security-centric. OWASP Top 10 threats like SQL injection and XSS are becoming more sophisticated.</>,
+            <>Web applications are the primary target for 36% of all penetration tests. With cyberattacks now costing businesses an average of $4.88M per breach, <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] underline">web app testing</Link> must be security-centric. OWASP Top 10 threats like SQL injection and XSS are becoming more sophisticated.</>,
         solution:
             "Our Solution: Our solution follows the ISO/IEC/IEEE 29119-5:2024 standard. We provide outsourced security testing that includes risk assessment, HTTPS/SSL verification, and web risk assessment scans. We don't just scan; we simulate real-world attacks to harden your defenses.",
     },
@@ -33,7 +33,7 @@ const challenges = [
         title: "Solving the 80% Automation Flakiness Trap",
         icon: <FaCogs className="text-3xl text-blue-600" />,
         description:
-            <>Dynamic UIs and AI-driven changes have made traditional <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] hover:underline">Web UI automation</Link> brittle. Over 80% of automated tests fail because of &apos;flakiness&apos; in dynamic environments. Maintenance of Selenium, Cypress, or Playwright scripts often takes longer than the testing itself.</>,
+            <>Dynamic UIs and AI-driven changes have made traditional <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline">Web UI automation</Link> brittle. Over 80% of automated tests fail because of &apos;flakiness&apos; in dynamic environments. Maintenance of Selenium, Cypress, or Playwright scripts often takes longer than the testing itself.</>,
         solution:
             "Our Solution: We implement ISO/IEC/IEEE 29119-4 model-based testing. Our automated testing ensures stability during Agile sprints. We use self-healing scripts that analyze the DOM in real-time to prevent broken tests.",
     },
@@ -51,7 +51,7 @@ const challenges = [
         title: "Overcoming the Global QA Talent Shortage",
         icon: <FaUserTie className="text-3xl text-indigo-600" />,
         description:
-            <>Specialized engineering talent is currently in short supply. Many firms struggle to find experts for complex <Link href="/api-testing" className="text-[theme(color.brand.blue)] hover:underline">API testing</Link> and AI-augmented security assessments. Automated tools alone uncover 2,000x fewer vulnerabilities than when paired with expert manual exploration.</>,
+            <>Specialized engineering talent is currently in short supply. Many firms struggle to find experts for complex <Link href="/api-testing" className="text-[theme(color.brand.blue)] underline">API testing</Link> and AI-augmented security assessments. Automated tools alone uncover 2,000x fewer vulnerabilities than when paired with expert manual exploration.</>,
         solution:
             "Our Solution: Testriq offers a managed service alternative. Our ISTQB-certified team provides expert web application QA. We maintain a 99% process progress metric to ensure timely and transparent delivery.",
     },

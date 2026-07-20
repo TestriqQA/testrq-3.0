@@ -30,7 +30,7 @@ const impactSection: {
       subtitle:
         (
           <>
-            Testriq’s enterprise <Link href="blog/post/a-complete-guide-to-compatibility-testing-in-manual-software-qa" className="text-[theme(color.brand.blue)] hover:underline">QA solutions</Link> deliver real-world success-accelerating performance, securing <Link href="banking-finance-industry-testing-services" className="text-[theme(color.brand.blue)] hover:underline">fintech apps</Link>, and ensuring compatibility across <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] hover:underline">web</Link>, <Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] hover:underline">mobile</Link>, and <Link href="iot-device-testing-services" className="text-[theme(color.brand.blue)] hover:underline">IoT</Link> through proven software testing <Link href="case-studies" className="text-[theme(color.brand.blue)] hover:underline">case studies</Link>.
+            Testriq’s enterprise <Link href="blog/post/a-complete-guide-to-compatibility-testing-in-manual-software-qa" className="text-[theme(color.brand.blue)] underline">QA solutions</Link> deliver real-world success-accelerating performance, securing <Link href="banking-finance-industry-testing-services" className="text-[theme(color.brand.blue)] underline">fintech apps</Link>, and ensuring compatibility across <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] underline">web</Link>, <Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] underline">mobile</Link>, and <Link href="iot-device-testing-services" className="text-[theme(color.brand.blue)] underline">IoT</Link> through proven software testing <Link href="case-studies" className="text-[theme(color.brand.blue)] underline">case studies</Link>.
           </>
         ),
       caseStudies: [
@@ -65,7 +65,9 @@ const HomeOurImpact = () => {
       {/* Heading */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl font-semibold">{renderTitle()}</h2>
-        <p className="mt-4 text-gray-500 text-base sm:text-lg">
+        {/* gray-600: this sits on the #F5F5F5 section background (4.43:1 at gray-500).
+            The card copy further down stays gray-500 — it is on white and passes. */}
+        <p className="mt-4 text-gray-600 text-base sm:text-lg">
           {impactSection[0].subtitle}
         </p>
       </div>

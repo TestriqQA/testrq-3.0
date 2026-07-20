@@ -11,12 +11,12 @@ const LaunchFastFAQs: React.FC = () => {
     {
       question: "How can I speed up product launch with agile QA?",
       answer:
-        (<>The best way to speed up product launch with agile QA is to integrate testing early in the SDLC We use <Link title="CI/CD integration" href='/blog/post/ci-cd-integration-with-automated-tests' className="text-[theme(color.brand.blue)] hover:underline">CI/CD integration</Link> and automated testing training to catch bugs at the &apos;commit&apos; stage. This approach prevents expensive rework during the software release cycle.</>),
+        (<>The best way to speed up product launch with agile QA is to integrate testing early in the SDLC We use <Link title="CI/CD integration" href='/blog/post/ci-cd-integration-with-automated-tests' className="text-[theme(color.brand.blue)] underline">CI/CD integration</Link> and automated testing training to catch bugs at the &apos;commit&apos; stage. This approach prevents expensive rework during the software release cycle.</>),
     },
     {
       question: "What are the benefits of on-demand QA services for startups?",
       answer:
-        (<>Our on-demand QA services provide instant access to senior-level engineers. This gives your dev team the flexibility it needs without the overhead of a full-time hire. This is crucial for early-stage companies needing <Link title="Rapid QA Testing Services" href='/launchfast-qa' className="text-[theme(color.brand.blue)] hover:underline">Rapid QA Testing Services</Link> during critical build phases.</>),
+        (<>Our on-demand QA services provide instant access to senior-level engineers. This gives your dev team the flexibility it needs without the overhead of a full-time hire. This is crucial for early-stage companies needing <Link title="Rapid QA Testing Services" href='/launchfast-qa' className="text-[theme(color.brand.blue)] underline">Rapid QA Testing Services</Link> during critical build phases.</>),
     },
     {
       question: "Does Launch-Fast QA support 24/7 agile support for software testing?",
@@ -31,7 +31,7 @@ const LaunchFastFAQs: React.FC = () => {
     {
       question: "What is the difference between Manual and Automation testing for startups?",
       answer:
-        (<>Manual testing is essential for exploratory, UX, and &quot;human-centric&quot; edge cases in new features. <Link title="Automation testing" href='/automation-testing-services' className="text-[theme(color.brand.blue)] hover:underline">Automation testing</Link> is ideal for regression cycles. It ensures that new updates don&apos;t break existing functionality within your CI/CD pipeline.</>),
+        (<>Manual testing is essential for exploratory, UX, and &quot;human-centric&quot; edge cases in new features. <Link title="Automation testing" href='/automation-testing-services' className="text-[theme(color.brand.blue)] underline">Automation testing</Link> is ideal for regression cycles. It ensures that new updates don&apos;t break existing functionality within your CI/CD pipeline.</>),
     },
   ];
 
@@ -49,7 +49,7 @@ const LaunchFastFAQs: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-600 leading-relaxed">
             Get answers to common questions about our LaunchFast QA services,
-            processes, and how we can help accelerate your <Link title="product launch" href='blog/post/performance-optimization-for-pre-launch-software-testing' className="text-[theme(color.brand.blue)] hover:underline">product launch</Link>.
+            processes, and how we can help accelerate your <Link title="product launch" href='blog/post/performance-optimization-for-pre-launch-software-testing' className="text-[theme(color.brand.blue)] underline">product launch</Link>.
           </p>
         </div>
 

@@ -91,7 +91,7 @@ const RoboticToolsFramework: React.FC = () => {
           name: (<>Selenium/<br />Appium</>),
           description: (
             <>
-              <Link href="/api-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Integration testing</Link> for robotic UI systems
+              <Link href="/api-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Integration testing</Link> for robotic UI systems
             </>
           ),
           icon: <Image src="/Appium_Logo.svg" alt="Appium Logo" width={80} height={20} className="object-contain" />,

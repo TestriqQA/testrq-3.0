@@ -83,7 +83,7 @@ const ETLProvenTestingProcess: React.FC = () => {
       title: "Performance & Scalability Optimization",
       description: (
         <>
-          Our team identifies bottlenecks through <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">pipeline stress-testing</Link> to guarantee we meet your ETL performance benchmarks.
+          Our team identifies bottlenecks through <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">pipeline stress-testing</Link> to guarantee we meet your ETL performance benchmarks.
         </>
       ),
       duration: "4-5 days",

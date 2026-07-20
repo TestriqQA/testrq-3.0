@@ -8,7 +8,7 @@ const IoTCardSlider: React.FC = () => {
     {
       title: "Embedded Software & Firmware Testing",
       description:
-        <>Comprehensive validation of <strong>embedded firmware logic</strong>, sensor accuracy, and <Link href="/blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks" className="font-bold text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">OTA (Over-the-Air) updates</Link> to ensure your device performs flawlessly without data loss.</>,
+        <>Comprehensive validation of <strong>embedded firmware logic</strong>, sensor accuracy, and <Link href="/blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks" className="font-bold text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">OTA (Over-the-Air) updates</Link> to ensure your device performs flawlessly without data loss.</>,
       features: [
         "Device feature validation",
         "User interface testing",
@@ -22,7 +22,7 @@ const IoTCardSlider: React.FC = () => {
     {
       title: "Protocol Validation (MQTT, Zigbee, BLE)",
       description:
-        <>Ensure reliable communication across complex networks. We validate interoperability for <strong>MQTT</strong>, <strong>Zigbee</strong>, <strong>CoAP</strong>, and <Link href="/blog/post/connectivity-protocol-testing-for-iot-wifi-ble-zigbee-mqtt-more" className="font-bold text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Bluetooth Low Energy (BLE)</Link> under varying latency conditions.</>,
+        <>Ensure reliable communication across complex networks. We validate interoperability for <strong>MQTT</strong>, <strong>Zigbee</strong>, <strong>CoAP</strong>, and <Link href="/blog/post/connectivity-protocol-testing-for-iot-wifi-ble-zigbee-mqtt-more" className="font-bold text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Bluetooth Low Energy (BLE)</Link> under varying latency conditions.</>,
       features: [
         "Wireless protocol testing",
         "Network connectivity validation",
@@ -36,7 +36,7 @@ const IoTCardSlider: React.FC = () => {
     {
       title: "IoT Security & Penetration Testing",
       description:
-        <>Advanced <Link href="/security-testing" className="font-bold text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">Vulnerability Assessment and Penetration Testing (VAPT)</Link> to protect against firmware hacking, side-channel attacks, and <strong>unencrypted data transmission</strong>.</>,
+        <>Advanced <Link href="/security-testing" className="font-bold text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Vulnerability Assessment and Penetration Testing (VAPT)</Link> to protect against firmware hacking, side-channel attacks, and <strong>unencrypted data transmission</strong>.</>,
       features: [
         "Device authentication testing",
         "Data encryption validation",
@@ -61,14 +61,14 @@ const IoTCardSlider: React.FC = () => {
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             Our specialized testing approaches ensure your IoT devices meet the
             highest standards of{" "}
-            <Link href="blog/post/how-does-validation-optimization-improve-web-application-quality" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">
+            <Link href="blog/post/how-does-validation-optimization-improve-web-application-quality" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">
               functionality
             </Link>
             ,{" "}
-            <Link href="blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">
+            <Link href="blog/post/device-connectivity-testing-ensuring-reliable-iot-connections-across-networks" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">
               connectivity
             </Link>
-            , and <Link href="security-testing" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">security</Link>.
+            , and <Link href="security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">security</Link>.
           </p>
         </div>
 
