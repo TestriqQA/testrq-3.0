@@ -4,15 +4,26 @@ import StructuredData, { organizationSchema, websiteSchema, productServiceSchema
 
 import HomeHeroSection from "@/components/sections/HomeHeroSection";
 
+// These nine are Server Components, so dynamic() shipped no client JS to defer —
+// it bought zero bundle saving while costing 9 real Suspense boundaries. `/` is
+// prerendered with ISR and their markup is already in the static HTML, so those
+// boundaries delivered no streaming benefit either: they only made the browser
+// paint a grey skeleton and then swap it via $RC, forcing style recalc + layout.
+// Importing them statically also emits their markup in correct DOM order rather
+// than inside a hidden div relocated by JS, which is better for crawlers.
+import HomeComprehensiveSoftwareTesting from "@/components/sections/HomeComprehensiveSoftwareTesting";
+import HomeIndustryExpert from "@/components/sections/HomeIndustryExpert";
+import HomeOurImpact from "@/components/sections/HomeOurImpact";
+import HomeReadyToElevate from "@/components/sections/HomeReadyToElevate";
+import HomeTechStack from "@/components/sections/HomeTechStack";
+import HomeChooseTestriq from "@/components/sections/HomeChooseTestriq";
+import HomeTrustedCompanies from "@/components/sections/HomeTrustedCompanies";
+import HomeProcesses from "@/components/sections/HomeProcesses";
+import HomeComplianceSection from "@/components/sections/HomeComplianceSection";
 
-const HomeComprehensiveSoftwareTesting = dynamic(
-  () => import("@/components/sections/HomeComprehensiveSoftwareTesting"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[600px] animate-pulse bg-gray-50" />
-  }
-);
+// The three below keep dynamic() for real reasons.
 
+// Genuine "use client" components — dynamic() actually splits their hydration chunk.
 const ClientRatingSection = dynamic(
   () => import("@/components/sections/HomeClientRatingSection"),
   {
@@ -21,83 +32,24 @@ const ClientRatingSection = dynamic(
   }
 );
 
-const HomeIndustryExpert = dynamic(
-  () => import("@/components/sections/HomeIndustryExpert"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[500px] animate-pulse bg-gray-50" />
-  }
-);
-
-const HomeOurImpact = dynamic(
-  () => import("@/components/sections/HomeOurImpact"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[300px] animate-pulse bg-gray-50" />
-  }
-);
-
-const HomeReadyToElevate = dynamic(
-  () => import("@/components/sections/HomeReadyToElevate"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[400px] animate-pulse bg-gray-50" />
-  }
-);
-
-const HomeTechStack = dynamic(
-  () => import("@/components/sections/HomeTechStack"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[1200px] animate-pulse bg-gray-50 shadow-inner" />
-  }
-);
-
-const HomeChooseTestriq = dynamic(
-  () => import("@/components/sections/HomeChooseTestriq"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[800px] animate-pulse bg-gray-50 rounded-3xl m-8" />
-  }
-)
-
-const HomeInsightSection = dynamic(
-  () => import("@/components/sections/HomeInsightSection"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[400px] animate-pulse bg-gray-50 shadow-sm" />
-  }
-);
-
-const HomeTrustedCompanies = dynamic(
-  () => import("@/components/sections/HomeTrustedCompanies"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[120px] animate-pulse bg-gray-50" />
-  }
-);
-
-const HomeProcesses = dynamic(
-  () => import("@/components/sections/HomeProcesses"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[800px] animate-pulse bg-gray-50 m-12 rounded-2xl" />
-  }
-);
-
-const HomeComplianceSection = dynamic(
-  () => import("@/components/sections/HomeComplianceSection"),
-  {
-    ssr: true,
-    loading: () => <div className="h-[600px] animate-pulse bg-gray-50" />
-  }
-);
-
 const HomeFAQSection = dynamic(
   () => import("@/components/sections/HomeFAQSection"),
   {
     ssr: true,
     loading: () => <div className="h-[700px] animate-pulse bg-gray-50" />
+  }
+);
+
+// An async Server Component (it awaits getPosts(3)). A static import of an async
+// component is a hard TS2786 build failure under @types/react 18, so dynamic() is
+// what makes this type-check. It is also the only wrapper doing real I/O, so the
+// Suspense boundary is worth keeping — it is last in the DOM and stops a slow
+// Sanity fetch from ever blocking the shell.
+const HomeInsightSection = dynamic(
+  () => import("@/components/sections/HomeInsightSection"),
+  {
+    ssr: true,
+    loading: () => <div className="h-[400px] animate-pulse bg-gray-50 shadow-sm" />
   }
 );
 

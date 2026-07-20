@@ -60,7 +60,10 @@ const HomeInsightSection = async () => {
                             key={post.id}
                             className="flex flex-col justify-start items-start ring-sky-200 ring-1 rounded-lg p-5 md:p-5 h-auto gap-y-5 transition duration-300 transform hover:shadow-sky-200 hover:shadow-xl hover:-translate-y-2"
                         >
-                            <p className="text-xs text-blue-400 p-1.5 py-1 rounded-2xl bg-sky-100">
+                            {/* blue-700: blue-400 (#51a2ff) on bg-sky-100 (#dff2fe) measured
+                                2.29:1. blue-600 only reaches 4.56:1, too close to the
+                                threshold to be safe; blue-700 is 5.94:1. */}
+                            <p className="text-xs text-blue-700 p-1.5 py-1 rounded-2xl bg-sky-100">
                                 {post.category}
                             </p>
                             <div className="flex text-sm text-gray-500 space-x-3">

@@ -101,7 +101,9 @@ const HomeProcesses = () => {
           </div>
           <div>
             <h3 className="text-gray-900 text-xl font-bold">Ready to Scale?</h3>
-            <p className="text-gray-500 text-sm">Experience our global blueprint today.</p>
+            {/* gray-600: this box is on #F5F5F5 (4.43:1 at gray-500). The step
+                descriptions above stay gray-500 — they are on white and pass. */}
+            <p className="text-gray-600 text-sm">Experience our global blueprint today.</p>
           </div>
         </div>
         <Link title="Get Started" href="/contact-us">

@@ -206,6 +206,34 @@ body {
   .console__caret { animation: none; }
 }
 
+/* Homepage hero carousel (src/components/ImageSlider.tsx).
+   Moved out of a styled-jsx block so the hero does not depend on the styled-jsx
+   runtime injecting CSS at hydration. Rules are byte-identical to the originals.
+
+   IMPORTANT: ImageSlider only applies .slide-enter AFTER the carousel first
+   advances. slideIn starts at opacity:0, and Chromium excludes opacity-0
+   elements from LCP candidacy — so applying this to the first-rendered hero
+   image would push LCP out by up to the 1s animation duration on the metric
+   carrying the most weight. Do not remove that gate.
+
+   Kept at top level, NOT inside @theme: Tailwind v4 only emits @theme keyframes
+   when a matching --animate-* token is referenced. */
+@keyframes slideIn {
+  0%   { opacity: 0; transform: translateX(0) scale(0.85) rotateY(15deg); }
+  100% { opacity: 1; transform: translateX(0) scale(1) rotateY(0deg); }
+}
+@keyframes slideOut {
+  0%   { opacity: 1; transform: translateX(0) scale(1) rotateY(0deg); }
+  100% { opacity: 0; transform: translateX(-70%) scale(0.85) rotateY(-15deg); }
+}
+.slide-enter { animation: slideIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+.slide-exit  { animation: slideOut 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  /* The JS guard stops the autoplay timer, but the mount-time enter animation
+     still ran. animation:none falls back to opacity 1, so the slide stays visible. */
+  .slide-enter, .slide-exit { animation: none; }
+}
+
 
 
 
