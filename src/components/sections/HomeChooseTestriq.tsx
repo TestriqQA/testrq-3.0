@@ -70,7 +70,10 @@ const HomeChooseTestriq = () => {
                             <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
                                 <item.icon className="w-8 h-8 text-white" />
                             </div>
-                            <h4 className="text-xl font-bold mb-3">{item.title}</h4>
+                            {/* h3, not h4: this block's heading above is an h2, so an
+                                h4 skipped a level (axe heading-order). Styling is
+                                unchanged — the size comes from the explicit classes. */}
+                            <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                             <p className="text-sky-50 text-sm">{item.detail}</p>
                         </div>
                     ))}
