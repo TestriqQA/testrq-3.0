@@ -43,6 +43,7 @@ const coreService = [
   { title: "Smart Device Testing", path: "/smart-device-testing-services" },
   { title: "ETL Testing", path: "/etl-testing-services" },
   { title: "Performance Testing", path: "/performance-testing-services" },
+  { title: "QA Outsourcing Services", path: "/qa-outsourcing-services" },
 ];
 
 const specializedTesting = [

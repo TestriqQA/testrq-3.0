@@ -48,6 +48,10 @@ const DedicatedQaTeamPage: React.FC = () => (
     offeringName="Dedicated QA Team"
     slug="dedicated-qa-team"
     breadcrumbName="Dedicated QA Team"
+    relatedLinks={[
+      { label: "QA Outsourcing Services", href: "/qa-outsourcing-services" },
+      { label: "Managed Testing Services", href: "/managed-testing-services" },
+    ]}
     heroTitle="Dedicated QA Team — Outsourced QA Function That Owns the Outcome"
     heroDescription="A self-sufficient Testriq pod that owns your QA function end-to-end: dedicated QA Lead, automation engineers, manual testers, performance + security specialists, all working as one unit. You get a quality outcome — coverage, evidence, release-gating — without managing individual engineers. ISO 9001 + ISO/IEC 27001 ISMS controlled."
     whatYouGet={[

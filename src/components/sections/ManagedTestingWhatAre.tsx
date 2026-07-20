@@ -1,5 +1,6 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import React from "react";
+import Link from "next/link";
 import { FaBullseye, FaUsers, FaChartLine } from "react-icons/fa";
 
 const ManagedTestingWhatAre: React.FC = () => {
@@ -55,8 +56,15 @@ const ManagedTestingWhatAre: React.FC = () => {
                         What Are <span className="text-brand-blue">Managed Testing Services</span>?
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        A fundamental departure from traditional QA outsourcing — shifting
-                        risk, responsibility, and strategy ownership to your testing partner.
+                        A fundamental departure from traditional{" "}
+                        <Link
+                            href="/qa-outsourcing-services"
+                            className="text-brand-blue hover:underline"
+                        >
+                            QA outsourcing
+                        </Link>{" "}
+                        — shifting risk, responsibility, and strategy ownership to your
+                        testing partner.
                     </p>
                 </div>
 
