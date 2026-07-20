@@ -27,6 +27,12 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: 'swap',
+  // preload only gates which font files get a <link rel=preload>; every @font-face
+  // still ships, so font-mono keeps working wherever it is actually used (error
+  // pages, blog search, verify-certificate). The homepage renders zero font-mono
+  // elements, so preloading it only burned High-priority bandwidth in the same
+  // window as the render-blocking stylesheet that gates first paint.
+  preload: false,
 });
 
 export const metadata: Metadata = {

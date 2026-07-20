@@ -48,7 +48,8 @@ const HomeReadyToElevate = () => {
   return (
     <section className="py-16 px-8 sm:px-8 md:px-12 lg:px-24 text-center bg-[theme(color.background.gray)]">
       <h2 className="text-4xl font-semibold">{renderTitle()}</h2>
-      <p className="mt-4 text-gray-500 text-base sm:text-lg">
+      {/* gray-600: on the #F5F5F5 section background gray-500 is 4.43:1, under AA. */}
+      <p className="mt-4 text-gray-600 text-base sm:text-lg">
         {ctaSection[0].subtitle}
       </p>
 

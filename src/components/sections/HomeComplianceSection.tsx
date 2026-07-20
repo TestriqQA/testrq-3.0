@@ -44,7 +44,9 @@ const HomeComplianceSection = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-gray-900 text-sm mb-1">{s.title}</h3>
-                                        <p className="text-xs text-gray-500 leading-tight">{s.description}</p>
+                                        {/* gray-600 not gray-500: on the #F5F5F5 card this text
+                                            measured 4.43:1, just under the 4.5:1 AA threshold. */}
+                                        <p className="text-xs text-gray-600 leading-tight">{s.description}</p>
                                     </div>
                                 </div>
                             ))}
@@ -59,7 +61,10 @@ const HomeComplianceSection = () => {
                                     <div className="text-sm font-medium text-gray-800">GDPR & Privacy Compliance Verified</div>
                                 </div>
                                 <div className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-sky-50 ml-8">
-                                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">ISO</div>
+                                    {/* blue-700: blue-600 (#155dfc) on bg-blue-100 (#dbeafe) is
+                                        4.29:1, under AA. The green and purple badges beside it
+                                        are not in the measured failure set — left alone. */}
+                                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">ISO</div>
                                     <div className="text-sm font-medium text-gray-800">29119 Testing Methodology Applied</div>
                                 </div>
                                 <div className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-sky-50">

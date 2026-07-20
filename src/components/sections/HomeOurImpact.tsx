@@ -65,7 +65,9 @@ const HomeOurImpact = () => {
       {/* Heading */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl font-semibold">{renderTitle()}</h2>
-        <p className="mt-4 text-gray-500 text-base sm:text-lg">
+        {/* gray-600: this sits on the #F5F5F5 section background (4.43:1 at gray-500).
+            The card copy further down stays gray-500 — it is on white and passes. */}
+        <p className="mt-4 text-gray-600 text-base sm:text-lg">
           {impactSection[0].subtitle}
         </p>
       </div>
