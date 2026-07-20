@@ -378,7 +378,13 @@ const HeroTechStack = () => {
                   key={toolIdx}
                   className="flex items-center gap-2 text-gray-700 text-sm"
                 >
-                  <span className="text-2xl flex-shrink-0">
+                  {/* Decorative only — the tool name is rendered as visible text
+                      alongside it. react-icons' Si* (simple-icons) set role="img"
+                      with no <title>, which fails axe svg-img-alt and Lighthouse's
+                      agent-accessibility-tree audit. aria-hidden drops the icon from
+                      the a11y tree so screen readers announce the name once, not
+                      "image" followed by the name. */}
+                  <span className="text-2xl flex-shrink-0" aria-hidden="true">
                     {tool.icon}
                   </span>
                   <span className="text-base px-2">{tool.name}</span>
