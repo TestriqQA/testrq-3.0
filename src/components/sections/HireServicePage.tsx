@@ -38,6 +38,8 @@ export interface HireServicePageProps {
   serviceTypeForSchema: string;
   /** "description" field for Service JSON-LD */
   schemaDescription: string;
+  /** Optional related internal links, rendered as a "Related services" strip */
+  relatedLinks?: Array<{ label: string; href: string }>;
 }
 
 const SITE_URL = "https://www.testriq.com";
@@ -276,6 +278,27 @@ const HireServicePage: React.FC<HireServicePageProps> = (props) => {
             </div>
           </div>
         </section>
+
+        {/* Related services — optional internal links for discovery + SEO */}
+        {props.relatedLinks && props.relatedLinks.length > 0 && (
+          <section className="bg-slate-50 py-12">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Related services</h2>
+              <div className="flex flex-wrap gap-3">
+                {props.relatedLinks.map((related) => (
+                  <Link
+                    key={related.href}
+                    href={related.href}
+                    className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand-blue hover:text-brand-blue transition-colors"
+                  >
+                    {related.label}
+                    <FaArrowRight className="text-xs" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* CTA */}
         <section className="bg-brand-blue text-white py-14">

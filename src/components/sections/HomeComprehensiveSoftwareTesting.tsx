@@ -22,7 +22,7 @@ const HomeComprehensiveSoftwareTesting = () => {
         {
             icon: TbWorld,
             title: 'Bridging the Skilled Workforce Shortage',
-            detail: <>Talent gaps in <Link href="/ai-application-testing" className="text-[theme(color.brand.blue)] hover:underline">AI</Link> and <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline">cyber-security</Link> often lead to defect leakage. Testriq offers QA team augmentation with experts in ISO/IEC/IEEE 29119-2 processes to ensure secure, on-time releases.</>
+            detail: <>Talent gaps in <Link href="/ai-application-testing" className="text-[theme(color.brand.blue)] hover:underline">AI</Link> and <Link href="/security-testing" className="text-[theme(color.brand.blue)] hover:underline">cyber-security</Link> often lead to defect leakage. Testriq offers <Link href="/qa-outsourcing-services" className="text-[theme(color.brand.blue)] hover:underline">QA team augmentation</Link> with experts in ISO/IEC/IEEE 29119-2 processes to ensure secure, on-time releases.</>
         },
         {
             icon: IoServerOutline,
