@@ -224,35 +224,57 @@ function generateCaseStudySchema(caseStudy: CaseStudy) {
   };
 }
 
-// Helper function to generate City Page JSON-LD schema
+// Helper function to generate City Page JSON-LD schema.
+//
+// This models each city page honestly as a Service that Testriq PROVIDES to
+// that city — not as a LocalBusiness physically located there.
+//
+// The previous version emitted "@type": "LocalBusiness" for all ~87 cities,
+// which asserts a physical storefront in each one. Testriq has a single office
+// (Mira Bhayandar, Maharashtra). Claiming a branch in Mumbai, Toronto, Sydney,
+// Abu Dhabi, etc. — every one pinned to "geo": 0,0 (Null Island in the Gulf of
+// Guinea) and hardcoded "addressCountry": "IN" even for UAE/Canada/UK cities —
+// is a structured-data spam signal and actively undermines the "near me"
+// intent these pages target.
+//
+// The Service model keeps the local-relevance signal via `areaServed` while
+// the only physical address is the real HQ, carried on `provider`, which
+// references the canonical Organization @id so Google consolidates the entity.
 function generateCitySchema(cityData: CityData) {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": `Testriq QA Testing Services in ${cityData.name}`,
-    "description": `Professional software testing and QA services in ${cityData.name}, ${cityData.state}. Expert manual testing, automation testing, and quality assurance solutions.`,
+    "@type": "Service",
+    "name": `Software Testing & QA Services in ${cityData.name}`,
+    "serviceType": "Software Testing and Quality Assurance",
+    "description": `Professional software testing and QA services for ${cityData.name}, ${cityData.state}. Expert manual testing, automation testing, and quality assurance delivered by Testriq's ISTQB-certified engineers.`,
     "url": `https://www.testriq.com/${cityData.slug}`,
-    "telephone": "+91 915-2929-343",
-    "email": "contact@testriq.com",
-    "image": "https://www.testriq.com/testriq-logo.png", // Adding a default image for LocalBusiness schema
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.testriq.com/testriq-logo.png"
+    "provider": {
+      "@type": "Organization",
+      // Canonical site Organization @id — same anchor used by the blog
+      // publisher schema and JobPosting.hiringOrganization, so all city pages
+      // reinforce one entity rather than minting 87 separate businesses.
+      "@id": "https://www.testriq.com/#organization",
+      "name": "Testriq QA Lab",
+      "url": "https://www.testriq.com/",
+      "telephone": "+91 915-2929-343",
+      "email": "contact@testriq.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.testriq.com/testriq-logo.png"
+      },
+      // The one real, verifiable Testriq address. Kept identical to the
+      // Organization address in StructuredData.tsx.
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Office Number 2 & 3, 2nd Floor, Ashley Towers, Kanakia Rd, Vagad Nagar",
+        "addressLocality": "Mira Bhayandar",
+        "addressRegion": "Maharashtra",
+        "postalCode": "401107",
+        "addressCountry": "IN"
+      }
     },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": cityData.name,
-      "addressRegion": cityData.state,
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "0.0000",
-      "longitude": "0.0000"
-    },
-    "openingHours": "Mo-Fr 09:00-18:00",
-    "priceRange": "$$",
-    "serviceArea": {
+    // Local-relevance signal without claiming a physical presence in the city.
+    "areaServed": {
       "@type": "City",
       "name": cityData.name
     },
@@ -293,12 +315,7 @@ function generateCitySchema(cityData: CityData) {
           }
         }
       ]
-    },
-
-    "sameAs": [
-      "https://www.linkedin.com/company/testriq-qa-lab/",
-      "https://x.com/testriq"
-    ]
+    }
   };
 }
 
