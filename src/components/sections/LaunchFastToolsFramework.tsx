@@ -75,7 +75,7 @@ const LaunchFastToolsFramework: React.FC = () => {
       {
         title: (
           <>
-            <Link title="Mobile Testing" href='/mobile-application-testing' className="text-[theme(color.brand.blue)] hover:underline">Mobile Testing</Link>
+            <Link title="Mobile Testing" href='/mobile-application-testing' className="text-[theme(color.brand.blue)] underline">Mobile Testing</Link>
           </>
         ),
         tools: [
@@ -126,7 +126,7 @@ const LaunchFastToolsFramework: React.FC = () => {
       {
         title: (
           <>
-            <Link title="API Testing" href='/api-testing' className="text-[theme(color.brand.blue)] hover:underline">API Testing</Link>
+            <Link title="API Testing" href='/api-testing' className="text-[theme(color.brand.blue)] underline">API Testing</Link>
           </>
         ),
         tools: [
@@ -236,7 +236,7 @@ const LaunchFastToolsFramework: React.FC = () => {
             <span className="text-brand-blue">Tools & Frameworks</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We leverage cutting-edge tools like <Link title="Selenium" href='blog/post/getting-started-with-selenium-a-beginners-guide' className="text-[theme(color.brand.blue)] hover:underline">Selenium</Link>, <Link title="Cypress" href='blog/post/how-to-write-maintainable-test-scripts-in-selenium-or-cypress' className="text-[theme(color.brand.blue)] hover:underline">Cypress</Link>, and <Link title="JMeter" href='blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide-2' className="text-[theme(color.brand.blue)] hover:underline">JMeter</Link>,
+            We leverage cutting-edge tools like <Link title="Selenium" href='blog/post/getting-started-with-selenium-a-beginners-guide' className="text-[theme(color.brand.blue)] underline">Selenium</Link>, <Link title="Cypress" href='blog/post/how-to-write-maintainable-test-scripts-in-selenium-or-cypress' className="text-[theme(color.brand.blue)] underline">Cypress</Link>, and <Link title="JMeter" href='blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide-2' className="text-[theme(color.brand.blue)] underline">JMeter</Link>,
             optimized for rapid testing sprints and agile development, to ensure
             comprehensive QA validation across all platforms and environments.
           </p>
@@ -287,8 +287,8 @@ const LaunchFastToolsFramework: React.FC = () => {
             </h3>
             <p className="text-gray-600 max-w-3xl mx-auto">
               Our curated tech stack supports rapid testing sprints, delivering
-              maximum efficiency and test coverage for <Link title="agile QA testing" href='blog/post/rapid-functional-testing-why-speed-matters-in-agile-qa' className="text-[theme(color.brand.blue)] hover:underline">agile QA testing</Link>, <Link title="fast
-              product launches" href='blog/post/performance-optimization-for-pre-launch-software-testing' className="text-[theme(color.brand.blue)] hover:underline">fast
+              maximum efficiency and test coverage for <Link title="agile QA testing" href='blog/post/rapid-functional-testing-why-speed-matters-in-agile-qa' className="text-[theme(color.brand.blue)] underline">agile QA testing</Link>, <Link title="fast
+              product launches" href='blog/post/performance-optimization-for-pre-launch-software-testing' className="text-[theme(color.brand.blue)] underline">fast
                 product launches</Link>, and seamless go-to-market QA execution
             </p>
           </div>

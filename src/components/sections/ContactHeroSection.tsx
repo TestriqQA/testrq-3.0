@@ -572,14 +572,14 @@ const ContactHeroSection: React.FC = () => {
                     By submitting this form, you agree to our{" "}
                     <Link
                       href="/privacy-policy"
-                      className="text-[theme(color.brand.blue)] hover:underline"
+                      className="text-[theme(color.brand.blue)] underline"
                     >
                       Privacy Policy
                     </Link>{" "}
                     and{" "}
                     <Link
                       href="/terms-of-service"
-                      className="text-[theme(color.brand.blue)] hover:underline"
+                      className="text-[theme(color.brand.blue)] underline"
                     >
                       Terms of Service
                     </Link>

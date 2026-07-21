@@ -30,7 +30,7 @@ const ctaSection: {
       subtitle:
         (
           <>
-            With 15+ years of QA excellence, Testriq has earned the trust of companies across industries by delivering expert-led software testing and free QA consultations that help teams build reliable, <Link title="Cloud-Based Performance Testing: Scaling for Modern Architectures" href="blog/post/cloud-based-performance-testing-scaling-for-modern-architectures-2" className="text-[theme(color.brand.blue)] hover:underline">high-performing products</Link>.
+            With 15+ years of QA excellence, Testriq has earned the trust of companies across industries by delivering expert-led software testing and free QA consultations that help teams build reliable, <Link title="Cloud-Based Performance Testing: Scaling for Modern Architectures" href="blog/post/cloud-based-performance-testing-scaling-for-modern-architectures-2" className="text-[theme(color.brand.blue)] underline">high-performing products</Link>.
           </>
         ),
       primaryButton: {

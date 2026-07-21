@@ -12,7 +12,7 @@ const HomeChooseTestriq = () => {
         title: 'Specialized Industry Solutions & Global Reach',
         info: (
             <>
-                Choosing a <Link href="/about-us" className="text-[theme(color.brand.blue)] hover:underline">Software Testing Partner</Link> is a strategic decision. Testriq stands out by combining ISTQB Certified QA Experts with a proactive Software Quality Engineering mindset.
+                Choosing a <Link href="/about-us" className="text-[theme(color.brand.blue)] underline">Software Testing Partner</Link> is a strategic decision. Testriq stands out by combining ISTQB Certified QA Experts with a proactive Software Quality Engineering mindset.
             </>
         )
     };

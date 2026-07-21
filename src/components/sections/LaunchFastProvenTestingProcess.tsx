@@ -69,7 +69,7 @@ const LaunchFastProvenTestingProcess: React.FC = () => {
         title: "Agile Testing Sprints",
         duration: "Ongoing",
         icon: <FaRocket className="text-2xl" />,
-        description: <>We embed our testers directly into your team for 24/7 support, executing <Link href="/regression-testing" className="text-[theme(color.brand.blue)] hover:underline">regression testing</Link> in real-time as you ship code.</>,
+        description: <>We embed our testers directly into your team for 24/7 support, executing <Link href="/regression-testing" className="text-[theme(color.brand.blue)] underline">regression testing</Link> in real-time as you ship code.</>,
         activities: [
           "Continuous QA integration",
           "Real-time bug reporting",
@@ -83,7 +83,7 @@ const LaunchFastProvenTestingProcess: React.FC = () => {
         title: "Exploratory & UAT Validation",
         duration: "1 day",
         icon: <FaCheckCircle className="text-2xl" />,
-        description: <>Automation covers the basics, but our experts perform deep <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] hover:underline">User Acceptance Testing (UAT)</Link>. This ensures your product is &apos;delightful&apos; for early adopters.</>,
+        description: <>Automation covers the basics, but our experts perform deep <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline">User Acceptance Testing (UAT)</Link>. This ensures your product is &apos;delightful&apos; for early adopters.</>,
         activities: [
           "Persona-based testing",
           "High-level UAT validation",
@@ -117,8 +117,8 @@ const LaunchFastProvenTestingProcess: React.FC = () => {
             <span className="text-brand-blue">LaunchFast QA Process</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Our streamlined approach enables <Link href="/exploratory-testing" className="text-[theme(color.brand.blue)] hover:underline">rapid testing sprints</Link> and quality
-            delivery, seamlessly aligned with <Link title="agile QA testing" href='blog/post/rapid-functional-testing-why-speed-matters-in-agile-qa' className="text-[theme(color.brand.blue)] hover:underline">agile QA testing</Link> and iterative
+            Our streamlined approach enables <Link href="/exploratory-testing" className="text-[theme(color.brand.blue)] underline">rapid testing sprints</Link> and quality
+            delivery, seamlessly aligned with <Link title="agile QA testing" href='blog/post/rapid-functional-testing-why-speed-matters-in-agile-qa' className="text-[theme(color.brand.blue)] underline">agile QA testing</Link> and iterative
             development for a faster go-to-market.
           </p>
         </div>

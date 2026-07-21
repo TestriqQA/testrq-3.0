@@ -16,6 +16,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false, // Suppress X-Powered-By: Next.js framework fingerprint on all responses
   experimental: {
     cssChunking: true,     // Split + reorder CSS per route
+
+    // Note for future work: react-icons/tb and react-icons/vsc are the only
+    // subpaths this codebase imports that are NOT in Next 16's default
+    // optimizePackageImports list. Adding them was measured and is a no-op under
+    // Turbopack — Script bytes were identical at 269.5 KiB before and after — so it
+    // is deliberately not configured. Turbopack already tree-shakes these barrels.
     // optimizeCss removed: it is inert on the App Router. Its only consumer is
     // postProcessHTML() in next/dist/server/post-process.js, which is imported
     // solely by the Pages Router's render.js — verified that nothing under

@@ -65,7 +65,7 @@ const AICaseStudies: React.FC = () => {
       challenge: (<Link href='blog/post/ai-security-testing'>AI Safety & Reliability Testing</Link>),
       solution: (
         <>
-          End-to-end AI model validation for <Link href="/robotics-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">autonomous driving systems</Link> with comprehensive safety and performance testing.
+          End-to-end AI model validation for <Link href="/robotics-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">autonomous driving systems</Link> with comprehensive safety and performance testing.
         </>
       ),
       results: {
@@ -109,7 +109,7 @@ const AICaseStudies: React.FC = () => {
       challenge: (<Link href='blog/post/explainability-testing-in-ai'>Medical AI Accuracy & Explainability</Link>),
       solution: (
         <>
-          Specialized medical AI testing with <Link href="/healthcare-testing-services" className="text-[theme(color.brand.blue)] hover:underline hover:decoration-[theme(color.brand.blue)]">FDA compliance</Link> validation and explainability assessment for diagnostic algorithms.
+          Specialized medical AI testing with <Link href="/healthcare-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">FDA compliance</Link> validation and explainability assessment for diagnostic algorithms.
         </>
       ),
       results: {

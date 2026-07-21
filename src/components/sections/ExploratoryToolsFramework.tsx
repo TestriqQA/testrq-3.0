@@ -166,9 +166,9 @@ const ExploratoryToolsFramework: React.FC = () => {
             <span className="text-brand-blue">Tools & Frameworks</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We leverage specialized <Link href='/technology-stack' className="text-[theme(color.brand.blue)] hover:underline">tools and frameworks</Link> purpose-built for
-            exploratory testing to enable <Link href='blog/post/usability-investigation-how-exploratory-testing-elevates-ux' className="text-[theme(color.brand.blue)] hover:underline">systematic investigation</Link>,
-            <Link href='blog/post/issue-documentation-in-software-testing-how-detailed-bug-reporting-enhances-web-application-quality' className="text-[theme(color.brand.blue)] hover:underline"> comprehensive documentation</Link>, and seamless collaboration throughout
+            We leverage specialized <Link href='/technology-stack' className="text-[theme(color.brand.blue)] underline">tools and frameworks</Link> purpose-built for
+            exploratory testing to enable <Link href='blog/post/usability-investigation-how-exploratory-testing-elevates-ux' className="text-[theme(color.brand.blue)] underline">systematic investigation</Link>,
+            <Link href='blog/post/issue-documentation-in-software-testing-how-detailed-bug-reporting-enhances-web-application-quality' className="text-[theme(color.brand.blue)] underline"> comprehensive documentation</Link>, and seamless collaboration throughout
             the exploration process.
           </p>
         </div>
@@ -218,8 +218,8 @@ const ExploratoryToolsFramework: React.FC = () => {
             </h3>
             <p className="text-gray-600 max-w-3xl mx-auto">
               Our systematic exploratory approach blends proven investigation
-              techniques with <Link href='/technology-stack' className="text-[theme(color.brand.blue)] hover:underline">modern testing tools</Link> to ensure comprehensive
-              coverage and <Link href='blog/post/why-discovery-analysis-matters-in-testing' className="text-[theme(color.brand.blue)] hover:underline">maximum issue discovery</Link> across your application.
+              techniques with <Link href='/technology-stack' className="text-[theme(color.brand.blue)] underline">modern testing tools</Link> to ensure comprehensive
+              coverage and <Link href='blog/post/why-discovery-analysis-matters-in-testing' className="text-[theme(color.brand.blue)] underline">maximum issue discovery</Link> across your application.
             </p>
           </div>
 
@@ -252,7 +252,7 @@ const ExploratoryToolsFramework: React.FC = () => {
           </h3>
           <p className="text-gray-600 mb-6 max-w-3xl mx-auto">
             Our team applies diverse exploration techniques and investigation
-            approaches to ensure comprehensive coverage and <Link href='blog/post/why-discovery-analysis-matters-in-testing' className="text-[theme(color.brand.blue)] hover:underline">effective issue
+            approaches to ensure comprehensive coverage and <Link href='blog/post/why-discovery-analysis-matters-in-testing' className="text-[theme(color.brand.blue)] underline">effective issue
               discovery</Link> across all application types and domains.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -287,8 +287,8 @@ const ExploratoryToolsFramework: React.FC = () => {
               Comprehensive Exploratory Testing Toolkit
             </h3>
             <p className="text-gray-600 mb-8">
-              Our <Link href='/technology-stack' className="text-[theme(color.brand.blue)] hover:underline">toolkit</Link> is specifically designed for effective exploratory
-              testing, ensuring <Link href='blog/post/usability-investigation-how-exploratory-testing-elevates-ux' className="text-[theme(color.brand.blue)] hover:underline">systematic investigation</Link>, <Link href='blog/post/issue-documentation-in-software-testing-how-detailed-bug-reporting-enhances-web-application-quality' className="text-[theme(color.brand.blue)] hover:underline"> comprehensive documentation</Link>, and actionable insights.
+              Our <Link href='/technology-stack' className="text-[theme(color.brand.blue)] underline">toolkit</Link> is specifically designed for effective exploratory
+              testing, ensuring <Link href='blog/post/usability-investigation-how-exploratory-testing-elevates-ux' className="text-[theme(color.brand.blue)] underline">systematic investigation</Link>, <Link href='blog/post/issue-documentation-in-software-testing-how-detailed-bug-reporting-enhances-web-application-quality' className="text-[theme(color.brand.blue)] underline"> comprehensive documentation</Link>, and actionable insights.
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
