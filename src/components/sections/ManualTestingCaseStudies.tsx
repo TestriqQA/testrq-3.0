@@ -183,6 +183,7 @@ const ManualTestingCaseStudies: React.FC = () => {
             return (
               <button
                 key={study.id}
+                aria-label={study.title}
                 onClick={() => setActiveCase(index)}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${activeCase === index
                   ? `${colors.bg} ${colors.text} ${colors.border} border-2`

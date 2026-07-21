@@ -160,6 +160,7 @@ const ManagedTestingImplementations: React.FC = () => {
                                 <button
                                     key={index}
                                     onClick={() => setActiveTab(index)}
+                                    aria-label={impl.title}
                                     className={`flex-1 min-w-0 px-3 py-3 text-xs font-medium transition-all duration-300 ${activeTab === index
                                             ? `${colors.bg} ${colors.text} border-b-2 border-current`
                                             : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
@@ -193,12 +194,14 @@ const ManagedTestingImplementations: React.FC = () => {
                                             <div className="flex gap-3">
                                                 <button
                                                     onClick={() => setActiveTab(activeTab === 0 ? implementations.length - 1 : activeTab - 1)}
+                                                    aria-label="Previous implementation"
                                                     className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
                                                 >
                                                     <FaArrowLeft className="text-gray-500 text-sm" />
                                                 </button>
                                                 <button
                                                     onClick={() => setActiveTab(activeTab === implementations.length - 1 ? 0 : activeTab + 1)}
+                                                    aria-label="Next implementation"
                                                     className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
                                                 >
                                                     <FaArrowRight className="text-gray-500 text-sm" />

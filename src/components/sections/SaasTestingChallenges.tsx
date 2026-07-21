@@ -150,6 +150,7 @@ const SaasTestingChallenges: React.FC = () => {
                             return (
                                 <button
                                     key={challenge.id}
+                                    aria-label={challenge.title}
                                     onClick={() => setActiveTab(index)}
                                     className={`flex-1 min-w-0 px-3 py-4 text-sm font-medium transition-all duration-300 ${activeTab === index
                                             ? `${colors.bg} ${colors.text} border-b-2 ${colors.border}`
