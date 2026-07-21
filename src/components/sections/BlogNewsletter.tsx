@@ -240,7 +240,7 @@ const BlogNewsletter: React.FC = () => {
 
                     <p className="text-slate-400 text-xs text-center">
                       By subscribing, you agree to our{" "}
-                      <Link href="/privacy-policy" className="text-blue-600 hover:underline">
+                      <Link href="/privacy-policy" className="text-blue-600 underline">
                         Privacy Policy
                       </Link>
                     </p>

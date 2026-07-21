@@ -162,7 +162,7 @@ const ContinuousTestingComprehensiveSlider: React.FC = () => {
                         combines advanced{" "}
                         <Link
                             href="/automation-testing-services"
-                            className="text-brand-blue hover:underline"
+                            className="text-brand-blue underline"
                         >
                             Test Automation Frameworks
                         </Link>{" "}

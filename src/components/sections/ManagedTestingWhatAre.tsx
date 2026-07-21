@@ -59,7 +59,7 @@ const ManagedTestingWhatAre: React.FC = () => {
                         A fundamental departure from traditional{" "}
                         <Link
                             href="/qa-outsourcing-services"
-                            className="text-brand-blue hover:underline"
+                            className="text-brand-blue underline"
                         >
                             QA outsourcing
                         </Link>{" "}

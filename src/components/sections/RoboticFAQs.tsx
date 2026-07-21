@@ -19,7 +19,7 @@ const RoboticFAQs: React.FC = () => {
           perfect for legacy systems. Traditional{" "}
           <Link
             href="/automation-testing-services"
-            className="text-brand-blue hover:underline font-medium"
+            className="text-brand-blue underline font-medium"
           >
             automation
           </Link>{" "}
@@ -37,7 +37,7 @@ const RoboticFAQs: React.FC = () => {
           complete workflow automation and{" "}
           <Link
             href="/api-testing"
-            className="text-brand-blue hover:underline font-medium"
+            className="text-brand-blue underline font-medium"
           >
             data validation
           </Link>{" "}
@@ -67,7 +67,7 @@ const RoboticFAQs: React.FC = () => {
           data remains consistent across all your software systems. Our{" "}
           <Link
             href="/etl-testing-services"
-            className="text-brand-blue hover:underline font-medium"
+            className="text-brand-blue underline font-medium"
           >
             data validation
           </Link>{" "}
@@ -82,7 +82,7 @@ const RoboticFAQs: React.FC = () => {
           Physical AI refers to the trend where robots use{" "}
           <Link
             href="/blog/post/ai-testing-learning-guide"
-            className="text-brand-blue hover:underline font-medium"
+            className="text-brand-blue underline font-medium"
           >
             Generative AI
           </Link>{" "}

@@ -11,7 +11,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
       description: (
         <>
           Adhering to{" "}
-          <Link href="/blog/post/what-is-mobile-application-testing-an-in-depth-guide" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/what-is-mobile-application-testing-an-in-depth-guide" className="text-brand-blue underline">
             ISO/IEC/IEEE 29119
           </Link>
           , SOC2 Type II, and GDPR for enterprise-grade security and regulated industry requirements.
@@ -25,7 +25,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
       description: (
         <>
           Delivering global{" "}
-          <Link href="/automation-testing-services" className="text-brand-blue hover:underline">
+          <Link href="/automation-testing-services" className="text-brand-blue underline">
             Android and iOS QA
           </Link>{" "}
           from our specialized hubs, utilizing international benchmarks for software excellence.
@@ -39,7 +39,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
       description: (
         <>
           Specialized in testing for{" "}
-          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue underline">
             5G
           </Link>
           , edge computing, AR/VR, and the latest iOS 19/Android 15 features across 24,000+ devices.
@@ -53,7 +53,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
       description: (
         <>
           Exhaustive coverage using{" "}
-          <Link href="/blog/post/solving-the-top-5-challenges-in-mobile-application-testing" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/solving-the-top-5-challenges-in-mobile-application-testing" className="text-brand-blue underline">
             BrowserStack and AWS Device Farm
           </Link>
           , ensuring UI consistency that emulators often miss.
@@ -67,7 +67,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
       description: (
         <>
           In-depth CPU, RAM, and battery usage analysis to prevent thermal throttling and ensure smooth{" "}
-          <Link href="/performance-testing-services" className="text-brand-blue hover:underline">
+          <Link href="/performance-testing-services" className="text-brand-blue underline">
             mid-range performance
           </Link>
           .
@@ -81,7 +81,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
       description: (
         <>
           Elite{" "}
-          <Link href="/security-testing" className="text-brand-blue hover:underline">
+          <Link href="/security-testing" className="text-brand-blue underline">
             mobile application security
           </Link>{" "}
           mapped to OWASP Mobile Top 10, protecting against the rise in ransomware.
@@ -107,7 +107,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
             <span className="text-[theme(color.brand.blue)]">Mobile Testing?</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            We combine mobile QA expertise, <Link href='/technology-stack'>industry-leading tools</Link>, and proven testing methodologies to deliver full-cycle mobile application testing services that ensure faster <Link href='/blog/post/mobile-testing-environment-setup' className="text-brand-blue hover:underline">time-to-market</Link> and app store success.
+            We combine mobile QA expertise, <Link href='/technology-stack'>industry-leading tools</Link>, and proven testing methodologies to deliver full-cycle mobile application testing services that ensure faster <Link href='/blog/post/mobile-testing-environment-setup' className="text-brand-blue underline">time-to-market</Link> and app store success.
           </p>
         </div>
 

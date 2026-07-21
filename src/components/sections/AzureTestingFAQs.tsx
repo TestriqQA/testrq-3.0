@@ -13,7 +13,7 @@ const AzureTestingFAQs: React.FC = () => {
             question: "What are the best practices for Azure application testing?",
             answer: (
                 <>
-                    Best practices include implementing <Link href="/automation-testing-services" className="text-brand-blue hover:underline">automated testing</Link> early in the SDLC, using Infrastructure as Code (ARM/Bicep) for environment consistency, and leveraging Azure Monitor for real-time observability. We also recommend performing regular security audits and scale-testing to validate dynamic elasticity.
+                    Best practices include implementing <Link href="/automation-testing-services" className="text-brand-blue underline">automated testing</Link> early in the SDLC, using Infrastructure as Code (ARM/Bicep) for environment consistency, and leveraging Azure Monitor for real-time observability. We also recommend performing regular security audits and scale-testing to validate dynamic elasticity.
                 </>
             ),
         },
@@ -21,7 +21,7 @@ const AzureTestingFAQs: React.FC = () => {
             question: "How to integrate automated testing in Azure DevOps pipelines?",
             answer: (
                 <>
-                    This involves configuring YAML-based build and release pipelines to trigger automated test suites (Selenium, Playwright, or unit tests) at every stage. We specialize in setting up quality gates in <Link href="/qa-documentation-services" className="text-brand-blue hover:underline">Azure DevOps</Link> that prevent unstable code from reaching production.
+                    This involves configuring YAML-based build and release pipelines to trigger automated test suites (Selenium, Playwright, or unit tests) at every stage. We specialize in setting up quality gates in <Link href="/qa-documentation-services" className="text-brand-blue underline">Azure DevOps</Link> that prevent unstable code from reaching production.
                 </>
             ),
         },
@@ -29,7 +29,7 @@ const AzureTestingFAQs: React.FC = () => {
             question: "How to ensure security during Azure cloud migration?",
             answer: (
                 <>
-                    Security is ensured through a multi-layered approach: validating IAM configurations in Azure AD, performing network penetration testing on VNets, and conducting data integrity checks before and after the move. We map all testing activities to global standards like <Link href="/security-testing" className="text-brand-blue hover:underline">SOC2 and ISO 27001</Link>.
+                    Security is ensured through a multi-layered approach: validating IAM configurations in Azure AD, performing network penetration testing on VNets, and conducting data integrity checks before and after the move. We map all testing activities to global standards like <Link href="/security-testing" className="text-brand-blue underline">SOC2 and ISO 27001</Link>.
                 </>
             ),
         },

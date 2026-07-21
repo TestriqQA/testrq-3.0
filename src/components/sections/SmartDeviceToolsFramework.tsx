@@ -208,7 +208,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
             Technical <span className="text-brand-blue">Tech Stack</span> (2026 Trends)
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            We utilize the most advanced <Link href='/technology-stack' className="text-brand-blue hover:underline">app testing tools</Link> and diagnostic platforms to provide exhaustive <span className="text-brand-blue font-semibold">smart device validation</span>, ensuring performance and security at every layer.
+            We utilize the most advanced <Link href='/technology-stack' className="text-brand-blue underline">app testing tools</Link> and diagnostic platforms to provide exhaustive <span className="text-brand-blue font-semibold">smart device validation</span>, ensuring performance and security at every layer.
           </p>
         </div>
 

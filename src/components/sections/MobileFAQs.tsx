@@ -12,7 +12,7 @@ const MobileFAQs: React.FC = () => {
       question: "What are the best mobile app testing strategies for startups 2026?",
       answer: (
         <>
-          The best mobile app testing strategies for startups in 2026 involve a <Link href="/blog/post/the-role-of-automation-in-shift-left-and-shift-right-testing" className="text-brand-blue hover:underline">&quot;Shift-Left&quot; approach</Link>. We integrate automated testing directly into your CI/CD pipeline and utilize our Real Device Cloud to maximize coverage while optimizing costs.
+          The best mobile app testing strategies for startups in 2026 involve a <Link href="/blog/post/the-role-of-automation-in-shift-left-and-shift-right-testing" className="text-brand-blue underline">&quot;Shift-Left&quot; approach</Link>. We integrate automated testing directly into your CI/CD pipeline and utilize our Real Device Cloud to maximize coverage while optimizing costs.
         </>
       ),
     },
@@ -20,7 +20,7 @@ const MobileFAQs: React.FC = () => {
       question: "How to test mobile apps on multiple screen sizes and resolutions?",
       answer: (
         <>
-          To test mobile apps on multiple screen sizes and resolutions, we utilize <Link href="/blog/post/solving-the-top-5-challenges-in-mobile-application-testing" className="text-brand-blue hover:underline">real device cloud testing platforms</Link>. These allow us to run <Link href="/automation-testing-services" className="text-brand-blue hover:underline">automated mobile testing</Link> using Appium across hundreds of physical devices simultaneously, identifying UI glitches that emulators miss.
+          To test mobile apps on multiple screen sizes and resolutions, we utilize <Link href="/blog/post/solving-the-top-5-challenges-in-mobile-application-testing" className="text-brand-blue underline">real device cloud testing platforms</Link>. These allow us to run <Link href="/automation-testing-services" className="text-brand-blue underline">automated mobile testing</Link> using Appium across hundreds of physical devices simultaneously, identifying UI glitches that emulators miss.
         </>
       ),
     },
@@ -28,7 +28,7 @@ const MobileFAQs: React.FC = () => {
       question: "Why is mobile application security testing services critical for Fintech?",
       answer: (
         <>
-          A security testing checklist for fintech mobile applications is vital because these apps handle PII and financial transactions. Our <Link href="/security-testing" className="text-brand-blue hover:underline">mobile application penetration testing service</Link> ensures that encryption, biometric login, and API endpoints are bulletproof.
+          A security testing checklist for fintech mobile applications is vital because these apps handle PII and financial transactions. Our <Link href="/security-testing" className="text-brand-blue underline">mobile application penetration testing service</Link> ensures that encryption, biometric login, and API endpoints are bulletproof.
         </>
       ),
     },
@@ -36,7 +36,7 @@ const MobileFAQs: React.FC = () => {
       question: "How do you perform performance testing for mobile apps under poor network conditions?",
       answer: (
         <>
-          We use network simulation tools to replicate latency, jitter, and packet loss. We test app performance on weak networks to prevent crashes, ensuring a smooth move between 5G, 4G, and <Link href="/blog/post/connectivity-testing-for-smart-devices-wifi-bluetooth-nfc" className="text-brand-blue hover:underline">offline modes</Link>.
+          We use network simulation tools to replicate latency, jitter, and packet loss. We test app performance on weak networks to prevent crashes, ensuring a smooth move between 5G, 4G, and <Link href="/blog/post/connectivity-testing-for-smart-devices-wifi-bluetooth-nfc" className="text-brand-blue underline">offline modes</Link>.
         </>
       ),
     },
@@ -44,7 +44,7 @@ const MobileFAQs: React.FC = () => {
       question: "What is the difference between APK and IPA file testing?",
       answer: (
         <>
-          APK and IPA file testing refers to the binary validation of Android and iOS apps, respectively. We audit file integrity and permissions before launch, finding security flaws in the code before your app hits the store using our <Link href="/qa-documentation-services" className="text-brand-blue hover:underline">standardized risk reporting</Link>.
+          APK and IPA file testing refers to the binary validation of Android and iOS apps, respectively. We audit file integrity and permissions before launch, finding security flaws in the code before your app hits the store using our <Link href="/qa-documentation-services" className="text-brand-blue underline">standardized risk reporting</Link>.
         </>
       ),
     },
@@ -52,7 +52,7 @@ const MobileFAQs: React.FC = () => {
       question: "Do you follow global compliance standards like ISO 29119?",
       answer: (
         <>
-          Yes, Testriq adheres to <Link href="/blog/post/what-is-mobile-application-testing-an-in-depth-guide" className="text-brand-blue hover:underline">ISO/IEC/IEEE 29119 standards</Link> across our entire lifecycle. We also provide SOC2 Type II, GDPR, CCPA, and HIPAA validated quality assurance for highly regulated industries.
+          Yes, Testriq adheres to <Link href="/blog/post/what-is-mobile-application-testing-an-in-depth-guide" className="text-brand-blue underline">ISO/IEC/IEEE 29119 standards</Link> across our entire lifecycle. We also provide SOC2 Type II, GDPR, CCPA, and HIPAA validated quality assurance for highly regulated industries.
         </>
       ),
     }

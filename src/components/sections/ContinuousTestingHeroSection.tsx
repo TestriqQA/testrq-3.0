@@ -60,7 +60,7 @@ const ContinuousTestingHeroSection: React.FC = () => {
                                 integrate seamlessly into your{" "}
                                 <Link
                                     href="/automation-testing-services"
-                                    className="text-brand-blue hover:underline"
+                                    className="text-brand-blue underline"
                                 >
                                     DevOps ecosystem
                                 </Link>

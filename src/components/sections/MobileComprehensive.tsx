@@ -19,11 +19,11 @@ const MobileComprehensive: React.FC = () => {
       description: (
         <>
           As Android 15 rolls out alongside{" "}
-          <Link href="/blog/post/ios-vs-android-testing-key-differences-every-qa-should-know" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/ios-vs-android-testing-key-differences-every-qa-should-know" className="text-brand-blue underline">
             iOS 18/19
           </Link>
           , we validate your app across diverse hardware including foldables,{" "}
-          <Link href="/smart-device-testing-services" className="text-brand-blue hover:underline">
+          <Link href="/smart-device-testing-services" className="text-brand-blue underline">
             wearables
           </Link>
           , and dual-screen devices to prevent 20-30% configuration crashes.
@@ -42,11 +42,11 @@ const MobileComprehensive: React.FC = () => {
       description: (
         <>
           Mapping to{" "}
-          <Link href="/blog/post/top-10-security-vulnerabilities-based-on-owasp" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/top-10-security-vulnerabilities-based-on-owasp" className="text-brand-blue underline">
             OWASP Mobile Top 10
           </Link>
           , we defend against the 150% rise in mobile ransomware with deep{" "}
-          <Link href="/security-testing" className="text-brand-blue hover:underline">
+          <Link href="/security-testing" className="text-brand-blue underline">
             APK/IPA file audits
           </Link>{" "}
           and biometric (FaceID) validation.
@@ -65,7 +65,7 @@ const MobileComprehensive: React.FC = () => {
       description: (
         <>
           Testing real-world{" "}
-          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue underline">
             5G/Wi-Fi 6
           </Link>{" "}
           handovers. We replicate latency and throttling to prevent the 42% of crashes caused by network-edge connectivity shifts.
@@ -84,15 +84,15 @@ const MobileComprehensive: React.FC = () => {
       description: (
         <>
           Utilizing{" "}
-          <Link href="/blog/post/which-types-of-mobile-apps-can-be-tested-by-appium" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/which-types-of-mobile-apps-can-be-tested-by-appium" className="text-brand-blue underline">
             Appium
           </Link>{" "}
           &{" "}
-          <Link href="/blog/post/web-application-automation-testing-tools-frameworks-best-practices" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/web-application-automation-testing-tools-frameworks-best-practices" className="text-brand-blue underline">
             Selenium
           </Link>{" "}
           with{" "}
-          <Link href="/ai-application-testing" className="text-brand-blue hover:underline">
+          <Link href="/ai-application-testing" className="text-brand-blue underline">
             AI-driven self-healing tools
           </Link>{" "}
           and Model-Based Testing (MBT) to reduce scripting overhead and handle high-velocity UI updates.
@@ -111,7 +111,7 @@ const MobileComprehensive: React.FC = () => {
       description: (
         <>
           Facilitating{" "}
-          <Link href="/blog/post/what-is-mobile-application-testing-an-in-depth-guide" className="text-brand-blue hover:underline">
+          <Link href="/blog/post/what-is-mobile-application-testing-an-in-depth-guide" className="text-brand-blue underline">
             mobile usability testing
           </Link>{" "}
           on real hardware to ensure touch gestures (swipe, pinch, zoom) and AR/VR features meet human expectations globally.
@@ -130,11 +130,11 @@ const MobileComprehensive: React.FC = () => {
       description: (
         <>
           Rigorous data privacy checks for high-stakes apps. Specialized QA for{" "}
-          <Link href="/banking-finance-industry-testing-services" className="text-brand-blue hover:underline">
+          <Link href="/banking-finance-industry-testing-services" className="text-brand-blue underline">
             banking
           </Link>
           ,{" "}
-          <Link href="/healthcare-testing-services" className="text-brand-blue hover:underline">
+          <Link href="/healthcare-testing-services" className="text-brand-blue underline">
             healthcare
           </Link>
           , and fintech platforms requiring SOC2, GDPR, and HIPAA compliance.

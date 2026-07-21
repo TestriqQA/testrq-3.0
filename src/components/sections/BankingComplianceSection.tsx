@@ -102,7 +102,7 @@ const BankingComplianceSection: React.FC = () => {
     {
       step: "5",
       title: "User Acceptance Testing (UAT)",
-      description: (<>Ultimate quality gateway certifying that the system is ready for <Link href="/manual-testing-services" className="text-brand-blue hover:underline">secure, real-world deployment</Link>.</>),
+      description: (<>Ultimate quality gateway certifying that the system is ready for <Link href="/manual-testing-services" className="text-brand-blue underline">secure, real-world deployment</Link>.</>),
     },
   ];
 

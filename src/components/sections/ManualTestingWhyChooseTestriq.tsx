@@ -129,25 +129,25 @@ const ManualTestingWhyChooseTestriq: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-brand-blue rounded-full"></div>
                 <span className="text-gray-700">
-                  <Link href="/healthcare-testing-services" className="text-brand-blue hover:underline">Healthcare & FinTech</Link> – compliance & data integrity
+                  <Link href="/healthcare-testing-services" className="text-brand-blue underline">Healthcare & FinTech</Link> – compliance & data integrity
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-brand-blue rounded-full"></div>
                 <span className="text-gray-700">
-                  <Link href="/e-commerce-testing-services" className="text-brand-blue hover:underline">E-commerce & Retail</Link> – UX & functional validation
+                  <Link href="/e-commerce-testing-services" className="text-brand-blue underline">E-commerce & Retail</Link> – UX & functional validation
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-brand-blue rounded-full"></div>
                 <span className="text-gray-700">
-                  <Link href="/e-learning-testing-services" className="text-brand-blue hover:underline">EdTech & SaaS</Link> – accessibility & workflow coverage
+                  <Link href="/e-learning-testing-services" className="text-brand-blue underline">EdTech & SaaS</Link> – accessibility & workflow coverage
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-brand-blue rounded-full"></div>
                 <span className="text-gray-700">
-                  <Link href="/iot-device-testing-services" className="text-brand-blue hover:underline">IoT & Smart Devices</Link> – connectivity & usability assurance
+                  <Link href="/iot-device-testing-services" className="text-brand-blue underline">IoT & Smart Devices</Link> – connectivity & usability assurance
                 </span>
               </div>
             </div>
