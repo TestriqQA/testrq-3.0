@@ -11,6 +11,9 @@ import { Suspense } from "react";
 import BlogPostHeroSection from "@/components/sections/BlogPostHeroSection";
 import ResourceSidebar from "@/components/sections/ResourceSidebar";
 import VisualTableOfContents from "@/components/sections/VisualTableOfContents";
+// F-?? (blog -> service internal linking): routes authority from the 353 blog
+// posts back to the commercial service pages. See src/lib/seo/blog-service-map.ts.
+import RelatedServices from "@/components/sections/RelatedServices";
 
 export const revalidate = 60; // Revalidate every minute
 export const dynamicParams = true; // Allow rendering of new posts not generated at build time
@@ -294,6 +297,16 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Center: Content */}
             <div className="xl:col-span-6">
               <BlogPostContent post={post} />
+
+              {/* Contextual links out to the matching service pages. Sits
+                  directly under the article body so it reads as a natural
+                  next step, and so the anchors land inside the main content
+                  column rather than in sidebar boilerplate. */}
+              <RelatedServices
+                categorySlugs={post.categories?.map((c) => c.slug) ?? []}
+                tags={post.tags ?? []}
+                postTitle={post.title}
+              />
             </div>
 
             {/* Right: Resource Sidebar */}
