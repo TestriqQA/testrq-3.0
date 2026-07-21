@@ -19,7 +19,13 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
   const trainingModules = [
     {
       id: 0,
-      title: (<><Link href="/manual-testing-services">Manual Testing Mastery</Link></>),
+      // Plain string title: it renders inside the tab <button>, and a <Link> nested
+      // in a button is invalid HTML that also left the button unnamed on mobile
+      // (button-name / agent-accessibility-tree failures). The internal link to
+      // /manual-testing-services is preserved via titleHref, rendered around the
+      // panel heading below — same anchor text, same href, still server-rendered.
+      title: "Manual Testing Mastery",
+      titleHref: "/manual-testing-services",
       icon: <FaGraduationCap className="text-3xl text-blue-600" />,
       description:
         "Comprehensive manual testing methodologies and best practices",
@@ -38,6 +44,7 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
     {
       id: 1,
       title: "Automation Testing Excellence",
+      titleHref: "",
       icon: <FaLaptopCode className="text-3xl text-purple-600" />,
       description: "Advanced automation frameworks and tools mastery",
       features: [
@@ -55,6 +62,7 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
     {
       id: 2,
       title: "Performance Testing Optimization",
+      titleHref: "",
       icon: <FaChartLine className="text-3xl text-green-600" />,
       description: "Performance testing strategies and optimization techniques",
       features: [
@@ -72,6 +80,7 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
     {
       id: 3,
       title: "QA Tools & Frameworks",
+      titleHref: "",
       icon: <FaTools className="text-3xl text-orange-600" />,
       description: "Master industry-standard QA tools and frameworks",
       features: [
@@ -136,6 +145,7 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
               <button
                 key={module.id}
                 onClick={() => setActiveTab(index)}
+                aria-label={module.title}
                 className={`flex items-center space-x-3 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === index
                   ? "bg-brand-blue text-white shadow-lg"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -155,7 +165,16 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
                   {trainingModules[activeTab].icon}
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">
-                      {trainingModules[activeTab].title}
+                      {trainingModules[activeTab].titleHref ? (
+                        <Link
+                          href={trainingModules[activeTab].titleHref}
+                          className="hover:text-brand-blue"
+                        >
+                          {trainingModules[activeTab].title}
+                        </Link>
+                      ) : (
+                        trainingModules[activeTab].title
+                      )}
                     </h3>
                     <p className="text-gray-600">
                       {trainingModules[activeTab].description}

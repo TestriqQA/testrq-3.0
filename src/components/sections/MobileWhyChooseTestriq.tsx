@@ -185,7 +185,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
                         Traditional: <span className="text-gray-500">{comparison.traditional}</span>
                       </div>
                     </div>
-                    <div className="text-green-600 font-semibold text-sm">
+                    <div className="text-green-700 font-semibold text-sm">
                       {comparison.advantage}
                     </div>
                   </div>

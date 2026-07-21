@@ -229,7 +229,7 @@ const AIProvenTestingProcess: React.FC = () => {
                       <div className="font-semibold text-gray-900">
                         {step.title}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-gray-600">
                         {step.duration}
                       </div>
                     </div>

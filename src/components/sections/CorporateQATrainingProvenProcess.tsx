@@ -137,14 +137,14 @@ const CorporateQATrainingProvenProcess: React.FC = () => {
                       {index % 2 !== 0 && (
                         <>
                           {step.icon}
-                          <div className="text-3xl font-bold text-gray-300">
+                          <div className="text-3xl font-bold text-gray-500">
                             {step.step}
                           </div>
                         </>
                       )}
                       {index % 2 === 0 && (
                         <>
-                          <div className="text-3xl font-bold text-gray-300">
+                          <div className="text-3xl font-bold text-gray-500">
                             {step.step}
                           </div>
                           {step.icon}
