@@ -117,28 +117,28 @@ const GamingChallengesSection: React.FC = () => {
 
               <div className="space-y-4">
                 <div>
-                  <h4 className="text-sm font-semibold text-red-600 mb-2">Problem:</h4>
+                  <h4 className="text-sm font-semibold text-red-700 mb-2">Problem:</h4>
                   <p className="text-gray-700 text-sm">{challenge.problem}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-orange-600 mb-2">Impact:</h4>
+                  <h4 className="text-sm font-semibold text-orange-700 mb-2">Impact:</h4>
                   <p className="text-gray-700 text-sm">{challenge.impact}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-green-600 mb-2">Stats:</h4>
+                  <h4 className="text-sm font-semibold text-green-800 mb-2">Stats:</h4>
                   <p className="text-gray-700 text-sm">{challenge.stats}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-green-600 mb-2">Our Solution:</h4>
+                  <h4 className="text-sm font-semibold text-green-800 mb-2">Our Solution:</h4>
                   <p className="text-gray-700 text-sm">{challenge.solution}</p>
                 </div>
               </div>
 
               <div className="mt-6 pt-4 border-t border-gray-200">
-                <Link href={`blog/post${challenge.action}`} className="mt-6 flex items-center text-[theme(color.brand.blue)] font-semibold text-sm group-hover:text-blue-700 transition-colors" 
+                <Link href={`blog/post${challenge.action}`} className="mt-6 flex items-center text-sky-700 font-semibold text-sm group-hover:text-blue-700 transition-colors" 
                 aria-label={`Learn more about ${challenge.title}`}>
                   Learn More 
                   <FaArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />

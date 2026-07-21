@@ -183,7 +183,7 @@ const ApiProvenTestingProcess: React.FC = () => {
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center text-white mr-4 ${activeStep === index
                         ? `bg-gradient-to-r ${step.gradient}`
-                        : "bg-gray-400"
+                        : "bg-gray-500"
                         }`}
                     >
                       {step.number}
@@ -192,7 +192,7 @@ const ApiProvenTestingProcess: React.FC = () => {
                       <div className="font-semibold text-gray-900">
                         {step.title}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-gray-600">
                         {step.duration}
                       </div>
                     </div>

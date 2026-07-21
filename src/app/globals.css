@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @tailwind utilities;
 
+/* Safelist for classes built at RUNTIME via template strings, which Tailwind's
+   text scanner cannot see. MobileCardSlider constructs bg-/text-/hover:border-
+   from its `colordark` data ("blue-600" | "green-700" | "purple-600" | "red-700",
+   shades chosen so each hue passes WCAG both as text-on-light and as a fill under
+   white text). If a class is missing here, the element silently renders with NO
+   color — worse than the contrast bug being fixed. Keep in sync with that data. */
+@source inline("bg-blue-600 bg-green-700 bg-purple-600 bg-red-700 text-blue-600 text-green-700 text-purple-600 text-red-700 hover:border-blue-600 hover:border-green-700 hover:border-purple-600 hover:border-red-700");
+
 @theme {
   --color-background-gray: #F5F5F5;
 

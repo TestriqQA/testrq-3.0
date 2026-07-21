@@ -24,7 +24,7 @@ export default function CardSlider() {
             quote: 'Understanding Your Requirements',
             content: "Understanding Your Requirements We begin with a comprehensive analysis of your mobile application, understanding your business requirements, user expectations, and technical specifications to create a tailored testing strategy.",
             icon: <svg className="w-7 h-10 md:w-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>,
-            colordark: "blue-500",
+            colordark: "blue-600",
             colorlight: "blue-50",
             progress: "15%",
             keyTitle: 'Key Activities',
@@ -38,7 +38,7 @@ export default function CardSlider() {
             quote: 'Preparing Testing Infrastructure',
             content: "Preparing Testing Infrastructure Configure comprehensive testing environments that accurately mirror your production setup, ensuring reliable and consistent test results across all mobile testing scenarios.",
             icon: <svg className="w-7 h-10 md:w-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83zM3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25z" /></svg>,
-            colordark: "green-500",
+            colordark: "green-700",
             colorlight: "green-50",
             progress: "30%",
             keyTitle: 'Key Activities',
@@ -51,7 +51,7 @@ export default function CardSlider() {
             quote: 'Comprehensive Testing Implementation',
             content: "Comprehensive Testing Implementation Execute systematic testing across all defined scenarios using both manual and automated approaches to ensure comprehensive coverage of your mobile application functionality.",
             icon: <svg className="w-7 h-10 md:w-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>,
-            colordark: "purple-500",
+            colordark: "purple-600",
             colorlight: "purple-50",
             progress: "60%",
             keyTitle: 'Key Activities',
@@ -64,7 +64,7 @@ export default function CardSlider() {
             quote: 'Detailed Bug Reporting',
             content: "Detailed Bug Reporting\nSystematically identify, document, and prioritize all issues found during testing with detailed reproduction steps and visual evidence for efficient resolution.",
             icon: <svg className="w-7 h-10 md:w-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" /></svg>,
-            colordark: "red-500",
+            colordark: "red-700",
             colorlight: "red-50",
             progress: "80%",
             keyTitle: 'Key Activities',
@@ -107,7 +107,7 @@ export default function CardSlider() {
 
             <div className="text-center">
                 <h2 className="text-4xl font-semibold">{renderTitle()}</h2>
-                <p className="text-gray-500 max-w-4xl m-auto py-5">{headings.info}</p>
+                <p className="text-gray-600 max-w-4xl m-auto py-5">{headings.info}</p>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-start md:p-6 min-h-screen">
 

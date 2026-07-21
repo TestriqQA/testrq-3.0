@@ -20,7 +20,7 @@ const BankingComplianceSection: React.FC = () => {
       icon: FaShieldAlt,
       title: "PCI DSS 4.0",
       fullName: "Payment Card Industry Data Security Standard",
-      description: (<>Rigorous <Link href="/e-commerce-testing-services" className="text-white hover:text-gray-200 underline">Payment Gateway Testing</Link> to secure cardholder data and transaction ecosystems.</>),
+      description: (<>Rigorous <Link href="/e-commerce-testing-services" className="text-red-700 hover:text-red-800 underline">Payment Gateway Testing</Link> to secure cardholder data and transaction ecosystems.</>),
       requirements: ["Secure Network Arch.", "PII Encryption", "Vulnerability Mgmt.", "Access Controls"],
       penalty: "Up to $100,000/month in fines",
       color: "from-red-500 to-pink-600",
@@ -92,7 +92,7 @@ const BankingComplianceSection: React.FC = () => {
     {
       step: "3",
       title: "Automated Regression & API Testing",
-      description: (<>CI/CD Pipeline Integration running thousands of scripts across <Link href="/regression-testing" className="text-white hover:text-gray-200 underline">Banking APIs</Link> for seamless inter-operability.</>),
+      description: (<>CI/CD Pipeline Integration running thousands of scripts across <Link href="/regression-testing" className="text-brand-blue hover:text-sky-700 underline">Banking APIs</Link> for seamless inter-operability.</>),
     },
     {
       step: "4",
@@ -180,7 +180,7 @@ const BankingComplianceSection: React.FC = () => {
                     NON-COMPLIANCE PENALTY:
                   </span>
                 </div>
-                <p className="text-sm text-red-600">{standard.penalty}</p>
+                <p className="text-sm text-red-700">{standard.penalty}</p>
               </div>
             </div>
           ))}

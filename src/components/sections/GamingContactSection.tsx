@@ -388,7 +388,7 @@ const GamingContactSection: React.FC = () => {
                     <area.icon className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-purple-600 text-sm">{area.title}</h4>
-                      <p className="text-purple-500 text-xs">{area.description}</p>
+                      <p className="text-purple-600 text-xs">{area.description}</p>
                     </div>
                   </div>
                 ))}

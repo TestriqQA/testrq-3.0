@@ -231,7 +231,7 @@ const GamingROISection: React.FC = () => {
                 {metric.title}
               </h3>
               <p className="text-gray-600 mb-3">{metric.description}</p>
-              <p className="text-sm text-gray-500">{metric.details}</p>
+              <p className="text-sm text-gray-600">{metric.details}</p>
             </div>
           ))}
         </div>
@@ -264,7 +264,7 @@ const GamingROISection: React.FC = () => {
                       {cost.item}
                     </span>
                   </div>
-                  <span className="text-red-600 font-bold">{cost.amount}</span>
+                  <span className="text-red-700 font-bold">{cost.amount}</span>
                 </div>
               ))}
             </div>
@@ -305,7 +305,7 @@ const GamingROISection: React.FC = () => {
                       {cost.item}
                     </span>
                   </div>
-                  <span className="text-green-600 font-bold">
+                  <span className="text-green-700 font-bold">
                     {cost.amount}
                   </span>
                 </div>
@@ -313,7 +313,7 @@ const GamingROISection: React.FC = () => {
             </div>
 
             <div className="text-center p-6 bg-green-100 rounded-2xl">
-              <div className="text-3xl font-bold text-green-600 mb-2">
+              <div className="text-3xl font-bold text-green-700 mb-2">
                 {costComparison.withTesting.total}
               </div>
               <div className="text-green-800 font-semibold">

@@ -19,7 +19,7 @@ const MobileReadyToEnsureQuality: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div>
-            <span className="inline-block bg-blue-500 bg-opacity-30 text-blue-100 text-sm px-4 py-2 rounded-full mb-6">
+            <span className="inline-block bg-blue-700 bg-opacity-30 text-blue-100 text-sm px-4 py-2 rounded-full mb-6">
               Global Quality Assurance 2026
             </span>
 
@@ -69,13 +69,13 @@ const MobileReadyToEnsureQuality: React.FC = () => {
               {/* Device Icons */}
               <div className="flex justify-center gap-6 mb-6">
                 <div className="w-16 h-24 bg-gray-900 rounded-xl p-1 shadow-2xl">
-                  <div className="w-full h-full bg-blue-500 rounded-lg flex flex-col items-center justify-center">
+                  <div className="w-full h-full bg-blue-600 rounded-lg flex flex-col items-center justify-center">
                     <span className="text-white text-[10px] uppercase font-bold mb-1 tracking-tighter">Latest</span>
                     <span className="text-white text-xs font-bold font-mono">iOS 19</span>
                   </div>
                 </div>
                 <div className="w-16 h-24 bg-gray-800 rounded-xl p-1 shadow-2xl">
-                  <div className="w-full h-full bg-green-500 rounded-lg flex flex-col items-center justify-center">
+                  <div className="w-full h-full bg-green-700 rounded-lg flex flex-col items-center justify-center">
                     <span className="text-white text-[10px] uppercase font-bold mb-1 tracking-tighter">Latest</span>
                     <span className="text-white text-xs font-bold font-mono">Android 15</span>
                   </div>
