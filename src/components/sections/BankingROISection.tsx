@@ -283,27 +283,27 @@ const BankingROISection: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-gray-700">Manual Testing</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     ${roiCalculator.currentCosts.manualTesting.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Security Incidents</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     $
                     {roiCalculator.currentCosts.securityIncidents.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Compliance Fines</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     $
                     {roiCalculator.currentCosts.complianceFines.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">System Downtime</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     ${roiCalculator.currentCosts.downtime.toLocaleString()}
                   </span>
                 </div>
@@ -326,28 +326,28 @@ const BankingROISection: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-gray-700">Testing Services</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     $
                     {roiCalculator.withTestriq.testingServices.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Security Incidents</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     $
                     {roiCalculator.withTestriq.securityIncidents.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Compliance Fines</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     $
                     {roiCalculator.withTestriq.complianceFines.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">System Downtime</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     ${roiCalculator.withTestriq.downtime.toLocaleString()}
                   </span>
                 </div>
@@ -376,7 +376,7 @@ const BankingROISection: React.FC = () => {
                 </div>
 
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 mb-2">
+                  <div className="text-4xl font-bold text-green-700 mb-2">
                     {roiPercentage}%
                   </div>
                   <div className="text-sm text-gray-600">

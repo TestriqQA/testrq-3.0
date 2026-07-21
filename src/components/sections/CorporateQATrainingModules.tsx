@@ -156,7 +156,7 @@ const CorporateQATrainingModules: React.FC = () => {
                       <h4 className="text-lg font-semibold text-gray-900">
                         {course.title}
                       </h4>
-                      <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                      <span className="text-xs font-medium text-blue-700 bg-blue-100 px-2 py-1 rounded-full">
                         {course.level}
                       </span>
                     </div>

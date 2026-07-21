@@ -105,22 +105,22 @@ const MobileTestingHeroSection: React.FC = () => {
 
       {/* Trust Indicators */}
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-200">
-        <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-          <span className="text-sm text-gray-500">
+        <div className="flex flex-wrap justify-center items-center gap-8">
+          <span className="text-sm text-gray-900">
             Trusted by leading mobile app companies
           </span>
           <div className="grid grid-cols-2 md:grid-cols-4 items-center gap-6">
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">App Store</span>
+              <span className="text-xs text-gray-600">App Store</span>
             </div>
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">Play Store</span>
+              <span className="text-xs text-gray-600">Play Store</span>
             </div>
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">Enterprise</span>
+              <span className="text-xs text-gray-600">Enterprise</span>
             </div>
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">Startups</span>
+              <span className="text-xs text-gray-600">Startups</span>
             </div>
           </div>
         </div>
