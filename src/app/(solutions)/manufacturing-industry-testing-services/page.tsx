@@ -90,7 +90,7 @@ const challenges = [
     solution: (
       <>
         Segmentation audits, DMZ + jump-host validation, and{" "}
-        <Link href="/security-testing" className="text-brand-blue hover:underline">
+        <Link href="/security-testing" className="text-brand-blue underline">
           OT-aware penetration testing
         </Link>{" "}
         across IEC 62443 security levels SL1–SL4 — without disrupting production windows.

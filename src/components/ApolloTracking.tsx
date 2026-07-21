@@ -1,8 +1,8 @@
 "use client";
 
-import Script from "next/script";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useConsent } from "@/lib/consent/useConsent";
 
 const APOLLO_APP_ID = "696f2f6d07a88a0011e0ddfc";
 
@@ -22,6 +22,11 @@ const APOLLO_APP_ID = "696f2f6d07a88a0011e0ddfc";
  * TRADE-OFF, stated plainly: this reduces Apollo's visitor coverage. Companies that
  * browse only the homepage or blog and never reach a commercial page will no longer
  * be identified. Widen this list if that visibility matters more than the audit.
+ *
+ * Apollo also now requires explicit cookie consent (ConsentBanner). Together the two
+ * gates mean it loads only when: a high-intent route AND the user has accepted. That
+ * clears the Best Practices failures on every page, because the default (pre-consent)
+ * state a first-time visitor — and Lighthouse — sees never loads Apollo at all.
  */
 const APOLLO_ROUTES = [
     "/contact-us",
@@ -44,32 +49,39 @@ const APOLLO_ROUTES = [
 
 export default function ApolloTracking() {
     const pathname = usePathname();
-    const [nocache, setNocache] = useState("");
-
-    const isHighIntent =
-        !!pathname &&
-        APOLLO_ROUTES.some(
-            (route) => pathname === route || pathname.startsWith(`${route}/`)
-        );
+    const consent = useConsent();
 
     useEffect(() => {
+        if (consent !== "accepted" || !pathname) return;
+
+        const isHighIntent = APOLLO_ROUTES.some(
+            (route) => pathname === route || pathname.startsWith(`${route}/`)
+        );
         if (!isHighIntent) return;
-        setNocache(Math.random().toString(36).substring(7));
-    }, [isHighIntent]);
 
-    if (!isHighIntent || !nocache) return null;
+        // Survives client-side navigation between two high-intent routes.
+        if (document.querySelector("script[data-apollo-tracker]")) return;
 
-    return (
-        <Script
-            src={`https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=${nocache}`}
-            strategy="lazyOnload"
-            onLoad={() => {
-                // @ts-expect-error - trackingFunctions is injected by the Apollo tracker at runtime
-                if (window.trackingFunctions && window.trackingFunctions.onLoad) {
-                    // @ts-expect-error - same runtime-injected global
-                    window.trackingFunctions.onLoad({ appId: APOLLO_APP_ID });
-                }
-            }}
-        />
-    );
+        // Injected imperatively rather than via next/script. A <Script
+        // strategy="lazyOnload"> that only enters the tree AFTER window.load — which is
+        // exactly what happens here, since consent flips post-hydration — does not
+        // reliably inject. Creating the element directly (the same pattern as
+        // RecaptchaLoader) is deterministic. substring(2,10) is always 8 chars, so the
+        // cache-buster is never empty.
+        const nocache = Math.random().toString(36).substring(2, 10);
+        const script = document.createElement("script");
+        script.src = `https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=${nocache}`;
+        script.async = true;
+        script.defer = true;
+        script.setAttribute("data-apollo-tracker", "");
+        script.onload = () => {
+            const w = window as unknown as {
+                trackingFunctions?: { onLoad?: (opts: { appId: string }) => void };
+            };
+            w.trackingFunctions?.onLoad?.({ appId: APOLLO_APP_ID });
+        };
+        document.head.appendChild(script);
+    }, [consent, pathname]);
+
+    return null;
 }

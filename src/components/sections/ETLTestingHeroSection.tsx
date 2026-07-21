@@ -60,10 +60,10 @@ const ETLTestingHeroSection: React.FC = () => {
 
             <div className="space-y-4">
               <p className="text-lg text-gray-700 leading-relaxed">
-                With the ETL market hitting <span className="font-semibold text-brand-blue">$8.8 billion</span> this year, data integrity is more critical than ever. At Testriq, we provide <Link href="/blog/post/data-quality-testing-in-etl" className="text-brand-blue hover:underline">enterprise ETL testing</Link> to ensure your data pipelines are accurate, scalable, and audit-ready. We go beyond simple record counts to validate complex business logic through deep <Link href="/blog/post/ehr-emr-system-testing-and-integration-ensuring-data-integrity-and-interoperability" className="text-brand-blue hover:underline">data integration testing</Link>.
+                With the ETL market hitting <span className="font-semibold text-brand-blue">$8.8 billion</span> this year, data integrity is more critical than ever. At Testriq, we provide <Link href="/blog/post/data-quality-testing-in-etl" className="text-brand-blue underline">enterprise ETL testing</Link> to ensure your data pipelines are accurate, scalable, and audit-ready. We go beyond simple record counts to validate complex business logic through deep <Link href="/blog/post/ehr-emr-system-testing-and-integration-ensuring-data-integrity-and-interoperability" className="text-brand-blue underline">data integration testing</Link>.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Testriq bridges the gap between raw data and actionable intelligence. We specialize in high-velocity <Link href="/blog/post/data-loading-testing-etl-performance-testing" className="text-brand-blue hover:underline">ETL automation</Link> and complex cloud migrations like <span className="font-semibold">Snowflake</span>. Whether you&apos;re focused on scalability or global compliance, we ensure your data is zero-defect and always audit-ready.
+                Testriq bridges the gap between raw data and actionable intelligence. We specialize in high-velocity <Link href="/blog/post/data-loading-testing-etl-performance-testing" className="text-brand-blue underline">ETL automation</Link> and complex cloud migrations like <span className="font-semibold">Snowflake</span>. Whether you&apos;re focused on scalability or global compliance, we ensure your data is zero-defect and always audit-ready.
               </p>
             </div>
 

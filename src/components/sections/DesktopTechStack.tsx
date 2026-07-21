@@ -106,7 +106,7 @@ const DesktopTechStack: React.FC = () => {
                         />
                     )
                 },
-                { name: "Intel VTune Profiler", icon: <SiIntel className="text-[#0071C5]" size={24} /> },
+                { name: "Intel VTune Profiler", icon: <SiIntel aria-hidden className="text-[#0071C5]" size={24} /> },
             ],
             description: "(for memory leak detection)",
             icon: <FaTachometerAlt className="text-3xl text-orange-500" />,
@@ -145,8 +145,8 @@ const DesktopTechStack: React.FC = () => {
         {
             category: "Virtual Environments",
             tools: [
-                { name: "VMware", icon: <SiVmware className="text-[#607078]" size={24} /> },
-                { name: "VirtualBox", icon: <SiVirtualbox className="text-[#183A61]" size={24} /> },
+                { name: "VMware", icon: <SiVmware aria-hidden className="text-[#607078]" size={24} /> },
+                { name: "VirtualBox", icon: <SiVirtualbox aria-hidden className="text-[#183A61]" size={24} /> },
                 { name: "Cloud-based farms", icon: <FaCloud className="text-gray-500" size={24} /> },
             ],
             description: "For Windows, macOS, and Linux testing",

@@ -110,23 +110,23 @@ const CareersValuesSection: React.FC = () => {
 
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
             Our core values shape our QA culture and drive collaboration to deliver{" "}
-            <Link href="/blog/post/final-reporting-in-qa-delivering-comprehensive-quality-summary" className="text-brand-blue hover:underline">
+            <Link href="/blog/post/final-reporting-in-qa-delivering-comprehensive-quality-summary" className="text-brand-blue underline">
               high-quality software testing
             </Link>{" "}
             solutions in{" "}
-            <Link href="/automation-testing-services" className="text-brand-blue hover:underline">
+            <Link href="/automation-testing-services" className="text-brand-blue underline">
               automation
             </Link>
             ,{" "}
-            <Link href="/manual-testing-services" className="text-brand-blue hover:underline">
+            <Link href="/manual-testing-services" className="text-brand-blue underline">
               manual QA
             </Link>
             ,{" "}
-            <Link href="/performance-testing-services" className="text-brand-blue hover:underline">
+            <Link href="/performance-testing-services" className="text-brand-blue underline">
               performance
             </Link>
             , and{" "}
-            <Link href="/security-testing" className="text-brand-blue hover:underline">
+            <Link href="/security-testing" className="text-brand-blue underline">
               security
             </Link>
             , ensuring compliance and customer satisfaction.

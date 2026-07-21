@@ -13,7 +13,7 @@ const ManualTestingFAQs: React.FC = () => {
       answer:
         (
           <>
-            AI is rising, but <Link href="/blog/post/the-future-of-manual-testing-adapting-in-an-automated-world" className="text-brand-blue hover:underline">manual testing</Link> remains vital. It handles exploratory work and complex logic. This is where &apos;human-in-the-loop&apos; intuition is vital for finding what scripts miss. It fills the &quot;coverage gaps&quot; that <Link href="/automation-testing-services" className="text-brand-blue hover:underline">automation</Link> cannot reach in complex micro-services architectures.
+            AI is rising, but <Link href="/blog/post/the-future-of-manual-testing-adapting-in-an-automated-world" className="text-brand-blue underline">manual testing</Link> remains vital. It handles exploratory work and complex logic. This is where &apos;human-in-the-loop&apos; intuition is vital for finding what scripts miss. It fills the &quot;coverage gaps&quot; that <Link href="/automation-testing-services" className="text-brand-blue underline">automation</Link> cannot reach in complex micro-services architectures.
           </>
         ),
     },
@@ -35,7 +35,7 @@ const ManualTestingFAQs: React.FC = () => {
     {
       question: "Does Testriq provide manual testing for mobile apps?",
       answer:
-        (<>Yes, we offer <Link href="/mobile-application-testing" className="text-brand-blue hover:underline">manual testing for both iOS and Android</Link>. We use real devices from our global farm to ensure your app works across all OS versions and screen sizes.</>),
+        (<>Yes, we offer <Link href="/mobile-application-testing" className="text-brand-blue underline">manual testing for both iOS and Android</Link>. We use real devices from our global farm to ensure your app works across all OS versions and screen sizes.</>),
     },
   ];
 

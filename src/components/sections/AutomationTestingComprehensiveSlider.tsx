@@ -121,7 +121,7 @@ const AutomationTestingComprehensiveSlider: React.FC = () => {
             <span className="text-brand-blue">Enterprise-Grade </span> Automation Capabilities
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our comprehensive automation testing services built to accelerate testing cycles, enhance test efficiency, and deliver superior software quality across <Link href="/web-application-testing-services" className="text-brand-blue hover:underline">web</Link>, <Link href="/mobile-application-testing" className="text-brand-blue hover:underline">mobile</Link>, and <Link href="/api-testing" className="text-brand-blue hover:underline">API platforms</Link>.
+            Explore our comprehensive automation testing services built to accelerate testing cycles, enhance test efficiency, and deliver superior software quality across <Link href="/web-application-testing-services" className="text-brand-blue underline">web</Link>, <Link href="/mobile-application-testing" className="text-brand-blue underline">mobile</Link>, and <Link href="/api-testing" className="text-brand-blue underline">API platforms</Link>.
           </p>
         </div>
 
@@ -133,6 +133,7 @@ const AutomationTestingComprehensiveSlider: React.FC = () => {
               return (
                 <button
                   key={type.id}
+                  aria-label={type.title}
                   onClick={() => setActiveTab(index)}
                   className={`flex-1 min-w-0 px-4 py-4 text-sm font-medium transition-all duration-300 ${activeTab === index
                     ? `${colors.bg} ${colors.text} border-b-2 ${colors.border}`

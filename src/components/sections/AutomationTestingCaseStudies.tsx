@@ -20,9 +20,9 @@ const AutomationTestingCaseStudies: React.FC = () => {
       client: "Fortune 500 Technology Company",
       industry: "Technology",
       challenge:
-        (<>Complex enterprise application required comprehensive Automation testing to ensure <Link href="/performance-testing-services" className="text-brand-blue hover:underline">optimal performance and reliability</Link>.</>),
+        (<>Complex enterprise application required comprehensive Automation testing to ensure <Link href="/performance-testing-services" className="text-brand-blue underline">optimal performance and reliability</Link>.</>),
       solution:
-        (<>Our <Link href="/our-team" className="text-brand-blue hover:underline">expert team</Link> implemented advanced Automation testing strategies with cutting-edge tools and methodologies.</>),
+        (<>Our <Link href="/our-team" className="text-brand-blue underline">expert team</Link> implemented advanced Automation testing strategies with cutting-edge tools and methodologies.</>),
       results: [
         {
           metric: "Quality Improvement",
@@ -51,9 +51,9 @@ const AutomationTestingCaseStudies: React.FC = () => {
       client: "Leading Financial Institution",
       industry: "Financial Services",
       challenge:
-        (<>Mission-critical <Link href="/banking-finance-industry-testing-services" className="text-brand-blue hover:underline">financial platform</Link> needed rigorous Automation testing to ensure security and compliance.</>),
+        (<>Mission-critical <Link href="/banking-finance-industry-testing-services" className="text-brand-blue underline">financial platform</Link> needed rigorous Automation testing to ensure security and compliance.</>),
       solution:
-        (<>Comprehensive Automation testing approach with industry-specific compliance validation and <Link href="/security-testing" className="text-brand-blue hover:underline">security protocols</Link>.</>),
+        (<>Comprehensive Automation testing approach with industry-specific compliance validation and <Link href="/security-testing" className="text-brand-blue underline">security protocols</Link>.</>),
       results: [
         {
           metric: "Compliance Achievement",
@@ -82,9 +82,9 @@ const AutomationTestingCaseStudies: React.FC = () => {
       client: "Healthcare Technology Provider",
       industry: "Healthcare",
       challenge:
-        (<><Link href="/healthcare-testing-services" className="text-brand-blue hover:underline">Healthcare management system</Link> required extensive Automation testing to ensure patient data security and system reliability.</>),
+        (<><Link href="/healthcare-testing-services" className="text-brand-blue underline">Healthcare management system</Link> required extensive Automation testing to ensure patient data security and system reliability.</>),
       solution:
-        (<>Specialized Automation testing with <Link href="/qa-documentation-services" className="text-brand-blue hover:underline">healthcare compliance focus</Link> and comprehensive validation protocols.</>),
+        (<>Specialized Automation testing with <Link href="/qa-documentation-services" className="text-brand-blue underline">healthcare compliance focus</Link> and comprehensive validation protocols.</>),
       results: [
         {
           metric: "Security Validation",
@@ -165,6 +165,7 @@ const AutomationTestingCaseStudies: React.FC = () => {
             return (
               <button
                 key={study.id}
+                aria-label={study.title}
                 onClick={() => setActiveCase(index)}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${activeCase === index
                   ? `${colors.bg} ${colors.text} ${colors.border} border-2`

@@ -98,7 +98,7 @@ const phases = [
       <>
         A test strategy answers <em>what</em> we test and <em>why</em> — driven by the risk register. It commits to the testing types in scope, the coverage targets, the entry / exit criteria, and the boundary between Testriq + client responsibilities.
         Cross-reference our{" "}
-        <Link href="/test-strategy-template" className="text-brand-blue hover:underline">
+        <Link href="/test-strategy-template" className="text-brand-blue underline">
           test strategy template
         </Link>
         .
@@ -118,11 +118,11 @@ const phases = [
     description: (
       <>
         Strategy turns into concrete plans — per-release test plans, environment requirements, test data needs, and detailed test cases. We follow our{" "}
-        <Link href="/test-case-template" className="text-brand-blue hover:underline">
+        <Link href="/test-case-template" className="text-brand-blue underline">
           test case template
         </Link>{" "}
         + standard{" "}
-        <Link href="/test-plan-template" className="text-brand-blue hover:underline">
+        <Link href="/test-plan-template" className="text-brand-blue underline">
           test plan template
         </Link>{" "}
         so deliverables are auditor-ready and onboarding-friendly.
@@ -142,11 +142,11 @@ const phases = [
     description: (
       <>
         Cases get executed against the build under test — automated suites in CI for fast feedback, manual exploratory for high-risk areas. Defects get logged with full reproduction context + severity rating + impact analysis. Wires into{" "}
-        <Link href="/regression-testing" className="text-brand-blue hover:underline">
+        <Link href="/regression-testing" className="text-brand-blue underline">
           regression testing
         </Link>{" "}
         and{" "}
-        <Link href="/automation-testing-services" className="text-brand-blue hover:underline">
+        <Link href="/automation-testing-services" className="text-brand-blue underline">
           automation testing
         </Link>{" "}
         practices.

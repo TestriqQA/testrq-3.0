@@ -66,21 +66,21 @@ const SaasTestingHeroSection: React.FC = () => {
                                 across{" "}
                                 <Link
                                     href="/healthcare-testing-services"
-                                    className="text-brand-blue hover:underline"
+                                    className="text-brand-blue underline"
                                 >
                                     healthcare
                                 </Link>
                                 ,{" "}
                                 <Link
                                     href="/banking-finance-industry-testing-services"
-                                    className="text-brand-blue hover:underline"
+                                    className="text-brand-blue underline"
                                 >
                                     fintech
                                 </Link>
                                 ,{" "}
                                 <Link
                                     href="/e-commerce-testing-services"
-                                    className="text-brand-blue hover:underline"
+                                    className="text-brand-blue underline"
                                 >
                                     e-commerce
                                 </Link>

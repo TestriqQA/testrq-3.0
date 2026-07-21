@@ -198,7 +198,7 @@ const GamingPlatformsSection: React.FC = () => {
                   <div
                     className={`w-16 h-16 bg-gradient-to-r ${platform.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <platform.icon className="w-8 h-8 text-white" />
+                    <platform.icon aria-hidden className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -294,7 +294,7 @@ const GamingPlatformsSection: React.FC = () => {
             {platformLogos.map((logo, index) => (
               <div key={index} className="text-center group">
                 <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-gray-100 transition-colors">
-                  <logo.icon className={`w-8 h-8 ${logo.color}`} />
+                  <logo.icon aria-hidden className={`w-8 h-8 ${logo.color}`} />
                 </div>
                 <div className="text-sm font-medium text-gray-700">
                   {logo.name}
@@ -325,7 +325,7 @@ const GamingPlatformsSection: React.FC = () => {
                 <div
                   className={`w-20 h-20 bg-gradient-to-r ${engine.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}
                 >
-                  <engine.icon className="w-10 h-10 text-white" />
+                  <engine.icon aria-hidden className="w-10 h-10 text-white" />
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 mb-3">
                   {engine.name}

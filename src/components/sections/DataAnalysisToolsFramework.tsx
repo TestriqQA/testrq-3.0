@@ -209,6 +209,7 @@ const DataAnalysisToolsFramework = () => {
             {toolCategories.map((category, index) => (
               <button
                 key={category.id}
+                aria-label={category.title}
                 onClick={() => setActiveCategory(index)}
                 className={`flex items-center px-4 py-3 rounded-lg font-medium transition-all duration-200 ${activeCategory === index
                   ? "bg-blue-600 text-white shadow-lg"

@@ -21,7 +21,7 @@ const ApiProvenTestingProcess: React.FC = () => {
       title: "Plan & Analyze Risks",
       shortTitle: "Analysis",
       description:
-        (<>We analyze risks to identify critical endpoints. This follows the <Link href="/manual-testing-services" className="text-blue-600 hover:underline">risk-based approach</Link> defined in ISO 29119 Part 2.</>),
+        (<>We analyze risks to identify critical endpoints. This follows the <Link href="/manual-testing-services" className="text-blue-600 underline">risk-based approach</Link> defined in ISO 29119 Part 2.</>),
       details: [
         "Risk Assessment (ISO 29119-2)",
         "Critical Endpoint Identification",
@@ -38,7 +38,7 @@ const ApiProvenTestingProcess: React.FC = () => {
       title: "Test Design",
       shortTitle: "Design",
       description:
-        (<>We use <Link href="/automation-testing-services" className="text-green-600 hover:underline">combination testing</Link> to cover every parameter. Our design includes boundary checks and complex schema validation to ensure full coverage (Part 4).</>),
+        (<>We use <Link href="/automation-testing-services" className="text-green-600 underline">combination testing</Link> to cover every parameter. Our design includes boundary checks and complex schema validation to ensure full coverage (Part 4).</>),
       details: [
         "Combination Testing (Part 4)",
         "Boundary Value Analysis",
@@ -72,7 +72,7 @@ const ApiProvenTestingProcess: React.FC = () => {
       title: "Continuous Execution",
       shortTitle: "Execution",
       description:
-        (<><Link href="/automation-testing-services" className="text-teal-600 hover:underline">Integration into CI/CD pipelines</Link> (Jenkins, GitHub Actions) for real-time feedback and regression validation.</>),
+        (<><Link href="/automation-testing-services" className="text-teal-600 underline">Integration into CI/CD pipelines</Link> (Jenkins, GitHub Actions) for real-time feedback and regression validation.</>),
       details: [
         "CI/CD Pipeline Integration",
         "Real-time Feedback Loops",
@@ -387,7 +387,7 @@ const ApiProvenTestingProcess: React.FC = () => {
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Keyword-Driven & Model-Based Testing (MBT)</h3>
             <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We implement Keyword-Driven and Model-Based Testing (MBT). This approach follows the new <Link href="/qa-documentation-services" className="font-semibold text-brand-blue hover:underline">ISO 29119-5:2024 standard</Link> to ensure your automation remains scalable. This allows for structured automated test generation, ensuring your suite remains maintainable as your API portfolio grows.
+              We implement Keyword-Driven and Model-Based Testing (MBT). This approach follows the new <Link href="/qa-documentation-services" className="font-semibold text-brand-blue underline">ISO 29119-5:2024 standard</Link> to ensure your automation remains scalable. This allows for structured automated test generation, ensuring your suite remains maintainable as your API portfolio grows.
             </p>
           </div>
           <div className="flex justify-center">

@@ -11,12 +11,12 @@ const AutomationTestingFAQs: React.FC = () => {
     {
       question: "What is the difference between Manual and Automation testing in 2026?",
       answer:
-        (<>By 2026, the line is clear: Automation testing handles repetitive, data-heavy regression and cross-browser suites, while <Link href="/manual-testing-services" className="text-brand-blue hover:underline">manual experts</Link> focus on UX, exploratory testing, and complex edge cases that require human intuition.</>),
+        (<>By 2026, the line is clear: Automation testing handles repetitive, data-heavy regression and cross-browser suites, while <Link href="/manual-testing-services" className="text-brand-blue underline">manual experts</Link> focus on UX, exploratory testing, and complex edge cases that require human intuition.</>),
     },
     {
       question: "Why is ISO 29119-5:2024 important for my business?",
       answer:
-        (<> <Link href="/qa-documentation-services" className="text-brand-blue hover:underline">ISO 29119-5</Link> is the international standard for test automation. Adherence ensures your QA process is globally recognized, scalable, and follows a structured framework that reduces long-term maintenance costs.</>),
+        (<> <Link href="/qa-documentation-services" className="text-brand-blue underline">ISO 29119-5</Link> is the international standard for test automation. Adherence ensures your QA process is globally recognized, scalable, and follows a structured framework that reduces long-term maintenance costs.</>),
     },
     {
       question: "How do you calculate automation ROI for micro-services?",
@@ -26,7 +26,7 @@ const AutomationTestingFAQs: React.FC = () => {
     {
       question: "Can you integrate automation with our existing CI/CD pipelines?",
       answer:
-        (<>Absolutely. Our engineers are experts in Jenkins, GitLab CI, Azure DevOps, and GitHub Actions. We implement a &apos;Shift-Left&apos; approach, ensuring that every code commit triggers automated smoke and <Link href="/regression-testing" className="text-brand-blue hover:underline">regression tests</Link>.</>),
+        (<>Absolutely. Our engineers are experts in Jenkins, GitLab CI, Azure DevOps, and GitHub Actions. We implement a &apos;Shift-Left&apos; approach, ensuring that every code commit triggers automated smoke and <Link href="/regression-testing" className="text-brand-blue underline">regression tests</Link>.</>),
     },
   ];
 

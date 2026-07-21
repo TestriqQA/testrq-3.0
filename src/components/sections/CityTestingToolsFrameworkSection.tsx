@@ -129,6 +129,7 @@ const CityTestingToolsFrameworkSection: React.FC<CityTestingToolsFrameworkSectio
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             {tools.map((tool, index) => (
               <button key={tool.id} onClick={() => setActiveCard(index)} className={`px-4 py-2 rounded-full shadow-sm cursor-pointer
+              aria-label={tool.title}
                   ${activeCard === index ? `${getColorClasses(tool.color)} border-2` : "text-gray-600 bg-white border-2 border-gray-200 hover:bg-gray-50"}
               `}>
                 <span className={`text-sm font-medium ${activeCard === index ? "" : "text-black"}`}>{tool.shortName}</span>

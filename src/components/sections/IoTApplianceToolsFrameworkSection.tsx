@@ -87,7 +87,7 @@ const IoTToolsFrameworkSection: React.FC = () => {
         {
           name: (<><Link href="/blog/post/top-performance-testing-tools-compared-jmeter-loadrunner-etc">JMeter</Link></>),
           description: "Load testing for IoT APIs",
-          icon: <SiJest className="w-5 h-5 text-green-500" />, // Load testing-related logo
+          icon: <SiJest aria-hidden className="w-5 h-5 text-green-500" />, // Load testing-related logo
         },
         {
           name: "Gatling",
@@ -97,12 +97,12 @@ const IoTToolsFrameworkSection: React.FC = () => {
         {
           name: "InfluxDB",
           description: "Time-series data monitoring",
-          icon: <SiPostman className="w-5 h-5 text-green-500" />, // Use Postman logo here as related
+          icon: <SiPostman aria-hidden className="w-5 h-5 text-green-500" />, // Use Postman logo here as related
         },
         {
           name: "Grafana",
           description: "Performance visualization",
-          icon: <SiGrafana className="w-5 h-5 text-green-500" />, // Grafana logo
+          icon: <SiGrafana aria-hidden className="w-5 h-5 text-green-500" />, // Grafana logo
         },
       ],
     },

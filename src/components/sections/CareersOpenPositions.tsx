@@ -497,12 +497,12 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
 
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
               Explore exciting opportunities to grow your{" "}
-              <Link href="/blog/post/is-qa-a-good-career-software-tester" className="text-brand-blue hover:underline">
+              <Link href="/blog/post/is-qa-a-good-career-software-tester" className="text-brand-blue underline">
                 career in software testing
               </Link>
               . We&apos;re hiring passionate QA professionals in
-              <Link href="/automation-testing-services" className="text-brand-blue hover:underline"> automation testing</Link>, <Link href="/manual-testing-services" className="text-brand-blue hover:underline">manual testing</Link>, <Link href="/performance-testing-services" className="text-brand-blue hover:underline">performance testing</Link>, and
-              <Link href="/security-testing" className="text-brand-blue hover:underline"> security testing</Link> to join our world-class quality assurance team.
+              <Link href="/automation-testing-services" className="text-brand-blue underline"> automation testing</Link>, <Link href="/manual-testing-services" className="text-brand-blue underline">manual testing</Link>, <Link href="/performance-testing-services" className="text-brand-blue underline">performance testing</Link>, and
+              <Link href="/security-testing" className="text-brand-blue underline"> security testing</Link> to join our world-class quality assurance team.
             </p>
           </div>
 
