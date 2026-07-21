@@ -33,7 +33,7 @@ const IoTToolsFramework: React.FC = () => {
         {
           name: "Wireshark",
           description: "Advanced protocol sniffing & packet analysis",
-          icon: <SiWireshark className="w-5 h-5 text-[theme(color.brand.blue)]" />,
+          icon: <SiWireshark aria-hidden className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
         {
           name: "MQTT Spy",
@@ -59,7 +59,7 @@ const IoTToolsFramework: React.FC = () => {
         {
           name: "Wireshark",
           description: "Advanced protocol sniffing & packet analysis",
-          icon: <SiWireshark className="w-5 h-5 text-[theme(color.brand.blue)]" />,
+          icon: <SiWireshark aria-hidden className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
         {
           name: "MQTT Spy",
@@ -85,7 +85,7 @@ const IoTToolsFramework: React.FC = () => {
         {
           name: "OWASP ZAP",
           description: <span>Security scanning for IoT <Link href="/api-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">cloud APIs</Link></span>,
-          icon: <SiOwasp className="w-5 h-5 text-[theme(color.brand.blue)]" />,
+          icon: <SiOwasp aria-hidden className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
         {
           name: "Nmap",
@@ -95,7 +95,7 @@ const IoTToolsFramework: React.FC = () => {
         {
           name: "Metasploit",
           description: "Industrial control system penetration",
-          icon: <SiMetasploit className="w-5 h-5 text-[theme(color.brand.blue)]" />,
+          icon: <SiMetasploit aria-hidden className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
         {
           name: "Nessus",
@@ -115,7 +115,7 @@ const IoTToolsFramework: React.FC = () => {
         {
           name: "JMeter",
           description: "Legacy & MQTT extension load testing",
-          icon: <SiApachejmeter className="w-5 h-5 text-[theme(color.brand.blue)]" />,
+          icon: <SiApachejmeter aria-hidden className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
       ],
     },
@@ -136,7 +136,7 @@ const IoTToolsFramework: React.FC = () => {
         {
           name: "JMeter",
           description: "Legacy & MQTT extension load testing",
-          icon: <SiApachejmeter className="w-5 h-5 text-[theme(color.brand.blue)]" />,
+          icon: <SiApachejmeter aria-hidden className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
       ],
     },
@@ -147,7 +147,7 @@ const IoTToolsFramework: React.FC = () => {
         {
           name: "Appium",
           description: <span><Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Mobile-IoT</Link> interaction automation</span>,
-          icon: <SiAppium className="w-5 h-5 text-[theme(color.brand.blue)]" />,
+          icon: <SiAppium aria-hidden className="w-5 h-5 text-[theme(color.brand.blue)]" />,
         },
         {
           name: "GitHub Actions",

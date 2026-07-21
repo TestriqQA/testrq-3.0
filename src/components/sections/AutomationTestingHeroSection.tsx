@@ -60,7 +60,7 @@ const AutomationTestingHeroSection: React.FC = () => {
                 The demand for fast software testing is peaking. By 2026, many firms will automate over half of their QA. However, <span className="font-semibold text-brand-blue">process complexities for global teams make it hard to show <Link href="/roi-calculator" className="hover:underline">ROI</Link> or manage flaky tests</span>. At Testriq, we provide test automation services that go <span className="italic">beyond simple script writing</span>.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed text-left">
-                We align our automated testing frameworks with the latest international standards, including <Link href="/qa-documentation-services" className="text-brand-blue font-semibold hover:underline">ISO 29119-5:2024</Link>. This ensures our solutions are scalable, easy to maintain, and built for complex <Link href="/api-testing" className="text-brand-blue hover:underline">micro-services</Link> across the <span className="font-semibold">US, UK, EU, and Asia</span>.
+                We align our automated testing frameworks with the latest international standards, including <Link href="/qa-documentation-services" className="text-brand-blue font-semibold underline">ISO 29119-5:2024</Link>. This ensures our solutions are scalable, easy to maintain, and built for complex <Link href="/api-testing" className="text-brand-blue underline">micro-services</Link> across the <span className="font-semibold">US, UK, EU, and Asia</span>.
               </p>
             </div>
 

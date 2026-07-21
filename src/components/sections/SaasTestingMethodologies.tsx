@@ -128,6 +128,7 @@ const SaasTestingMethodologies: React.FC = () => {
                             return (
                                 <button
                                     key={method.id}
+                                    aria-label={method.title}
                                     onClick={() => setActiveTab(index)}
                                     className={`flex-1 min-w-0 px-4 py-4 text-sm font-medium transition-all duration-300 ${activeTab === index
                                             ? `${colors.bg} ${colors.text} border-b-2 ${colors.border}`

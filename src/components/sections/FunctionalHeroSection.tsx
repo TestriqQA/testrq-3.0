@@ -49,7 +49,7 @@ const FunctionalHeroSection: React.FC = () => {
                             </p>
 
                             <p className="text-lg text-gray-600 leading-relaxed mt-4">
-                                We specialize in comprehensive functional testing that aligns perfectly with your business requirements and user expectations. Our expert team validates every user journey meticulously, leveraging <Link href="/qa-documentation-services" className="text-brand-blue hover:underline">ISO 29119 standards</Link> to ensure your web, mobile, and enterprise applications perform flawlessly across all platforms.
+                                We specialize in comprehensive functional testing that aligns perfectly with your business requirements and user expectations. Our expert team validates every user journey meticulously, leveraging <Link href="/qa-documentation-services" className="text-brand-blue underline">ISO 29119 standards</Link> to ensure your web, mobile, and enterprise applications perform flawlessly across all platforms.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 mt-6">

@@ -13,7 +13,7 @@ const SapProvenTestingProcess: React.FC = () => {
             title: "System Readiness Assessment",
             description: (
                 <>
-                    We use SAP <Link href="/qa-documentation-services" className="text-brand-blue hover:underline">Readiness Checks</Link> and Custom Code Migration Guides to evaluate your current ECC landscape before the move.
+                    We use SAP <Link href="/qa-documentation-services" className="text-brand-blue underline">Readiness Checks</Link> and Custom Code Migration Guides to evaluate your current ECC landscape before the move.
                 </>
             ),
             duration: "Phase 1",
@@ -44,7 +44,7 @@ const SapProvenTestingProcess: React.FC = () => {
             title: "Test Data Setup & Masking",
             description: (
                 <>
-                    Provisioning compliant, high-integrity data for SAP functional testing using <Link href="/data-analysis-services" className="text-brand-blue hover:underline">Test Data Setup</Link> and automated masking.
+                    Provisioning compliant, high-integrity data for SAP functional testing using <Link href="/data-analysis-services" className="text-brand-blue underline">Test Data Setup</Link> and automated masking.
                 </>
             ),
             duration: "Phase 3",
@@ -61,7 +61,7 @@ const SapProvenTestingProcess: React.FC = () => {
             title: "Automated Regression Suite Build",
             description: (
                 <>
-                    Deploying cost-effective SAP <Link href="/automation-testing-services" className="text-brand-blue hover:underline">Automated Regression</Link> solutions for B2B to cover core business processes.
+                    Deploying cost-effective SAP <Link href="/automation-testing-services" className="text-brand-blue underline">Automated Regression</Link> solutions for B2B to cover core business processes.
                 </>
             ),
             duration: "Phase 4",
@@ -78,7 +78,7 @@ const SapProvenTestingProcess: React.FC = () => {
             title: "Integration & Performance Validation",
             description: (
                 <>
-                    Running <Link href="/performance-testing-services" className="text-brand-blue hover:underline">Performance Validation</Link> on OData services and middleware (SAP CPI) for high-scale validation.
+                    Running <Link href="/performance-testing-services" className="text-brand-blue underline">Performance Validation</Link> on OData services and middleware (SAP CPI) for high-scale validation.
                 </>
             ),
             duration: "Phase 5",

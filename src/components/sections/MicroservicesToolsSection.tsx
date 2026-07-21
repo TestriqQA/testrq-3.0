@@ -97,7 +97,7 @@ const MicroservicesToolsSection: React.FC = () => {
                 </div>
 
                 <p className="mt-8 text-center text-gray-500 text-sm">
-                    Need a custom tooling audit? <Link href="/contact-us" className="text-brand-blue font-bold hover:underline">Talk to our architects today.</Link>
+                    Need a custom tooling audit? <Link href="/contact-us" className="text-brand-blue font-bold underline">Talk to our architects today.</Link>
                 </p>
             </div>
         </section>

@@ -145,7 +145,7 @@ const ETLToolsFramework: React.FC = () => {
             Testriq&apos; s ETL Technical <span className="text-brand-blue">Tech Stack</span> (2026 Trends)
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-            We utilize a curated selection of <Link href="/technology-stack" className="text-brand-blue font-semibold hover:underline">etl testing tools</Link> to provide exhaustive validation across your entire <span className="text-brand-blue font-semibold">data estate</span>, ensuring performance and security at every layer.
+            We utilize a curated selection of <Link href="/technology-stack" className="text-brand-blue font-semibold underline">etl testing tools</Link> to provide exhaustive validation across your entire <span className="text-brand-blue font-semibold">data estate</span>, ensuring performance and security at every layer.
           </p>
         </div>
 

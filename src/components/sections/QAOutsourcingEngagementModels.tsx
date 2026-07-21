@@ -101,7 +101,7 @@ const QAOutsourcingEngagementModels: React.FC = () => {
 
                 <p className="text-center text-gray-600 mt-8">
                     Not sure which model fits? You can also{" "}
-                    <Link href="/hire-qa-engineer" className="text-brand-blue font-semibold hover:underline">
+                    <Link href="/hire-qa-engineer" className="text-brand-blue font-semibold underline">
                         hire QA engineers
                     </Link>{" "}
                     individually.

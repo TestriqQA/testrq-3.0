@@ -42,7 +42,7 @@ const ContinuousTestingFAQs: React.FC = () => {
                     test maintenance.{" "}
                     <Link
                         href="/contact-us"
-                        className="text-brand-blue hover:underline"
+                        className="text-brand-blue underline"
                     >
                         Testriq specializes
                     </Link>{" "}

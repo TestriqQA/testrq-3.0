@@ -171,17 +171,17 @@ const LaunchFastToolsFramework: React.FC = () => {
           {
             name: "GitHub Actions",
             description: "Automate, customize, and execute workflows",
-            icon: <SiGithubactions size={20} color="#2088FF" aria-label="GitHub Actions Logo" />,
+            icon: <SiGithubactions aria-hidden size={20} color="#2088FF" aria-label="GitHub Actions Logo" />,
           },
           {
             name: "CircleCI",
             description: "Modern CI/CD for high-speed software development",
-            icon: <SiCircleci size={20} color="#343434" aria-label="CircleCI Logo" />,
+            icon: <SiCircleci aria-hidden size={20} color="#343434" aria-label="CircleCI Logo" />,
           },
           {
             name: "Jenkins",
             description: "Powerful open-source automation server",
-            icon: <SiJenkins size={20} color="#D24939" aria-label="Jenkins Logo" />,
+            icon: <SiJenkins aria-hidden size={20} color="#D24939" aria-label="Jenkins Logo" />,
           },
         ],
       },
@@ -191,17 +191,17 @@ const LaunchFastToolsFramework: React.FC = () => {
           {
             name: "Datadog",
             description: "Cloud-scale monitoring and security for apps",
-            icon: <SiDatadog size={20} color="#632CA6" aria-label="Datadog Logo" />,
+            icon: <SiDatadog aria-hidden size={20} color="#632CA6" aria-label="Datadog Logo" />,
           },
           {
             name: "New Relic",
             description: "Full-stack observability for performance",
-            icon: <SiNewrelic size={20} color="#008C99" aria-label="New Relic Logo" />,
+            icon: <SiNewrelic aria-hidden size={20} color="#008C99" aria-label="New Relic Logo" />,
           },
           {
             name: "Sentry",
             description: "Application monitoring and error tracking",
-            icon: <SiSentry size={20} color="#362D59" aria-label="Sentry Logo" />,
+            icon: <SiSentry aria-hidden size={20} color="#362D59" aria-label="Sentry Logo" />,
           },
         ],
       },
@@ -211,17 +211,17 @@ const LaunchFastToolsFramework: React.FC = () => {
           {
             name: "Jira",
             description: "The #1 project management tool for agile teams",
-            icon: <SiJira size={20} color="#0052CC" aria-label="Jira Logo" />,
+            icon: <SiJira aria-hidden size={20} color="#0052CC" aria-label="Jira Logo" />,
           },
           {
             name: "Linear",
             description: "The issue tracker built for high-performance teams",
-            icon: <SiLinear size={20} color="#5E6AD2" aria-label="Linear Logo" />,
+            icon: <SiLinear aria-hidden size={20} color="#5E6AD2" aria-label="Linear Logo" />,
           },
           {
             name: "Trello",
             description: "Manage projects and organize tasks visually",
-            icon: <SiTrello size={20} color="#0079BF" aria-label="Trello Logo" />,
+            icon: <SiTrello aria-hidden size={20} color="#0079BF" aria-label="Trello Logo" />,
           },
         ],
       },

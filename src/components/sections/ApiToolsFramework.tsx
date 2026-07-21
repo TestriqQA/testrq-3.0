@@ -43,7 +43,7 @@ const ApiToolsFramework: React.FC = () => {
             Technical <span className="text-[theme(color.brand.blue)]">Tech Stack</span>: Instruments of Precision
           </h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
-            To deliver <Link href="/automation-testing-services" className="text-brand-blue hover:underline">automated API testing</Link> at scale, we utilize a multi-layered stack tailored to your infrastructure. Our instruments are selected for technical precision and global compatibility.
+            To deliver <Link href="/automation-testing-services" className="text-brand-blue underline">automated API testing</Link> at scale, we utilize a multi-layered stack tailored to your infrastructure. Our instruments are selected for technical precision and global compatibility.
           </p>
         </div>
 

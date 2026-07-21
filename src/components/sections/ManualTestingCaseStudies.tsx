@@ -22,7 +22,7 @@ const ManualTestingCaseStudies: React.FC = () => {
       challenge:
         (
           <>
-            A major <Link href="/e-commerce-testing-services" className="text-brand-blue hover:underline">e-commerce platform</Link> was experiencing high user abandonment rates due to critical
+            A major <Link href="/e-commerce-testing-services" className="text-brand-blue underline">e-commerce platform</Link> was experiencing high user abandonment rates due to critical
             usability issues and functional defects that automated testing couldn&apos;t detect.
           </>
         ),
@@ -58,7 +58,7 @@ const ManualTestingCaseStudies: React.FC = () => {
       challenge:
         (
           <>
-            A <Link href="/healthcare-testing-services" className="text-brand-blue hover:underline">healthcare management system</Link> needed rigorous manual testing to ensure HIPAA compliance
+            A <Link href="/healthcare-testing-services" className="text-brand-blue underline">healthcare management system</Link> needed rigorous manual testing to ensure HIPAA compliance
             and patient data security while maintaining optimal user experience.
           </>
         ),
@@ -94,7 +94,7 @@ const ManualTestingCaseStudies: React.FC = () => {
       challenge:
         (
           <>
-            A mobile <Link href="/banking-finance-industry-testing-services" className="text-brand-blue hover:underline">banking application</Link> had complex user workflows that required extensive manual
+            A mobile <Link href="/banking-finance-industry-testing-services" className="text-brand-blue underline">banking application</Link> had complex user workflows that required extensive manual
             testing to ensure seamless customer experience and transaction security.
           </>
         ),
@@ -170,8 +170,8 @@ const ManualTestingCaseStudies: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Discover how our comprehensive manual testing services have helped
-            organizations across industries achieve <Link href="/blog/post/the-future-of-qa-trends-shaping-software-testing-in-2025" className="text-brand-blue hover:underline">exceptional software
-              quality</Link>, enhanced <Link href="/blog/post/user-experience-testing-for-smart-devices-usability-accessibility" className="text-brand-blue hover:underline">user experiences</Link>, and measurable business
+            organizations across industries achieve <Link href="/blog/post/the-future-of-qa-trends-shaping-software-testing-in-2025" className="text-brand-blue underline">exceptional software
+              quality</Link>, enhanced <Link href="/blog/post/user-experience-testing-for-smart-devices-usability-accessibility" className="text-brand-blue underline">user experiences</Link>, and measurable business
             outcomes.
           </p>
         </div>
@@ -183,6 +183,7 @@ const ManualTestingCaseStudies: React.FC = () => {
             return (
               <button
                 key={study.id}
+                aria-label={study.title}
                 onClick={() => setActiveCase(index)}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${activeCase === index
                   ? `${colors.bg} ${colors.text} ${colors.border} border-2`

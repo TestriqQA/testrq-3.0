@@ -27,8 +27,8 @@ const WebappTechStack: React.FC = () => {
         {
             category: "UI Automation",
             tools: [
-                { name: "Selenium", icon: <SiSelenium className="text-[#43B02A]" size={30} /> },
-                { name: "Cypress", icon: <SiCypress className="text-[#17202C]" size={30} /> },
+                { name: "Selenium", icon: <SiSelenium aria-hidden className="text-[#43B02A]" size={30} /> },
+                { name: "Cypress", icon: <SiCypress aria-hidden className="text-[#17202C]" size={30} /> },
                 {
                     name: "Playwright",
                     icon: (
@@ -41,15 +41,15 @@ const WebappTechStack: React.FC = () => {
                         />
                     )
                 },
-                { name: "Puppeteer", icon: <SiPuppeteer className="text-[#40B5A4]" size={30} /> },
+                { name: "Puppeteer", icon: <SiPuppeteer aria-hidden className="text-[#40B5A4]" size={30} /> },
             ],
             icon: <FaLaptopCode className="text-3xl text-brand-blue" size={30} />,
         },
         {
             category: "Performance & Load",
             tools: [
-                { name: "Apache JMeter", icon: <SiApachejmeter className="text-[#D22128]" size={30} /> },
-                { name: "K6", icon: <SiK6 className="text-[#7D64FF]" size={30} /> },
+                { name: "Apache JMeter", icon: <SiApachejmeter aria-hidden className="text-[#D22128]" size={30} /> },
+                { name: "K6", icon: <SiK6 aria-hidden className="text-[#7D64FF]" size={30} /> },
                 {
                     name: "BlazeMeter",
                     icon: (
@@ -68,7 +68,7 @@ const WebappTechStack: React.FC = () => {
         {
             category: <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline">Security & Pen Testing</Link>,
             tools: [
-                { name: "Burp Suite", icon: <SiBurpsuite className="text-[#FF6633]" size={30} /> },
+                { name: "Burp Suite", icon: <SiBurpsuite aria-hidden className="text-[#FF6633]" size={30} /> },
                 {
                     name: "OWASP ZAP",
                     icon: (
@@ -81,14 +81,14 @@ const WebappTechStack: React.FC = () => {
                         />
                     )
                 },
-                { name: "Metasploit", icon: <SiMetasploit className="text-[#1B6AC6]" size={30} /> },
+                { name: "Metasploit", icon: <SiMetasploit aria-hidden className="text-[#1B6AC6]" size={30} /> },
             ],
             icon: <FaShieldAlt className="text-3xl text-red-500" size={30} />,
         },
         {
             category: <Link href="/api-testing" className="text-[theme(color.brand.blue)] underline">API Testing</Link>,
             tools: [
-                { name: "Postman", icon: <SiPostman className="text-[#FF6C37]" size={30} /> },
+                { name: "Postman", icon: <SiPostman aria-hidden className="text-[#FF6C37]" size={30} /> },
                 {
                     name: "SoapUI",
                     icon: (
@@ -119,7 +119,7 @@ const WebappTechStack: React.FC = () => {
         {
             category: "Cloud-Based Web Testing",
             tools: [
-                { name: "Sauce Labs", icon: <SiSaucelabs className="text-[#3DDC91]" size={30} /> },
+                { name: "Sauce Labs", icon: <SiSaucelabs aria-hidden className="text-[#3DDC91]" size={30} /> },
                 {
                     name: "BrowserStack",
                     icon: (

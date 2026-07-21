@@ -162,6 +162,7 @@ const ExploratoryComprehensiveSlider: React.FC = () => {
           {explorationTypes.map((type, index) => (
             <button
               key={type.id}
+              aria-label={type.title}
               onClick={() => setActiveTab(index)}
               className={`px-4 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 ${
                 activeTab === index

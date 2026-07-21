@@ -88,7 +88,7 @@ const challenges = [
     solution: (
       <>
         Tenant-isolation matrix testing across read paths, async workers, exports, and admin tooling — paired with{" "}
-        <Link href="/security-testing" className="text-brand-blue hover:underline">
+        <Link href="/security-testing" className="text-brand-blue underline">
           authorization fuzzing
         </Link>{" "}
         to catch missing tenant filters before they hit production.
@@ -114,7 +114,7 @@ const challenges = [
     solution: (
       <>
         Pre-audit validation of every Trust Services Criterion + GDPR Article 15-22 flow, paired with documented evidence packs the auditor can sign off on. Ties to{" "}
-        <Link href="/security-testing" className="text-brand-blue hover:underline">
+        <Link href="/security-testing" className="text-brand-blue underline">
           security testing
         </Link>{" "}
         + access-control QA.
@@ -140,7 +140,7 @@ const challenges = [
     solution: (
       <>
         Production-shape{" "}
-        <Link href="/performance-testing-services" className="text-brand-blue hover:underline">
+        <Link href="/performance-testing-services" className="text-brand-blue underline">
           load + soak testing
         </Link>{" "}
         with per-tenant traffic profiles, queue-depth assertions, and explicit autoscaling-policy validation.
@@ -155,7 +155,7 @@ const challenges = [
     solution: (
       <>
         Synthetic monitoring during canary windows + targeted feature-flag matrix testing against critical-path combinations. Rolled into{" "}
-        <Link href="/regression-testing" className="text-brand-blue hover:underline">
+        <Link href="/regression-testing" className="text-brand-blue underline">
           automated regression
         </Link>{" "}
         so every release is gated.

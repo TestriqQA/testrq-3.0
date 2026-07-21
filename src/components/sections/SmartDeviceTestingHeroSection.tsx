@@ -50,7 +50,7 @@ const SmartDeviceTestingHeroSection: React.FC = () => {
 
             <div className="space-y-4">
               <p className="text-lg text-gray-700 leading-relaxed">
-                In 2026, <Link href="blog/post/how-to-test-iot-devices-for-reliability-2" className="text-brand-blue font-semibold hover:underline">smart device testing</Link> is a requirement for market entry, not a luxury. Testriq provides the quality assurance needed to navigate today’s connected world. We ensure your hardware—from sensors to chips—works perfectly to deliver a seamless user experience.
+                In 2026, <Link href="blog/post/how-to-test-iot-devices-for-reliability-2" className="text-brand-blue font-semibold underline">smart device testing</Link> is a requirement for market entry, not a luxury. Testriq provides the quality assurance needed to navigate today’s connected world. We ensure your hardware—from sensors to chips—works perfectly to deliver a seamless user experience.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed italic border-l-4 border-brand-blue pl-4">
                 &quot;Secure global certifications with our expert smart device validation. At Testriq, we validate everything from long-life health wearables to industrial IoT sensors. Our testing ensures your hardware is reliable and market-ready.&quot;

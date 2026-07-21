@@ -75,7 +75,7 @@ const ApiComprehensiveSlider: React.FC = () => {
             End-to-End <span className="text-[theme(color.brand.blue)]">API QA</span> for Global Markets
           </h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
-            We provide specialized API testing tailored for <Link href="/locations-we-serve" className="text-brand-blue hover:underline">global markets</Link>, including the US, UK, and EU, ensuring your services are secure and high-performing.
+            We provide specialized API testing tailored for <Link href="/locations-we-serve" className="text-brand-blue underline">global markets</Link>, including the US, UK, and EU, ensuring your services are secure and high-performing.
           </p>
         </div>
 

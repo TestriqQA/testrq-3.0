@@ -153,6 +153,7 @@ const LaunchFastCaseStudies: React.FC = () => {
           {caseStudies.map((study, index) => (
             <button
               key={study.id}
+              aria-label={study.title}
               onClick={() => setActiveCase(index)}
               className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeCase === index
                 ? "bg-blue-600 text-white shadow-lg"

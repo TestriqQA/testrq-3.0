@@ -162,7 +162,7 @@ const ContinuousTestingComprehensiveSlider: React.FC = () => {
                         combines advanced{" "}
                         <Link
                             href="/automation-testing-services"
-                            className="text-brand-blue hover:underline"
+                            className="text-brand-blue underline"
                         >
                             Test Automation Frameworks
                         </Link>{" "}
@@ -178,6 +178,7 @@ const ContinuousTestingComprehensiveSlider: React.FC = () => {
                             return (
                                 <button
                                     key={service.id}
+                                    aria-label={service.title}
                                     onClick={() => setActiveTab(index)}
                                     className={`flex-1 min-w-0 px-4 py-4 text-sm font-medium transition-all duration-300 ${activeTab === index
                                             ? `${colors.bg} ${colors.text} border-b-2 ${colors.border}`
