@@ -79,7 +79,7 @@ const ToolsTechStackSection = () => {
         name: "Evals (OpenAI)",
         description: "Standardized framework for benchmarking AI model performance.",
         usage: "90%",
-        icon: <SiOpenai className="w-8 h-8" />,
+        icon: <SiOpenai aria-hidden className="w-8 h-8" />,
       },
     ],
     "Red-Teaming & Safety Testing For AI Validation": [
@@ -115,7 +115,7 @@ const ToolsTechStackSection = () => {
         name: "Pytest",
         description: "Scalable and robust testing framework for Python-based models.",
         usage: "95%",
-        icon: <SiPytest className="w-8 h-8" />,
+        icon: <SiPytest aria-hidden className="w-8 h-8" />,
       },
       {
         name: "MLFlow",

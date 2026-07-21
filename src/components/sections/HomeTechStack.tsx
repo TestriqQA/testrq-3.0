@@ -319,8 +319,8 @@ const techStack = {
       title: "AI & Machine Learning",
       action: "/ai-application-testing",
       items: [
-        { name: "TensorFlow", icon: <SiTensorflow size={20} color="#FF6F00" /> },
-        { name: "Py-Torch", icon: <SiPytorch size={20} color="#EE4C2C" /> },
+        { name: "TensorFlow", icon: <SiTensorflow aria-hidden size={20} color="#FF6F00" /> },
+        { name: "Py-Torch", icon: <SiPytorch aria-hidden size={20} color="#EE4C2C" /> },
         { name: "Bias Auditing", icon: <TbScale size={20} color="#6366F1" /> },
         { name: "Fairness Testing", icon: <TbUserCheck size={20} color="#10B981" /> },
         { name: "Model Validation", icon: <TbCircleCheck size={20} color="#3B82F6" /> },
@@ -330,11 +330,11 @@ const techStack = {
       title: "CI/CD & DevOps",
       action: "/automation-testing-services",
       items: [
-        { name: "Jenkins", icon: <SiJenkins size={20} color="#D24939" /> },
-        { name: "GitLab CI", icon: <SiGitlab size={20} color="#FC6D26" /> },
+        { name: "Jenkins", icon: <SiJenkins aria-hidden size={20} color="#D24939" /> },
+        { name: "GitLab CI", icon: <SiGitlab aria-hidden size={20} color="#FC6D26" /> },
         { name: "Azure DevOps", icon: <FaMicrosoft size={20} color="#0078D4" /> },
         { name: "DevSecOps", icon: <TbLockCheck size={20} color="#F59E0B" /> },
-        { name: "Docker", icon: <SiDocker size={20} color="#2496ED" /> },
+        { name: "Docker", icon: <SiDocker aria-hidden size={20} color="#2496ED" /> },
       ],
     },
     {
@@ -342,7 +342,7 @@ const techStack = {
       action: "/mobile-application-testing",
       items: [
         { name: "Browser-Stack", icon: <TbWorld size={20} color="#0059B2" /> },
-        { name: "Sauce Labs", icon: <SiSaucelabs size={20} color="#E31B23" /> },
+        { name: "Sauce Labs", icon: <SiSaucelabs aria-hidden size={20} color="#E31B23" /> },
         { name: "Real-Device Labs", icon: <TbDeviceMobileSearch size={20} color="#8B5CF6" /> },
         { name: "iOS Testing", icon: <FaApple size={20} color="#555555" /> },
         { name: "Android QA", icon: <FaAndroid size={20} color="#3DDC84" /> },

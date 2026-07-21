@@ -38,12 +38,12 @@ const HealthcareToolsFrameworkSection: React.FC = () => {
         {
           name: (<><Link href="/blog/post/top-10-security-vulnerabilities-based-on-owasp">OWASP ZAP</Link></>),
           description: "Web application security scanner",
-          icon: <SiOwasp className="w-5 h-5 text-red-500" />,
+          icon: <SiOwasp aria-hidden className="w-5 h-5 text-red-500" />,
         },
         {
           name: (<><Link href="/blog/post/using-burp-suite-for-security-testing-beginner-to-pro">Burp Suite</Link></>),
           description: "Penetration testing platform",
-          icon: <SiBurpsuite className="w-5 h-5 text-red-500" />,
+          icon: <SiBurpsuite aria-hidden className="w-5 h-5 text-red-500" />,
         },
         {
           name: "Nessus",
@@ -53,7 +53,7 @@ const HealthcareToolsFrameworkSection: React.FC = () => {
         {
           name: "Metasploit",
           description: "Security testing framework",
-          icon: <SiMetasploit className="w-5 h-5 text-red-500" />,
+          icon: <SiMetasploit aria-hidden className="w-5 h-5 text-red-500" />,
         },
       ],
     },
@@ -66,17 +66,17 @@ const HealthcareToolsFrameworkSection: React.FC = () => {
         {
           name: (<><Link href="/blog/post/how-to-write-maintainable-test-scripts-in-selenium-or-cypress">Selenium</Link></>),
           description: "Web application automation",
-          icon: <SiSelenium className="w-5 h-5 text-blue-500" />,
+          icon: <SiSelenium aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: (<><Link href="/blog/post/top-mobile-testing-frameworks-compared-appium-espresso-xcuitest">Appium</Link></>),
           description: "Mobile app automation",
-          icon: <SiAppium className="w-5 h-5 text-blue-500" />,
+          icon: <SiAppium aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "Cypress",
           description: "End-to-end testing framework",
-          icon: <SiCypress className="w-5 h-5 text-blue-500" />,
+          icon: <SiCypress aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "TestComplete",
@@ -94,7 +94,7 @@ const HealthcareToolsFrameworkSection: React.FC = () => {
         {
           name: "Postman",
           description: "API development and testing",
-          icon: <SiPostman className="w-5 h-5 text-green-500" />,
+          icon: <SiPostman aria-hidden className="w-5 h-5 text-green-500" />,
         },
         {
           name: "REST Assured",
@@ -122,7 +122,7 @@ const HealthcareToolsFrameworkSection: React.FC = () => {
         {
           name: (<><Link href="/blog/post/top-performance-testing-tools-compared-jmeter-loadrunner-etc">JMeter</Link></>),
           description: "Load and performance testing",
-          icon: <SiJest className="w-5 h-5 text-purple-500" />,
+          icon: <SiJest aria-hidden className="w-5 h-5 text-purple-500" />,
         },
         {
           name: (<><Link href="/blog/post/top-performance-testing-tools-compared-jmeter-loadrunner-etc">LoadRunner</Link></>),

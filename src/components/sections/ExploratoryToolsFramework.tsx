@@ -33,11 +33,11 @@ const toolIcons: Record<string, React.ReactNode> = {
     />
   ),
   // Documentation & Traceability
-  "Jira": <SiJira size={20} color="#0052CC" aria-label="Jira Logo" />,
+  "Jira": <SiJira aria-hidden size={20} color="#0052CC" aria-label="Jira Logo" />,
   "Azure DevOps": <VscAzureDevops size={20} color="#0078D7" aria-label="Azure DevOps Logo" />,
-  "Confluence": <SiConfluence size={20} color="#172B4D" aria-label="Confluence Logo" />,
+  "Confluence": <SiConfluence aria-hidden size={20} color="#172B4D" aria-label="Confluence Logo" />,
   // Capture & Annotation
-  "Loom": <SiLoom size={20} color="#625DF5" aria-label="Loom Logo" />,
+  "Loom": <SiLoom aria-hidden size={20} color="#625DF5" aria-label="Loom Logo" />,
   "Snagit": (
     <svg role="img" aria-label="Snagit Logo" viewBox="0 0 24 24" className="w-5 h-5" fill="#00B388">
       <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM8 15l2.5-3.21 1.79 2.15 2.5-3.22L19 15H5l3 0z" />
@@ -72,8 +72,8 @@ const toolIcons: Record<string, React.ReactNode> = {
     />
   ),
   // Environment Monitoring
-  "Datadog": <SiDatadog size={20} color="#632CA6" aria-label="Datadog Logo" />,
-  "New Relic": <SiNewrelic size={20} color="#008C99" aria-label="New Relic Logo" />,
+  "Datadog": <SiDatadog aria-hidden size={20} color="#632CA6" aria-label="Datadog Logo" />,
+  "New Relic": <SiNewrelic aria-hidden size={20} color="#008C99" aria-label="New Relic Logo" />,
 };
 
 const ExploratoryToolsFramework: React.FC = () => {

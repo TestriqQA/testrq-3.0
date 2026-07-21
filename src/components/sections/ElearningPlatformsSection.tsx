@@ -17,7 +17,7 @@ const ElearningPlatformsSection: React.FC = () => {
   const platforms = [
     {
       name: "Moodle",
-      icon: <SiMoodle className="w-8 h-8 text-brand-blue mx-auto mb-3" />,
+      icon: <SiMoodle aria-hidden className="w-8 h-8 text-brand-blue mx-auto mb-3" />,
     },
     {
       name: "Canvas",
