@@ -4,7 +4,8 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import GoogleAnalytics from "@/components/GoogleAnalytics"; // Import the new component
 import RecaptchaLoader from "@/components/RecaptchaLoader"; // Route-scoped reCAPTCHA v3 loader
-import ApolloTracking from "@/components/ApolloTracking"; // Apollo tracking script
+import ApolloTracking from "@/components/ApolloTracking"; // Apollo tracking script (consent-gated)
+import ConsentBanner from "@/components/ConsentBanner"; // Cookie-consent opt-in for Apollo
 import { RecaptchaProvider } from "@/lib/recaptcha/RecaptchaContext";
 
 import Navbar from "@/components/layout/Header";
@@ -151,6 +152,11 @@ export default function RootLayout({
           <Footer />
           {/* <TawkToScript /> */}
         </RecaptchaProvider>
+
+        {/* Sibling leaf, not a wrapper: renders null until mounted and is
+            position:fixed, so it adds no CLS and cannot disturb hydration of the
+            tree above it. Gates Apollo via the shared consent store. */}
+        <ConsentBanner />
       </body>
     </html>
   );
