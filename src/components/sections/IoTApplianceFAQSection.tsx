@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import FAQSchema from "@/components/seo/FAQSchema";
 import {
   FaQuestionCircle,
   FaChevronDown,
@@ -166,6 +167,11 @@ const IoTFAQSection: React.FC = () => {
 
   return (
     <section className="relative w-full mx-auto py-16 px-8 md:px-12 lg:px-24 2xl: min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+      <FAQSchema
+        faqs={faqCategories.flatMap(
+          (c) => c.faqs as { question: React.ReactNode; answer: React.ReactNode }[]
+        )}
+      />
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
