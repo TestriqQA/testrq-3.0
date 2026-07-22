@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
-import StructuredData, { organizationSchema, websiteSchema, productServiceSchema, homeFAQSchema, professionalServiceSchema } from "@/components/seo/StructuredData";
+import StructuredData, { organizationSchema, websiteSchema, homeFAQSchema, professionalServiceSchema } from "@/components/seo/StructuredData";
 
 import HomeHeroSection from "@/components/sections/HomeHeroSection";
 
@@ -58,7 +58,10 @@ export default function Home() {
     <div>
       <StructuredData data={organizationSchema} />
       <StructuredData data={websiteSchema} />
-      <StructuredData data={productServiceSchema} />
+      {/* Product schema removed: a testing SERVICE is not a Product. The
+          price:0 / sku / mpn markup produced Product rich-result snippets that
+          GSC showed at position ~43 with 0 clicks. Organization +
+          ProfessionalService below are the correct entity types. */}
       <StructuredData data={homeFAQSchema} />
       <StructuredData data={professionalServiceSchema} />
       <MainLayout>
