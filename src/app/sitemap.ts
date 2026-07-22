@@ -82,7 +82,15 @@ function escapeImage(url: string | null | undefined): string {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.testriq.com';
-  const currentDate = new Date();
+
+  // Stable lastmod for code-defined pages (static / service / solution / city /
+  // case-study / category / tag). Previously these used `new Date()`, so every
+  // hourly sitemap regeneration advertised "modified today" for ~200 URLs —
+  // which trains Google to distrust the lastmod signal entirely. This constant
+  // only changes when the team ships a meaningful content update to those
+  // pages; bump it then. Sanity-sourced pages/posts keep their real per-doc
+  // modified dates (see the `page.date` / `post.modifiedISO` usages below).
+  const STATIC_LASTMOD = new Date('2026-07-22T00:00:00Z');
 
   try {
     // Static Next.js pages
@@ -106,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const staticPages = staticNextJSPages.map(page => ({
       url: page.slug ? `${baseUrl}/${page.slug}` : baseUrl,
-      lastModified: currentDate,
+      lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency(page.slug === '' ? 'home' : 'page'),
       priority: getPriority(page.slug === '' ? 'home' : 'page', page.slug),
     }));
@@ -119,7 +127,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Phases 1-4). Auto-discovery via discoverRoutes() eliminates the drift.
     const servicePages = discoverRoutes('src/app/(services)').map(service => ({
       url: `${baseUrl}/${service}`,
-      lastModified: currentDate,
+      lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency('service'),
       priority: getPriority('service'),
     }));
@@ -129,7 +137,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // consistency and to prevent future drift.
     const solutionPages = discoverRoutes('src/app/(solutions)').map(solution => ({
       url: `${baseUrl}/${solution}`,
-      lastModified: currentDate,
+      lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency('solution'),
       priority: getPriority('solution'),
     }));
@@ -140,7 +148,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const allCities = getAllCities().filter((city: CityData) => isCityIndexed(city.slug));
     const cityPages = allCities.map((city: CityData) => ({
       url: `${baseUrl}/${encodeURIComponent(city.slug)}`,
-      lastModified: currentDate,
+      lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency('city'),
       priority: getPriority('city'),
     }));
@@ -149,7 +157,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const allCaseStudies = await sanityGetAllCaseStudies();
     const caseStudyPages = allCaseStudies.map((caseStudy: CaseStudy) => ({
       url: `${baseUrl}/${encodeURIComponent(caseStudy.slug)}`,
-      lastModified: currentDate,
+      lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency('case-study'),
       priority: getPriority('case-study'),
       images: caseStudy.image ? [escapeImage(caseStudy.image.startsWith('http') ? caseStudy.image : `${baseUrl}${caseStudy.image}`)] : undefined,
@@ -159,7 +167,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const sanityPagesData = await sanityGetPages();
     const sanityPages = sanityPagesData.map((page) => ({
       url: `${baseUrl}/${encodeURIComponent(page.slug)}`,
-      lastModified: new Date(page.date || currentDate),
+      lastModified: new Date(page.date || STATIC_LASTMOD),
       changeFrequency: getChangeFrequency('page'),
       priority: getPriority('page', page.slug),
       images: page.image ? [escapeImage(page.image)] : undefined,
@@ -190,7 +198,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const sanityCategoriesData = await sanityGetCategories();
     const categoryPages = sanityCategoriesData.map((category) => ({
       url: `${baseUrl}/blog/category/${encodeURIComponent(category.id)}`,
-      lastModified: currentDate,
+      lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency('category'),
       priority: getPriority('category'),
     }));
@@ -199,7 +207,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const sanityTagsData = await sanityGetTags();
     const tagPages = sanityTagsData.map((tag) => ({
       url: `${baseUrl}/blog/tag/${encodeURIComponent(tag.slug)}`,
-      lastModified: currentDate,
+      lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency('tag'),
       priority: getPriority('tag'),
     }));
@@ -301,7 +309,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
       {
         url: baseUrl,
-        lastModified: currentDate,
+        lastModified: STATIC_LASTMOD,
         changeFrequency: 'weekly' as const,
         priority: 1,
       },
