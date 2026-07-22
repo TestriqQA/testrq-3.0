@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import FAQSchema from "@/components/seo/FAQSchema";
 import {
   FaQuestionCircle,
   FaChevronDown,
@@ -118,6 +119,7 @@ const ElearningFAQSection: React.FC = () => {
 
   return (
     <section className="relative w-full mx-auto py-16 px-8 md:px-12 lg:px-24 min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+      <FAQSchema faqs={faqs} />
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
