@@ -141,6 +141,7 @@ const DataAnalysisComprehensiveSlider = () => {
             {analyticsTypes.map((type, index) => (
               <button
                 key={type.id}
+                aria-label={type.title}
                 onClick={() => setActiveTab(index)}
                 className={`flex items-center px-4 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === index
                   ? "bg-blue-600 text-white shadow-lg"

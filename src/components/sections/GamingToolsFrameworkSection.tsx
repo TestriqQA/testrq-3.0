@@ -35,12 +35,12 @@ const GamingToolsFrameworkSection: React.FC = () => {
         {
           name: "Unity Test Framework",
           description: "Native Unity testing solution",
-          icon: <SiUnity className="w-5 h-5 text-blue-500" />,
+          icon: <SiUnity aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "Unreal Automation",
           description: "Unreal Engine testing framework",
-          icon: <SiUnrealengine className="w-5 h-5 text-blue-500" />,
+          icon: <SiUnrealengine aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "GameDriver",
@@ -63,7 +63,7 @@ const GamingToolsFrameworkSection: React.FC = () => {
         {
           name: (<><Link href="/blog/post/top-mobile-testing-frameworks-compared-appium-espresso-xcuitest">Appium</Link></>),
           description: "Mobile app automation framework",
-          icon: <SiAppium className="w-5 h-5 text-blue-500" />,
+          icon: <SiAppium aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "TestFlight",
@@ -73,7 +73,7 @@ const GamingToolsFrameworkSection: React.FC = () => {
         {
           name: "Firebase Test Lab",
           description: "Android testing infrastructure",
-          icon: <SiFirebase className="w-5 h-5 text-blue-500" />,
+          icon: <SiFirebase aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "GameBench",
@@ -91,12 +91,12 @@ const GamingToolsFrameworkSection: React.FC = () => {
         {
           name: "Unity Profiler",
           description: "Unity performance analysis",
-          icon: <SiUnity className="w-5 h-5 text-blue-500" />,
+          icon: <SiUnity aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "Unreal Insights",
           description: "Unreal Engine profiling",
-          icon: <SiUnrealengine className="w-5 h-5 text-blue-500" />,
+          icon: <SiUnrealengine aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "Xcode Instruments",
@@ -119,7 +119,7 @@ const GamingToolsFrameworkSection: React.FC = () => {
         {
           name: (<><Link href="/blog/post/how-to-write-maintainable-test-scripts-in-selenium-or-cypress">Selenium</Link></>),
           description: "Web-based game automation",
-          icon: <SiSelenium className="w-5 h-5 text-blue-500" />,
+          icon: <SiSelenium aria-hidden className="w-5 h-5 text-blue-500" />,
         },
         {
           name: "TestComplete",
@@ -251,7 +251,7 @@ const GamingToolsFrameworkSection: React.FC = () => {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-green-100 rounded-full px-6 py-2 mb-6">
               <FaGamepad className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-semibold text-green-600">
+              <span className="text-sm font-semibold text-green-800">
                 Platform Frameworks
               </span>
             </div>

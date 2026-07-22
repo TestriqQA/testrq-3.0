@@ -60,6 +60,16 @@ const ApiComprehensiveSlider: React.FC = () => {
       action: "/performance-testing-services"
     },
   ];
+  // Static map instead of bg-${type.color}-600: Tailwind only compiles classes it
+  // sees as literal text, so runtime-built names silently produce NO styling if the
+  // literal never appears elsewhere. Also per-hue: white text passes on blue/purple
+  // at -600 (5.25 / 5.54) but orange needs -700 (#ca3500, 5.2) — -600 is only 3.6.
+  const activeTabBg: Record<string, string> = {
+    blue: "bg-blue-600",
+    purple: "bg-purple-600",
+    orange: "bg-orange-700",
+  };
+
 
   return (
     <section className="bg-gradient-to-br from-gray-50 to-blue-50 py-16 px-8 md:px-12 lg:px-24">
@@ -75,7 +85,7 @@ const ApiComprehensiveSlider: React.FC = () => {
             End-to-End <span className="text-[theme(color.brand.blue)]">API QA</span> for Global Markets
           </h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
-            We provide specialized API testing tailored for <Link href="/locations-we-serve" className="text-brand-blue hover:underline">global markets</Link>, including the US, UK, and EU, ensuring your services are secure and high-performing.
+            We provide specialized API testing tailored for <Link href="/locations-we-serve" className="text-brand-blue underline">global markets</Link>, including the US, UK, and EU, ensuring your services are secure and high-performing.
           </p>
         </div>
 
@@ -86,7 +96,7 @@ const ApiComprehensiveSlider: React.FC = () => {
               key={index}
               onClick={() => setActiveTab(index)}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === index
-                ? `bg-${type.color}-500 text-white shadow-lg`
+                ? `${activeTabBg[type.color] ?? "bg-blue-600"} text-white shadow-lg`
                 : "bg-white text-gray-600 hover:bg-gray-100"
                 }`}
             >

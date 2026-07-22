@@ -148,7 +148,7 @@ const ETLComprehensiveSlider: React.FC = () => {
             Solving the 2026 <span className="text-brand-blue">Global Challenges</span> in ETL Quality Assurance
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-            The data landscape of 2026 is defined by volume and complexity. As a leading <Link href="/etl-testing-services" className="text-brand-blue font-semibold hover:underline">ETL partner</Link>, we eliminate the <span className="font-semibold text-brand-blue">five main hurdles</span> to enterprise data success.
+            The data landscape of 2026 is defined by volume and complexity. As a leading <Link href="/etl-testing-services" className="text-brand-blue font-semibold underline">ETL partner</Link>, we eliminate the <span className="font-semibold text-brand-blue">five main hurdles</span> to enterprise data success.
           </p>
         </div>
 

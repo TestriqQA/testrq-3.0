@@ -68,7 +68,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
         {
           name: "Burp Suite",
           description: "Web and API penetration testing platform",
-          icon: <SiBurpsuite className="w-5 h-5 text-red-500" />,
+          icon: <SiBurpsuite aria-hidden className="w-5 h-5 text-red-500" />,
         },
         {
           name: "Nmap / Metasploit",
@@ -93,12 +93,12 @@ const SmartDeviceToolsFramework: React.FC = () => {
               High-tier device <Link href="/performance-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">performance and load testing</Link>
             </>
           ),
-          icon: <SiApachejmeter className="w-5 h-5 text-purple-500" />,
+          icon: <SiApachejmeter aria-hidden className="w-5 h-5 text-purple-500" />,
         },
         {
           name: "Gatling",
           description: "High-density connection and load framework",
-          icon: <SiGatling className="w-5 h-5 text-purple-500" />,
+          icon: <SiGatling aria-hidden className="w-5 h-5 text-purple-500" />,
         },
         {
           name: "k6",
@@ -129,7 +129,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
         {
           name: "Android Profiler",
           description: "Android system and power diagnostics",
-          icon: <SiAndroid className="w-5 h-5 text-orange-500" />,
+          icon: <SiAndroid aria-hidden className="w-5 h-5 text-orange-500" />,
         },
         {
           name: "Sensors Audit",
@@ -149,7 +149,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
               <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Automated testing</Link> for smart home ecosystems
             </>
           ),
-          icon: <SiAppium className="w-5 h-5 text-green-500" />,
+          icon: <SiAppium aria-hidden className="w-5 h-5 text-green-500" />,
         },
         {
           name: "Jenkins / GitLab",
@@ -208,7 +208,7 @@ const SmartDeviceToolsFramework: React.FC = () => {
             Technical <span className="text-brand-blue">Tech Stack</span> (2026 Trends)
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            We utilize the most advanced <Link href='/technology-stack' className="text-brand-blue hover:underline">app testing tools</Link> and diagnostic platforms to provide exhaustive <span className="text-brand-blue font-semibold">smart device validation</span>, ensuring performance and security at every layer.
+            We utilize the most advanced <Link href='/technology-stack' className="text-brand-blue underline">app testing tools</Link> and diagnostic platforms to provide exhaustive <span className="text-brand-blue font-semibold">smart device validation</span>, ensuring performance and security at every layer.
           </p>
         </div>
 

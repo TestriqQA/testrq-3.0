@@ -42,9 +42,9 @@ const CorporateQATrainingProvenProcess: React.FC = () => {
       title: "Hands-on Practice",
       icon: <FaLaptopCode className="text-2xl text-purple-600" />,
       description:
-        (<>Deploying learned skills in a safe, guided sandbox. <Link href="/" className="text-blue-600 hover:underline">Real project simulations</Link> to build confidence before live deployment.</>),
+        (<>Deploying learned skills in a safe, guided sandbox. <Link href="/" className="text-blue-600 underline">Real project simulations</Link> to build confidence before live deployment.</>),
       details: [
-        (<><Link href="/" className="text-blue-600 hover:underline">Real project simulations</Link></>),
+        (<><Link href="/" className="text-blue-600 underline">Real project simulations</Link></>),
         (<><Link href="/technology-stack" className="text-gray-500 hover:text-brand-blue hover:underline decoration-brand-blue">Tool-based exercises</Link></>),
         "Peer collaboration",
         "Mentored practice",
@@ -137,14 +137,14 @@ const CorporateQATrainingProvenProcess: React.FC = () => {
                       {index % 2 !== 0 && (
                         <>
                           {step.icon}
-                          <div className="text-3xl font-bold text-gray-300">
+                          <div className="text-3xl font-bold text-gray-500">
                             {step.step}
                           </div>
                         </>
                       )}
                       {index % 2 === 0 && (
                         <>
-                          <div className="text-3xl font-bold text-gray-300">
+                          <div className="text-3xl font-bold text-gray-500">
                             {step.step}
                           </div>
                           {step.icon}

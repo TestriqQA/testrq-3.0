@@ -22,7 +22,7 @@ const AutomationTestingProvenTestingProcess: React.FC = () => {
       description:
         "We align automation goals with business risk. Our team ranks tests based on impact to select smoke and regression suites with the highest ROI.",
       activities: [
-        (<Link key={1} href="/manual-testing-services" className="text-brand-blue hover:underline">Risk-Based Prioritization</Link>),
+        (<Link key={1} href="/manual-testing-services" className="text-brand-blue underline">Risk-Based Prioritization</Link>),
         "Business Goal Alignment",
         "ROI-Focused Case Selection",
         "Strategy Formalization",
@@ -40,7 +40,7 @@ const AutomationTestingProvenTestingProcess: React.FC = () => {
         </>
       ),
       activities: [
-        (<Link key={2} href="/qa-documentation-services" className="text-brand-blue hover:underline">ISO 29119-4 Design Standards</Link>),
+        (<Link key={2} href="/qa-documentation-services" className="text-brand-blue underline">ISO 29119-4 Design Standards</Link>),
         "Toolchain Selection",
         "Modular Component Building",
         "Reusable Library Setup",
@@ -76,7 +76,7 @@ const AutomationTestingProvenTestingProcess: React.FC = () => {
         "CI/CD Integration Pipeline",
         "Immediate Feedback Loops",
         "Scheduled Nightly Builds",
-        (<Link key="failover" href="/security-testing" className="text-brand-blue hover:underline">Automated Failover Checks</Link>),
+        (<Link key="failover" href="/security-testing" className="text-brand-blue underline">Automated Failover Checks</Link>),
       ],
       nextStep: "Completion & Reporting",
     },
@@ -108,7 +108,7 @@ const AutomationTestingProvenTestingProcess: React.FC = () => {
             Global QA <span className="text-brand-blue">Automation Methodology</span>: The ISO 29119-2 Framework
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We utilize the <Link href="/blog/post/automated-etl-testing" className="text-brand-blue font-semibold hover:underline">ISO/IEC/IEEE 29119-2</Link> generic test process to ensure your automation is repeatable, traceable, and integrates seamlessly into your CI/CD pipeline.
+            We utilize the <Link href="/blog/post/automated-etl-testing" className="text-brand-blue font-semibold underline">ISO/IEC/IEEE 29119-2</Link> generic test process to ensure your automation is repeatable, traceable, and integrates seamlessly into your CI/CD pipeline.
           </p>
         </div>
 

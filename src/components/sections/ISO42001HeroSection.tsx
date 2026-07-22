@@ -60,7 +60,7 @@ const ISO42001HeroSection: React.FC = () => {
                 ISO/IEC 42001:2023 to help your organization demonstrate{" "}
                 <Link
                   href="/security-testing"
-                  className="text-brand-blue font-semibold hover:underline"
+                  className="text-brand-blue font-semibold underline"
                 >
                   AI trustworthiness
                 </Link>

@@ -49,12 +49,12 @@ const RoboticToolsFramework: React.FC = () => {
         {
           name: "ROS",
           description: "Robot Operating System messaging middleware",
-          icon: <SiRos className="w-5 h-5 text-green-500" />,
+          icon: <SiRos aria-hidden className="w-5 h-5 text-green-500" />,
         },
         {
           name: "ROS2",
           description: "Industrial strength real-time robotics framework",
-          icon: <SiRos className="w-5 h-5 text-green-500" />,
+          icon: <SiRos aria-hidden className="w-5 h-5 text-green-500" />,
         },
         {
           name: "Move It",

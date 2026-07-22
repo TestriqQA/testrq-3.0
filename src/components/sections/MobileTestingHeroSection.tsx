@@ -52,10 +52,10 @@ const MobileTestingHeroSection: React.FC = () => {
 
             <div className="space-y-4 mb-6 text-left">
               <p className="text-gray-700 text-base md:text-lg">
-                In the hyper-competitive mobile landscape of 2026, a single crash can lead to an <span className="font-semibold">88% uninstall rate</span> within the first 72 hours. At Testriq, we provide comprehensive <Link href="/blog/post/top-mobile-testing-frameworks-compared-appium-espresso-xcuitest" className="text-brand-blue hover:underline">mobile app testing</Link> and <Link href="/automation-testing-services" className="text-brand-blue hover:underline">application quality assurance</Link> designed to safeguard your digital presence. Our team specializes in mobile app QA for a global market, managing the testing challenges of over 24,000 <Link href="/blog/post/solving-the-top-5-challenges-in-mobile-application-testing" className="text-brand-blue hover:underline">Android device combinations</Link> alongside the <Link href="/blog/post/ios-vs-android-testing-key-differences-every-qa-should-know" className="text-brand-blue hover:underline">newest iOS 18/19 versions</Link>.
+                In the hyper-competitive mobile landscape of 2026, a single crash can lead to an <span className="font-semibold">88% uninstall rate</span> within the first 72 hours. At Testriq, we provide comprehensive <Link href="/blog/post/top-mobile-testing-frameworks-compared-appium-espresso-xcuitest" className="text-brand-blue underline">mobile app testing</Link> and <Link href="/automation-testing-services" className="text-brand-blue underline">application quality assurance</Link> designed to safeguard your digital presence. Our team specializes in mobile app QA for a global market, managing the testing challenges of over 24,000 <Link href="/blog/post/solving-the-top-5-challenges-in-mobile-application-testing" className="text-brand-blue underline">Android device combinations</Link> alongside the <Link href="/blog/post/ios-vs-android-testing-key-differences-every-qa-should-know" className="text-brand-blue underline">newest iOS 18/19 versions</Link>.
               </p>
               <p className="text-gray-700 text-base md:text-lg">
-                Testriq uses global benchmarks to deliver secure, <Link href="/performance-testing-services" className="text-brand-blue hover:underline">high-performance</Link> mobile apps. Our methodology defends against the 150% rise in mobile ransomware and optimizes software for <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue hover:underline">5G</Link> and edge computing. From our Singapore hub, we deliver global <Link href="/security-testing" className="text-brand-blue hover:underline">Android security and penetration testing</Link>. Our strategies ensure a flawless launch in any market.
+                Testriq uses global benchmarks to deliver secure, <Link href="/performance-testing-services" className="text-brand-blue underline">high-performance</Link> mobile apps. Our methodology defends against the 150% rise in mobile ransomware and optimizes software for <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue underline">5G</Link> and edge computing. From our Singapore hub, we deliver global <Link href="/security-testing" className="text-brand-blue underline">Android security and penetration testing</Link>. Our strategies ensure a flawless launch in any market.
               </p>
             </div>
 
@@ -105,22 +105,22 @@ const MobileTestingHeroSection: React.FC = () => {
 
       {/* Trust Indicators */}
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-200">
-        <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-          <span className="text-sm text-gray-500">
+        <div className="flex flex-wrap justify-center items-center gap-8">
+          <span className="text-sm text-gray-900">
             Trusted by leading mobile app companies
           </span>
           <div className="grid grid-cols-2 md:grid-cols-4 items-center gap-6">
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">App Store</span>
+              <span className="text-xs text-gray-600">App Store</span>
             </div>
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">Play Store</span>
+              <span className="text-xs text-gray-600">Play Store</span>
             </div>
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">Enterprise</span>
+              <span className="text-xs text-gray-600">Enterprise</span>
             </div>
             <div className="w-24 h-8 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">Startups</span>
+              <span className="text-xs text-gray-600">Startups</span>
             </div>
           </div>
         </div>

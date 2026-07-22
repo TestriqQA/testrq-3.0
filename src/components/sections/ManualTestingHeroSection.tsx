@@ -48,7 +48,7 @@ const ManualTestingHeroSection: React.FC = () => {
             </p>
 
             <p className="text-lg text-gray-600 leading-relaxed">
-              As we move into 2026, the role of manual software testing is undergoing a fundamental shift. <Link href="/automation-testing-services" className="text-brand-blue hover:underline">Automation and AI testing</Link> are expanding, but the State of Testing™ report reveals a critical reality. Organizations now find that balancing automation with manual testing is the only way to achieve true quality in 2026.
+              As we move into 2026, the role of manual software testing is undergoing a fundamental shift. <Link href="/automation-testing-services" className="text-brand-blue underline">Automation and AI testing</Link> are expanding, but the State of Testing™ report reveals a critical reality. Organizations now find that balancing automation with manual testing is the only way to achieve true quality in 2026.
               <br /><br />
               Automation is growing fast. By 2026, 30% of companies will automate over half of their QA, making manual testing harder to justify. Testriq solves this by using ISO 29119 standards. We put human insight where it matters most—focusing on the risky logic and complex paths that AI can’t handle yet.
             </p>

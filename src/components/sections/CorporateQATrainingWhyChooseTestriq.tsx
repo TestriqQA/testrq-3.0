@@ -129,7 +129,7 @@ const CorporateQATrainingWhyChooseTestriq: React.FC = () => {
               <p className="text-gray-600 text-sm leading-relaxed mb-3">
                 {reason.description}
               </p>
-              <div className="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full inline-block">
+              <div className="text-xs font-medium text-blue-700 bg-blue-100 px-3 py-1 rounded-full inline-block">
                 {reason.stats}
               </div>
             </div>
