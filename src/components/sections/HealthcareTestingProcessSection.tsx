@@ -191,7 +191,7 @@ const HealthcareTestingProcessSection: React.FC = () => {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-green-100 rounded-full px-6 py-2 mb-6">
               <FaUsers className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-semibold text-green-600">
+              <span className="text-sm font-semibold text-green-800">
                 Collaborative Approach
               </span>
             </div>

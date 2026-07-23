@@ -89,7 +89,7 @@ const CityTestingWhyChooseSection: React.FC<CityTestingWhyChooseSectionProps> = 
                       <h3 className="text-xl font-bold text-gray-900">
                         {reason.title}
                       </h3>
-                      <div className="bg-blue-100 text-brand-blue px-3 py-1 rounded-full text-sm font-semibold">
+                      <div className="bg-blue-100 text-sky-700 px-3 py-1 rounded-full text-sm font-semibold">
                         {reason.stats}
                       </div>
                     </div>
@@ -167,17 +167,17 @@ const CityTestingWhyChooseSection: React.FC<CityTestingWhyChooseSectionProps> = 
                 <CheckCircle className="h-6 w-6 mr-2" />
                 <div>
                   <div className="text-sm font-bold">Quality Assured</div>
-                  <div className="text-xs opacity-90">Zero Defect Guarantee</div>
+                  <div className="text-xs">Zero Defect Guarantee</div>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -bottom-10 -left-6 bg-green-600 text-white rounded-lg p-4 shadow-lg z-20">
+            <div className="absolute -bottom-10 -left-6 bg-green-700 text-white rounded-lg p-4 shadow-lg z-20">
               <div className="flex items-center">
                 <Clock className="h-6 w-6 mr-2" />
                 <div>
                   <div className="text-sm font-bold">Fast Delivery</div>
-                  <div className="text-xs opacity-90">On-Time Guarantee</div>
+                  <div className="text-xs">On-Time Guarantee</div>
                 </div>
               </div>
             </div>

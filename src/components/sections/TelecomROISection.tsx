@@ -250,7 +250,7 @@ const TelecomROISection: React.FC = () => {
                     <td className="py-4 px-6 text-center text-red-600 font-semibold">
                       {item.investment}
                     </td>
-                    <td className="py-4 px-6 text-center text-green-600 font-semibold">
+                    <td className="py-4 px-6 text-center text-green-700 font-semibold">
                       {item.savings}
                     </td>
                     <td className="py-4 px-6 text-center">
@@ -290,26 +290,26 @@ const TelecomROISection: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-gray-700">Network Outages</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     $
                     {roiCalculator.currentCosts.networkOutages.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Manual Testing</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     ${roiCalculator.currentCosts.manualTesting.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Customer Churn</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     ${roiCalculator.currentCosts.customerChurn.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Delayed Deployment</span>
-                  <span className="font-semibold text-red-600">
+                  <span className="font-semibold text-red-700">
                     $
                     {roiCalculator.currentCosts.delayedDeployment.toLocaleString()}
                   </span>
@@ -333,26 +333,26 @@ const TelecomROISection: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-gray-700">Testing Services</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     $
                     {roiCalculator.withTestriq.testingServices.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Network Outages</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     ${roiCalculator.withTestriq.networkOutages.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Customer Churn</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     ${roiCalculator.withTestriq.customerChurn.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Delayed Deployment</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-700">
                     $
                     {roiCalculator.withTestriq.delayedDeployment.toLocaleString()}
                   </span>
@@ -382,7 +382,7 @@ const TelecomROISection: React.FC = () => {
                 </div>
 
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 mb-2">
+                  <div className="text-4xl font-bold text-green-700 mb-2">
                     {roiPercentage}%
                   </div>
                   <div className="text-sm text-gray-600">
@@ -444,12 +444,12 @@ const TelecomROISection: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 text-[theme(color.brand.blue)] justify-center">
             <Link href="/roi-calculator">
-              <button className="bg-white cursor-pointer px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out">
+              <button className="block w-full bg-white cursor-pointer px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out">
                 Calculate Your ROI
               </button>
             </Link>
             <Link href="/contact-us">
-              <button className="bg-white cursor-pointer bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
+              <button className="block w-full bg-white cursor-pointer bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
                 Request Cost Analysis
               </button>
             </Link>

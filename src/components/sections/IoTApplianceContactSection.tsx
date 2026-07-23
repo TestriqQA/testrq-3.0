@@ -306,7 +306,7 @@ const IoTApplianceContactSection: React.FC = () => {
       <div className="mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-sky-100 text-brand-blue bg-opacity-20 rounded-full px-6 py-2 mb-6">
+          <div className="inline-flex items-center gap-2 bg-sky-50 text-brand-blue bg-opacity-20 rounded-full px-6 py-2 mb-6">
             <FaWifi className="w-4 h-4" />
             <span className="text-sm font-medium">
               Secure Your IoT Ecosystem
@@ -355,10 +355,10 @@ const IoTApplianceContactSection: React.FC = () => {
                     <h4 className="text-lg font-semibold text-brand-blue mb-2">
                       {method.title}
                     </h4>
-                    <p className="text-blue-500 text-sm mb-4 leading-relaxed">
+                    <p className="text-blue-600 text-sm mb-4 leading-relaxed">
                       {method.description}
                     </p>
-                    <span className="text-blue-500 font-semibold flex items-center gap-2 group">
+                    <span className="text-blue-600 font-semibold flex items-center gap-2 group">
                       {method.text}
                     </span>
                   </div>
@@ -383,7 +383,7 @@ const IoTApplianceContactSection: React.FC = () => {
             </div>
 
             {/* Urgency Note */}
-            <div className="bg-orange-500 bg-opacity-20 rounded-2xl p-6 border border-orange-400 border-opacity-30">
+            <div className="bg-orange-700 bg-opacity-20 rounded-2xl p-6 border border-orange-400 border-opacity-30">
               <div className="flex items-center gap-3 mb-3">
                 <FaRocket className="w-5 h-5 text-orange-300" />
                 <h4 className="font-semibold text-white">

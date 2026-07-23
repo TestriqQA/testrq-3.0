@@ -118,6 +118,7 @@ const AICardSlider: React.FC = () => {
                 className="flex items-center text-[theme(color.brand.blue)] font-semibold hover:text-blue-400 transition-colors duration-300"
               >
                 <span>Learn More</span>
+<span className="sr-only"> about {type.title}</span>
                 <FaArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>

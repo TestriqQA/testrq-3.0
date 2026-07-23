@@ -156,7 +156,7 @@ const ContinuousTestingReadyToAccelerate: React.FC = () => {
                                 </div>
                                 <div className="grid grid-cols-3 gap-4 text-center">
                                     <div>
-                                        <div className="text-lg font-bold text-cyan-600">
+                                        <div className="text-lg font-bold text-cyan-700">
                                             500+
                                         </div>
                                         <div className="text-xs text-gray-500">
@@ -164,7 +164,7 @@ const ContinuousTestingReadyToAccelerate: React.FC = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="text-lg font-bold text-green-600">
+                                        <div className="text-lg font-bold text-green-700">
                                             10x
                                         </div>
                                         <div className="text-xs text-gray-500">
@@ -194,7 +194,7 @@ const ContinuousTestingReadyToAccelerate: React.FC = () => {
                             continuous testing solutions. Let&apos;s discuss how we can
                             eliminate your testing bottlenecks and accelerate releases.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
                             <Link href="/contact-us">
                                 <button className="bg-yellow-400 cursor-pointer text-blue-900 px-8 py-3 rounded-xl font-semibold hover:bg-yellow-300 transition-all duration-300">
                                     Start Free Assessment

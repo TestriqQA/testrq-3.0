@@ -68,8 +68,8 @@ const DatingAppSecurityChallenges = () => {
                       <h4 className="font-bold text-gray-900 mb-2">
                         {item.threat}
                       </h4>
-                      <p className="text-red-600 text-sm mb-2">{item.impact}</p>
-                      <p className="text-green-600 text-sm font-medium">
+                      <p className="text-red-700 text-sm mb-2">{item.impact}</p>
+                      <p className="text-green-700 text-sm font-medium">
                         ✓ {item.solution}
                       </p>
                     </div>

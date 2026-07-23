@@ -171,8 +171,8 @@ const ElearningChallengesSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-red-100 rounded-full px-6 py-2 mb-6">
-            <FaExclamationTriangle className="w-4 h-4 text-red-600" />
-            <span className="text-sm font-medium text-red-600">
+            <FaExclamationTriangle className="w-4 h-4 text-red-700" />
+            <span className="text-sm font-medium text-red-700">
               E-Learning Challenges
             </span>
           </div>
@@ -273,7 +273,7 @@ const ElearningChallengesSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-green-700 text-sm mb-2">
+                  <h4 className="font-semibold text-green-800 text-sm mb-2">
                     OUR SOLUTION:
                   </h4>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -288,6 +288,7 @@ const ElearningChallengesSection: React.FC = () => {
                   className="text-indigo-600 font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300" aria-label={`Learn more about ${challenge.title}`}
                 >
                   Learn More
+                  <span className="sr-only"> about {challenge.title}</span>
                   <FaArrowRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -354,7 +355,7 @@ const ElearningChallengesSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-red-500">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-red-600">
             <div className="text-center p-6 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaChartLine className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Educational Outcomes</h4>
@@ -364,7 +365,7 @@ const ElearningChallengesSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="text-center text-red-500 p-6 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center text-red-600 p-6 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaUsers className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Student Retention</h4>
               <p className="text-sm">
@@ -373,7 +374,7 @@ const ElearningChallengesSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="text-center text-red-500 p-6 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center text-red-600 p-6 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaGlobe className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">
                 Institutional Reputation

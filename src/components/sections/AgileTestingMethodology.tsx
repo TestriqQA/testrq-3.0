@@ -179,11 +179,12 @@ const AgileTestingMethodology: React.FC = () => {
 
                             <div className="flex justify-between items-center pt-8 border-t border-gray-100">
                                 <div className="flex items-center gap-2">
-                                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest items-center flex">Timeline:</span>
+                                    <span className="text-xs font-bold text-gray-600 uppercase tracking-widest items-center flex">Timeline:</span>
                                     <span className="text-brand-blue font-black text-sm tracking-tight">{steps[activeStep].duration}</span>
                                 </div>
                                 <button
                                     onClick={() => setActiveStep((activeStep + 1) % steps.length)}
+                                    aria-label={`Next phase: ${steps[(activeStep + 1) % steps.length].title}`}
                                     className={`p-4 rounded-full bg-gradient-to-r ${steps[activeStep].gradient} text-white shadow-lg hover:shadow-2xl transition-all transform hover:scale-110`}
                                 >
                                     <FaArrowRight />

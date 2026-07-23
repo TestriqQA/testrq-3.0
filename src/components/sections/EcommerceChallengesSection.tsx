@@ -29,7 +29,7 @@ const EcommerceChallengesSection: React.FC = () => {
       title: "Complex Integration Reliability",
       problem: "25% of all transaction failures stem from faulty external API handshakes (Shipping, CRM, Payments).",
       impact: "Broken checkout flows lead to direct revenue loss and customer frustration.",
-      solution: (<>Rigorous <Link href="/api-testing" className="text-orange-600 underline">API integration testing</Link> and sandbox checkout validation for Stripe, PayPal, and more.</>),
+      solution: (<>Rigorous <Link href="/api-testing" className="text-orange-700 underline">API integration testing</Link> and sandbox checkout validation for Stripe, PayPal, and more.</>),
       color: "from-orange-500 to-red-500",
       bgColor: "bg-orange-50",
       action: "/secure-payment-gateway-testing-for-e-commerce",
@@ -49,7 +49,7 @@ const EcommerceChallengesSection: React.FC = () => {
       title: "Security & PCI DSS 4.0",
       problem: "Breaches cost brands an average of $4.45M. magecart attacks target outdated client-side scripts.",
       impact: "Legal liabilities and complete loss of customer trust from data breaches.",
-      solution: (<><Link href="/security-testing" className="text-green-600 underline">PCI DSS 4.0 compliance audits</Link>, SSL validation, and mandatory MFA check penetration testing.</>),
+      solution: (<><Link href="/security-testing" className="text-green-700 underline">PCI DSS 4.0 compliance audits</Link>, SSL validation, and mandatory MFA check penetration testing.</>),
       color: "from-green-500 to-teal-600",
       bgColor: "bg-green-50",
       action: "/e-commerce-security-testing-compliance-services",
@@ -80,7 +80,7 @@ const EcommerceChallengesSection: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-red-100 rounded-full px-6 py-2 mb-6">
             <FaExclamationTriangle className="w-4 h-4 text-red-600" />
-            <span className="text-sm font-medium text-red-600">
+            <span className="text-sm font-medium text-red-700">
               2026 Digital Commerce QA
             </span>
           </div>
@@ -148,7 +148,7 @@ const EcommerceChallengesSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-green-700 text-sm mb-2">
+                  <h4 className="font-semibold text-green-800 text-sm mb-2">
                     OUR SOLUTION:
                   </h4>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -160,9 +160,10 @@ const EcommerceChallengesSection: React.FC = () => {
               <div className="mt-6 pt-4 border-t border-gray-200">
                 <Link
                   href={`blog/post${challenge.action}`}
-                  className="text-[theme(color.brand.blue)] font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300" aria-label={`Learn more about ${challenge.title}`}
+                  className="text-sky-700 font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300" aria-label={`Learn more about ${challenge.title}`}
                 >
                   Learn More
+                  <span className="sr-only"> about {challenge.title}</span>
                   <FaArrowRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -184,7 +185,7 @@ const EcommerceChallengesSection: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-white text-red-500 bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center p-6 bg-white text-red-600 bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaChartLine className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Revenue Loss</h4>
               <p className="text-sm">
@@ -193,7 +194,7 @@ const EcommerceChallengesSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 bg-white text-red-500 bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center p-6 bg-white text-red-600 bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaUsers className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Customer Churn</h4>
               <p className="text-sm">
@@ -202,7 +203,7 @@ const EcommerceChallengesSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 bg-white text-red-500 bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center p-6 bg-white text-red-600 bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaShieldAlt className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Brand Damage</h4>
               <p className="text-sm">

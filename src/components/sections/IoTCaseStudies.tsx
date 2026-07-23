@@ -4,6 +4,12 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaBluetooth, FaMobileAlt, FaTachometerAlt, FaCheckCircle, FaShieldAlt, FaLock, FaBell, FaVideo, FaTrophy, FaWifi, FaArrowRight } from 'react-icons/fa';
 
+const HUB_BG: Record<string, string> = {
+  blue: "bg-blue-600",
+  green: "bg-green-700",
+  purple: "bg-purple-600",
+};
+
 const IoTCaseStudies: React.FC = () => {
   const [activeCase, setActiveCase] = useState(0);
 
@@ -362,8 +368,12 @@ const IoTCaseStudies: React.FC = () => {
                 <div className="relative">
                   {/* Central Hub */}
                   <div className="flex justify-center mb-4">
+                    {/* Static literal map, not `bg-${color}-500`: Tailwind only compiles
+                        classes it can see as literal text, and white on a -500 fill is
+                        only 3.76:1 (needs 4.5). These -600/-700 fills clear it — white on
+                        blue-600 5.25, green-700 4.95, purple-600 5.54. */}
                     <div
-                      className={`w-8 h-8 bg-${caseStudies[activeCase].color}-500 rounded-full flex items-center justify-center text-white text-xs font-bold`}
+                      className={`w-8 h-8 ${HUB_BG[caseStudies[activeCase].color] ?? "bg-blue-600"} rounded-full flex items-center justify-center text-white text-xs font-bold`}
                     >
                       HUB
                     </div>

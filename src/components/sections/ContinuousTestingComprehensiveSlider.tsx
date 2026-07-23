@@ -114,7 +114,7 @@ const ContinuousTestingComprehensiveSlider: React.FC = () => {
         } = {
             cyan: {
                 bg: "bg-cyan-50",
-                text: "text-cyan-600",
+                text: "text-cyan-700",
                 border: "border-cyan-200",
             },
             indigo: {
@@ -124,12 +124,12 @@ const ContinuousTestingComprehensiveSlider: React.FC = () => {
             },
             green: {
                 bg: "bg-green-50",
-                text: "text-green-600",
+                text: "text-green-700",
                 border: "border-green-200",
             },
             orange: {
                 bg: "bg-orange-50",
-                text: "text-orange-600",
+                text: "text-orange-700",
                 border: "border-orange-200",
             },
             purple: {
@@ -244,6 +244,7 @@ const ContinuousTestingComprehensiveSlider: React.FC = () => {
                                                 className="bg-brand-blue text-white inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
                                             >
                                                 Learn More
+                                                <span className="sr-only"> about {service.title}</span>
                                                 <FaArrowRight />
                                             </Link>
                                         </div>

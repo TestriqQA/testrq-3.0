@@ -66,10 +66,15 @@ export default function RecaptchaLoader() {
     );
     if (!needsRecaptcha) return;
 
-    // Survives client-side navigation between two form routes.
+    // Already loaded (or loading) — survives client-side nav between form routes.
     if (document.querySelector("script[data-recaptcha-loader]")) return;
 
+    let done = false;
+
     const inject = () => {
+      if (done) return;
+      done = true;
+      cleanup();
       if (document.querySelector("script[data-recaptcha-loader]")) return;
       const script = document.createElement("script");
       script.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}&onload=onloadCallback`;
@@ -79,15 +84,39 @@ export default function RecaptchaLoader() {
       document.head.appendChild(script);
     };
 
-    // Mirrors next/script's lazyOnload timing so the script never competes with
-    // hydration for the main thread.
-    if (document.readyState === "complete") {
-      const id = window.setTimeout(inject, 0);
-      return () => window.clearTimeout(id);
+    // Deferred until the visitor actually engages with a form. reCAPTCHA v3 is
+    // ~481 KiB (script + stylesheet + anchor iframe + its own Roboto) — 44% of a
+    // form page's weight — and it only needs to be ready at SUBMIT time, not at
+    // page load. Loading it on first form interaction keeps protection identical
+    // while removing it from the critical path for every visitor who never
+    // touches the form. useRecaptchaForm awaits the in-flight load before
+    // executing, so a fast submit still gets a token.
+    //
+    // Events are capture-phase so they fire for fields inside any nested
+    // component, and 'focusin' rather than 'focus' because focus does not bubble.
+    const onEngage = (e: Event) => {
+      const t = e.target as HTMLElement | null;
+      if (!t || typeof t.closest !== "function") return;
+      if (t.closest("form, input, textarea, select, button[type=submit]")) inject();
+    };
+
+    const events: Array<keyof DocumentEventMap> = [
+      "focusin",
+      "pointerdown",
+      "keydown",
+    ];
+    for (const ev of events) document.addEventListener(ev, onEngage, true);
+
+    // Safety net: if the visitor lingers, warm it up during idle time so a submit
+    // never waits on a cold network. Long enough to stay off the critical path.
+    const idleId = window.setTimeout(inject, 12000);
+
+    function cleanup() {
+      for (const ev of events) document.removeEventListener(ev, onEngage, true);
+      window.clearTimeout(idleId);
     }
-    const onLoad = () => window.setTimeout(inject, 0);
-    window.addEventListener("load", onLoad, { once: true });
-    return () => window.removeEventListener("load", onLoad);
+
+    return cleanup;
   }, [pathname]);
 
   return null;

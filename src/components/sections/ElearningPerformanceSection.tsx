@@ -218,7 +218,7 @@ const ElearningPerformanceSection: React.FC = () => {
                 <h4 className="text-2xl font-semibold text-gray-900 mb-2">
                   {issue.issue}
                 </h4>
-                <div className="text-lg font-bold text-red-600 mb-2">
+                <div className="text-lg font-bold text-red-700 mb-2">
                   {issue.impact}
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">

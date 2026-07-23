@@ -171,7 +171,7 @@ const QADocumentationProvenTestingProcess = () => {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center space-x-3 mb-2">
-                              <span className="text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                              <span className="text-sm font-medium text-blue-700 bg-blue-100 px-3 py-1 rounded-full">
                                 Step {step.id}
                               </span>
                               <span className="text-sm text-gray-500">{step.duration}</span>

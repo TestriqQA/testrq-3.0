@@ -325,7 +325,7 @@ const IoTTestingProcessSection: React.FC = () => {
                 ecosystem&apos;s success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact-us">
+                <Link href="/contact-us" className="w-fit mx-auto sm:mx-0">
                   <button className="cursor-pointer bg-gradient-to-r from-[theme(color.brand.blue)] to-cyan-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-lg hover:scale-98 transition-all duration-300">
                     Start Your IoT Project
                   </button>

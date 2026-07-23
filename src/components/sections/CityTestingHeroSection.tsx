@@ -54,7 +54,7 @@ const CityTestingHeroSection: React.FC<CityTestingHeroSectionProps> = ({ cityDat
           {/* Left Column - Content */}
           <div>
             {/* Location Badge */}
-            <div className="inline-flex bg-blue-100 text-brand-blue px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex bg-blue-100 text-sky-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <MapPin className="h-4 w-4 mr-2" />
               {cityData.name}, {cityData.state}
             </div>
@@ -132,7 +132,7 @@ const CityTestingHeroSection: React.FC<CityTestingHeroSectionProps> = ({ cityDat
                 <h3 className="text-xl font-bold text-gray-900">
                   Testing Services Dashboard
                 </h3>
-                <div className="flex items-center text-green-600">
+                <div className="flex items-center text-green-700">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                   <span className="text-sm font-medium">Live</span>
                 </div>
@@ -164,7 +164,7 @@ const CityTestingHeroSection: React.FC<CityTestingHeroSectionProps> = ({ cityDat
                   {(cityData.heroContent.landmarks || []).slice(0, 4).map((landmark, index) => (
                     <span
                       key={index}
-                      className="bg-blue-100 text-brand-blue px-3 py-1 rounded-full text-xs font-medium"
+                      className="bg-blue-100 text-sky-700 px-3 py-1 rounded-full text-xs font-medium"
                     >
                       {landmark}
                     </span>

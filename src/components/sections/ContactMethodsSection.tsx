@@ -298,7 +298,7 @@ const ContactMethodsSection: React.FC = () => {
                   <p className="text-sm text-red-700 mb-2">
                     <strong>Critical Issues:</strong> (+91) 915-2929-343
                   </p>
-                  <p className="text-xs text-red-600">
+                  <p className="text-xs text-red-700">
                     Available 24/7 for production emergencies
                   </p>
                 </div>

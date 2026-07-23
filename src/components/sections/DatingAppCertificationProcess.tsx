@@ -53,7 +53,7 @@ const DatingAppCertificationProcess = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6 px-2">
-            Our <span className="text-[#25A8E0]">Certification Process</span>
+            Our <span className="text-brand-blue">Certification Process</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
             A transparent, step-by-step journey to earning your trust
@@ -77,7 +77,7 @@ const DatingAppCertificationProcess = () => {
               <div className="flex items-start gap-4 md:hidden">
                 {/* Step number circle */}
                 <div className="flex-shrink-0 relative z-20">
-                  <div className="w-12 h-12 bg-[#25A8E0] text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg border-2 border-white">
+                  <div className="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg border-2 border-white">
                     {step.step}
                   </div>
                 </div>
@@ -86,7 +86,7 @@ const DatingAppCertificationProcess = () => {
                 <div className="flex-1 min-w-0">
                   <div className="bg-white p-4 rounded-xl shadow-md border border-gray-100">
                     <div className="flex items-center mb-3">
-                      <div className="bg-[#25A8E0] text-white p-2 rounded-lg mr-3 flex-shrink-0">
+                      <div className="bg-brand-blue text-white p-2 rounded-lg mr-3 flex-shrink-0">
                         {step.icon}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -110,7 +110,7 @@ const DatingAppCertificationProcess = () => {
                   {index % 2 === 0 && (
                     <div className="bg-white p-6 xl:p-8 rounded-2xl shadow-lg border border-gray-100">
                       <div className="flex items-center mb-4">
-                        <div className="bg-[#25A8E0] text-white p-3 rounded-xl mr-4 flex-shrink-0">
+                        <div className="bg-brand-blue text-white p-3 rounded-xl mr-4 flex-shrink-0">
                           {step.icon}
                         </div>
                         <div>
@@ -131,7 +131,7 @@ const DatingAppCertificationProcess = () => {
 
                 {/* Step number circle */}
                 <div className="flex-shrink-0 relative z-20">
-                  <div className="w-16 h-16 bg-[#25A8E0] text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg border-4 border-white">
+                  <div className="w-16 h-16 bg-brand-blue text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg border-4 border-white">
                     {step.step}
                   </div>
                 </div>
@@ -141,7 +141,7 @@ const DatingAppCertificationProcess = () => {
                   {index % 2 === 1 && (
                     <div className="bg-white p-6 xl:p-8 rounded-2xl shadow-lg border border-gray-100">
                       <div className="flex items-center mb-4">
-                        <div className="bg-[#25A8E0] text-white p-3 rounded-xl mr-4 flex-shrink-0">
+                        <div className="bg-brand-blue text-white p-3 rounded-xl mr-4 flex-shrink-0">
                           {step.icon}
                         </div>
                         <div>
