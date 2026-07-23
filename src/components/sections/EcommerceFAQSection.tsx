@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaQuestionCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import FAQSchema from "@/components/seo/FAQSchema";
 
 const EcommerceFAQSection: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -36,6 +37,7 @@ const EcommerceFAQSection: React.FC = () => {
 
   return (
     <section className="relative w-full mx-auto py-16 px-8 md:px-12 lg:px-24 2xl: min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+      <FAQSchema faqs={faqs} />
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
