@@ -216,7 +216,7 @@ const TelecomToolsFrameworksSection: React.FC = () => {
               </div>
 
               <div className="mt-6 pt-4 border-t border-gray-200">
-                <Link href="/technology-stack" className="text-[theme(color.brand.blue)] font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                <Link href="/technology-stack" className="text-sky-700 font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
                   Explore Tools
                   <FaArrowRight className="w-3 h-3" />
                 </Link>

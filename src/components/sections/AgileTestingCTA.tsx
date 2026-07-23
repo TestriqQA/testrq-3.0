@@ -77,7 +77,7 @@ const AgileTestingCTA: React.FC = () => {
                                         { label: "Regression Speed", val: 98, color: "bg-indigo-600" },
                                     ].map((item, i) => (
                                         <div key={i} className="space-y-2">
-                                            <div className="flex justify-between font-black text-xs text-gray-400 uppercase tracking-tight">
+                                            <div className="flex justify-between font-black text-xs text-gray-600 uppercase tracking-tight">
                                                 <span>{item.label}</span>
                                                 <span className="text-brand-blue">{item.val}%</span>
                                             </div>
@@ -94,15 +94,15 @@ const AgileTestingCTA: React.FC = () => {
                                 <div className="pt-6 border-t border-gray-100 flex justify-between gap-2 items-center text-center">
                                     <div>
                                         <div className="text-xl sm:text-2xl font-black text-gray-900">150+</div>
-                                        <div className="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase">Clients</div>
+                                        <div className="text-[9px] sm:text-[10px] font-bold text-gray-600 uppercase">Clients</div>
                                     </div>
                                     <div>
                                         <div className="text-xl sm:text-2xl font-black text-gray-900">2026</div>
-                                        <div className="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase">Framework</div>
+                                        <div className="text-[9px] sm:text-[10px] font-bold text-gray-600 uppercase">Framework</div>
                                     </div>
                                     <div>
                                         <div className="text-xl sm:text-2xl font-black text-gray-900">4hr</div>
-                                        <div className="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase">Audit Time</div>
+                                        <div className="text-[9px] sm:text-[10px] font-bold text-gray-600 uppercase">Audit Time</div>
                                     </div>
                                 </div>
                             </div>

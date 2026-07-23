@@ -125,7 +125,7 @@ const TradingAppFAQs = () => {
               requirements and get personalized answers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={ "_blank" }>
+              <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={ "_blank" } className="w-fit mx-auto">
                 <button className="bg-white cursor-pointer text-brand-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
                   Schedule Free Consultation
                 </button>

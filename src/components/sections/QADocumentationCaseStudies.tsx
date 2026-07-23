@@ -145,7 +145,7 @@ const QADocumentationCaseStudies = () => {
 
   const getColorClasses = (color: string) => {
     const colorMap = {
-      red: { bg: "bg-red-50", text: "text-red-600", border: "border-red-200" },
+      red: { bg: "bg-red-50", text: "text-red-700", border: "border-red-200" },
       blue: {
         bg: "bg-blue-50",
         text: "text-blue-600",
@@ -205,10 +205,14 @@ const QADocumentationCaseStudies = () => {
                   key={index}
                   onClick={() => setActiveCase(index)}
                   aria-label="Navigation dots"
-                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                    activeCase === index ? "bg-blue-600" : "bg-gray-300"
-                  }`}
-                />
+                  className="p-2 min-w-[24px] min-h-[24px] flex items-center justify-center"
+                >
+                  <span
+                    className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                      activeCase === index ? "bg-blue-600" : "bg-gray-300"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
 

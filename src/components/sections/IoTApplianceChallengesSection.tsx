@@ -207,7 +207,7 @@ const IoTChallengesSection: React.FC = () => {
 
                 {/* Impact */}
                 <div className="mb-4">
-                  <h4 className="text-sm font-bold text-orange-600 mb-2 flex items-center gap-2">
+                  <h4 className="text-sm font-bold text-orange-700 mb-2 flex items-center gap-2">
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                     IMPACT
                   </h4>
@@ -226,7 +226,7 @@ const IoTChallengesSection: React.FC = () => {
 
                 {/* Solution */}
                 <div className="mb-6">
-                  <h4 className="text-sm font-bold text-green-600 mb-2 flex items-center gap-2">
+                  <h4 className="text-sm font-bold text-green-700 mb-2 flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     OUR SOLUTION
                   </h4>
@@ -240,8 +240,7 @@ const IoTChallengesSection: React.FC = () => {
                   href={`blog/post${challenge.action}`}
                   className={`w-full bg-gradient-to-r ${challenge.color} text-white py-3 px-4 rounded-xl font-semibold text-sm hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group `  } aria-label={`Learn more about ${challenge.title}`}
                 >
-                  Learn More
-                  <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Learn More                  <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>

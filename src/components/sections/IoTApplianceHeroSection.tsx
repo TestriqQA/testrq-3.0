@@ -185,9 +185,9 @@ const IoTHeroSection: React.FC = () => {
         {/* Bottom CTA Strip */}
         <div className="mt-20 bg-gradient-to-r from-[theme(color.brand.blue)] to-cyan-600 rounded-3xl p-8 text-white text-center">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
+            <h2 className="text-2xl font-bold mb-4">
               Ready to Scale Your IoT Ecosystem?
-            </h3>
+            </h2>
             <p className="text-blue-100 mb-6 text-lg">
               Join 30+ IoT companies that trust Testriq for comprehensive
               connected device testing solutions.

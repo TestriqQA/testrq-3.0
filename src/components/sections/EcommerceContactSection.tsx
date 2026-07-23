@@ -316,12 +316,12 @@ const EcommerceContactSection: React.FC = () => {
                     <h4 className="text-lg font-semibold text-brand-blue mb-2">
                       {method.title}
                     </h4>
-                    <p className="text-sky-600 text-sm mb-4 leading-relaxed">
+                    <p className="text-sky-700 text-sm mb-4 leading-relaxed">
                       {method.description}
                     </p>
                     <Link
                       href={method.action} target={"_blank"}
-                      className="text-sky-600 font-semibold flex items-center gap-2 group"
+                      className="text-sky-700 font-semibold flex items-center gap-2 group"
                     >
                       {method.text}
                     </Link>
@@ -345,7 +345,7 @@ const EcommerceContactSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-orange-500 bg-opacity-20 rounded-2xl p-6 border border-orange-400 border-opacity-30">
+            <div className="bg-orange-700 bg-opacity-20 rounded-2xl p-6 border border-orange-400 border-opacity-30">
               <div className="flex items-center gap-3 mb-3">
                 <FaRocket className="w-5 h-5 text-orange-300" />
                 <h4 className="font-semibold text-white">
@@ -565,7 +565,6 @@ const EcommerceContactSection: React.FC = () => {
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full bg-[theme(color.brand.blue)] text-white py-3 px-6 cursor-pointer rounded-xl font-semibold hover:bg-opacity-90 hover:scale-97 transition-all flex items-center justify-center gap-2"
-                    aria-label="Submit Contact Form"
                   >
                     {isSubmitting ? (
                       <svg

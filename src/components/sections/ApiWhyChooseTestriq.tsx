@@ -195,6 +195,7 @@ const ApiWhyChooseTestriq: React.FC = () => {
                       className="flex justify-center items-center gap-2 mx-auto bg-white/20 text-white px-4 py-2 rounded-lg font-semibold hover:bg-white/30 transition-colors duration-300 backdrop-blur-sm"
                     >
                       <span>Learn More</span>
+<span className="sr-only"> about {benefit.shortTitle}</span>
                       <FaArrowRight className="w-4 h-4" />
                     </Link>
                   </div>

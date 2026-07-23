@@ -87,7 +87,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ pkg, index, onGetStarted }) =
                 {/* Price */}
                 <div className="mb-4">
                     <div className="flex items-start gap-0.5">
-                        <span className="text-gray-400 font-bold text-[10px] mt-2 uppercase tracking-widest">From</span>
+                        <span className="text-gray-500 font-bold text-[10px] mt-2 uppercase tracking-widest">From</span>
                         <span className="text-xl font-bold text-gray-900 mt-0.5 ml-1.5">$</span>
                         <span className="text-5xl font-black text-gray-900 tracking-tighter leading-none">
                             {pkg.price.match(/\d+/) ? pkg.price.match(/\d+/)?.[0] : "Custom"}

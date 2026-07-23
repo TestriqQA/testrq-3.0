@@ -30,7 +30,7 @@ const BankingChallengesSection: React.FC = () => {
       title: "Global Regulatory & Compliance Complexity",
       problem: "Navigating the web of PCI DSS, GDPR, Basel III, SOX, and FFIEC guidelines is a zero-failure game.",
       impact: "Penalties for PCI DSS non-compliance can reach $100,000/month, plus severe reputational damage.",
-      solution: (<><Link href="/qa-documentation-services" className="text-orange-700 hover:underline">Regulatory Compliance Testing</Link>, Data Masking & Encryption (GDPR/CCPA), and stringent capital adequacy reporting audits.</>),
+      solution: (<><Link href="/qa-documentation-services" className="text-orange-700 underline">Regulatory Compliance Testing</Link>, Data Masking & Encryption (GDPR/CCPA), and stringent capital adequacy reporting audits.</>),
       color: "from-orange-500 to-red-500",
       bgColor: "bg-orange-50",
       link: "/blog/post/test-execution-comprehensive-testing-implementation",
@@ -60,7 +60,7 @@ const BankingChallengesSection: React.FC = () => {
       title: "Structured Test Governance (ISO/IEC/IEEE 29119)",
       problem: "Lack of a scalable framework for Risk-Based Testing leads to rising QA costs and inefficiency.",
       impact: "Manual effort without governance costs mid-sized banks millions; annual QA costs often exceed $1.1M.",
-      solution: (<>ISO 29119 implementation and <Link href="/regression-testing" className="text-indigo-700 hover:underline">Automated Regression Testing</Link> delivering 300% ROI and slashing QA costs to $260k.</>),
+      solution: (<>ISO 29119 implementation and <Link href="/regression-testing" className="text-indigo-700 underline">Automated Regression Testing</Link> delivering 300% ROI and slashing QA costs to $260k.</>),
       color: "from-indigo-500 to-purple-600",
       bgColor: "bg-indigo-50",
       link: "/blog/post/test-execution-comprehensive-testing-implementation",
@@ -174,6 +174,7 @@ const BankingChallengesSection: React.FC = () => {
                 <Link href={challenge.link}>
                   <button className="text-sky-700 cursor-pointer font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300" aria-label={`Learn more about ${challenge.title}`}>
                     Learn More
+                    <span className="sr-only"> about {challenge.title}</span>
                     <FaArrowRight className="w-3 h-3" />
                   </button></Link>
               </div>
@@ -248,12 +249,12 @@ const BankingChallengesSection: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 text-[theme(color.brand.blue)] justify-center">
-            <Link href="/contact-us">
+            <Link href="/contact-us" className="w-fit">
               <button className="bg-white cursor-pointer px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out">
                 Explore Our Solutions
               </button>
             </Link>
-            <Link href="/contact-us">
+            <Link href="/contact-us" className="w-fit">
               <button className="bg-white cursor-pointer bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
                 Get Security Assessment
               </button>

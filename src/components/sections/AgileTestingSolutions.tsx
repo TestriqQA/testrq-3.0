@@ -92,7 +92,7 @@ const AgileTestingSolutions: React.FC = () => {
         <section className="bg-white py-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <div className="inline-flex items-center bg-brand-blue/10 text-brand-blue px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-widest shadow-sm">
+                    <div className="inline-flex items-center bg-brand-blue/10 text-sky-700 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-widest shadow-sm">
                         Our Solutions
                     </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -133,7 +133,7 @@ const AgileTestingSolutions: React.FC = () => {
 
                         <div className="relative z-10">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                                <div className="inline-block bg-brand-blue/10 text-brand-blue px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
+                                <div className="inline-block bg-brand-blue/10 text-sky-700 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
                                     {testingTypes[activeTab].metric}
                                 </div>
                                 <div className="flex gap-2">

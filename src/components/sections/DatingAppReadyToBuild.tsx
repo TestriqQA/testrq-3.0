@@ -54,6 +54,7 @@ const DatingAppReadyToBuild = () => {
 
       {/* Scroll to Top */}
       <button
+      aria-label="Scroll to top"
       className="fixed bottom-8 right-8 bg-brand-blue text-white p-4 rounded-full shadow-lg z-50"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
     >

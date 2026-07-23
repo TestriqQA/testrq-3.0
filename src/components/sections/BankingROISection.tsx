@@ -437,12 +437,12 @@ const BankingROISection: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 text-[theme(color.brand.blue)] justify-center">
-            <Link href="/roi-calculator">
+            <Link href="/roi-calculator" className="w-fit">
               <button className="bg-white cursor-pointer px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out">
                 Calculate Your ROI
               </button>
             </Link>
-            <Link href={"/contact-us"}>
+            <Link href={"/contact-us"} className="w-fit">
               <button className="bg-white cursor-pointer bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
                 Request Cost Analysis
               </button>

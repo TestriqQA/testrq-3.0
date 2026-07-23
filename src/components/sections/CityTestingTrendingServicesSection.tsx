@@ -279,11 +279,11 @@ const CityTestingTrendingServicesSection: React.FC<CityTestingTrendingServicesSe
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white bg-opacity-20 rounded-lg p-4 text-center border border-white border-opacity-30 backdrop-blur-sm">
-                  <div className="text-2xl font-bold text-orange-400 mb-1">500K+</div>
+                  <div className="text-2xl font-bold text-orange-600 mb-1">500K+</div>
                   <div className="text-sm text-blue-800 font-medium">Test Cases Executed</div>
                 </div>
                 <div className="bg-white bg-opacity-20 rounded-lg p-4 text-center border border-white border-opacity-30 backdrop-blur-sm">
-                  <div className="text-2xl font-bold text-green-400 mb-1">99%</div>
+                  <div className="text-2xl font-bold text-green-600 mb-1">99%</div>
                   <div className="text-sm text-blue-800 font-medium">Success Rate</div>
                 </div>
               </div>

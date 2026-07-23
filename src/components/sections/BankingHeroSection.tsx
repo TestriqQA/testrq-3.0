@@ -157,20 +157,20 @@ const BankingHeroSection: React.FC = () => {
         {/* Bottom CTA Strip */}
         <div className="mt-20 bg-gradient-to-r from-[theme(color.brand.blue)] to-sky-600 rounded-3xl p-8 text-white text-center">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
+            <h2 className="text-2xl font-bold mb-4">
               Ready to Fortify Your Fintech Platform?
-            </h3>
+            </h2>
             <p className="text-blue-100 mb-6 text-lg">
               Join 200+ financial institutions that trust Testriq for
               comprehensive BFSI testing solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 text-[theme(color.brand.blue)] justify-center">
-              <Link href="/contact-us">
+              <Link href="/contact-us" className="w-fit">
                 <button className="bg-white cursor-pointer px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out">
                   Get Free Compliance Assessment
                 </button>
               </Link>
-              <Link href="/case-studies">
+              <Link href="/case-studies" className="w-fit">
                 <button className="bg-white cursor-pointer bg-opacity-20 px-6 py-3 rounded-xl font-semibold hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
                   View Banking Case Studies
                 </button>

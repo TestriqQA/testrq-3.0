@@ -18,7 +18,7 @@ const QADocumentationComprehensiveSlider = () => {
       id: "test-planning",
       title: (
         <>
-          <Link href="/blog/post/test-execution-comprehensive-testing-implementation">
+          <Link href="/blog/post/test-execution-comprehensive-testing-implementation" className="inline-flex items-center min-h-[24px]">
             Test Planning & Strategy
           </Link>
         </>
@@ -58,7 +58,7 @@ const QADocumentationComprehensiveSlider = () => {
       id: "test-cases",
       title: (
         <>
-          <Link href="/blog/post/test-execution-comprehensive-testing-implementation">
+          <Link href="/blog/post/test-execution-comprehensive-testing-implementation" className="inline-flex items-center min-h-[24px]">
             Test Case Documentation
           </Link>
         </>
@@ -98,7 +98,7 @@ const QADocumentationComprehensiveSlider = () => {
       id: "requirements",
       title: (
         <>
-          <Link href="/blog/post/how-to-write-qa-documentation-a-complete-guide">
+          <Link href="/blog/post/how-to-write-qa-documentation-a-complete-guide" className="inline-flex items-center min-h-[24px]">
             Requirements Documentation
           </Link>
         </>
@@ -214,7 +214,7 @@ const QADocumentationComprehensiveSlider = () => {
       id: "user-acceptance",
       title: (
         <>
-          <Link href="/blog/post/user-acceptance-testing-in-manual-testing-use-cases-techniques">
+          <Link href="/blog/post/user-acceptance-testing-in-manual-testing-use-cases-techniques" className="inline-flex items-center min-h-[24px]">
             User Acceptance Testing
           </Link>
         </>
@@ -290,7 +290,7 @@ const QADocumentationComprehensiveSlider = () => {
       },
       red: {
         bg: "bg-red-50",
-        text: "text-red-600",
+        text: "text-red-700",
         border: "border-red-200",
       },
     };

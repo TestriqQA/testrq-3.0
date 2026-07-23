@@ -106,7 +106,7 @@ const EcommercePlatformsSection: React.FC = () => {
           ].map((item, idx) => (
             <div key={idx} className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
               <div className="text-3xl mb-4">{item.icon}</div>
-              <h4 className="text-xl font-bold text-gray-900 mb-4">{item.category}</h4>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{item.category}</h3>
               <ul className="space-y-2">
                 {item.tools.map((tool, tIdx) => (
                   <li key={tIdx} className="text-gray-600 flex items-center gap-2">

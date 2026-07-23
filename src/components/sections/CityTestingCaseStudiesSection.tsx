@@ -29,9 +29,9 @@ const CityTestingCaseStudiesSection: React.FC<CityTestingCaseStudiesSectionProps
               <div className="w-12 h-12 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold text-lg mb-4">
                 {study.company.charAt(0)}
               </div>
-              <h4 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
                 {study.company}
-              </h4>
+              </h3>
               <div className="flex items-center text-sm text-gray-600 mb-4">
                 <Building className="h-4 w-4 mr-1" />
                 {study.industry}

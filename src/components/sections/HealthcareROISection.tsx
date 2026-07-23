@@ -133,7 +133,7 @@ const HealthcareROISection: React.FC = () => {
               <div className="text-4xl font-bold text-gray-900 mb-2">{metric.value}</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{metric.title}</h3>
               <p className="text-gray-600 mb-3">{metric.description}</p>
-              <p className="text-sm text-gray-500">{metric.details}</p>
+              <p className="text-sm text-gray-600">{metric.details}</p>
             </div>
           ))}
         </div>
@@ -159,7 +159,7 @@ const HealthcareROISection: React.FC = () => {
                     <cost.icon className={`w-5 h-5 ${cost.color}`} />
                     <span className="text-gray-800 font-medium">{cost.item}</span>
                   </div>
-                  <span className="text-red-600 font-bold">{cost.amount}</span>
+                  <span className="text-red-700 font-bold">{cost.amount}</span>
                 </div>
               ))}
             </div>
@@ -189,13 +189,13 @@ const HealthcareROISection: React.FC = () => {
                     <cost.icon className={`w-5 h-5 ${cost.color}`} />
                     <span className="text-gray-800 font-medium">{cost.item}</span>
                   </div>
-                  <span className="text-green-600 font-bold">{cost.amount}</span>
+                  <span className="text-green-700 font-bold">{cost.amount}</span>
                 </div>
               ))}
             </div>
 
             <div className="text-center p-6 bg-green-100 rounded-2xl">
-              <div className="text-3xl font-bold text-green-600 mb-2">{costComparison.withTesting.total}</div>
+              <div className="text-3xl font-bold text-green-700 mb-2">{costComparison.withTesting.total}</div>
               <div className="text-green-800 font-semibold">Total Investment</div>
             </div>
           </div>

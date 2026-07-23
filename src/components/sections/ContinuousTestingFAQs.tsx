@@ -121,7 +121,7 @@ const ContinuousTestingFAQs: React.FC = () => {
                             answers about CI/CD integration, pipeline optimization, and how
                             our services can accelerate your releases.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
                             <Link href="/contact-us">
                                 <button className="border-2 cursor-pointer border-brand-blue text-brand-blue px-8 py-3 rounded-xl font-semibold hover:bg-brand-blue hover:text-white transition-all duration-300">
                                     Schedule Consultation

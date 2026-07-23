@@ -107,8 +107,8 @@ const TelecomChallengesSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-red-100 rounded-full px-6 py-2 mb-6">
-            <FaExclamationTriangle className="w-4 h-4 text-red-600" />
-            <span className="text-sm font-medium text-red-600">
+            <FaExclamationTriangle className="w-4 h-4 text-red-700" />
+            <span className="text-sm font-medium text-red-700">
               Telecom Software Challenges
             </span>
           </div>
@@ -183,7 +183,7 @@ const TelecomChallengesSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-green-700 text-sm mb-2">
+                  <h4 className="font-semibold text-green-800 text-sm mb-2">
                     OUR SOLUTION:
                   </h4>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -217,7 +217,7 @@ const TelecomChallengesSection: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 text-red-500 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center p-6 text-red-600 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaChartLine className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Revenue Loss</h4>
               <p className="text-sm">
@@ -226,7 +226,7 @@ const TelecomChallengesSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 text-red-500 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center p-6 text-red-600 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaUsers className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Customer Churn</h4>
               <p className="text-sm">
@@ -235,7 +235,7 @@ const TelecomChallengesSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 text-red-500 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
+            <div className="text-center p-6 text-red-600 bg-white bg-opacity-10 rounded-2xl backdrop-blur-sm">
               <FaNetworkWired className="w-12 h-12 mx-auto mb-4 opacity-80" />
               <h4 className="text-xl font-bold mb-2">Operational Slowdown</h4>
               <p className="text-sm">

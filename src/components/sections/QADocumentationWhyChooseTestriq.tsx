@@ -60,15 +60,15 @@ const QADocumentationWhyChooseTestriq = () => {
         {/* Why Choose Testriq Section */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-600">
-            <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">Templates for QA</h4>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">Templates for QA</h3>
             <p className="text-gray-600 text-center">No need to reinvent the wheel; use our field-tested frameworks for comprehensive documentation.</p>
           </div>
           <div className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-purple-600">
-            <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">Expert Authors</h4>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">Expert Authors</h3>
             <p className="text-gray-600 text-center">Senior QA Architects with 10+ years of experience review all content for technical rigor.</p>
           </div>
           <div className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-green-600">
-            <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">Global Scalability</h4>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">Global Scalability</h3>
             <p className="text-gray-600 text-center">We support localized testing documentation for the US, UK, EU, and Asian markets.</p>
           </div>
         </div>

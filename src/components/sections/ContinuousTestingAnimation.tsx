@@ -7,11 +7,11 @@ const ContinuousTestingAnimation: React.FC = () => {
     const [progress, setProgress] = useState(0);
 
     const stages = [
-        { label: "Commit", color: "#6366f1" },
-        { label: "Build", color: "#8b5cf6" },
-        { label: "Test", color: "#06b6d4" },
-        { label: "Deploy", color: "#10b981" },
-        { label: "Monitor", color: "#f59e0b" },
+        { label: "Commit", color: "#4f39f6" },
+        { label: "Build", color: "#7f22fe" },
+        { label: "Test", color: "#007595" },
+        { label: "Deploy", color: "#007a55" },
+        { label: "Monitor", color: "#bb4d00" },
     ];
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const ContinuousTestingAnimation: React.FC = () => {
                         <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                         <div className="w-3 h-3 rounded-full bg-green-400"></div>
                     </div>
-                    <span className="text-xs font-mono text-gray-400">
+                    <span className="text-xs font-mono text-gray-500">
                         CI/CD Pipeline — Live
                     </span>
                 </div>
@@ -65,7 +65,7 @@ const ContinuousTestingAnimation: React.FC = () => {
                                         index <= activeStage ? stage.color : "#f3f4f6",
                                     borderColor:
                                         index <= activeStage ? stage.color : "#e5e7eb",
-                                    color: index <= activeStage ? "#fff" : "#9ca3af",
+                                    color: index <= activeStage ? "#fff" : "#4a5565",
                                     transform:
                                         index === activeStage ? "scale(1.2)" : "scale(1)",
                                     boxShadow:
@@ -79,7 +79,7 @@ const ContinuousTestingAnimation: React.FC = () => {
                             <span
                                 className="text-[10px] font-semibold mt-2 transition-colors"
                                 style={{
-                                    color: index <= activeStage ? stage.color : "#9ca3af",
+                                    color: index <= activeStage ? stage.color : "#6a7282",
                                 }}
                             >
                                 {stage.label}
@@ -115,14 +115,14 @@ const ContinuousTestingAnimation: React.FC = () => {
                 {/* Test Metrics Grid */}
                 <div className="grid grid-cols-3 gap-3 mb-4">
                     <div className="bg-green-50 rounded-lg p-3 text-center">
-                        <div className="text-lg font-bold text-green-600">847</div>
+                        <div className="text-lg font-bold text-green-700">847</div>
                         <div className="text-[10px] text-green-700 font-medium">
                             Tests Passed
                         </div>
                     </div>
                     <div className="bg-red-50 rounded-lg p-3 text-center">
-                        <div className="text-lg font-bold text-red-500">3</div>
-                        <div className="text-[10px] text-red-600 font-medium">
+                        <div className="text-lg font-bold text-red-700">3</div>
+                        <div className="text-[10px] text-red-700 font-medium">
                             Tests Failed
                         </div>
                     </div>
@@ -172,7 +172,7 @@ const ContinuousTestingAnimation: React.FC = () => {
                             <span className="text-[10px] text-gray-500 font-mono">
                                 {build.branch}
                             </span>
-                            <span className="text-[10px] text-gray-400">{build.time}</span>
+                            <span className="text-[10px] text-gray-500">{build.time}</span>
                         </div>
                     ))}
                 </div>
