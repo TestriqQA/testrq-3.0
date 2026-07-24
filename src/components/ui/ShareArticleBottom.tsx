@@ -60,9 +60,14 @@ const ShareArticleBottom: React.FC<ShareArticleBottomProps> = ({ title }) => {
                         <FaFacebook />
                         <span>Facebook</span>
                     </button>
+                    {/* orange-700, not orange-600: white on orange-600 (#f54900)
+                        measures 3.59:1, under the 4.5:1 AA minimum, and was the 13th
+                        color-contrast failure on every blog post. The sibling share
+                        buttons already use dark shades (black, blue-700, blue-800)
+                        for exactly this reason. */}
                     <button
                         onClick={shareOnReddit}
-                        className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2"
+                        className="bg-orange-700 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2"
                     >
                         <FaReddit />
                         <span>Reddit</span>

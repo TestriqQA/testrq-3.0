@@ -24,6 +24,46 @@ import { decodeHtmlEntities } from "@/lib/utils";
 // `?page=N` on mount + on every history change; whenever it differs from
 // the currently-rendered page, it fires the getBlogPosts Server Action
 // and swaps in the new posts.
+//
+// ---------------------------------------------------------------------------
+// OPEN BUG — /blog server-renders NOTHING, and this is why. (Investigated
+// 2026-07-23; every attempted fix reverted. Read before touching this.)
+//
+// `useSearchParams()` bails the nearest Suspense boundary out to client-side
+// rendering. page.tsx wraps this component in a boundary whose fallback is
+// ANOTHER <BlogPostsGrid> — so the fallback bails too and the bailout escalates
+// to the whole route. The served HTML is a BAILOUT_TO_CLIENT_SIDE_RENDERING
+// marker and nothing else: no hero, no <h1>, no posts. Confirmed on deployed
+// staging, so it long predates this note. Cost, measured on staging (LH 13,
+// mobile): Performance 64, LCP 5.0s, TBT 660ms — the LCP <h1> only comes into
+// existence after the JS bundle downloads and runs.
+//
+// Removing the bailout DOES work — SSR HTML goes 62KB -> 94KB and the <h1>
+// appears — but the entire page subtree then fails to hydrate: hero, <h1>,
+// search input and #all-articles all end up with ZERO React fiber keys, with no
+// console error, no error digest, and every chunk returning 200. The search box
+// and pagination would be silently dead. Four variants were tried and all four
+// failed identically:
+//   1. hero data lifted to the server + hero imported directly + boundary
+//      removed + useSearchParams removed
+//   2. useSearchParams removed, nothing else
+//   3. useSearchParams + boundary removed, hero untouched
+//   4. as (3), plus BOTH <style jsx> blocks moved into globals.css (the
+//      styled-jsx-runtime theory — disproved) and the hero's dynamic() wrapper
+//      removed (the nested-Suspense theory — also disproved)
+//
+// Controls that make the above trustworthy: local /blog at baseline DOES hydrate
+// (h1=2 hero=2 input=3 grid=2), and /dating-app-certification (also inside
+// MainLayout) plus /qa-documentation-services hydrate fine in the same builds.
+// NB: staging is NOT a valid control — it is fully client-rendered because of
+// the bailout, so React renders everything there and fiber keys appear for an
+// entirely different reason.
+//
+// Whoever picks this up: the remaining suspects are the RSC flight payload for
+// this segment (a working page emits ~44 `__next_f.push` calls, /blog only ~13)
+// and MainLayout's children boundary. Verify fiber keys after ANY change here —
+// server HTML that never hydrates looks perfect in a screenshot and is dead.
+// ---------------------------------------------------------------------------
 interface BlogPostsGridProps {
   initialPosts: Post[];
   totalPages: number;
@@ -38,6 +78,11 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
   trendingPosts
 }) => {
   const router = useRouter();
+  // KNOWN PERFORMANCE BUG, deliberately left in place — see the note at the top
+  // of this file. useSearchParams() bails this route to client-side rendering,
+  // so /blog server-renders NOTHING (measured: Perf 64, LCP 5.0s). Replacing it
+  // with a window.location read does remove the bailout, but the page then fails
+  // to hydrate. Do not "fix" this without re-verifying React fiber keys.
   const searchParams = useSearchParams();
   const urlPage = Number(searchParams.get("page")) || 1;
 
@@ -112,8 +157,8 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
     <section className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-blog-orb-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-blog-orb-pulse" style={{ animationDelay: '1s' }} />
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -322,7 +367,7 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-slate-900/40 rounded-3xl h-96 animate-pulse border border-slate-800" />
+                <div key={i} className="bg-slate-900/40 rounded-3xl h-96 animate-blog-orb-pulse border border-slate-800" />
               ))}
             </div>
           ) : currentPosts.length === 0 ? (
@@ -427,8 +472,13 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                         onClick={() => handlePageChange(page - 1)}
                         className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300"
                         disabled={isLoading}
+                        aria-label={`Go to previous page, page ${page - 1}`}
                       >
-                        <FaChevronLeft className="w-4 h-4" />
+                        {/* react-icons Fa* do not bake role="img", so without the
+                            label above this button has no accessible name at all.
+                            That failed agent-accessibility-tree and held /blog's
+                            Agentic Browsing score at 67. */}
+                        <FaChevronLeft className="w-4 h-4" aria-hidden="true" />
                       </button>
                     ) : (
                       <span className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-700 cursor-not-allowed">
@@ -480,8 +530,9 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                         onClick={() => handlePageChange(page + 1)}
                         className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300"
                         disabled={isLoading}
+                        aria-label={`Go to next page, page ${page + 1}`}
                       >
-                        <FaChevronRight className="w-4 h-4" />
+                        <FaChevronRight className="w-4 h-4" aria-hidden="true" />
                       </button>
                     ) : (
                       <span className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-700 cursor-not-allowed">
@@ -540,16 +591,10 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
       </div>
 
       {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.6;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
-      `}</style>
+      {/* The <style jsx> block that lived here overrode @keyframes pulse. It now
+          lives in globals.css as `blog-orb-pulse` (a distinct name, so it cannot
+          clash with Tailwind's own animate-pulse), applied via
+          `animate-blog-orb-pulse` on the three elements that relied on it. */}
     </section>
   );
 };
