@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getCityData, getAllCities, CityData, isCityIndexed } from '@/app/lib/CityData';
 import { sanityGetCaseStudyBySlug, sanityGetAllCaseStudySlugs, sanityGetRelatedCaseStudies, CaseStudy } from '@/lib/sanity-data-adapter';
-import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, { createBreadcrumbSchema, createFAQSchema } from "@/components/seo/StructuredData";
 import CityTestingHeroSection from '@/components/sections/CityTestingHeroSection';
@@ -14,138 +13,27 @@ import CityTestingFAQsSection from '@/components/sections/CityTestingFAQsSection
 import CityTestingCTASection from '@/components/sections/CityTestingCTASection';
 import CityTestingTrendingServicesSection from '@/components/sections/CityTestingTrendingServicesSection';
 
-// Dynamic imports for case study components
-const CaseStudyHeroSection = dynamic(
-  () => import("@/components/sections/CaseStudyHeroSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyOverviewSection = dynamic(
-  () => import("@/components/sections/CaseStudyOverviewSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyChallengeSection = dynamic(
-  () => import("@/components/sections/CaseStudyChallengeSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudySolutionSection = dynamic(
-  () => import("@/components/sections/CaseStudySolutionSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyResultsSection = dynamic(
-  () => import("@/components/sections/CaseStudyResultsSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyTestimonialSection = dynamic(
-  () => import("@/components/sections/CaseStudyTestimonialSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyTechnologiesSection = dynamic(
-  () => import("@/components/sections/CaseStudyTechnologiesSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyRelatedSection = dynamic(
-  () => import("@/components/sections/CaseStudyRelatedSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyCallToActionSection = dynamic(
-  () => import("@/components/sections/CaseStudyCallToActionSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyPlatformSection = dynamic(
-  () => import("@/components/sections/CaseStudyPlatformSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
-
-const CaseStudyJourneySection = dynamic(
-  () => import("@/components/sections/CaseStudyJourneySection"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen bg-[theme(color.background)]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    ),
-  }
-);
+// All eleven CaseStudy* sections are Server Components, so they are imported
+// directly rather than through next/dynamic.
+//
+// Wrapping a Server Component in dynamic() is counter-productive: it forces the
+// component across the client boundary into its own lazy client chunk, adds a
+// Suspense boundary, and paints the `loading` fallback first. Here that fallback
+// was `h-screen` — a full viewport of "Loading..." per section, eleven of them —
+// which delays the real content and puts a placeholder where the LCP element
+// should be. Commit 41dfb86a removed exactly this pattern from 9 homepage
+// sections and cut TBT 270ms -> 74ms. Do not re-wrap these in dynamic().
+import CaseStudyHeroSection from "@/components/sections/CaseStudyHeroSection";
+import CaseStudyOverviewSection from "@/components/sections/CaseStudyOverviewSection";
+import CaseStudyChallengeSection from "@/components/sections/CaseStudyChallengeSection";
+import CaseStudySolutionSection from "@/components/sections/CaseStudySolutionSection";
+import CaseStudyResultsSection from "@/components/sections/CaseStudyResultsSection";
+import CaseStudyTestimonialSection from "@/components/sections/CaseStudyTestimonialSection";
+import CaseStudyTechnologiesSection from "@/components/sections/CaseStudyTechnologiesSection";
+import CaseStudyRelatedSection from "@/components/sections/CaseStudyRelatedSection";
+import CaseStudyCallToActionSection from "@/components/sections/CaseStudyCallToActionSection";
+import CaseStudyPlatformSection from "@/components/sections/CaseStudyPlatformSection";
+import CaseStudyJourneySection from "@/components/sections/CaseStudyJourneySection";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -481,7 +369,6 @@ export const revalidate = 3600; // 1 hour — city pages are static, case studie
 
 export default async function SlugPage({ params }: PageProps) {
   const resolvedParams = await params;
-  console.log("SlugPage resolvedParams:", resolvedParams);
 
   // First check if it's a case study
   let caseStudy = null;
@@ -529,8 +416,10 @@ export default async function SlugPage({ params }: PageProps) {
   }
 
   // Fall back to city data
+  // NB: do not console.log(cityData) here. It serialises the entire city record
+  // on every single request to all ~87 city pages, adding server work and log
+  // volume directly on the TTFB path for zero benefit.
   const cityData = getCityData(resolvedParams.slug);
-  console.log("SlugPage cityData:", cityData);
 
   if (!cityData) {
     notFound();

@@ -181,7 +181,13 @@ const ResourceSidebar = ({ relatedPosts: propRelatedPosts, categories: propCateg
                                     {category.name}
                                 </span>
                             </div>
-                            <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
+                            {/* slate-600, not slate-500: slate-500 (#62748e) on the
+                                slate-100 pill (#f1f5f9) measures 4.34:1, just under the
+                                4.5:1 AA minimum for this 12px text, and this list renders
+                                once per category — 12 of the 13 color-contrast failures on
+                                every blog post came from this one span. slate-600
+                                (#475569) on the same pill measures 6.92:1. */}
+                            <span className="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded-full">
                                 {category.count}
                             </span>
                         </Link>

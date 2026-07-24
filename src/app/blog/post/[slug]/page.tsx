@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -7,7 +6,7 @@ import { sanityGetPostBySlug, sanityGetRelatedPosts, sanityGetCategories, sanity
 import { extractHeadings } from "@/lib/utils";
 import StructuredData, { createBreadcrumbSchema } from "@/components/seo/StructuredData";
 
-import { Suspense } from "react";
+import BlogPostContent from "@/components/sections/BlogPostContent";
 import BlogPostHeroSection from "@/components/sections/BlogPostHeroSection";
 import ResourceSidebar from "@/components/sections/ResourceSidebar";
 import VisualTableOfContents from "@/components/sections/VisualTableOfContents";
@@ -31,21 +30,13 @@ export async function generateStaticParams() {
   }
 }
 
-const BlogPostContent = dynamic(
-  () => import("@/components/sections/BlogPostContent"),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="flex items-center justify-center h-64 bg-gray-50">
-        <div className="animate-pulse space-y-4 w-full">
-          <div className="h-4 bg-gray-200 rounded w-full"></div>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-        </div>
-      </div>
-    ),
-  }
-);
+// BlogPostContent is a Server Component and is now imported directly (top of
+// file) rather than through next/dynamic. Wrapping a Server Component in
+// dynamic() drags it across the client boundary: it ships as its own lazy
+// client chunk, adds a Suspense boundary, and renders the skeleton fallback
+// before the real article body — on the element that carries LCP on every blog
+// post. Commit 41dfb86a removed the same anti-pattern from 9 homepage sections
+// and cut TBT 270ms -> 74ms. Do not re-wrap this in dynamic().
 
 // Custom Structured Data Component for Individual Posts
 function PostStructuredData({ post }: { post: Post }) {

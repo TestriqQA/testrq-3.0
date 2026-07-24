@@ -1,6 +1,36 @@
 @import "tailwindcss";
 @tailwind utilities;
 
+/* NOTE — `prose` classes are currently INERT and this is deliberate for now.
+   Tailwind v4 is CSS-first: it does NOT read tailwind.config.ts unless that file
+   is pulled in with @config. It isn't, so @tailwindcss/typography sits in
+   package.json but never loads, and `.prose` is absent from the built CSS. Every
+   `prose` class in the repo is dead — BlogPostContent.tsx (the article body on
+   all blog posts), ContentSection.tsx, JobDetailsPage.tsx, JobCardItem.tsx and
+   the three legal pages.
+
+   Enabling it with `@plugin "@tailwindcss/typography";` here DOES work, but it
+   was measured and reverted: globals.css is one global, render-blocking
+   stylesheet loaded on every route, so the whole site pays for it. On
+   /qa-documentation-services (which contains no `prose` at all), median of 5
+   runs went Perf 92 -> 87, LCP 3.28s -> 3.67s, Speed Index 1.38s -> 2.31s, with
+   render-blocking CSS 38,270 -> 42,864 bytes. ~94 pages regress so 7 files can
+   benefit.
+
+   AND — checked afterwards — enabling it fixes nothing visible anyway. Every
+   element inside every `prose` container is already styled explicitly with
+   Tailwind classes: the PortableText renderer in BlogPostContent.tsx gives h2/h3/
+   h4/p/blockquote/ul/ol/li/a/img/table their own classes, and terms-of-service,
+   privacy-policy, cookies-policy, JobDetailsPage and ContentSection contain zero
+   bare <p>, <li>, <ul> or <h2>. So `prose` here is a decorative leftover, not a
+   dependency: the plugin's rules would style things that are already styled, and
+   could fight the explicit classes.
+
+   Conclusion: leave the plugin off. The `prose`/`prose-lg`/`prose-*:` classes in
+   those files are dead and could be deleted, but they cost nothing while the
+   plugin is unregistered. Do not re-add the global @plugin without re-measuring
+   AND confirming there is actually unstyled markup to fix. */
+
 /* Safelist for classes built at RUNTIME via template strings, which Tailwind's
    text scanner cannot see. MobileCardSlider constructs bg-/text-/hover:border-
    from its `colordark` data ("blue-600" | "green-700" | "purple-600" | "red-700",
@@ -270,6 +300,76 @@ body {
   /* The JS guard stops the autoplay timer, but the mount-time enter animation
      still ran. animation:none falls back to opacity 1, so the slide stays visible. */
   .slide-enter, .slide-exit { animation: none; }
+}
+
+/* content-visibility — TRIED, MEASURED, NOT ADOPTED (2026-07-23). Worth revisiting
+   properly; do not re-add it without reading this.
+
+   The theory is sound and the diagnosis behind it is real: these pages run
+   ~33,000px tall (~40 mobile viewports), and on /qa-documentation-services the LCP
+   breakdown attributed 1260ms of observed time to *element render delay* — not
+   TTFB (12ms), not transfer — with Style & Layout 1005ms and Rendering 671ms out
+   of 3.3s of main-thread work. The LCP element is an above-the-fold <p> already
+   present in the SSR HTML; the browser just could not paint it until it had laid
+   out everything below.
+
+   But the benefit could not be demonstrated on this machine. Four 5-run medians of
+   the same page, Speed Index: 2.31s without it, 1.38s with it, 2.31s with it (plus
+   the typography plugin), 2.27s with it again. Three of four say ~2.3s; the 1.38s
+   batch was an outlier. Performance read 92 and then 89 across two runs of
+   IDENTICAL code, so the noise band here is about +/-3 points and the 90 -> 92 that
+   looked like a win sat inside it.
+
+   Two things to fix before trying again:
+   1. `contain-intrinsic-size: auto 800px` badly understated real section heights
+      (measured 992-4206px), so the document grew ~2.15x while scrolling. Lab CLS
+      stays 0 because Lighthouse does not scroll, but FIELD CLS could suffer. Use
+      per-section values close to the real heights.
+   2. Measure on a quiet machine, one page at a time, 5+ runs — this box cannot
+      resolve a 2-3 point difference.
+
+   If re-added: `auto` (not `hidden`) keeps content in the DOM, the a11y tree and
+   find-in-page, so SSR HTML and the SEO surface stay byte-identical (verified).
+   Never apply it to an above-the-fold section holding the LCP element. */
+
+/* Blog animations, lifted out of <style jsx> blocks in BlogHeroSection and
+   BlogPostsGrid — same reason the homepage hero keyframes were moved above:
+   styled-jsx injects its CSS from a client runtime at hydration, so any page
+   depending on it cannot be server-rendered reliably. /blog is the acute case;
+   it currently does not server-render at all, and removing that bailout while
+   these blocks were still styled-jsx left the whole subtree unhydrated.
+
+   `scan` and `gradient` are unique to BlogHeroSection, so they globalise safely.
+   Any other component that defines the same names inside its own <style jsx>
+   still wins, because styled-jsx compiles `.animate-scan` to
+   `.animate-scan.jsx-<hash>`, which outranks these bare class selectors. */
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.animate-scan { animation: scan 8s linear infinite; }
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 3s ease infinite;
+}
+
+/* BlogPostsGrid's styled-jsx redefined `@keyframes pulse`, which is Tailwind's
+   OWN animate-pulse keyframe name (Tailwind: opacity 1 -> .5; this one: .6 -> 1).
+   Scoped inside styled-jsx that was harmless; global it would silently restyle
+   every animate-pulse on the site. So it gets a distinct name here and the three
+   call sites in BlogPostsGrid use `animate-blog-orb-pulse` instead. Duration and
+   easing match Tailwind's animate-pulse exactly, so the rendering is unchanged. */
+@keyframes blog-orb-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+.animate-blog-orb-pulse {
+  animation: blog-orb-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 

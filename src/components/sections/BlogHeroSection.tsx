@@ -503,31 +503,9 @@ const BlogHeroSection: React.FC = () => {
       </div>
 
       {/* Additional CSS for animations */}
-      <style jsx>{`
-        @keyframes scan {
-          0% {
-            transform: translateY(-100%);
-          }
-          100% {
-            transform: translateY(100%);
-          }
-        }
-        .animate-scan {
-          animation: scan 8s linear infinite;
-        }
-        @keyframes gradient {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        .animate-gradient {
-          background-size: 200% auto;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
+      {/* The <style jsx> block that lived here (scan + gradient keyframes) now
+          sits in globals.css. styled-jsx injects its CSS from a client runtime at
+          hydration, which prevented /blog from being server-rendered. */}
     </section>
   );
 };
