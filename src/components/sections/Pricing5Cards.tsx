@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import { FaCheckCircle, FaArrowRight, FaChevronDown } from "react-icons/fa";
+import { FaCheckCircle, FaArrowRight, FaChevronDown, FaInfoCircle } from "react-icons/fa";
 import { pricingPackages, type PricingPackage } from "@/data/pricingPackages";
 import PricingFormModal from "@/components/sections/PricingFormModal";
 
@@ -63,6 +63,9 @@ const PricingCard: React.FC<PricingCardProps> = ({ pkg, index, onGetStarted }) =
         setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
     };
 
+    // Delivery-note tooltip next to the "Business Days" chip.
+    const [noteOpen, setNoteOpen] = useState(false);
+
     return (
         <div
       className={`flex flex-col h-full bg-white rounded-2xl border border-gray-200 hover:border-brand-blue/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 min-w-[280px] lg:min-w-0 snap-start ${pkg.badge ? "ring-2 " + theme.ring : ""}`}
@@ -96,9 +99,52 @@ const PricingCard: React.FC<PricingCardProps> = ({ pkg, index, onGetStarted }) =
                     <p className="text-gray-500 text-xs font-semibold mt-1">{pkg.price.replace(/Starting from \d+ USD /, '')}</p>
                 </div>
 
-                {/* Delivery */}
-                <div className="inline-flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-1.5 bg-neutral-50 text-neutral-600 rounded-md border border-neutral-200">
-                    ⏱ {pkg.delivery}
+                {/* Delivery + what the turnaround actually covers */}
+                <div className="flex items-center gap-2">
+                    <div className="inline-flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-1.5 bg-neutral-50 text-neutral-600 rounded-md border border-neutral-200">
+                        ⏱ {pkg.delivery}
+                    </div>
+
+                    {/* Mouse handlers sit on this wrapper, not on the button, so the
+                        pointer can travel from the icon into the tooltip without it
+                        closing (WCAG 1.4.13 "hoverable"). Escape dismisses it
+                        ("dismissible"), and focus/blur cover keyboard users. */}
+                    <span
+                        className="relative inline-flex"
+                        onMouseEnter={() => setNoteOpen(true)}
+                        onMouseLeave={() => setNoteOpen(false)}
+                        onFocus={() => setNoteOpen(true)}
+                        onBlur={() => setNoteOpen(false)}
+                        onKeyDown={(e) => { if (e.key === "Escape") setNoteOpen(false); }}
+                    >
+                        <button
+                            type="button"
+                            // react-icons Fa* carry no role="img", so an icon-only
+                            // button is unnamed without this label.
+                            aria-label={`What ${pkg.delivery} covers for the ${pkg.name}`}
+                            aria-expanded={noteOpen}
+                            aria-describedby={`delivery-note-${pkg.id}`}
+                            onClick={() => setNoteOpen((o) => !o)}
+                            className={`flex items-center justify-center w-5 h-5 rounded-full text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 ${theme.ring} transition-colors duration-200 cursor-pointer`}
+                        >
+                            <FaInfoCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                        </button>
+
+                        {/* Absolutely positioned so revealing it never shifts layout
+                            (CLS stays 0). Animates opacity + transform only, both
+                            compositor-only properties. */}
+                        <span
+                            id={`delivery-note-${pkg.id}`}
+                            role="tooltip"
+                            className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 w-56 p-3 rounded-lg bg-neutral-900 text-white text-[11px] leading-relaxed font-normal normal-case tracking-normal shadow-xl transition-all duration-200 ease-out ${
+                                noteOpen
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 -translate-y-1 pointer-events-none"
+                            }`}
+                        >
+                            {pkg.deliveryNote}
+                        </span>
+                    </span>
                 </div>
 
                 {pkg.description && (

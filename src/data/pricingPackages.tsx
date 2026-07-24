@@ -9,6 +9,12 @@ export interface PricingPackage {
     color: string;
     price: string;
     delivery: string;
+    /**
+     * Shown in the hover/focus tooltip next to the delivery chip on each pricing
+     * card. Explains what the turnaround actually covers, so the bare
+     * "5 - 10 Business Days" is not read as a hard commitment.
+     */
+    deliveryNote: string;
     suitableFor: string[];
     whatWeTest: string[];
     whatsIncluded: string[];
@@ -26,6 +32,7 @@ export const pricingPackages: PricingPackage[] = [
         color: "blue",
         price: "Starting from 400 USD per mid size project",
         delivery: "5 - 10 Business Days",
+        deliveryNote: "Typical turnaround for a mid-size web app once we have access to a stable build and test credentials. Larger scopes are quoted separately.",
         suitableFor: [
             "SaaS tools",
             "Portals",
@@ -37,8 +44,8 @@ export const pricingPackages: PricingPackage[] = [
             "Integration Tests",
             "Cross-Browser & Device Compatibility",
             "Usability (UX)",
-            "Performance",
-            "Security"
+            "Basic Performance",
+            "Basic Security"
         ],
         whatsIncluded: [
             "Testing on most popular browsers: Windows, MAC, Android Phone & Tablets, and Apple Phone & Tablets",
@@ -55,6 +62,7 @@ export const pricingPackages: PricingPackage[] = [
         color: "indigo",
         price: "Starting from 500 USD per mid size App, iOS + Android",
         delivery: "5 - 10 Business Days",
+        deliveryNote: "Covers both iOS and Android for a mid-size app, on real devices across current and older OS versions. Starts once builds are available on TestFlight or Play Console.",
         suitableFor: [
             "Startups ready for the App Store / Play Store.",
             "Looking to improve App / Play store ratings."
@@ -65,8 +73,8 @@ export const pricingPackages: PricingPackage[] = [
             "Touch gestures",
             "App behavior on 4G/5G vs. Wi-Fi.",
             "API Integration Tests",
-            "Performance",
-            "Security"
+            "Basic Performance",
+            "Basic Security"
         ],
         whatsIncluded: [
             "Testing on real iOS & Android devices.",
@@ -86,6 +94,7 @@ export const pricingPackages: PricingPackage[] = [
         color: "emerald",
         price: "Starting from 350 USD per project (up to 20 endpoints)",
         delivery: "5 - 10 Business Days",
+        deliveryNote: "Based on up to 20 endpoints with documentation or a Postman collection supplied. Additional endpoints extend the timeline proportionally.",
         suitableFor: [
             "Microservices-based architectures.",
             "Third-party integrations (Payment/SMS).",
@@ -117,6 +126,7 @@ export const pricingPackages: PricingPackage[] = [
         description: "\"Just the URL, Not the Strings.\" No access to source code or servers required. We attack your app exactly like a real-world predator would.",
         price: "Starting from 800 USD per audit (Web or Mobile)",
         delivery: "7 - 12 Business Days",
+        deliveryNote: "Longer than the functional bundles because exploitation and verification are manual. Needs only a URL - no source code or server access required.",
         suitableFor: [
             "Fintech, Healthcare, and Enterprise apps.",
             "Compliance-ready products (ISO/SOC2/GDPR).",
