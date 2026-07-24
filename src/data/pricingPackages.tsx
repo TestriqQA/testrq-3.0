@@ -15,6 +15,13 @@ export interface PricingPackage {
      * "5 - 10 Business Days" is not read as a hard commitment.
      */
     deliveryNote: string;
+    /**
+     * Shown in the hover/focus tooltip next to the price subtitle, defining what
+     * "mid size project" means. Only set on packages whose price is quoted per
+     * mid-size project (web, mobile) — the API and VAPT packs are scoped by
+     * endpoint count and per audit respectively, so the term does not apply.
+     */
+    sizeNote?: string;
     suitableFor: string[];
     whatWeTest: string[];
     whatsIncluded: string[];
@@ -33,6 +40,7 @@ export const pricingPackages: PricingPackage[] = [
         price: "Starting from 400 USD per mid size project",
         delivery: "5 - 10 Business Days",
         deliveryNote: "Typical turnaround for a mid-size web app once we have access to a stable build and test credentials. Larger scopes are quoted separately.",
+        sizeNote: "Mid-size project: A single-role application with 10–20 dynamic screens, standard user flows, and typical CRUD functionality. Suitable for most business apps with moderate complexity.",
         suitableFor: [
             "SaaS tools",
             "Portals",
@@ -63,6 +71,7 @@ export const pricingPackages: PricingPackage[] = [
         price: "Starting from 500 USD per mid size App, iOS + Android",
         delivery: "5 - 10 Business Days",
         deliveryNote: "Covers both iOS and Android for a mid-size app, on real devices across current and older OS versions. Starts once builds are available on TestFlight or Play Console.",
+        sizeNote: "Mid-size project: A single-role application with 10–20 dynamic screens, standard user flows, and typical CRUD functionality. Suitable for most business apps with moderate complexity.",
         suitableFor: [
             "Startups ready for the App Store / Play Store.",
             "Looking to improve App / Play store ratings."

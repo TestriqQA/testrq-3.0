@@ -44,6 +44,68 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({ title, isOpen, onTo
     </div>
 );
 
+interface InfoTooltipProps {
+    /** Unique DOM id, used to wire the button to the panel via aria-describedby. */
+    id: string;
+    /** Accessible name for the icon-only button. */
+    label: string;
+    text: string;
+    /** Focus-ring colour from colorMap, so the control matches its card. */
+    ringClass: string;
+}
+
+/**
+ * Small "?" affordance that reveals an explanatory panel.
+ *
+ * Accessibility notes, because an icon-only control is the easy way to lose the
+ * 100 this page currently scores:
+ * - react-icons Fa* do NOT bake role="img", so without an aria-label the button
+ *   has no accessible name at all and both button-name and
+ *   agent-accessibility-tree fail.
+ * - Opens on hover, keyboard focus AND tap. Hover-only would be unreachable on
+ *   mobile, where these cards are a horizontal scroller.
+ * - The mouse handlers sit on the wrapper rather than the button so the pointer
+ *   can travel into the panel without closing it, and Escape dismisses it —
+ *   WCAG 1.4.13 requires hover content to be both hoverable and dismissible.
+ * - The panel is absolutely positioned and animates only translate + opacity
+ *   (compositor-only), so revealing it cannot shift the card. CLS stays 0.
+ */
+const InfoTooltip: React.FC<InfoTooltipProps> = ({ id, label, text, ringClass }) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <span
+            className="relative inline-flex"
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+            onFocus={() => setOpen(true)}
+            onBlur={() => setOpen(false)}
+            onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}
+        >
+            <button
+                type="button"
+                aria-label={label}
+                aria-expanded={open}
+                aria-describedby={id}
+                onClick={() => setOpen((o) => !o)}
+                className={`flex items-center justify-center w-5 h-5 rounded-full text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 ${ringClass} transition-colors duration-200 cursor-pointer`}
+            >
+                <FaInfoCircle className="w-3.5 h-3.5" aria-hidden="true" />
+            </button>
+
+            <span
+                id={id}
+                role="tooltip"
+                className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 w-56 p-3 rounded-lg bg-neutral-900 text-white text-[11px] leading-relaxed font-normal normal-case tracking-normal shadow-xl transition-all duration-200 ease-out ${
+                    open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"
+                }`}
+            >
+                {text}
+            </span>
+        </span>
+    );
+};
+
 interface PricingCardProps {
     pkg: PricingPackage;
     index: number;
@@ -62,9 +124,6 @@ const PricingCard: React.FC<PricingCardProps> = ({ pkg, index, onGetStarted }) =
     const toggleSection = (key: string) => {
         setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
     };
-
-    // Delivery-note tooltip next to the "Business Days" chip.
-    const [noteOpen, setNoteOpen] = useState(false);
 
     return (
         <div
@@ -96,7 +155,20 @@ const PricingCard: React.FC<PricingCardProps> = ({ pkg, index, onGetStarted }) =
                             {pkg.price.match(/\d+/) ? pkg.price.match(/\d+/)?.[0] : "Custom"}
                         </span>
                     </div>
-                    <p className="text-gray-500 text-xs font-semibold mt-1">{pkg.price.replace(/Starting from \d+ USD /, '')}</p>
+                    {/* The price is quoted "per mid size project", so the packages
+                        that use that wording carry a note defining what mid-size
+                        actually means. */}
+                    <div className="flex items-center gap-1.5 mt-1">
+                        <p className="text-gray-500 text-xs font-semibold">{pkg.price.replace(/Starting from \d+ USD /, '')}</p>
+                        {pkg.sizeNote && (
+                            <InfoTooltip
+                                id={`size-note-${pkg.id}`}
+                                label={`What counts as a mid-size project for the ${pkg.name}`}
+                                text={pkg.sizeNote}
+                                ringClass={theme.ring}
+                            />
+                        )}
+                    </div>
                 </div>
 
                 {/* Delivery + what the turnaround actually covers */}
@@ -104,47 +176,12 @@ const PricingCard: React.FC<PricingCardProps> = ({ pkg, index, onGetStarted }) =
                     <div className="inline-flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-1.5 bg-neutral-50 text-neutral-600 rounded-md border border-neutral-200">
                         ⏱ {pkg.delivery}
                     </div>
-
-                    {/* Mouse handlers sit on this wrapper, not on the button, so the
-                        pointer can travel from the icon into the tooltip without it
-                        closing (WCAG 1.4.13 "hoverable"). Escape dismisses it
-                        ("dismissible"), and focus/blur cover keyboard users. */}
-                    <span
-                        className="relative inline-flex"
-                        onMouseEnter={() => setNoteOpen(true)}
-                        onMouseLeave={() => setNoteOpen(false)}
-                        onFocus={() => setNoteOpen(true)}
-                        onBlur={() => setNoteOpen(false)}
-                        onKeyDown={(e) => { if (e.key === "Escape") setNoteOpen(false); }}
-                    >
-                        <button
-                            type="button"
-                            // react-icons Fa* carry no role="img", so an icon-only
-                            // button is unnamed without this label.
-                            aria-label={`What ${pkg.delivery} covers for the ${pkg.name}`}
-                            aria-expanded={noteOpen}
-                            aria-describedby={`delivery-note-${pkg.id}`}
-                            onClick={() => setNoteOpen((o) => !o)}
-                            className={`flex items-center justify-center w-5 h-5 rounded-full text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 ${theme.ring} transition-colors duration-200 cursor-pointer`}
-                        >
-                            <FaInfoCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                        </button>
-
-                        {/* Absolutely positioned so revealing it never shifts layout
-                            (CLS stays 0). Animates opacity + transform only, both
-                            compositor-only properties. */}
-                        <span
-                            id={`delivery-note-${pkg.id}`}
-                            role="tooltip"
-                            className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 w-56 p-3 rounded-lg bg-neutral-900 text-white text-[11px] leading-relaxed font-normal normal-case tracking-normal shadow-xl transition-all duration-200 ease-out ${
-                                noteOpen
-                                    ? "opacity-100 translate-y-0"
-                                    : "opacity-0 -translate-y-1 pointer-events-none"
-                            }`}
-                        >
-                            {pkg.deliveryNote}
-                        </span>
-                    </span>
+                    <InfoTooltip
+                        id={`delivery-note-${pkg.id}`}
+                        label={`What ${pkg.delivery} covers for the ${pkg.name}`}
+                        text={pkg.deliveryNote}
+                        ringClass={theme.ring}
+                    />
                 </div>
 
                 {pkg.description && (
