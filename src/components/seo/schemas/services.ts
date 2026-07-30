@@ -2367,3 +2367,91 @@ export const iso42001ComplianceTestingSchema = {
     // (8 Q&As vs 6 embedded). Removed embedded duplicate.
   ]
 };
+
+// Service Schema for Latency Testing Services
+export const latencyTestingServiceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Latency Testing Services",
+      "alternateName": "Application Latency Testing",
+      "serviceType": "Latency Testing and Performance Optimization",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Testriq QA Lab",
+        "image": "https://www.testriq.com/testriq-logo.png",
+        "telephone": "+91-915-2929-343",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Office #2, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road",
+          "addressLocality": "Mira Bhayandar",
+          "addressRegion": "Maharashtra",
+          "postalCode": "401107",
+          "addressCountry": "IN"
+        },
+        "priceRange": "$$"
+      },
+      "url": "https://www.testriq.com/performance-testing-services/latency-testing",
+      "description": "Enterprise latency testing services measuring P50, P95, and P99 response times across network, application, database, and API layers. ISO 29119-aligned methodology for global enterprises.",
+      "areaServed": "WorldWide",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Latency Testing Solutions",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "API Latency Testing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Network Latency Analysis"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Database Query Latency Testing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "CDN & Edge Latency Testing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microservices Latency Testing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Real-Time Application Latency Testing"
+            }
+          }
+        ]
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "USD",
+        "price": "0"
+      }
+    }
+    // FAQPage intentionally NOT in @graph — page-side
+    // createFaqPageSchema(faqsForSchema) on /performance-testing-services/latency-testing
+    // is the single source of truth, mirroring the LatencyTestingFAQsSection UI content.
+  ]
+};
