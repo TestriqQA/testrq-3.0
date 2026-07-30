@@ -43,7 +43,7 @@ const LatencyTestingFAQsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
-            <FaQuestionCircle />
+            <FaQuestionCircle aria-hidden="true" />
             <span className="text-sm uppercase tracking-wider font-semibold">
               FAQ
             </span>
@@ -51,7 +51,7 @@ const LatencyTestingFAQsSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             People <span className="text-brand-blue">Also Ask</span>
           </h2>
-          <p className="text-lg text-gray-600 mt-3 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-700 mt-3 max-w-2xl mx-auto font-medium">
             Frequently asked questions about latency testing, tools, percentile analysis, and how it impacts application performance.
           </p>
         </div>
@@ -60,14 +60,14 @@ const LatencyTestingFAQsSection: React.FC = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
             >
               <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-start">
-                <span className="text-brand-blue mr-2 flex-shrink-0">Q:</span>
+                <span className="text-brand-blue mr-2 flex-shrink-0" aria-hidden="true">Q:</span>
                 {faq.question}
               </h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                <span className="text-green-600 font-bold mr-2">A:</span>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                <span className="text-green-700 font-bold mr-2" aria-hidden="true">A:</span>
                 {faq.answer}
               </p>
             </div>

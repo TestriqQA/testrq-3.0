@@ -51,26 +51,26 @@ const LatencyTestingWhatIsSection: React.FC = () => {
           {/* Left — Explanation */}
           <div>
             <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
-              <FaNetworkWired />
+              <FaNetworkWired aria-hidden="true" />
               <span className="text-sm">Understanding Latency</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               What Is <span className="text-brand-blue">Latency Testing</span>?
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-4">
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
               Latency testing is a specialized form of{" "}
-              <Link href="/performance-testing-services" className="text-brand-blue hover:underline decoration-brand-blue">
+              <Link href="/performance-testing-services" className="text-brand-blue underline hover:no-underline decoration-brand-blue font-medium">
                 performance testing
               </Link>{" "}
               that measures the time delay between a user&apos;s action and the system&apos;s response. Unlike throughput testing, which measures volume, latency testing focuses on the <strong>speed of individual transactions</strong> — from DNS resolution to the final byte delivered to the client.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
               Modern{" "}
-              <Link href="/web-application-testing-services" className="text-brand-blue hover:underline decoration-brand-blue">
+              <Link href="/web-application-testing-services" className="text-brand-blue underline hover:no-underline decoration-brand-blue font-medium">
                 web applications
               </Link>{" "}
               and{" "}
-              <Link href="/api-testing" className="text-brand-blue hover:underline decoration-brand-blue">
+              <Link href="/api-testing" className="text-brand-blue underline hover:no-underline decoration-brand-blue font-medium">
                 APIs
               </Link>{" "}
               must meet strict SLA thresholds — typically sub-100ms P95 latency — to maintain user satisfaction and competitive advantage. Our latency testing services dissect every layer of your stack to pinpoint where milliseconds are lost.
@@ -85,35 +85,35 @@ const LatencyTestingWhatIsSection: React.FC = () => {
                 "Provides actionable optimization roadmaps with priority ranking",
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">{item}</span>
+                  <FaCheckCircle className="text-green-600 mt-1 flex-shrink-0" aria-hidden="true" />
+                  <span className="text-gray-800 font-medium">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right — Latency Breakdown Diagram */}
-          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
             <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
               Anatomy of a Request — Latency Breakdown
             </h3>
             <div className="space-y-3">
               {[
-                { label: "DNS Resolution", time: "5–50ms", width: "12%", color: "from-blue-400 to-blue-500" },
-                { label: "TCP Connection", time: "10–80ms", width: "25%", color: "from-indigo-400 to-indigo-500" },
-                { label: "TLS Handshake", time: "20–100ms", width: "38%", color: "from-purple-400 to-purple-500" },
-                { label: "Request Sent", time: "1–10ms", width: "5%", color: "from-pink-400 to-pink-500" },
-                { label: "TTFB (Server Processing)", time: "50–500ms", width: "75%", color: "from-orange-400 to-orange-500" },
-                { label: "Content Transfer", time: "10–300ms", width: "55%", color: "from-red-400 to-red-500" },
+                { label: "DNS Resolution", time: "5–50ms", width: "12%", color: "from-blue-500 to-blue-600" },
+                { label: "TCP Connection", time: "10–80ms", width: "25%", color: "from-indigo-500 to-indigo-600" },
+                { label: "TLS Handshake", time: "20–100ms", width: "38%", color: "from-purple-500 to-purple-600" },
+                { label: "Request Sent", time: "1–10ms", width: "5%", color: "from-pink-500 to-pink-600" },
+                { label: "TTFB (Server Processing)", time: "50–500ms", width: "75%", color: "from-orange-500 to-orange-600" },
+                { label: "Content Transfer", time: "10–300ms", width: "55%", color: "from-red-500 to-red-600" },
               ].map((step, i) => (
                 <div key={i}>
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="font-medium text-gray-700">{step.label}</span>
-                    <span className="text-gray-500 font-mono text-xs">{step.time}</span>
+                    <span className="font-medium text-gray-800">{step.label}</span>
+                    <span className="text-gray-700 font-mono text-xs font-semibold">{step.time}</span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
                     <div
-                      className={`h-full bg-gradient-to-r ${step.color} rounded-full transition-all duration-1000`}
+                      className={`h-full bg-gradient-to-r ${step.color} rounded-full`}
                       style={{ width: step.width }}
                     />
                   </div>
@@ -123,10 +123,10 @@ const LatencyTestingWhatIsSection: React.FC = () => {
 
             <div className="mt-6 bg-gray-50 rounded-xl p-4 border border-gray-200">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-gray-700">Total End-to-End Latency</span>
+                <span className="text-sm font-semibold text-gray-800">Total End-to-End Latency</span>
                 <span className="text-lg font-bold text-brand-blue font-mono">96–1,040ms</span>
               </div>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-700 mt-1">
                 Each layer contributes to total response time. Optimizing the largest contributors (TTFB, TLS, content transfer) yields the greatest user-experience improvement.
               </p>
             </div>

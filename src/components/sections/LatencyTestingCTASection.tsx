@@ -104,13 +104,13 @@ const LatencyTestingCTASection: React.FC = () => {
             <div className="space-y-6">
               {/* Primary CTA */}
               <Link href="/contact-us">
-                <button className="w-full cursor-pointer bg-gradient-to-br from-brand-blue to-blue-600 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 group">
+                <button className="w-full cursor-pointer bg-gradient-to-br from-brand-blue to-blue-600 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 group min-h-[48px]">
                   <span>Get Free Latency Assessment</span>
-                  <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  <FaArrowRight className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </button>
               </Link>
 
-              <div className="text-center text-gray-500">
+              <div className="text-center text-gray-700 font-medium">
                 <span>or</span>
               </div>
 
@@ -120,9 +120,9 @@ const LatencyTestingCTASection: React.FC = () => {
                   href="https://calendar.app.google/uUHn8prcXbdqcvVb6"
                   target="_blank"
                 >
-                  <button className="flex w-full items-center cursor-pointer justify-center space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 group">
-                    <FaCalendarAlt className="text-blue-600 group-hover:scale-110 transition-transform" />
-                    <span className="font-medium text-gray-700">
+                  <button className="flex w-full items-center cursor-pointer justify-center space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 group min-h-[48px]">
+                    <FaCalendarAlt className="text-blue-600 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                    <span className="font-medium text-gray-800">
                       Schedule a Call
                     </span>
                   </button>
@@ -130,10 +130,10 @@ const LatencyTestingCTASection: React.FC = () => {
 
                 <button
                   onClick={() => (window.location.href = "tel:+919152929343")}
-                  className="flex w-full items-center justify-center cursor-pointer space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all duration-300 group"
+                  className="flex w-full items-center justify-center cursor-pointer space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all duration-300 group min-h-[48px]"
                 >
-                  <FaPhone className="text-green-600 group-hover:scale-110 transition-transform" />
-                  <span className="font-medium text-gray-700">
+                  <FaPhone className="text-green-600 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                  <span className="font-medium text-gray-800">
                     Call Now: (+91) 915-2929-343
                   </span>
                 </button>
@@ -142,10 +142,10 @@ const LatencyTestingCTASection: React.FC = () => {
                   onClick={() =>
                     (window.location.href = "mailto:contact@testriq.com")
                   }
-                  className="flex w-full items-center justify-center cursor-pointer space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all duration-300 group"
+                  className="flex w-full items-center justify-center cursor-pointer space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all duration-300 group min-h-[48px]"
                 >
-                  <FaEnvelope className="text-purple-600 group-hover:scale-110 transition-transform" />
-                  <span className="font-medium text-gray-700">
+                  <FaEnvelope className="text-purple-600 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                  <span className="font-medium text-gray-800">
                     Email: contact@testriq.com
                   </span>
                 </button>
@@ -153,21 +153,21 @@ const LatencyTestingCTASection: React.FC = () => {
 
               {/* Trust Indicators */}
               <div className="pt-6 border-t border-gray-200">
-                <div className="text-center text-sm text-gray-600 mb-4">
+                <div className="text-center text-sm text-gray-700 font-medium mb-4">
                   Trusted for latency optimization excellence
                 </div>
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <div className="text-lg font-bold text-brand-blue">500+</div>
-                    <div className="text-xs text-gray-500">Apps Optimized</div>
+                    <div className="text-xs text-gray-700 font-medium">Apps Optimized</div>
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-green-600">85%</div>
-                    <div className="text-xs text-gray-500">Latency Reduced</div>
+                    <div className="text-lg font-bold text-green-700">85%</div>
+                    <div className="text-xs text-gray-700 font-medium">Latency Reduced</div>
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-purple-600">99.9%</div>
-                    <div className="text-xs text-gray-500">SLA Compliance</div>
+                    <div className="text-lg font-bold text-purple-700">99.9%</div>
+                    <div className="text-xs text-gray-700 font-medium">SLA Compliance</div>
                   </div>
                 </div>
               </div>

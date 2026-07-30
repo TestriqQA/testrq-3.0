@@ -168,16 +168,16 @@ const LatencyTestingToolsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
-            <FaTools />
+            <FaTools aria-hidden="true" />
             <span className="text-sm">Tools &amp; Frameworks</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Latency Testing{" "}
             <span className="text-brand-blue">Tools &amp; Technology</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             We leverage industry-leading{" "}
-            <Link href="/technology-stack" className="text-brand-blue hover:underline">
+            <Link href="/technology-stack" className="text-brand-blue underline hover:no-underline font-semibold">
               latency measurement tools
             </Link>{" "}
             and monitoring platforms — from protocol-level profilers to cloud-native APM solutions — to deliver precise, actionable latency insights.
@@ -194,16 +194,16 @@ const LatencyTestingToolsSection: React.FC = () => {
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`w-full text-left cursor-pointer px-4 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 ${
+                  className={`w-full text-left cursor-pointer px-4 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 min-h-[48px] ${
                     isActive
                       ? `${colors.bg} ${colors.text} shadow-md border ${colors.border}`
-                      : "bg-gray-50 text-gray-600 hover:bg-gray-100 border border-transparent"
+                      : "bg-gray-50 text-gray-700 hover:bg-gray-100 border border-transparent"
                   }`}
                 >
-                  <span className={isActive ? colors.text : "text-gray-400"}>
+                  <span className={isActive ? colors.text : "text-gray-500"} aria-hidden="true">
                     {category.icon}
                   </span>
-                  <span className="font-medium text-sm">{category.title}</span>
+                  <span className="font-semibold text-sm">{category.title}</span>
                 </button>
               );
             })}
@@ -215,22 +215,22 @@ const LatencyTestingToolsSection: React.FC = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-2">
                 {activeToolCategory.title}
               </h3>
-              <p className="text-gray-600">{activeToolCategory.description}</p>
+              <div className="text-gray-700 font-medium">{activeToolCategory.description}</div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
               {activeToolCategory.tools.map((tool, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group"
+                  className="bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 group"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="text-3xl">{tool.logo}</div>
+                    <div className="text-3xl" aria-hidden="true">{tool.logo}</div>
                     <div>
                       <h4 className="font-bold text-gray-900 group-hover:text-brand-blue transition-colors">
                         {tool.name}
                       </h4>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="text-sm text-gray-700 mt-1">
                         {tool.description}
                       </p>
                     </div>
