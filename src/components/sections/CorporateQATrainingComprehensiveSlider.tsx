@@ -41,7 +41,7 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
       icon: <FaLaptopCode className="text-3xl text-purple-600" />,
       description: "Advanced automation frameworks and tools mastery",
       features: [
-        (<><Link href="Selenium WebDriver">Selenium WebDriver</Link></>),
+        (<><Link href="/selenium-testing-services" className="text-gray-700 hover:text-brand-blue hover:underline decoration-brand-blue">Selenium WebDriver</Link></>),
         (<><Link href="/automation-testing-services" className="text-gray-700 hover:text-brand-blue hover:underline decoration-brand-blue">Test Framework Development</Link></>),
         (<><Link href="/blog/post/ci-cd-integration-with-automated-tests">CI/CD Integration</Link></>),
         (<><Link href="/blog/post/api-test-automation-strategy-faster-releases-reliable-integrations">API Test Automation</Link></>),
