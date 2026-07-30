@@ -10,6 +10,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import PerformanceTestingHeroSection from "@/components/sections/PerformanceTestingHeroSection";
 import PerformanceTestingChallenges from "@/components/sections/PerformanceTestingChallenges";
 import PerformanceTestingComprehensiveSlider from "@/components/sections/PerformanceTestingComprehensiveSlider";
+import PerformanceTestingLatencySection from "@/components/sections/PerformanceTestingLatencySection";
 import PerformanceTestingProvenTestingProcess from "@/components/sections/PerformanceTestingProvenTestingProcess";
 import PerformanceTestingWhyChooseTestriq from "@/components/sections/PerformanceTestingWhyChooseTestriq";
 import PerformanceTestingToolsFramework from "@/components/sections/PerformanceTestingToolsFramework";
@@ -91,6 +92,7 @@ export default function PerformanceTestingPage() {
                 <PerformanceTestingHeroSection />
                 <PerformanceTestingChallenges />
                 <PerformanceTestingComprehensiveSlider />
+                <PerformanceTestingLatencySection />
                 <PerformanceTestingProvenTestingProcess />
                 <PerformanceTestingWhyChooseTestriq />
                 <PerformanceTestingToolsFramework />
