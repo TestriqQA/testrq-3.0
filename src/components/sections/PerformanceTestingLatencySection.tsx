@@ -13,37 +13,37 @@ const PerformanceTestingLatencySection: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/20 border border-brand-blue/40 text-blue-300 rounded-full text-sm font-semibold">
-              <FaClock className="text-brand-blue" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/20 border border-brand-blue/40 text-blue-200 rounded-full text-sm font-semibold">
+              <FaClock className="text-blue-400" aria-hidden="true" />
               <span>Specialized Latency Optimization</span>
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               Eliminate Network &amp; API Delays with{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300">
                 Precision Latency Testing
               </span>
             </h2>
 
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-gray-200 leading-relaxed">
               Every 100ms of response time delay impacts conversion rates and user retention. Our specialized latency testing services break down every phase of request execution — from DNS resolution to database query response — ensuring sub-50ms target P95 latency across global user nodes.
             </p>
 
             {/* Key Feature Bullets */}
             <div className="grid sm:grid-cols-2 gap-4 pt-2">
               <div className="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
-                <FaBolt className="text-yellow-400 mt-1 flex-shrink-0 text-lg" />
+                <FaBolt className="text-yellow-300 mt-1 flex-shrink-0 text-lg" aria-hidden="true" />
                 <div>
-                  <h4 className="font-bold text-white text-sm">P95 / P99 Tail Latency</h4>
-                  <p className="text-xs text-gray-400 mt-1">Measure worst-case user response percentiles</p>
+                  <h3 className="font-bold text-white text-sm">P95 / P99 Tail Latency</h3>
+                  <p className="text-xs text-gray-300 mt-1">Measure worst-case user response percentiles</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
-                <FaTachometerAlt className="text-green-400 mt-1 flex-shrink-0 text-lg" />
+                <FaTachometerAlt className="text-green-400 mt-1 flex-shrink-0 text-lg" aria-hidden="true" />
                 <div>
-                  <h4 className="font-bold text-white text-sm">API &amp; Microservices</h4>
-                  <p className="text-xs text-gray-400 mt-1">Trace multi-hop service communication delays</p>
+                  <h3 className="font-bold text-white text-sm">API &amp; Microservices</h3>
+                  <p className="text-xs text-gray-300 mt-1">Trace multi-hop service communication delays</p>
                 </div>
               </div>
             </div>
@@ -52,10 +52,10 @@ const PerformanceTestingLatencySection: React.FC = () => {
             <div className="pt-4">
               <Link
                 href="/performance-testing-services/latency-testing"
-                className="inline-flex items-center gap-3 bg-brand-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 group"
+                className="inline-flex items-center justify-center gap-3 bg-brand-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 group min-h-[48px]"
               >
                 <span>Explore Dedicated Latency Testing</span>
-                <FaArrowRight className="group-hover:translate-x-1.5 transition-transform" />
+                <FaArrowRight className="group-hover:translate-x-1.5 transition-transform" aria-hidden="true" />
               </Link>
             </div>
           </div>

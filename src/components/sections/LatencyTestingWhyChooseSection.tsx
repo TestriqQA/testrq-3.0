@@ -65,7 +65,7 @@ const LatencyTestingWhyChooseSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
-            <FaAward />
+            <FaAward aria-hidden="true" />
             <span className="text-sm">
               Global Standards &amp; Compliance
             </span>
@@ -74,9 +74,9 @@ const LatencyTestingWhyChooseSection: React.FC = () => {
             Why Choose Testriq for{" "}
             <span className="text-brand-blue">Latency Testing</span>?
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
             As a specialized{" "}
-            <Link href="/about-us" className="text-brand-blue hover:underline">
+            <Link href="/about-us" className="text-brand-blue underline hover:no-underline font-semibold">
               independent QA laboratory
             </Link>
             , Testriq brings deep expertise in latency optimization for enterprises operating across regulated markets. Our compliance-first approach ensures audit-ready documentation alongside measurable performance gains.
@@ -90,19 +90,20 @@ const LatencyTestingWhyChooseSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className={`${colors.bg} p-8 rounded-2xl hover:shadow-xl transition-all duration-300 group`}
+                className={`${colors.bg} p-8 rounded-2xl hover:shadow-xl transition-all duration-300 group border border-gray-200`}
               >
                 <div
                   className={`${colors.iconBg} w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  aria-hidden="true"
                 >
                   <span className="text-white">{advantage.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {advantage.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <div className="text-gray-700 leading-relaxed mb-4 text-sm font-medium">
                   {advantage.description}
-                </p>
+                </div>
                 <div className={`${colors.text} font-bold text-lg`}>
                   {advantage.stats}
                 </div>

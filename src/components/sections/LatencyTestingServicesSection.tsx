@@ -143,47 +143,50 @@ const LatencyTestingServicesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
-            <FaFlask />
+            <FaFlask aria-hidden="true" />
             <span className="text-sm">Comprehensive Latency Solutions</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Latency Testing{" "}
             <span className="text-brand-blue">Service Offerings</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Our end-to-end latency testing services cover every layer of your technology stack, from{" "}
-            <Link href="/api-testing" className="text-brand-blue hover:underline">
+            <Link href="/api-testing" className="text-brand-blue underline hover:no-underline font-medium">
               API endpoints
             </Link>{" "}
             to{" "}
-            <Link href="/microservices-testing" className="text-brand-blue hover:underline">
+            <Link href="/microservices-testing" className="text-brand-blue underline hover:no-underline font-medium">
               microservices architectures
             </Link>
             , ensuring optimal response times under any load.
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
           {/* Tab Navigation */}
-          <div className="flex flex-wrap border-b border-gray-200">
+          <div role="tablist" aria-label="Latency Testing Services" className="flex flex-wrap border-b border-gray-200">
             {services.map((service, index) => {
               const colors = getColorClasses(service.color);
               return (
                 <button
                   key={service.id}
-                  aria-label={service.title}
+                  role="tab"
+                  aria-selected={activeTab === index}
+                  aria-controls={`panel-${service.id}`}
+                  id={`tab-${service.id}`}
                   onClick={() => setActiveTab(index)}
-                  className={`flex-1 min-w-0 px-4 py-4 text-sm font-medium transition-all duration-300 cursor-pointer ${
+                  className={`flex-1 min-w-0 px-4 py-4 text-sm font-medium transition-all duration-300 cursor-pointer min-h-[48px] ${
                     activeTab === index
                       ? `${colors.bg} ${colors.text} border-b-2 ${colors.border}`
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                   }`}
                 >
                   <div className="flex flex-col items-center justify-center gap-1">
-                    <span className={activeTab === index ? colors.text : "text-gray-400"}>
+                    <span className={activeTab === index ? colors.text : "text-gray-500"} aria-hidden="true">
                       {service.icon}
                     </span>
-                    <span className="hidden sm:inline text-xs">{service.title}</span>
+                    <span className="hidden sm:inline text-xs font-semibold">{service.title}</span>
                   </div>
                 </button>
               );
@@ -197,12 +200,15 @@ const LatencyTestingServicesSection: React.FC = () => {
               return (
                 <div
                   key={service.id}
+                  role="tabpanel"
+                  id={`panel-${service.id}`}
+                  aria-labelledby={`tab-${service.id}`}
                   className={`${activeTab === index ? "block" : "hidden"} transition-all duration-300`}
                 >
                   <div className="grid lg:grid-cols-2 gap-8">
                     <div>
                       <div className="flex items-center space-x-4 mb-6">
-                        <div className={`w-16 h-16 ${colors.bg} rounded-xl flex items-center justify-center`}>
+                        <div className={`w-16 h-16 ${colors.bg} rounded-xl flex items-center justify-center`} aria-hidden="true">
                           <span className={colors.text}>{service.icon}</span>
                         </div>
                         <div>
@@ -210,19 +216,19 @@ const LatencyTestingServicesSection: React.FC = () => {
                             {service.title}
                           </h3>
                           <div className="flex items-center space-x-2 mt-2">
-                            <span className="text-sm text-gray-600">Success Rate:</span>
+                            <span className="text-sm text-gray-700 font-medium">Success Rate:</span>
                             <span className={`text-lg font-bold ${colors.text}`}>
                               {service.percentage}
                             </span>
                           </div>
                         </div>
                       </div>
-                      <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                      <p className="text-gray-700 text-lg leading-relaxed mb-6">
                         {service.description}
                       </p>
                       <Link
                         href={service.link}
-                        className="bg-brand-blue text-white inline-block px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
+                        className="bg-brand-blue text-white inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 min-h-[48px]"
                       >
                         Explore {service.title}
                       </Link>
