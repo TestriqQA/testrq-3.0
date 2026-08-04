@@ -6,6 +6,10 @@ import StructuredData, {
     createFaqPageSchema,
     createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
+// Server Component — imported directly (not via dynamic()) so its markup and the
+// review section render server-side in the initial HTML.
+import QAOutsourcingReviews from "@/components/sections/QAOutsourcingReviews";
+import { qaOutsourcingReviews, qaOutsourcingRating } from "./reviewsData";
 
 export const revalidate = 3600;
 
@@ -128,6 +132,31 @@ const qaOutsourcingServiceSchema = {
         telephone: "+91-915-2929-343",
     },
     areaServed: ["United States", "United Kingdom", "European Union", "United Arab Emirates", "India"],
+    // Review rich-result markup. Compliant because: (1) these are real, verified
+    // Clutch/G2 reviews rendered on-page by <QAOutsourcingReviews>; (2) the
+    // AggregateRating is computed from exactly that displayed set; (3) it sits on
+    // this Service entity, not Organization/LocalBusiness (self-serving ratings
+    // on those types are ineligible). Source of truth: ./reviewsData.ts.
+    aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: qaOutsourcingRating.value,
+        reviewCount: String(qaOutsourcingRating.count),
+        bestRating: String(qaOutsourcingRating.best),
+        worstRating: String(qaOutsourcingRating.worst),
+    },
+    review: qaOutsourcingReviews.map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.authorName },
+        datePublished: r.date,
+        reviewRating: {
+            "@type": "Rating",
+            ratingValue: String(r.rating),
+            bestRating: "5",
+            worstRating: "1",
+        },
+        reviewBody: r.body,
+        publisher: { "@type": "Organization", name: r.source },
+    })),
     hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "QA Outsourcing Engagement Models",
@@ -171,6 +200,7 @@ export default function QAOutsourcingServicesPage() {
             <QAOutsourcingServices />
             <QAOutsourcingProcess />
             <QAOutsourcingWhyTestriq />
+            <QAOutsourcingReviews />
             <QAOutsourcingIndustries />
             <QAOutsourcingFAQs />
             <QAOutsourcingReadyToStart />
