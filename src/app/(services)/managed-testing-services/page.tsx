@@ -4,6 +4,7 @@ import StructuredData, {
     managedTestingServiceSchema,
     organizationSchema,
     createFaqPageSchema,
+    createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
 import dynamic from "next/dynamic";
 
@@ -85,30 +86,14 @@ export const metadata: Metadata = {
     },
 };
 
-const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-        {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: "https://www.testriq.com",
-        },
-        {
-            "@type": "ListItem",
-            position: 2,
-            name: "Services",
-            item: "https://www.testriq.com/services",
-        },
-        {
-            "@type": "ListItem",
-            position: 3,
-            name: "Managed Testing Services",
-            item: "https://www.testriq.com/managed-testing-services",
-        },
-    ],
-};
+// Was a hand-written 3-item trail whose middle node pointed at
+// https://www.testriq.com/services — a path that 308-redirects to the homepage.
+// createCanonicalBreadcrumb emits the same 2-item Home → page shape as every
+// other service page, with the leaf label read from BREADCRUMB_LABELS.
+const breadcrumbSchema = createCanonicalBreadcrumb(
+    "/managed-testing-services",
+    "Managed Testing",
+);
 
 export default function ManagedTestingServicesPage() {
     // F-44.1 batch 4: plain-text mirror of ManagedTestingFAQs UI content for FAQPage JSON-LD.

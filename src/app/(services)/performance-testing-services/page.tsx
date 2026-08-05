@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     performanceTestingServiceSchema,
 } from "@/components/seo/StructuredData";
@@ -55,14 +55,6 @@ export default function PerformanceTestingPage() {
     // Services | Performance Testing Services" (no brand, wrong leading keyword); og:title was a
     // separate better value. 7 dynamic() → direct imports. PR-3 will fix at breadcrumb component
     // level cascading to 40 pages.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Performance Testing",
-            url: "https://www.testriq.com/performance-testing-services",
-        },
-    ];
-
     // F-44.1: plain-text mirror of PerformanceTestingFAQs UI content for FAQPage JSON-LD.
     const faqsForSchema = [
         {
@@ -86,7 +78,7 @@ export default function PerformanceTestingPage() {
     return (
         <div>
             <StructuredData data={performanceTestingServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/performance-testing-services", "Performance Testing")} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <PerformanceTestingHeroSection />

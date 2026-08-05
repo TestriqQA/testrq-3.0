@@ -1,26 +1,17 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import Link from "next/link";
 import React from "react";
-import { FaArrowRight, FaClock, FaHome, FaChevronRight } from "react-icons/fa";
+import { FaArrowRight, FaClock } from "react-icons/fa";
 import ShiftLeftAnimation from "./ShiftLeftAnimation";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import { getBreadcrumbLabel } from "@/lib/seo/breadcrumb-labels";
 
 const ShiftLeftHeroSection: React.FC = () => {
     return (
         <section className="bg-white text-black pt-8 pb-16 px-8 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 {/* Breadcrumb */}
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-600 mb-6">
-                    <Link href="/" className="hover:text-brand-blue flex items-center gap-1">
-                        <FaHome className="w-3 h-3" />
-                        Home
-                    </Link>
-                    <FaChevronRight className="w-2 h-2 text-gray-400" />
-                    <Link href="/services" className="hover:text-brand-blue">
-                        Services
-                    </Link>
-                    <FaChevronRight className="w-2 h-2 text-gray-400" />
-                    <span className="text-brand-blue">Shift-Left Testing</span>
-                </div>
+                <Breadcrumb items={[{ label: getBreadcrumbLabel("/shift-left-testing", "Shift-Left Testing") }]} />
 
                 <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                     {/* Left Content */}

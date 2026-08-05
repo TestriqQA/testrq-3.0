@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     migrationServiceSchema,
 } from "@/components/seo/StructuredData";
@@ -50,14 +50,6 @@ export default function MigrationTestingPage() {
     // og:url was absent from the openGraph block entirely, causing it to be omitted from the HTML
     // head; helper always emits og:url matching canonical. Breadcrumb schema ADDED — this page had
     // none; 2 items per PR-2A template. PR-3 will fix at breadcrumb component level.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Migration Testing Services",
-            url: "https://www.testriq.com/migration-testing",
-        },
-    ];
-
     // F-44.1 batch 2: plain-text mirror of MigrationFAQs UI content for FAQPage JSON-LD.
     const faqsForSchema = [
         {
@@ -85,7 +77,7 @@ export default function MigrationTestingPage() {
     return (
         <div>
             <StructuredData data={migrationServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/migration-testing", "Migration Testing")} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <MigrationHeroSection />

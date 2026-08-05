@@ -12,6 +12,16 @@ interface BreadcrumbProps {
     variant?: 'light' | 'dark';
 }
 
+/**
+ * Breadcrumb trail. "Home" is rendered internally — never pass it in `items`.
+ * The final item should omit `href`; it renders as the current page.
+ *
+ * Markup follows the semantic pattern already used by `ToolLandingPage`:
+ * `nav[aria-label] > ol > li`, with decorative icons hidden from assistive
+ * technology and `aria-current="page"` on the terminal node. Previously this
+ * component emitted `div`/`span` only, which gave screen readers no way to
+ * recognise the trail as navigation.
+ */
 export default function Breadcrumb({ items, className = '', variant = 'light' }: BreadcrumbProps) {
     const isDark = variant === 'dark';
     const baseTextColor = isDark ? 'text-white' : 'text-gray-600';
@@ -20,32 +30,36 @@ export default function Breadcrumb({ items, className = '', variant = 'light' }:
     const hoverColor = isDark ? 'hover:text-blue-200' : 'hover:text-[theme(color.brand.blue)]';
 
     return (
-        <div className={`flex items-center gap-2 text-sm font-medium mb-6 ${baseTextColor} ${className}`}>
-            <Link
-                href="/"
-                className={`flex items-center gap-2 ${hoverColor} transition-colors`}
-            >
-                <FaHome className="text-lg" />
-                Home
-            </Link>
+        <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className={`flex items-center flex-wrap gap-2 text-sm font-medium ${baseTextColor} ${className}`}>
+                <li>
+                    <Link
+                        href="/"
+                        className={`flex items-center gap-2 ${hoverColor} transition-colors`}
+                    >
+                        <FaHome className="text-lg" aria-hidden="true" />
+                        Home
+                    </Link>
+                </li>
 
-            {items.map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                    <FaChevronRight className={`text-xs ${separatorColor}`} />
-                    {item.href ? (
-                        <Link
-                            href={item.href}
-                            className={`${hoverColor} transition-colors`}
-                        >
-                            {item.label}
-                        </Link>
-                    ) : (
-                        <span className={activeColor}>
-                            {item.label}
-                        </span>
-                    )}
-                </div>
-            ))}
-        </div>
+                {items.map((item, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                        <FaChevronRight className={`text-xs ${separatorColor}`} aria-hidden="true" />
+                        {item.href ? (
+                            <Link
+                                href={item.href}
+                                className={`${hoverColor} transition-colors`}
+                            >
+                                {item.label}
+                            </Link>
+                        ) : (
+                            <span className={activeColor} aria-current="page">
+                                {item.label}
+                            </span>
+                        )}
+                    </li>
+                ))}
+            </ol>
+        </nav>
     );
 }

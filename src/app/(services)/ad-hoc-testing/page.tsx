@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
     adHocTestingServiceSchema,
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     organizationSchema,
 } from "@/components/seo/StructuredData";
@@ -56,14 +56,6 @@ export default function AdHocTestingPage() {
     // URL that does not exist as a route). Pattern D fixed — breadcrumb reduced from 3 items with
     // /services/ prefix URLs to 2 canonical items. PR-3 will fix at breadcrumb component level
     // cascading to 40 pages.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Ad-Hoc Testing",
-            url: "https://www.testriq.com/ad-hoc-testing",
-        },
-    ];
-
     // F-44.1 batch 3: plain-text mirror of AdHocTestingFAQs UI content for FAQPage JSON-LD.
     const adHocFaqsForSchema = [
         {
@@ -92,7 +84,7 @@ export default function AdHocTestingPage() {
         <div>
             <StructuredData data={adHocTestingServiceSchema} />
             <StructuredData data={organizationSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/ad-hoc-testing", "Ad-Hoc Testing")} />
             <StructuredData data={createFaqPageSchema(adHocFaqsForSchema)} />
             <MainLayout>
                 <AdHocTestingHeroSection />

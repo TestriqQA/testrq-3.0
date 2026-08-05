@@ -3,6 +3,8 @@ import React from "react";
 import Link from "next/link";
 import { FaChevronRight, FaRocket, FaClock, FaDollarSign, FaBolt } from "react-icons/fa";
 import AdHocTestingAnimation from "./AdHocTestingAnimation";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import { getBreadcrumbLabel } from "@/lib/seo/breadcrumb-labels";
 
 const AdHocTestingHeroSection: React.FC = () => {
     const stats = [
@@ -22,13 +24,7 @@ const AdHocTestingHeroSection: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     <div>
                         {/* Breadcrumbs */}
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-8 font-medium">
-                            <Link href="/" className="hover:text-brand-blue flex items-center transition-colors">Home</Link>
-                            <FaChevronRight className="text-[10px]" />
-                            <Link href="/services" className="hover:text-brand-blue transition-colors">Services</Link>
-                            <FaChevronRight className="text-[10px]" />
-                            <span className="text-gray-900">Ad-Hoc Testing</span>
-                        </div>
+                        <Breadcrumb items={[{ label: getBreadcrumbLabel("/ad-hoc-testing", "Ad-Hoc Testing") }]} />
 
                         {/* Title & Description */}
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-[1.1] mb-6">

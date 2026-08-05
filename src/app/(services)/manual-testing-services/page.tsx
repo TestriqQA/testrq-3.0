@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     manualTestingServiceSchema,
 } from "@/components/seo/StructuredData";
@@ -87,14 +87,6 @@ export default function ManualTestingPage() {
     // Both fixed automatically by buildPageMetadata, which derives og:url
     // from the same pathname as canonical. The breadcrumb leaf URL below
     // is also corrected from /manual-testing → /manual-testing-services.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Manual Testing Services",
-            url: "https://www.testriq.com/manual-testing-services",
-        },
-    ];
-
     // F-44.1: plain-text mirror of ManualTestingFAQs UI content for FAQPage JSON-LD.
     const faqsForSchema = [
         {
@@ -122,7 +114,7 @@ export default function ManualTestingPage() {
     return (
         <div>
             <StructuredData data={manualTestingServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/manual-testing-services", "Manual Testing")} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <ManualTestingHeroSection />

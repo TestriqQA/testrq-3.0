@@ -3,7 +3,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import {
     agileTestingSchema,
     agileFAQSchema,
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
@@ -49,14 +49,6 @@ export default function AgileTestingServicesPage() {
     // anti-pattern affects ~50 other service+solution pages site-wide
     // (see docs/seo-audit/02-codebase-audit.md §3.5). A separate branch
     // will sweep all of them in one pass.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Agile Testing Services",
-            url: "https://www.testriq.com/agile-testing-services",
-        },
-    ];
-
     return (
         <>
             {/*
@@ -79,7 +71,7 @@ export default function AgileTestingServicesPage() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(createBreadcrumbSchema(breadcrumbItems)),
+                    __html: JSON.stringify(createCanonicalBreadcrumb("/agile-testing-services", "Agile Testing Services")),
                 }}
             />
 

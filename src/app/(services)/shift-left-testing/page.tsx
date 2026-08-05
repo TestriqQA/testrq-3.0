@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     shiftLeftServiceSchema,
 } from "@/components/seo/StructuredData";
@@ -53,14 +53,6 @@ export default function ShiftLeftTestingPage() {
     // reduced from 3 items (Home / Services → /services/ / Shift-Left Testing →
     // /services/shift-left-testing) to 2 canonical items per PR-2A/2B template.
     // PR-3 will fix at breadcrumb component level cascading to 40 pages.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Shift-Left Testing",
-            url: "https://www.testriq.com/shift-left-testing",
-        },
-    ];
-
     // F-44.1 batch 3: plain-text mirror of ShiftLeftFAQs UI content for FAQPage JSON-LD.
     const faqsForSchema = [
         {
@@ -88,7 +80,7 @@ export default function ShiftLeftTestingPage() {
     return (
         <div>
             <StructuredData data={shiftLeftServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/shift-left-testing", "Shift-Left Testing")} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <ShiftLeftHeroSection />

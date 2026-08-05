@@ -41,7 +41,7 @@ const ShiftLeftNextStepsSection: React.FC = () => {
                             <FaCalendarAlt className="w-4 h-4" />
                             Request a Free Audit
                         </Link>
-                        <Link href="/services" className="px-10 py-4 bg-blue-600/50 border border-white/30 text-white font-bold rounded-xl hover:bg-blue-600/70 transition-colors uppercase tracking-widest text-xs flex items-center justify-center">
+                        <Link href="/website-map" className="px-10 py-4 bg-blue-600/50 border border-white/30 text-white font-bold rounded-xl hover:bg-blue-600/70 transition-colors uppercase tracking-widest text-xs flex items-center justify-center">
                             Explore More Services
                         </Link>
                     </div>
