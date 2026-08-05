@@ -57,6 +57,11 @@ export const SERVICES: Record<string, ServiceLink> = {
         title: 'Performance Testing Services',
         description: 'Load, stress, soak and scalability testing with capacity findings before production.',
     },
+    'performance-testing-services/latency-testing': {
+        slug: 'performance-testing-services/latency-testing',
+        title: 'Latency Testing Services',
+        description: 'P95/P99 response-time analysis, API latency profiling and network diagnostics.',
+    },
     'api-testing': {
         slug: 'api-testing',
         title: 'API Testing Services',
@@ -288,6 +293,24 @@ const CATEGORY_MAP: Record<string, string[]> = {
 };
 
 /**
+ * Precision overrides for narrow sub-topics that have their own dedicated
+ * service page, matched against the post's categories, tags AND title.
+ *
+ * Checked BEFORE `CATEGORY_MAP`, because a broad category fills every slot
+ * with generic parent pages and buries the sub-page the post is actually
+ * about. Latency is the worked example: all four latency posts sit in the
+ * "Performance Testing Services" category, so they linked only to the generic
+ * performance page — while "what is a latency test" is the site's single
+ * highest-impression query (507 impressions across US/UK/AU, zero clicks) and
+ * `/performance-testing-services/latency-testing` received no blog links at all.
+ *
+ * Keep this list short. A sub-topic belongs here only if it has its own page.
+ */
+const NARROW_TOPIC_MAP: ReadonlyArray<readonly [RegExp, string]> = [
+    [/latency|round.?trip|\bttfb\b/i, 'performance-testing-services/latency-testing'],
+];
+
+/**
  * Keyword fallback, applied to tags when the category is unknown or absent.
  * Order matters — the first hit wins, so put narrower terms above broader
  * ones ('accessibility' before 'web').
@@ -343,6 +366,7 @@ export function getRelatedServices(
     categorySlugs: readonly string[] = [],
     tags: readonly string[] = [],
     limit = 3,
+    title = '',
 ): ServiceLink[] {
     const picked: string[] = [];
 
@@ -351,6 +375,15 @@ export function getRelatedServices(
             picked.push(slug);
         }
     };
+
+    // 0. Narrow sub-topic match, ahead of the category so a dedicated sub-page
+    //    is not crowded out by its parent category's generic picks. Title is
+    //    included because a post's category and tags often name only the
+    //    parent topic.
+    const narrowHaystack = [...categorySlugs, ...tags, title].join(' ');
+    for (const [pattern, slug] of NARROW_TOPIC_MAP) {
+        if (pattern.test(narrowHaystack)) add(slug);
+    }
 
     // 1. Category match — the strongest signal.
     for (const cat of categorySlugs) {

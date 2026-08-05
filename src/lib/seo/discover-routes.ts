@@ -4,19 +4,26 @@ import { join } from "node:path";
 /**
  * Discover all Next.js route directories inside a given App Router group.
  *
- * Scans `<projectRoot>/<groupPath>` for subdirectories that contain a
- * `page.tsx` (the testriq-3.0 codebase convention) and returns their names
- * sorted alphabetically — the names map directly to URL slugs because route
- * groups (`(services)`, `(solutions)`) are stripped from the public URL.
+ * Scans `<projectRoot>/<groupPath>` recursively for subdirectories that contain
+ * a `page.tsx` (the testriq-3.0 codebase convention) and returns their slug
+ * paths sorted alphabetically — the names map directly to URL slugs because
+ * route groups (`(services)`, `(solutions)`) are stripped from the public URL.
+ *
+ * Nested routes are returned as slash-joined paths, e.g.
+ * `performance-testing-services/latency-testing`. The scan was previously one
+ * level deep, which silently excluded that page from the XML sitemap, the HTML
+ * sitemap, and both llms.txt files — despite "what is a latency test" being the
+ * site's highest-impression query.
  *
  * Filters out:
  *   - Dynamic route segments (`[slug]`, `[...catchAll]`) — those need their
  *     own data-driven entries
  *   - Private folders (starting with `_`) — Next.js convention for non-route
  *     directories
+ *   - Nested route groups (starting with `(`) — not URL segments
  *   - Files (only directories count)
- *   - Directories without a `page.tsx` — e.g. layout-only or component-only
- *     subdirectories
+ *   - Directories without a `page.tsx` — though their children are still
+ *     scanned, since Next.js allows layout-only intermediate segments
  *
  * Returns `[]` and logs an error if the group directory cannot be read.
  * This keeps callers (sitemap, website-map) working in the rare case the
@@ -30,24 +37,41 @@ import { join } from "node:path";
  */
 export function discoverRoutes(groupPath: string): string[] {
     const groupDir = join(process.cwd(), groupPath);
-    try {
-        return readdirSync(groupDir, { withFileTypes: true })
-            .filter((entry) => entry.isDirectory())
-            .filter((entry) => !entry.name.startsWith("[") && !entry.name.startsWith("_"))
-            .filter((entry) => {
-                try {
-                    statSync(join(groupDir, entry.name, "page.tsx"));
-                    return true;
-                } catch {
-                    return false;
-                }
-            })
-            .map((entry) => entry.name)
-            .sort();
-    } catch (err) {
-        console.error(`[discoverRoutes] Failed to scan ${groupPath}:`, err);
-        return [];
-    }
+    const routes: string[] = [];
+
+    const walk = (dir: string, prefix: string) => {
+        let entries;
+        try {
+            entries = readdirSync(dir, { withFileTypes: true });
+        } catch (err) {
+            console.error(`[discoverRoutes] Failed to scan ${dir}:`, err);
+            return;
+        }
+
+        for (const entry of entries) {
+            if (!entry.isDirectory()) continue;
+            // Dynamic segments, private folders and nested route groups are
+            // not routes in their own right.
+            if (/^[[_(]/.test(entry.name)) continue;
+
+            const slug = prefix ? `${prefix}/${entry.name}` : entry.name;
+            const abs = join(dir, entry.name);
+
+            try {
+                statSync(join(abs, "page.tsx"));
+                routes.push(slug);
+            } catch {
+                // No page.tsx here, but a child segment may still be a route
+                // (Next.js allows layout-only intermediate segments), so keep
+                // descending rather than pruning the branch.
+            }
+
+            walk(abs, slug);
+        }
+    };
+
+    walk(groupDir, "");
+    return routes.sort();
 }
 
 /**
@@ -86,16 +110,23 @@ const TITLE_PASCAL_OVERRIDES: Record<string, string> = {
  * `TITLE_ACRONYMS` (uppercased) and entries in `TITLE_PASCAL_OVERRIDES`
  * (custom Pascal/SaaS-style casing). Numeric tokens pass through unchanged.
  *
+ * Nested slugs are titled from their last segment only, so
+ * `performance-testing-services/latency-testing` reads as "Latency Testing"
+ * rather than repeating its parent.
+ *
  * Examples:
  *   "manual-testing-services"           → "Manual Testing Services"
  *   "iot-device-testing-services"       → "IoT Device Testing Services"
  *   "qa-documentation-services"         → "QA Documentation Services"
  *   "saas-testing-services"             → "SaaS Testing Services"
+ *   "performance-testing-services/latency-testing"
+ *                                       → "Latency Testing"
  *   "iso-iec-42001-compliance-testing-services"
  *                                       → "ISO IEC 42001 Compliance Testing Services"
  */
 export function slugToTitle(slug: string): string {
-    return slug
+    const segments = slug.split("/");
+    return segments[segments.length - 1]
         .split("-")
         .map((word) => {
             const lower = word.toLowerCase();
