@@ -7,7 +7,9 @@ interface RelatedServicesProps {
     categorySlugs?: readonly string[];
     /** Raw strings from `post.tags` — keyword fallback. */
     tags?: readonly string[];
-    /** Post title, used only to personalise the section intro. */
+    /** Post title. Personalises the section intro, and is also matched against
+     *  `NARROW_TOPIC_MAP` so a sub-topic named only in the title (e.g. latency)
+     *  still resolves to its dedicated service page. */
     postTitle?: string;
     /** Max cards. 3 fits the grid cleanly at every breakpoint. */
     limit?: number;
@@ -33,7 +35,7 @@ export default function RelatedServices({
     postTitle,
     limit = 3,
 }: RelatedServicesProps) {
-    const services = getRelatedServices(categorySlugs, tags, limit);
+    const services = getRelatedServices(categorySlugs, tags, limit, postTitle);
 
     if (services.length === 0) return null;
 
