@@ -22,6 +22,7 @@
  * A single Schema.org JSON-LD object.
  */
 import { buildCanonicalUrl, SITE_URL } from "../../lib/seo/metadata";
+import { getBreadcrumbLabel } from "../../lib/seo/breadcrumb-labels";
 
 type JsonLd = Record<string, unknown>;
 
@@ -1814,19 +1815,25 @@ export const createFaqPageSchema = (faqs: Array<{ question: string; answer: stri
  * Existing `createBreadcrumbSchema` remains available for legitimate
  * multi-item cases (blog category trees, case-study hierarchies, etc.).
  *
+ * The terminal node's name comes from `BREADCRUMB_LABELS` when the slug is
+ * listed there, so the markup always matches the breadcrumb the user sees.
+ * 22 of 61 service/solution routes had drifted apart before this lookup
+ * existed. `pageName` is the fallback for routes outside that map.
+ *
  * @example
  *   <StructuredData
  *     data={createCanonicalBreadcrumb("/regression-testing", "Regression Testing")}
  *   />
  *
  * @param pathname Public pathname of the page, with or without leading slash.
- * @param pageName Display name for the breadcrumb's terminal node.
+ * @param pageName Fallback display name, used when the slug is not in
+ *                 `BREADCRUMB_LABELS`.
  * @returns A Schema.org BreadcrumbList JSON-LD object.
  */
 export const createCanonicalBreadcrumb = (pathname: string, pageName: string) =>
   createBreadcrumbSchema([
     { name: "Home", url: `${SITE_URL}/` },
-    { name: pageName, url: buildCanonicalUrl(pathname) },
+    { name: getBreadcrumbLabel(pathname, pageName), url: buildCanonicalUrl(pathname) },
   ]);
 
 // FAQ Schema

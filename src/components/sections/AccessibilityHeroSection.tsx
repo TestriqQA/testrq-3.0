@@ -3,6 +3,8 @@
 import React from "react";
 import { FaAccessibleIcon, FaUniversalAccess } from "react-icons/fa";
 import AccessibilityAnimation from "@/components/animations/AccessibilityAnimation";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import { getBreadcrumbLabel } from "@/lib/seo/breadcrumb-labels";
 
 const AccessibilityHeroSection: React.FC = () => {
     return (
@@ -12,6 +14,12 @@ const AccessibilityHeroSection: React.FC = () => {
             <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-400 opacity-10 rounded-full blur-3xl wave-animation"></div>
 
             <div className="max-w-7xl mx-auto relative z-10">
+                {/* Breadcrumb */}
+                <Breadcrumb
+                    variant="dark"
+                    items={[{ label: getBreadcrumbLabel("/accessibility-testing-services", "Accessibility Testing") }]}
+                />
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="max-w-2xl">
                         <div

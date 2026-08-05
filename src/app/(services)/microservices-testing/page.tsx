@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     microservicesServiceSchema,
 } from "@/components/seo/StructuredData";
@@ -59,14 +59,6 @@ export default function MicroservicesTestingPage() {
     // reduced from 3 items (Home / Services → /services/ / Microservices Testing →
     // /services/microservices-testing) to 2 canonical items per PR-2A/2B template.
     // PR-3 will fix at breadcrumb component level cascading to 40 pages.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Microservices Testing",
-            url: "https://www.testriq.com/microservices-testing",
-        },
-    ];
-
     // F-44.1 batch 2: plain-text mirror of MicroservicesFAQs UI content for FAQPage JSON-LD.
     const faqsForSchema = [
         {
@@ -94,7 +86,7 @@ export default function MicroservicesTestingPage() {
     return (
         <div>
             <StructuredData data={microservicesServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/microservices-testing", "Microservices Testing")} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <MicroservicesHeroSection />

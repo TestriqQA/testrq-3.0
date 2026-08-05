@@ -47,7 +47,7 @@ const MigrationNextStepsSection: React.FC = () => {
                                     Get a Free Consultation
                                 </Link>
                                 <Link
-                                    href="/services"
+                                    href="/website-map"
                                     className="px-8 py-4 bg-blue-600/30 text-white font-bold rounded-xl border border-white/20 hover:bg-blue-600/50 transition-colors text-center"
                                 >
                                     Explore More Services

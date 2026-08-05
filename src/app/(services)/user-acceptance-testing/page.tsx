@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     uatServiceSchema,
 } from "@/components/seo/StructuredData";
@@ -56,14 +56,6 @@ export default function UserAcceptanceTestingPage() {
     // fixed — breadcrumb reduced from 3 items (Home / Services / User Acceptance Testing, all with
     // /services/ prefix URLs) to 2 canonical items per PR-2A template. StructuredData moved inside
     // <div> wrapper (was in <> fragment outside <MainLayout>) to match PR-2A template.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "User Acceptance Testing",
-            url: "https://www.testriq.com/user-acceptance-testing",
-        },
-    ];
-
     // F-44.1 batch 5: plain-text mirror of UATFAQs UI content for FAQPage JSON-LD.
     const faqsForSchema = [
         {
@@ -87,7 +79,7 @@ export default function UserAcceptanceTestingPage() {
     return (
         <div>
             <StructuredData data={uatServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/user-acceptance-testing", "User Acceptance Testing")} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <UATHeroSection />

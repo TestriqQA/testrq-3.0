@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     regressionTestingServiceSchema,
 } from "@/components/seo/StructuredData";
@@ -56,14 +56,6 @@ export default function RegressionTestingPage() {
     // unified (were two separate .webp files). Junk page-level fields removed: verification,
     // authors, creator, publisher, formatDetection (all belong in root layout only). 9 dynamic()
     // → direct imports. PR-3 will fix at breadcrumb component level cascading to 40 pages.
-    const breadcrumbItems = [
-        { name: "Home", url: "https://www.testriq.com/" },
-        {
-            name: "Regression Testing",
-            url: "https://www.testriq.com/regression-testing",
-        },
-    ];
-
     // F-44.1: plain-text mirror of RegressionTestingFAQs UI content for FAQPage JSON-LD.
     const faqsForSchema = [
         {
@@ -91,7 +83,7 @@ export default function RegressionTestingPage() {
     return (
         <div>
             <StructuredData data={regressionTestingServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={createCanonicalBreadcrumb("/regression-testing", "Regression Testing")} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <RegressionTestingHeroSection />
