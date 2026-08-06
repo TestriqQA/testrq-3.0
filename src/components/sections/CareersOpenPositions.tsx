@@ -16,6 +16,8 @@ import Link from "next/link";
 import JobCardItem from "./JobCardItem";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
 
+/** Sentinel value for "no domain experience". Mutually exclusive with the real domains. */
+const DOMAIN_NA = "NA";
 
 const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ jobOpenings }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,6 +32,9 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showDomainDropdown, setShowDomainDropdown] = useState(false);
   const [phoneError, setPhoneError] = useState("");
+  // Domain Knowledge is a custom checkbox dropdown, not a native control, so the
+  // browser cannot enforce `required` on it — it needs its own error state.
+  const [domainError, setDomainError] = useState("");
   const domainDropdownRef = useRef<HTMLDivElement>(null);
   const modalContentRef = useRef<HTMLDivElement>(null);
   const [customLocation, setCustomLocation] = useState("");
@@ -155,6 +160,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
     setResumeFile(null);
     setShowSuccessMessage(false);
     setPhoneError("");
+    setDomainError("");
     document.body.style.overflow = "unset";
     setFormData({
       fullName: "",
@@ -198,6 +204,16 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
 
     if (formData.location === "Others" && !customLocation.trim()) {
       alert("Please enter your location");
+      return;
+    }
+
+    // Domain Knowledge is mandatory. The browser cannot enforce this the way it
+    // does for the native inputs, because the control is a custom checkbox
+    // dropdown — hence the explicit check and inline message. Applicants with no
+    // domain experience select "NA".
+    if (formData.domainKnowledge.length === 0) {
+      setDomainError('Please select at least one domain, or "NA" if none apply');
+      domainDropdownRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
 
@@ -260,12 +276,23 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
   };
 
   const handleDomainKnowledgeChange = (option: string) => {
-    setFormData((prev) => {
-      const newDomainKnowledge = prev.domainKnowledge.includes(option)
-        ? prev.domainKnowledge.filter((item) => item !== option)
-        : [...prev.domainKnowledge, option];
-      return { ...prev, domainKnowledge: newDomainKnowledge };
-    });
+    const selected = formData.domainKnowledge;
+    const isSelected = selected.includes(option);
+
+    // "NA" is mutually exclusive with the real domains — "NA, Banking" would
+    // contradict itself. Picking NA clears everything else; picking any real
+    // domain clears NA.
+    let next: string[];
+    if (option === DOMAIN_NA) {
+      next = isSelected ? [] : [DOMAIN_NA];
+    } else if (isSelected) {
+      next = selected.filter((item) => item !== option);
+    } else {
+      next = [...selected.filter((item) => item !== DOMAIN_NA), option];
+    }
+
+    setFormData((prev) => ({ ...prev, domainKnowledge: next }));
+    if (next.length > 0) setDomainError("");
   };
 
 
@@ -293,6 +320,10 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
     "Telecom",
     "Real Estate",
     "SalesForce",
+    // Kept last, and handled as an exclusive choice in
+    // handleDomainKnowledgeChange: domain knowledge is now mandatory, so
+    // applicants with none still need a way to submit the form.
+    "NA",
   ];
 
   const noticePeriodOptions = [
@@ -808,12 +839,13 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       {/* Notice Period */}
                       <div>
                         <label htmlFor="careers-noticePeriod" className="block text-sm font-medium text-gray-700 mb-2">
-                          Notice Period
+                          Notice Period <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
                         <select
                           id="careers-noticePeriod"
                           name="noticePeriod"
                           autoComplete="off"
+                          required
                           value={formData.noticePeriod}
                           onChange={handleInputChange}
                           className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-sm sm:text-base"
@@ -830,7 +862,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       {/* Domain Knowledge - Mobile optimized dropdown */}
                       <div ref={domainDropdownRef}>
                         <span id="careers-domainKnowledge-label" className="block text-sm font-medium text-gray-700 mb-2">
-                          Domain Knowledge
+                          Domain Knowledge <span className="text-red-500" aria-hidden="true">*</span>
                         </span>
                         <div className="relative">
                           <button
@@ -839,7 +871,10 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                             aria-haspopup="listbox"
                             aria-expanded={showDomainDropdown}
                             aria-labelledby="careers-domainKnowledge-label"
-                            className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-left flex items-center justify-between text-sm sm:text-base min-h-[44px] touch-manipulation"
+                            aria-required="true"
+                            aria-invalid={!!domainError}
+                            aria-describedby={domainError ? "careers-domainKnowledge-error" : undefined}
+                            className={`w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-left flex items-center justify-between text-sm sm:text-base min-h-[44px] touch-manipulation ${domainError ? "border-red-500" : "border-gray-300"}`}
                           >
                             <span className="text-gray-500">
                               {formData.domainKnowledge.length > 0
@@ -874,6 +909,12 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                             </div>
                           )}
                         </div>
+
+                        {domainError && (
+                          <p id="careers-domainKnowledge-error" role="alert" className="text-red-500 text-sm mt-1">
+                            {domainError}
+                          </p>
+                        )}
 
                         {formData.domainKnowledge.length > 0 && (
                           <div className="mt-2 flex flex-wrap gap-1">
