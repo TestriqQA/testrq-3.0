@@ -53,8 +53,19 @@ export async function POST(request: NextRequest) {
         }
 
 
-        if (!fullName || !email || !jobTitle || !resume) {
-            console.warn('[apply-job API] Missing required fields:', { fullName: !!fullName, email: !!email, jobTitle: !!jobTitle, resume: !!resume });
+        // Notice Period and Domain Knowledge are mandatory in the form, so they are
+        // enforced here too — the client-side check is a UX affordance, not a
+        // guarantee, and a direct POST would otherwise store an incomplete
+        // application. Applicants with no domain experience send ["NA"].
+        if (!fullName || !email || !jobTitle || !resume || !noticePeriod || domainKnowledge.length === 0) {
+            console.warn('[apply-job API] Missing required fields:', {
+                fullName: !!fullName,
+                email: !!email,
+                jobTitle: !!jobTitle,
+                resume: !!resume,
+                noticePeriod: !!noticePeriod,
+                domainKnowledge: domainKnowledge.length > 0,
+            });
             return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
