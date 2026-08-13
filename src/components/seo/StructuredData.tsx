@@ -1873,7 +1873,17 @@ export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Testriq QA Lab",
-  "image": "https://www.testriq.com/testriq-logo.png",
+  // schema.org `image` on a business means a representative image, not the
+  // brand mark — that belongs on Organization.logo, which is set separately
+  // and left pointing at testriq-logo.png.
+  //
+  // This field previously carried testriq-logo.png (7959x2178, a wide wordmark
+  // on white). Google-family surfaces prefer structured data over og:image for
+  // link previews, so Google Chat rendered the homepage card by centre-cropping
+  // that wordmark to a square — the preview showed a giant "stri" rather than
+  // the branded card. testriq-logo.png appears nowhere else on the homepage
+  // (no <img>, no image_src), so this was the only possible source.
+  "image": "https://www.testriq.com/OG/testriq-qa-lab-llp-og-img.webp",
   "url": "https://www.testriq.com",
   "telephone": "+91-915-2929-343",
   "address": {
