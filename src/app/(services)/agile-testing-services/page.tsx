@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Accelerate release cycles with Testriq's Agile testing services. Continuous testing, shift-left QA, and sprint-ready automation for global teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/Agile-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Agile Testing Services - Testriq",
             type: "image/webp",
         },

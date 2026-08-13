@@ -27,8 +27,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Validate application resilience at scale with Testriq's performance testing services. ISO 29119-compliant load, stress, and endurance testing for DevOps teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/performance-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Performance Testing Services by Testriq",
             type: "image/webp",
         },

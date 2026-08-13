@@ -44,8 +44,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://www.testriq.com/OG/shoping-adds-certification-og-image.webp",
-        width: 1200,
-        height: 630,
+        width: 2752,
+        height: 1536,
         alt: "Shopping App Certification - Secure Testing & Compliance",
       },
     ],

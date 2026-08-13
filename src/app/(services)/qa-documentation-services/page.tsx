@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       {
         url: 'https://www.testriq.com/OG/QA-Documentation-Service-Og.webp',
         width: 1200,
-        height: 630,
+        height: 800,
         alt: 'QA Documentation Services by Testriq',
         type: 'image/webp',
       }

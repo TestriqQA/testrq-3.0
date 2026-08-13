@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Validate every workflow with Testriq's functional testing services. Web, mobile, and enterprise QA — manual and automated, ISO 29119-aligned for global teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/functional-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Functional Testing Services by Testriq QA Lab",
             type: "image/webp",
         },

@@ -83,7 +83,7 @@ export const metadata: Metadata = {
       {
         url: "https://www.testriq.com/OG/Contact-Us-Og.webp",
         width: 1200,
-        height: 630,
+        height: 800,
         alt: "Testriq Contact Us OG Image",
       },
     ],

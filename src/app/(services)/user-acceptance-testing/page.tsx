@@ -31,8 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Validate software with real users through Testriq's UAT services. ISTQB-certified facilitators for ERP, CRM, and digital transformation acceptance testing.",
         ogImage: {
             url: "https://www.testriq.com/OG/user-acceptance-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Testriq UAT Services",
             type: "image/webp",
         },

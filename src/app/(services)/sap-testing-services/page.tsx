@@ -55,8 +55,8 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "https://www.testriq.com/OG/SAP-testing-og-image.webp",
-                width: 1200,
-                height: 630,
+                width: 2752,
+                height: 1536,
                 alt: "SAP Testing Services - Testriq",
             },
         ],

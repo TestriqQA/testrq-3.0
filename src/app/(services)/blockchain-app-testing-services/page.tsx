@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Secure your Web3 stack with Testriq's blockchain testing. Smart contract audits, dApp security testing, and decentralized network validation for enterprises.",
         ogImage: {
             url: "https://www.testriq.com/OG/Blockchain-app-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Blockchain App Testing Services - Testriq",
             type: "image/webp",
         },

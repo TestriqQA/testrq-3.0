@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Power your QA with Testriq's test data management. Secure data masking, synthetic data generation, and GDPR-compliant TDM for safe, scalable testing pipelines.",
         ogImage: {
             url: "https://www.testriq.com/OG/Test-data-management-service-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Test Data Management Services - Testriq",
             type: "image/webp",
         },

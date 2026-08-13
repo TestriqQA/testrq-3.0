@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Prevent data loss and ensure seamless transitions with Testriq's migration testing. Expert ETL validation, data integrity checks, and cloud migration QA.",
         ogImage: {
             url: "https://www.testriq.com/OG/migration-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Testriq Migration Testing Services",
             type: "image/webp",
         },

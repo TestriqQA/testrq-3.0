@@ -8,6 +8,9 @@
  * Run via `npm run test` (single pass) or `npm run test:watch`.
  */
 
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
@@ -21,6 +24,39 @@ import {
     isDevEnvironment,
     type OgImageDescriptor,
 } from "../metadata";
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * Read the pixel dimensions of a WebP file from its header.
+ *
+ * Inlined rather than pulled from `sharp` so the test stays a fast, pure-Node
+ * read with no native-binary dependency. Covers all three WebP chunk types:
+ * `VP8 ` (lossy), `VP8L` (lossless) and `VP8X` (extended).
+ */
+function webpDimensions(file: string): [number, number] {
+    const b = readFileSync(file);
+    if (b.toString("ascii", 0, 4) !== "RIFF" || b.toString("ascii", 8, 12) !== "WEBP") {
+        throw new Error(`Not a WebP file: ${file}`);
+    }
+    const chunk = b.toString("ascii", 12, 16);
+    if (chunk === "VP8X") {
+        return [
+            1 + (b[24] | (b[25] << 8) | (b[26] << 16)),
+            1 + (b[27] | (b[28] << 8) | (b[29] << 16)),
+        ];
+    }
+    if (chunk === "VP8 ") {
+        return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+    }
+    if (chunk === "VP8L") {
+        const bits = b.readUInt32LE(21);
+        return [(bits & 0x3fff) + 1, ((bits >>> 14) & 0x3fff) + 1];
+    }
+    throw new Error(`Unrecognised WebP chunk "${chunk}" in ${file}`);
+}
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -49,12 +85,29 @@ describe("DEFAULT constants", () => {
         expect(DEFAULT_TWITTER_HANDLE).toBe("@testriq");
     });
 
-    it("DEFAULT_OG_IMAGE has valid 1200x630 dimensions and required fields", () => {
+    it("DEFAULT_OG_IMAGE has required fields", () => {
         expect(DEFAULT_OG_IMAGE.url).toMatch(/^https:\/\/www\.testriq\.com\/OG\/.+\.webp$/);
-        expect(DEFAULT_OG_IMAGE.width).toBe(1200);
-        expect(DEFAULT_OG_IMAGE.height).toBe(630);
         expect(DEFAULT_OG_IMAGE.alt.length).toBeGreaterThan(0);
         expect(DEFAULT_OG_IMAGE.type).toBe("image/webp");
+    });
+
+    // Regression guard. DEFAULT_OG_IMAGE declared 1200×630 for its whole life
+    // while the asset on disk has always been 1100×733, and this test asserted
+    // the declared numbers rather than the real ones — so it locked the bug in
+    // instead of catching it. Receivers use og:image:width/height to size the
+    // preview box before the image downloads, so wrong values render the first
+    // share letterboxed. Asserting against the file makes the drift impossible.
+    it("DEFAULT_OG_IMAGE dimensions match the asset on disk", () => {
+        const file = join(
+            process.cwd(),
+            "public",
+            DEFAULT_OG_IMAGE.url.replace(SITE_URL, "")
+        );
+        expect(existsSync(file)).toBe(true);
+        expect(webpDimensions(file)).toEqual([
+            DEFAULT_OG_IMAGE.width,
+            DEFAULT_OG_IMAGE.height,
+        ]);
     });
 });
 

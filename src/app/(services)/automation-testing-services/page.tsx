@@ -28,8 +28,8 @@ export async function generateMetadata(): Promise<Metadata> {
       "Scale releases with Testriq's automation testing services. Playwright, Selenium, and Cypress frameworks; ISO 29119-5 and SOC2-aligned QA for enterprise teams.",
     ogImage: {
       url: "https://www.testriq.com/OG/Automation-testing-service-og-image.webp",
-      width: 1200,
-      height: 630,
+      width: 2752,
+      height: 1536,
       alt: "Automation Testing Services - Testriq",
       type: "image/webp",
     },

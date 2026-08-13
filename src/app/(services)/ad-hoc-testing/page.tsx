@@ -30,8 +30,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Rapid, on-demand QA with Testriq's ad-hoc testing. Error guessing, monkey testing, and exploratory testing for hotfix validation and fast CI/CD feedback.",
         ogImage: {
             url: "https://www.testriq.com/OG/Ad-Hoc_Testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Testriq Ad-Hoc Testing Services",
             type: "image/webp",
         },

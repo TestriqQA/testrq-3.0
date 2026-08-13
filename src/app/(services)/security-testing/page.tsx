@@ -29,8 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
       "Protect digital assets with Testriq's security testing services. VAPT, application security audits, and ISO 29119-aligned cyber resilience for enterprise teams.",
     ogImage: {
       url: "https://www.testriq.com/OG/Security-service-og-image.webp",
-      width: 1200,
-      height: 630,
+      width: 2752,
+      height: 1536,
       alt: "Security Testing Services - Testriq",
       type: "image/webp",
     },

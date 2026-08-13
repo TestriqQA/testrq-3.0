@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       {
         url: 'https://www.testriq.com/OG/About-Us-og.webp',
         width: 1200,
-        height: 630,
+        height: 799,
         alt: 'About Testriq QA Lab - Trusted Software Testing Company',
       }
     ],
