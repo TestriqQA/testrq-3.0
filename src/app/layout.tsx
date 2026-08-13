@@ -77,16 +77,27 @@ export const metadata: Metadata = {
     title: "Pure-Play Software Testing Company & QA Outsourcing | Testriq",
     description:
       "ISTQB Certified partner providing end-to-end QA, DevSecOps, and AI-driven quality engineering. Global reach serving US, UK, EU, India, and UAE markets.",
+    // The Testriq wordmark on a 1200×630 canvas — the exact ratio every platform
+    // crops to, so the mark is shown whole instead of being sliced.
+    //
+    // /testriq-logo.png itself is 7959×2178 (3.65:1) and is deliberately NOT used
+    // here: pointed at directly, receivers centre-crop it to a zoomed fragment
+    // (shared links rendered a giant "stri"). That file is untouched and is still
+    // what Organization.logo points at, which is its correct role.
+    //
+    // PNG, not WebP. LinkedIn does not support WebP og:images at all and WhatsApp
+    // fails on them silently, so a WebP card previews nowhere reliable.
+    //
+    // Width/height below are the asset's real size. They were declared 1200×630
+    // for years against a 1100×733 file; receivers size the preview box from
+    // these before the image loads, so a wrong ratio letterboxes the first share.
     images: [
       {
-        url: "https://www.testriq.com/OG/testriq-qa-lab-llp-og-img.webp",
-        // Real dimensions of the asset on disk. Previously declared 1200×630,
-        // which is what receivers use to size the preview box before the image
-        // arrives — a wrong ratio renders the first share letterboxed.
-        width: 1100,
-        height: 733,
+        url: "https://www.testriq.com/OG/testriq-logo-og.png",
+        width: 1200,
+        height: 630,
         alt: "Testriq - Global Software Testing Services",
-        type: "image/webp",
+        type: "image/png",
       },
     ],
   },
@@ -98,7 +109,9 @@ export const metadata: Metadata = {
     title: "Pure-Play Software Testing Company & QA Outsourcing | Testriq",
     description:
       "Expert QA outsourcing and risk-based testing for global enterprises. Serving US, UK, EU, and Asia with ISTQB certified experts.",
-    images: ["https://www.testriq.com/OG/testriq-qa-lab-llp-twitter-img.webp"],
+    // Same card as og:image, for the same reasons (1.91:1 so nothing crops, PNG
+    // so every client can decode it).
+    images: ["https://www.testriq.com/OG/testriq-logo-og.png"],
   },
   robots: {
     index: true,

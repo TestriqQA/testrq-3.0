@@ -1873,7 +1873,14 @@ export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Testriq QA Lab",
-  "image": "https://www.testriq.com/testriq-logo.png",
+  // Points at the 1200×630 logo card, not the raw 7959×2178 /testriq-logo.png.
+  // Crawlers that read this field centre-crop whatever they get; against the raw
+  // file that produced a zoomed fragment of the wordmark in shared links. Same
+  // artwork either way — this copy just already matches the ratio they crop to.
+  //
+  // Organization.logo still points at /testriq-logo.png, which is correct: that
+  // field is meant to carry the brand mark itself.
+  "image": "https://www.testriq.com/OG/testriq-logo-og.png",
   "url": "https://www.testriq.com",
   "telephone": "+91-915-2929-343",
   "address": {
