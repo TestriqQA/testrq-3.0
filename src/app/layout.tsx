@@ -80,8 +80,11 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://www.testriq.com/OG/testriq-qa-lab-llp-og-img.webp",
-        width: 1200,
-        height: 630,
+        // Real dimensions of the asset on disk. Previously declared 1200×630,
+        // which is what receivers use to size the preview box before the image
+        // arrives — a wrong ratio renders the first share letterboxed.
+        width: 1100,
+        height: 733,
         alt: "Testriq - Global Software Testing Services",
         type: "image/webp",
       },

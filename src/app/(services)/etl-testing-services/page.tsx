@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ogImage: {
       url: "https://www.testriq.com/OG/ETL-Testing-Service-Og.webp",
       width: 1200,
-      height: 630,
+      height: 800,
       alt: "ETL Testing Services - Testriq",
       type: "image/webp",
     },

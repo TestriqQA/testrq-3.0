@@ -61,8 +61,8 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "https://www.testriq.com/OG/managed-testing-service-og-image.webp",
-                width: 1200,
-                height: 630,
+                width: 2752,
+                height: 1536,
                 alt: "Testriq Managed Testing Services",
             },
         ],

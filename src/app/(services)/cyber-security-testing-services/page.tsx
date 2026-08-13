@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Fortify your defenses with Testriq's cyber security testing. VAPT, vulnerability assessments, and ISTQB & CEH-certified ethical hacking for enterprise teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/Cyber-security-testing-ogimage.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Cyber Security Testing Services - Testriq",
             type: "image/webp",
         },

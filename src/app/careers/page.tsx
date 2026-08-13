@@ -121,7 +121,7 @@ export const metadata: Metadata = {
       {
         url: 'https://www.testriq.com/OG/Careers-Og.webp',
         width: 1200,
-        height: 630,
+        height: 800,
         alt: 'Careers at Testriq - QA Testing Jobs',
       }
     ],

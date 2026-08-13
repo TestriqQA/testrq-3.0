@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Ensure precision and reliability with Testriq's embedded testing services. V&V for automotive (ISO 26262), medical, and IoT safety-critical systems.",
         ogImage: {
             url: "https://www.testriq.com/OG/Embedded-testing-service-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Embedded Testing Services by Testriq",
             type: "image/webp",
         },

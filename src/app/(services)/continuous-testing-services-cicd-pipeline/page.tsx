@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Shift quality left with Testriq's continuous testing. Automated regression, performance, and security gates integrated into your CI/CD for DevOps teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/continues-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Continuous Testing Services - Testriq",
             type: "image/webp",
         },

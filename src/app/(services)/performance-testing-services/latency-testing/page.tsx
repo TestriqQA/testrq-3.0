@@ -26,8 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Reduce application response times with Testriq's latency testing services. P95/P99 analysis, API latency profiling, network diagnostics, and database query optimization for enterprises globally.",
         ogImage: {
             url: "https://www.testriq.com/OG/performance-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Latency Testing Services by Testriq",
             type: "image/webp",
         },

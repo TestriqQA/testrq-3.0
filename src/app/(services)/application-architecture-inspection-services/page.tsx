@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Engineer resilience with Testriq's architecture inspection. Microservices reviews, technical-debt audits, and cloud-native validation for scaling teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/application-architecture-inspection-services-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Application Architecture Inspection Services - Testriq",
             type: "image/webp",
         },

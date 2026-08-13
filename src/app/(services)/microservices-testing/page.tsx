@@ -32,8 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Validate distributed systems with Testriq's microservices testing. Contract testing, chaos engineering, and Kubernetes API QA for cloud-native architectures.",
         ogImage: {
             url: "https://www.testriq.com/OG/Microservices-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Testriq Microservices Testing Services",
             type: "image/webp",
         },

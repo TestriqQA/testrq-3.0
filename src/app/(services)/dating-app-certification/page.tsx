@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       {
         url: "https://www.testriq.com/OG/Dating-App-Certification-Og.webp",
         width: 1200,
-        height: 630,
+        height: 800,
         alt: "Dating App Certification - Testriq QA Lab",
       },
     ],

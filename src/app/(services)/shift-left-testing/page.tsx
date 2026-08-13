@@ -26,8 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Detect defects early with Testriq's shift-left testing services. CI/CD integration, TDD coaching, and BDD consulting for Agile and DevOps teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/Shift-left-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Testriq Shift-Left Testing Services",
             type: "image/webp",
         },

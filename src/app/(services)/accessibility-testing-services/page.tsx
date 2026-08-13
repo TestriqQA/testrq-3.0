@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Ensure your digital products are inclusive with Testriq's expert Accessibility Testing Services. We specialize in WCAG 2.2, Section 508, and ADA compliance.",
         ogImage: {
             url: "https://www.testriq.com/OG/Accessibility-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Accessibility Testing Services - Testriq",
             type: "image/webp",
         },

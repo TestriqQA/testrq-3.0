@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Sync global delivery with Testriq's timezone testing. Real-time QA, follow-the-sun cycles, and localized support for distributed enterprise engineering teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/time-zone-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Time Zone Aligned QA Services - Testriq",
             type: "image/webp",
         },

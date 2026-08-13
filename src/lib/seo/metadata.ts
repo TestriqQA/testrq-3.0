@@ -48,17 +48,25 @@ export const DEFAULT_TWITTER_HANDLE = "@testriq" as const;
 /**
  * Default Open Graph image used as a site-wide fallback when a page does
  * not specify its own `ogImage`. Points to the existing homepage OG image
- * shipped in `/public/OG/testriq-qa-lab-llp-og-img.webp` (1200×630, WebP,
+ * shipped in `/public/OG/testriq-qa-lab-llp-og-img.webp` (1100×733, WebP,
  * referenced from [src/app/layout.tsx](../../app/layout.tsx)).
  *
  * The contract guarantees every page produced by `buildPageMetadata`
  * emits a valid `og:image` tag — preventing blank link previews on
  * social shares and AI engine link cards.
+ *
+ * NOTE: width/height MUST match the real asset on disk. They were declared
+ * as 1200×630 while the file has always been 1100×733 — receivers use these
+ * numbers to pre-allocate the preview box before the image downloads, so a
+ * wrong ratio renders the first share letterboxed or cropped. The asset is
+ * also slightly under Facebook's recommended 1200px width and is a 1.5:1
+ * ratio rather than the 1.91:1 the major platforms crop to; replacing it
+ * with a true 1200×630 export is an asset task, not a code one.
  */
 export const DEFAULT_OG_IMAGE: OgImageDescriptor = {
     url: `${SITE_URL}/OG/testriq-qa-lab-llp-og-img.webp`,
-    width: 1200,
-    height: 630,
+    width: 1100,
+    height: 733,
     alt: "Testriq - Global Software Testing Services",
     type: "image/webp",
 };

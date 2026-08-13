@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Validate software across browsers, OS, and devices with Testriq's compatibility testing services. ISO 29119-certified QA for global, multi-platform launches.",
         ogImage: {
             url: "https://www.testriq.com/OG/Compatibility-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Compatibility Testing Services - Testriq",
             type: "image/webp",
         },

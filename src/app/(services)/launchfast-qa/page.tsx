@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       {
         url: "https://www.testriq.com/OG/Launch-Fast-QA-Service-og.webp",
         width: 1200,
-        height: 630,
+        height: 800,
         alt: "LaunchFast QA Services - Testriq",
       },
     ],

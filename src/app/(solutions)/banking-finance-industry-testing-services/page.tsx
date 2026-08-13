@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       {
         url: 'https://www.testriq.com/OG/Banking-App-Testing-Services-og.webp',
         width: 1200,
-        height: 630,
+        height: 800,
         alt: 'Banking & Finance Testing Solutions | Testriq',
       }
     ],

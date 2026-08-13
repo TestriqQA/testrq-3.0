@@ -25,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
             "Drive engagement with Testriq's usability testing services. UX audits, mobile and web user research, and ISTQB-certified QA for evidence-driven product teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/usability-testing-og-image.webp",
-            width: 1200,
-            height: 630,
+            width: 2752,
+            height: 1536,
             alt: "Usability Testing Services - Testriq",
             type: "image/webp",
         },

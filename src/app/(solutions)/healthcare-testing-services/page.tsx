@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       {
         url: 'https://www.testriq.com/OG/Healthcare-Testing-Service-Og.webp',
         width: 1200,
-        height: 630,
+        height: 800,
         alt: 'Testriq - Healthcare Software Testing Services',
       }
     ],
