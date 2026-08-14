@@ -158,7 +158,10 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/tag/security-testing-best-practices", destination: "/blog/post/security-validation-in-mvp-startup-qa-best-practices", permanent: true },
       { source: "/blog/tag/qa", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/blog/tag/scalability-testing-best-practices", destination: "/performance-testing-services", permanent: true },
-      { source: "/blog/tag/automation-testing-learning", destination: "/blog/post/how-much-time-do-we-need-to-learn-automation-testing", permanent: true },
+      // Retargeted: the old destination (/blog/post/how-much-time-do-we-need-to-
+      // learn-automation-testing) does not exist, so this rule was landing on a
+      // "Post Not Found" page.
+      { source: "/blog/tag/automation-testing-learning", destination: "/blog/post/what-are-the-best-ways-to-learn-mobile-automation-testing", permanent: true },
       { source: "/blog/tag/gazebo-simulator-testing", destination: "/robotics-testing-services", permanent: true },
       { source: "/blog/tag/lms-performance-optimization", destination: "/blog/post/scalability-testing-for-learning-management-systems-lms-ensuring-a-smooth-experience-for-all-users", permanent: true },
       { source: "/blog/tag/infrastructureascode", destination: "/automation-testing-services", permanent: true },
@@ -607,7 +610,13 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/post/ai-testing-trends-2025", destination: "/blog/post/ai-testing-trends-2026-roi", permanent: true },
       { source: "/blog/post/the-future-of-qa-trends-shaping-software-testing-in-2025", destination: "/blog/post/the-future-of-qa-trends-shaping-software-testing-in-2026", permanent: true },
       { source: "/blog/post/beginners-guide-to-iot-testing-types-tools-protocol-ecosystem", destination: "/blog/post/interoperability-testing-for-iot-ensuring-seamless-protocol-device-interaction", permanent: true },
-      { source: "/blog/tag/user-acceptance-testing-(uat)", destination: "/blog/tag/user-acceptance-testing-uat", permanent: true },
+      // NOTE: a rule for "/blog/tag/user-acceptance-testing-(uat)" used to sit
+      // here and caused an infinite redirect. `source` is path-to-regexp, where
+      // "(uat)" is an unnamed regex GROUP, not a literal "(uat)" — so the rule
+      // matched the already-canonical "/blog/tag/user-acceptance-testing-uat"
+      // and sent it to itself. The parenthesised URL never needed a rule: the
+      // route's own normalizeBlogSlug() + permanentRedirect() (F-66) strips the
+      // parens and 308s to the canonical slug. Do not re-add it.
       { source: "/blog/post/beta-testing-with-real-users-vs-lab-testss", destination: "/blog/post/hybrid-qa-strategy-balancing-manual-and-automated-testing", permanent: true },
       { source: "/blog/post/bug-discovery-find-hidden-defects-with-heuristic-exploratory-testing", destination: "/blog/post/heuristic-exploratory-testing-guide", permanent: true },
       { source: "/services/functional-testing-services", destination: "/functional-testing-services", permanent: true },
@@ -619,7 +628,10 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/post/5-little-known-bug-types-that-often-slip-through", destination: "/blog/post/5-critical-bug-types-that-evade-testing", permanent: true },
       { source: "/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025", destination: "/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2026", permanent: true },
       { source: "/blog/post/automated-regression-testing-faster-smarter-qa-cycles", destination: "/blog/post/automated-regression-testing", permanent: true },
-      { source: "/blog/category/Exploratory Testing", destination: "/blog/category/Exploratory-Testing", permanent: true },
+      // Destination lowercased: "/blog/category/Exploratory-Testing" is not a
+      // Sanity slug, so it only resolved via a second hop through the route's
+      // own normalisation. Pointing straight at the canonical slug saves a hop.
+      { source: "/blog/category/Exploratory Testing", destination: "/blog/category/exploratory-testing", permanent: true },
       { source: "/blog/post/10-must-use-mobile-app-testing-tools-in-2025", destination: "/blog/post/mobile-app-testing-tools-2026-guide", permanent: true },
       { source: "/blog/post/cloud-", destination: "/blog/post/cloud-based-performance-testing-scaling-for-modern-architectures", permanent: true },
       { source: "/Best", destination: "/", permanent: true },
@@ -629,10 +641,16 @@ export const redirects: RedirectRule[] = [
       { source: "/test-automation-services/", destination: "/automation-testing-services", permanent: true },
       { source: "/blog/tag/ci/cd-performance-integration", destination: "/blog/tag/ci-cd-performance-integration", permanent: true },
       { source: "/blog/post/multiplayer-testing-ensuring-", destination: "/blog/post/multiplayer-testing-ensuring-smooth-online-gameplay-and-seamless-matchmaking", permanent: true },
-      { source: "/blog/tag/user-experience-(ux)", destination: "/blog/tag/user-experience", permanent: true },
+      // Written as the paren-stripped slug on purpose. "(ux)" in a `source` is a
+      // path-to-regexp group, so the old "/blog/tag/user-experience-(ux)" form
+      // only ever matched this literal URL anyway — spelling it out keeps the
+      // rule honest. The parenthesised URL reaches here via F-66 normalisation.
+      { source: "/blog/tag/user-experience-ux", destination: "/blog/tag/user-experience", permanent: true },
       { source: "/blog/tag/ci/cd-pipeline-integration", destination: "/blog/tag/ci-cd-pipeline-integration", permanent: true },
       { source: "/www.testriq.com/performance-testing-services", destination: "/performance-testing-services", permanent: true },
-      { source: "/blog/tag/explainable-ai-(xai)", destination: "/blog/tag/explainable-ai-xai", permanent: true },
+      // Removed for the same reason as the "(uat)" rule above: "(xai)" parsed as
+      // a regex group, so this rule matched "/blog/tag/explainable-ai-xai" and
+      // redirected it to itself. F-66 normalisation handles the parens form.
       { source: "/www.testriq.com/", destination: "/", permanent: true },
       { source: "/blog/tag/healthcare-system-qa", destination: "/blog/tag/healthcare-software-testing", permanent: true },
       { source: "/blog/tag/ci/cd-pipeline", destination: "/blog/tag/ci-cd-pipeline", permanent: true },
@@ -662,7 +680,9 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/post/top-test-automation-trends-to-watch-in-2025", destination: "/blog/post/top-test-automation-trends-to-watch-in-2026", permanent: true },
       { source: "/blog/post/api-test-automation-strategy-faster-releases-reliable-integrations", destination: "/blog/post/api-test-automation-strategy-faster-ci-cd", permanent: true },
       { source: "/cart", destination: "/blog/post/reduce-cart-abandonment-with-checkout-testing", permanent: true },
-      { source: "/blog/tag/qa-tools", destination: "/blog/tag/qa-testing-tools", permanent: true },
+      // Retargeted: /blog/tag/qa-testing-tools does not exist in Sanity, so this
+      // rule was landing on a "Tag Not Found" page.
+      { source: "/blog/tag/qa-tools", destination: "/blog/tag/top-10-qa-tools", permanent: true },
       { source: "/login", destination: "/", permanent: true },
       { source: "/blog/tag/robotic-in-sofware-testing", destination: "/robotics-testing-services", permanent: true },
       { source: "/performance-testing-tools-compared", destination: "/blog/post/top-performance-testing-tools-compared-jmeter-loadrunner-etc", permanent: true },
@@ -828,4 +848,65 @@ export const redirects: RedirectRule[] = [
       // they're restored as genuine local pages.
       { source: "/software-qa-testing-services-in-madinat-zayed", destination: "/locations-we-serve", permanent: true },
       { source: "/software-qa-testing-services-in-gurugram", destination: "/locations-we-serve", permanent: true },
+
+      // ── Crawl-report 404 sweep, 2026-08-14 ────────────────────────────────
+      // Every destination below was checked live (HTTP 200, real content — not
+      // a "Post/Tag/Category Not Found" body) and confirmed not to be the
+      // `source` of any other rule, so each of these resolves in a single hop.
+
+      // Blog tags — retired, mistyped, or never-created slugs → nearest live tag.
+      // "ai/ml-validation" carries a literal slash, which splits it into two
+      // path segments and misses /blog/tag/[tag] entirely (a hard 404 rather
+      // than a soft one). Matched here as a two-segment literal path.
+      { source: "/blog/tag/ai/ml-validation", destination: "/blog/tag/ai-model-validation", permanent: true },
+      { source: "/blog/tag/autonomous-workflows", destination: "/blog/tag/autonomous-workflow", permanent: true },
+      { source: "/blog/tag/iot-device-protection", destination: "/iot-device-testing-services", permanent: true },
+      { source: "/blog/tag/cost-effective-testing", destination: "/blog/tag/cost-effective-software-testing", permanent: true },
+      { source: "/blog/tag/top-testing-tools", destination: "/blog/tag/top-software-testing-tools", permanent: true },
+      { source: "/blog/tag/ci-cd-integration-testing", destination: "/blog/tag/ci-cd-testing", permanent: true },
+      { source: "/blog/tag/importance-of-testing", destination: "/blog/category/qa-testing", permanent: true },
+      { source: "/blog/tag/fortune-500-automation-case-study", destination: "/blog/tag/enterprise-automation", permanent: true },
+      { source: "/blog/tag/testng-testing-tool", destination: "/blog/tag/automation-testing-tools", permanent: true },
+      { source: "/blog/tag/best-testing-suites-for-qa", destination: "/blog/tag/best-testing-tools-for-qa", permanent: true },
+      { source: "/blog/tag/qa-automation-frameworks", destination: "/blog/tag/test-automation-frameworks", permanent: true },
+      { source: "/blog/tag/qa-automation-transformation", destination: "/automation-testing-services", permanent: true },
+      { source: "/blog/tag/example-of-volume-testing", destination: "/blog/tag/volume-testing", permanent: true },
+
+      // Blog posts — year-bumped or renamed slugs, plus a few that never shipped.
+      { source: "/blog/post/top-software-testing-company-designrush-2025", destination: "/blog/post/top-software-testing-company-designrush-2026", permanent: true },
+      { source: "/blog/post/how-to-test-smart-device-battery-life", destination: "/blog/post/battery-power-testing-for-smart-devices-optimization-guide", permanent: true },
+      { source: "/blog/post/10-must-use-mobile-app-testing-tools-in-2026", destination: "/blog/post/mobile-app-testing-tools-2026-guide", permanent: true },
+      { source: "/blog/post/exploratory-testing-agile-methodology", destination: "/blog/post/how-does-exploratory-testing-align-with-agile-methodology", permanent: true },
+      { source: "/blog/post/beta-testing-with-real-users-vs-lab-tests", destination: "/blog/post/user-acceptance-testing-in-manual-testing-use-cases-techniques", permanent: true },
+      { source: "/blog/post/how-much-time-do-we-need-to-learn-automation-testing", destination: "/blog/post/what-are-the-best-ways-to-learn-mobile-automation-testing", permanent: true },
+      { source: "/blog/post/accessibility-testing-across-devices-and-platforms", destination: "/blog/post/master-manual-accessibility-testing-techniques", permanent: true },
+      { source: "/blog/post/screen-reader-testing-best-practices", destination: "/blog/post/master-manual-accessibility-testing-techniques", permanent: true },
+      { source: "/blog/post/colour-contrast-testing-guide-for-accessibility", destination: "/blog/post/wcag-2-1-accessibility-compliance-ensuring-an-inclusive-learning-environment", permanent: true },
+      // WordPress import artifact (post ID 381) with no topical equivalent —
+      // sent to the blog index rather than an unrelated article.
+      { source: "/blog/post/381-2", destination: "/blog", permanent: true },
+
+      // Legacy WordPress permalinks that omit the /post/ segment. These miss
+      // every route (there is no /blog/[slug]) and return a hard 404.
+      { source: "/blog/how-to-simulate-real-user-traffic-in-performance-testing", destination: "/blog/post/how-to-simulate-real-user-traffic-in-performance-testing", permanent: true },
+      { source: "/blog/ai-powered-test-generation", destination: "/blog/post/testing-ai-powered-applications-navigating-the-maze-with-a-smile", permanent: true },
+      { source: "/blog/api-testing-with-postman-&-rest-assured", destination: "/blog/post/rest-api-testing-guide-endpoints-methods-best-practices", permanent: true },
+      { source: "/blog/shift-left-testing-strategies", destination: "/blog/post/the-role-of-automation-in-shift-left-and-shift-right-testing", permanent: true },
+
+      // Not a Sanity category: sanity-data-adapter falls back to a
+      // "technology-stack" category slug for posts with no categories, so blog
+      // breadcrumbs link here. /technology-stack is the real page.
+      { source: "/blog/category/technology-stack", destination: "/technology-stack", permanent: true },
+
+      // Site routes.
+      { source: "/ai-application-testing-services", destination: "/ai-application-testing", permanent: true },
+      { source: "/sitemap", destination: "/website-map", permanent: true },
+      // Absolute URLs pasted into href="" produce this whole family. A rule for
+      // "/www.testriq.com/" already existed but could never fire: trailingSlash
+      // is false, so Next strips the trailing slash before matching redirects
+      // and the bare form fell through to /[slug]. The wildcard catches every
+      // remaining variant; the specific rules earlier in this array still win,
+      // because Next applies the first matching rule.
+      { source: "/www.testriq.com", destination: "/", permanent: true },
+      { source: "/www.testriq.com/:path*", destination: "/:path*", permanent: true },
 ];
