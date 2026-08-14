@@ -909,4 +909,11 @@ export const redirects: RedirectRule[] = [
       // because Next applies the first matching rule.
       { source: "/www.testriq.com", destination: "/", permanent: true },
       { source: "/www.testriq.com/:path*", destination: "/:path*", permanent: true },
+
+      // Two latency articles were published that ended up competing for the
+      // same query, so one was deleted. Google had already indexed the deleted
+      // URL, so it keeps sending traffic to a dead page — 308 it onto the
+      // surviving article to recover that traffic and consolidate the ranking
+      // signals onto one URL. Destination verified live (200, real content).
+      { source: "/blog/post/what-is-latency-testing", destination: "/blog/post/what-is-a-latency-test", permanent: true },
 ];
