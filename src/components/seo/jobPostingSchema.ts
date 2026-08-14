@@ -15,9 +15,9 @@
  *     dropped from Google Jobs. We default to 60 days after the most
  *     recent Sanity update, refreshed automatically when an editor saves.
  *   - employmentType uses Schema.org's enum (FULL_TIME / PART_TIME / etc.)
- *   - hiringOrganization uses an `@id` reference to the canonical
- *     `https://www.testriq.com/#organization` Organization defined in the
- *     site-wide Organization schema (entity consolidation — F-58).
+ *   - hiringOrganization is spelled out inline (see HIRING_ORGANIZATION below)
+ *     while keeping the canonical `#organization` @id for entity
+ *     consolidation (F-58).
  */
 
 import type { SanityJobOpening } from "@/lib/sanity-data-adapter";
@@ -43,7 +43,29 @@ const HQ_ADDRESS = {
     addressCountry: "IN",
 } as const;
 
-const ORG_REF = { "@id": "https://www.testriq.com/#organization" } as const;
+/**
+ * hiringOrganization is REQUIRED by Google and must carry a resolvable `name`.
+ *
+ * This was previously a bare reference — `{ "@id": ".../#organization" }` — on
+ * the assumption that the site-wide Organization node is emitted on every page.
+ * It is not: the /careers page renders only this @graph (WebPage + one
+ * JobPosting per opening) plus a standalone BreadcrumbList, and `organizationSchema`
+ * in StructuredData.tsx is imported by 8 other pages, not this one. A JSON-LD
+ * `@id` only resolves against nodes present in the SAME page, so the reference
+ * dangled and Google's Rich Results Test reported a critical
+ * "missing field hiringOrganization" on every posting.
+ *
+ * Spelled out inline so the posting is self-contained. The `@id` is retained so
+ * Google still folds this into the canonical Organization entity (F-58) rather
+ * than minting a second one.
+ */
+const HIRING_ORGANIZATION = {
+    "@type": "Organization",
+    "@id": "https://www.testriq.com/#organization",
+    name: "Testriq QA Lab",
+    sameAs: "https://www.testriq.com",
+    logo: "https://www.testriq.com/testriq-logo.png",
+} as const;
 
 const VALID_THROUGH_WINDOW_MS = 60 * 24 * 60 * 60 * 1000; // 60 days
 
@@ -142,7 +164,7 @@ function buildJobPosting(job: SanityJobOpening): JsonLd {
         datePosted,
         validThrough,
         employmentType,
-        hiringOrganization: ORG_REF,
+        hiringOrganization: HIRING_ORGANIZATION,
         identifier: {
             "@type": "PropertyValue",
             name: "Testriq",
