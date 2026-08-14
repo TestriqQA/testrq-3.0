@@ -23,12 +23,18 @@ export async function generateMetadata(): Promise<Metadata> {
         title: "Accessibility Testing Services | WCAG 2.2 & ADA | Testriq",
         description:
             "Ensure your digital products are inclusive with Testriq's expert Accessibility Testing Services. We specialize in WCAG 2.2, Section 508, and ADA compliance.",
+        // JPEG, not WebP. LinkedIn does not support WebP og:images at all and
+        // WhatsApp fails on them silently, so a WebP card previews nowhere
+        // reliable. Same artwork, same 2752x1536 — only the container changed.
+        // The .webp original is still in /public/OG beside it.
+        //
+        // This page is the pilot for converting the other ~220 WebP OG assets.
         ogImage: {
-            url: "https://www.testriq.com/OG/Accessibility-testing-og-image.webp",
+            url: "https://www.testriq.com/OG/Accessibility-testing-og-image.jpg",
             width: 2752,
             height: 1536,
             alt: "Accessibility Testing Services - Testriq",
-            type: "image/webp",
+            type: "image/jpeg",
         },
         keywords: [
             "accessibility testing services",
