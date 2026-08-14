@@ -62,6 +62,39 @@ export const SERVICES: Record<string, ServiceLink> = {
         title: 'Latency Testing Services',
         description: 'P95/P99 response-time analysis, API latency profiling and network diagnostics.',
     },
+    // Tool pages. Added because all six were effectively orphaned — no links
+    // from the header nav, the homepage, their parent service pages, or any of
+    // the 343 blog posts. In GSC: `selenium` 397 impressions / 1 click.
+    'selenium-testing-services': {
+        slug: 'selenium-testing-services',
+        title: 'Selenium Testing Services',
+        description: 'Selenium framework design, Grid and cloud-grid execution, CI integration.',
+    },
+    'cypress-testing-services': {
+        slug: 'cypress-testing-services',
+        title: 'Cypress Testing Services',
+        description: 'Cypress end-to-end and component testing wired into your delivery pipeline.',
+    },
+    'playwright-testing-services': {
+        slug: 'playwright-testing-services',
+        title: 'Playwright Testing Services',
+        description: 'Cross-browser Playwright automation with parallel execution and tracing.',
+    },
+    'appium-mobile-testing-services': {
+        slug: 'appium-mobile-testing-services',
+        title: 'Appium Mobile Testing Services',
+        description: 'Appium automation across real iOS and Android devices, native and hybrid.',
+    },
+    'jmeter-performance-testing-services': {
+        slug: 'jmeter-performance-testing-services',
+        title: 'JMeter Performance Testing',
+        description: 'Apache JMeter load, stress and soak testing with capacity findings.',
+    },
+    'postman-api-testing-services': {
+        slug: 'postman-api-testing-services',
+        title: 'Postman API Testing Services',
+        description: 'Postman collections, Newman CI runs and contract testing for REST APIs.',
+    },
     'api-testing': {
         slug: 'api-testing',
         title: 'API Testing Services',
@@ -308,6 +341,15 @@ const CATEGORY_MAP: Record<string, string[]> = {
  */
 const NARROW_TOPIC_MAP: ReadonlyArray<readonly [RegExp, string]> = [
     [/latency|round.?trip|\bttfb\b/i, 'performance-testing-services/latency-testing'],
+    // Named-tool posts route to the tool's own page rather than to the generic
+    // parent service. A post covering two tools matches both patterns and links
+    // to both, which is correct.
+    [/selenium/i, 'selenium-testing-services'],
+    [/cypress/i, 'cypress-testing-services'],
+    [/playwright/i, 'playwright-testing-services'],
+    [/appium|espresso|xcuitest/i, 'appium-mobile-testing-services'],
+    [/jmeter|loadrunner|\bk6\b|gatling|locust/i, 'jmeter-performance-testing-services'],
+    [/postman|rest.?assured|newman/i, 'postman-api-testing-services'],
 ];
 
 /**

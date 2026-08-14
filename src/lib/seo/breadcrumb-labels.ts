@@ -49,6 +49,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   "migration-testing":                              "Migration Testing",
   "mobile-application-testing":                     "Mobile Application Testing",
   "performance-testing-services":                   "Performance Testing",
+  "performance-testing-services/latency-testing":   "Latency Testing",
   "playwright-testing-services":                    "Playwright Testing Services",
   "postman-api-testing-services":                   "Postman API Testing Services",
   "qa-documentation-services":                      "QA Documentation",
@@ -93,4 +94,72 @@ export function getBreadcrumbLabel(pathname: string, fallback?: string): string 
 export function getBreadcrumbLabel(pathname: string, fallback?: string): string | undefined {
   const slug = pathname.replace(/^\/+|\/+$/g, "");
   return BREADCRUMB_LABELS[slug] ?? fallback;
+}
+
+/**
+ * Conceptual parent of a page, keyed slug → parent slug.
+ *
+ * Route groups are stripped from testriq URLs, so every service page is a flat
+ * top-level path and the URL carries no hierarchy at all. Google derives
+ * hierarchy from breadcrumbs and internal links, not from folder depth — so
+ * this map is how a child page declares its parent without any URL moving.
+ *
+ * The six tool pages are the reason it exists. They sit at the top level, are
+ * absent from the header nav, and receive no links from the homepage, from
+ * their parent service pages or from any of the 343 blog posts — roughly eight
+ * inbound links between them, all from comparison pages. In GSC they are
+ * effectively invisible (`selenium` 397 impressions / 1 click). Declaring the
+ * parent puts each one inside an established topic instead of floating alone.
+ *
+ * Only add an entry where the parent genuinely *contains* the child. Comparison
+ * pages (`X-vs-Y`) deliberately stay top-level: their intent is bottom-of-funnel
+ * evaluation, not a subdivision of a service.
+ */
+export const BREADCRUMB_PARENTS: Record<string, string> = {
+  // tool pages → the service that delivers them
+  "selenium-testing-services":                     "automation-testing-services",
+  "cypress-testing-services":                      "automation-testing-services",
+  "playwright-testing-services":                   "automation-testing-services",
+  "appium-mobile-testing-services":                "mobile-application-testing",
+  "jmeter-performance-testing-services":           "performance-testing-services",
+  "postman-api-testing-services":                  "api-testing",
+  // already nested in the URL, listed here so its trail comes from one source
+  "performance-testing-services/latency-testing":  "performance-testing-services",
+};
+
+export interface BreadcrumbCrumb {
+  /** Display label. */
+  label: string;
+  /** Pathname with a leading slash. Absent on the terminal crumb. */
+  href?: string;
+}
+
+/**
+ * Build the full breadcrumb trail for a pathname, excluding "Home".
+ *
+ * Returns one crumb when the page has no parent (the existing behaviour for
+ * ~55 service pages), or two when `BREADCRUMB_PARENTS` declares one. The
+ * terminal crumb carries no `href` so callers can mark it `aria-current`.
+ *
+ * Both the visible breadcrumb and the `BreadcrumbList` JSON-LD read from here,
+ * which is what keeps them from drifting apart again — 22 of 61 routes had
+ * drifted before the labels were centralised.
+ *
+ * @param pathname Public pathname, with or without a leading slash.
+ * @param fallback Leaf label for slugs outside `BREADCRUMB_LABELS`.
+ */
+export function getBreadcrumbTrail(pathname: string, fallback?: string): BreadcrumbCrumb[] {
+  const slug = pathname.replace(/^\/+|\/+$/g, "");
+  const trail: BreadcrumbCrumb[] = [];
+
+  const parentSlug = BREADCRUMB_PARENTS[slug];
+  if (parentSlug) {
+    const parentLabel = BREADCRUMB_LABELS[parentSlug];
+    // A parent with no label would render a blank crumb — skip it rather than
+    // emit a broken trail.
+    if (parentLabel) trail.push({ label: parentLabel, href: `/${parentSlug}` });
+  }
+
+  trail.push({ label: BREADCRUMB_LABELS[slug] ?? fallback ?? "" });
+  return trail;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { FaArrowRight, FaCheckCircle, FaCertificate, FaHome, FaChevronRight } from "react-icons/fa";
 import StructuredData, { createCanonicalBreadcrumb } from "@/components/seo/StructuredData";
+import { getBreadcrumbTrail } from "@/lib/seo/breadcrumb-labels";
 
 export interface ToolLandingPageProps {
   /** Display name of the tool, e.g. "Selenium" */
@@ -99,19 +100,34 @@ const ToolLandingPage: React.FC<ToolLandingPageProps> = (props) => {
         {/* Hero */}
         <section className="bg-gradient-to-b from-slate-50 to-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-16">
+            {/* Trail comes from getBreadcrumbTrail so the visible crumbs and the
+                BreadcrumbList JSON-LD above can never drift apart. Tool pages
+                resolve to Home → parent service → tool. */}
             <nav aria-label="Breadcrumb" className="mb-6">
               <ol className="flex items-center flex-wrap gap-2 text-sm text-gray-500">
                 <li>
                   <Link href="/" className="inline-flex items-center gap-1.5 hover:text-gray-900">
-                    <FaHome className="w-4 h-4" /> <span>Home</span>
+                    <FaHome className="w-4 h-4" aria-hidden="true" /> <span>Home</span>
                   </Link>
                 </li>
-                <li aria-hidden="true">
-                  <FaChevronRight className="w-3 h-3 text-gray-400" />
-                </li>
-                <li>
-                  <span className="text-gray-700 font-medium">{props.breadcrumbName}</span>
-                </li>
+                {getBreadcrumbTrail(`/${props.slug}`, props.breadcrumbName).map((crumb) => (
+                  <React.Fragment key={crumb.label}>
+                    <li aria-hidden="true">
+                      <FaChevronRight className="w-3 h-3 text-gray-400" />
+                    </li>
+                    <li>
+                      {crumb.href ? (
+                        <Link href={crumb.href} className="hover:text-gray-900">
+                          {crumb.label}
+                        </Link>
+                      ) : (
+                        <span className="text-gray-700 font-medium" aria-current="page">
+                          {crumb.label}
+                        </span>
+                      )}
+                    </li>
+                  </React.Fragment>
+                ))}
               </ol>
             </nav>
 

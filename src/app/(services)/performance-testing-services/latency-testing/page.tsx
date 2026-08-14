@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
-    createBreadcrumbSchema,
+    createCanonicalBreadcrumb,
     createFaqPageSchema,
     latencyTestingServiceSchema,
 } from "@/components/seo/StructuredData";
-import { buildPageMetadata, SITE_URL } from "@/lib/seo/metadata";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 import LatencyTestingHeroSection from "@/components/sections/LatencyTestingHeroSection";
 import LatencyTestingWhatIsSection from "@/components/sections/LatencyTestingWhatIsSection";
@@ -52,18 +52,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function LatencyTestingPage() {
-    // 3-level breadcrumb: Home → Performance Testing → Latency Testing
-    const breadcrumbItems = [
-        { name: "Home", url: `${SITE_URL}/` },
-        {
-            name: "Performance Testing",
-            url: `${SITE_URL}/performance-testing-services`,
-        },
-        {
-            name: "Latency Testing",
-            url: `${SITE_URL}/performance-testing-services/latency-testing`,
-        },
-    ];
+    // Home → Performance Testing → Latency Testing. Was a hand-written array;
+    // the trail now comes from BREADCRUMB_LABELS + BREADCRUMB_PARENTS so it
+    // cannot drift from the labels used everywhere else.
+    const breadcrumbSchema = createCanonicalBreadcrumb(
+        "/performance-testing-services/latency-testing",
+        "Latency Testing",
+    );
 
     // Plain-text mirror of LatencyTestingFAQsSection UI content for FAQPage JSON-LD.
     const faqsForSchema = [
@@ -96,7 +91,7 @@ export default function LatencyTestingPage() {
     return (
         <div>
             <StructuredData data={latencyTestingServiceSchema} />
-            <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
+            <StructuredData data={breadcrumbSchema} />
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <LatencyTestingHeroSection />

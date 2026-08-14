@@ -22,7 +22,7 @@
  * A single Schema.org JSON-LD object.
  */
 import { buildCanonicalUrl, SITE_URL } from "../../lib/seo/metadata";
-import { getBreadcrumbLabel } from "../../lib/seo/breadcrumb-labels";
+import { getBreadcrumbTrail } from "../../lib/seo/breadcrumb-labels";
 
 type JsonLd = Record<string, unknown>;
 
@@ -1820,10 +1820,19 @@ export const createFaqPageSchema = (faqs: Array<{ question: string; answer: stri
  * 22 of 61 service/solution routes had drifted apart before this lookup
  * existed. `pageName` is the fallback for routes outside that map.
  *
+ * A parent step is inserted when `BREADCRUMB_PARENTS` declares one, producing
+ * Home → Parent → Page. This is how a child page states its place in the
+ * hierarchy: testriq strips route groups from URLs, so folder depth carries no
+ * hierarchy and breadcrumbs are the only structural signal available. Pages
+ * without a declared parent keep the original 2-item shape, so the ~55 existing
+ * call sites are unaffected.
+ *
  * @example
- *   <StructuredData
- *     data={createCanonicalBreadcrumb("/regression-testing", "Regression Testing")}
- *   />
+ *   // 2 items — Home → Regression Testing
+ *   createCanonicalBreadcrumb("/regression-testing", "Regression Testing")
+ *
+ *   // 3 items — Home → Automation Testing → Selenium Testing Services
+ *   createCanonicalBreadcrumb("/selenium-testing-services", "Selenium Testing Services")
  *
  * @param pathname Public pathname of the page, with or without leading slash.
  * @param pageName Fallback display name, used when the slug is not in
@@ -1833,7 +1842,10 @@ export const createFaqPageSchema = (faqs: Array<{ question: string; answer: stri
 export const createCanonicalBreadcrumb = (pathname: string, pageName: string) =>
   createBreadcrumbSchema([
     { name: "Home", url: `${SITE_URL}/` },
-    { name: getBreadcrumbLabel(pathname, pageName), url: buildCanonicalUrl(pathname) },
+    ...getBreadcrumbTrail(pathname, pageName).map((crumb) => ({
+      name: crumb.label,
+      url: buildCanonicalUrl(crumb.href ?? pathname),
+    })),
   ]);
 
 // FAQ Schema
