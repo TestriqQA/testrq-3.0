@@ -12,7 +12,7 @@ import { HeroLoader, ContentLoader, FAQLoader } from "@/components/ui/Loaders";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Global AI Testing Services | Reliable Systems for the Future",
+  title: "Global AI Application Testing Services | Reliable Systems for the Future",
   description:
     "Testriq AI Application Testing services help ensure your ML models are safe, fair, and compliant, connecting MLOps with QA for high-stakes AI systems.",
   keywords: [
