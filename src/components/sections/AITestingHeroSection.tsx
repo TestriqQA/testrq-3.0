@@ -31,7 +31,7 @@ const AITestingHeroSection: React.FC = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
-              Global <span className="text-[theme(color.brand.blue)]">AI Testing Services</span>
+              Global <span className="text-[theme(color.brand.blue)]">AI Application Testing</span> Services
               <br />
               <span className="text-2xl sm:text-3xl md:text-4xl text-gray-700">Reliable Systems for the Future</span>
             </h1>
