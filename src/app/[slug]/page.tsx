@@ -365,7 +365,14 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export const revalidate = 3600; // 1 hour — city pages are static, case studies update via Sanity webhooks
+// 1 hour ISR window. The old comment here claimed case studies refresh
+// instantly "via Sanity webhooks" — no such webhook route exists in this
+// repo (checked src/app/api/**), so a Sanity edit is invisible on the live
+// page for up to this full hour, not instantly. A real fix would add a
+// /api/revalidate route (verifying Sanity's webhook signature) that calls
+// revalidatePath for the edited slug. Until then, force a fresh deploy to
+// bust the cache immediately.
+export const revalidate = 3600;
 
 export default async function SlugPage({ params }: PageProps) {
   const resolvedParams = await params;
