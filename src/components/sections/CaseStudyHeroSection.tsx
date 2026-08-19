@@ -103,7 +103,15 @@ const CaseStudyHeroSection: React.FC<CaseStudyHeroSectionProps> = ({
               ? 'bg-gradient-to-br from-gray-800 to-gray-900'
               : 'bg-gradient-to-br from-gray-100 to-gray-200'
               }`}>
-              <div className="flex justify-center flex-col text-center">
+              {/* `justify-center` centers along a flex-col's main axis
+                  (vertical) — it does nothing for horizontal alignment.
+                  `items-center` is the cross-axis property that actually
+                  centers the logo/caption pair. Without it, a logo whose
+                  object-contain width comes out narrower than the 300px box
+                  (any client mark that isn't itself ~3:2) sits flush against
+                  one edge instead of centered — invisible for a logo that
+                  happens to fill the full width, visible for one that doesn't. */}
+              <div className="flex justify-center items-center flex-col text-center">
                 <Image
                   title={caseStudy.client}
                   src={caseStudy.image}
