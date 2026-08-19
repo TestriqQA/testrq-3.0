@@ -3,6 +3,26 @@ import Link from "next/link";
 import { FaArrowRight, FaCheckCircle, FaCertificate, FaHome, FaChevronRight } from "react-icons/fa";
 import StructuredData, { createCanonicalBreadcrumb } from "@/components/seo/StructuredData";
 
+/**
+ * An outbound partner / tooling mention rendered as its own section.
+ *
+ * `body` is held as one readable sentence-flow string rather than pre-split
+ * fragments, so the copy stays reviewable at the call site. Only the FIRST
+ * occurrence of `anchor` inside it becomes the link — products tend to get named
+ * several times in a paragraph, and repeating the same anchor to the same URL
+ * adds nothing and reads as stuffing.
+ */
+export interface ComparisonPartner {
+  /** Section heading */
+  title: string;
+  /** Body copy — the first occurrence of `anchor` becomes the outbound link */
+  body: string;
+  /** Anchor text, e.g. "Shiplight" */
+  anchor: string;
+  /** Absolute outbound URL */
+  href: string;
+}
+
 export interface ComparisonPageProps {
   /** Display name of tool A, e.g. "Selenium" */
   toolA: string;
@@ -25,6 +45,12 @@ export interface ComparisonPageProps {
   dimensions: Array<{ title: string; a: string; b: string }>;
   /** Migration notes — when going between the two */
   migration: string;
+  /**
+   * Optional partner / tooling callout, rendered between the migration notes and
+   * the related links. Opt-in per page: the sibling comparison pages that don't
+   * pass it render exactly as they do today.
+   */
+  partner?: ComparisonPartner;
   /** FAQ entries */
   faqs: Array<{ q: string; a: string }>;
   /** Cross-links to related tool / process pages */
@@ -63,6 +89,36 @@ function FaqStructuredData({ faqs }: { faqs: ComparisonPageProps["faqs"] }) {
     })),
   };
   return <StructuredData data={schema} />;
+}
+
+/**
+ * Renders the partner copy with the first occurrence of `anchor` turned into the
+ * outbound link.
+ *
+ * Deliberately dofollow: no rel="nofollow" and no rel="sponsored". rel is
+ * "noopener" alone — "noreferrer" is omitted on purpose so the partner still sees
+ * Testriq in their referrer data, and neither value affects link equity either way.
+ *
+ * If `anchor` isn't found in `body` the copy renders verbatim, so a typo in the
+ * anchor shows up as a missing link in review instead of a crash.
+ */
+function PartnerCopy({ body, anchor, href }: ComparisonPartner) {
+  const at = body.indexOf(anchor);
+  if (at === -1) return <>{body}</>;
+  return (
+    <>
+      {body.slice(0, at)}
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener"
+        className="font-semibold text-brand-blue underline underline-offset-2 hover:text-brand-blue/80"
+      >
+        {anchor}
+      </a>
+      {body.slice(at + anchor.length)}
+    </>
+  );
 }
 
 const ComparisonPage: React.FC<ComparisonPageProps> = (props) => {
@@ -213,6 +269,25 @@ const ComparisonPage: React.FC<ComparisonPageProps> = (props) => {
             <p className="text-gray-700 text-lg leading-relaxed">{props.migration}</p>
           </div>
         </section>
+
+        {/* Partner / tooling callout — deliberately the same plain treatment as
+            the Migration section above it (slate-50, max-w-4xl, no card), so it
+            reads as body copy rather than an ad slot. The two slate-50 bands run
+            together as one grey region, so the full py-14 on both sides stacked to
+            ~112px of dead space above this heading. Trimmed to pt-4 (16px + the
+            56px Migration already contributes below its copy = 72px). Only this
+            section's padding is reduced — Migration is shared by all six
+            comparison pages and stays untouched. */}
+        {props.partner && (
+          <section className="bg-slate-50 pt-4 pb-14">
+            <div className="max-w-4xl mx-auto px-6 lg:px-12">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">{props.partner.title}</h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                <PartnerCopy {...props.partner} />
+              </p>
+            </div>
+          </section>
+        )}
 
         {/* Related */}
         {props.related && props.related.length > 0 && (
