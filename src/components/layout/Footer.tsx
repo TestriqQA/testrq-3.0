@@ -60,57 +60,6 @@ const specializedTesting = [
   { title: "Telecom Testing", path: "/telecommunications-testing-services" },
 ];
 
-// The header's "Services" mega-menu (Header.tsx menuItems) only renders its
-// links into the DOM after a real mouseenter on "Services" AND on a category
-// tab — both are React state gated (`activeDesktopSubmenu === idx`, then
-// `activeMegaMenuCategory`), so nothing in it exists in the page's initial
-// HTML or in the fully-JS-rendered DOM before a user interacts with it.
-// Googlebot's renderer does not simulate hover or click, so every page whose
-// only inbound link was that menu was effectively invisible to a normal
-// crawl — discoverable solely via the XML sitemap. Verified 2026-08-17: 0 of
-// these hrefs exist in the live homepage's rendered DOM pre-interaction.
-//
-// Footer has no such gate — every array below renders unconditionally, the
-// same pattern `coreService` and `specializedTesting` already use above. This
-// closes the gap: every slug present in Header's submenu but absent from
-// Footer, so it now has a real, always-crawlable inbound link from every page
-// on the site (Footer is in the global layout).
-const moreTestingServices = [
-  { title: "Accessibility Testing", path: "/accessibility-testing-services" },
-  { title: "SaaS Testing", path: "/saas-testing-services" },
-  { title: "Managed Testing", path: "/managed-testing-services" },
-  { title: "Ad-hoc Testing", path: "/ad-hoc-testing" },
-  { title: "User Acceptance Testing (UAT)", path: "/user-acceptance-testing" },
-  { title: "Microservices Testing", path: "/microservices-testing" },
-  { title: "Migration Testing", path: "/migration-testing" },
-  { title: "Embedded Testing", path: "/embedded-testing-services" },
-  { title: "Usability Testing", path: "/usability-testing-services" },
-  { title: "Blockchain App Testing", path: "/blockchain-app-testing-services" },
-  { title: "Test Data Management", path: "/test-data-management-services" },
-  { title: "Application Architecture Inspection", path: "/application-architecture-inspection-services" },
-  { title: "Timezone Testing", path: "/timezone-testing-services" },
-  { title: "Functional Testing", path: "/functional-testing-services" },
-  { title: "Cyber Security Testing", path: "/cyber-security-testing-services" },
-  { title: "Compatibility Testing", path: "/compatibility-testing-services" },
-  { title: "Continuous Testing (CI/CD)", path: "/continuous-testing-services-cicd-pipeline" },
-  { title: "Shift-Left Testing", path: "/shift-left-testing" },
-  { title: "Agile Testing", path: "/agile-testing-services" },
-  { title: "Azure Testing", path: "/azure-testing-services" },
-];
-
-const industriesAndTrust = [
-  { title: "Ecommerce Testing", path: "/e-commerce-testing-services" },
-  { title: "E-Learning Testing", path: "/e-learning-testing-services" },
-  { title: "Healthcare Testing", path: "/healthcare-testing-services" },
-  { title: "Gaming App Testing", path: "/gaming-app-testing-services" },
-  { title: "IoT Appliances & App Testing", path: "/iot-appliances-and-apps-testing-services" },
-  { title: "Banking & Finance Testing", path: "/banking-finance-industry-testing-services" },
-  { title: "Matrimonial Apps Certification", path: "/matrimonial-apps-certification" },
-  { title: "Dating Apps Certification", path: "/dating-app-certification" },
-  { title: "Trading Apps Certification", path: "/trading-apps-certification" },
-  { title: "Shopping Apps Certification", path: "/shopping-apps-certification" },
-];
-
 const company = [
   { title: "About Us", path: "/about-us" },
   { title: "Our Team", path: "/our-team" },
@@ -310,54 +259,6 @@ const Footer = () => {
           </div>
 
         </div>
-
-        {/* Second row: services that only lived behind the header's
-            hover-gated mega-menu. Same unconditional-render pattern as the
-            columns above, so every link here is present in the initial HTML
-            on every page site-wide. */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-gray-300">
-          {/* More Testing Services */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800 border-b border-blue-200 pb-2">
-              More Testing Services
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
-              {moreTestingServices.map((service) => (
-                <li key={service.title}>
-                  <Link
-                    href={service.path}
-                    className="block py-2.5 -my-1 text-sm text-gray-800 hover:text-brand-blue transition-all duration-200 hover:translate-x-1"
-                    aria-label={service.title}
-                  >
-                    {service.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Industries & Trust Certifications */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800 border-b border-blue-200 pb-2">
-              Industries & Trust
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
-              {industriesAndTrust.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.path}
-                    className="block py-2.5 -my-1 text-sm text-gray-800 hover:text-brand-blue transition-all duration-200 hover:translate-x-1"
-                    aria-label={item.title}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-
 
         <div className="flex flex-wrap items-center justify-center gap-8 mt-8">
           {partners.map((partner, index) => {
