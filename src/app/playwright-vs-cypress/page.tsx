@@ -103,6 +103,13 @@ const PlaywrightVsCypressPage: React.FC = () => (
       },
     ]}
     migration="Cypress → Playwright migrations make sense when (a) cross-browser including real Safari becomes a requirement, (b) async/await idioms beat the chained command queue for the team, or (c) Cypress Cloud cost is too high. Plan 6-10 weeks for a 500-spec Cypress suite. Playwright → Cypress is rare; usually only when component testing maturity is the critical factor. Either way, run both in parallel until coverage parity is verified — don't big-bang the swap."
+    partner={{
+      title: "Pairing either framework with a coding agent",
+      body:
+        "Teams using coding agents can pair either framework with Shiplight. Shiplight gives the coding agent a real browser to verify UI changes during development, then turns verified flows into readable, self-healing E2E tests stored in the team’s repository. Tests can run locally or in CI, and Shiplight can work alongside an existing Playwright suite.",
+      anchor: "Shiplight",
+      href: "https://www.shiplight.ai/",
+    }}
     faqs={[
       {
         q: "Is Playwright faster than Cypress?",
