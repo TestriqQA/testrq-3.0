@@ -25,6 +25,13 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'clientUrl',
+            title: 'Client Website URL',
+            type: 'url',
+            description:
+                "Optional. The client's own website, e.g. https://www.cleverence.com/. When set, the client name in the hero links out to it (new tab). Leave empty to render the name as plain text.",
+        }),
+        defineField({
             name: 'industry',
             title: 'Industry',
             type: 'string',
