@@ -1,3 +1,27 @@
+// ⚠️ DEAD ROUTE — DO NOT WIRE THIS UP WITHOUT READING THIS FIRST.
+//
+// Nothing calls this endpoint. Its only caller was JobDetailsPage.tsx, which is
+// no longer imported anywhere. It is left in place deliberately, but it carries
+// two unfixed bugs that will corrupt the live careers sheet the moment it runs:
+//
+// 1. SAME SHEET, CONFLICTING HEADERS. This route writes to the same
+//    GOOGLE_CAREER_SHEET_ID / sheetsByIndex[0] as /api/apply-job, but forces a
+//    DIFFERENT 10-column header set (see the `headers` array below) — no Job ID,
+//    no Expected CTC, no Skills, no Domain Knowledge, and 'Email Address' where
+//    apply-job has 'Email'. Because it calls setHeaderRow() unconditionally, one
+//    submission here rewrites row 1 and every existing row ends up sitting under
+//    the wrong column names. apply-job would then flip it back on its next run.
+//
+// 2. SILENT ROW LOSS. addRow() below still uses the library default
+//    insertDataOption=OVERWRITE, where the Sheets API guesses where the table
+//    ends and writes there. Two appends landing close together can resolve to the
+//    same row, and the second destroys the first while still returning 200. This
+//    is the bug that silently dropped ~26 applications between July and August
+//    2026 (loss rate 5% -> 19% as volume grew). It was fixed in
+//    /api/apply-job/route.ts by passing { insert: true }; it is NOT fixed here.
+//
+// Before reviving this route: pass { insert: true } to addRow, and either point
+// it at its own sheet/tab or align its headers with apply-job's 14-column set.
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
@@ -167,6 +191,10 @@ export async function POST(request: NextRequest) {
                 await doc.loadInfo();
                 const sheet = doc.sheetsByIndex[0];
 
+                // ⚠️ BUG 1 (see file header): these 10 headers CONFLICT with the
+                // 14 that /api/apply-job writes to this exact same sheet and tab.
+                // setHeaderRow() below applies them unconditionally, so running this
+                // route once shifts every existing row under the wrong column names.
                 // Setting header formats with Phone Number and Email interchanged per user request
                 const headers = [
                     'Timestamp',
@@ -186,6 +214,9 @@ export async function POST(request: NextRequest) {
                 // Always enforce new format headers
                 await sheet.setHeaderRow(headers);
 
+                // ⚠️ BUG 2 (see file header): missing { insert: true }. This defaults to
+                // insertDataOption=OVERWRITE and can silently overwrite an existing row
+                // while still returning 200. Fixed in /api/apply-job/route.ts, not here.
                 await sheet.addRow({
                     'Timestamp': new Date().toISOString(),
                     'Job Role': role || 'Not Specified',

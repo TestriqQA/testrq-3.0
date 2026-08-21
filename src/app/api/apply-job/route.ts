@@ -53,14 +53,15 @@ export async function POST(request: NextRequest) {
         }
 
 
-        // Notice Period and Domain Knowledge are mandatory in the form, so they are
-        // enforced here too — the client-side check is a UX affordance, not a
-        // guarantee, and a direct POST would otherwise store an incomplete
+        // Phone Number, Notice Period and Domain Knowledge are mandatory in the form,
+        // so they are enforced here too — the client-side check is a UX affordance,
+        // not a guarantee, and a direct POST would otherwise store an incomplete
         // application. Applicants with no domain experience send ["NA"].
-        if (!fullName || !email || !jobTitle || !resume || !noticePeriod || domainKnowledge.length === 0) {
+        if (!fullName || !email || !phone || !jobTitle || !resume || !noticePeriod || domainKnowledge.length === 0) {
             console.warn('[apply-job API] Missing required fields:', {
                 fullName: !!fullName,
                 email: !!email,
+                phone: !!phone,
                 jobTitle: !!jobTitle,
                 resume: !!resume,
                 noticePeriod: !!noticePeriod,
@@ -670,11 +671,35 @@ export async function POST(request: NextRequest) {
                         'Resume/CV'
                     ];
 
-                    await sheet.loadHeaderRow();
-                    // Update headers to ensure all columns exist
-                    await sheet.setHeaderRow(headers);
+                    // Only rewrite the header row when it has actually drifted. This used to
+                    // run on every submission, which cost an extra full-row write per
+                    // application and buried real data changes in the sheet's version
+                    // history (every version showed "1 edit" on row 1 and nothing else).
+                    // loadHeaderRow() throws on a blank or duplicate header row — that is
+                    // precisely the case where we do want to rewrite it, hence the catch.
+                    let liveHeaders: string[] = [];
+                    try {
+                        await sheet.loadHeaderRow();
+                        liveHeaders = sheet.headerValues;
+                    } catch (headerError) {
+                        console.warn('[apply-job API] Could not read header row:', headerError);
+                    }
 
-                    await sheet.addRow({
+                    const headersMatch = headers.every((h, i) => liveHeaders[i] === h);
+                    if (!headersMatch) {
+                        console.warn('[apply-job API] Header row drifted, rewriting. Found:', liveHeaders);
+                        await sheet.setHeaderRow(headers);
+                    }
+
+                    // { insert: true } sets the Sheets API's insertDataOption=INSERT_ROWS.
+                    // google-spreadsheet defaults to OVERWRITE, where the API guesses where
+                    // the table ends and writes there. Two appends landing close together
+                    // can resolve to the same target row, and the second silently destroys
+                    // the first while still returning 200 — which is why the logs looked
+                    // clean while ~26 applications went missing between July and August
+                    // 2026 (loss rate climbed from 5% to 19% as submission volume grew).
+                    // INSERT_ROWS physically inserts a row, so it can never overwrite one.
+                    const addedRow = await sheet.addRow({
                         'Timestamp': new Date().toISOString(),
                         'Job Role': jobTitle,
                         'Job ID': jobId,
@@ -689,8 +714,12 @@ export async function POST(request: NextRequest) {
                         'Skills, Tools & Frameworks': skillsToolsFramework,
                         'Domain Knowledge': domainKnowledge.join(', '),
                         'Resume/CV': resumeLink
-                    });
-                    console.log('[apply-job API] Added to Google Sheet');
+                    }, { insert: true });
+
+                    // Log the row the API actually wrote to. The old code discarded this
+                    // return value, so a collision was invisible. If two submissions ever
+                    // report the same row number again, this line is what makes it obvious.
+                    console.log(`[apply-job API] Added to Google Sheet at row ${addedRow.rowNumber}`);
 
                 } else {
                     const missingVars = [];
