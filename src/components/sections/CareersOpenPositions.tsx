@@ -197,7 +197,16 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (formData.phone && !validatePhoneNumber(formData.phone)) {
+    // Phone Number is mandatory. `required` on the input covers the empty case,
+    // but the format check has to run here — a value that is present but not a
+    // valid 10-11 digit number passes the browser's check and would otherwise
+    // reach the API.
+    if (!formData.phone.trim()) {
+      setPhoneError("Please enter your phone number");
+      return;
+    }
+
+    if (!validatePhoneNumber(formData.phone)) {
       setPhoneError("Please enter a valid 10-11 digit phone number");
       return;
     }
@@ -646,7 +655,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       </h4>
                       <div>
                         <label htmlFor="careers-fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
+                          Full Name <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
                         <input
                           id="careers-fullName"
@@ -662,7 +671,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       </div>
                       <div>
                         <label htmlFor="careers-email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email *
+                          Email <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
                         <input
                           id="careers-email"
@@ -679,7 +688,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       </div>
                       <div>
                         <label htmlFor="careers-phone" className="block text-sm font-medium text-gray-700 mb-2">
-                          Phone Number
+                          Phone Number <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
                         <input
                           id="careers-phone"
@@ -693,6 +702,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                           className={`w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-sm sm:text-base ${phoneError ? "border-red-500" : "border-gray-300"
                             }`}
                           placeholder="+91 9876543210 or 9876543210"
+                          required
                         />
                         {phoneError && (
                           <p id="careers-phone-error" role="alert" className="text-red-500 text-sm mt-1">{phoneError}</p>
@@ -700,7 +710,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       </div>
                       <div>
                         <label htmlFor="careers-location" className="block text-sm font-medium text-gray-700 mb-2">
-                          Location *
+                          Location <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
                         <select
                           id="careers-location"
@@ -760,7 +770,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       {/* Skills and Tools - Full width */}
                       <div>
                         <label htmlFor="careers-skillsToolsFramework" className="block text-sm font-medium text-gray-700 mb-2">
-                          Skills, Tools & Frameworks *
+                          Skills, Tools & Frameworks <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
                         <textarea
                           id="careers-skillsToolsFramework"
@@ -784,7 +794,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       </h4>
                       <div>
                         <label htmlFor="careers-experience" className="block text-sm font-medium text-gray-700 mb-2">
-                          Total Experience *
+                          Total Experience <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
                         <select
                           id="careers-experience"
@@ -939,7 +949,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                       {/* Resume Upload - Mobile optimized */}
                       <div>
                         <label htmlFor="resume-upload-input" className="block text-sm font-medium text-gray-700 mb-2">
-                          Resume/CV * (PDF only, max 5MB)
+                          Resume/CV <span className="text-red-500" aria-hidden="true">*</span> (PDF only, max 5MB)
                         </label>
                         <div className="border-2 border-dashed border-gray-300 rounded-lg p-2 sm:p-6 text-center hover:border-blue-400 transition-colors duration-300 cursor-pointer" onClick={() => document.getElementById('resume-upload-input')?.click()}>
                           {resumeFile ? (
