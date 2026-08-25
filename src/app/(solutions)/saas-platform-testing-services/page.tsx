@@ -50,7 +50,7 @@ export const metadata: Metadata = {
       "End-to-end QA for B2B & B2C SaaS platforms — multi-tenant isolation, subscription billing, SOC 2 / GDPR pre-audit, API contracts, scalability, zero-downtime releases.",
     images: [
       {
-        url: "https://www.testriq.com/testriq-logo.png",
+        url: "https://www.testriq.com/OG/saas-platform-testing-services-og.jpg",
         width: 1200,
         height: 630,
         alt: "Testriq SaaS Platform Testing Services",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: "SaaS Platform Testing Services | Multi-Tenant QA, SOC 2 + GDPR | Testriq",
     description:
       "End-to-end QA for B2B & B2C SaaS platforms — multi-tenant isolation, billing, SOC 2 + GDPR, API contracts, scalability, zero-downtime releases.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/saas-platform-testing-services-og.jpg"],
   },
   robots: {
     index: true,

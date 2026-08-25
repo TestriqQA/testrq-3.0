@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Manual vs Automation Testing — When to Use Each | Testriq",
     description: "Manual vs automation testing — ROI, exploratory, regression, accessibility, UAT, compliance.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Manual vs Automation Testing" }],
+    images: [{ url: "https://www.testriq.com/OG/manual-vs-automation-testing-og.jpg", width: 1200, height: 630, alt: "Manual vs Automation Testing" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Manual vs Automation Testing — When to Use Each | Testriq",
     description: "Manual vs automation testing — ROI, exploratory, regression, accessibility, UAT.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/manual-vs-automation-testing-og.jpg"],
   },
   robots: {
     index: true,

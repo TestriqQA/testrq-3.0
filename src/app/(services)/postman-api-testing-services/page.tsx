@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Postman API Testing Services — Collections, Newman CI, Contract QA | Testriq",
     description: "Postman API QA — collections, Newman CI, OpenAPI + Pact contracts, mocks, monitors.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq Postman API Testing Services" }],
+    images: [{ url: "https://www.testriq.com/OG/postman-api-testing-services-og.jpg", width: 1200, height: 630, alt: "Testriq Postman API Testing Services" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Postman API Testing Services — Collections, Newman CI, Contract QA | Testriq",
     description: "Postman API QA — collections, Newman CI, OpenAPI + Pact contracts, mocks, monitors.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/postman-api-testing-services-og.jpg"],
   },
   robots: {
     index: true,

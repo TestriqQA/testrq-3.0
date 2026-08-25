@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Cypress Testing Services — Modern E2E + Component Testing | Testriq",
     description: "Cypress E2E + component testing — Cloud, custom commands, network stubbing, a11y, CI/CD.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq Cypress Testing Services" }],
+    images: [{ url: "https://www.testriq.com/OG/cypress-testing-services-og.jpg", width: 1200, height: 630, alt: "Testriq Cypress Testing Services" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Cypress Testing Services — Modern E2E + Component Testing | Testriq",
     description: "Cypress E2E + component testing — Cloud, network stubbing, a11y, CI/CD.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/cypress-testing-services-og.jpg"],
   },
   robots: {
     index: true,

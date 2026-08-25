@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Hire QA Engineer — ISTQB-Certified Testers, Engaged in Days | Testriq",
     description: "ISTQB-certified QA engineers — full-time, dedicated, or on-demand. ISO 9001 + 27001 controlled.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Hire QA Engineer from Testriq" }],
+    images: [{ url: "https://www.testriq.com/OG/hire-qa-engineer-og.jpg", width: 1200, height: 630, alt: "Hire QA Engineer from Testriq" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Hire QA Engineer — ISTQB-Certified Testers, Engaged in Days | Testriq",
     description: "ISTQB-certified QA engineers — full-time, dedicated, or on-demand.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/hire-qa-engineer-og.jpg"],
   },
   robots: {
     index: true,

@@ -32,11 +32,11 @@ export const metadata: Metadata = {
     siteName: "Testriq - Professional Software Testing Services",
     images: [
       {
-        url: "https://www.testriq.com/OG/testriq-locations-we-serve-og.webp",
+        url: "https://www.testriq.com/OG/locations-we-serve-og.jpg",
         width: 1200,
         height: 630,
         alt: "Software Testing Services Locations - Testriq QA Lab",
-        type: "image/webp",
+        type: "image/jpeg",
       },
     ],
     type: "website",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     creator: "@testriq", 
     title: "Software Testing Services Locations - India & UAE | Testriq QA Lab",
     description: "Professional software testing services across major cities in India and UAE. Expert QA testing, automation testing, performance testing, and API testing solutions.",
-    images: ["https://www.testriq.com/OG/testriq-locations-we-serve-twitter.webp"],
+    images: ["https://www.testriq.com/OG/locations-we-serve-og.jpg"],
   },
   alternates: {
     canonical: "https://www.testriq.com/locations-we-serve",

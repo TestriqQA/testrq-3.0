@@ -103,7 +103,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = authorPageUrl(author.slug);
   const ogImage = author.imageRaw
     ? sanityImage(author.imageRaw, { width: 1200, height: 630, quality: 90 })
-    : `${SITE_URL}/testriq-logo.png`;
+    // /testriq-logo.png is 7959x2178; receivers crop to ~1.91:1 and show a zoomed
+    // slab of the wordmark. This is the same mark already laid out on a 1200x630
+    // canvas, which is what the root layout serves.
+    : `${SITE_URL}/OG/testriq-logo-og.png`;
 
   return {
     title: pageTitle,

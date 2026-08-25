@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       "MES + SCADA validation, IEC 61508 functional safety, IEC 62443 OT security, OPC UA / MQTT protocol QA, digital-twin testing, ERP↔shopfloor integration.",
     images: [
       {
-        url: "https://www.testriq.com/testriq-logo.png",
+        url: "https://www.testriq.com/OG/manufacturing-industry-testing-services-og.jpg",
         width: 1200,
         height: 630,
         alt: "Testriq Manufacturing & Industry 4.0 Testing Services",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
       "Manufacturing & Industry 4.0 Testing Services | MES / SCADA / IEC 61508 / IEC 62443 | Testriq",
     description:
       "MES + SCADA, IEC 61508, IEC 62443 OT security, OPC UA / MQTT, digital-twin, ERP↔shopfloor QA.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/manufacturing-industry-testing-services-og.jpg"],
   },
   robots: {
     index: true,

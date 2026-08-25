@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "Test Case Template — Field-By-Field Format with Examples | Testriq",
     description:
       "Test Case template — fields, examples (positive, negative, boundary, equivalence-class), best practices. ISTQB-aligned.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Test Case Template" }],
+    images: [{ url: "https://www.testriq.com/OG/test-case-template-og.jpg", width: 1200, height: 630, alt: "Test Case Template" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Test Case Template — Field-By-Field Format with Examples | Testriq",
     description: "Test Case template — fields, examples, best practices. ISTQB-aligned.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/test-case-template-og.jpg"],
   },
   robots: {
     index: true,

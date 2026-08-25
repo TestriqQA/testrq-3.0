@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Selenium Testing Services — Selenium WebDriver Automation | Testriq",
     description:
       "Selenium WebDriver test automation — Grid, Page Object, CI, cross-browser, framework migration. ISTQB + ISO certified.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq Selenium Testing Services" }],
+    images: [{ url: "https://www.testriq.com/OG/selenium-testing-services-og.jpg", width: 1200, height: 630, alt: "Testriq Selenium Testing Services" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Selenium Testing Services — Selenium WebDriver Automation | Testriq",
     description: "Selenium WebDriver test automation — Grid, Page Object, CI, cross-browser.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/selenium-testing-services-og.jpg"],
   },
   robots: {
     index: true,

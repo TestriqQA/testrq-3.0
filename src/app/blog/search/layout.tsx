@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.testriq.com/images/testriq-search-og.jpg",
+        url: "https://www.testriq.com/OG/blog-search-og.jpg",
         width: 1200,
         height: 630,
         alt: "Search Testriq Blog - Find Testing Articles & QA Insights",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Search Testing Articles | Find QA Insights & Best Practices | Testriq Blog",
     description: "Search and find relevant articles, tutorials, and expert insights on software testing and QA. Discover best practices, testing guides, and industry knowledge from Testriq's ISTQB certified experts.",
-    images: ["https://www.testriq.com/images/testriq-search-twitter.jpg"],
+    images: ["https://www.testriq.com/OG/blog-search-og.jpg"],
     creator: "@testriq",
     site: "@testriq",
   },
