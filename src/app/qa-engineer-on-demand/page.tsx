@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "QA Engineer On-Demand — Flexible Capacity Without the Headcount | Testriq",
     description: "Flex QA capacity — pay for hours used, not headcount carried.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq QA Engineer On-Demand" }],
+    images: [{ url: "https://www.testriq.com/OG/qa-engineer-on-demand-og.jpg", width: 1200, height: 630, alt: "Testriq QA Engineer On-Demand" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "QA Engineer On-Demand — Flexible Capacity Without the Headcount | Testriq",
     description: "Flex QA capacity — pay for hours used, not headcount carried.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/qa-engineer-on-demand-og.jpg"],
   },
   robots: {
     index: true,

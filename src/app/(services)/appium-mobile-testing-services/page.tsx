@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Appium Mobile Testing Services — iOS + Android Automation | Testriq",
     description: "Appium real-device + emulator mobile QA — iOS + Android, cloud farms, CI/CD.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq Appium Mobile Testing Services" }],
+    images: [{ url: "https://www.testriq.com/OG/appium-mobile-testing-services-og.jpg", width: 1200, height: 630, alt: "Testriq Appium Mobile Testing Services" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Appium Mobile Testing Services — iOS + Android Automation | Testriq",
     description: "Appium mobile QA — iOS + Android real device + emulator, cloud farms, CI.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/appium-mobile-testing-services-og.jpg"],
   },
   robots: {
     index: true,

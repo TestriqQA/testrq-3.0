@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "JMeter vs k6 — Performance Testing Tool Comparison | Testriq",
     description: "JMeter vs k6 — protocols, scripting model, distributed load, cloud-native, CI integration.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "JMeter vs k6" }],
+    images: [{ url: "https://www.testriq.com/OG/jmeter-vs-k6-og.jpg", width: 1200, height: 630, alt: "JMeter vs k6" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "JMeter vs k6 — Performance Testing Tool Comparison | Testriq",
     description: "JMeter vs k6 — protocols, scripting, distributed load, cloud-native, CI.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/jmeter-vs-k6-og.jpg"],
   },
   robots: {
     index: true,

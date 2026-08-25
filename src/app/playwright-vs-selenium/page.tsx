@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Playwright vs Selenium — When to Migrate (and When Not To) | Testriq",
     description: "Playwright vs Selenium — bindings, browsers, flake, parallelism, ecosystem, migration cost.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Playwright vs Selenium" }],
+    images: [{ url: "https://www.testriq.com/OG/playwright-vs-selenium-og.jpg", width: 1200, height: 630, alt: "Playwright vs Selenium" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Playwright vs Selenium — When to Migrate (and When Not To) | Testriq",
     description: "Playwright vs Selenium — bindings, browsers, flake, parallelism, migration cost.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/playwright-vs-selenium-og.jpg"],
   },
   robots: {
     index: true,

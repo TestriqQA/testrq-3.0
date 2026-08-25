@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "JMeter Performance Testing Services — Load + Stress + Soak | Testriq",
     description: "JMeter load + stress + soak + scalability — distributed, CI-integrated, APM-correlated.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq JMeter Performance Testing Services" }],
+    images: [{ url: "https://www.testriq.com/OG/jmeter-performance-testing-services-og.jpg", width: 1200, height: 630, alt: "Testriq JMeter Performance Testing Services" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "JMeter Performance Testing Services — Load + Stress + Soak | Testriq",
     description: "JMeter load / stress / soak / scalability — distributed, CI-integrated, APM-correlated.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/jmeter-performance-testing-services-og.jpg"],
   },
   robots: {
     index: true,

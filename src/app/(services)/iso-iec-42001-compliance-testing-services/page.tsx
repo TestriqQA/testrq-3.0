@@ -48,7 +48,7 @@ export const metadata: Metadata = {
       "Achieve ISO/IEC 42001:2023 certification for your AI systems. Expert AIMS compliance testing covering risk assessment, bias detection, explainability, and regulatory alignment.",
     images: [
       {
-        url: "https://www.testriq.com/OG/ISO-42001-Compliance-Testing-Og.webp",
+        url: "https://www.testriq.com/OG/iso-iec-42001-compliance-testing-services-og.jpg",
         width: 1200,
         height: 630,
         alt: "ISO/IEC 42001:2023 Compliance Testing Services by Testriq QA Lab",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
       "ISO/IEC 42001:2023 Compliance Testing | AI Governance & Certification | Testriq",
     description:
       "Achieve ISO/IEC 42001:2023 certification for your AI systems. Expert AIMS compliance testing covering risk assessment, bias detection, explainability, and regulatory alignment.",
-    images: ["https://www.testriq.com/OG/ISO-42001-Compliance-Testing-Twitter.webp"],
+    images: ["https://www.testriq.com/OG/iso-iec-42001-compliance-testing-services-og.jpg"],
   },
   robots: {
     index: true,

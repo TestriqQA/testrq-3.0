@@ -129,7 +129,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: `https://www.testriq.com/images/tags/${normalizedTag}-og.jpg`,
+          // Shared blog card — see the note on the category route. The per-slug path
+          // this replaced 404d on all ~360 tag pages.
+          url: "https://www.testriq.com/OG/blog-og.jpg",
           width: 1200,
           height: 630,
           alt: `${tagName} Articles - Testriq Blog`,
@@ -140,7 +142,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `${tagName} Articles | Expert Testing Insights & Best Practices | Testriq`,
       description: tagDescription,
-      images: [`https://www.testriq.com/images/tags/${normalizedTag}-twitter.jpg`],
+      images: ["https://www.testriq.com/OG/blog-og.jpg"],
       creator: "@testriq",
       site: "@testriq",
     },
