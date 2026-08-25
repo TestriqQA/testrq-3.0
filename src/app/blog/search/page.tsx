@@ -45,6 +45,17 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       siteName: "Testriq",
       locale: "en_US",
       type: "website",
+      // Repeated here rather than inherited: Next.js replaces openGraph wholesale
+      // when a child defines it, so this block shadows the one in layout.tsx and
+      // the layout's images never reach the page. Keep the two in sync.
+      images: [
+        {
+          url: "https://www.testriq.com/OG/blog-search-og.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Search Testriq's Software Testing Blog",
+        },
+      ],
     },
   };
 }
