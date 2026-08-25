@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "Test Strategy Template — How to Write a Test Strategy | Testriq",
     description:
       "Test Strategy template — scope, approach, risk register, entry/exit criteria, tooling, defect lifecycle, RACI.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Test Strategy Template" }],
+    images: [{ url: "https://www.testriq.com/OG/test-strategy-template-og.jpg", width: 1200, height: 630, alt: "Test Strategy Template" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Test Strategy Template — How to Write a Test Strategy | Testriq",
     description: "Test Strategy template walkthrough — scope, approach, risk, criteria, tooling, RACI.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/test-strategy-template-og.jpg"],
   },
   robots: {
     index: true,

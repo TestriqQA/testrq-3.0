@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Playwright vs Cypress — Which JS/TS Test Automation Tool? | Testriq",
     description: "Playwright vs Cypress — browsers, async/await, network, component testing, parallelism.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Playwright vs Cypress" }],
+    images: [{ url: "https://www.testriq.com/OG/playwright-vs-cypress-og.jpg", width: 1200, height: 630, alt: "Playwright vs Cypress" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Playwright vs Cypress — Which JS/TS Test Automation Tool? | Testriq",
     description: "Playwright vs Cypress — browsers, async/await, network, component testing.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/playwright-vs-cypress-og.jpg"],
   },
   robots: {
     index: true,

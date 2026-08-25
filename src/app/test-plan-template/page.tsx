@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "Test Plan Template — IEEE 829-Aligned Test Plan Structure | Testriq",
     description:
       "Test Plan template — IEEE 829 structure with test items, scope, approach, criteria, schedule, environment, risks, approvals.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Test Plan Template" }],
+    images: [{ url: "https://www.testriq.com/OG/test-plan-template-og.jpg", width: 1200, height: 630, alt: "Test Plan Template" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Test Plan Template — IEEE 829-Aligned Test Plan Structure | Testriq",
     description: "Test Plan template — IEEE 829 structure with criteria, schedule, environment, risks, approvals.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/test-plan-template-og.jpg"],
   },
   robots: {
     index: true,

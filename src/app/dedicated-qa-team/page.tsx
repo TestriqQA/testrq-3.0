@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Dedicated QA Team — Outsourced QA Function That Owns the Outcome | Testriq",
     description: "Fully-managed QA function: lead, automation, manual, perf, security. Owns the outcome.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq Dedicated QA Team" }],
+    images: [{ url: "https://www.testriq.com/OG/dedicated-qa-team-og.jpg", width: 1200, height: 630, alt: "Testriq Dedicated QA Team" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Dedicated QA Team — Outsourced QA Function That Owns the Outcome | Testriq",
     description: "Fully-managed QA function: lead, automation, manual, perf, security.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/dedicated-qa-team-og.jpg"],
   },
   robots: {
     index: true,

@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: "https://www.testriq.com/images/testriq-blog-og.jpg",
+          url: "https://www.testriq.com/OG/blog-og.jpg",
           width: 1200,
           height: 630,
           alt: "Testriq Software Testing Blog - Expert QA Insights",
@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Software Testing Blog | Expert QA Insights & Best Practices | Testriq",
       description: "Stay updated with the latest trends, insights, and best practices in software testing and QA. Explore expert articles, tutorials, and industry news from Testriq's ISTQB certified experts.",
-      images: ["https://www.testriq.com/images/testriq-blog-twitter.jpg"],
+      images: ["https://www.testriq.com/OG/blog-og.jpg"],
       creator: "@testriq",
       site: "@testriq",
     },

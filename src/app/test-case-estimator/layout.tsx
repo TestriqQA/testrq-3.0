@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Free Test Case Estimator — calculate test cases, effort hours, team size from module + feature + complexity inputs.",
     images: [
       {
-        url: "https://www.testriq.com/testriq-logo.png",
+        url: "https://www.testriq.com/OG/test-case-estimator-og.jpg",
         width: 1200,
         height: 630,
         alt: "Testriq Test Case Estimator",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Test Case Estimator — Free Online Calculator | Testriq",
     description:
       "Calculate test cases, effort hours, and team size — free, no signup.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/test-case-estimator-og.jpg"],
   },
   robots: {
     index: true,

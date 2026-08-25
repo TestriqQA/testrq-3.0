@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "QA Staff Augmentation — Bench-Quality Engineers, On Your Standup | Testriq",
     description: "Extend your in-house QA team with ISTQB-certified engineers — under your management.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Testriq QA Staff Augmentation" }],
+    images: [{ url: "https://www.testriq.com/OG/staff-augmentation-og.jpg", width: 1200, height: 630, alt: "Testriq QA Staff Augmentation" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "QA Staff Augmentation — Bench-Quality Engineers, On Your Standup | Testriq",
     description: "Extend your in-house QA team with ISTQB-certified engineers.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/staff-augmentation-og.jpg"],
   },
   robots: {
     index: true,

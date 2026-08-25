@@ -47,7 +47,7 @@ export const metadata: Metadata = {
       "6-phase QA process — Discovery, Strategy, Planning, Execution, Reporting, Closure. Risk-first + evidence-based + ISTQB + ISO 9001 + ISO 27001 certified.",
     images: [
       {
-        url: "https://www.testriq.com/testriq-logo.png",
+        url: "https://www.testriq.com/OG/qa-process-og.jpg",
         width: 1200,
         height: 630,
         alt: "Testriq QA Process",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "QA Process — How Testriq Delivers Software Quality | Testriq",
     description:
       "6-phase QA process — Discovery, Strategy, Planning, Execution, Reporting, Closure. Risk-first + evidence-based.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/qa-process-og.jpg"],
   },
   robots: {
     index: true,

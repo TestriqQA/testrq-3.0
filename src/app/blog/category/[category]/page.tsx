@@ -130,7 +130,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: `https://www.testriq.com/images/categories/${normalizedCategory}-og.jpg`,
+          // Shared blog card. Per-category art was never produced, and the per-slug
+          // path this used to build 404d on all ~69 categories — a broken og:image
+          // renders an empty box, which is worse than a text-only card. Swap this for
+          // a category-specific file if that art is ever made.
+          url: "https://www.testriq.com/OG/blog-og.jpg",
           width: 1200,
           height: 630,
           alt: `${categoryName} Testing Articles - Testriq Blog`,
@@ -141,7 +145,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `${categoryName} Testing Articles | Expert Insights & Best Practices | Testriq`,
       description: categoryDescription,
-      images: [`https://www.testriq.com/images/categories/${normalizedCategory}-twitter.jpg`],
+      images: ["https://www.testriq.com/OG/blog-og.jpg"],
       creator: "@testriq",
       site: "@testriq",
     },

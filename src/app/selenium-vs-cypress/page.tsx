@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Selenium vs Cypress — Which Test Automation Tool in 2026? | Testriq",
     description: "Selenium vs Cypress — browsers, languages, CI, flake, learning curve, TCO. ISTQB-led recommendation.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Selenium vs Cypress" }],
+    images: [{ url: "https://www.testriq.com/OG/selenium-vs-cypress-og.jpg", width: 1200, height: 630, alt: "Selenium vs Cypress" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Selenium vs Cypress — Which Test Automation Tool in 2026? | Testriq",
     description: "Selenium vs Cypress — browsers, languages, CI, flake, TCO.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/selenium-vs-cypress-og.jpg"],
   },
   robots: {
     index: true,

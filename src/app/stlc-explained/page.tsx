@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "STLC Explained: The 6 Phases of Software Testing Life Cycle | Testriq",
     description:
       "The 6 STLC phases with entry/exit criteria, deliverables, and pitfalls — aligned to ISTQB + ISO 29119.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "STLC Explained" }],
+    images: [{ url: "https://www.testriq.com/OG/stlc-explained-og.jpg", width: 1200, height: 630, alt: "STLC Explained" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "STLC Explained: The 6 Phases of Software Testing Life Cycle | Testriq",
     description: "The 6 STLC phases with entry/exit criteria, deliverables, and pitfalls.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/stlc-explained-og.jpg"],
   },
   robots: {
     index: true,

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "Testriq",
     title: "Appium vs Espresso — Android Test Automation Compared | Testriq",
     description: "Appium vs Espresso — iOS support, in-process speed, languages, Android depth, CI, cross-platform.",
-    images: [{ url: "https://www.testriq.com/testriq-logo.png", width: 1200, height: 630, alt: "Appium vs Espresso" }],
+    images: [{ url: "https://www.testriq.com/OG/appium-vs-espresso-og.jpg", width: 1200, height: 630, alt: "Appium vs Espresso" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     creator: "@testriq",
     title: "Appium vs Espresso — Android Test Automation Compared | Testriq",
     description: "Appium vs Espresso — iOS support, in-process speed, Android depth, CI.",
-    images: ["https://www.testriq.com/testriq-logo.png"],
+    images: ["https://www.testriq.com/OG/appium-vs-espresso-og.jpg"],
   },
   robots: {
     index: true,
