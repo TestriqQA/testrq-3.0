@@ -17,6 +17,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import StructuredData, {
+    caseStudiesSchema,
     createBreadcrumbSchema,
     createCanonicalBreadcrumb,
 } from "../StructuredData";
@@ -340,5 +341,72 @@ describe("createCanonicalBreadcrumb", () => {
         const bc = createCanonicalBreadcrumb("/foo", "Foo");
         expect(bc["@context"]).toBe("https://schema.org");
         expect(bc["@type"]).toBe("BreadcrumbList");
+    });
+});
+
+// ---------------------------------------------------------------------------
+// 11 - caseStudiesSchema @graph reference integrity
+//
+// Regression guard for the Rich Results Test failure on /case-studies:
+// "2 items detected: Some are invalid - Missing field itemListElement" on a
+// BreadcrumbList with @id ".../case-studies/#breadcrumb". F-44.2 removed that
+// BreadcrumbList node from the @graph (the page-side <script> owns it) but
+// left the CollectionPage's "breadcrumb": { "@id": ... } pointer behind.
+// Google resolved the dangling pointer into an empty BreadcrumbList stub.
+//
+// An "@id" cannot reach across separate <script> blocks, so any bare
+// reference inside this @graph must be defined inside the same @graph.
+// ---------------------------------------------------------------------------
+
+describe("caseStudiesSchema - @graph reference integrity", () => {
+    type Node = Record<string, unknown>;
+
+    /** Split every node in the graph into defined @ids and bare @id references. */
+    function collectIds(graph: unknown): {
+        defined: Set<string>;
+        refs: string[];
+    } {
+        const defined = new Set<string>();
+        const refs: string[] = [];
+
+        const walk = (node: unknown): void => {
+            if (Array.isArray(node)) {
+                node.forEach(walk);
+                return;
+            }
+            if (!node || typeof node !== "object") return;
+
+            const obj = node as Node;
+            const keys = Object.keys(obj);
+            const id = obj["@id"];
+            if (typeof id === "string") {
+                // `{ "@id": x }` on its own is a pointer; anything richer defines a node.
+                if (keys.length === 1) refs.push(id);
+                else defined.add(id);
+            }
+            keys.forEach((k) => walk(obj[k]));
+        };
+
+        walk(graph);
+        return { defined, refs };
+    }
+
+    const graph = (caseStudiesSchema as { "@graph": Node[] })["@graph"];
+
+    it("resolves every bare @id reference within the same @graph", () => {
+        const { defined, refs } = collectIds(graph);
+        const dangling = refs.filter((r) => !defined.has(r));
+        expect(dangling).toEqual([]);
+    });
+
+    it("carries no breadcrumb pointer on the CollectionPage", () => {
+        const page = graph.find((n) => n["@type"] === "CollectionPage");
+        expect(page).toBeDefined();
+        expect(page).not.toHaveProperty("breadcrumb");
+    });
+
+    it("declares no BreadcrumbList of its own (page-side script owns it)", () => {
+        const crumbs = graph.filter((n) => n["@type"] === "BreadcrumbList");
+        expect(crumbs).toHaveLength(0);
     });
 });
