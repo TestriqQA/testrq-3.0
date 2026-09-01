@@ -1587,9 +1587,9 @@ export const caseStudiesSchema = {
       "isPartOf": {
         "@id": "https://www.testriq.com/#website"
       },
-      "breadcrumb": {
-        "@id": "https://www.testriq.com/case-studies/#breadcrumb"
-      },
+      // No "breadcrumb" pointer here — see the F-44.2 note at the end of this
+      // @graph: the BreadcrumbList it used to reference now lives in a
+      // separate page-side <script>, and an "@id" cannot reach across blocks.
       "mainEntity": {
         "@type": "ItemList",
         "itemListElement": [
@@ -1704,6 +1704,15 @@ export const caseStudiesSchema = {
     // here that was double-rendering on /case-studies — the page-side and
     // schema-internal blocks emitted identical content, but Google's
     // BreadcrumbList rich-result rules treat duplicates as conflicting.
+    //
+    // F-44.2 follow-up: that removal left the CollectionPage above still
+    // pointing at "@id": ".../case-studies/#breadcrumb", a node no longer
+    // defined anywhere on the page. Google resolved the dangling reference
+    // into a second, empty BreadcrumbList, and the Rich Results Test
+    // reported "Missing field itemListElement" against it. Dropping the
+    // pointer leaves only the valid page-side BreadcrumbList. To restore
+    // the linkage, the BreadcrumbList node has to move INTO this @graph
+    // and the page-side <script> has to go — not the other way round.
   ]
 };
 
