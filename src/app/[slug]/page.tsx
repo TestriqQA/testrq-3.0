@@ -207,39 +207,153 @@ function generateCitySchema(cityData: CityData) {
   };
 }
 
-// Map slugs to their specific OG image filenames. Includes overrides for typos in uploaded filenames.
-function getCityOgImage(slug: string): string {
-  const cityKey = slug.replace("software-qa-testing-services-in-", "");
-  
-  const overrides: Record<string, string> = {
-    "ahmedabad": "Ahemdabad-og-image.webp",
-    "ghaziabad": "Ghariabad-og-image.webp",
-    "jamshedpur": "Jameshdpur-og-image.webp", // Usually a typo like this
-    "manchester": "Manshester-og-image.webp",
-    "melbourne": "Melbourn-og-image.webp",
-    "christchurch": "Christchurc-og-image.webp",
-    "vadodara": "Vadodra-og-image.webp",
-    "bangalore": "Bengaluru-og-image.webp",
-    "secunderabad": "Secundarabad-og-image.webp",
-    "madurai": "Madurai-og-image.webp",
-    "ghayathi": "Ghayathi-og-image.webp",
-  };
+/**
+ * Slug -> OG card filename, one entry per city that has artwork.
+ *
+ * This used to derive the filename from the slug by capitalising every word
+ * (`greater-noida` -> `Greater-Noida-og-image.webp`). The files on disk
+ * capitalise only the first word, so 15 cities resolved to a name that does
+ * not exist. Windows and macOS have case-insensitive filesystems and served
+ * them locally; Vercel's Linux filesystem 404s them, and a 404 under /OG/
+ * returns HTML, so crawlers were handed a web page where an image should be.
+ * Six more pointed at overrides for artwork that was never uploaded.
+ *
+ * Filenames here are copied verbatim from `git ls-files public/OG` and are
+ * deliberately inconsistent in case (`pune-` vs `Pune-`, `Ahemdabad` for
+ * Ahmedabad) because that is what the assets are actually called. Do not
+ * "tidy" them without renaming the files in the same commit.
+ *
+ * Cities absent from this map fall back to CITY_OG_FALLBACK.
+ */
+const CITY_OG_IMAGE: Record<string, string> = {
+  "agra":          "Agra-og-image.webp",
+  "ahmedabad":     "Ahemdabad-og-image.webp",
+  "ajman":         "Ajman-og-image.webp",
+  "ajmer":         "Ajmer-og-image.webp",
+  "al-ain":        "Al-ain-og-image.webp",
+  "amritsar":      "Amritsar-og-image.webp",
+  "ar-rams":       "Ar-Rams-og-image.webp",
+  "auckland":      "Auckland-og-image.webp",
+  "bangalore":     "Bengaluru-og-image.webp",
+  "bhopal":        "Bhopal-og-image.webp",
+  "bhubaneswar":   "Bhubaneswar-og-image.webp",
+  "brisbane":      "Brisbane-og-image.webp",
+  "chandigarh":    "chandigarh-og-image.webp",
+  "chennai":       "Chennai-og-image.webp",
+  "chicago":       "Chicago-og-image.webp",
+  "coimbatore":    "coimbatore-og-image.webp",
+  "dehradun":      "Dehradun-og-image.webp",
+  "delhi":         "Delhi-og-image.webp",
+  "dhaid":         "Dhaid-og-image.webp",
+  "dibba-al-hisn": "Dibba-al-hisn-og-image.webp",
+  "edinburgh":     "Edinburgh-og-image.webp",
+  "ernakulam":     "Ernakulam-og-image.webp",
+  "faridabad":     "Faridabad-og-image.webp",
+  "fujairah":      "Fujairah-og-image.webp",
+  "gandhinagar":   "Gandhinagar-og-image.webp",
+  "ghaziabad":     "Ghariabad-og-image.webp",
+  "goa":           "Goa-og-image.webp",
+  "gorakhpur":     "Gorakhpur-og-image.webp",
+  "greater-noida": "Greater-noida-og-image.webp",
+  "gurgaon":       "Gurgaon-og-image.webp",
+  "guwahati":      "Guwahati-og-image.webp",
+  "gwalior":       "Gwalior-og-image.webp",
+  "hatta":         "Hatta-og-image.webp",
+  "hyderabad":     "Hyderabad-og-image.webp",
+  "indore":        "indore-og-image.webp",
+  "jaipur":        "Jaipur-og-image.webp",
+  "jalandhar":     "Jalandhar-og-image.webp",
+  "jammu":         "jammu-og-image.webp",
+  "jebel-ali":     "Jebel-ali-og-image.webp",
+  "jodhpur":       "Jodhpur-og-image.webp",
+  "kalba":         "Kalba-og-image.webp",
+  "kanpur":        "Kanpur-og-image.webp",
+  "kochi":         "Kochi-og-image.webp",
+  "kolkata":       "Kolkata-og-image.webp",
+  "liwa-oasis":    "Liwa-oasis-og-image.webp",
+  "london":        "London-og-image.webp",
+  "los-angeles":   "Los-Angeles-og-image.webp",
+  "lucknow":       "Lucknow-og-image.webp",
+  "ludhiana":      "Ludhiana-og-image.webp",
+  "manchester":    "Manshester-og-image.webp",
+  "mangalore":     "Mangalore-og-image.webp",
+  "meerut":        "Meerut-og-image.webp",
+  "melbourne":     "Melbourn-og-image.webp",
+  "montreal":      "Montreal-og-image.webp",
+  "moradabad":     "Moradabad-og-image.webp",
+  "mumbai":        "Mumbai-og-image.webp",
+  "nagpur":        "Nagpur-og-image.webp",
+  "nashik":        "Nashik-og-image.webp",
+  "new-york":      "New-york-og-image.webp",
+  "noida":         "Noida-og-image.webp",
+  "patna":         "Patna-og-image.webp",
+  "pune":          "pune-og-image.webp",
+  "raipur":        "Raipur-og-image.webp",
+  "rajkot":        "Rajkot-og-image.webp",
+  "ranchi":        "Ranchi-og-image.webp",
+  "ras-al-khaimah": "Ras-al-khaimah-og-image.webp",
+  "sharjah":       "Sharjah-og-image.webp",
+  "shimla":        "Shimla-og-image.webp",
+  "surat":         "Surat-og-image.webp",
+  "sydney":        "Sydney-og-image.webp",
+  "toronto":       "Toronto-og-image.webp",
+  "trivandrum":    "Trivandrum-og-image.webp",
+  "udaipur":       "Udaipur-og-image.webp",
+  "umm-al-quwain": "Umm-al-Quwain-og-image.webp",
+  "vadodara":      "vadodra-og-image.webp",
+  "vancouver":     "Vancouver-og-image.webp",
+  "wellington":    "wellington-og-image.webp",
+};
 
-  // Cities with explicitly NO images uploaded
-  const noImageCities = ["abu-dhabi", "navi-mumbai", "al-jazirah-al-hamra"];
-  
-  if (noImageCities.includes(cityKey)) {
-    return "https://www.testriq.com/og-image.png";
+/**
+ * Shared card for cities with no artwork of their own. 1200x630 JPEG, 96 KB —
+ * correct shape and comfortably inside every platform's size cap.
+ *
+ * Replaces a reference to `/og-image.png`, which does not exist in `public/`.
+ * Because `[slug]` matches any single-segment path, that URL fell through to
+ * this very route and answered 200 with HTML instead of 404 — so the card was
+ * not merely missing, it was an HTML document served as an image.
+ *
+ * Currently used by: abu-dhabi, al-dhannah, al-jazirah-al-hamra,
+ * christchurch, ghayathi, jamshedpur, madurai, navi-mumbai, secunderabad.
+ * navi-mumbai 308-redirects to /software-qa-testing-services-in-mumbai, so
+ * it never actually renders this card.
+ */
+const CITY_OG_FALLBACK = "OG/locations-we-serve-og.jpg";
+
+/**
+ * Real pixel dimensions of the city cards, so `og:image:width` / `height`
+ * describe the file that is actually served. Receivers size the preview box
+ * from these numbers before the image arrives; a wrong pair renders the card
+ * letterboxed or cropped. Same contract as F-71's "declare real og:image
+ * dimensions" pass — these were all declared 1200x630 while every asset is
+ * 1376x768.
+ */
+const CITY_OG_SIZE = { width: 1376, height: 768 } as const;
+/** Guwahati's card was exported at a different size to the other 76. */
+const CITY_OG_SIZE_OVERRIDE: Record<string, { width: number; height: number }> = {
+  "Guwahati-og-image.webp": { width: 2848, height: 1504 },
+};
+/** The shared fallback is a true 1200x630 card. */
+const CITY_OG_FALLBACK_SIZE = { width: 1200, height: 630 } as const;
+
+type CityOgImage = { url: string; width: number; height: number };
+
+function getCityOgImage(slug: string): CityOgImage {
+  const cityKey = slug.replace("software-qa-testing-services-in-", "");
+  const filename = CITY_OG_IMAGE[cityKey];
+
+  if (!filename) {
+    return {
+      url: `https://www.testriq.com/${CITY_OG_FALLBACK}`,
+      ...CITY_OG_FALLBACK_SIZE,
+    };
   }
 
-  // Capitalize first letter of each word to match filename convention (e.g., al-ain -> Al-ain)
-  const formatName = (name: string) => {
-    return name.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-');
+  return {
+    url: `https://www.testriq.com/OG/${filename}`,
+    ...(CITY_OG_SIZE_OVERRIDE[filename] ?? CITY_OG_SIZE),
   };
-
-  const filename = overrides[cityKey] || `${formatName(cityKey)}-og-image.webp`;
-  
-  return `https://www.testriq.com/OG/${filename}`;
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -318,7 +432,7 @@ export async function generateMetadata({ params }: PageProps) {
   const pageTitle = cityData.metadata.title;
   const pageDescription = cityData.metadata.description;
   const canonicalUrl = `https://www.testriq.com/${cityData.slug}`;
-  const ogImageUrl = getCityOgImage(resolvedParams.slug);
+  const ogImage = getCityOgImage(resolvedParams.slug);
   // H1 thin-content cleanup: only lead-generating cities stay indexed; every
   // other city page is noindex (still follow, so internal links are crawled).
   const cityIndexed = isCityIndexed(cityData.slug);
@@ -338,9 +452,9 @@ export async function generateMetadata({ params }: PageProps) {
       type: "website",
       images: [
         {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
+          url: ogImage.url,
+          width: ogImage.width,
+          height: ogImage.height,
           alt: pageTitle,
         },
       ],
@@ -349,7 +463,7 @@ export async function generateMetadata({ params }: PageProps) {
       card: "summary_large_image",
       title: pageTitle,
       description: pageDescription,
-      images: [ogImageUrl],
+      images: [ogImage.url],
     },
     robots: {
       index: cityIndexed,
