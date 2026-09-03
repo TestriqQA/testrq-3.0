@@ -635,7 +635,10 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/post/10-must-use-mobile-app-testing-tools-in-2025", destination: "/blog/post/mobile-app-testing-tools-2026-guide", permanent: true },
       { source: "/blog/post/cloud-", destination: "/blog/post/cloud-based-performance-testing-scaling-for-modern-architectures", permanent: true },
       { source: "/Best", destination: "/", permanent: true },
-      { source: "/blog/how-to-use-jmeter-for-performance-testing", destination: "/blog/post/how-is-jmeter-used-for-performance-testing", permanent: true },
+      // Repointed Aug 2026: its old destination was itself merged away and now
+      // redirects, which would make this a two-hop chain (T-1). Points straight
+      // at the surviving article instead.
+      { source: "/blog/how-to-use-jmeter-for-performance-testing", destination: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide", permanent: true },
       { source: "/debug", destination: "/", permanent: true },
       { source: "/services/performance-testing-services", destination: "/performance-testing-services", permanent: true },
       { source: "/test-automation-services/", destination: "/automation-testing-services", permanent: true },
@@ -916,4 +919,18 @@ export const redirects: RedirectRule[] = [
       // surviving article to recover that traffic and consolidate the ranking
       // signals onto one URL. Destination verified live (200, real content).
       { source: "/blog/post/what-is-latency-testing", destination: "/blog/post/what-is-a-latency-test", permanent: true },
+      // Blog consolidation, Aug 2026. Six near-duplicate posts were merged into
+      // the strongest article on each topic and then deleted in Sanity. A post
+      // deleted in Sanity keeps returning HTTP 200 with a "Post Not Found" body,
+      // so Google treats it as a live page and keeps it indexed — these 301s are
+      // what actually retire the old URLs and pass their signals to the keeper.
+      // Every source below was verified as deleted (151-word not-found shell) and
+      // every destination verified live with full content before this was added.
+      { source: "/blog/post/automation-testing-services-guide", destination: "/blog/post/automation-testing-services-roi-guide-2026", permanent: true },
+      { source: "/blog/post/how-to-test-iot-devices-for-reliability-2", destination: "/blog/post/how-to-test-iot-devices-for-reliability", permanent: true },
+      { source: "/blog/post/ai-model-accuracy-testing-guide", destination: "/blog/post/ai-model-accuracy-testing-step-by-step-guide", permanent: true },
+      { source: "/blog/post/when-should-we-go-for-performance-testing", destination: "/blog/post/performance-testing-guide", permanent: true },
+      { source: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide-2", destination: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide", permanent: true },
+      { source: "/blog/post/how-is-jmeter-used-for-performance-testing", destination: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide", permanent: true },
+      { source: "/blog/post/what-are-the-best-mobile-app-testing-tools", destination: "/blog/post/mobile-app-testing-tools-2026-guide", permanent: true },
 ];
