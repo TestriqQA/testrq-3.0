@@ -932,4 +932,5 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/post/when-should-we-go-for-performance-testing", destination: "/blog/post/performance-testing-guide", permanent: true },
       { source: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide-2", destination: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide", permanent: true },
       { source: "/blog/post/how-is-jmeter-used-for-performance-testing", destination: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide", permanent: true },
+      { source: "/blog/post/what-are-the-best-mobile-app-testing-tools", destination: "/blog/post/mobile-app-testing-tools-2026-guide", permanent: true },
 ];
