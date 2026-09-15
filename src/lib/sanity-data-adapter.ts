@@ -831,6 +831,8 @@ export interface CaseStudy {
     slug: string;
     title: string;
     client: string;
+    /** Optional client website, rendered as an outbound link on the client name. */
+    clientUrl?: string;
     industry: string;
     duration: string;
     description: string;
@@ -947,6 +949,7 @@ export function adaptSanityCaseStudy(raw: any): CaseStudy {
         slug,
         title: raw.title || '',
         client: raw.client || '',
+        clientUrl: raw.clientUrl || undefined,
         industry: raw.industry || '',
         duration: raw.duration || '',
         description: raw.description || '',
