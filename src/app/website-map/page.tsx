@@ -15,7 +15,9 @@ import { discoverRoutes, slugToTitle } from "@/lib/seo/discover-routes";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-    title: "Sitemap | Testriq QA Lab",
+    // `absolute` bypasses the root layout's "%s | Testriq" template,
+    // which would otherwise print the brand twice (F-71).
+    title: { absolute: "Sitemap | Testriq QA Lab" },
     description: "Complete list of pages, services, solutions, articles, categories, and tags on Testriq.com",
 };
 

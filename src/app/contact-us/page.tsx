@@ -55,7 +55,9 @@ const ContactOfficeSection = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Contact Us Testriq QA Lab | Software Testing Services",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "Contact Testriq | Software Testing & QA Services" },
   description:
     "Get in touch with Testriq QA Lab for expert software testing services. Reach out for project inquiries, careers, or collaborations. We respond quickly & securely.",
   keywords: [

@@ -4,7 +4,9 @@ import { Metadata } from "next";
 import StructuredData, { aboutPageSchema, createBreadcrumbSchema } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
-  title: "About Testriq | ISO 9001 Certified Software Testing Company",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "About Testriq | ISO 9001 Certified Software Testing Company" },
 
   description: "Testriq QA Lab is a globally trusted software testing company with 15+ years of experience. We provide ISTQB certified QA solutions, Automation, and Security testing.",
   keywords: [

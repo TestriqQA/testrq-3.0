@@ -81,7 +81,9 @@ const CareersApplicationProcessSection = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Careers | Join Our QA Testing Team at Testriq",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "Careers at Testriq | QA & Software Testing Jobs" },
 
   description: "Discover a workplace that values growth, collaboration, and excellence. Unleash your potential with testriq Careers.. Enjoy remote-first work, growth opportunities, top-tier benefits, and a culture of innovation.",
   keywords: [

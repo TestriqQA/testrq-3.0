@@ -7,7 +7,9 @@ export const revalidate = 3600;
 const PAGE_URL = "https://www.testriq.com/postman-api-testing-services";
 
 export const metadata: Metadata = {
-  title: "Postman API Testing Services | Contract QA | Testriq",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "Postman API Testing Services | Contract QA | Testriq" },
   description:
     "Postman API testing services: collection design, environment strategy, Newman CI runs, OpenAPI/Pact contract testing, mock servers, and monitors.",
   keywords: [
