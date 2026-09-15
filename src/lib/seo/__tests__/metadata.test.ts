@@ -8,8 +8,8 @@
  * Run via `npm run test` (single pass) or `npm run test:watch`.
  */
 
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { join, relative } from "node:path";
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -648,5 +648,168 @@ describe("isDevEnvironment", () => {
     it("returns true when NODE_ENV is undefined", () => {
         delete process.env.NODE_ENV;
         expect(isDevEnvironment()).toBe(true);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// Repo-wide invariant: the root layout's title template
+// ---------------------------------------------------------------------------
+
+/**
+ * `src/app/layout.tsx` declares `title.template = "%s | Testriq"`, so Next.js
+ * appends " | Testriq" to any page title given as a bare string. A page that
+ * also writes the brand into its own title therefore renders it twice, and the
+ * extra ~10 characters push the title past the ~60 Google displays — which
+ * truncates real keywords out of the search result.
+ *
+ * Two escapes are legitimate, and both are skipped below:
+ *
+ *   - `title: { absolute: "..." }`    bypasses the template outright
+ *   - `buildPageMetadata({ title })`  sets `title.absolute` internally
+ *
+ * This has been fixed in four separate batches (p4-batch1, p4-batch2, F-52,
+ * F-71) and regressed every time, because each batch fixed the pages it knew
+ * about rather than the class of bug. Hence one assertion over the whole route
+ * tree instead of a per-page check.
+ */
+
+const APP_DIR = join(process.cwd(), "src", "app");
+const BACKSLASH = String.fromCharCode(92);
+
+/** Every `page.tsx` under `src/app`, recursively. */
+function pageFiles(dir: string, out: string[] = []): string[] {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = join(dir, entry.name);
+        if (entry.isDirectory()) pageFiles(full, out);
+        else if (entry.name === "page.tsx") out.push(full);
+    }
+    return out;
+}
+
+/**
+ * Offset of the `{` that opens a page's Metadata object — either
+ * `export const metadata = {` or the `return {` inside `generateMetadata`.
+ *
+ * Returns null for pages with no metadata, and for pages that hand off to
+ * `buildPageMetadata(...)`, since `return buildPageMetadata({` does not match
+ * `return {` and those pages are exempt by design.
+ */
+function metadataObjectStart(src: string): number | null {
+    const direct = /export\s+const\s+metadata\s*(?::\s*Metadata\s*)?=\s*\{/.exec(src);
+    if (direct) return direct.index + direct[0].length - 1;
+
+    const gen = /export\s+(?:async\s+)?function\s+generateMetadata/.exec(src);
+    if (!gen) return null;
+    const ret = /return\s*\{/.exec(src.slice(gen.index));
+    return ret ? gen.index + ret.index + ret[0].length - 1 : null;
+}
+
+/**
+ * Raw source text of the top-level `title:` value in the object literal opening
+ * at `open`, or null when there is none.
+ *
+ * Hand-rolled rather than AST-parsed to keep this test dependency-free. Brace
+ * depth and string state are tracked so that a nested `openGraph.title` or
+ * `twitter.title` (depth 2) is correctly ignored — the template only ever
+ * applies to the top-level one.
+ */
+function topLevelTitle(src: string, open: number): string | null {
+    let depth = 0;
+    let inString: string | null = null;
+    let key: string | null = null;
+
+    for (let i = open; i < src.length; i++) {
+        const ch = src[i];
+        const prev = src[i - 1];
+
+        if (inString) {
+            if (ch === inString && prev !== BACKSLASH) inString = null;
+            continue;
+        }
+        if (ch === '"' || ch === "'" || ch === "`") {
+            inString = ch;
+            continue;
+        }
+        if (ch === "{") {
+            depth++;
+            continue;
+        }
+        if (ch === "}") {
+            depth--;
+            if (depth === 0) return null;
+            continue;
+        }
+        if (depth !== 1) continue;
+
+        if (ch === ":" && key === null) {
+            let start = i - 1;
+            while (start >= 0 && /\s/.test(src[start])) start--;
+            const end = start;
+            while (start >= 0 && /[A-Za-z0-9_"'$]/.test(src[start])) start--;
+            key = src.slice(start + 1, end + 1).replace(/["']/g, "");
+
+            if (key === "title") {
+                let nested = 0;
+                let quoted: string | null = null;
+                for (let j = i + 1; j < src.length; j++) {
+                    const c = src[j];
+                    if (quoted) {
+                        if (c === quoted && src[j - 1] !== BACKSLASH) quoted = null;
+                        continue;
+                    }
+                    if (c === '"' || c === "'" || c === "`") {
+                        quoted = c;
+                        continue;
+                    }
+                    if (c === "{" || c === "[") nested++;
+                    else if (c === "}" || c === "]") {
+                        if (nested === 0) return src.slice(i + 1, j).trim();
+                        nested--;
+                    } else if (c === "," && nested === 0) return src.slice(i + 1, j).trim();
+                }
+            }
+        } else if (ch === "," && key !== null) {
+            key = null;
+        }
+    }
+    return null;
+}
+
+describe("root layout title template", () => {
+    it("finds page files to check", () => {
+        expect(pageFiles(APP_DIR).length).toBeGreaterThan(50);
+    });
+
+    it("no page puts the brand in a bare string title", () => {
+        const offenders: string[] = [];
+
+        for (const file of pageFiles(APP_DIR)) {
+            const src = readFileSync(file, "utf8");
+            const open = metadataObjectStart(src);
+            if (open === null) continue;
+
+            const raw = topLevelTitle(src, open);
+            if (raw === null) continue;
+
+            // Only bare string literals receive the template. `title: { absolute }`
+            // and computed values (`title: pageTitle`) do not match here.
+            const literal = /^[`"']([\s\S]*)[`"']$/.exec(raw);
+            if (!literal) continue;
+
+            if (/testriq/i.test(literal[1])) {
+                offenders.push(
+                    `${relative(process.cwd(), file)}\n      renders as "${literal[1]} | Testriq"`,
+                );
+            }
+        }
+
+        expect(
+            offenders,
+            "These pages put the brand in a bare string title, so the root layout's " +
+                '"%s | Testriq" template renders it twice. Use title: { absolute: "..." } ' +
+                "or buildPageMetadata() instead.\n\n  " +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
     });
 });

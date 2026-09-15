@@ -3,7 +3,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Terms of services | Testriq QA Lab',
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "Terms of Service | Testriq QA Lab" },
   description: 'Learn about the Terms of services of the Testriq QA Lab website.',
   alternates: {
     canonical: 'https://www.testriq.com/terms-of-service',

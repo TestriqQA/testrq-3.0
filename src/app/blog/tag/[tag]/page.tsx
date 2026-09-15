@@ -84,7 +84,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!tagData.tag) {
     return {
-      title: "Tag Not Found | Testriq Blog",
+      // `absolute` bypasses the root layout's "%s | Testriq" template,
+      // which would otherwise print the brand twice (F-71).
+      title: { absolute: "Tag Not Found | Testriq Blog" },
       description: "The requested blog tag could not be found.",
       robots: {
         index: false,

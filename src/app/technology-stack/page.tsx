@@ -5,7 +5,9 @@ import { Metadata } from "next";
 
 // SEO metadata for the Tools page
 export const metadata: Metadata = {
-  title: "QA Automation Tools & Supported Frameworks | Testriq Services",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "QA Automation Tools & Frameworks We Use | Testriq" },
   description: "Explore our comprehensive arsenal of 50+ QA tools. We leverage industry leaders like Selenium, Cypress, Playwright, and JMeter to build robust, scalable automation frameworks for your business.",
   keywords: [
     "testing tools",

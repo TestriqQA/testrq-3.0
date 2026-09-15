@@ -8,7 +8,9 @@ import BlogDemoHeroSection from "@/components/sections/BlogPostHeroSection";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "The Complete Guide to Performance Testing in 2026 | Testriq Blog Demo",
+    // `absolute` bypasses the root layout's "%s | Testriq" template,
+    // which would otherwise print the brand twice (F-71).
+    title: { absolute: "Performance Testing in 2026 | Testriq Blog Demo" },
     description: "Master performance testing with our comprehensive guide covering types, tools, best practices, and real-world case studies.",
     robots: {
         index: true,

@@ -24,8 +24,9 @@ const ManagedTestingReadyToStart = dynamic(() => import("@/components/sections/M
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-    title:
-        "Managed Testing Services | QA Outsourcing & Teams | Testriq",
+    // `absolute` bypasses the root layout's "%s | Testriq" template,
+    // which would otherwise print the brand twice (F-71).
+    title: { absolute: "Managed Testing Services | QA Outsourcing & Teams | Testriq" },
     description:
         "Testriq managed testing services: dedicated QA teams, end-to-end testing, and SLA-backed quality assurance to help enterprises cut costs and scale confidently.",
     keywords: [

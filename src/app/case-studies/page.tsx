@@ -18,7 +18,9 @@ const MainLayout = dynamic(
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Software Testing & QA Case Studies | Testriq QA Lab",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "Software Testing & QA Case Studies | Testriq QA Lab" },
   description:
     "Explore our library of software testing case studies. See how Testriq helped Canva, Ragnar, and fintech startups ship higher-quality releases with our Manual & Automation testing strategies.",
   keywords:

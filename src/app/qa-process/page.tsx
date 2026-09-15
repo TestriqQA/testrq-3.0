@@ -21,7 +21,9 @@ export const revalidate = 3600;
 const PAGE_URL = "https://www.testriq.com/qa-process";
 
 export const metadata: Metadata = {
-  title: "QA Process — How Testriq Delivers Software Quality",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "QA Process — How Testriq Delivers Software Quality" },
   description:
     "Testriq's 6-phase QA process — Discovery, Strategy, Test Planning, Execution, Reporting, Closure. Risk-first, evidence-based, ISTQB + ISO 9001 + ISO 27001 certified.",
   keywords: [

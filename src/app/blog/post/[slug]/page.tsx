@@ -164,7 +164,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: "Post Not Found | Testriq Blog",
+      // `absolute` bypasses the root layout's "%s | Testriq" template,
+      // which would otherwise print the brand twice (F-71).
+      title: { absolute: "Post Not Found | Testriq Blog" },
       // ...
     };
   }
