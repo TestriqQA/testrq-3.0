@@ -43,7 +43,7 @@ const SecurityTestingCrucialSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 px-8 md:px-12 lg:px-24 bg-gray-50 overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row gap-16 items-center">
                     <div className="lg:w-1/2 space-y-6">
@@ -51,7 +51,13 @@ const SecurityTestingCrucialSection: React.FC = () => {
                             Why is Cyber Security Testing <span className="text-brand-blue">Crucial</span> for Your Business in 2026?
                         </h2>
                         <p className="text-lg text-gray-600 leading-relaxed">
-                            The digital realm of 2026 presents a complex tapestry of opportunities and pervasive risks. With the average cost of a data breach soaring to $4.45 million and 82% of breaches involving data stored in the cloud, proactive information security measures are non-negotiable.
+                            {/* SEO handoff (Sept 2026) PART B: the "$4.45 million" and
+                                "82% of breaches" figures were IBM/Verizon 2023 numbers
+                                presented as current. They are removed from
+                                /security-testing by the handoff; the same figures were
+                                hard-coded here, so they are removed on both pages rather
+                                than left live on one. */}
+                            The digital realm of 2026 presents a complex tapestry of opportunities and pervasive risks. With breach costs continuing to climb and an ever-larger share of sensitive data held in cloud environments, proactive information security measures are non-negotiable.
                         </p>
                         <div className="p-6 bg-blue-50 border-l-4 border-brand-blue rounded-r-xl">
                             <p className="text-gray-700 italic">

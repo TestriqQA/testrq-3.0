@@ -1,28 +1,19 @@
-"use client";
-
+// SEO handoff (Sept 2026) — repositioned from "Security Testing" to the
+// "penetration testing services" query. H1, intro copy and both CTAs replaced
+// per PART C of the handoff. The reviewer byline is a new element (E-E-A-T
+// signal); the named reviewer is not on /our-team as an individual profile, so
+// the link points at the team page itself rather than a 404 anchor.
+//
+// Converted to a Server Component: the "Watch Demo" lightbox was the only
+// client API on this section and the handoff replaces that button with a
+// second /contact-us CTA. Matches the F-21.1 precedent elsewhere in this
+// folder — no useState, no "use client", less JS on the page's LCP section.
 import Link from "next/link";
-import React, { useState } from "react";
-import {
-  FaShieldAlt,
-  FaArrowRight,
-  FaPlay,
-  FaHome,
-  FaChevronRight
-} from "react-icons/fa";
-import Lightbox from "../VideoLightBox";
+import React from "react";
+import { FaShieldAlt, FaArrowRight, FaHome, FaChevronRight } from "react-icons/fa";
 import SecurityTestingAnimation from "./SecurityTestingAnimation";
 
 const SecurityTestingHeroSection: React.FC = () => {
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-
-  // Function to handle the lightbox open/close
-  const openLightbox = () => {
-    setIsLightboxOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setIsLightboxOpen(false);
-  };
   return (
     <section className="relative pt-8 pb-16 px-8 md:px-12 lg:px-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -40,6 +31,9 @@ const SecurityTestingHeroSection: React.FC = () => {
             Security Testing
           </span>
         </div>
+        {/* items-center: the animation is ~444px against a ~990px text column.
+            Without it the widget top-aligns and dumps the entire height
+            difference as dead space beneath itself. Matches the cyber hero. */}
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left Content */}
           <div className="space-y-4">
@@ -49,42 +43,64 @@ const SecurityTestingHeroSection: React.FC = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Security Testing & Penetration Testing Services for
+              Penetration Testing Services for
               <span className="text-transparent bg-clip-text bg-brand-blue">
                 {" "}
                 Global Enterprises
               </span>
             </h1>
 
-            <div className="space-y-4">
-              <p className="text-xl text-gray-600 leading-relaxed font-bold">
-                The Digital Resilience Mandate
+            {/* Reviewer byline — E-E-A-T signal, per handoff PART C */}
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Reviewed by{" "}
+              <Link
+                href="/our-team"
+                className="text-gray-600 underline decoration-gray-300 underline-offset-2 hover:text-brand-blue hover:decoration-brand-blue transition-colors"
+              >
+                Krishnakant Sharma
+              </Link>
+              , OSCP+ · OSCP
+              <br />
+              Security Tester, Testriq QA Lab
+              <br />
+              Last updated:{" "}
+              <time dateTime="2026-09-10">September 10, 2026</time>
+            </p>
+
+            <div className="space-y-2">
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Penetration testing services simulate a real attack on your
+                systems, before an actual attacker finds the way in. At Testriq,
+                certified security engineers manually attempt to break into your
+                web applications, APIs, mobile apps, networks and cloud
+                infrastructure, then hand you a prioritised report of exactly
+                what they found and how to fix it.
               </p>
               <p className="text-xl text-gray-600 leading-relaxed">
-                In 2026, digital resilience is no longer a luxury. It has become a vital regulatory and core business mandate for every organization. Ensuring your systems can withstand modern cyber attacks is essential for maintaining trust and compliance.
+                We are an independent testing laboratory, not a reseller of
+                security tooling. Every automated finding is verified by hand
+                before it reaches your report, so your engineering team spends
+                its time on real vulnerabilities instead of false positives.
               </p>
               <p className="text-xl text-gray-600 leading-relaxed">
-                At Testriq, we provide end-to-end Security Testing Services designed to identify vulnerabilities before they become breaches. Our security experts deliver comprehensive system weaknesses Assessment and Penetration Testing (VAPT) and Application Security Testing (AST) to protect your critical data.
-              </p>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                We specialize in protecting high-growth SaaS platforms and complex cloud infrastructure. We secure your digital assets against rising global threats. This ensures your business remains stable and resilient in a high-risk environment.
+                Testriq delivers penetration testing services to enterprises
+                across the United States, United Kingdom, European Union and
+                UAE.
               </p>
             </div>
 
             <div className="flex flex-col items-center lg:items-start sm:flex-row gap-4">
               <Link href="/contact-us">
                 <button className="bg-brand-blue cursor-pointer text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center">
-                  Get Started Today
+                  Request a Scoped Quote
                   <FaArrowRight className="ml-2" />
                 </button>
               </Link>
-              <button
-                onClick={openLightbox}
-                className="border-2 cursor-pointer border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center"
-              >
-                <FaPlay className="mr-2" />
-                Watch Demo
-              </button>
+              <Link href="/contact-us">
+                <button className="border-2 cursor-pointer border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center">
+                  Talk to a Security Engineer
+                </button>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -119,17 +135,11 @@ const SecurityTestingHeroSection: React.FC = () => {
           </div>
 
           {/* Right Content - Security Testing Dashboard */}
-          <div className="relative">
+          <div className="relative top-10">
             <SecurityTestingAnimation />
           </div>
         </div>
       </div>
-      {/* Lightbox Modal */}
-      <Lightbox
-        isOpen={isLightboxOpen}
-        videoLink="https://yourvideolink.com"
-        onClose={closeLightbox}
-      />
     </section>
   );
 };

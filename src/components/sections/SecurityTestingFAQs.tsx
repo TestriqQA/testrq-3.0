@@ -25,10 +25,12 @@ const SecurityTestingFAQs: React.FC = () => {
           answer:
             "Security testing is a comprehensive process of evaluating applications, systems, and networks to identify vulnerabilities, security weaknesses, and potential threats. It's crucial because cyber attacks are increasing in frequency and sophistication, and a single security breach can result in significant financial losses, regulatory penalties, and damage to your organization's reputation. Security testing helps identify and remediate vulnerabilities before malicious actors can exploit them.",
         },
+        // Sept 2026 handoff: replaces "How often should security testing be
+        // performed?", which asked the same question in broader terms.
         {
-          question: (<>How often should <Link href="/blog/post/secure-payment-gateway-testing-for-e-commerce">security testing</Link> be performed?</>),
+          question: "How often should we run a penetration test?",
           answer:
-            "Security testing frequency depends on several factors including your industry, regulatory requirements, and risk profile. We recommend continuous security monitoring with formal assessments quarterly for high-risk environments, semi-annually for medium-risk environments, and annually for lower-risk environments. Additionally, security testing should be performed whenever significant changes are made to your systems, applications, or infrastructure.",
+            "At minimum annually, and additionally after any significant architectural change, major release, or security incident. Some frameworks, PCI DSS in particular, set their own required frequency.",
         },
         {
           question: "What types of security testing do you offer?",
@@ -42,11 +44,13 @@ const SecurityTestingFAQs: React.FC = () => {
       icon: <FaBug className="text-xl" />,
       color: "orange",
       faqs: [
+        // Sept 2026 handoff: replaces "What is the difference between
+        // vulnerability assessment and penetration testing?" — same comparison,
+        // reframed around the VAPT term the page now targets.
         {
-          question:
-            "What is the difference between vulnerability assessment and penetration testing?",
+          question: "What is the difference between VAPT and penetration testing?",
           answer:
-            "Vulnerability assessment is an automated process that identifies and catalogs potential security weaknesses in your systems. Penetration testing goes further by attempting to exploit these vulnerabilities to demonstrate real-world attack scenarios. While vulnerability assessments provide a broad overview of security issues, penetration testing provides proof-of-concept exploits and demonstrates the actual business impact of security vulnerabilities.",
+            "VAPT stands for Vulnerability Assessment and Penetration Testing, the two activities delivered together. The assessment finds and ranks weaknesses; the penetration test attempts to exploit them. Most enterprise engagements are VAPT rather than a penetration test alone, because the combination gives both breadth and depth.",
         },
         {
           question: "Will penetration testing disrupt our business operations?",
@@ -59,10 +63,18 @@ const SecurityTestingFAQs: React.FC = () => {
           answer:
             "We provide comprehensive reports including an executive summary for leadership, detailed technical findings with proof-of-concept exploits, risk ratings using industry-standard frameworks (CVSS), prioritized remediation recommendations, and a remediation roadmap. We also offer post-testing support including remediation validation, security improvement recommendations, and ongoing security consultation to help you address identified issues.",
         },
+        // Sept 2026 handoff: replaces "What is required from my side to get
+        // started?" with an accurate, specific answer.
         {
-          question: "What is required from my side to get started?",
+          question: "What do we need to provide before testing starts?",
           answer:
-            "It's completely hassle-free. Just share your app URL and APIs — we'll handle the rest while you sit back and relax.",
+            "Scope confirmation, environment access or credentials for authenticated testing, a named technical contact, and written authorisation to test. We supply the authorisation template.",
+        },
+        // Sept 2026 handoff: new entry, no prior equivalent on this page.
+        {
+          question: "How much do penetration testing services cost?",
+          answer:
+            "Cost depends on scope: the number of applications, endpoints and user roles in range, whether testing is authenticated, and the depth of manual testing required. A single web application is a very different engagement from a full network and cloud assessment. We scope every engagement before quoting, so you are not paying for coverage you do not need.",
         },
       ],
     },

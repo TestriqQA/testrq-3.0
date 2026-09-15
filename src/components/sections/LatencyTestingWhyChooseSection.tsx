@@ -72,7 +72,7 @@ const LatencyTestingWhyChooseSection: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Why Choose Testriq for{" "}
-            <span className="text-brand-blue">Latency Testing</span>?
+            <span className="text-brand-blue">Latency Testing</span> ?
           </h2>
           <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
             As a specialized{" "}
