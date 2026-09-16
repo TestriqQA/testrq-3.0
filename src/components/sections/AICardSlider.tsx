@@ -59,6 +59,57 @@ const AICardSlider: React.FC = () => {
       highlight: "Audit-Ready Reports",
       action: "/medical-device-testing-ensuring-patient-safety-and-regulatory-compliance",
     },
+    {
+      title: (
+        <Link href="blog/post/llm-testing-guide-5-strategies-for-99-accuracy">
+          Reliable &amp; Repeatable
+        </Link>
+      ),
+      description:
+        "AI does not answer the same question the same way twice. That breaks ordinary test scripts, which assume one input gives one output — so we test the range of answers a model returns, not a single expected string.",
+      features: [
+        "Non-Deterministic Output Testing",
+        "Semantic Similarity Scoring",
+        "Repeat-Run Variance Analysis",
+        "Temperature & Seed Control",
+      ],
+      highlight: "Consistency Under Repetition",
+      action: "/llm-testing-guide-5-strategies-for-99-accuracy",
+    },
+    {
+      title: (
+        <Link href="blog/post/ai-model-accuracy-testing-step-by-step-guide">
+          Truthful &amp; Grounded
+        </Link>
+      ),
+      description:
+        "A model can state something false with complete confidence, and in a RAG system it often does so because the wrong document was retrieved. We measure both — how often answers are wrong, and whether the retrieval step found the right source.",
+      features: [
+        "Hallucination Rate Measurement",
+        "Retrieval Accuracy (RAG)",
+        "Embedding & Chunking Validation",
+        "Ground-Truth Answer Sets",
+      ],
+      highlight: "Answers Traced to a Source",
+      action: "/ai-model-accuracy-testing-step-by-step-guide",
+    },
+    {
+      title: (
+        <Link href="blog/post/model-validation-for-ai-applications">
+          Stable Over Time
+        </Link>
+      ),
+      description:
+        "A model that passed on launch day quietly degrades as real-world data shifts away from what it was trained on. We set the baselines and monitoring that catch that drift before your users report it.",
+      features: [
+        "Model & Data Drift Detection",
+        "Accuracy Baselines Over Time",
+        "Retraining Trigger Thresholds",
+        "Production Monitoring Setup",
+      ],
+      highlight: "Watched After Launch",
+      action: "/model-validation-for-ai-applications",
+    },
   ];
 
   return (
