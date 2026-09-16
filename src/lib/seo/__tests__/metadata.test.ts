@@ -652,26 +652,13 @@ describe("isDevEnvironment", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Repo-wide invariant: the root layout's title template
+// Repo-wide metadata invariants
+//
+// Both assertions below walk every `page.tsx` under `src/app` rather than a
+// list of routes. That is deliberate: each of these two bugs has already been
+// fixed page-by-page and come back, because a list only covers what its author
+// knew about on the day.
 // ---------------------------------------------------------------------------
-
-/**
- * `src/app/layout.tsx` declares `title.template = "%s | Testriq"`, so Next.js
- * appends " | Testriq" to any page title given as a bare string. A page that
- * also writes the brand into its own title therefore renders it twice, and the
- * extra ~10 characters push the title past the ~60 Google displays — which
- * truncates real keywords out of the search result.
- *
- * Two escapes are legitimate, and both are skipped below:
- *
- *   - `title: { absolute: "..." }`    bypasses the template outright
- *   - `buildPageMetadata({ title })`  sets `title.absolute` internally
- *
- * This has been fixed in four separate batches (p4-batch1, p4-batch2, F-52,
- * F-71) and regressed every time, because each batch fixed the pages it knew
- * about rather than the class of bug. Hence one assertion over the whole route
- * tree instead of a per-page check.
- */
 
 const APP_DIR = join(process.cwd(), "src", "app");
 const BACKSLASH = String.fromCharCode(92);
@@ -692,7 +679,7 @@ function pageFiles(dir: string, out: string[] = []): string[] {
  *
  * Returns null for pages with no metadata, and for pages that hand off to
  * `buildPageMetadata(...)`, since `return buildPageMetadata({` does not match
- * `return {` and those pages are exempt by design.
+ * `return {` and those pages are exempt from the title rule by design.
  */
 function metadataObjectStart(src: string): number | null {
     const direct = /export\s+const\s+metadata\s*(?::\s*Metadata\s*)?=\s*\{/.exec(src);
@@ -775,11 +762,53 @@ function topLevelTitle(src: string, open: number): string | null {
     return null;
 }
 
+/**
+ * Source text of the object literal that encloses `from`.
+ *
+ * Forward from `from` the scan is brace-matched and string-aware; backward it
+ * simply runs to the nearest `return {` or `= {`, which is enough to catch a
+ * `robots` key written above `title` in the same object.
+ */
+function enclosingObjectText(src: string, from: number): string {
+    const back = Math.max(src.lastIndexOf("return {", from), src.lastIndexOf("= {", from));
+    const start = back === -1 ? from : back;
+
+    let depth = 0;
+    let quoted: string | null = null;
+    for (let i = from; i < src.length; i++) {
+        const ch = src[i];
+        if (quoted) {
+            if (ch === quoted && src[i - 1] !== BACKSLASH) quoted = null;
+            continue;
+        }
+        if (ch === '"' || ch === "'" || ch === "`") {
+            quoted = ch;
+            continue;
+        }
+        if (ch === "{" || ch === "[") depth++;
+        else if (ch === "}" || ch === "]") {
+            if (depth === 0) return src.slice(start, i);
+            depth--;
+        }
+    }
+    return src.slice(start);
+}
+
 describe("root layout title template", () => {
     it("finds page files to check", () => {
         expect(pageFiles(APP_DIR).length).toBeGreaterThan(50);
     });
 
+    /**
+     * `src/app/layout.tsx` declares `title.template = "%s | Testriq"`, so Next.js
+     * appends " | Testriq" to any page title given as a bare string. A page that
+     * also writes the brand into its own title renders it twice, and the extra
+     * ~10 characters push the title past the ~60 Google displays — truncating
+     * real keywords out of the search result.
+     *
+     * `title: { absolute }` and `buildPageMetadata()` both bypass the template
+     * and are therefore exempt.
+     */
     it("no page puts the brand in a bare string title", () => {
         const offenders: string[] = [];
 
@@ -808,6 +837,45 @@ describe("root layout title template", () => {
             "These pages put the brand in a bare string title, so the root layout's " +
                 '"%s | Testriq" template renders it twice. Use title: { absolute: "..." } ' +
                 "or buildPageMetadata() instead.\n\n  " +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
+    });
+});
+
+describe("not-found metadata", () => {
+    /**
+     * A route that cannot find its record still returns a rendered page. If that
+     * page's metadata omits `robots.index = false`, the result is a soft 404:
+     * HTTP 200 over a "Not Found" body, carrying "index, follow".
+     *
+     * That is not hypothetical. `blog/post/[slug]` shipped exactly this, while
+     * its three siblings (`blog/tag`, `blog/category`, `author`) set the flag
+     * correctly — and because any unknown slug reaches the handler, the set of
+     * indexable dead URLs was unbounded rather than a known list.
+     */
+    const NOT_FOUND_TITLE = /title:\s*(?:\{\s*absolute:\s*)?["'`]([^"'`]*Not Found[^"'`]*)["'`]/g;
+
+    it("every 'Not Found' fallback sets robots.index = false", () => {
+        const offenders: string[] = [];
+
+        for (const file of pageFiles(APP_DIR)) {
+            const src = readFileSync(file, "utf8");
+            for (const match of src.matchAll(NOT_FOUND_TITLE)) {
+                const scope = enclosingObjectText(src, match.index);
+                if (!/index:\s*false/.test(scope)) {
+                    offenders.push(
+                        `${relative(process.cwd(), file)}\n      "${match[1]}" is returned without robots.index = false`,
+                    );
+                }
+            }
+        }
+
+        expect(
+            offenders,
+            "A 'Not Found' page that is indexable is a soft 404 — it answers HTTP 200 " +
+                "and invites Google to index a dead URL. Add robots: { index: false, " +
+                "follow: false } to the fallback metadata.\n\n  " +
                 offenders.join("\n  ") +
                 "\n",
         ).toEqual([]);
