@@ -2476,3 +2476,24 @@ export const latencyTestingServiceSchema = {
     // is the single source of truth, mirroring the LatencyTestingFAQsSection UI content.
   ]
 };
+
+// /quality-assurance-services — added Sep 2026. This URL previously resolved to
+// the catch-all's not-found page: "software QA services" was one of three
+// keywords being targeted for UK/US leads and had no page at all, while the
+// nearest match, /qa-outsourcing-services, is an engagement-model page whose H1
+// reads "QA Outsourcing Services". areaServed stays "Worldwide" — Testriq has
+// one office and no regional entity, so nothing narrower would be true.
+export const qaServicesServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Software QA Services",
+  "description":
+    "Functional, automation, performance, security, accessibility and UAT testing delivered by ISTQB-certified QA engineers working inside your sprints, tooling and release cadence.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Testriq QA Lab",
+    "url": "https://www.testriq.com"
+  },
+  "serviceType": "Software Quality Assurance & Testing Services",
+  "areaServed": "Worldwide"
+};
