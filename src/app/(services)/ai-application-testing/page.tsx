@@ -8,11 +8,16 @@ import StructuredData, {
   createFaqPageSchema,
 } from "@/components/seo/StructuredData";
 import { HeroLoader, ContentLoader, FAQLoader } from "@/components/ui/Loaders";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Global AI Application Testing Services | Reliable Systems for the Future",
+  // 54ch once the root layout appends "| Testriq". The previous title was
+  // "Global AI Application Testing Services | Reliable Systems for the Future"
+  // — 82ch rendered, so Google truncated it around "Reliable Systems for the
+  // Fut…" and the brand never showed. Leads with the two terms buyers search.
+  title: "AI Application Testing Services | LLM & ML QA",
   description:
     "Testriq AI Application Testing services help ensure your ML models are safe, fair, and compliant, connecting MLOps with QA for high-stakes AI systems.",
   keywords: [
@@ -157,6 +162,7 @@ export default function AIApplicationTesting() {
         <AIWhyChooseTestriq />
         <AIToolsFramework />
         <AICaseStudies />
+        <ServiceTeamSection />
         <AIFAQs />
         <AIAnyQuestions />
       </MainLayout>

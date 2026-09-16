@@ -164,6 +164,14 @@ const TeamMembersSection = () => {
       src: "/None.webp",
     },
     {
+      name: "Ragini Kumari",
+      role: "QA Specialist",
+      department: "Testriq QA Lab",
+      linkedin: "https://www.linkedin.com/in/raginikumari90/",
+      // TODO: replace with her own photo — /None.webp is the shared placeholder.
+      src: "/None.webp",
+    },
+    {
       name: "Sujay Ambelkar",
       role: "Sr. QA Specialist",
       department: "Testriq QA Lab",

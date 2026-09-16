@@ -73,6 +73,7 @@ export const metadata: Metadata = {
 };
 
 import SaasTestingHeroSection from "@/components/sections/SaasTestingHeroSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
 
 const SaasTestingWhyDiffers = dynamic(
     () => import("@/components/sections/SaasTestingWhyDiffers"),
@@ -231,6 +232,7 @@ export default function SaasTestingPage() {
                 <SaasTestingCompliance />
                 <SaasTestingStrategy />
                 <SaasTestingEngagement />
+                <ServiceTeamSection />
                 <SaasTestingReadyToStart />
             </MainLayout>
         </div>
