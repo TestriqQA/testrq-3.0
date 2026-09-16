@@ -7032,7 +7032,7 @@ export const cityData: Record<string, CityData> = {
     heroContent: {
       title: "Software Testing & QA Services in Mumbai",
       subtitle: "Elite QA for the Financial and Commercial Heart of India",
-      description: "Mumbai unequivocally dictates the financial and commercial trajectory of India. From the colossal banking networks and aggressive FinTech unicorns scaling out of Bandra Kurla Complex (BKC) to the massive OTT streaming empires managing global media distribution from Andheri, Mumbai’s digital footprint is immense. When developing high-frequency trading algorithms, massive multi-tenant banking clouds, or global media delivery networks, software defects are not operational inconveniences—they are catastrophic financial liabilities. Testriq permanently completely injects elite, enterprise-grade software quality assurance strictly into Mumbai’s hyper-aggressive technical landscape. Our deeply verified ISTQB-certified testing architects integrate instantly inside your agile sprints—deploying totally indestructible test automation, advanced continuous CI/CD security checks, intensely guarded SaaS validations, and flawlessly managed QA controls.",
+      description: "Mumbai unequivocally dictates the financial and commercial trajectory of India. From the colossal banking networks and aggressive FinTech unicorns scaling out of Bandra Kurla Complex (BKC) to the massive OTT streaming empires managing global media distribution from Andheri, and across the Navi Mumbai belt of Vashi, Belapur and Airoli where IT parks and global capability centres run their own engineering floors, Mumbai’s digital footprint is immense. When developing high-frequency trading algorithms, massive multi-tenant banking clouds, or global media delivery networks, software defects are not operational inconveniences—they are catastrophic financial liabilities. Testriq permanently completely injects elite, enterprise-grade software quality assurance strictly into Mumbai’s hyper-aggressive technical landscape. Our deeply verified ISTQB-certified testing architects integrate instantly inside your agile sprints—deploying totally indestructible test automation, advanced continuous CI/CD security checks, intensely guarded SaaS validations, and flawlessly managed QA controls.",
       certifications: ["ISTQB Certified Engineers", "BFSI Compliance Experts", "ISO 27001 Certified"],
       stats: [
         { number: "500K", label: "Test Cases Executed", description: "Across Mumbai's Financial Grids" },
@@ -7040,7 +7040,7 @@ export const cityData: Record<string, CityData> = {
         { number: "100%", label: "Client Satisfaction", description: "In BKC & Andheri" },
         { number: "15+", label: "Years Experience", description: "In software quality" },
       ],
-      landmarks: ["Bandra Kurla Complex (BKC)", "Andheri IT Hub", "Gateway of India", "Marine Drive"],
+      landmarks: ["Bandra Kurla Complex (BKC)", "Andheri IT Hub", "Navi Mumbai IT Belt (Vashi–Belapur–Airoli)", "Gateway of India", "Marine Drive"],
     },
     servicesContent: {
       title: "Precision QA Engineering Built for Mumbai's Enterprise Hubs",
@@ -16018,7 +16018,13 @@ export function getAllCities(): CityData[] {
 // ---------------------------------------------------------------------------
 export const INDEXED_CITY_SLUGS: ReadonlySet<string> = new Set([
   "software-qa-testing-services-in-mumbai",
-  "software-qa-testing-services-in-navi-mumbai",
+  // navi-mumbai deliberately absent: /software-qa-testing-services-in-navi-mumbai
+  // is a permanent redirect to the Mumbai page (src/lib/seo/redirect-map.ts), so no
+  // such page exists to index. sitemap.ts already filtered it out for being a
+  // redirect source; listing it here only made this set — the authoritative answer
+  // to "which city pages are indexed?" — disagree with reality. Navi Mumbai demand
+  // is covered by the Mumbai page instead (~40 searches/month combined, too thin to
+  // justify a page of its own).
   "software-qa-testing-services-in-pune",
   "software-qa-testing-services-in-delhi",
   "software-qa-testing-services-in-gurgaon",
