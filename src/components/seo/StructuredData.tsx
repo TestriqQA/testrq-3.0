@@ -137,9 +137,27 @@ export const organizationSchema = {
     "email": "contact@testriq.com",
     "availableLanguage": "English"
   },
+  // Testriq has one office, in Mira Bhayandar. This block previously claimed
+  // `addressCountry: "US"` with no street, city or postcode, next to a +91
+  // contact number — and the ProfessionalService schema on the same page gave
+  // the real Indian address, so the page shipped two contradicting locations.
+  // Organization is the canonical entity record Google reads for the Knowledge
+  // Graph; a country claim the rest of the site contradicts lowers entity
+  // confidence rather than extending reach. It also never bought anything: the
+  // field read "US" throughout, while US search sat at ~8.5K impressions/day,
+  // 7 clicks, average position 15 (GSC, 15 Sep 2026).
+  //
+  // Serving US/UK audiences is not a schema setting — it comes from content
+  // aimed at those buyers, links and directory presence in those markets, and
+  // hreflang. If a real US entity ever exists, put its real address here.
+  // Same reasoning as the LocalBusiness cleanup in src/app/[slug]/page.tsx.
   "address": {
     "@type": "PostalAddress",
-    "addressCountry": "US"
+    "streetAddress": "Office Number 2 & 3, 2nd Floor, Ashley Towers, Kanakia Rd, Vagad Nagar",
+    "addressLocality": "Mira Bhayandar",
+    "addressRegion": "Maharashtra",
+    "postalCode": "401107",
+    "addressCountry": "IN"
   },
   // F-58 Phase 1 — Entity authority sameAs. Each URL is a confirmed
   // Testriq presence on a platform that Google's Knowledge Graph + AI
