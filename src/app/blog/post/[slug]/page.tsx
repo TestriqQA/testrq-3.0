@@ -167,7 +167,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       // `absolute` bypasses the root layout's "%s | Testriq" template,
       // which would otherwise print the brand twice (F-71).
       title: { absolute: "Post Not Found | Testriq Blog" },
-      // ...
+      description: "The requested blog post could not be found.",
+      // A missing post must not be indexable. Without this the route answered
+      // HTTP 200 with "index, follow" over a "Post Not Found" body - a soft 404
+      // that invited Google to index every dead blog URL. The sibling routes
+      // (blog/tag, blog/category, author) already set this; only this one, the
+      // highest-traffic of the four, was missed.
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
