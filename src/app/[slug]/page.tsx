@@ -426,7 +426,16 @@ export async function generateMetadata({ params }: PageProps) {
   const cityData = getCityData(resolvedParams.slug);
 
   if (!cityData) {
-    return {};
+    // Neither a case study nor a city matches this slug, so SlugPage is about
+    // to call notFound(). Returning a bare {} here inherited the root layout's
+    // title.default and `index, follow` — which made every unknown single-
+    // segment URL (/anything-at-all) an indexable page carrying the homepage
+    // title. Verified live 16 Sep 2026: 200 + "index, follow" on arbitrary URLs.
+    // Multi-segment misses were unaffected; they fall through to the real 404.
+    return {
+      title: { absolute: "Page Not Found | Testriq" },
+      robots: { index: false, follow: false },
+    };
   }
 
   const pageTitle = cityData.metadata.title;
