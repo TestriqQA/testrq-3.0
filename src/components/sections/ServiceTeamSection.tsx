@@ -25,6 +25,14 @@ const people = [
       "Runs test planning and execution on client engagements, and owns the defect triage your team sees day to day.",
   },
   {
+    name: "Ragini Kumari",
+    role: "QA Specialist",
+    linkedin: "https://www.linkedin.com/in/raginikumari90/",
+    src: "/None.webp",
+    blurb:
+      "Specialises in e-learning platforms and user-experience testing — the cases where a build passes every check and still frustrates the person using it.",
+  },
+  {
     name: "Aakash Yadav",
     role: "R&D Innovation Specialist",
     linkedin: "https://www.linkedin.com/in/aakashyadav9890/",
@@ -48,34 +56,32 @@ const ServiceTeamSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {people.map((p) => (
             <div
               key={p.name}
-              className="bg-gray-50 p-6 rounded-xl border border-gray-200 flex gap-5 items-start"
+              className="bg-gray-50 p-6 rounded-xl border border-gray-200 flex flex-col items-center text-center"
             >
               <Image
                 src={p.src}
                 alt={`${p.name}, ${p.role} at Testriq QA Lab`}
-                width={72}
-                height={72}
-                className="rounded-full flex-shrink-0 object-cover w-[72px] h-[72px]"
+                width={88}
+                height={88}
+                className="rounded-full object-cover w-[88px] h-[88px] mb-4"
               />
-              <div className="min-w-0">
-                <h3 className="text-lg font-semibold text-gray-900">{p.name}</h3>
-                <p className="text-brand-blue text-sm font-medium mb-2">{p.role}</p>
-                <p className="text-gray-700 text-sm mb-3">{p.blurb}</p>
-                <Link
-                  href={p.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${p.name} on LinkedIn`}
-                  className="inline-flex items-center text-gray-600 hover:text-brand-blue transition-colors text-sm"
-                >
-                  <FaLinkedin className="w-4 h-4 mr-2" />
-                  LinkedIn
-                </Link>
-              </div>
+              <h3 className="text-lg font-semibold text-gray-900">{p.name}</h3>
+              <p className="text-brand-blue text-sm font-medium mb-3">{p.role}</p>
+              <p className="text-gray-700 text-sm flex-1">{p.blurb}</p>
+              <Link
+                href={p.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${p.name} on LinkedIn`}
+                className="inline-flex items-center text-gray-600 hover:text-brand-blue transition-colors text-sm mt-4"
+              >
+                <FaLinkedin className="w-4 h-4 mr-2" />
+                LinkedIn
+              </Link>
             </div>
           ))}
         </div>
