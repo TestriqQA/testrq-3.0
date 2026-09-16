@@ -10,7 +10,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import QAServicesHeroSection from "@/components/sections/QAServicesHeroSection";
 import QAServicesCoverageSection from "@/components/sections/QAServicesCoverageSection";
 import QAServicesProcessSection from "@/components/sections/QAServicesProcessSection";
-import QAServicesTeamSection from "@/components/sections/QAServicesTeamSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
 import QAServicesFAQs, { qaServicesFaqs } from "@/components/sections/QAServicesFAQs";
 
 export const revalidate = 3600;
@@ -76,7 +76,7 @@ export default function QualityAssuranceServicesPage() {
         <QAServicesHeroSection />
         <QAServicesCoverageSection />
         <QAServicesProcessSection />
-        <QAServicesTeamSection />
+        <ServiceTeamSection />
         <QAServicesFAQs />
       </MainLayout>
     </div>

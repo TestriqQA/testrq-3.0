@@ -8,6 +8,7 @@ import StructuredData, {
   createFaqPageSchema,
 } from "@/components/seo/StructuredData";
 import { HeroLoader, ContentLoader, FAQLoader } from "@/components/ui/Loaders";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
 
 export const revalidate = 3600;
 
@@ -161,6 +162,7 @@ export default function AIApplicationTesting() {
         <AIWhyChooseTestriq />
         <AIToolsFramework />
         <AICaseStudies />
+        <ServiceTeamSection />
         <AIFAQs />
         <AIAnyQuestions />
       </MainLayout>

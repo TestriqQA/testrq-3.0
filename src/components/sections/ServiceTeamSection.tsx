@@ -1,4 +1,5 @@
-// Server Component.
+// Server Component. Shared by /quality-assurance-services,
+// /saas-testing-services and /ai-application-testing.
 //
 // Every competitor QA page audited (Beetroot "Meet Your Team", KPMG "Our
 // people", Appsierra "A senior engineer will answer", Propel Tech) names
@@ -33,7 +34,7 @@ const people = [
   },
 ];
 
-const QAServicesTeamSection: React.FC = () => {
+const ServiceTeamSection: React.FC = () => {
   return (
     <section className="bg-white py-16 px-8 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto">
@@ -89,4 +90,4 @@ const QAServicesTeamSection: React.FC = () => {
   );
 };
 
-export default QAServicesTeamSection;
+export default ServiceTeamSection;
