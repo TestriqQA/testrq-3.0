@@ -900,6 +900,7 @@ export const redirects: RedirectRule[] = [
 
       // Site routes.
       { source: "/ai-application-testing-services", destination: "/ai-application-testing", permanent: true },
+      { source: "/security-testing-services", destination: "/security-testing", permanent: true },
       { source: "/sitemap", destination: "/website-map", permanent: true },
       // Absolute URLs pasted into href="" produce this whole family. A rule for
       // "/www.testriq.com/" already existed but could never fire: trailingSlash
