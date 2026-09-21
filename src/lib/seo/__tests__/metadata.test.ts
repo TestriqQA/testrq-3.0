@@ -881,3 +881,73 @@ describe("not-found metadata", () => {
         ).toEqual([]);
     });
 });
+
+describe("city page titles", () => {
+    /**
+     * City pages set `title: { absolute }`, so `cityData[...].metadata.title` is
+     * the exact string Google receives — nothing is appended, nothing trimmed.
+     *
+     * Google shows roughly 60 characters of a title. Every indexed city page but
+     * two used to carry a decorative " | ISTQB Certified" segment that ate 18 of
+     * them, pushing the brand — and on the longer city names the keyword itself —
+     * past the cut. The certification is a body-copy claim, not a title-tag one.
+     *
+     * Only indexed cities are asserted: a noindexed page's title never reaches a
+     * SERP, so holding it to a SERP budget would be noise.
+     */
+    const TITLE_BUDGET = 60;
+
+    /**
+     * greater-noida is 65 and deliberately so: "Noida & Greater Noida" targets
+     * both terms from one page, and the page ranks top 3 on its own term. The
+     * five characters cost less than retargeting a working page would.
+     */
+    const ALLOWED_OVER_BUDGET = new Set(["software-qa-testing-services-in-greater-noida"]);
+
+    it("every indexed city title fits the SERP budget", async () => {
+        const { cityData, INDEXED_CITY_SLUGS } = await import("../../../app/lib/CityData");
+
+        const offenders: string[] = [];
+
+        for (const city of Object.values(cityData)) {
+            if (!INDEXED_CITY_SLUGS.has(city.slug)) continue;
+            if (ALLOWED_OVER_BUDGET.has(city.slug)) continue;
+
+            const title = city.metadata.title;
+            if (title.length > TITLE_BUDGET) {
+                offenders.push(`${city.slug}\n      ${title.length} chars: "${title}"`);
+            }
+        }
+
+        expect(
+            offenders,
+            `An indexed city page's <title> is rendered verbatim (title: { absolute }). ` +
+                `Past ~${TITLE_BUDGET} characters Google truncates it, and the brand at the ` +
+                `end is what disappears first. Shorten the title rather than adding to it.\n\n  ` +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
+    });
+
+    it("no indexed city title repeats the brand", async () => {
+        const { cityData, INDEXED_CITY_SLUGS } = await import("../../../app/lib/CityData");
+
+        const offenders: string[] = [];
+
+        for (const city of Object.values(cityData)) {
+            if (!INDEXED_CITY_SLUGS.has(city.slug)) continue;
+
+            const brandCount = (city.metadata.title.match(/testriq/gi) ?? []).length;
+            if (brandCount > 1) {
+                offenders.push(`${city.slug}\n      "${city.metadata.title}"`);
+            }
+        }
+
+        expect(
+            offenders,
+            "A city title naming the brand more than once wastes the SERP budget twice over.\n\n  " +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
+    });
+});
