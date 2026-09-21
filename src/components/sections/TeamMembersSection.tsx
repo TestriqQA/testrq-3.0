@@ -122,7 +122,7 @@ const TeamMembersSection = () => {
     },
     {
       name: "Aakash Yadav",
-      role: "R&D Innovation Specialist",
+      role: "QA lead & business strategy manager",
       department: "Testriq QA Lab",
       linkedin: "https://www.linkedin.com/in/aakashyadav9890/",
       src: "/aakash-yadav.webp",

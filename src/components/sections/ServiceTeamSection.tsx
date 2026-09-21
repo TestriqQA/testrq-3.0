@@ -10,39 +10,86 @@
 // src/components/sections/TeamMembersSection.tsx — the /our-team page — so
 // there is one source of truth. Do not invent titles or credentials here; if
 // someone's role changes, change it there first.
+//
+// KNOWN GAP: Cezzane Khan (AI_TEAM below) is not on /our-team yet, so those two
+// service pages currently name somebody TeamMembersSection.tsx does not list.
+// Add them there to restore the invariant above.
+//
+// Two rosters, because these pages sell different work. DEFAULT_TEAM is the
+// general QA line-up. AI_TEAM swaps the second slot for the AI test lead on the
+// pages whose buyer is shopping for AI/LLM testing; /saas-testing-services
+// deliberately stays on the default. Opt in with `people={AI_TEAM}` — anything
+// not passing the prop keeps the old roster, which is why this is a prop rather
+// than an edit to the shared array.
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaLinkedin } from "react-icons/fa";
 
-const people = [
-  {
-    name: "Pooja Katkar",
-    role: "Test Lead",
-    linkedin: "https://www.linkedin.com/in/pooja-katkar-737b3525a/",
-    src: "/None.webp",
-    blurb:
-      "Runs test planning and execution on client engagements, and owns the defect triage your team sees day to day.",
-  },
-  {
-    name: "Ragini Kumari",
-    role: "QA Specialist",
-    linkedin: "https://www.linkedin.com/in/raginikumari90/",
-    src: "/None.webp",
-    blurb:
-      "Specialises in e-learning platforms and user-experience testing — the cases where a build passes every check and still frustrates the person using it.",
-  },
-  {
-    name: "Aakash Yadav",
-    role: "R&D Innovation Specialist",
-    linkedin: "https://www.linkedin.com/in/aakashyadav9890/",
-    src: "/aakash-yadav.webp",
-    blurb:
-      "Works on the tooling and automation side — how a suite is built so it still runs cleanly a year later.",
-  },
-];
+export interface ServiceTeamPerson {
+  name: string;
+  role: string;
+  linkedin: string;
+  /** Path under /public. Rendered into an 88×88 circle with object-cover. */
+  src: string;
+  blurb: string;
+}
 
-const ServiceTeamSection: React.FC = () => {
+const poojaKatkar: ServiceTeamPerson = {
+  name: "Pooja Katkar",
+  role: "Test Lead",
+  linkedin: "https://www.linkedin.com/in/pooja-katkar-737b3525a/",
+  src: "/None.webp",
+  blurb:
+    "Runs test planning and execution on client engagements, and owns the defect triage your team sees day to day.",
+};
+
+const raginiKumari: ServiceTeamPerson = {
+  name: "Ragini Kumari",
+  role: "QA Specialist",
+  linkedin: "https://www.linkedin.com/in/raginikumari90/",
+  src: "/ragini-kumari.webp",
+  blurb:
+    "Specialises in e-learning platforms and user-experience testing — the cases where a build passes every check and still frustrates the person using it.",
+};
+
+const cezzaneKhan: ServiceTeamPerson = {
+  name: "Cezzane Khan",
+  role: "AI Engineer & Test Lead",
+  linkedin: "https://www.linkedin.com/in/cezzane-khan/",
+  src: "/cezzane-khan.jpeg",
+  // Trimmed from the copy supplied with the request: the original ran ~210
+  // characters against a ~110-150 house length, which stretched all three
+  // cards in the row. The four test categories are the substance and are kept;
+  // the closing example ("three different answers to the same question") is
+  // what went.
+  blurb:
+    "Builds and runs the adversarial test suites for LLM and AI agent systems prompt injection, hallucination, bias, and the consistency checks that catch a model contradicting itself.",
+};
+
+const aakashYadav: ServiceTeamPerson = {
+  name: "Aakash Yadav",
+  role: "QA lead & business strategy manager",
+  linkedin: "https://www.linkedin.com/in/aakashyadav9890/",
+  src: "/aakash-yadav.webp",
+  blurb:
+    "Works on the tooling and automation side how a suite is built so it still runs cleanly a year later.",
+};
+
+/** General QA roster. Used by /saas-testing-services and any page that omits the prop. */
+const DEFAULT_TEAM: ServiceTeamPerson[] = [poojaKatkar, raginiKumari, aakashYadav];
+
+/** AI/LLM roster. Used by /ai-application-testing and /quality-assurance-services. */
+export const AI_TEAM: ServiceTeamPerson[] = [poojaKatkar, cezzaneKhan, aakashYadav];
+
+interface ServiceTeamSectionProps {
+  /** Defaults to DEFAULT_TEAM. Keep it at three people — the grid is md:grid-cols-3. */
+  people?: ServiceTeamPerson[];
+}
+
+const ServiceTeamSection: React.FC<ServiceTeamSectionProps> = ({
+  people = DEFAULT_TEAM,
+}) => {
   return (
     <section className="bg-white py-16 px-8 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto">
@@ -67,7 +114,7 @@ const ServiceTeamSection: React.FC = () => {
                 alt={`${p.name}, ${p.role} at Testriq QA Lab`}
                 width={88}
                 height={88}
-                className="rounded-full object-cover w-[88px] h-[88px] mb-4"
+                className="rounded-full object-cover  w-[88px] h-[88px] mb-4"
               />
               <h3 className="text-lg font-semibold text-gray-900">{p.name}</h3>
               <p className="text-brand-blue text-sm font-medium mb-3">{p.role}</p>
