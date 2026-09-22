@@ -6,11 +6,7 @@ import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
 const AICardSlider: React.FC = () => {
   const testingTypes = [
     {
-      title: (
-        <Link href="blog/post/ai-security-testing">
-          Safe & Secure AI
-        </Link>
-      ),
+      title: "Safe & Secure AI",
       description: (
         <>
           We test your models against malicious inputs to ensure they stay secure and reliable against modern <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">security risks</Link>.
@@ -26,11 +22,7 @@ const AICardSlider: React.FC = () => {
       action: "/ai-security-testing",
     },
     {
-      title: (
-        <Link href="blog/post/bias-fairness-testing-for-ai">
-          Fair & Unbiased AI
-        </Link>
-      ),
+      title: <>Fair &amp; Unbiased AI</>,
       description:
         "We use fairness toolkits to check AI models for demographic bias, ensuring your AI systems are ethical and inclusive.",
       features: [
@@ -43,11 +35,7 @@ const AICardSlider: React.FC = () => {
       action: "/bias-fairness-testing-for-ai",
     },
     {
-      title: (
-        <Link href="blog/post/medical-device-testing-ensuring-patient-safety-and-regulatory-compliance">
-          Compliant & Auditable
-        </Link>
-      ),
+      title: <>Compliant &amp; Auditable</>,
       description:
         "We provide the clear tracking and documentation you need for high-stakes AI regulation compliance (EU AI Act, NIST).",
       features: [
@@ -60,11 +48,7 @@ const AICardSlider: React.FC = () => {
       action: "/medical-device-testing-ensuring-patient-safety-and-regulatory-compliance",
     },
     {
-      title: (
-        <Link href="blog/post/llm-testing-guide-5-strategies-for-99-accuracy">
-          Reliable &amp; Repeatable
-        </Link>
-      ),
+      title: <>Reliable &amp; Repeatable</>,
       description:
         "AI does not answer the same question the same way twice. That breaks ordinary test scripts, which assume one input gives one output — so we test the range of answers a model returns, not a single expected string.",
       features: [
@@ -77,11 +61,7 @@ const AICardSlider: React.FC = () => {
       action: "/llm-testing-guide-5-strategies-for-99-accuracy",
     },
     {
-      title: (
-        <Link href="blog/post/ai-model-accuracy-testing-step-by-step-guide">
-          Truthful &amp; Grounded
-        </Link>
-      ),
+      title: <>Truthful &amp; Grounded</>,
       description:
         "A model can state something false with complete confidence, and in a RAG system it often does so because the wrong document was retrieved. We measure both — how often answers are wrong, and whether the retrieval step found the right source.",
       features: [
@@ -94,11 +74,7 @@ const AICardSlider: React.FC = () => {
       action: "/ai-model-accuracy-testing-step-by-step-guide",
     },
     {
-      title: (
-        <Link href="blog/post/model-validation-for-ai-applications">
-          Stable Over Time
-        </Link>
-      ),
+      title: <>Stable Over Time</>,
       description:
         "A model that passed on launch day quietly degrades as real-world data shifts away from what it was trained on. We set the baselines and monitoring that catch that drift before your users report it.",
       features: [

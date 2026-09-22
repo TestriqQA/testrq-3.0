@@ -18,7 +18,7 @@ const AIComprehensiveSlider: React.FC = () => {
   const testingTypes = [
     {
       icon: <FaDatabase className="w-8 h-8" />,
-      title: (<Link href='blog/post/ai-testing-learning-guide'>Data Quality, Bias & Representative</Link>),
+      title: <>Data Quality, Bias &amp; Representative</>,
       description:
         "AI performance is a direct reflection of its data. Gaps, noise, and label errors translate into catastrophic real-world failures. We move beyond simple data checks to perform bias and representativeness validation.",
       features: [
@@ -34,7 +34,7 @@ const AIComprehensiveSlider: React.FC = () => {
     },
     {
       icon: <FaBrain className="w-8 h-8" />,
-      title: (<Link href='blog/post/model-validation-for-ai-applications'>Solving the &quot;Oracle Problem&quot;</Link>),
+      title: <>Solving the &quot;Oracle Problem&quot;</>,
       description: (
         <>
           <Link href="/qa-documentation-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">Traditional QA</Link> uses fixed logic. AI works on likelihoods. We verify model reasoning using industry-standard tools and establish limits for incorrect AI outputs to ensure reliability.
@@ -53,7 +53,7 @@ const AIComprehensiveSlider: React.FC = () => {
     },
     {
       icon: <FaShieldAlt className="w-8 h-8" />,
-      title: (<Link href='blog/post/ai-security-testing'>Safety, Security, and AI Defense</Link>),
+      title: <>Safety, Security, and AI Defense</>,
       description:
         "We test your models against malicious inputs to ensure they stay secure. Our security protocols follow global standards to ensure resilience against modern risks.",
       features: [
@@ -69,7 +69,7 @@ const AIComprehensiveSlider: React.FC = () => {
     },
     {
       icon: <FaChartLine className="w-8 h-8" />,
-      title: (<Link href='blog/post/medical-device-testing-ensuring-patient-safety-and-regulatory-compliance'>Lifecycle Governance & Compliance</Link>),
+      title: <>Lifecycle Governance & Compliance</>,
       description:
         "AI testing is a continuous lifecycle responsibility. We integrate drift monitoring, versioning, and regression testing to ensure updates don't impact performance.",
       features: [
@@ -85,7 +85,7 @@ const AIComprehensiveSlider: React.FC = () => {
     },
     {
       icon: <FaRocket className="w-8 h-8" />,
-      title: (<Link href='blog/post/ci-cd-test-automation-integration-deliver-faster-with-confidence'>Seamless SDLC & CI/CD Integration</Link>),
+      title: <>Seamless SDLC &amp; CI/CD Integration</>,
       description: (
         <>
           We use intelligent <Link href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">automation testing</Link> to validate your AI workflows via custom data pipelines. These tools connect to your current CI/CD systems for quick results.
