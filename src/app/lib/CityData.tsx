@@ -303,7 +303,7 @@ export const cityData: Record<string, CityData> = {
     state: "Karnataka",
     metadata: {
       title: "Software Testing & QA Services in Bangalore | Testriq",
-      description: "Bangalore-based software testing and QA company serving Electronic City, Whitefield, Outer Ring Road, and Koramangala/HSR Layout startup belt. Automation, performance, SaaS, and security testing for IT services, unicorn product teams, and GCCs.",
+      description: "Bangalore-based software testing and QA company with ISTQB-certified engineers, serving Electronic City, Whitefield, Outer Ring Road, and Koramangala/HSR Layout startup belt. Automation, performance, SaaS, and security testing for IT services, unicorn product teams, and GCCs.",
       keywords: "Software Testing Services in Bangalore, QA Testing Company in Bangalore, Automation Testing Services in Bangalore, Manual Testing Bangalore, Performance Testing Bangalore, Security Testing Bangalore, Mobile App Testing Bangalore, API Testing Bangalore, QA Consulting Bangalore, Software Testing Company Bangalore",
     },
     heroContent: {
@@ -1601,7 +1601,7 @@ export const cityData: Record<string, CityData> = {
     state: "Odisha",
     metadata: {
       title: "Software Testing & QA Services in Bhubaneswar | Testriq",
-      description: "Expert software testing company in Bhubaneswar. Delivering automation, continuous QA, and SaaS testing for Infocity IT parks, E-Governance, and EdTech.",
+      description: "Expert software testing company in Bhubaneswar with ISTQB-certified engineers. Delivering automation, continuous QA, and SaaS testing for Infocity IT parks, E-Governance, and EdTech.",
       keywords: "Software Testing Services in Bhubaneswar, QA Testing Company in Bhubaneswar, Infocity IT QA Testing, E-Governance QA Bhubaneswar, EdTech Testing Bhubaneswar, Managed Testing Bhubaneswar, SaaS Testing Bhubaneswar, Performance Testing Bhubaneswar, Security Testing Bhubaneswar, ISTQB QA Bhubaneswar",
     },
     heroContent: {
@@ -1954,7 +1954,7 @@ export const cityData: Record<string, CityData> = {
     state: "Tamil Nadu",
     metadata: {
       title: "Software Testing & QA Services in Coimbatore | Testriq",
-      description: "Professional software testing company in Coimbatore. Automation testing, manual QA, API testing, performance & security testing. 500K+ test cases delivered. Free QA consultation for the Manchester of South India.",
+      description: "Professional software testing company in Coimbatore with ISTQB-certified engineers. Automation testing, manual QA, API testing, performance & security testing. 500K+ test cases delivered. Free QA consultation for the Manchester of South India.",
       keywords: "Software Testing Services in Coimbatore, QA Testing Company in Coimbatore, Automation Testing Services in Coimbatore, SaaS Testing Coimbatore, Continuous Testing Coimbatore, Managed QA Coimbatore, Security Testing Coimbatore, Performance Testing Coimbatore, QA Consulting Coimbatore, Software Testing Company Coimbatore",
     },
     heroContent: {
@@ -3271,7 +3271,7 @@ export const cityData: Record<string, CityData> = {
     state: "Uttar Pradesh",
     metadata: {
       title: "Software Testing & QA Services in Noida & Greater Noida | Testriq",
-      description: "Expert software testing company in Noida and Greater Noida. Delivering automation, SaaS QA, continuous testing, and managed QA for NCR's leading tech enterprises.",
+      description: "Expert software testing company in Noida and Greater Noida with ISTQB-certified engineers. Delivering automation, SaaS QA, continuous testing, and managed QA for NCR's leading tech enterprises.",
       keywords: "Software Testing Services in Noida, QA Testing Company in Greater Noida, Automation Testing Services in Noida, SaaS QA Noida, Continuous Testing Greater Noida, Managed QA Noida, Performance Testing Greater Noida, Security Testing Noida, QA Consulting Greater Noida",
     },
     heroContent: {
@@ -5645,7 +5645,7 @@ export const cityData: Record<string, CityData> = {
     state: "West Bengal",
     metadata: {
       title: "Software Testing & QA Services in Kolkata | Testriq",
-      description: "Expert software testing company in Kolkata. Delivering elite automation testing, continuous CI/CD QA, and SaaS validation for Salt Lake IT parks and enterprise GCCs.",
+      description: "Expert software testing company in Kolkata with ISTQB-certified engineers. Delivering elite automation testing, continuous CI/CD QA, and SaaS validation for Salt Lake IT parks and enterprise GCCs.",
       keywords: "Software Testing Services in Kolkata, QA Testing Company in Kolkata, Salt Lake IT Park QA, Enterprise GCC Testing Kolkata, Fintech QA Kolkata, Managed Testing Kolkata, SaaS Testing Kolkata, Performance Testing Kolkata, Security Testing Kolkata, ISTQB QA Kolkata",
     },
     heroContent: {
@@ -5844,7 +5844,7 @@ export const cityData: Record<string, CityData> = {
     state: "Uttar Pradesh",
     metadata: {
       title: "Software Testing & QA Services in Lucknow | Testriq",
-      description: "Expert software testing company in Lucknow. We deliver automation, SaaS QA, and continuous testing for IT parks, MedTech, and defense corridor tech innovators.",
+      description: "Expert software testing company in Lucknow with ISTQB-certified engineers. We deliver automation, SaaS QA, and continuous testing for IT parks, MedTech, and defense corridor tech innovators.",
       keywords: "Software Testing Services in Lucknow, QA Testing Company in Lucknow, Automation Testing Services in Lucknow, MedTech QA Lucknow, Defense Corridor QA Lucknow, Smart City Testing Lucknow, Managed QA Lucknow, SaaS Testing Lucknow, performance testing lucknow, security testing lucknow",
     },
     heroContent: {
@@ -7026,7 +7026,7 @@ export const cityData: Record<string, CityData> = {
     state: "Maharashtra",
     metadata: {
       title: "Software Testing & QA Services in Mumbai | Testriq",
-      description: "Expert software testing company in Mumbai. Delivering elite automation testing, CI/CD pipelines, and FinTech QA for Mumbai's BFSI, media, and enterprise unicorns.",
+      description: "Expert software testing company in Mumbai with ISTQB-certified engineers. Delivering elite automation testing, CI/CD pipelines, and FinTech QA for Mumbai's BFSI, media, and enterprise unicorns.",
       keywords: "Software Testing Services in Mumbai, QA Testing Company in Mumbai, BFSI QA Testing Mumbai, OTT Media QA Mumbai, FinTech Testing Mumbai, Managed Testing Mumbai, SaaS Testing Mumbai, Performance Testing Mumbai, Security Testing Mumbai, ISTQB QA Mumbai",
     },
     heroContent: {
@@ -7225,7 +7225,7 @@ export const cityData: Record<string, CityData> = {
     state: "Maharashtra",
     metadata: {
       title: "Software Testing & QA Services in Nagpur | Testriq",
-      description: "Expert software testing company in Nagpur. Delivering automation, continuous QA, and SaaS testing for MIHAN logistics, smart city tech, and massive IT centers.",
+      description: "Expert software testing company in Nagpur with ISTQB-certified engineers. Delivering automation, continuous QA, and SaaS testing for MIHAN logistics, smart city tech, and massive IT centers.",
       keywords: "Software Testing Services in Nagpur, QA Testing Company in Nagpur, MIHAN Logistics QA Nagpur, Smart City Tech QA Nagpur, Supply Chain ERP Testing Nagpur, Managed Testing Nagpur, SaaS Testing Nagpur, Performance Testing Nagpur, Security Testing Nagpur, ISTQB QA Nagpur",
     },
     heroContent: {
