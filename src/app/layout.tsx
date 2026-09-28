@@ -6,6 +6,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics"; // Import the new co
 import RecaptchaLoader from "@/components/RecaptchaLoader"; // Route-scoped reCAPTCHA v3 loader
 import ApolloTracking from "@/components/ApolloTracking"; // Apollo tracking script (consent-gated)
 import ConsentBanner from "@/components/ConsentBanner"; // Cookie-consent opt-in for Apollo
+import ContactLinkTracking from "@/components/ContactLinkTracking"; // GA4 tel:/mailto: click tracking
 import { RecaptchaProvider } from "@/lib/recaptcha/RecaptchaContext";
 
 import Navbar from "@/components/layout/Header";
@@ -159,6 +160,10 @@ export default function RootLayout({
 
         <GoogleAnalytics /> {/* Render the GoogleAnalytics component here */}
         <ApolloTracking /> {/* Render the ApolloTracking component here */}
+
+        {/* Delegated tel:/mailto: click tracking. Renders null; sits outside
+            RecaptchaProvider for the same reason ConsentBanner does. */}
+        <ContactLinkTracking />
 
         <RecaptchaProvider>
           <header>
