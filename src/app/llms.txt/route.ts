@@ -19,9 +19,25 @@
 // Sanity respectively.
 //
 // Companion file: app/llms-full.txt/route.ts (F-56) — expansive list.
+//
+// CLAIMS (2026-10-05): the intro blurb used to read "100% ISTQB-certified
+// engineering team, 15+ years of QA engagements".
+//   - "15+ years" was a static number nobody would ever bump, and it was
+//     already understated: organizationSchema, aboutPageSchema and
+//     pricingServiceSchema all publish foundingDate "2010", which is 16 years.
+//     "since 2010" is checkable, agrees with the schema already submitted to
+//     Google, and cannot go stale. This closes backlog C-6 for these two files.
+//   - "100%" was dropped from the ISTQB claim: it is an absolute of the same
+//     family as the "99.9%" / "100% satisfaction" claims in backlog C-2 / C-5,
+//     and it is not evidenced anywhere in this repo. "ISTQB-certified
+//     engineers" says the true part without the unprovable quantifier.
+// Both claims still appear elsewhere on the site — "15+ years" in ~35 files and
+// "100% ISTQB" throughout CityData.tsx — and are NOT fixed by this change.
 
 import { sanityGetPosts, sanityGetAllCaseStudies, type CaseStudy, type Post } from "@/lib/sanity-data-adapter";
 import { discoverRoutes, slugToTitle } from "@/lib/seo/discover-routes";
+import { getAllCities } from "@/app/lib/CityData";
+import { MARKET_PAGES, formatMarketPageLine } from "@/lib/seo/market-pages";
 
 export const revalidate = 3600; // 1h, matches /llms-full.txt + XML sitemap
 
@@ -90,7 +106,7 @@ export async function GET() {
     const lines: string[] = [
         "# Testriq QA Lab — Software Testing Services",
         "",
-        "> Testriq is an independent software testing + QA company (Mumbai HQ, global delivery). ISO 9001 + ISO 27001 certified, 100% ISTQB-certified engineering team, 15+ years of QA engagements across web, mobile, API, AI, IoT, security, and enterprise software. This file is the concise index — see /llms-full.txt for the complete list of pages, solutions, case studies, and recent blog content.",
+        "> Testriq is an independent software testing + QA company (Mumbai HQ, global delivery). ISO 9001 + ISO 27001 certified, ISTQB-certified engineers, testing software since 2010 across web, mobile, API, AI, IoT, security, and enterprise software. This file is the concise index — see /llms-full.txt for the complete list of pages, solutions, case studies, and recent blog content.",
         "",
         "## Top Pages",
         "",
@@ -125,13 +141,17 @@ export async function GET() {
                   "",
               ]
             : []),
+        `## Market Landing Pages (${MARKET_PAGES.length})`,
+        "",
+        ...MARKET_PAGES.map((p) => formatMarketPageLine(p, BASE)),
+        "",
         "## Free Tools",
         "",
         `- [QA ROI Calculator](${BASE}/roi-calculator): Estimate the cost of not testing.`,
         "",
         "## Reference",
         "",
-        `- [llms-full.txt](${BASE}/llms-full.txt): Expansive list — every service, every solution, every case study, all 88 city pages, top 50 recent posts.`,
+        `- [llms-full.txt](${BASE}/llms-full.txt): Expansive list — every service, every solution, every case study, all ${getAllCities().length} city pages, top 50 recent posts.`,
         `- [sitemap.xml](${BASE}/sitemap.xml): Full XML sitemap (everything indexable).`,
         "",
     ];

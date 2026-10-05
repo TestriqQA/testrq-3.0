@@ -131,6 +131,22 @@ const BankingComplianceSection: React.FC = () => {
             PCI DSS, SOX, and GDPR-and avoids costly non-compliance penalties,
             legal risks, and reputational damage..
           </p>
+
+          {/* Inbound link to the UK landing page. This page already sells
+              Open Banking and FCA work; the London page is where the UK-specific
+              version of it lives, and without a link from here it had no
+              internal referrer except /locations-we-serve. */}
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mt-4">
+            Working with a UK team? Our{" "}
+            <Link
+              href="/software-qa-testing-services-in-london"
+              className="text-[theme(color.brand.blue)] underline hover:no-underline"
+            >
+              testing services for London and UK teams
+            </Link>{" "}
+            cover Open Banking and strong customer authentication, UK GDPR, and
+            the test evidence an FCA audit asks for.
+          </p>
         </div>
 
 
