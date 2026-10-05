@@ -13,6 +13,7 @@ import { redirects } from '@/lib/redirects';
 // sitemap) can use the same auto-discovery instead of a hardcoded
 // manualLinks array that drifts out of sync.
 import { discoverRoutes } from '@/lib/seo/discover-routes';
+import { MARKET_PAGES } from '@/lib/seo/market-pages';
 
 // Revalidate the sitemap every hour (matches service page revalidation)
 export const revalidate = 3600;
@@ -104,6 +105,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { slug: 'technology-stack', title: 'Tools' },
       { slug: 'roi-calculator', title: 'ROI Calculator' },
       { slug: 'locations-we-serve', title: 'Locations We Serve' },
+      // Bespoke market landing pages (London, New York). Static routes, so
+      // neither discoverRoutes nor the city loop sees them. Declared once in
+      // src/lib/seo/market-pages.ts and consumed here, by /website-map and by
+      // both llms files.
+      ...MARKET_PAGES.map((p) => ({ slug: p.slug, title: p.title })),
       { slug: 'privacy-policy', title: 'Privacy Policy' },
       { slug: 'terms-of-service', title: 'Terms of Service' },
       { slug: 'cookies-policy', title: 'Cookies Policy' },

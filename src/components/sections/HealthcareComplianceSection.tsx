@@ -201,6 +201,20 @@ const HealthcareComplianceSection: React.FC = () => {
             </Link>{" "}
             and healthcare industry standards.
           </p>
+
+          {/* Inbound link to the UK landing page — see the matching note in
+              BankingComplianceSection. NHS/HL7/FHIR coverage lives there. */}
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mt-4">
+            For NHS-connected software, HL7 and FHIR message handling and UK
+            GDPR, see our{" "}
+            <Link
+              href="/software-qa-testing-services-in-london"
+              className="text-brand-blue underline hover:no-underline"
+            >
+              testing services for London and UK teams
+            </Link>
+            .
+          </p>
         </div>
 
         {/* Compliance Standards Grid */}
