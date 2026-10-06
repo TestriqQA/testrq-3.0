@@ -16,6 +16,29 @@ const NewYorkNextStepSection: React.FC = () => {
             Send us your build cadence and the environments your pipeline deploys
             to. We will propose an overnight test cycle for your next release.
           </p>
+
+          {/* Restored Oct 2026. Both figures come from the deleted CityData
+              entry: heroContent.stats carried { number: "15+", label: "Years
+              Experience" } and whyChooseContent carried "48-Hour Staffing" /
+              "Rapid Integration".
+
+              "15+ Years" is defensible rather than a round number picked for
+              effect — organizationSchema, aboutPageSchema and
+              pricingServiceSchema all publish foundingDate "2010", so the real
+              figure is 16. Note the llms.txt / llms-full.txt intros now say
+              "testing software since 2010" instead of a duration, so these two
+              surfaces word the same fact differently; "since 2010" is the
+              self-maintaining form if this card is ever revisited. */}
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <div className="bg-white/10 border border-white/20 rounded-xl px-6 py-4 text-center min-w-[11rem]">
+              <div className="text-2xl font-bold text-white">15+</div>
+              <div className="text-white/80 text-sm mt-1">Years Experience</div>
+            </div>
+            <div className="bg-white/10 border border-white/20 rounded-xl px-6 py-4 text-center min-w-[11rem]">
+              <div className="text-2xl font-bold text-white">48-Hour Staffing</div>
+              <div className="text-white/80 text-sm mt-1">Rapid Integration</div>
+            </div>
+          </div>
           <Link
             href="/contact-us"
             className="inline-flex items-center gap-2 mt-8 px-8 py-3 bg-white text-brand-blue font-semibold rounded-lg hover:bg-gray-100 transition-colors"
