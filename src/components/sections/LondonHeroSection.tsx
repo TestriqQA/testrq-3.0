@@ -12,7 +12,7 @@
 // when the copy actually changes.
 import Link from "next/link";
 import React from "react";
-import { FaHome, FaChevronRight, FaCheckDouble } from "react-icons/fa";
+import { FaHome, FaChevronRight, FaCheckDouble, FaShieldAlt } from "react-icons/fa";
 
 export const LAST_REVIEWED_ISO = "2026-10-05";
 export const LAST_REVIEWED_DISPLAY = "5 October 2026";
@@ -44,9 +44,19 @@ const LondonHeroSection: React.FC = () => {
         </nav>
 
         <div className="max-w-4xl space-y-6">
-          <div className="inline-flex items-center px-4 py-2 bg-brand-blue text-white rounded-full text-sm font-medium">
-            <FaCheckDouble className="mr-2" aria-hidden="true" />
-            ISTQB-Certified QA Engineers
+          {/* Restored Oct 2026. The old CityData "london" entry carried
+              "ISO 27001 Certified" in heroContent.certifications; the rewrite
+              dropped it. It is a certification claim the site already makes in
+              both llms files, so it is defensible and belongs in the header. */}
+          <div className="flex flex-wrap gap-3">
+            <span className="inline-flex items-center px-4 py-2 bg-brand-blue text-white rounded-full text-sm font-medium">
+              <FaCheckDouble className="mr-2" aria-hidden="true" />
+              ISTQB-Certified QA Engineers
+            </span>
+            <span className="inline-flex items-center px-4 py-2 bg-white text-brand-blue border border-brand-blue rounded-full text-sm font-medium">
+              <FaShieldAlt className="mr-2" aria-hidden="true" />
+              ISO 27001 Certified
+            </span>
           </div>
 
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
