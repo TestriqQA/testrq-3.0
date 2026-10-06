@@ -12,17 +12,35 @@
 //   - 5 core pages + utility (about, careers, contact, etc.)
 //   - All ~45 service pages via discoverRoutes('src/app/(services)')
 //   - All 7 industry solutions via discoverRoutes('src/app/(solutions)')
-//   - All 88 city landing pages via getAllCities()
+//   - All city landing pages via getAllCities() (count is derived, not fixed:
+//     london and new-york left the set in Oct 2026 when they became bespoke
+//     static routes — see MARKET_PAGES below)
+//   - The bespoke market landing pages in src/lib/seo/market-pages.ts, which
+//     no discovery mechanism can see
 //   - All Sanity case studies
 //   - Recent blog posts (top ~50 by publish date) — full list of 338 would
 //     bloat the file beyond what AI bots usefully ingest; the curated
 //     `llms.txt` (F-55) covers pillar content separately
 //
+// CLAIMS (2026-10-05): the intro blurb used to read "100% ISTQB-certified
+// engineering team, 15+ years of QA engagements".
+//   - "15+ years" was a static number nobody would ever bump, and it was
+//     already understated: organizationSchema, aboutPageSchema and
+//     pricingServiceSchema all publish foundingDate "2010", which is 16 years.
+//     "since 2010" is checkable, agrees with the schema already submitted to
+//     Google, and cannot go stale. This closes backlog C-6 for these two files.
+//   - "100%" was dropped from the ISTQB claim: it is an absolute of the same
+//     family as the "99.9%" / "100% satisfaction" claims in backlog C-2 / C-5,
+//     and it is not evidenced anywhere in this repo. "ISTQB-certified
+//     engineers" says the true part without the unprovable quantifier.
+// Both claims still appear elsewhere on the site — "15+ years" in ~35 files and
+// "100% ISTQB" throughout CityData.tsx — and are NOT fixed by this change.
 // F-55 will replace the current static /public/llms.txt with a SHORTER
 // curated companion to this file — they work as a pair.
 
 import { sanityGetPosts, sanityGetAllCaseStudies, type CaseStudy, type Post } from "@/lib/sanity-data-adapter";
 import { discoverRoutes, slugToTitle } from "@/lib/seo/discover-routes";
+import { MARKET_PAGES, formatMarketPageLine } from "@/lib/seo/market-pages";
 import { getAllCities, type CityData } from "@/app/lib/CityData";
 
 // Match the XML sitemap's revalidate cadence — AI bots that re-fetch
@@ -46,7 +64,7 @@ const CORE_PAGES: Array<{ slug: string; title: string; description: string }> = 
         slug: "about-us",
         title: "About Testriq",
         description:
-            "Independent ISO 9001 + ISO 27001 certified QA testing house with 15+ years of experience and a 100% ISTQB-certified engineering team.",
+            "Independent ISO 9001 + ISO 27001 certified QA testing house, testing software since 2010 with ISTQB-certified engineers.",
     },
     {
         slug: "our-team",
@@ -153,7 +171,7 @@ export async function GET() {
     const lines: string[] = [
         "# Testriq QA Lab — Software Testing Services",
         "",
-        "> Testriq is an independent software testing + QA services company (Mumbai HQ, global delivery). ISO 9001 + ISO 27001 certified, 100% ISTQB-certified engineering team, 15+ years of QA engagements across web, mobile, API, AI, IoT, security, and enterprise software. This file lists the full set of pages an AI engine can ground on for Testriq — services, industry solutions, case studies, location pages, and recent blog content.",
+        "> Testriq is an independent software testing + QA services company (Mumbai HQ, global delivery). ISO 9001 + ISO 27001 certified, ISTQB-certified engineers, testing software since 2010 across web, mobile, API, AI, IoT, security, and enterprise software. This file lists the full set of pages an AI engine can ground on for Testriq — services, industry solutions, case studies, location pages, and recent blog content.",
         "",
         "## Core Pages",
         "",
@@ -176,6 +194,12 @@ export async function GET() {
         "Real client engagements with measurable QA outcomes.",
         "",
         ...caseStudies.map(formatCaseStudy),
+        "",
+        `## Market Landing Pages (${MARKET_PAGES.length})`,
+        "",
+        "Hand-written landing pages for specific markets. These are not city-template pages — each covers the regulations, working-hours model and reference work relevant to that market.",
+        "",
+        ...MARKET_PAGES.map((p) => formatMarketPageLine(p, BASE)),
         "",
         `## Locations We Serve (${cities.length})`,
         "",
