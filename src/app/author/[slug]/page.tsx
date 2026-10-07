@@ -85,7 +85,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!author) {
     return {
-      title: "Author Not Found | Testriq",
+      // `absolute` bypasses the root layout's "%s | Testriq" template,
+      // which would otherwise print the brand twice (F-71).
+      title: { absolute: "Author Not Found | Testriq" },
       robots: { index: false, follow: false },
     };
   }

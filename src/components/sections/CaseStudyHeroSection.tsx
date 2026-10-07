@@ -61,12 +61,24 @@ const CaseStudyHeroSection: React.FC<CaseStudyHeroSectionProps> = ({
               {caseStudy.title}
             </h1>
 
-            {/* Client */}
+            {/* Client — links out to the client's own site when
+                `clientUrl` is set in Sanity, otherwise plain text. */}
             <p className="text-xl text-gray-600 mb-6">
               Client:{" "}
-              <span className="font-semibold text-gray-800">
-                {caseStudy.client}
-              </span>
+              {caseStudy.clientUrl ? (
+                <a
+                  href={caseStudy.clientUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gray-800 underline decoration-gray-300 underline-offset-4 hover:text-[theme(color.brand.blue)] hover:decoration-[theme(color.brand.blue)] transition-colors"
+                >
+                  {caseStudy.client}
+                </a>
+              ) : (
+                <span className="font-semibold text-gray-800">
+                  {caseStudy.client}
+                </span>
+              )}
             </p>
 
             {/* Description */}
@@ -103,17 +115,35 @@ const CaseStudyHeroSection: React.FC<CaseStudyHeroSectionProps> = ({
               ? 'bg-gradient-to-br from-gray-800 to-gray-900'
               : 'bg-gradient-to-br from-gray-100 to-gray-200'
               }`}>
-              <div className="flex justify-center flex-col text-center">
+              {/* `justify-center` centers along a flex-col's main axis
+                  (vertical) — it does nothing for horizontal alignment.
+                  `items-center` is the cross-axis property that actually
+                  centers the logo/caption pair. Without it, a logo whose
+                  object-contain width comes out narrower than the 300px box
+                  (any client mark that isn't itself ~3:2) sits flush against
+                  one edge instead of centered — invisible for a logo that
+                  happens to fill the full width, visible for one that doesn't. */}
+              <div className="flex justify-center items-center flex-col text-center">
+                {/* `w-auto h-auto` makes the rendered box hug the logo's own
+                    aspect ratio instead of sitting inside a fixed 300x200
+                    frame. In the fixed frame, object-contain letterboxed every
+                    non-3:2 logo and the leftover space was pure dead air — a
+                    wide wordmark like Cleverence (7.74:1) left ~80px of empty
+                    box between the mark and the caption below, which no amount
+                    of padding in the PNG could change. The caps keep tall or
+                    square marks (Milton 320x320, Aalpha 300x300) at the same
+                    200px they rendered at before, so only wide logos change:
+                    they now scale to the column width instead of 300px. */}
                 <Image
                   title={caseStudy.client}
                   src={caseStudy.image}
                   alt={`${caseStudy.client} Case Study - ${caseStudy.title}`}
-                  width={300}
+                  width={440}
                   height={200}
-                  className="object-contain"
+                  className="object-contain w-auto h-auto max-h-[200px] max-w-[min(440px,100%)]"
                   priority
                 />
-                <p className="text-gray-600 text-xl py-5">
+                <p className="text-gray-600 text-xl pt-4">
                   {caseStudy.industry} Success Story
                 </p>
               </div>

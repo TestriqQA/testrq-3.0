@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaArrowRight, FaLock } from "react-icons/fa";
 const CyberSecurityCTASection: React.FC = () => {
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/5 rounded-full blur-[100px]"></div>
             <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/5 rounded-full blur-[100px]"></div>

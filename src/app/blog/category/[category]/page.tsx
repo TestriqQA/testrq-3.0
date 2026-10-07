@@ -87,7 +87,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!categoryData) {
     return {
-      title: "Category Not Found | Testriq Blog",
+      // `absolute` bypasses the root layout's "%s | Testriq" template,
+      // which would otherwise print the brand twice (F-71).
+      title: { absolute: "Category Not Found | Testriq Blog" },
       // ...
       robots: {
         index: false,

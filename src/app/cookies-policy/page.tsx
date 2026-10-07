@@ -4,7 +4,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Cookies Policy | Testriq QA Lab',
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "Cookies Policy | Testriq QA Lab" },
   description: 'Learn about the cookies used on the Testriq QA Lab website.',
   alternates: {
     canonical: 'https://www.testriq.com/cookies-policy',

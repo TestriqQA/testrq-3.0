@@ -122,7 +122,7 @@ const TeamMembersSection = () => {
     },
     {
       name: "Aakash Yadav",
-      role: "R&D Innovation Specialist",
+      role: "QA lead & business strategy manager",
       department: "Testriq QA Lab",
       linkedin: "https://www.linkedin.com/in/aakashyadav9890/",
       src: "/aakash-yadav.webp",
@@ -161,6 +161,14 @@ const TeamMembersSection = () => {
       role: "Test Lead",
       department: "Testriq QA Lab",
       linkedin: "https://www.linkedin.com/in/pooja-katkar-737b3525a/",
+      src: "/None.webp",
+    },
+    {
+      name: "Ragini Kumari",
+      role: "QA Specialist",
+      department: "Testriq QA Lab",
+      linkedin: "https://www.linkedin.com/in/raginikumari90/",
+      // TODO: replace with her own photo — /None.webp is the shared placeholder.
       src: "/None.webp",
     },
     {

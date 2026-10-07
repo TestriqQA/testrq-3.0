@@ -55,7 +55,7 @@ const LatencyTestingWhatIsSection: React.FC = () => {
               <span className="text-sm">Understanding Latency</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              What Is <span className="text-brand-blue">Latency Testing</span>?
+              What Is <span className="text-brand-blue">Latency Testing</span> ?
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
               Latency testing is a specialized form of{" "}

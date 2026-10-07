@@ -47,13 +47,12 @@ const LatencyTestingHeroSection: React.FC = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Enterprise{" "}
+            
               <Link href="/performance-testing-services" className="underline hover:no-underline decoration-brand-blue">
                 Latency Testing Services
-              </Link>
-              :{" "}
+              </Link> for Enterprise Application {" "}
               <span className="text-brand-blue">
-                Measure, Analyze &amp; Optimize Response Times
+                : Measure, Analyze &amp; Optimize Response Times
               </span>
             </h1>
 

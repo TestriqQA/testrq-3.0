@@ -86,7 +86,7 @@ const AIWhyChooseTestriq: React.FC = () => {
       shortTitle: "Security",
       description: (
         <>
-          Testriq follows strict <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">security rules</Link>. We align with SOC2 Type II, ISO 27001, and GDPR to protect <Link href="/data-analysis-services" className="text-[theme(color.brand.blue)] underline hover:decoration-[theme(color.brand.blue)]">sensitive data</Link>.
+          Testriq follows strict <Link href="/security-testing" className=" underline ">security rules</Link>. We align with SOC2 Type II, ISO 27001, and GDPR to protect <Link href="/data-analysis-services" className="underline">sensitive data</Link>.
         </>
       ),
       stats: "SOC2 / ISO 27001",

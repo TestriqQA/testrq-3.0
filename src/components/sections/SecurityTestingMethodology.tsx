@@ -1,49 +1,70 @@
 "use client";
 
+// SEO handoff (Sept 2026) — PART E follow-up. This section previously listed
+// the identical five stages as SecureGuardFramework on /security-testing
+// (Reconnaissance & Threat Modeling -> Weakness Scanning -> Manual Penetration
+// Testing -> Risk Analysis & Repair Support -> Re-Testing & Certification),
+// including a "Manual Penetration Testing" stage on the page that is supposed
+// to stop targeting penetration-testing queries. The handoff flagged three
+// duplicated blocks between the two pages; this was a fourth.
+//
+// The stages are now the compliance-audit lifecycle this page actually sells.
+// Layout, styling and step count are unchanged.
+//
+// The old subtitle cited ISO/IEC/IEEE 29119 — a software *testing* standard,
+// not an auditing one. Replaced with a plain description of the process rather
+// than swapping in another standard we would then have to substantiate.
+
 import React from "react";
-import { FaSearch, FaBug, FaUserSecret, FaTools, FaCertificate } from "react-icons/fa";
+import {
+    FaClipboardList,
+    FaFolderOpen,
+    FaCheckDouble,
+    FaChartBar,
+    FaCertificate,
+} from "react-icons/fa";
 
 const SecurityTestingMethodology: React.FC = () => {
     const steps = [
         {
             number: "01",
-            title: "Reconnaissance & Threat Modeling",
-            description: "Identifying high-risk assets and potential threat detection gaps through asset risk profiling and threat landscape mapping.",
-            icon: <FaSearch className="text-2xl" />,
+            title: "Scoping & Control Mapping",
+            description: "Agreeing which systems, data flows and business units are in scope, then mapping each to the controls your applicable frameworks require.",
+            icon: <FaClipboardList className="text-2xl" />,
             color: "blue",
         },
         {
             number: "02",
-            title: "Weakness Scanning",
-            description: "Utilizing automated tools and CVE database matching for comprehensive vulnerability identification, including open-source flaws.",
-            icon: <FaBug className="text-2xl" />,
+            title: "Evidence Collection",
+            description: "Gathering the policies, configurations, access records and process documentation that show how each control operates in practice.",
+            icon: <FaFolderOpen className="text-2xl" />,
             color: "purple",
         },
         {
             number: "03",
-            title: "Manual Penetration Testing",
-            description: "Our Certified Ethical Hackers attempt to bypass your system security using creative exploit chains, focusing on logic flow bypassing and privilege escalation.",
-            icon: <FaUserSecret className="text-2xl" />,
+            title: "Control Testing",
+            description: "Testing each control against its requirement to establish whether it exists, is applied consistently, and works the way it is documented.",
+            icon: <FaCheckDouble className="text-2xl" />,
             color: "red",
         },
         {
             number: "04",
-            title: "Risk Analysis & Repair Support",
-            description: "Providing detailed business impact ranking, CVSS scoring analysis, and secure coding principles for effective risk mitigation and remediation guidance.",
-            icon: <FaTools className="text-2xl" />,
+            title: "Gap Analysis & Remediation Plan",
+            description: "Marking every control met, partially met or not met, with a prioritised remediation plan sequenced against your audit or certification date.",
+            icon: <FaChartBar className="text-2xl" />,
             color: "amber",
         },
         {
             number: "05",
-            title: "Re-Testing & Certification",
-            description: "Verifying that all high-risk gaps are closed and providing a final security report and process certification for stakeholders.",
+            title: "Re-Audit & Reporting",
+            description: "Re-checking remediated controls once your team has closed the gaps, and issuing a final audit report your stakeholders can act on.",
             icon: <FaCertificate className="text-2xl" />,
             color: "green",
         },
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-white relative overflow-hidden">
             {/* Background patterns */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 -mr-32 -mt-32"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-50 rounded-full blur-3xl opacity-50 -ml-48 -mb-48"></div>
@@ -54,10 +75,12 @@ const SecurityTestingMethodology: React.FC = () => {
                         Our Process
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-                        Proven Security <span className="text-brand-blue">QA Methodology</span>
+                        Our Compliance{" "}
+                        <span className="text-brand-blue">Audit Methodology</span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        Following transparent ISO/IEC/IEEE 29119 standards to find and fix every system weakness.
+                        A transparent five-stage process, from agreeing scope through to
+                        re-checking the controls your team has remediated.
                     </p>
                 </div>
 

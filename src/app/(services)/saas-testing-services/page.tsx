@@ -9,7 +9,9 @@ import StructuredData, {
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-    title: "SaaS Testing Services | Cloud Application QA | Testriq",
+    // `absolute` bypasses the root layout's "%s | Testriq" template,
+    // which would otherwise print the brand twice (F-71).
+    title: { absolute: "SaaS Testing Services | Cloud Application QA | Testriq" },
     description:
         "Premium SaaS testing services for cloud-first companies. Multi-tenant testing, GDPR HIPAA compliance, performance testing, and security audits.",
     keywords: [
@@ -71,6 +73,7 @@ export const metadata: Metadata = {
 };
 
 import SaasTestingHeroSection from "@/components/sections/SaasTestingHeroSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
 
 const SaasTestingWhyDiffers = dynamic(
     () => import("@/components/sections/SaasTestingWhyDiffers"),
@@ -229,6 +232,7 @@ export default function SaasTestingPage() {
                 <SaasTestingCompliance />
                 <SaasTestingStrategy />
                 <SaasTestingEngagement />
+                <ServiceTeamSection />
                 <SaasTestingReadyToStart />
             </MainLayout>
         </div>

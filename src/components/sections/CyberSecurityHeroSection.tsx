@@ -1,17 +1,40 @@
 "use client";
 
+// SEO handoff (Sept 2026) — PART E. This page and /security-testing were
+// competing for the same penetration-testing queries, which is why neither
+// ranked. This page is now narrowed to compliance auditing only:
+//   - H1 no longer contains "Penetration Testing".
+//   - The SecurityTestingAnimation widget is removed — it was rendered
+//     identically on /security-testing. The right column now carries the
+//     frameworks this page actually audits against.
+//   - Hero copy rewritten to audit intent, and hands penetration-testing
+//     intent off to /security-testing with an exact-match anchor.
+//   - Reviewer byline added (ISO 27001 Lead Auditor, matching the page's
+//     subject). Not on /our-team as an individual profile, so the link points
+//     at the team page itself rather than a 404 anchor.
+//
+// The "15+ Years" / "100% Audit" stat cards are deliberately untouched — they
+// are on the owner-decision hold list in docs/seo-audit/fix-backlog.md (C-5/C-6).
+
 import Link from "next/link";
 import React, { useState } from "react";
 import {
-    FaShieldAlt,
     FaArrowRight,
     FaPlay,
     FaHome,
     FaChevronRight,
-    FaUserSecret
+    FaBalanceScale,
+    FaCheckCircle,
 } from "react-icons/fa";
 import Lightbox from "../VideoLightBox";
-import SecurityTestingAnimation from "./SecurityTestingAnimation";
+
+const frameworks = [
+    { name: "GDPR", detail: "EU & UK data protection" },
+    { name: "HIPAA", detail: "US healthcare data" },
+    { name: "PCI DSS", detail: "Cardholder data environments" },
+    { name: "SOC 2", detail: "Trust services criteria" },
+    { name: "ISO 27001", detail: "Information security management" },
+];
 
 const CyberSecurityHeroSection: React.FC = () => {
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -37,27 +60,62 @@ const CyberSecurityHeroSection: React.FC = () => {
                     </span>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-2 gap-12">
                     {/* Left Content */}
                     <div className="space-y-6">
                         <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-brand-blue rounded-full text-sm font-bold border border-blue-100 uppercase tracking-wide">
-                            <FaUserSecret className="mr-2" />
-                            ISTQB & CEH Certified Experts
+                            <FaBalanceScale className="mr-2" />
+                            ISO 27001 &amp; GDPR Compliance Audits
                         </div>
 
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-                            Cyber Security Testing & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">Penetration Testing</span>
+                            Cyber Security{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
+                                Compliance Audit
+                            </span>{" "}
+                            Services
                         </h1>
+
+                        {/* Reviewer byline — E-E-A-T signal */}
+                        <p className="text-sm text-gray-500 leading-relaxed">
+                            Reviewed by{" "}
+                            <Link
+                                href="/our-team"
+                                className="text-gray-600 underline decoration-gray-300 underline-offset-2 hover:text-brand-blue hover:decoration-brand-blue transition-colors"
+                            >
+                                Mansi Borade
+                            </Link>
+                            , ISO 27001:2022 Lead Auditor · DPDP Act 2023
+                            <br />
+                            Security Tester, Testriq QA Lab
+                            <br />
+                            Last updated:{" "}
+                            <time dateTime="2026-09-10">September 10, 2026</time>
+                        </p>
 
                         <div className="space-y-4">
                             <h2 className="text-2xl font-bold text-gray-800">
-                                Elevate Your Digital Defenses
+                                Audited Against the Frameworks Your Customers Ask About
                             </h2>
                             <p className="text-lg text-gray-600 leading-relaxed">
-                                In an increasingly interconnected world, safeguarding your digital assets is a strategic imperative. Testriq offers world-class Cyber Security Testing Services designed to fortify your defenses and protect your reputation in the dynamic 2026 threat landscape.
+                                Testriq audits your systems, controls and documentation
+                                against GDPR, HIPAA, PCI DSS, SOC 2 and ISO 27001. You
+                                receive a gap analysis for each control in scope, evidence of
+                                what already passes, and a prioritised remediation plan for
+                                what does not.
                             </p>
                             <p className="text-lg text-gray-600 leading-relaxed">
-                                Our team of <span className="font-bold text-gray-900">Certified Ethical Hackers (CEH, OSCP)</span> brings over 15 years of specialized experience to uncover complex vulnerabilities that others miss.
+                                A compliance audit establishes whether your controls exist
+                                and operate as documented. If you need engineers to actively
+                                attempt to break in and prove what an attacker could reach,
+                                that is a different engagement — see our{" "}
+                                <Link
+                                    href="/security-testing"
+                                    className="text-brand-blue font-semibold hover:underline decoration-brand-blue"
+                                >
+                                    penetration testing services
+                                </Link>
+                                .
                             </p>
                         </div>
 
@@ -91,10 +149,34 @@ const CyberSecurityHeroSection: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Right Content - Animation */}
-                    <div className="relative lg:h-[600px] flex items-start justify-center lg:-mt-12 lg:-translate-y-8 pt-8 lg:pt-0">
+                    {/* Right Content — frameworks in scope. Replaces the shared
+                        SecurityTestingAnimation widget that also rendered on
+                        /security-testing. */}
+                    <div className="relative top-10">
                         <div className="absolute inset-0 bg-blue-100 rounded-full blur-[120px] opacity-20 scale-150"></div>
-                        <SecurityTestingAnimation />
+                        <div className="relative bg-white border border-gray-100 rounded-3xl shadow-xl p-8">
+                            <p className="text-sm font-black text-brand-blue uppercase tracking-widest mb-6">
+                                Frameworks We Audit Against
+                            </p>
+                            <ul className="space-y-5">
+                                {frameworks.map((framework) => (
+                                    <li
+                                        key={framework.name}
+                                        className="flex items-start gap-4 pb-5 border-b border-gray-100 last:border-0 last:pb-0"
+                                    >
+                                        <FaCheckCircle className="text-brand-blue text-xl flex-shrink-0 mt-0.5" />
+                                        <div>
+                                            <span className="block text-lg font-bold text-gray-900">
+                                                {framework.name}
+                                            </span>
+                                            <span className="text-sm text-gray-500">
+                                                {framework.detail}
+                                            </span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

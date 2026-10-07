@@ -8,8 +8,8 @@
  * Run via `npm run test` (single pass) or `npm run test:watch`.
  */
 
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { join, relative } from "node:path";
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -648,5 +648,306 @@ describe("isDevEnvironment", () => {
     it("returns true when NODE_ENV is undefined", () => {
         delete process.env.NODE_ENV;
         expect(isDevEnvironment()).toBe(true);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// Repo-wide metadata invariants
+//
+// Both assertions below walk every `page.tsx` under `src/app` rather than a
+// list of routes. That is deliberate: each of these two bugs has already been
+// fixed page-by-page and come back, because a list only covers what its author
+// knew about on the day.
+// ---------------------------------------------------------------------------
+
+const APP_DIR = join(process.cwd(), "src", "app");
+const BACKSLASH = String.fromCharCode(92);
+
+/** Every `page.tsx` under `src/app`, recursively. */
+function pageFiles(dir: string, out: string[] = []): string[] {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = join(dir, entry.name);
+        if (entry.isDirectory()) pageFiles(full, out);
+        else if (entry.name === "page.tsx") out.push(full);
+    }
+    return out;
+}
+
+/**
+ * Offset of the `{` that opens a page's Metadata object — either
+ * `export const metadata = {` or the `return {` inside `generateMetadata`.
+ *
+ * Returns null for pages with no metadata, and for pages that hand off to
+ * `buildPageMetadata(...)`, since `return buildPageMetadata({` does not match
+ * `return {` and those pages are exempt from the title rule by design.
+ */
+function metadataObjectStart(src: string): number | null {
+    const direct = /export\s+const\s+metadata\s*(?::\s*Metadata\s*)?=\s*\{/.exec(src);
+    if (direct) return direct.index + direct[0].length - 1;
+
+    const gen = /export\s+(?:async\s+)?function\s+generateMetadata/.exec(src);
+    if (!gen) return null;
+    const ret = /return\s*\{/.exec(src.slice(gen.index));
+    return ret ? gen.index + ret.index + ret[0].length - 1 : null;
+}
+
+/**
+ * Raw source text of the top-level `title:` value in the object literal opening
+ * at `open`, or null when there is none.
+ *
+ * Hand-rolled rather than AST-parsed to keep this test dependency-free. Brace
+ * depth and string state are tracked so that a nested `openGraph.title` or
+ * `twitter.title` (depth 2) is correctly ignored — the template only ever
+ * applies to the top-level one.
+ */
+function topLevelTitle(src: string, open: number): string | null {
+    let depth = 0;
+    let inString: string | null = null;
+    let key: string | null = null;
+
+    for (let i = open; i < src.length; i++) {
+        const ch = src[i];
+        const prev = src[i - 1];
+
+        if (inString) {
+            if (ch === inString && prev !== BACKSLASH) inString = null;
+            continue;
+        }
+        if (ch === '"' || ch === "'" || ch === "`") {
+            inString = ch;
+            continue;
+        }
+        if (ch === "{") {
+            depth++;
+            continue;
+        }
+        if (ch === "}") {
+            depth--;
+            if (depth === 0) return null;
+            continue;
+        }
+        if (depth !== 1) continue;
+
+        if (ch === ":" && key === null) {
+            let start = i - 1;
+            while (start >= 0 && /\s/.test(src[start])) start--;
+            const end = start;
+            while (start >= 0 && /[A-Za-z0-9_"'$]/.test(src[start])) start--;
+            key = src.slice(start + 1, end + 1).replace(/["']/g, "");
+
+            if (key === "title") {
+                let nested = 0;
+                let quoted: string | null = null;
+                for (let j = i + 1; j < src.length; j++) {
+                    const c = src[j];
+                    if (quoted) {
+                        if (c === quoted && src[j - 1] !== BACKSLASH) quoted = null;
+                        continue;
+                    }
+                    if (c === '"' || c === "'" || c === "`") {
+                        quoted = c;
+                        continue;
+                    }
+                    if (c === "{" || c === "[") nested++;
+                    else if (c === "}" || c === "]") {
+                        if (nested === 0) return src.slice(i + 1, j).trim();
+                        nested--;
+                    } else if (c === "," && nested === 0) return src.slice(i + 1, j).trim();
+                }
+            }
+        } else if (ch === "," && key !== null) {
+            key = null;
+        }
+    }
+    return null;
+}
+
+/**
+ * Source text of the object literal that encloses `from`.
+ *
+ * Forward from `from` the scan is brace-matched and string-aware; backward it
+ * simply runs to the nearest `return {` or `= {`, which is enough to catch a
+ * `robots` key written above `title` in the same object.
+ */
+function enclosingObjectText(src: string, from: number): string {
+    const back = Math.max(src.lastIndexOf("return {", from), src.lastIndexOf("= {", from));
+    const start = back === -1 ? from : back;
+
+    let depth = 0;
+    let quoted: string | null = null;
+    for (let i = from; i < src.length; i++) {
+        const ch = src[i];
+        if (quoted) {
+            if (ch === quoted && src[i - 1] !== BACKSLASH) quoted = null;
+            continue;
+        }
+        if (ch === '"' || ch === "'" || ch === "`") {
+            quoted = ch;
+            continue;
+        }
+        if (ch === "{" || ch === "[") depth++;
+        else if (ch === "}" || ch === "]") {
+            if (depth === 0) return src.slice(start, i);
+            depth--;
+        }
+    }
+    return src.slice(start);
+}
+
+describe("root layout title template", () => {
+    it("finds page files to check", () => {
+        expect(pageFiles(APP_DIR).length).toBeGreaterThan(50);
+    });
+
+    /**
+     * `src/app/layout.tsx` declares `title.template = "%s | Testriq"`, so Next.js
+     * appends " | Testriq" to any page title given as a bare string. A page that
+     * also writes the brand into its own title renders it twice, and the extra
+     * ~10 characters push the title past the ~60 Google displays — truncating
+     * real keywords out of the search result.
+     *
+     * `title: { absolute }` and `buildPageMetadata()` both bypass the template
+     * and are therefore exempt.
+     */
+    it("no page puts the brand in a bare string title", () => {
+        const offenders: string[] = [];
+
+        for (const file of pageFiles(APP_DIR)) {
+            const src = readFileSync(file, "utf8");
+            const open = metadataObjectStart(src);
+            if (open === null) continue;
+
+            const raw = topLevelTitle(src, open);
+            if (raw === null) continue;
+
+            // Only bare string literals receive the template. `title: { absolute }`
+            // and computed values (`title: pageTitle`) do not match here.
+            const literal = /^[`"']([\s\S]*)[`"']$/.exec(raw);
+            if (!literal) continue;
+
+            if (/testriq/i.test(literal[1])) {
+                offenders.push(
+                    `${relative(process.cwd(), file)}\n      renders as "${literal[1]} | Testriq"`,
+                );
+            }
+        }
+
+        expect(
+            offenders,
+            "These pages put the brand in a bare string title, so the root layout's " +
+                '"%s | Testriq" template renders it twice. Use title: { absolute: "..." } ' +
+                "or buildPageMetadata() instead.\n\n  " +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
+    });
+});
+
+describe("not-found metadata", () => {
+    /**
+     * A route that cannot find its record still returns a rendered page. If that
+     * page's metadata omits `robots.index = false`, the result is a soft 404:
+     * HTTP 200 over a "Not Found" body, carrying "index, follow".
+     *
+     * That is not hypothetical. `blog/post/[slug]` shipped exactly this, while
+     * its three siblings (`blog/tag`, `blog/category`, `author`) set the flag
+     * correctly — and because any unknown slug reaches the handler, the set of
+     * indexable dead URLs was unbounded rather than a known list.
+     */
+    const NOT_FOUND_TITLE = /title:\s*(?:\{\s*absolute:\s*)?["'`]([^"'`]*Not Found[^"'`]*)["'`]/g;
+
+    it("every 'Not Found' fallback sets robots.index = false", () => {
+        const offenders: string[] = [];
+
+        for (const file of pageFiles(APP_DIR)) {
+            const src = readFileSync(file, "utf8");
+            for (const match of src.matchAll(NOT_FOUND_TITLE)) {
+                const scope = enclosingObjectText(src, match.index);
+                if (!/index:\s*false/.test(scope)) {
+                    offenders.push(
+                        `${relative(process.cwd(), file)}\n      "${match[1]}" is returned without robots.index = false`,
+                    );
+                }
+            }
+        }
+
+        expect(
+            offenders,
+            "A 'Not Found' page that is indexable is a soft 404 — it answers HTTP 200 " +
+                "and invites Google to index a dead URL. Add robots: { index: false, " +
+                "follow: false } to the fallback metadata.\n\n  " +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
+    });
+});
+
+describe("city page titles", () => {
+    /**
+     * City pages set `title: { absolute }`, so `cityData[...].metadata.title` is
+     * the exact string Google receives — nothing is appended, nothing trimmed.
+     *
+     * Google shows roughly 60 characters of a title. Every indexed city page but
+     * two used to carry a decorative " | ISTQB Certified" segment that ate 18 of
+     * them, pushing the brand — and on the longer city names the keyword itself —
+     * past the cut. The certification is a body-copy claim, not a title-tag one.
+     *
+     * Only indexed cities are asserted: a noindexed page's title never reaches a
+     * SERP, so holding it to a SERP budget would be noise.
+     */
+    const TITLE_BUDGET = 60;
+
+    /**
+     * greater-noida is 65 and deliberately so: "Noida & Greater Noida" targets
+     * both terms from one page, and the page ranks top 3 on its own term. The
+     * five characters cost less than retargeting a working page would.
+     */
+    const ALLOWED_OVER_BUDGET = new Set(["software-qa-testing-services-in-greater-noida"]);
+
+    it("every indexed city title fits the SERP budget", async () => {
+        const { cityData, INDEXED_CITY_SLUGS } = await import("../../../app/lib/CityData");
+
+        const offenders: string[] = [];
+
+        for (const city of Object.values(cityData)) {
+            if (!INDEXED_CITY_SLUGS.has(city.slug)) continue;
+            if (ALLOWED_OVER_BUDGET.has(city.slug)) continue;
+
+            const title = city.metadata.title;
+            if (title.length > TITLE_BUDGET) {
+                offenders.push(`${city.slug}\n      ${title.length} chars: "${title}"`);
+            }
+        }
+
+        expect(
+            offenders,
+            `An indexed city page's <title> is rendered verbatim (title: { absolute }). ` +
+                `Past ~${TITLE_BUDGET} characters Google truncates it, and the brand at the ` +
+                `end is what disappears first. Shorten the title rather than adding to it.\n\n  ` +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
+    });
+
+    it("no indexed city title repeats the brand", async () => {
+        const { cityData, INDEXED_CITY_SLUGS } = await import("../../../app/lib/CityData");
+
+        const offenders: string[] = [];
+
+        for (const city of Object.values(cityData)) {
+            if (!INDEXED_CITY_SLUGS.has(city.slug)) continue;
+
+            const brandCount = (city.metadata.title.match(/testriq/gi) ?? []).length;
+            if (brandCount > 1) {
+                offenders.push(`${city.slug}\n      "${city.metadata.title}"`);
+            }
+        }
+
+        expect(
+            offenders,
+            "A city title naming the brand more than once wastes the SERP budget twice over.\n\n  " +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
     });
 });

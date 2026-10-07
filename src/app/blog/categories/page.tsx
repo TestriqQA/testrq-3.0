@@ -100,7 +100,9 @@ const CategoriesCTASection = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Testing Categories | Software Testing & QA Topics | Testriq Blog",
+  // `absolute` bypasses the root layout's "%s | Testriq" template,
+  // which would otherwise print the brand twice (F-71).
+  title: { absolute: "Testing Categories | Software Testing Topics | Testriq Blog" },
   description:
     "Explore comprehensive testing and QA categories on Testriq Blog. Find expert guides, tutorials, and best practices for test automation, performance testing, security testing, mobile testing, API testing, and more.",
   keywords:

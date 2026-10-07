@@ -1115,7 +1115,10 @@ export const securityTestingServiceSchema = {
       "@type": "Service",
       "@id": "https://www.testriq.com/security-testing/#service",
       "name": "VAPT & Security Testing Center of Excellence (TCoE)",
-      "serviceType": "Cybersecurity & Penetration Testing",
+      // SEO handoff (Sept 2026) PART D, change 1: serviceType retargeted from
+      // "Cybersecurity & Penetration Testing" so the node's declared subject
+      // matches the page's new "penetration testing services" positioning.
+      "serviceType": "Penetration Testing Services",
       "provider": {
         "@type": "Organization",
         "name": "Testriq QA Lab",
@@ -1131,7 +1134,18 @@ export const securityTestingServiceSchema = {
         "availability": "https://schema.org/OnlineOnly",
         "url": "https://www.testriq.com/contact",
       },
-      "areaServed": "Worldwide",
+      // SEO handoff (Sept 2026) PART D, change 1: the "Worldwide" string is
+      // REPLACED (not supplemented) with the four markets the page's new
+      // coverage section names in body copy. `provider` above is intentionally
+      // left inline rather than turned into an @id reference — this page
+      // declares no #organization node, so a reference would resolve to
+      // nothing and be dropped.
+      "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "United Kingdom" },
+        { "@type": "Country", "name": "United Arab Emirates" },
+        { "@type": "Place", "name": "European Union" }
+      ],
       "description": "Enterprise-grade VAPT services, GDPR Compliance Audits, and Source Code Review delivered by our CISSP & OSCP certified Security Center of Excellence.",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -2157,17 +2171,24 @@ export const compatibilityTestingServiceSchema = {
   "areaServed": "Worldwide"
 };
 
+// SEO handoff (Sept 2026) PART E: retargeted from penetration testing to
+// compliance auditing. The previous name/description/serviceType advertised
+// "penetration testing, vulnerability assessments, VAPT" — which would have
+// kept this node signalling penetration-testing intent from a page whose
+// visible content no longer covers it, and kept it competing with
+// /security-testing. `areaServed` is intentionally left as "Worldwide": the
+// four-country array in PART D was scoped to /security-testing only.
 export const cyberSecurityServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Cyber Security Testing Services",
-  "description": "Comprehensive cyber security testing including penetration testing, vulnerability assessments, VAPT, and security audits to protect your digital assets from threats.",
+  "name": "Cyber Security Compliance Audit Services",
+  "description": "Cyber security compliance audits against GDPR, HIPAA, PCI DSS, SOC 2 and ISO 27001, covering control-by-control gap analysis, evidence review, and prioritised remediation planning.",
   "provider": {
     "@type": "Organization",
     "name": "Testriq QA Lab",
     "url": "https://www.testriq.com"
   },
-  "serviceType": "Cyber Security & Penetration Testing",
+  "serviceType": "Compliance Auditing",
   "areaServed": "Worldwide"
 };
 
@@ -2454,4 +2475,25 @@ export const latencyTestingServiceSchema = {
     // createFaqPageSchema(faqsForSchema) on /performance-testing-services/latency-testing
     // is the single source of truth, mirroring the LatencyTestingFAQsSection UI content.
   ]
+};
+
+// /quality-assurance-services — added Sep 2026. This URL previously resolved to
+// the catch-all's not-found page: "software QA services" was one of three
+// keywords being targeted for UK/US leads and had no page at all, while the
+// nearest match, /qa-outsourcing-services, is an engagement-model page whose H1
+// reads "QA Outsourcing Services". areaServed stays "Worldwide" — Testriq has
+// one office and no regional entity, so nothing narrower would be true.
+export const qaServicesServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Software QA Services",
+  "description":
+    "Functional, automation, performance, security, accessibility and UAT testing delivered by ISTQB-certified QA engineers working inside your sprints, tooling and release cadence.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Testriq QA Lab",
+    "url": "https://www.testriq.com"
+  },
+  "serviceType": "Software Quality Assurance & Testing Services",
+  "areaServed": "Worldwide"
 };

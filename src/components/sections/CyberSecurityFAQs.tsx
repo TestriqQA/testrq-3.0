@@ -6,11 +6,15 @@ import { FaChevronDown, FaShieldAlt } from "react-icons/fa";
 const CyberSecurityFAQs: React.FC = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+    // SEO handoff (Sept 2026) — PART E. Two entries were removed from this list:
+    // "What is the difference between a vulnerability assessment and a
+    // penetration test?" and "How much does a professional penetration test cost
+    // in 2026?". Both are penetration-testing intent and are now answered on
+    // /security-testing, which owns that query set; leaving them here would
+    // re-create the cannibalization PART E exists to fix. Removing the cost
+    // entry also drops a "2026" time anchor that was baked into this page's
+    // FAQPage JSON-LD.
     const faqs = [
-        {
-            question: "What is the difference between a vulnerability assessment and a penetration test?",
-            answer: "A vulnerability assessment identifies and reports potential security weaknesses in a system, application, or network. It's like a doctor's check-up, listing all potential health issues. A penetration test goes a step further by actively exploiting identified vulnerabilities to determine the extent of potential damage and the effectiveness of existing security controls. It simulates a real-world attack to assess the actual risk."
-        },
         {
             question: "How often should a company perform a security audit for compliance?",
             answer: "The frequency depends on several factors, including industry regulations, the sensitivity of data handled, and the rate of changes to your IT environment. For highly regulated industries (e.g., finance, healthcare), annual or bi-annual audits are often mandatory. For others, a comprehensive audit at least once a year, coupled with continuous monitoring and targeted testing after significant system changes, is recommended."
@@ -18,15 +22,11 @@ const CyberSecurityFAQs: React.FC = () => {
         {
             question: "How does security testing fit into the DevSecOps lifecycle?",
             answer: "In a DevSecOps model, security testing is integrated throughout the entire software development lifecycle, rather than being a separate, late-stage activity. This means security checks, vulnerability scans, and penetration tests are performed continuously from the design phase through development, testing, and deployment. This 'shift-left' approach helps identify and remediate security flaws early."
-        },
-        {
-            question: "How much does a professional penetration test cost in 2026?",
-            answer: "The cost varies significantly based on scope, complexity, and the type of testing (e.g., black-box, white-box). Factors include network size and specific compliance needs. Testriq provides customized quotes after a thorough assessment. Contact us for a free consultation to receive a tailored estimate."
         }
     ];
 
     return (
-        <section className="py-24 px-8 md:px-12 lg:px-24 bg-gray-50">
+        <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16 space-y-4">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-brand-blue rounded-full text-xs font-bold uppercase tracking-wider">

@@ -108,7 +108,7 @@ export const cityData: Record<string, CityData> = {
     name: "Chennai",
     state: "Tamil Nadu",
     metadata: {
-      title: "Software Testing & QA Services in Chennai | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Chennai | Testriq",
       description: "Chennai-based software testing and QA company serving the OMR tech corridor, Sriperumbudur automotive belt, and 300+ GCCs. Automation, SaaS, performance, and security testing by ISTQB-certified engineers for SaaS, automotive, EV, and DeepTech teams.",
       keywords: "Software Testing Services in Chennai, QA Testing Company in Chennai, Automation Testing Services in Chennai, SaaS Testing Chennai, Continuous Testing Chennai, Security Testing Chennai, Managed Testing Services Chennai, API Testing Chennai, QA Consulting Chennai, Software Testing Company Chennai",
     },
@@ -302,8 +302,8 @@ export const cityData: Record<string, CityData> = {
     name: "Bangalore",
     state: "Karnataka",
     metadata: {
-      title: "Software Testing & QA Services in Bangalore | ISTQB Certified | Testriq",
-      description: "Bangalore-based software testing and QA company serving Electronic City, Whitefield, Outer Ring Road, and Koramangala/HSR Layout startup belt. Automation, performance, SaaS, and security testing for IT services, unicorn product teams, and GCCs.",
+      title: "Software Testing & QA Services in Bangalore | Testriq",
+      description: "Bangalore-based software testing and QA company with ISTQB-certified engineers, serving Electronic City, Whitefield, Outer Ring Road, and Koramangala/HSR Layout startup belt. Automation, performance, SaaS, and security testing for IT services, unicorn product teams, and GCCs.",
       keywords: "Software Testing Services in Bangalore, QA Testing Company in Bangalore, Automation Testing Services in Bangalore, Manual Testing Bangalore, Performance Testing Bangalore, Security Testing Bangalore, Mobile App Testing Bangalore, API Testing Bangalore, QA Consulting Bangalore, Software Testing Company Bangalore",
     },
     heroContent: {
@@ -496,7 +496,7 @@ export const cityData: Record<string, CityData> = {
     name: "Delhi",
     state: "Delhi",
     metadata: {
-      title: "Software Testing & QA Services in Delhi | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Delhi | Testriq",
       description: "Leading software testing company in Delhi-NCR. Automation testing, manual QA, performance testing, API testing, security testing & QA consulting by ISTQB-certified engineers. Trusted by 50+ companies. Get a free consultation.",
       keywords: "Software Testing Services in Delhi, QA Testing Company in Delhi, Automation Testing Services in Delhi, Manual Testing Delhi, Performance Testing Delhi, Security Testing Delhi, Mobile App Testing Delhi, API Testing Delhi, QA Consulting Delhi, Software Testing Company Delhi",
     },
@@ -635,7 +635,7 @@ export const cityData: Record<string, CityData> = {
     name: "Agra",
     state: "Uttar Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Agra | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Agra | Testriq",
       description: "Expert software testing company in Agra. Delivering hospitality QA, automation testing, SaaS validation, and continuous testing for Agra's growing digital sectors.",
       keywords: "Software Testing Services in Agra, QA Testing Company in Agra, Automation Testing Services in Agra, Hospitality QA Agra, SaaS Validation Agra, Continuous Testing Agra, Managed Testing Services Agra, Performance Testing Agra, Security Testing Agra, QA Consulting Agra",
     },
@@ -833,7 +833,7 @@ export const cityData: Record<string, CityData> = {
     name: "Ahmedabad",
     state: "Gujarat",
     metadata: {
-      title: "Software Testing & QA Services in Ahmedabad | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Ahmedabad | Testriq",
       description: "Ahmedabad-based software testing and QA company serving GIFT City fintech, the SG Highway and Prahlad Nagar IT corridor, and Gujarat's pharma and manufacturing IT clusters. Automation, performance, API, and security testing by ISTQB-certified engineers.",
       keywords: "Software Testing Services in Ahmedabad, QA Testing Company in Ahmedabad, Automation Testing Services in Ahmedabad, Manual Testing Ahmedabad, Performance Testing Ahmedabad, Security Testing Ahmedabad, Mobile App Testing Ahmedabad, API Testing Ahmedabad, QA Consulting Ahmedabad, Software Testing Company Ahmedabad",
     },
@@ -1006,7 +1006,7 @@ export const cityData: Record<string, CityData> = {
     name: "Ajmer",
     state: "Rajasthan",
     metadata: {
-      title: "Software Testing & QA Services in Ajmer | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Ajmer | Testriq",
       description: "Professional software testing company in Ajmer. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free QA consultation for Rajasthan's heritage-tech hub.",
       keywords: "Software Testing Services in Ajmer, QA Testing Company in Ajmer, Automation Testing Services in Ajmer, Manual Testing Ajmer, Performance Testing Ajmer, Security Testing Ajmer, Mobile App Testing Ajmer, API Testing Ajmer, QA Consulting Ajmer, Software Testing Company Ajmer",
     },
@@ -1201,7 +1201,7 @@ export const cityData: Record<string, CityData> = {
     name: "Amritsar",
     state: "Punjab",
     metadata: {
-      title: "Software Testing & QA Services in Amritsar | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Amritsar | Testriq",
       description: "Professional software testing company in Amritsar. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free QA consultation for Punjab's heritage tech hub.",
       keywords: "Software Testing Services in Amritsar, QA Testing Company in Amritsar, Automation Testing Services in Amritsar, Manual Testing Amritsar, Performance Testing Amritsar, Security Testing Amritsar, Mobile App Testing Amritsar, API Testing Amritsar, QA Consulting Amritsar, Software Testing Company Amritsar",
     },
@@ -1404,7 +1404,7 @@ export const cityData: Record<string, CityData> = {
     name: "Bhopal",
     state: "Madhya Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Bhopal | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Bhopal | Testriq",
       description: "Expert software testing company in Bhopal. Automation testing, manual QA, performance testing, API testing & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free consultation for Madhya Pradesh's capital.",
       keywords: "Software Testing Services in Bhopal, QA Testing Company in Bhopal, Automation Testing Services in Bhopal, Manual Testing Bhopal, Performance Testing Bhopal, Security Testing Bhopal, Mobile App Testing Bhopal, API Testing Bhopal, QA Consulting Bhopal, Software Testing Company Bhopal",
     },
@@ -1600,8 +1600,8 @@ export const cityData: Record<string, CityData> = {
     name: "Bhubaneswar",
     state: "Odisha",
     metadata: {
-      title: "Software Testing & QA Services in Bhubaneswar | ISTQB Certified | Testriq",
-      description: "Expert software testing company in Bhubaneswar. Delivering automation, continuous QA, and SaaS testing for Infocity IT parks, E-Governance, and EdTech.",
+      title: "Software Testing & QA Services in Bhubaneswar | Testriq",
+      description: "Expert software testing company in Bhubaneswar with ISTQB-certified engineers. Delivering automation, continuous QA, and SaaS testing for Infocity IT parks, E-Governance, and EdTech.",
       keywords: "Software Testing Services in Bhubaneswar, QA Testing Company in Bhubaneswar, Infocity IT QA Testing, E-Governance QA Bhubaneswar, EdTech Testing Bhubaneswar, Managed Testing Bhubaneswar, SaaS Testing Bhubaneswar, Performance Testing Bhubaneswar, Security Testing Bhubaneswar, ISTQB QA Bhubaneswar",
     },
     heroContent: {
@@ -1806,7 +1806,7 @@ export const cityData: Record<string, CityData> = {
     name: "Chandigarh",
     state: "Chandigarh",
     metadata: {
-      title: "Software Testing & QA Services in Chandigarh | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Chandigarh | Testriq",
       description: "Top-rated software testing company in Chandigarh. Automation testing, manual QA, mobile app testing, API testing, performance & security testing. ISTQB-certified QA team with 15+ years. Get your free QA consultation.",
       keywords: "Software Testing Services in Chandigarh, QA Testing Company in Chandigarh, Automation Testing Services in Chandigarh, Manual Testing Chandigarh, Performance Testing Chandigarh, Security Testing Chandigarh, Mobile App Testing Chandigarh, API Testing Chandigarh, QA Consulting Chandigarh, Software Testing Company Chandigarh",
     },
@@ -1953,8 +1953,8 @@ export const cityData: Record<string, CityData> = {
     name: "Coimbatore",
     state: "Tamil Nadu",
     metadata: {
-      title: "Software Testing & QA Services in Coimbatore | ISTQB Certified | Testriq",
-      description: "Professional software testing company in Coimbatore. Automation testing, manual QA, API testing, performance & security testing. 500K+ test cases delivered. Free QA consultation for the Manchester of South India.",
+      title: "Software Testing & QA Services in Coimbatore | Testriq",
+      description: "Professional software testing company in Coimbatore with ISTQB-certified engineers. Automation testing, manual QA, API testing, performance & security testing. 500K+ test cases delivered. Free QA consultation for the Manchester of South India.",
       keywords: "Software Testing Services in Coimbatore, QA Testing Company in Coimbatore, Automation Testing Services in Coimbatore, SaaS Testing Coimbatore, Continuous Testing Coimbatore, Managed QA Coimbatore, Security Testing Coimbatore, Performance Testing Coimbatore, QA Consulting Coimbatore, Software Testing Company Coimbatore",
     },
     heroContent: {
@@ -2164,7 +2164,7 @@ export const cityData: Record<string, CityData> = {
     name: "Dehradun",
     state: "Uttarakhand",
     metadata: {
-      title: "Software Testing & QA Services in Dehradun | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Dehradun | Testriq",
       description: "Expert software testing company in Dehradun. Delivering automation, continuous testing, and managed SaaS QA for Doon Valley's EdTech, IT, and tourism sectors.",
       keywords: "Software Testing Services in Dehradun, QA Testing Company in Dehradun, EdTech QA Dehradun, Tourism API Testing Dehradun, Government Tech QA Dehradun, Managed Testing Dehradun, SaaS Testing Dehradun, Performance Testing Dehradun, Security Testing Dehradun, ISTQB QA Dehradun",
     },
@@ -2364,7 +2364,7 @@ export const cityData: Record<string, CityData> = {
     name: "Ernakulam",
     state: "Kerala",
     metadata: {
-      title: "Software Testing & QA Services in Ernakulam | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Ernakulam | Testriq",
       description: "Leading software testing company in Ernakulam offering automation testing, manual QA, performance testing, API testing & security testing. ISTQB-certified engineers. 500K+ test cases executed. Get a free consultation today.",
       keywords: "Software Testing Services in Ernakulam, QA Testing Company in Ernakulam, Automation Testing Services in Ernakulam, Manual Testing Ernakulam, Performance Testing Ernakulam, Security Testing Ernakulam, Mobile App Testing Ernakulam, API Testing Ernakulam, QA Consulting Ernakulam, Software Testing Company Ernakulam",
     },
@@ -2558,7 +2558,7 @@ export const cityData: Record<string, CityData> = {
     name: "Faridabad",
     state: "Haryana",
     metadata: {
-      title: "Software Testing & QA Services in Faridabad | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Faridabad | Testriq",
       description: "Reliable software testing company serving Faridabad. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified QA engineers. 15+ years experience. Free consultation for Faridabad businesses.",
       keywords: "Software Testing Services in Faridabad, QA Testing Company in Faridabad, Automation Testing Services in Faridabad, Manual Testing Faridabad, Performance Testing Faridabad, Security Testing Faridabad, Mobile App Testing Faridabad, API Testing Faridabad, QA Consulting Faridabad, Software Testing Company Faridabad",
     },
@@ -2714,7 +2714,7 @@ export const cityData: Record<string, CityData> = {
     name: "Gandhinagar",
     state: "Gujarat",
     metadata: {
-      title: "Software Testing & QA Services in Gandhinagar | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Gandhinagar | Testriq",
       description: "Expert software testing company serving Gandhinagar. Manual QA, automation testing, API testing, performance & security testing by ISTQB-certified engineers. 15+ years experience. Free consultation for Gujarat's IT capital.",
       keywords: "Software Testing Services in Gandhinagar, QA Testing Company in Gandhinagar, Automation Testing Services in Gandhinagar, Manual Testing Gandhinagar, Performance Testing Gandhinagar, Security Testing Gandhinagar, Mobile App Testing Gandhinagar, API Testing Gandhinagar, QA Consulting Gandhinagar, Software Testing Company Gandhinagar",
     },
@@ -2872,7 +2872,7 @@ export const cityData: Record<string, CityData> = {
     name: "Ghaziabad",
     state: "Uttar Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Ghaziabad | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Ghaziabad | Testriq",
       description: "Expert software testing company in Ghaziabad. We deliver industrial automation QA, SaaS testing, and continuous testing for the Gateway of UP's tech sector.",
       keywords: "Software Testing Services in Ghaziabad, QA Testing Company in Ghaziabad, Automation Testing Services in Ghaziabad, Industrial QA Ghaziabad, SaaS Testing Ghaziabad, Continuous Testing Ghaziabad, Managed Testing Ghaziabad, Performance Testing Ghaziabad, Security Testing Ghaziabad, QA Consulting Ghaziabad",
     },
@@ -3071,7 +3071,7 @@ export const cityData: Record<string, CityData> = {
     name: "Gorakhpur",
     state: "Uttar Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Gorakhpur | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Gorakhpur | Testriq",
       description: "Expert software testing company in Gorakhpur. Delivering automation, continuous testing, SaaS QA, and performance testing for GIDA industries and local startups.",
       keywords: "Software Testing Services in Gorakhpur, QA Testing Company in Gorakhpur, Automation Testing Services in Gorakhpur, GIDA Industrial QA Gorakhpur, SaaS QA Gorakhpur, Continuous Testing Gorakhpur, Managed Testing Gorakhpur, Performance Testing Gorakhpur, Security Testing Gorakhpur, QA Consulting Gorakhpur",
     },
@@ -3271,7 +3271,7 @@ export const cityData: Record<string, CityData> = {
     state: "Uttar Pradesh",
     metadata: {
       title: "Software Testing & QA Services in Noida & Greater Noida | Testriq",
-      description: "Expert software testing company in Noida and Greater Noida. Delivering automation, SaaS QA, continuous testing, and managed QA for NCR's leading tech enterprises.",
+      description: "Expert software testing company in Noida and Greater Noida with ISTQB-certified engineers. Delivering automation, SaaS QA, continuous testing, and managed QA for NCR's leading tech enterprises.",
       keywords: "Software Testing Services in Noida, QA Testing Company in Greater Noida, Automation Testing Services in Noida, SaaS QA Noida, Continuous Testing Greater Noida, Managed QA Noida, Performance Testing Greater Noida, Security Testing Noida, QA Consulting Greater Noida",
     },
     heroContent: {
@@ -3468,7 +3468,7 @@ export const cityData: Record<string, CityData> = {
     name: "Gurgaon",
     state: "Haryana",
     metadata: {
-      title: "Software Testing & QA Services in Gurgaon | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Gurgaon | Testriq",
       description: "Top-tier software testing company in Gurgaon. Automation testing, manual QA, performance testing, API testing, security testing & QA consulting by ISTQB-certified engineers. Trusted by 50+ companies. Free consultation.",
       keywords: "Software Testing Services in Gurgaon, QA Testing Company in Gurgaon, Automation Testing Services in Gurgaon, Manual Testing Gurgaon, Performance Testing Gurgaon, Security Testing Gurgaon, Mobile App Testing Gurgaon, API Testing Gurgaon, QA Consulting Gurgaon, Software Testing Company Gurgaon",
     },
@@ -3625,7 +3625,7 @@ export const cityData: Record<string, CityData> = {
     name: "Guwahati",
     state: "Assam",
     metadata: {
-      title: "Software Testing & QA Services in Guwahati | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Guwahati | Testriq",
       description: "Trusted software testing company in Guwahati providing automation testing, manual QA, performance testing, API testing & security testing. ISTQB-certified experts. 15+ years of QA excellence. Get a free consultation today.",
       keywords: "Software Testing Services in Guwahati, QA Testing Company in Guwahati, Automation Testing Services in Guwahati, Manual Testing Guwahati, Performance Testing Guwahati, Security Testing Guwahati, Mobile App Testing Guwahati, API Testing Guwahati, QA Consulting Guwahati, Software Testing Company Guwahati",
     },
@@ -3758,7 +3758,7 @@ export const cityData: Record<string, CityData> = {
     name: "Gwalior",
     state: "Madhya Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Gwalior | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Gwalior | Testriq",
       description: "Expert software testing company in Gwalior. Automation testing, manual QA, performance testing, API testing & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free QA consultation.",
       keywords: "Software Testing Services in Gwalior, QA Testing Company in Gwalior, Automation Testing Services in Gwalior, Manual Testing Gwalior, Performance Testing Gwalior, Security Testing Gwalior, Mobile App Testing Gwalior, API Testing Gwalior, QA Consulting Gwalior, Software Testing Company Gwalior",
     },
@@ -3953,7 +3953,7 @@ export const cityData: Record<string, CityData> = {
     name: "Hyderabad",
     state: "Telangana",
     metadata: {
-      title: "Software Testing & QA Services in Hyderabad | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Hyderabad | Testriq",
       description: "Hyderabad-based software testing and QA company serving HITEC City, Gachibowli Financial District, T-Hub, and Genome Valley. Automation, SaaS, performance, and security testing by ISTQB-certified engineers.",
       keywords: "Software Testing Services in Hyderabad, QA Testing Company in Hyderabad, Automation Testing Services in Hyderabad, SaaS Testing Hyderabad, Continuous Testing Hyderabad, Managed QA Hyderabad, Security Testing Hyderabad, Performance Testing Hyderabad, QA Consulting Hyderabad, Software Testing Company Hyderabad",
     },
@@ -4152,7 +4152,7 @@ export const cityData: Record<string, CityData> = {
     name: "Indore",
     state: "Madhya Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Indore | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Indore | Testriq",
       description: "Leading software testing company in Indore. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free consultation for MP's commercial capital.",
       keywords: "Software Testing Services in Indore, QA Testing Company in Indore, Automation Testing Services in Indore, Manual Testing Indore, Performance Testing Indore, Security Testing Indore, Mobile App Testing Indore, API Testing Indore, QA Consulting Indore, Software Testing Company Indore",
     },
@@ -4347,7 +4347,7 @@ export const cityData: Record<string, CityData> = {
     name: "Jaipur",
     state: "Rajasthan",
     metadata: {
-      title: "Software Testing & QA Services in Jaipur | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Jaipur | Testriq",
       description: "Leading software testing company in Jaipur. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free consultation for Rajasthan's Silicon Desert.",
       keywords: "Software Testing Services in Jaipur, QA Testing Company in Jaipur, Automation Testing Services in Jaipur, Manual Testing Jaipur, Performance Testing Jaipur, Security Testing Jaipur, Mobile App Testing Jaipur, API Testing Jaipur, QA Consulting Jaipur, Software Testing Company Jaipur",
     },
@@ -4542,7 +4542,7 @@ export const cityData: Record<string, CityData> = {
     name: "Jalandhar",
     state: "Punjab",
     metadata: {
-      title: "Software Testing & QA Services in Jalandhar | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Jalandhar | Testriq",
       description: "Professional software testing company in Jalandhar. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free QA consultation for Punjab's Sports Capital.",
       keywords: "Software Testing Services in Jalandhar, QA Testing Company in Jalandhar, Automation Testing Services in Jalandhar, Manual Testing Jalandhar, Performance Testing Jalandhar, Security Testing Jalandhar, Mobile App Testing Jalandhar, API Testing Jalandhar, QA Consulting Jalandhar, Software Testing Company Jalandhar",
     },
@@ -4736,7 +4736,7 @@ export const cityData: Record<string, CityData> = {
     name: "Jammu",
     state: "Jammu and Kashmir",
     metadata: {
-      title: "Software Testing & QA Services in Jammu | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Jammu | Testriq",
       description: "Trusted software testing company serving Jammu. Manual QA, automation testing, API testing, performance & security testing by ISTQB-certified QA engineers. 15+ years experience. Free consultation for J&K businesses.",
       keywords: "Software Testing Services in Jammu, QA Testing Company in Jammu, Automation Testing Services in Jammu, Manual Testing Jammu, Performance Testing Jammu, Security Testing Jammu, Mobile App Testing Jammu, API Testing Jammu, QA Consulting Jammu, Software Testing Company Jammu",
     },
@@ -4893,7 +4893,7 @@ export const cityData: Record<string, CityData> = {
     name: "Jamshedpur",
     state: "Jharkhand",
     metadata: {
-      title: "Software Testing & QA Services in Jamshedpur | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Jamshedpur | Testriq",
       description: "Professional software testing company serving Jamshedpur. Manual QA, automation testing, API testing, performance & security testing by ISTQB-certified engineers. 15+ years experience. Free consultation for Jharkhand's steel city.",
       keywords: "Software Testing Services in Jamshedpur, QA Testing Company in Jamshedpur, Automation Testing Services in Jamshedpur, Manual Testing Jamshedpur, Performance Testing Jamshedpur, Security Testing Jamshedpur, Mobile App Testing Jamshedpur, API Testing Jamshedpur, QA Consulting Jamshedpur, Software Testing Company Jamshedpur",
     },
@@ -5051,7 +5051,7 @@ export const cityData: Record<string, CityData> = {
     name: "Jodhpur",
     state: "Rajasthan",
     metadata: {
-      title: "Software Testing & QA Services in Jodhpur | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Jodhpur | Testriq",
       description: "Professional software testing company in Jodhpur. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free QA consultation for Rajasthan's Blue City.",
       keywords: "Software Testing Services in Jodhpur, QA Testing Company in Jodhpur, Automation Testing Services in Jodhpur, Manual Testing Jodhpur, Performance Testing Jodhpur, Security Testing Jodhpur, Mobile App Testing Jodhpur, API Testing Jodhpur, QA Consulting Jodhpur, Software Testing Company Jodhpur",
     },
@@ -5250,7 +5250,7 @@ export const cityData: Record<string, CityData> = {
     name: "Kanpur",
     state: "Uttar Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Kanpur | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Kanpur | Testriq",
       description: "Expert software testing company in Kanpur. We deliver specialized SaaS QA, automation testing, and managed QA for Kanpur’s heavy manufacturing and deep-tech startups.",
       keywords: "Software Testing Services in Kanpur, QA Testing Company in Kanpur, Automation Testing Services in Kanpur, Industrial QA Kanpur, SaaS Testing Kanpur, DeepTech QA Kanpur, Managed Testing Kanpur, Performance Testing Kanpur, Security Testing Kanpur, QA Consulting Kanpur",
     },
@@ -5449,7 +5449,7 @@ export const cityData: Record<string, CityData> = {
     name: "Kochi",
     state: "Kerala",
     metadata: {
-      title: "Software Testing & QA Services in Kochi | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Kochi | Testriq",
       description: "Top-rated software testing company in Kochi. Automation testing, manual QA, mobile app testing, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free consultation.",
       keywords: "Software Testing Services in Kochi, QA Testing Company in Kochi, Automation Testing Services in Kochi, Manual Testing Kochi, Performance Testing Kochi, Security Testing Kochi, Mobile App Testing Kochi, API Testing Kochi, QA Consulting Kochi, Software Testing Company Kochi",
     },
@@ -5644,8 +5644,8 @@ export const cityData: Record<string, CityData> = {
     name: "Kolkata",
     state: "West Bengal",
     metadata: {
-      title: "Software Testing & QA Services in Kolkata | ISTQB Certified | Testriq",
-      description: "Expert software testing company in Kolkata. Delivering elite automation testing, continuous CI/CD QA, and SaaS validation for Salt Lake IT parks and enterprise GCCs.",
+      title: "Software Testing & QA Services in Kolkata | Testriq",
+      description: "Expert software testing company in Kolkata with ISTQB-certified engineers. Delivering elite automation testing, continuous CI/CD QA, and SaaS validation for Salt Lake IT parks and enterprise GCCs.",
       keywords: "Software Testing Services in Kolkata, QA Testing Company in Kolkata, Salt Lake IT Park QA, Enterprise GCC Testing Kolkata, Fintech QA Kolkata, Managed Testing Kolkata, SaaS Testing Kolkata, Performance Testing Kolkata, Security Testing Kolkata, ISTQB QA Kolkata",
     },
     heroContent: {
@@ -5843,8 +5843,8 @@ export const cityData: Record<string, CityData> = {
     name: "Lucknow",
     state: "Uttar Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Lucknow | ISTQB Certified | Testriq",
-      description: "Expert software testing company in Lucknow. We deliver automation, SaaS QA, and continuous testing for IT parks, MedTech, and defense corridor tech innovators.",
+      title: "Software Testing & QA Services in Lucknow | Testriq",
+      description: "Expert software testing company in Lucknow with ISTQB-certified engineers. We deliver automation, SaaS QA, and continuous testing for IT parks, MedTech, and defense corridor tech innovators.",
       keywords: "Software Testing Services in Lucknow, QA Testing Company in Lucknow, Automation Testing Services in Lucknow, MedTech QA Lucknow, Defense Corridor QA Lucknow, Smart City Testing Lucknow, Managed QA Lucknow, SaaS Testing Lucknow, performance testing lucknow, security testing lucknow",
     },
     heroContent: {
@@ -6042,7 +6042,7 @@ export const cityData: Record<string, CityData> = {
     name: "Ludhiana",
     state: "Punjab",
     metadata: {
-      title: "Software Testing & QA Services in Ludhiana | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Ludhiana | Testriq",
       description: "Professional software testing company in Ludhiana. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free QA consultation for Punjab's industrial capital.",
       keywords: "Software Testing Services in Ludhiana, QA Testing Company in Ludhiana, Automation Testing Services in Ludhiana, Manual Testing Ludhiana, Performance Testing Ludhiana, Security Testing Ludhiana, Mobile App Testing Ludhiana, API Testing Ludhiana, QA Consulting Ludhiana, Software Testing Company Ludhiana",
     },
@@ -6237,7 +6237,7 @@ export const cityData: Record<string, CityData> = {
     name: "Madurai",
     state: "Tamil Nadu",
     metadata: {
-      title: "Software Testing & QA Services in Madurai | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Madurai | Testriq",
       description: "Professional software testing company in Madurai. Automation testing, manual QA, API testing, performance & security testing. 500K+ test cases delivered. Free QA consultation for the Athens of the East.",
       keywords: "Software Testing Services in Madurai, QA Testing Company in Madurai, Automation Testing Services in Madurai, SaaS Testing Madurai, Continuous Testing Madurai, Managed QA Madurai, Security Testing Madurai, Performance Testing Madurai, QA Consulting Madurai, Software Testing Company Madurai",
     },
@@ -6432,7 +6432,7 @@ export const cityData: Record<string, CityData> = {
     name: "Mangalore",
     state: "Karnataka",
     metadata: {
-      title: "Software Testing & QA Services in Mangalore | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Mangalore | Testriq",
       description: "Leading software testing company in Mangalore offering automation testing, manual QA, performance testing, API testing & security testing. ISTQB-certified engineers. 500K+ test cases executed. Get a free consultation today.",
       keywords: "Software Testing Services in Mangalore, QA Testing Company in Mangalore, Automation Testing Services in Mangalore, Manual Testing Mangalore, Performance Testing Mangalore, Security Testing Mangalore, Mobile App Testing Mangalore, API Testing Mangalore, QA Consulting Mangalore, Software Testing Company Mangalore",
     },
@@ -6627,7 +6627,7 @@ export const cityData: Record<string, CityData> = {
     name: "Meerut",
     state: "Uttar Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Meerut | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Meerut | Testriq",
       description: "Expert software testing company in Meerut. We deliver complete automation testing, SaaS QA, and continuous testing for the sports, manufacturing, and transit sectors.",
       keywords: "Software Testing Services in Meerut, QA Testing Company in Meerut, Automation Testing Services in Meerut, Sports Goods QA Meerut, Manufacturing ERP Testing Meerut, Transit QA Meerut, Managed Testing Meerut, SaaS Testing Meerut, Performance Testing Meerut, Security Testing Meerut",
     },
@@ -6826,7 +6826,7 @@ export const cityData: Record<string, CityData> = {
     name: "Moradabad",
     state: "Uttar Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Moradabad | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Moradabad | Testriq",
       description: "Expert software testing company in Moradabad. Delivering precise SaaS QA, automation, and continuous testing for the Brass City's global export and e-commerce tech.",
       keywords: "Software Testing Services in Moradabad, QA Testing Company in Moradabad, Brass Handicrafts Export QA, Manufacturing ERP Testing Moradabad, B2B E-commerce QA Moradabad, Managed Testing Moradabad, SaaS Testing Moradabad, Performance Testing Moradabad, Security Testing Moradabad, ISTQB QA Moradabad",
     },
@@ -7025,14 +7025,14 @@ export const cityData: Record<string, CityData> = {
     name: "Mumbai",
     state: "Maharashtra",
     metadata: {
-      title: "Software Testing & QA Services in Mumbai | ISTQB Certified | Testriq",
-      description: "Expert software testing company in Mumbai. Delivering elite automation testing, CI/CD pipelines, and FinTech QA for Mumbai's BFSI, media, and enterprise unicorns.",
+      title: "Software Testing & QA Services in Mumbai | Testriq",
+      description: "Expert software testing company in Mumbai with ISTQB-certified engineers. Delivering elite automation testing, CI/CD pipelines, and FinTech QA for Mumbai's BFSI, media, and enterprise unicorns.",
       keywords: "Software Testing Services in Mumbai, QA Testing Company in Mumbai, BFSI QA Testing Mumbai, OTT Media QA Mumbai, FinTech Testing Mumbai, Managed Testing Mumbai, SaaS Testing Mumbai, Performance Testing Mumbai, Security Testing Mumbai, ISTQB QA Mumbai",
     },
     heroContent: {
       title: "Software Testing & QA Services in Mumbai",
       subtitle: "Elite QA for the Financial and Commercial Heart of India",
-      description: "Mumbai unequivocally dictates the financial and commercial trajectory of India. From the colossal banking networks and aggressive FinTech unicorns scaling out of Bandra Kurla Complex (BKC) to the massive OTT streaming empires managing global media distribution from Andheri, Mumbai’s digital footprint is immense. When developing high-frequency trading algorithms, massive multi-tenant banking clouds, or global media delivery networks, software defects are not operational inconveniences—they are catastrophic financial liabilities. Testriq permanently completely injects elite, enterprise-grade software quality assurance strictly into Mumbai’s hyper-aggressive technical landscape. Our deeply verified ISTQB-certified testing architects integrate instantly inside your agile sprints—deploying totally indestructible test automation, advanced continuous CI/CD security checks, intensely guarded SaaS validations, and flawlessly managed QA controls.",
+      description: "Mumbai unequivocally dictates the financial and commercial trajectory of India. From the colossal banking networks and aggressive FinTech unicorns scaling out of Bandra Kurla Complex (BKC) to the massive OTT streaming empires managing global media distribution from Andheri, and across the Navi Mumbai belt of Vashi, Belapur and Airoli where IT parks and global capability centres run their own engineering floors, Mumbai’s digital footprint is immense. When developing high-frequency trading algorithms, massive multi-tenant banking clouds, or global media delivery networks, software defects are not operational inconveniences—they are catastrophic financial liabilities. Testriq permanently completely injects elite, enterprise-grade software quality assurance strictly into Mumbai’s hyper-aggressive technical landscape. Our deeply verified ISTQB-certified testing architects integrate instantly inside your agile sprints—deploying totally indestructible test automation, advanced continuous CI/CD security checks, intensely guarded SaaS validations, and flawlessly managed QA controls.",
       certifications: ["ISTQB Certified Engineers", "BFSI Compliance Experts", "ISO 27001 Certified"],
       stats: [
         { number: "500K", label: "Test Cases Executed", description: "Across Mumbai's Financial Grids" },
@@ -7040,7 +7040,7 @@ export const cityData: Record<string, CityData> = {
         { number: "100%", label: "Client Satisfaction", description: "In BKC & Andheri" },
         { number: "15+", label: "Years Experience", description: "In software quality" },
       ],
-      landmarks: ["Bandra Kurla Complex (BKC)", "Andheri IT Hub", "Gateway of India", "Marine Drive"],
+      landmarks: ["Bandra Kurla Complex (BKC)", "Andheri IT Hub", "Navi Mumbai IT Belt (Vashi–Belapur–Airoli)", "Gateway of India", "Marine Drive"],
     },
     servicesContent: {
       title: "Precision QA Engineering Built for Mumbai's Enterprise Hubs",
@@ -7224,8 +7224,8 @@ export const cityData: Record<string, CityData> = {
     name: "Nagpur",
     state: "Maharashtra",
     metadata: {
-      title: "Software Testing & QA Services in Nagpur | ISTQB Certified | Testriq",
-      description: "Expert software testing company in Nagpur. Delivering automation, continuous QA, and SaaS testing for MIHAN logistics, smart city tech, and massive IT centers.",
+      title: "Software Testing & QA Services in Nagpur | Testriq",
+      description: "Expert software testing company in Nagpur with ISTQB-certified engineers. Delivering automation, continuous QA, and SaaS testing for MIHAN logistics, smart city tech, and massive IT centers.",
       keywords: "Software Testing Services in Nagpur, QA Testing Company in Nagpur, MIHAN Logistics QA Nagpur, Smart City Tech QA Nagpur, Supply Chain ERP Testing Nagpur, Managed Testing Nagpur, SaaS Testing Nagpur, Performance Testing Nagpur, Security Testing Nagpur, ISTQB QA Nagpur",
     },
     heroContent: {
@@ -7423,7 +7423,7 @@ export const cityData: Record<string, CityData> = {
     name: "Nashik",
     state: "Maharashtra",
     metadata: {
-      title: "Software Testing & QA Services in Nashik | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Nashik | Testriq",
       description: "Expert software testing company in Nashik. Delivering elite automation, continuous QA, and SaaS testing for Nashik's manufacturing, AgriTech, and IT ecosystems.",
       keywords: "Software Testing Services in Nashik, QA Testing Company in Nashik, AgriTech QA Testing Nashik, Heavy Industrial QA Nashik, Manufacturing ERP Testing Nashik, Managed Testing Nashik, SaaS Testing Nashik, Performance Testing Nashik, Security Testing Nashik, ISTQB QA Nashik",
     },
@@ -8005,7 +8005,7 @@ export const cityData: Record<string, CityData> = {
     name: "Patna",
     state: "Bihar",
     metadata: {
-      title: "Software Testing & QA Services in Patna | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Patna | Testriq",
       description: "Expert software testing company in Patna. Manual testing, automation testing, API testing, performance & security testing by ISTQB-certified QA engineers. 15+ years experience. Free consultation for Bihar businesses.",
       keywords: "Software Testing Services in Patna, QA Testing Company in Patna, Automation Testing Services in Patna, Manual Testing Patna, Performance Testing Patna, Security Testing Patna, Mobile App Testing Patna, API Testing Patna, QA Consulting Patna, Software Testing Company Patna",
     },
@@ -8143,7 +8143,7 @@ export const cityData: Record<string, CityData> = {
     name: "Pune",
     state: "Maharashtra",
     metadata: {
-      title: "Software Testing & QA Services in Pune | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Pune | Testriq",
       description: "Pune-based software testing and QA company serving Hinjewadi, Kharadi, and Magarpatta IT corridors. Automation, performance, SaaS, and security testing by ISTQB-certified engineers for automotive tech, EdTech, and BFSI GCCs.",
       keywords: "Software Testing Services in Pune, QA Testing Company in Pune, Hinjewadi IT QA Testing, Automotive Tech QA Pune, EdTech Testing Pune, Managed Testing Pune, SaaS Testing Pune, Performance Testing Pune, Security Testing Pune, ISTQB QA Pune",
     },
@@ -8341,7 +8341,7 @@ export const cityData: Record<string, CityData> = {
     name: "Raipur",
     state: "Chhattisgarh",
     metadata: {
-      title: "Software Testing & QA Services in Raipur | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Raipur | Testriq",
       description: "Reliable software testing company in Raipur. Automation testing, manual QA, performance testing, security testing & API testing by ISTQB-certified engineers. 15+ years of QA delivery. Free consultation for Chhattisgarh businesses.",
       keywords: "Software Testing Services in Raipur, QA Testing Company in Raipur, Automation Testing Services in Raipur, Manual Testing Raipur, Performance Testing Raipur, Security Testing Raipur, Mobile App Testing Raipur, API Testing Raipur, QA Consulting Raipur, Software Testing Company Raipur",
     },
@@ -8478,7 +8478,7 @@ export const cityData: Record<string, CityData> = {
     name: "Rajkot",
     state: "Gujarat",
     metadata: {
-      title: "Software Testing & QA Services in Rajkot | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Rajkot | Testriq",
       description: "Professional software testing company serving Rajkot. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified QA engineers. 15+ years experience. Free consultation for Saurashtra businesses.",
       keywords: "Software Testing Services in Rajkot, QA Testing Company in Rajkot, Automation Testing Services in Rajkot, Manual Testing Rajkot, Performance Testing Rajkot, Security Testing Rajkot, Mobile App Testing Rajkot, API Testing Rajkot, QA Consulting Rajkot, Software Testing Company Rajkot",
     },
@@ -8635,7 +8635,7 @@ export const cityData: Record<string, CityData> = {
     name: "Ranchi",
     state: "Jharkhand",
     metadata: {
-      title: "Software Testing & QA Services in Ranchi | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Ranchi | Testriq",
       description: "Professional software testing company serving Ranchi. Manual QA, automation testing, API testing, performance & security testing by ISTQB-certified engineers. 15+ years experience. Free consultation for Jharkhand's capital.",
       keywords: "Software Testing Services in Ranchi, QA Testing Company in Ranchi, Automation Testing Services in Ranchi, Manual Testing Ranchi, Performance Testing Ranchi, Security Testing Ranchi, Mobile App Testing Ranchi, API Testing Ranchi, QA Consulting Ranchi, Software Testing Company Ranchi",
     },
@@ -8789,7 +8789,7 @@ export const cityData: Record<string, CityData> = {
     name: "Secunderabad",
     state: "Telangana",
     metadata: {
-      title: "Software Testing & QA Services in Secunderabad | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Secunderabad | Testriq",
       description: "Expert software testing company in Secunderabad. We deliver automation, continuous QA, SaaS testing, and security testing for the twin city's growing tech sectors.",
       keywords: "Software Testing Services in Secunderabad, QA Testing Company in Secunderabad, Automation Testing Services in Secunderabad, Continuous QA Secunderabad, SaaS Testing Secunderabad, Managed Testing Secunderabad, Security Testing Secunderabad, Performance Testing Secunderabad, QA Consulting Secunderabad, Software Testing Company Secunderabad",
     },
@@ -8987,7 +8987,7 @@ export const cityData: Record<string, CityData> = {
     name: "Shimla",
     state: "Himachal Pradesh",
     metadata: {
-      title: "Software Testing & QA Services in Shimla | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Shimla | Testriq",
       description: "Professional software testing company serving Shimla. Manual QA, automation testing, API testing, performance & security testing by ISTQB-certified engineers. 15+ years experience. Free consultation for Himachal Pradesh businesses.",
       keywords: "Software Testing Services in Shimla, QA Testing Company in Shimla, Automation Testing Services in Shimla, Manual Testing Shimla, Performance Testing Shimla, Security Testing Shimla, Mobile App Testing Shimla, API Testing Shimla, QA Consulting Shimla, Software Testing Company Shimla",
     },
@@ -9143,7 +9143,7 @@ export const cityData: Record<string, CityData> = {
     name: "Surat",
     state: "Gujarat",
     metadata: {
-      title: "Software Testing & QA Services in Surat | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Surat | Testriq",
       description: "Trusted software testing company serving Surat. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 15+ years experience. Free consultation for Surat's diamond, textile & tech businesses.",
       keywords: "Software Testing Services in Surat, QA Testing Company in Surat, Automation Testing Services in Surat, Manual Testing Surat, Performance Testing Surat, Security Testing Surat, Mobile App Testing Surat, API Testing Surat, QA Consulting Surat, Software Testing Company Surat",
     },
@@ -9305,7 +9305,7 @@ export const cityData: Record<string, CityData> = {
     name: "Udaipur",
     state: "Rajasthan",
     metadata: {
-      title: "Software Testing & QA Services in Udaipur | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Udaipur | Testriq",
       description: "Professional software testing company in Udaipur. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free QA consultation for Rajasthan's Lake City.",
       keywords: "Software Testing Services in Udaipur, QA Testing Company in Udaipur, Automation Testing Services in Udaipur, Manual Testing Udaipur, Performance Testing Udaipur, Security Testing Udaipur, Mobile App Testing Udaipur, API Testing Udaipur, QA Consulting Udaipur, Software Testing Company Udaipur",
     },
@@ -9499,7 +9499,7 @@ export const cityData: Record<string, CityData> = {
     name: "Vadodara",
     state: "Gujarat",
     metadata: {
-      title: "Software Testing & QA Services in Vadodara | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Vadodara | Testriq",
       description: "Expert software testing company serving Vadodara. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified QA engineers. 15+ years experience. Free consultation for Vadodara businesses.",
       keywords: "Software Testing Services in Vadodara, QA Testing Company in Vadodara, Automation Testing Services in Vadodara, Manual Testing Vadodara, Performance Testing Vadodara, Security Testing Vadodara, Mobile App Testing Vadodara, API Testing Vadodara, QA Consulting Vadodara, Software Testing Company Vadodara",
     },
@@ -9670,7 +9670,7 @@ export const cityData: Record<string, CityData> = {
     name: "Trivandrum",
     state: "Kerala",
     metadata: {
-      title: "Software Testing & QA Services in Trivandrum | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Trivandrum | Testriq",
       description: "Top-rated software testing company in Trivandrum. Automation testing, manual QA, performance testing, API testing & security testing by ISTQB-certified engineers. 500K+ test cases delivered. Free consultation for Kerala's capital.",
       keywords: "Software Testing Services in Trivandrum, QA Testing Company in Trivandrum, Automation Testing Services in Trivandrum, Manual Testing Trivandrum, Performance Testing Trivandrum, Security Testing Trivandrum, Mobile App Testing Trivandrum, API Testing Trivandrum, QA Consulting Trivandrum, Software Testing Company Trivandrum",
     },
@@ -11627,202 +11627,6 @@ export const cityData: Record<string, CityData> = {
     industries: ["Video Game Development & eSports", "Aerospace Tech & Aviation UX", "Artificial Intelligence (AI) Models", "BioTech & Life Sciences SaaS", "Enterprise B2B Cloud Ecosystems", "Cyber Security & Law 25 Compliance"],
   },
 
-
-  "new-york": {
-    slug: "software-qa-testing-services-in-new-york",
-    name: "New York",
-    state: "New York",
-    metadata: {
-      title: "Software Testing & QA Services in New York | ISTQB QA | Testriq",
-      description: "Expert software QA testing company in New York. Elite automation, CI/CD, and cyber security mapping for Wall Street FinTech, AdTech, and SaaS.",
-      keywords: "Software Testing Services in New York, QA Testing Company in New York, Wall Street FinTech QA, Silicon Alley AdTech Testing, SEC Compliance QA, FINRA Data Retention Testing, Managed Testing New York, SaaS Testing NYC, PropTech QA Services, ISTQB QA New York",
-    },
-    heroContent: {
-      title: "Software Testing & QA Services in New York",
-      subtitle: "Architectural Resilience for Wall Street, Silicon Alley, and Beyond",
-      description: "Commanding the absolute apex of global finance, media, and commerce, New York City’s digital infrastructure requires a level of architectural resilience demanded nowhere else on Earth. From the high-frequency trading algorithms driving Wall Street to the massive AdTech networks powering Silicon Alley, the continuous software deployed here governs trillions in capital. When managing immense concurrent financial gateways, migrating massive commercial PropTech databases, or deploying hyper-speed media streaming APIs, releasing flawed code fundamentally triggers devastating enterprise-level financial collapse.",
-      certifications: ["ISTQB Certified Engineers", "Wall Street & AdTech QA Experts", "ISO 27001 Certified"],
-      stats: [
-        { number: "500K", label: "Test Cases Executed", description: "Across FinTech & Media Sectors" },
-        { number: "100%", label: "Success Rate", description: "In high-frequency trading delivery" },
-        { number: "100%", label: "Client Satisfaction", description: "In mission-critical AdTech systems" },
-        { number: "15+", label: "Years Experience", description: "In specialized software quality" },
-      ],
-      landmarks: ["Statue of Liberty", "Empire State Building", "Central Park", "Times Square"],
-    },
-    servicesContent: {
-      title: "Precision QA Engineering Built for New York’s Enterprise Core",
-      description: "Specialized QA for FinTech, AdTech, and Silicon Alley Innovation.",
-      subtitle: "We absolutely avoid entirely basic operational scans. We systematically design explicit validation grids strictly built for New York’s high-velocity and mission-critical infrastructure.",
-      services: [
-        { icon: "TestTube", trending: true, name: "Manual Testing", description: "Nuanced tactical exploration decoding complex human workflows. Automated scripts perfectly secure background logic, but entirely miss the devastating reality of broken corporate UX. Our incredibly seasoned manual testers intentionally assault your internal networks exactly how a frustrated wealth manager or high-volume AdTech buyer would—exposing vicious UX roadblocks.", features: ["Domain-specific exploratory checking", "Total User Acceptance Testing (UAT)", "Multi-device UI validation", "ADA/WCAG accessibility tracking"], link: "/manual-testing-services" },
-        { icon: "Bot", trending: true, name: "Automation Testing", description: "Ruthless automated grids accelerating immense deployment speeds. We natively construct brutally durable automation grids completely deploying Playwright, Selenium, and Cypress. By intelligently automating incredibly heavy regression burdens locally, we drastically empower Manhattan enterprise engineering pods to ship vast functional code updates relentlessly.", features: ["Custom POM/BDD architecture design", "Direct CI/CD pipeline injection", "Deep API and headless browser validation", "Aggressive parallel execution grids"], link: "/automation-testing-services" },
-        { icon: "Globe", trending: true, name: "SaaS Testing Services", description: "Absolute resilience mapping for massive regional B2B clouds. As New York's highly expansive enterprise SaaS and PropTech sectors aggressively deploy sprawling cloud topologies natively, localized software resilience actively defines the corporate growth ceiling.", features: ["Ruthless multi-tenant isolation testing", "Frictionless international billing logic", "Highly resilient identity management (IAM)", "Zero-downtime staging verifications"], link: "/saas-testing-services" },
-        { icon: "Zap", trending: true, name: "Continuous Testing", description: "Lightning-fast technical intelligence pushed specifically to your dev branch. We dynamically bind massive continuous tracking frameworks completely into your Git architectures perfectly, launching advanced test logic immediately during code compilation.", features: ["Advanced shift-left diagnostic architecture", "Impermeable automated quality gates", "Infrastructure-as-Code (IaC) testing", "Live analytics dashboards"], link: "/continuous-testing-services-cicd-pipeline" },
-        { icon: "Users", trending: true, name: "Managed Testing Services", description: "Complete QA dominion locking down sprawling enterprise portfolios. For highly scaled retail IT consortiums or immense localized FinTech integrators, our Managed QA structure completely governs your absolute continuous testing framework natively.", features: ["Elite QA squads with veteran ISTQB directors", "Uncompromising Service Level Agreements (SLAs)", "Elastic QA resource scaling", "Environment & data sanitization management"], link: "/managed-testing-services" },
-        { icon: "Activity", trending: false, name: "Performance Testing", description: "Invincible database endurance protecting massive global usage spikes. Huge scaling B2B portals and massive Wall Street algorithmic trading pipelines natively experience terrifying localized traffic floods constantly. We actively embed phenomenally destructive concurrent load mechanisms utilizing K6 and JMeter safely.", features: ["Volume, stress, and spike traffic simulations", "Forensic tracing of microservice latency", "Auto-scaling & CDN configuration validation", "Exhaustive cloud capacity intelligence"], link: "/performance-testing-services" },
-        { icon: "Shield", trending: true, name: "Security Testing", description: "Unbreakable cyber defenses repulsing heavily organized infiltration tactics. Intensely critical banking arrays and heavy B2B cloud architectures establish phenomenal global hacking targets natively. Our certified offensive intrusion experts constantly organize terrifying backend penetration methods.", features: ["OWASP Top 10 penetration modeling", "Broken authentication vector isolation", "Business-logic hacking simulations", "SEC/HIPAA/SOC 2 readiness"], link: "/security-testing" },
-        { icon: "Users", trending: false, name: "QA Consulting", description: "Architectural strategy audits overhauling your active continuous delivery. Our deep testing tacticians radically dissect your failing CI/CD paths entirely, embedding phenomenally tough DevOps toolchains safely.", features: ["DevOps maturity & CI/CD workflow auditing", "Automation framework modernization plans", "DevSecOps workflow integrations", "Quality Center of Excellence (CoE) design"], link: "/contact-us" },
-      ],
-    },
-    processContent: {
-      title: "Our Highly Structured Engagement Methodology",
-      subtitle: "Total system continuity flawlessly overlapping your exact operational drive. Our internal engagement heavily sinks verified test configurations completely inside your main dev lines.",
-      steps: [
-        { number: "01", title: "Technical Discovery & Scope Definition", description: "We unleash sharp analytical reconnaissance tearing into your active API endpoints, severely isolating totally fragile architectural failure nodes, and defining critical global legislations.", deliverables: ["Complete Technical Profile", "Quality Objectives"] },
-        { number: "02", title: "Tailored Test Strategy Execution", description: "In a strictly defined 48-hour sequence, our directors map a highly lethal technical strategy completely dictating explicit test clusters and continuous tooling demands.", deliverables: ["Technical QA Blueprint", "Execution Roadmap"] },
-        { number: "03", title: "Environment Setup & Tool Integration", description: "Our completely ISTQB-verified offensive units powerfully merge securely into your central Git layouts, strictly calibrating precise internal DevOps networks.", deliverables: ["Dedicated QA Squad", "Integrated Workspace"] },
-        { number: "04", title: "Parallel Agile Execution", description: "We flawlessly lock in tightly natively alongside your specific corporate sprint sequences, rapidly deploying phenomenal internal automated tracking metrics.", deliverables: ["Daily Defect Analytics", "Sprint Pass/Fail Metrics"] },
-        { number: "05", title: "Transparent Metrics & Reporting", description: "We systematically empower local executives with validation analytics—translating API failure intervals and bug collapse volumes visually.", deliverables: ["Coverage Gap Report", "Executive Quality Summary"] },
-        { number: "06", title: "Scale and Optimize", description: "As specific SaaS environments or streaming endpoints unexpectedly spike regionally, our automated arrays totally broaden aggressively—forcing immense chaos testing simulations.", deliverables: ["Performance Audit", "Long-term Scaling Plan"] },
-      ],
-    },
-    toolsFrameworkContent: {
-      title: "Tools & Frameworks Used for New York",
-      description: "Leveraging global-standard tools to drive delivery speed and technical reliability for New York's FinTech, AdTech, and SaaS ecosystems.",
-      stats: {
-        projectsCompleted: "500K+",
-        clientSatisfaction: "100%",
-        supportAvailable: "24/7",
-        yearsExperience: "15+",
-      },
-    },
-    whyChooseContent: {
-      title: "How New York’s Enterprise Titans Weaponize Testriq",
-      subtitle: "Interlocking the scaling corporate capital's absolutely unyielding scaling cadence specifically into phenomenally pure coding requirements.",
-      reasons: [
-        { icon: "Award", title: "100% Certified", stats: "ISTQB Engineers", description: "Operate explicitly backed exclusively by certified testing professionals holding rigid global ISO validation, natively diagnosing critical backend infrastructure." },
-        { icon: "Zap", title: "48-Hour Staffing", stats: "Rapid Integration", description: "Bypassing recruitment blocks. Our intensely structured mapping grids entirely wire absolutely profound testing pods directly inside exactly 48 hours." },
-        { icon: "BarChart", title: "Proven Depth", stats: "500K Test Cases", description: "15 fierce years protecting critical structural SaaS engines and specialized financial architecture." },
-        { icon: "Shield", title: "Compliance Ready", stats: "SEC & FINRA", description: "Wiring intensely fierce regulatory penetration protocols essentially strongly within continuous internal testing loops." },
-      ],
-      testimonial: {
-        text: "Testriq's integration into our Wall Street trading bridge was flawless. Their performance testing identified latency bottlenecks that would have cost us millions in trade volume.",
-        author: "Marcus Van der Meer",
-        company: "Global Capital Markets NYC",
-        rating: 5,
-      },
-    },
-    caseStudiesContent: {
-      title: "Engineered Total QA Designed for New York’s Economy",
-      description: "Testing intelligence calibrated for FinTech, AdTech, and Corporate Clouds.",
-      subtitle: "Radically upgrading software deployments for New York’s innovation sectors.",
-      studies: [
-        {
-          company: "Wall Street Trading Firm",
-          industry: "FinTech & Wall Street Trading SaaS",
-          challenge: "Manage massive high-frequency trading server loads and transactional APIs during peak market hours without structural collapse.",
-          results: [
-            "Zero Transactional Latency",
-            "Verified SEC Compliance",
-            "Absolute Data Integrity",
-          ],
-        },
-        {
-          company: "Silicon Alley Ad Network",
-          industry: "AdTech & Silicon Alley Digital Media",
-          challenge: "Aggressively verifying massive interconnected database deployments governing complex bidding models and real-time telemetry.",
-          results: [
-            "100% Bidding Accuracy",
-            "Zero Microservice Desync",
-            "Verified Real-Time Feedback",
-          ],
-        },
-        {
-          company: "PropTech Scale-Up",
-          industry: "PropTech & Commercial Real Estate",
-          challenge: "Fiercely guaranteeing absolute systemic integrity spanning huge multi-tenant enterprise shifts and regulatory load testing.",
-          results: [
-            "100% Multi-Tenant Isolation",
-            "Zero Deployment Drift",
-            "Verified Portfolio Integrity",
-          ],
-        },
-      ],
-    },
-    trendingServicesContent: {
-      title: "High-Priority QA Segments in New York",
-      description: "Quality assurance calibrated for New York's financial hubs and media trajectory.",
-      subtitle: "Focusing on the domains that New York's innovation leaders prioritize.",
-      services: [
-        {
-          name: "High-Frequency Trading QA",
-          trending: true,
-          description: "Surgical performance evaluations securing extremely high volume financial networks for global hedge funds.",
-          citySpecific: "Securing the transactional heartbeat of Wall Street.",
-          benefits: ["Zero latency drift", "Verified multi-node logic", "Absolute transactional security"],
-          technologies: ["Low-Latency Simulators", "Market Data Stress Testers", "FIX Protocol Auditors", "IAM Integrity Checkers"],
-        },
-        {
-          name: "Real-Time Bidding (RTB) QA",
-          trending: true,
-          description: "Aggressively verifying massive interconnected database deployments governing complex AdTech bidding and data telemetry.",
-          citySpecific: "Terminating logic-loss tracking gaps for Silicon Alley media giants.",
-          benefits: ["100% Bidding accuracy", "Unbreakable pipeline integrity", "Real-time sync"],
-          technologies: ["Bidding Simulators", "Metric Auditors", "Data Trace Tools", "API Stress Testers"],
-        },
-        {
-          name: "HIPAA & FINRA Compliance",
-          trending: true,
-          description: "Explosively striking dense automated traffic simulators against vast multi-branch integrated maritime and financial servers.",
-          citySpecific: "Securing mission-critical data residency for New York's highly regulated sectors.",
-          benefits: ["Zero compliance drift", "Verified record sync", "Absolute record integrity"],
-          technologies: ["Regulatory Simulators", "Compliance Logic Testers", "Protocol Auditors", "Trace Mapping"],
-        },
-        {
-          name: "PropTech Resilience",
-          trending: false,
-          description: "Validating totally flawless multi-nodal tracking logic mapping active complex property and asset transitions locally.",
-          citySpecific: "Ensuring New York's real estate giants maintain absolute data continuity.",
-          benefits: ["Zero deployment drift", "Verified multi-tenant isolation", "Uninterrupted asset sync"],
-          technologies: ["Asset Simulators", "Isolation Auditors", "Load Analyzers", "Logical Integrity Testers"],
-        },
-      ],
-    },
-    faqsContent: {
-      title: "FAQs — Software Testing Services in New York",
-      subtitle: "Common questions from New York's enterprise leaders and FinTech pioneers.",
-      faqs: [
-        {
-          question: "What specific elite testing protocols explicitly operate throughout New York?",
-          answer: "We command an entire armory including impenetrable Automation (Selenium/Playwright), Continuous CI/CD connections, and unyielding enterprise SaaS grid fortification.",
-        },
-        {
-          question: "How rapidly can Testriq structurally deploy specialized QA personnel natively?",
-          answer: "Finalizing technical synchronization call, our verified master technicians actively deploy securely inside your Git architecture within a 48 to 72-hour window.",
-        },
-        {
-          question: "Can you manage aggressive concurrent load testing for SaaS property and FinTech platforms?",
-          answer: "Yes. We relentlessly attack critical cloud architectures identifying server choking points before high-volume commercial or financial traffic floods.",
-        },
-        {
-          question: "Do you perfectly ensure quality standards for New York enterprises transitioning to localized SaaS integrations?",
-          answer: "Yes. Effectively migrating large historical architecture directly onto localized SaaS networks fundamentally forces heavily intense operational logic checks globally.",
-        },
-        {
-          question: "How completely does your Managed Testing Service deploy securing huge New York legacy enterprises?",
-          answer: "It operates strictly executing flawless QA total sovereignty permanently. We configure strict SLA-controlled arrays operating distinctly under massive dedicated management.",
-        },
-        {
-          question: "Why must New York tech centers adopt Testriq entirely avoiding building localized internal departments?",
-          answer: "Bleeding capital chasing scarce automated CI/CD engineers uniquely active across regional IT domains ensures deployment collapse. Testriq negates this stall totally.",
-        },
-      ],
-    },
-    ctaContent: {
-      title: "Lock Down New York’s Dynamic Infrastructure With Perfect QA Defense",
-      description: "Absolutely seize full technical dominance actively. Rule completely.",
-      subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
-      benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "FinTech & AdTech Experts", "Manhattan-Wide Rapid Support"],
-      contactInfo: {
-        phone: "+91 915-2929-343",
-        email: "contact@testriq.com",
-        address: "New York, New York, US",
-      },
-    },
-    industries: ["FinTech & Wall Street Trading SaaS", "AdTech & Silicon Alley Digital Media", "Enterprise SaaS & Corporate Clouds", "PropTech & Commercial Real Estate", "HealthTech & Biotech APIs (HIPAA)", "E-Commerce & Digital Retail"],
-  },
-
   "los-angeles": {
     slug: "software-qa-testing-services-in-los-angeles",
     name: "Los Angeles",
@@ -12211,201 +12015,6 @@ export const cityData: Record<string, CityData> = {
       },
     },
     industries: ["Global Logistics & Freight Tech SaaS", "Commodities Trading & FinTech (CME)", "Industrial IoT & Smart Manufacturing", "InsurTech & Enterprise Insurance", "Healthcare Informatics & MedTech APIs", "PropTech & Smart Real Estate"],
-  },
-
-  "london": {
-    slug: "software-qa-testing-services-in-london",
-    name: "London",
-    state: "England",
-    metadata: {
-      title: "Software Testing & QA Services in London | ISTQB QA | Testriq",
-      description: "Expert software QA testing company in London. Elite automation, performance, and API QA for Canary Wharf FinTech, e-commerce, and HealthTech.",
-      keywords: "Software Testing Services in London, QA Testing Company in London, Canary Wharf FinTech QA, Silicon Roundabout SaaS Testing, HealthTech NHS Integration, UK GDPR Compliance Testing, FCA Regulatory QA, Open Banking API Verification, ISTQB QA London, Managed Testing London",
-    },
-    heroContent: {
-      title: "Software Testing & QA Services in London",
-      subtitle: "Elite FinTech & Enterprise QA for Canary Wharf, Silicon Roundabout, and HealthTech",
-      description: "Operating as an absolute titan of global finance and Europe’s premier technological epicenter, London’s digital infrastructure cannot yield to structural weakness. From the devastatingly fast Open Banking APIs driving Canary Wharf’s challenger banks, to the hyper-scaling B2B SaaS exploding out of Silicon Roundabout, the software deployed across this capital governs billions in international commerce daily. When managing immensely complex cross-border financial gateways, syncing sensitive HealthTech data into NHS mainframes, or defending strict UK GDPR compliance, releasing fragile code fundamentally triggers devastating enterprise-level financial and regulatory collapse.",
-      certifications: ["ISTQB Certified Engineers", "London FinTech & HealthTech QA Experts", "ISO 27001 Certified"],
-      stats: [
-        { number: "500K", label: "Test Cases Executed", description: "Across London FinTech & Enterprise" },
-        { number: "100%", label: "Success Rate", description: "In high-velocity banking delivery" },
-        { number: "100%", label: "Client Satisfaction", description: "In mission-critical HealthTech systems" },
-        { number: "15+", label: "Years Experience", description: "In specialized London software quality" },
-      ],
-      landmarks: ["Big Ben", "Tower Bridge", "Buckingham Palace", "British Museum"],
-    },
-    servicesContent: {
-      title: "Precision QA Engineering Built for London’s Corporate Core",
-      description: "Specialized QA for Canary Wharf FinTech, Silicon Roundabout SaaS, and HealthTech.",
-      subtitle: "We absolutely avoid entirely basic operational scans. We systematically design explicit validation grids strictly built for London’s high-velocity financial and healthcare infrastructure.",
-      services: [
-        { icon: "TestTube", trending: true, name: "Manual Testing", description: "Nuanced tactical exploration decoding complex human workflows. Automated scripts perfectly secure background logic, but entirely miss the devastating reality of broken corporate UX. Our incredibly seasoned manual testers intentionally assault your internal networks exactly how a frustrated Open Banking client or heavy cross-border e-commerce buyer would—exposing vicious UX roadblocks, massive contextual logic fractures, and deeply embedded workflow errors.", features: ["Domain-specific exploratory checking", "Total User Acceptance Testing (UAT)", "Multi-device UI validation", "ADA/WCAG and UK Government accessibility tracking"], link: "/manual-testing-services" },
-        { icon: "Bot", trending: true, name: "Automation Testing", description: "Ruthless automated grids accelerating immense deployment speeds. We natively construct brutally durable automation grids completely deploying Playwright, Selenium, and Cypress. By intelligently automating incredibly heavy regression burdens locally, we drastically empower London enterprise engineering pods to ship vast functional code updates relentlessly.", features: ["Custom POM/BDD architecture design", "Direct CI/CD pipeline injection", "Deep API and headless browser validation", "Aggressive parallel execution grids"], link: "/automation-testing-services" },
-        { icon: "Globe", trending: true, name: "SaaS Testing Services", description: "Absolute resilience mapping for massive regional B2B clouds. As London's highly expansive enterprise SaaS and FinTech sectors aggressively deploy sprawling cloud topologies natively, localized software resilience actively defines the corporate growth ceiling.", features: ["Ruthless multi-tenant isolation testing", "Frictionless international billing logic", "Highly resilient identity management (IAM)", "Zero-downtime staging verifications"], link: "/saas-testing-services" },
-        { icon: "Zap", trending: true, name: "Continuous Testing", description: "Lightning-fast technical intelligence pushed specifically to your dev branch. We dynamically bind massive continuous tracking frameworks completely into your Git architectures perfectly, launching advanced test logic immediately during code compilation. Retrieve instant vulnerability metrics, cleanly terminating logic leaks completely.", features: ["Advanced shift-left diagnostic architecture", "Impermeable automated quality gates", "Infrastructure-as-Code (IaC) testing", "Live analytics dashboards"], link: "/continuous-testing-services-cicd-pipeline" },
-        { icon: "Users", trending: true, name: "Managed Testing Services", description: "Complete QA dominion locking down sprawling enterprise portfolios. For highly scaled Media IT consortiums or immense localized Challenger Bank integrators, our Managed QA structure completely governs your absolute continuous testing framework natively.", features: ["Elite QA squads with veteran ISTQB directors", "Uncompromising Service Level Agreements (SLAs)", "Elastic QA resource scaling", "Environment & data sanitization management"], link: "/managed-testing-services" },
-        { icon: "Activity", trending: false, name: "Performance Testing", description: "Invincible database endurance protecting massive global usage spikes. Huge scaling B2B portals and massive European retail e-commerce exchanges natively experience terrifying localized traffic floods constantly. We actively embed phenomenally destructive concurrent load mechanisms utilizing K6 and JMeter safely.", features: ["Volume, stress, and spike traffic simulations", "Forensic tracing of database queries", "Auto-scaling & CDN configuration validation", "Exhaustive cloud capacity intelligence"], link: "/performance-testing-services" },
-        { icon: "Shield", trending: true, name: "Security Testing", description: "Unbreakable cyber defenses repulsing heavily organized infiltration tactics. Intensely critical healthcare arrays covering NHS loops, heavy corporate cloud architectures, and highly exclusive FinTech networks establish phenomenal global hacking targets natively. Our certified offensive intrusion experts constantly organize terrifying backend penetration methods.", features: ["OWASP Top 10 penetration modeling", "Broken authentication vector isolation", "Business-logic hacking simulations", "Strict UK GDPR and FCA readiness"], link: "/security-testing" },
-        { icon: "Users", trending: false, name: "QA Consulting", description: "Architectural strategy audits overhauling your active continuous delivery. Our deep testing tacticians radically dissect your failing CI/CD paths entirely, embedding phenomenally tough DevOps toolchains safely.", features: ["DevOps maturity & CI/CD workflow auditing", "Automation framework modernization plans", "DevSecOps workflow integrations", "Quality Center of Excellence (CoE) design"], link: "/contact-us" },
-      ],
-    },
-    processContent: {
-      title: "Our Highly Structured Engagement Methodology",
-      subtitle: "Total system continuity flawlessly overlapping your exact operational drive. Our internal engagement heavily sinks verified test configurations completely inside your main dev lines.",
-      steps: [
-        { number: "01", title: "Technical Discovery & Scope Definition", description: "We unleash sharp analytical reconnaissance tearing into your active API endpoints, severely isolating totally fragile architectural failure nodes, defining critical global legislations, and creating a militantly efficient automated QA footprint.", deliverables: ["Complete Technical Profile", "Quality Objectives"] },
-        { number: "02", title: "Tailored Test Strategy Execution", description: "In a strictly defined 48-hour sequence, our directors map a highly lethal technical strategy completely dictating explicit test clusters, continuous tooling demands, and specific elite personnel configurations precisely.", deliverables: ["Technical QA Blueprint", "Execution Roadmap"] },
-        { number: "03", title: "Environment Setup & Tool Integration", description: "Our completely ISTQB-verified offensive units powerfully merge securely into your central Git layouts, strictly calibrating precise internal DevOps networks, and violently isolating exact simulated testing layers uniquely optimized for instant tracking.", deliverables: ["Dedicated QA Squad", "Integrated Workspace"] },
-        { number: "04", title: "Parallel Agile Execution", description: "We flawlessly lock in tightly natively alongside your specific corporate sprint sequences. Rapidly deploying phenomenal internal automated tracking metrics strictly defining specific code destruction exactly prior to main live pushes.", deliverables: ["Daily Defect Analytics", "Sprint Pass/Fail Metrics"] },
-        { number: "05", title: "Transparent Metrics & Reporting", description: "We systematically empower local executives absolutely with incredibly lethal validation analytics—translating devastating API endpoint failure intervals natively, precise continuous script scoring perfectly, and entirely sheer bug collapse volumes visually.", deliverables: ["Coverage Gap Report", "Executive Quality Summary"] },
-        { number: "06", title: "Scale and Optimize", description: "As specific SaaS environments or streaming endpoints unexpectedly spike regionally, our automated arrays totally broaden aggressively—forcing immense chaos testing simulations structurally identifying and blocking massive server deadlocks permanently.", deliverables: ["Performance Audit", "Long-term Scaling Plan"] },
-      ],
-    },
-    toolsFrameworkContent: {
-      title: "Tools & Frameworks Used for London",
-      description: "Leveraging global-standard tools to drive delivery speed and technical reliability for London's FinTech, SaaS, and HealthTech ecosystems.",
-      stats: {
-        projectsCompleted: "500K+",
-        clientSatisfaction: "100%",
-        supportAvailable: "24/7",
-        yearsExperience: "15+",
-      },
-    },
-    whyChooseContent: {
-      title: "How London’s Corporate Titans Weaponize Testriq",
-      subtitle: "Interlocking the scaling corporate capital's absolutely unyielding scaling cadence specifically into phenomenally pure coding requirements.",
-      reasons: [
-        { icon: "Award", title: "100% Certified", stats: "ISTQB Engineers", description: "Operate explicitly backed exclusively by certified testing professionals holding rigid global ISO validation, natively diagnosing critical backend infrastructure." },
-        { icon: "Zap", title: "48-Hour Staffing", stats: "Rapid Integration", description: "Bypassing recruitment blocks. Our intensely structured mapping grids entirely wire absolutely profound testing pods directly inside exactly 48 hours." },
-        { icon: "BarChart", title: "Proven Depth", stats: "500K Test Cases", description: "15 fierce years protecting critical structural SaaS engines and specialized global financial architecture." },
-        { icon: "Shield", title: "Compliance Ready", stats: "UK GDPR & FCA", description: "Wiring intensely fierce regulatory penetration protocols essentially strongly within continuous internal testing loops." },
-      ],
-      testimonial: {
-        text: "Testriq's integration into our challenger bank's API layer was transformational. Their automation grids secured our delivery pipeline during our most aggressive scaling phase.",
-        author: "David Wilson",
-        company: "Silicon Roundabout FinTech Hub",
-        rating: 5,
-      },
-    },
-    caseStudiesContent: {
-      title: "Engineered Total QA Designed for London’s Economy",
-      description: "Testing intelligence calibrated for FinTech, SaaS, and HealthTech.",
-      subtitle: "Radically upgrading software deployments for London’s corporate sectors.",
-      studies: [
-        {
-          company: "Canary Wharf FinTech Giant",
-          industry: "FinTech, Banking APIs & Challenger Banks",
-          challenge: "Secure extremely high volume financial networks and multi-currency tracking logic for global Open Banking transitions.",
-          results: [
-            "Zero Transactional Latency",
-            "100% Multi-Currency Accuracy",
-            "Verified FCA Compliance",
-          ],
-        },
-        {
-          company: "Silicon Roundabout Scale-up",
-          industry: "Deep Tech & Silicon Roundabout SaaS",
-          challenge: "Aggressively verifying massive interconnected database deployments governing physical operational scaling during rapid global expansion.",
-          results: [
-            "100% Data Integrity",
-            "Zero Deployment Drift",
-            "Verified UK GDPR Compliance",
-          ],
-        },
-        {
-          company: "London HealthTech Innovator",
-          industry: "HealthTech & NHS Digital Integrations",
-          challenge: "Validating totally flawless multi-nodal tracking logic mapping active complex hospital telemetry transitions into NHS mainframes.",
-          results: [
-            "Zero Telemetry Drift",
-            "Verified Hospital Sync",
-            "Absolute Record Integrity",
-          ],
-        },
-      ],
-    },
-    trendingServicesContent: {
-      title: "High-Priority QA Segments in London",
-      description: "Quality assurance calibrated for London's financial hubs and tech innovation.",
-      subtitle: "Focusing on the domains that London's innovation leaders prioritize.",
-      services: [
-        {
-          name: "FinTech & Banking API QA",
-          trending: true,
-          description: "Surgical performance evaluations securing extremely high volume financial networks for London's challenger banks.",
-          citySpecific: "Securing the digital heartbeat of Canary Wharf.",
-          benefits: ["Zero latency drift", "Verified multi-node logic", "Absolute transactional security"],
-          technologies: ["Open Banking Stress Testers", "API Security Monitors", "Currency Delta Analyzers", "Regulatory Audit Tools"],
-        },
-        {
-          name: "Silicon Roundabout SaaS Validation",
-          trending: true,
-          description: "Aggressively verifying massive interconnected database deployments for hyper-scaling B2B application models.",
-          citySpecific: "Terminating logic-loss gaps for London's startup titans.",
-          benefits: ["100% Database accuracy", "Unbreakable pipeline integrity", "Real-time sync"],
-          technologies: ["Appium", "Playwright", "Scalability Simulators", "API Stress Testers"],
-        },
-        {
-          name: "HealthTech & NHS Integration",
-          trending: true,
-          description: "Validating totally flawless multi-nodal tracking logic mapping active complex hospital telemetry transitions.",
-          citySpecific: "Ensuring London's HealthTech leaders maintain absolute mission-critical patient data continuity.",
-          benefits: ["Zero telemetry drift", "Verified hospital sync", "Absolute record integrity"],
-          technologies: ["Medical Simulators", "Protocol Auditors", "Telemetry Trackers", "NHS Spine Converters"],
-        },
-        {
-          name: "Retail Tech & Cross-Border E-Commerce",
-          trending: false,
-          description: "Fiercely guaranteeing absolute systemic integrity spanning huge multi-tenant enterprise shifts for global retail giants.",
-          citySpecific: "Ensuring London's retail leaders maintain absolute supply chain continuity.",
-          benefits: ["Zero deployment drift", "Verified supply chain logic", "Uninterrupted asset sync"],
-          technologies: ["Logistics Simulators", "Isolation Auditors", "Load Analyzers", "Logical Integrity Testers"],
-        },
-      ],
-    },
-    faqsContent: {
-      title: "FAQs — Software Testing Services in London",
-      subtitle: "Common questions from London's industrial leaders and tech pioneers.",
-      faqs: [
-        {
-          question: "What specific elite testing protocols explicitly operate throughout London?",
-          answer: "We command an entire armory including impenetrable Automation (Playwright/Selenium), Continuous CI/CD connections, and extreme volume Performance strikes for massive CDN pipelines.",
-        },
-        {
-          question: "How rapidly can Testriq structurally deploy specialized QA personnel natively?",
-          answer: "Finalizing technical synchronization call, our verified master technicians actively deploy securely inside your Git architecture within a 48 to 72-hour window.",
-        },
-        {
-          question: "Can you manage aggressive concurrent load testing for Logistics platforms and FinTech SaaS?",
-          answer: "Yes. We extensively deploy severe infrastructure attacks precisely identifying hidden microservice deadlocks prior to massive global logistical launches.",
-        },
-        {
-          question: "Do you perfectly ensure quality standards for London enterprises transitioning to localized SaaS integrations?",
-          answer: "Yes. Effectively migrating large historical architecture directly onto localized SaaS networks fundamentally forces heavily intense operational logic checks globally.",
-        },
-        {
-          question: "How completely does your Managed Testing Service deploy securing huge London legacy enterprises?",
-          answer: "It operates strictly executing flawless QA total sovereignty permanently. We configure strict SLA-controlled arrays operating distinctly under massive dedicated management.",
-        },
-        {
-          question: "Why must London tech centers adopt Testriq entirely avoiding building localized internal departments?",
-          answer: "Bleeding capital chasing scarce automated CI/CD engineers uniquely active across regional IT domains ensures deployment collapse. Testriq negates this stall totally.",
-        },
-      ],
-    },
-    ctaContent: {
-      title: "Lock Down London’s Dynamic Tech Infrastructure With Perfect QA Defense",
-      description: "Absolutely seize full technical dominance actively. Rule completely.",
-      subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
-      benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Canary Wharf & NHS Experts", "Silicon Roundabout Support"],
-      contactInfo: {
-        phone: "+91 915-2929-343",
-        email: "contact@testriq.com",
-        address: "London, England, UK",
-      },
-    },
-    industries: ["FinTech, Banking APIs & Challenger Banks", "Deep Tech & Silicon Roundabout SaaS", "HealthTech & NHS Digital Integrations", "Creative Media & Broadcasting Apps", "Retail Tech & Cross-Border E-Commerce", "PropTech & Smart Real Estate"],
   },
 
   "manchester": {
@@ -13972,7 +13581,7 @@ export const cityData: Record<string, CityData> = {
     name: "Goa",
     state: "Goa",
     metadata: {
-      title: "Software Testing & QA Services in Goa | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Goa | Testriq",
       description: "Professional software testing company serving Goa. Automation testing, manual QA, API testing, performance & security testing by ISTQB-certified QA engineers. 15+ years of delivery. Free consultation for Goa-based businesses.",
       keywords: "Software Testing Services in Goa, QA Testing Company in Goa, Automation Testing Services in Goa, Manual Testing Goa, Performance Testing Goa, Security Testing Goa, Mobile App Testing Goa, API Testing Goa, QA Consulting Goa, Software Testing Company Goa",
     },
@@ -14140,7 +13749,7 @@ export const cityData: Record<string, CityData> = {
     name: "Ajman",
     state: "Ajman",
     metadata: {
-      title: "Software Testing & QA Services in Ajman | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Ajman | Testriq",
       description: "Expert software testing company in Ajman. Delivering elite automation, CI/CD QA, and SaaS testing for Ajman Free Zone, e-commerce, and real estate IT systems.",
       keywords: "software testing services ajman, qa testing ajman, manual testing ajman, automation testing ajman, performance testing ajman, software testing company ajman uae, qa services ajman, testing services ajman, software qa ajman",
     },
@@ -14309,7 +13918,7 @@ export const cityData: Record<string, CityData> = {
     name: "Al Ain",
     state: "Abu Dhabi",
     metadata: {
-      title: "Software Testing & QA Services in Al Ain | ISTQB Certified | Testriq",
+      title: "Software Testing & QA Services in Al Ain | Testriq",
       description: "Expert software testing company in Al Ain. Delivering elite automation, continuous QA, and SaaS testing for EdTech, Healthcare IT, and aerospace manufacturing.",
       keywords: "software testing services al ain, qa testing al ain, manual testing al ain, automation testing al ain, performance testing al ain, software testing company al ain uae, qa services al ain, testing services al ain, software qa al ain",
     },
@@ -16018,7 +15627,13 @@ export function getAllCities(): CityData[] {
 // ---------------------------------------------------------------------------
 export const INDEXED_CITY_SLUGS: ReadonlySet<string> = new Set([
   "software-qa-testing-services-in-mumbai",
-  "software-qa-testing-services-in-navi-mumbai",
+  // navi-mumbai deliberately absent: /software-qa-testing-services-in-navi-mumbai
+  // is a permanent redirect to the Mumbai page (src/lib/seo/redirect-map.ts), so no
+  // such page exists to index. sitemap.ts already filtered it out for being a
+  // redirect source; listing it here only made this set — the authoritative answer
+  // to "which city pages are indexed?" — disagree with reality. Navi Mumbai demand
+  // is covered by the Mumbai page instead (~40 searches/month combined, too thin to
+  // justify a page of its own).
   "software-qa-testing-services-in-pune",
   "software-qa-testing-services-in-delhi",
   "software-qa-testing-services-in-gurgaon",
@@ -16061,6 +15676,14 @@ export const INDEXED_CITY_SLUGS: ReadonlySet<string> = new Set([
   // Deliberately NOT restored: chicago (pos 41.8), new-york (pos 23.1),
   // sydney (35.9), melbourne (26.9), manchester (27.9, 0 clicks). Those rank
   // too deep to earn clicks — a market-presence problem, not a content one.
+  //
+  // new-york and london are no longer city pages at all. Both were replaced in
+  // Oct 2026 by bespoke static routes (src/app/software-qa-testing-services-in-
+  // {london,new-york}/) carrying hand-written market-specific content, and
+  // their CityData entries were deleted. Those two routes set their own
+  // index,follow and are outside this policy — which is why neither appears in
+  // the set below. The "deliberately not restored" note above still applies to
+  // chicago, sydney, melbourne and manchester.
   "software-qa-testing-services-in-chandigarh",
   "software-qa-testing-services-in-coimbatore",
   "software-qa-testing-services-in-greater-noida",
