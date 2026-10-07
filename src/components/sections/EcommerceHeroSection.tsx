@@ -13,6 +13,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import EcommerceTestingAnimation from "./EcommerceTestingAnimation";
+import { BOOKING_URL } from "@/lib/booking";
 
 const EcommerceHeroSection: React.FC = () => {
 
@@ -125,7 +126,7 @@ const EcommerceHeroSection: React.FC = () => {
               </Link>
 
               <Link
-                href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}
+                href={BOOKING_URL} target={"_blank"}
                 title="Schedule Consultation – Testriq QA Lab"
                 className=" inline-flex items-center justify-start px-4 py-4 min-h-[44px]
                  bg-white text-brand-blue font-semibold rounded-lg border-2 border-brand-blue

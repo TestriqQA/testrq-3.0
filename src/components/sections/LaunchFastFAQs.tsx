@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { BOOKING_URL } from "@/lib/booking";
 
 const LaunchFastFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -93,7 +94,7 @@ const LaunchFastFAQs: React.FC = () => {
             for your product launch.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"} title="Contact Us – Testriq QA Lab">
+            <Link href={BOOKING_URL} target={"_blank"} title="Contact Us – Testriq QA Lab">
               <button className="border-2 cursor-pointer border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-300">
                 Schedule Consultation
               </button>

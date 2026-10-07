@@ -15,12 +15,12 @@ import {
   FaFacebook,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-// import { InlineWidget } from "react-calendly"; // Replaced with Google Calendar link
 import Link from "next/link";
+import { BOOKING_URL } from "@/lib/booking";
 
 
 const ContactMethodsSection: React.FC = () => {
-  const googleCalendarBookingLink = "https://calendar.app.google/uUHn8prcXbdqcvVb6"; // actual Google Calendar booking link
+  const googleCalendarBookingLink = BOOKING_URL; // actual Google Calendar booking link
 
   const contactMethods = [
     {

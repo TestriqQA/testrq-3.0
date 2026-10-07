@@ -19,6 +19,7 @@ import {
   Zap
 } from 'lucide-react';
 import Link from 'next/link';
+import { BOOKING_URL } from "@/lib/booking";
 
 interface CityTestingWhyChooseSectionProps {
   cityData: CityData;
@@ -255,7 +256,7 @@ const CityTestingWhyChooseSection: React.FC<CityTestingWhyChooseSectionProps> = 
               <Link href="/contact-us" className="bg-white text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200">
                 Start Your Project Today
               </Link>
-              <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-brand-blue transition-all duration-200 cursor-pointer">
+              <Link href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-brand-blue transition-all duration-200 cursor-pointer">
                 Schedule Consultation
               </Link>
             </div>

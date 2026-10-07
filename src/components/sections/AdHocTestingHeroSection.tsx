@@ -5,6 +5,7 @@ import { FaChevronRight, FaRocket, FaClock, FaDollarSign, FaBolt } from "react-i
 import AdHocTestingAnimation from "./AdHocTestingAnimation";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { getBreadcrumbLabel } from "@/lib/seo/breadcrumb-labels";
+import { BOOKING_URL } from "@/lib/booking";
 
 const AdHocTestingHeroSection: React.FC = () => {
     const stats = [
@@ -44,7 +45,7 @@ const AdHocTestingHeroSection: React.FC = () => {
                                     <FaChevronRight className="group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </Link>
-                            <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer">
+                            <Link href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                                 <button className="cursor-pointer px-8 py-4 border-2 border-gray-200 text-gray-900 rounded-full font-semibold hover:border-brand-blue hover:text-brand-blue transition-all flex items-center justify-center gap-2">
                                     Schedule a Call
                                 </button>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaArrowRight,
   FaPhone,
@@ -15,7 +16,7 @@ const ToolsReadyToElevateSection = () => {
       description:
         "Book a free 30-minute consultation to discuss your testing needs",
       text: "Book Now",
-      action: "https://calendar.app.google/uUHn8prcXbdqcvVb6",
+      action: BOOKING_URL,
       detail: "",
       highlight: true,
     },

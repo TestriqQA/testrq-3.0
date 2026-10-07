@@ -1,6 +1,7 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaShieldAlt,
   FaPhone,
@@ -34,7 +35,7 @@ const SecurityTestingReadyToEnsureQuality: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}>
+            <Link href={BOOKING_URL} target={"_blank"}>
               <button className="bg-white text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg border-2 border-gray-200 hover:bg-brand-blue hover:text-white cursor-pointer hover:shadow-lg transition-all duration-300 flex items-center space-x-2">
                 <FaCalendarAlt />
                 <span>Schedule Consultation</span>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import FAQSchema from "@/components/seo/FAQSchema";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaQuestionCircle,
   FaChevronDown,
@@ -114,7 +115,7 @@ const BankingFAQSection: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"} className="w-fit">
+            <Link href={BOOKING_URL} target={"_blank"} className="w-fit">
               <button className="cursor-pointer bg-gradient-to-r from-[theme(color.brand.blue)] to-sky-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl hover:scale-98 transition-all duration-300">
                 Schedule Expert Consultation
               </button>

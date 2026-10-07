@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { FaPhone, FaEnvelope, FaComments, FaArrowRight } from "react-icons/fa";
+import { BOOKING_URL } from "@/lib/booking";
 
 const IoTAnyQuestions: React.FC = () => {
   const contactMethods = [
@@ -85,7 +86,7 @@ const IoTAnyQuestions: React.FC = () => {
             customized solution for your connected device project.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={ "_blank" }>
+            <Link href={BOOKING_URL} target={ "_blank" }>
               <button className="flex items-center gap-2 py-3 px-8 bg-[theme(color.brand.blue)] text-white font-semibold text-lg rounded-md hover:shadow-lg cursor-pointer transition-colors duration-300">
                 <span>Schedule IoT Consultation</span>
                 <FaArrowRight className="w-4 h-4" />

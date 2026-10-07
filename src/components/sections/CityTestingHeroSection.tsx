@@ -14,6 +14,7 @@ import {
 import { FaHome, FaChevronRight } from 'react-icons/fa';
 import { CityData } from '@/app/lib/CityData';
 import Link from 'next/link';
+import { BOOKING_URL } from "@/lib/booking";
 
 interface CityTestingHeroSectionProps {
   cityData: CityData;
@@ -102,7 +103,7 @@ const CityTestingHeroSection: React.FC<CityTestingHeroSectionProps> = ({ cityDat
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </button>
               </Link>
-              <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-200">
+              <Link href={BOOKING_URL} className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-200">
                 Schedule Consultation
               </Link>
             </div>

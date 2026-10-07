@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { CityData } from "@/app/lib/CityData";
 import Link from "next/link";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   TestTube,
   Bot,
@@ -261,7 +262,7 @@ const CityTestingServicesSection: React.FC<CityTestingServicesSectionProps> = ({
             specific requirements and industry standards.
           </p>
 
-          <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer" className="bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200 cursor-pointer">
+          <Link href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200 cursor-pointer">
             Schedule Free Consultation
           </Link>
 

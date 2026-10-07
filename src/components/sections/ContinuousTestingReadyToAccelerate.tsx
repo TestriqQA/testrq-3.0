@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
     FaArrowRight,
     FaPhone,
@@ -112,7 +113,7 @@ const ContinuousTestingReadyToAccelerate: React.FC = () => {
                             {/* Contact Options */}
                             <div className="grid grid-cols-1 gap-4">
                                 <Link
-                                    href="https://calendar.app.google/uUHn8prcXbdqcvVb6"
+                                    href={BOOKING_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import { FaArrowRight, FaBars, FaTimes, FaEnvelope, FaPhoneAlt, FaWhatsapp, FaClock } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Image from "next/image";
@@ -483,7 +484,7 @@ const Navbar = () => {
           {/* Actions */}
           <div className="hidden xl:flex items-center gap-3 2xl:gap-4">
             <Link
-              href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1W3Eeyft1hJ_qD6g0x_G9lz_V9RUSlSxsz1G5jorkyssa8WxyvrQap44rv8CFFbGVpzUDHCjCl"
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -633,7 +634,7 @@ const Navbar = () => {
 
             <div className="flex items-center justify-between pt-4 border-t">
               <Link
-                href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1W3Eeyft1hJ_qD6g0x_G9lz_V9RUSlSxsz1G5jorkyssa8WxyvrQap44rv8CFFbGVpzUDHCjCl"
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleLinkClick("", "")}
@@ -778,7 +779,7 @@ const Navbar = () => {
 
             <div className="mt-6 flex flex-col gap-4 pt-4 border-t">
               <Link
-                href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1W3Eeyft1hJ_qD6g0x_G9lz_V9RUSlSxsz1G5jorkyssa8WxyvrQap44rv8CFFbGVpzUDHCjCl"
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleLinkClick("", "")}

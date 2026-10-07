@@ -1,6 +1,7 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaGamepad,
   FaMobile,
@@ -451,7 +452,7 @@ const GamingTestingServicesSection: React.FC = () => {
               </Link>
 
               <Link
-                 href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={ "_blank" }
+                 href={BOOKING_URL} target={ "_blank" }
                 title="Schedule Gaming Consultation – Testriq QA Lab"
                 className="inline-flex items-center justify-center px-8 py-4 min-h-[44px] min-w-[44px]
              bg-white bg-opacity-20 text-black rounded-2xl font-semibold text-lg
