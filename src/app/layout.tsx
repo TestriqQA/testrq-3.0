@@ -8,6 +8,7 @@ import ApolloTracking from "@/components/ApolloTracking"; // Apollo tracking scr
 import ConsentBanner from "@/components/ConsentBanner"; // Cookie-consent opt-in for Apollo
 import ContactLinkTracking from "@/components/ContactLinkTracking"; // GA4 tel:/mailto: click tracking
 import { RecaptchaProvider } from "@/lib/recaptcha/RecaptchaContext";
+import FloatingContact from "@/components/layout/FloatingContact";
 
 import Navbar from "@/components/layout/Header";
 
@@ -166,11 +167,12 @@ export default function RootLayout({
         <ContactLinkTracking />
 
         <RecaptchaProvider>
-          <header>
+          <header className="sticky top-0 z-[60] w-full">
             <Navbar />
           </header>
           <main className="flex-grow">{children}</main>
           <Footer />
+          <FloatingContact />
           {/* <TawkToScript /> */}
         </RecaptchaProvider>
 
