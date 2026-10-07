@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaQuestionCircle,
   FaChevronDown,
@@ -38,12 +39,12 @@ const ContactFAQSection: React.FC = () => {
     {
       question: "Do you offer free consultations?",
       answer:
-        "Yes! We offer free 15-minute consultations to discuss your QA needs and provide initial recommendations. For more detailed discussions, we also offer 45-minute deep dive sessions and 90-minute team workshops. You can schedule any of these through our Calendly integration.",
+        "Yes! We offer free 15-minute consultations to discuss your QA needs and provide initial recommendations. For more detailed discussions, we also offer 45-minute deep dive sessions and 90-minute team workshops. You can schedule any of these through our online booking page.",
     },
     {
       question: "Can I schedule a meeting outside of regular business hours?",
       answer:
-        "Absolutely! While our standard hours are Monday-Friday, 9 AM - 6 PM IST, we understand that different time zones and schedules require flexibility. When booking through Calendly, you can request alternative times, and we'll do our best to accommodate your schedule.",
+        "Absolutely! While our standard hours are Monday-Friday, 9 AM - 6 PM IST, we understand that different time zones and schedules require flexibility. When booking a call, you can request alternative times, and we'll do our best to accommodate your schedule.",
     },
     {
       question: "What information should I include when contacting you?",
@@ -159,7 +160,7 @@ const ContactFAQSection: React.FC = () => {
             >
               Contact Support
             </button>
-           <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"}
+           <Link href={BOOKING_URL}
            target={ "_blank" }
            
            >

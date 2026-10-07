@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { BOOKING_URL } from "@/lib/booking";
 
 const MobileFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -134,7 +135,7 @@ const MobileFAQs: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
-                href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}
+                href={BOOKING_URL} target={"_blank"}
                 title="Schedule Mobile Consultation – Testriq QA Lab"
                 className="inline-flex items-center justify-center px-8 py-3 min-h-[44px] min-w-[44px] border border-[theme(color.brand.blue)] text-[theme(color.brand.blue)] font-semibold rounded-lg hover:bg-brand-blue hover:text-white transition-colors"
               >

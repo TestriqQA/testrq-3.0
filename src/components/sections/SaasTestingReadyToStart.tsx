@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
     FaArrowRight,
     FaPhone,
@@ -72,7 +73,7 @@ const SaasTestingReadyToStart: React.FC = () => {
                             </div>
 
                             <div className="grid grid-cols-1 gap-4">
-                                <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer">
+                                <Link href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                                     <button className="flex w-full items-center cursor-pointer justify-center space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 group">
                                         <FaCalendarAlt className="text-blue-600 group-hover:scale-110 transition-transform" />
                                         <span className="font-medium text-gray-700">Schedule a Call</span>

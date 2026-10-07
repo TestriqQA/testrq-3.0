@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import FAQSchema from "@/components/seo/FAQSchema";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaQuestionCircle,
   FaChevronDown,
@@ -322,7 +323,7 @@ const GamingFAQSection: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center text-[theme(color.brand.blue)]">
               <Link
-                href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}
+                href={BOOKING_URL} target={"_blank"}
                 title="Schedule Gaming Consultation – Testriq QA Lab"
                 className="inline-flex items-center justify-center px-8 py-4 min-h-[44px] min-w-[44px]
              bg-white text-brand-blue font-semibold text-lg rounded-2xl

@@ -1,6 +1,7 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 
 const ETLAnyQuestions: React.FC = () => {
   return (
@@ -17,7 +18,7 @@ const ETLAnyQuestions: React.FC = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={ "_blank" }
+            href={BOOKING_URL} target={ "_blank" }
             title="Schedule Consultation – Testriq QA Lab"
             className="inline-flex items-center justify-center px-8 py-3 min-h-[44px] min-w-[44px] border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-brand-blue transition-colors duration-300"
           >

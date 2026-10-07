@@ -21,6 +21,7 @@ import {
 import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
+import { BOOKING_URL } from "@/lib/booking";
 
 const GamingContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -262,7 +263,7 @@ const GamingContactSection: React.FC = () => {
       title: "Gaming Strategy Session",
       description: "Book a free consultation to discuss your game testing requirements",
       text: "Schedule Free Consultation",
-      action: "https://calendar.app.google/uUHn8prcXbdqcvVb6",
+      action: BOOKING_URL,
       color: "from-purple-500 to-indigo-600",
     },
   ];
@@ -308,13 +309,6 @@ const GamingContactSection: React.FC = () => {
     },
   ];
 
-  const scrollToCalendly = () => {
-    const element = document.getElementById("calendly-section");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   return (
     <section className="relative w-full mx-auto py-16 px-8 md:px-12 lg:px-24 2xl: min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden">
       <div className="mx-auto">
@@ -347,12 +341,8 @@ const GamingContactSection: React.FC = () => {
               <a
                 key={index}
                 href={option.action}
-                onClick={(e) => {
-                  if (option.title === "Gaming Strategy Session") {
-                    e.preventDefault();
-                    scrollToCalendly();
-                  }
-                }}
+                target={option.action.startsWith("http") ? "_blank" : undefined}
+                rel={option.action.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="block bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-20"
               >
                 <div className="flex items-start gap-4">

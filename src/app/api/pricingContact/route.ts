@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { BOOKING_URL } from "@/lib/booking";
 
 // Types for pricing form data
 interface PricingFormData {
@@ -381,7 +382,7 @@ async function sendClientThankYou(data: PricingFormData) {
                 </tr>
                 <tr>
                   <td style="padding: 8px 0;">
-                    <a href="https://calendar.app.google/uUHn8prcXbdqcvVb6" style="color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 600;">Schedule a Meeting</a>
+                    <a href="${BOOKING_URL}" style="color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 600;">Schedule a Meeting</a>
                   </td>
                 </tr>
               </table>
