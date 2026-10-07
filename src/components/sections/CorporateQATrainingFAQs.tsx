@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaQuestionCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { BOOKING_URL } from "@/lib/booking";
 
 const CorporateQATrainingFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -103,7 +104,7 @@ const CorporateQATrainingFAQs: React.FC = () => {
               information.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}>
+              <Link href={BOOKING_URL} target={"_blank"}>
                 <button className="bg-brand-blue cursor-pointer text-white px-8 py-3 rounded-lg font-semibold transition-colors">
                   Schedule Consultation
                 </button>

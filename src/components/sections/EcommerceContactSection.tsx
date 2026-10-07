@@ -16,6 +16,7 @@ import {
 import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
+import { BOOKING_URL } from "@/lib/booking";
 
 const EcommerceContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -262,7 +263,7 @@ const EcommerceContactSection: React.FC = () => {
       title: "Schedule Strategy Session",
       description: "Book a free consultation to discuss your testing needs",
       text: "Schedule Free Consultation",
-      action: "https://calendar.app.google/uUHn8prcXbdqcvVb6",
+      action: BOOKING_URL,
       color: "from-purple-500 to-indigo-600",
     },
   ];

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { FaArrowRight, FaPhone } from "react-icons/fa";
+import { BOOKING_URL } from "@/lib/booking";
 
 const QAOutsourcingReadyToStart: React.FC = () => {
     return (
@@ -17,7 +18,7 @@ const QAOutsourcingReadyToStart: React.FC = () => {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Link
-                            href="https://calendar.app.google/uUHn8prcXbdqcvVb6"
+                            href={BOOKING_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                         >

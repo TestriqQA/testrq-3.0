@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import Link from "next/link";
+import { BOOKING_URL } from "@/lib/booking";
 
 const TradingAppFAQs = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -125,7 +126,7 @@ const TradingAppFAQs = () => {
               requirements and get personalized answers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={ "_blank" } className="w-fit mx-auto">
+              <Link href={BOOKING_URL} target={ "_blank" } className="w-fit mx-auto">
                 <button className="bg-white cursor-pointer text-brand-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
                   Schedule Free Consultation
                 </button>

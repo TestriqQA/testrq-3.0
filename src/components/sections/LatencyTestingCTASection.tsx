@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaArrowRight,
   FaPhone,
@@ -117,7 +118,7 @@ const LatencyTestingCTASection: React.FC = () => {
               {/* Contact Options */}
               <div className="grid grid-cols-1 gap-4">
                 <Link
-                  href="https://calendar.app.google/uUHn8prcXbdqcvVb6"
+                  href={BOOKING_URL}
                   target="_blank"
                 >
                   <button className="flex w-full items-center cursor-pointer justify-center space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 group min-h-[48px]">

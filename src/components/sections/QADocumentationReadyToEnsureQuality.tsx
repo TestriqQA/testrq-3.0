@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaRocket,
   FaCheckCircle,
@@ -35,7 +36,7 @@ const QADocumentationReadyToEnsureQuality = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-            <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}>
+            <Link href={BOOKING_URL} target={"_blank"}>
               <button className="inline-flex cursor-pointer items-center px-8 py-4 bg-yellow-300 text-blue-900 font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                 <FaCalendarAlt className="mr-3" />
                 Schedule Free Consultation

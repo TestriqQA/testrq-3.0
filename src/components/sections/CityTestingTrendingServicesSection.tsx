@@ -17,6 +17,7 @@ import {
   Globe
 } from 'lucide-react';
 import Link from 'next/link';
+import { BOOKING_URL } from "@/lib/booking";
 
 interface CityTestingTrendingServicesSectionProps {
   cityData: CityData;
@@ -315,7 +316,7 @@ const CityTestingTrendingServicesSection: React.FC<CityTestingTrendingServicesSe
               {/* <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-200">
                 Explore Trending Services
               </button> */}
-              <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer" className="border-2 border-orange-500 text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-orange-500 hover:text-white transition-all duration-200 cursor-pointer">
+              <Link href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="border-2 border-orange-500 text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-orange-500 hover:text-white transition-all duration-200 cursor-pointer">
                 Schedule Demo
               </Link>
             </div>

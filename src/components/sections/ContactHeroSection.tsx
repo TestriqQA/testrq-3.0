@@ -17,6 +17,7 @@ import {
 import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
+import { BOOKING_URL } from "@/lib/booking";
 
 const ContactHeroSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -285,7 +286,7 @@ const ContactHeroSection: React.FC = () => {
       icon: FaCalendarAlt,
       label: "Schedule Meeting",
       value: "Book a Call",
-      action: "https://calendar.app.google/uUHn8prcXbdqcvVb6",
+      action: BOOKING_URL,
       color: "bg-purple-500",
     },
   ];

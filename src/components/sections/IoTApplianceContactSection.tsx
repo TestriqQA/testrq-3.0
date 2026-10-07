@@ -16,6 +16,7 @@ import {
 import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
+import { BOOKING_URL } from "@/lib/booking";
 
 const IoTApplianceContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -271,7 +272,7 @@ const IoTApplianceContactSection: React.FC = () => {
       title: "IoT Strategy Session",
       description: "Book a free consultation to discuss your testing needs",
       text: "Schedule Free Consultation",
-      action: "https://calendar.app.google/uUHn8prcXbdqcvVb6",
+      action: BOOKING_URL,
       color: "from-purple-500 to-indigo-600",
     },
   ];
@@ -284,13 +285,6 @@ const IoTApplianceContactSection: React.FC = () => {
     "Integration testing recommendations",
     "Scalability planning and roadmap",
   ];
-
-  const scrollToCalendly = () => {
-    const element = document.getElementById("calendly-section");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   const testingRequirementOptions = [
     "Device & Hardware Testing",
@@ -337,12 +331,8 @@ const IoTApplianceContactSection: React.FC = () => {
               <a
                 key={index}
                 href={method.action}
-                onClick={(e) => {
-                  if (method.title === "IoT Strategy Session") {
-                    e.preventDefault();
-                    scrollToCalendly();
-                  }
-                }}
+                target={method.action.startsWith("http") ? "_blank" : undefined}
+                rel={method.action.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="block bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-20"
               >
                 <div className="flex items-start gap-4">

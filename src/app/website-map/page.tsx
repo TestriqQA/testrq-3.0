@@ -8,6 +8,7 @@ import { Metadata } from "next";
 // XML sitemap. Same `discoverRoutes` helper now powers both — single source
 // of truth, no more drift when a new service/solution lands.
 import { discoverRoutes, slugToTitle } from "@/lib/seo/discover-routes";
+import { MARKET_PAGES } from "@/lib/seo/market-pages";
 
 // Match sitemap.ts revalidation cadence — the HTML sitemap is a low-volatility
 // page that benefits from caching but should pick up filesystem changes within
@@ -34,6 +35,8 @@ const corePages: { slug: string; title: string }[] = [
     { slug: "pricing", title: "Pricing" },
     { slug: "roi-calculator", title: "ROI Calculator" },
     { slug: "locations-we-serve", title: "Locations We Serve" },
+    // Bespoke market landing pages — see src/lib/seo/market-pages.ts.
+    ...MARKET_PAGES.map((p) => ({ slug: p.slug, title: p.title })),
 ];
 
 export default async function SitemapPage() {

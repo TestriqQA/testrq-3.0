@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaArrowRight,
   FaCalendarAlt,
@@ -37,7 +38,7 @@ const CaseStudiesReadyToStartSection = () => {
       icon: FaCalendarAlt,
       title: "Schedule a Call",
       description: "Book a free consultation at your convenience",
-      action: "https://calendar.app.google/uUHn8prcXbdqcvVb6",
+      action: BOOKING_URL,
       text: "Schedule Now",
       primary: true,
     },

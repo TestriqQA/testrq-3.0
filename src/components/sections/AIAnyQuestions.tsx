@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { FaPhone, FaEnvelope, FaComments, FaArrowRight } from "react-icons/fa";
+import { BOOKING_URL } from "@/lib/booking";
 
 const AIAnyQuestions: React.FC = () => {
   const contactMethods = [
@@ -89,7 +90,7 @@ const AIAnyQuestions: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <Link
-              href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={ "_blank" }
+              href={BOOKING_URL} target={ "_blank" }
               title="Schedule AI Consultation – Testriq QA Lab"
               className="inline-flex items-center gap-2 py-3 px-8 min-h-[44px] min-w-[44px] bg-[theme(color.brand.blue)] text-white font-semibold text-lg rounded-md hover:shadow-lg transition-colors duration-300"
             >

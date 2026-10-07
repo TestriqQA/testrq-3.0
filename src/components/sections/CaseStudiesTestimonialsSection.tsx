@@ -5,6 +5,7 @@ import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BOOKING_URL } from "@/lib/booking";
 
 const RatingStar = dynamic(() => import("@/components/RatingStar"), {
   ssr: true,
@@ -291,7 +292,7 @@ const CaseStudiesTestimonialsSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="https://calendar.app.google/uUHn8prcXbdqcvVb6"
+              href={BOOKING_URL}
               target={ "_blank" }
               className="bg-[theme(color.brand.blue)] cursor-pointer text-white px-8 py-4 rounded-lg font-semibold hover:scale-98 transition-all inline-flex items-center justify-center min-h-[48px] min-w-[48px]"
             >

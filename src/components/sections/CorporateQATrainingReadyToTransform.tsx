@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import {
   FaRocket,
   FaArrowRight,
@@ -60,7 +61,7 @@ const CorporateQATrainingReadyToTransform: React.FC = () => {
                   <FaArrowRight className="ml-2" />
                 </button>
               </Link>
-              <Link href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}>
+              <Link href={BOOKING_URL} target={"_blank"}>
                 <button className="border-2 cursor-pointer border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
                   Schedule Free Consultation
                 </button>

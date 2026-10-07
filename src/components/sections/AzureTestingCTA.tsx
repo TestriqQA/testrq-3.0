@@ -10,6 +10,7 @@ import {
     FaCheckCircle,
 } from "react-icons/fa";
 import { VscAzure } from "react-icons/vsc";
+import { BOOKING_URL } from "@/lib/booking";
 
 const AzureTestingCTA: React.FC = () => {
     return (
@@ -99,7 +100,7 @@ const AzureTestingCTA: React.FC = () => {
                             </div>
 
                             <div className="grid grid-cols-1 gap-4">
-                                <Link href="https://calendar.app.google/uUHn8prcXbdqcvVb6" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-blue-200 hover:bg-blue-50 transition-all font-bold text-gray-700 cursor-pointer">
+                                <Link href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl hover:border-blue-200 hover:bg-blue-50 transition-all font-bold text-gray-700 cursor-pointer">
                                     <FaCalendarAlt className="text-brand-blue" />
                                     <span>Schedule on Calendar</span>
                                 </Link>

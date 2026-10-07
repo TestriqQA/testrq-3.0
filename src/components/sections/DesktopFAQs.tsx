@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { BOOKING_URL } from "@/lib/booking";
 
 const DesktopFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -120,7 +121,7 @@ const DesktopFAQs: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
-                href={"https://calendar.app.google/uUHn8prcXbdqcvVb6"} target={"_blank"}
+                href={BOOKING_URL} target={"_blank"}
                 className="px-8 py-3 cursor-pointer bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-brand-blue hover:shadow-lg transition-colors"
               >
                 Schedule Consultation
