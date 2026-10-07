@@ -7,6 +7,7 @@ import RecaptchaLoader from "@/components/RecaptchaLoader"; // Route-scoped reCA
 import ApolloTracking from "@/components/ApolloTracking"; // Apollo tracking script (consent-gated)
 import ConsentBanner from "@/components/ConsentBanner"; // Cookie-consent opt-in for Apollo
 import { RecaptchaProvider } from "@/lib/recaptcha/RecaptchaContext";
+import FloatingContact from "@/components/layout/FloatingContact";
 
 import Navbar from "@/components/layout/Header";
 
@@ -161,11 +162,12 @@ export default function RootLayout({
         <ApolloTracking /> {/* Render the ApolloTracking component here */}
 
         <RecaptchaProvider>
-          <header>
+          <header className="sticky top-0 z-[60] w-full">
             <Navbar />
           </header>
           <main className="flex-grow">{children}</main>
           <Footer />
+          <FloatingContact />
           {/* <TawkToScript /> */}
         </RecaptchaProvider>
 
