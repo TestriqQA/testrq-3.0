@@ -192,7 +192,7 @@ const TestCaseEstimatorPage: React.FC = () => {
                           complexity === opt.value
                             ? "border-brand-blue bg-brand-blue/10"
                             : "border-gray-300 bg-white hover:border-brand-blue/50"
-                        }`}
+                        } cursor-pointer`}
                       >
                         <div className="font-semibold text-sm text-gray-900">{opt.label}</div>
                         <div className="text-xs text-gray-500 mt-1">{opt.hint}</div>

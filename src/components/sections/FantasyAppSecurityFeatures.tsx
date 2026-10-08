@@ -141,7 +141,7 @@ const FantasyAppSecurityFeatures = () => {
                   Begin Certification Review
                 </button>
               </Link>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#25A8E0] transition-colors duration-300">
+              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#25A8E0] transition-colors duration-300 cursor-pointer">
                 View Certification Criteria
               </button>
             </div>

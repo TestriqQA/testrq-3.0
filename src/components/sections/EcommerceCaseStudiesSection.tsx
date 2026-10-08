@@ -142,10 +142,12 @@ const EcommerceCaseStudiesSection: React.FC = () => {
                   </div>
 
                   <div className="mt-8 text-center">
-                    <button className="bg-gradient-to-l from-[theme(color.brand.blue)] via-sky-600 to-blue-400 text-white px-6 py-3 rounded-xl font-semibold hover:scale-95 transition-all duration-300 ease-in-out flex items-center gap-2 mx-auto">
-                      Read Full Case Study
-                      <FaArrowRight className="w-4 h-4" />
-                    </button>
+                    <Link href="/case-studies" className="inline-block">
+                      <button className="bg-gradient-to-l from-[theme(color.brand.blue)] via-sky-600 to-blue-400 text-white px-6 py-3 rounded-xl font-semibold hover:scale-95 transition-all duration-300 ease-in-out flex items-center gap-2 mx-auto cursor-pointer">
+                        Read Full Case Study
+                        <FaArrowRight className="w-4 h-4" />
+                      </button>
+                    </Link>
                   </div>
                 </div>
 

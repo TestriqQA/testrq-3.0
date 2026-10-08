@@ -111,7 +111,7 @@ const ContactFAQSection: React.FC = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-300"
+                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-300 cursor-pointer"
               >
                 <div className="flex items-start gap-4 flex-1">
                   <div className="w-6 h-6 bg-[theme(color.brand.blue)] bg-opacity-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">

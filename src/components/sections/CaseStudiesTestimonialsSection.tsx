@@ -194,7 +194,7 @@ const CaseStudiesTestimonialsSection = () => {
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md hover:shadow-lg rounded-full p-3"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md hover:shadow-lg rounded-full p-3 cursor-pointer"
             aria-label="Left arrow button"
           >
             <FaChevronLeft />
@@ -239,7 +239,7 @@ const CaseStudiesTestimonialsSection = () => {
             {/* Right Arrow */}
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md hover:shadow-lg rounded-full p-3"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md hover:shadow-lg rounded-full p-3 cursor-pointer"
               aria-label="Right arrow button"
             >
               <FaChevronRight />

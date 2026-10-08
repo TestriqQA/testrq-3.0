@@ -28,7 +28,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, videoLink, onClose }) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 md:top-4 md:right-4 z-10 w-8 h-8 md:w-10 md:h-10 text-white bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-colors text-sm md:text-base"
+          className="absolute top-2 right-2 md:top-4 md:right-4 z-10 w-8 h-8 md:w-10 md:h-10 text-white bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-colors text-sm md:text-base cursor-pointer"
         >
           ✕
         </button>
@@ -52,7 +52,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, videoLink, onClose }) => {
             </p>
             <button
               onClick={onClose}
-              className="bg-brand-blue text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+              className="bg-brand-blue text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity cursor-pointer"
             >
               Close
             </button>

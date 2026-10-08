@@ -539,7 +539,7 @@ const ContactHeroSection: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-[theme(color.brand.blue)] text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
+                    className="w-full bg-[theme(color.brand.blue)] text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center cursor-pointer"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

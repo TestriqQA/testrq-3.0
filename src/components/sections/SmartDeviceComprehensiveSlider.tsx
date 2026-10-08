@@ -143,7 +143,7 @@ const SmartDeviceComprehensiveSlider: React.FC = () => {
               key={type.id}
               aria-label={type.title}
               onClick={() => setActiveTab(index)}
-              className={`p-4 rounded-xl border-2 transition-all duration-300 ${getColorClasses(type.color, activeTab === index)} ${getBorderColor(type.color)}`}
+              className={`p-4 rounded-xl border-2 transition-all duration-300 ${getColorClasses(type.color, activeTab === index)} ${getBorderColor(type.color)} cursor-pointer`}
             >
               <div className="flex flex-col items-center text-center">
                 <div className="mb-2">{type.icon}</div>

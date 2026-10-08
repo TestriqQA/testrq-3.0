@@ -179,7 +179,7 @@ const IoTCaseStudies: React.FC = () => {
               className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 relative ${activeCase === index
                 ? `bg-gradient-to-r ${study.gradient} text-white shadow-lg`
                 : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 shadow-md"
-                }`}
+                } cursor-pointer`}
             >
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{study.icon}</span>

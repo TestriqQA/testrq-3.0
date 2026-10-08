@@ -55,6 +55,71 @@ export default defineType({
             description: 'Path to image in /public folder, e.g. /Canva_Logo.png',
         }),
 
+        // Optional gallery shown as a row of thumbnails under the main image
+        // on /case-studies. Hovering one previews it in the main thumbnail.
+        //
+        // `type: 'image'` deliberately, NOT a string path like the `image`
+        // field above — editors upload the file here and Sanity hosts it on
+        // cdn.sanity.io (already allowed in next.config.ts remotePatterns).
+        // Nobody has to drop a file into /public and type the path.
+        //
+        // Leave it empty and the row does not render at all.
+        defineField({
+            name: 'gallery',
+            title: 'Gallery Images (optional)',
+            type: 'array',
+            description:
+                'Up to 5 images, 5 MB total. Shown in a row beneath the main thumbnail on the Case Studies page; hovering one previews it in the thumbnail. Leave empty to show nothing.',
+            of: [
+                {
+                    type: 'image',
+                    options: { hotspot: true },
+                    fields: [
+                        {
+                            name: 'alt',
+                            type: 'string',
+                            title: 'Alt text',
+                            description: 'Describes the image for screen readers and search engines.',
+                        },
+                    ],
+                },
+            ],
+            validation: (Rule) =>
+                Rule.max(5).custom(async (gallery, context) => {
+                    // Count is handled by Rule.max above. This checks the TOTAL
+                    // byte size, which Sanity has no built-in rule for: the
+                    // asset documents have to be read back to sum their sizes.
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const items = (gallery as any[]) || []
+                    if (items.length === 0) return true
+
+                    const ids = items
+                        .map((item) => item?.asset?._ref)
+                        .filter((ref): ref is string => typeof ref === 'string')
+                    if (ids.length === 0) return true
+
+                    try {
+                        const client = context.getClient({ apiVersion: '2024-01-01' })
+                        const assets: { size?: number }[] = await client.fetch(
+                            '*[_id in $ids]{ size }',
+                            { ids }
+                        )
+                        const total = assets.reduce((sum, a) => sum + (a?.size || 0), 0)
+                        const LIMIT = 5 * 1024 * 1024
+                        if (total > LIMIT) {
+                            const mb = (total / 1024 / 1024).toFixed(1)
+                            return `Gallery images total ${mb} MB. The limit is 5 MB — remove or replace an image.`
+                        }
+                    } catch {
+                        // Never block publishing because the size lookup failed
+                        // (offline Studio, transient API error). The count rule
+                        // still applies.
+                        return true
+                    }
+                    return true
+                }),
+        }),
+
         // --- SEO ---
         // F-60.1 — migrated to shared `seoFields` shape. Previously named
         // `seoMetadata` and embedded openGraph/twitter as nested objects;

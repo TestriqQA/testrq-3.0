@@ -6,6 +6,113 @@ import { FaCalendarAlt, FaArrowRight, FaStar, FaFilter } from "react-icons/fa";
 import { CaseStudy } from "@/lib/sanity-data-adapter";
 import Image from "next/image";
 
+
+/**
+ * Main case-study thumbnail plus an optional row of gallery thumbnails.
+ *
+ * The gallery comes from the Sanity `gallery` field (editors upload files; the
+ * assets are served from cdn.sanity.io). It is entirely optional: with nothing
+ * uploaded, `caseStudy.gallery` is an empty array and the row does not render,
+ * leaving the card exactly as it was.
+ *
+ * Hovering a thumbnail previews it in the main panel; leaving restores the
+ * logo. State lives in this child rather than the parent so each card tracks
+ * its own preview — a single map keyed by id in the parent would re-render
+ * every card on every hover.
+ *
+ * The two states are rendered differently on purpose:
+ *   - LOGO (default)    object-contain, never cropped. A client logo cropped
+ *                       to fill a 4:3 panel is just a broken logo.
+ *   - GALLERY (preview) object-cover via `fill`, so a screenshot or photo
+ *                       fills the whole panel instead of floating at logo size
+ *                       in the middle of it.
+ *
+ * White logos: the panel is a light gradient, so a white wordmark used to
+ * disappear into it. The panel is darkened a step and the logo carries a drop
+ * shadow, which outlines a white mark without muddying a dark one. Tinting the
+ * panel dark instead would just invert the problem for the dark logos.
+ *
+ * The thumbnails are <button>s, not plain divs, so the preview is reachable by
+ * keyboard: onFocus/onBlur mirror onMouseEnter/onMouseLeave.
+ */
+function CaseStudyVisual({ caseStudy }: { caseStudy: CaseStudy }) {
+  const [preview, setPreview] = useState<string | null>(null);
+
+  // The adapter already caps this at 5; slicing again keeps the component
+  // honest if it is ever handed data from somewhere else.
+  const gallery = (caseStudy.gallery || []).slice(0, 5);
+  const logo = caseStudy.image || "/placeholder.png";
+
+  return (
+    <div className="flex-1 max-w-md w-full">
+      <div className="relative overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl h-80">
+        {preview ? (
+          <>
+            <Image
+              key={preview}
+              src={preview}
+              alt={caseStudy.client + " gallery image"}
+              fill
+              sizes="(max-width: 768px) 100vw, 28rem"
+              className="object-cover"
+            />
+            {/* Scrim so the caption stays readable over a light photo. */}
+            {/* <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent pt-10 pb-3 px-4">
+              <p className="text-white text-sm text-center drop-shadow">
+                {caseStudy.industry} Success Story
+              </p>
+            </div> */}
+          </>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center p-8">
+            <div className="text-center">
+              <Image
+                title={caseStudy.title}
+                src={logo}
+                alt={caseStudy.client + " logo"}
+                width={240}
+                height={240}
+                className="mx-auto mb-4 rounded-lg object-contain max-h-[180px] w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+              />
+              <p className="text-gray-700 text-sm">
+                {caseStudy.industry} Success Story
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {gallery.length > 0 && (
+        <div className="mt-4 flex flex-row items-center justify-center gap-3">
+          {gallery.map((img, i) => (
+            <button
+              key={img.url}
+              type="button"
+              onMouseEnter={() => setPreview(img.url)}
+              onMouseLeave={() => setPreview(null)}
+              onFocus={() => setPreview(img.url)}
+              onBlur={() => setPreview(null)}
+              aria-label={
+                img.alt
+                  ? `Preview ${img.alt}`
+                  : `Preview ${caseStudy.client} image ${i + 1}`
+              }
+              className="cursor-pointer shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 border-gray-300 hover:border-[theme(color.brand.blue)] focus-visible:border-[theme(color.brand.blue)] focus-visible:outline-none transition-colors duration-200 bg-gray-200"
+            >
+              <Image
+                src={img.url}
+                alt={img.alt || ""}
+                width={img.width || 64}
+                height={img.height || 64}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 interface CaseStudiesFeaturedSectionProps {
   caseStudies: CaseStudy[];
 }
@@ -82,7 +189,7 @@ const CaseStudiesFeaturedSection = ({ caseStudies }: CaseStudiesFeaturedSectionP
               className={`min-h-[44px] px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedIndustry === null
                 ? "bg-[theme(color.brand.blue)] text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                } cursor-pointer`}
             >
               All Industries
               <span className="ml-1.5 text-xs opacity-75">({caseStudies.length})</span>
@@ -99,7 +206,7 @@ const CaseStudiesFeaturedSection = ({ caseStudies }: CaseStudiesFeaturedSectionP
                   className={`min-h-[44px] px-4 py-2 rounded-full text-sm font-medium transition-colors ${active
                     ? "bg-[theme(color.brand.blue)] text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                    } cursor-pointer`}
                 >
                   {industry}
                   <span className="ml-1.5 text-xs opacity-75">({count})</span>
@@ -256,24 +363,7 @@ const CaseStudiesFeaturedSection = ({ caseStudies }: CaseStudiesFeaturedSectionP
                 </Link>
               </div>
 
-              {/* Visual Placeholder */}
-              <div className="flex-1 max-w-md">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl p-8 h-80 flex items-center justify-center">
-                  <div className="text-center">
-                    <Image
-                      title={caseStudy.title}
-                      src={caseStudy.image || "/placeholder.png"}
-                      alt={caseStudy.client + " logo"}
-                      width={240}
-                      height={240}
-                      className="mx-auto mb-4 rounded-lg object-contain"
-                    />
-                    <p className="text-gray-600 text-sm">
-                      {caseStudy.industry} Success Story
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <CaseStudyVisual caseStudy={caseStudy} />
             </div>
             );
           })}

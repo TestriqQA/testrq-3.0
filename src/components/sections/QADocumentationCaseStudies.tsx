@@ -193,7 +193,7 @@ const QADocumentationCaseStudies = () => {
           <div className="flex items-center space-x-4">
             <button
               onClick={prevCase}
-              className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+              className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200 cursor-pointer"
               aria-label="Left navigation button"
             >
               <FaChevronLeft className="text-gray-600" />
@@ -205,7 +205,7 @@ const QADocumentationCaseStudies = () => {
                   key={index}
                   onClick={() => setActiveCase(index)}
                   aria-label="Navigation dots"
-                  className="p-2 min-w-[24px] min-h-[24px] flex items-center justify-center"
+                  className="p-2 min-w-[24px] min-h-[24px] flex items-center justify-center cursor-pointer"
                 >
                   <span
                     className={`w-3 h-3 rounded-full transition-colors duration-200 ${
@@ -218,7 +218,7 @@ const QADocumentationCaseStudies = () => {
 
             <button
               onClick={nextCase}
-              className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+              className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200 cursor-pointer"
               aria-label="Right navigation button"
             >
               <FaChevronRight className="text-gray-600" />
@@ -368,7 +368,7 @@ const QADocumentationCaseStudies = () => {
                     isActive
                       ? `${studyColors.bg} ${studyColors.border} border-2 shadow-md`
                       : "bg-gray-50 hover:bg-gray-100 border-2 border-transparent"
-                  }`}
+                  } cursor-pointer`}
                 >
                   <div
                     className={`w-12 h-12 rounded-lg ${studyColors.bg} flex items-center justify-center mx-auto mb-3`}

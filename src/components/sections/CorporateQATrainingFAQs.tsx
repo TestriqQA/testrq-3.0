@@ -64,7 +64,7 @@ const CorporateQATrainingFAQs: React.FC = () => {
               className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
             >
               <button
-                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
+                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl cursor-pointer"
                 onClick={() => toggleFAQ(index)}
               >
                 <h3 className="text-lg font-semibold text-gray-900 pr-4">

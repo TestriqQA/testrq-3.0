@@ -171,7 +171,7 @@ const SecurityTestingToolsFramework: React.FC = () => {
                 className={`p-4 rounded-xl text-center transition-all duration-300 ${activeCategory === category.id
                   ? `${colors.bg} ${colors.text} ${colors.border} border-2 shadow-lg`
                   : "bg-white text-gray-600 border-2 border-gray-200 hover:border-gray-300 hover:shadow-md"
-                  }`}
+                  } cursor-pointer`}
               >
                 <div className="flex flex-col items-center space-y-2">
                   <span

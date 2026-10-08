@@ -63,7 +63,7 @@ const ManagedTestingHeroSection: React.FC = () => {
                             </Link>
                             <button
                                 onClick={() => setIsLightboxOpen(true)}
-                                className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-indigo-50 transition-colors duration-300 flex items-center justify-center"
+                                className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-indigo-50 transition-colors duration-300 flex items-center justify-center cursor-pointer"
                             >
                                 <FaPlay className="mr-2" /> Watch Demo
                             </button>

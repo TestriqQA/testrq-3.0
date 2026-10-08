@@ -143,7 +143,7 @@ const BlogCategories: React.FC = () => {
           {canScrollLeft && (
             <button
               onClick={() => scrollBy('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-white border border-slate-200 rounded-full shadow-lg flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-white border border-slate-200 rounded-full shadow-lg flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all cursor-pointer"
               aria-label="Scroll left"
             >
               <FaChevronLeft className="w-4 h-4" />
@@ -193,7 +193,7 @@ const BlogCategories: React.FC = () => {
           {canScrollRight && (
             <button
               onClick={() => scrollBy('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-white border border-slate-200 rounded-full shadow-lg flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-white border border-slate-200 rounded-full shadow-lg flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all cursor-pointer"
               aria-label="Scroll right"
             >
               <FaChevronRight className="w-4 h-4" />

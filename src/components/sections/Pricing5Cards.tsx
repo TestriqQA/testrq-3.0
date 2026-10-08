@@ -30,7 +30,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({ title, isOpen, onTo
     <div className="border-t border-neutral-200">
         <button
             onClick={onToggle}
-            className="w-full flex items-center justify-between py-3 px-1 text-left group/acc"
+            className="w-full flex items-center justify-between py-3 px-1 text-left group/acc cursor-pointer"
             aria-expanded={isOpen}
         >
             <span className="text-[11px] font-semibold text-neutral-600 uppercase tracking-widest">{title}</span>

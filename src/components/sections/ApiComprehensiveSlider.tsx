@@ -98,7 +98,7 @@ const ApiComprehensiveSlider: React.FC = () => {
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === index
                 ? `${activeTabBg[type.color] ?? "bg-blue-600"} text-white shadow-lg`
                 : "bg-white text-gray-600 hover:bg-gray-100"
-                }`}
+                } cursor-pointer`}
             >
               {type.title}
             </button>

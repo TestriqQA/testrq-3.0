@@ -176,8 +176,8 @@ export default async function CaseStudiesPage() {
       <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
       <MainLayout>
         <CaseStudiesHeroSection />
-        <CaseStudiesOverviewSection />
         <CaseStudiesFeaturedSection caseStudies={caseStudies} />
+        <CaseStudiesOverviewSection />
         <CaseStudiesIndustrySection />
         <CaseStudiesResultsSection />
         <CaseStudiesTestimonialsSection />

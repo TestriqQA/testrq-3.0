@@ -8,26 +8,57 @@ const FloatingContact = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show floating button after slight scroll to not overwhelm initial load
+  // Visibility depends on whether the top contact strip is on screen.
+  //
+  // That strip (Header.tsx) is `hidden lg:flex`. Below lg it is gone, so this
+  // widget is the only contact affordance above the fold and must be visible
+  // immediately — gating it behind 300px of scroll left mobile visitors with
+  // nothing but the hamburger menu on landing. At lg and up the strip is
+  // showing, so the original scroll gate stays: no point duplicating it on load.
+  //
+  // The query is 64rem, NOT 1024px: Tailwind v4 emits its breakpoints in rem
+  // (verified in the built CSS: `@media (min-width: 64rem)`). With a px query
+  // the two drift apart whenever the root font-size is not 16px, and the strip
+  // hides while this widget still thinks it is on desktop — leaving exactly the
+  // gap this effect exists to close.
+  //
+  // Also note this runs once on mount, which the previous scroll-only listener
+  // did not. A page opened already scrolled (deep link, refresh mid-page) used
+  // to keep the widget hidden until the next scroll event.
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 300) {
+    const stripVisible = window.matchMedia("(min-width: 64rem)");
+
+    const apply = () => {
+      if (!stripVisible.matches) {
         setIsVisible(true);
-      } else {
-        setIsVisible(false);
-        setIsOpen(false);
+        return;
       }
+      const scrolledPast = window.scrollY > 300;
+      setIsVisible(scrolledPast);
+      if (!scrolledPast) setIsOpen(false);
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    apply();
+    window.addEventListener("scroll", apply);
+    // Both a resize listener AND the media-query listener. The mq "change"
+    // event does not fire in every environment (device-emulation in dev tools
+    // and the in-app browser pane are two), which left the widget hidden after
+    // a desktop-width load was narrowed past the breakpoint — the exact symptom
+    // this effect was added to fix. resize always fires; the mq listener stays
+    // because it also catches a root-font-size change, which resize does not.
+    window.addEventListener("resize", apply);
+    stripVisible.addEventListener("change", apply);
+    return () => {
+      window.removeEventListener("scroll", apply);
+      window.removeEventListener("resize", apply);
+      stripVisible.removeEventListener("change", apply);
+    };
   }, []);
 
   return (
     <div
       className={`fixed bottom-6 right-6 z-[999] flex flex-col items-end transition-all duration-500 ease-in-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-      }`}
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}
     >
       {/* Expanded Menu */}
       <div
@@ -80,7 +111,7 @@ const FloatingContact = () => {
       {/* Main Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex items-center justify-center w-14 h-14 bg-[theme(color.brand.blue)] hover:bg-[#046a96] text-white rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:scale-105 transition-all duration-300"
+        className="relative flex items-center justify-center w-14 h-14 bg-[theme(color.brand.blue)] hover:bg-[#046a96] text-white rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:scale-105 transition-all duration-300 cursor-pointer"
         aria-label="Contact Options"
       >
         <span className="absolute inset-0 rounded-full animate-ping bg-[theme(color.brand.blue)] opacity-20"></span>

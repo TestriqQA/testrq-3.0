@@ -42,7 +42,7 @@ const CyberSecurityFAQs: React.FC = () => {
                         <div key={index} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full p-6 text-left flex items-center justify-between gap-4 group"
+                                className="w-full p-6 text-left flex items-center justify-between gap-4 group cursor-pointer"
                             >
                                 <span className="text-lg font-bold text-gray-900 group-hover:text-brand-blue transition-colors">
                                     {faq.question}

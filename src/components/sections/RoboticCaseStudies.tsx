@@ -163,7 +163,7 @@ const RoboticCaseStudies: React.FC = () => {
                   : `bg-white ${getColorClasses(caseStudy.color).text} ${
                       getColorClasses(caseStudy.color).border
                     } hover:bg-gray-50`
-              }`}
+              } cursor-pointer`}
             >
               <div className="mr-3">{caseStudy.icon}</div>
               <div className="text-left">
@@ -273,7 +273,7 @@ const RoboticCaseStudies: React.FC = () => {
           <div className="bg-gray-50 px-8 py-4 flex items-center justify-between">
             <button
               onClick={prevCase}
-              className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-300"
+              className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-300 cursor-pointer"
             >
               <FaChevronLeft className="w-4 h-4 mr-2" />
               Previous Case
@@ -286,7 +286,7 @@ const RoboticCaseStudies: React.FC = () => {
                   onClick={() => setActiveCase(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     activeCase === index ? colorClasses.bg : "bg-gray-300"
-                  }`}
+                  } cursor-pointer`}
                   aria-label={`Select case study ${index + 1}`}
                 />
               ))}
@@ -294,7 +294,7 @@ const RoboticCaseStudies: React.FC = () => {
 
             <button
               onClick={nextCase}
-              className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-300"
+              className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-300 cursor-pointer"
             >
               Next Case
               <FaChevronRight className="w-4 h-4 ml-2" />

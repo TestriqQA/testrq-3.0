@@ -33,7 +33,7 @@ const BlogSearchHub: React.FC<{ searchQuery: string; setSearchQuery: (value: str
                         <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <button
                             type="submit"
-                            className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-lg text-white font-medium transition"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-lg text-white font-medium transition cursor-pointer"
                         >
                             Search
                         </button>
@@ -427,7 +427,7 @@ export const SearchResults: React.FC = () => {
                                         <button
                                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                                             disabled={currentPage === 1}
-                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-cyan-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-cyan-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                                         >
                                             Previous
                                         </button>
@@ -438,7 +438,7 @@ export const SearchResults: React.FC = () => {
                                                 className={`px-4 py-2 rounded-full font-semibold transition-colors ${currentPage === index + 1
                                                     ? "bg-cyan-500 text-white"
                                                     : "text-gray-600 hover:bg-cyan-100"
-                                                    }`}
+                                                    } cursor-pointer`}
                                             >
                                                 {index + 1}
                                             </button>
@@ -448,7 +448,7 @@ export const SearchResults: React.FC = () => {
                                                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                                             }
                                             disabled={currentPage === totalPages}
-                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-cyan-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-cyan-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                                         >
                                             Next
                                         </button>

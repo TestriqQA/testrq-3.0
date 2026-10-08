@@ -53,28 +53,28 @@ const ShareArticle: React.FC<ShareArticleProps> = ({ title }) => {
             <div className="flex items-center gap-3">
                 <button
                     onClick={shareOnLinkedin}
-                    className="p-2.5 text-gray-400 hover:text-white hover:bg-[#0a66c2] bg-gray-50 rounded-lg transition-all duration-300 group"
+                    className="p-2.5 text-gray-400 hover:text-white hover:bg-[#0a66c2] bg-gray-50 rounded-lg transition-all duration-300 group cursor-pointer"
                     title="Share on LinkedIn"
                 >
                     <FaLinkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </button>
                 <button
                     onClick={shareOnX}
-                    className="p-2.5 text-gray-400 hover:text-white hover:bg-black bg-gray-50 rounded-lg transition-all duration-300 group"
+                    className="p-2.5 text-gray-400 hover:text-white hover:bg-black bg-gray-50 rounded-lg transition-all duration-300 group cursor-pointer"
                     title="Share on X"
                 >
                     <FaSquareXTwitter className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </button>
                 <button
                     onClick={shareOnFacebook}
-                    className="p-2.5 text-gray-400 hover:text-white hover:bg-[#1877f2] bg-gray-50 rounded-lg transition-all duration-300 group"
+                    className="p-2.5 text-gray-400 hover:text-white hover:bg-[#1877f2] bg-gray-50 rounded-lg transition-all duration-300 group cursor-pointer"
                     title="Share on Facebook"
                 >
                     <FaFacebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </button>
                 <button
                     onClick={shareOnReddit}
-                    className="p-2.5 text-gray-400 hover:text-white hover:bg-[#ff4500] bg-gray-50 rounded-lg transition-all duration-300 group"
+                    className="p-2.5 text-gray-400 hover:text-white hover:bg-[#ff4500] bg-gray-50 rounded-lg transition-all duration-300 group cursor-pointer"
                     title="Share on Reddit"
                 >
                     <FaReddit className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -87,7 +87,7 @@ const ShareArticle: React.FC<ShareArticleProps> = ({ title }) => {
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${isCopied
                         ? "bg-green-50 text-green-600 ring-1 ring-green-500/20"
                         : "bg-gray-50 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                        }`}
+                        } cursor-pointer`}
                     title="Copy Link"
                 >
                     {isCopied ? (

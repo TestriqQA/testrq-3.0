@@ -195,10 +195,12 @@ const BankingCaseStudiesSection: React.FC = () => {
                   </div>
 
                   <div className="pt-6">
-                    <button className="w-full bg-gradient-to-r from-[theme(color.brand.blue)] to-sky-600 text-white px-6 py-4 rounded-2xl font-semibold hover:shadow-xl hover:scale-98 transition-all duration-300 flex items-center justify-center gap-2">
-                      Read Full Case Study
-                      <FaArrowRight className="w-4 h-4" />
-                    </button>
+                    <Link href="/case-studies" className="inline-block">
+                      <button className="w-full bg-gradient-to-r from-[theme(color.brand.blue)] to-sky-600 text-white px-6 py-4 rounded-2xl font-semibold hover:shadow-xl hover:scale-98 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+                        Read Full Case Study
+                        <FaArrowRight className="w-4 h-4" />
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -222,9 +224,7 @@ const BankingCaseStudiesSection: React.FC = () => {
                 Start Your Success Story
               </button>
             </Link>
-            <button className="bg-white cursor-pointer bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
-              Download Case Studies
-            </button>
+
           </div>
         </div>
       </div>

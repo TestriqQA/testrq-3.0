@@ -171,7 +171,7 @@ const MobileCaseStudies: React.FC = () => {
                 activeCase === index
                   ? "bg-[theme(color.brand.blue)] text-white shadow-lg"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              } cursor-pointer`}
             >
               {study.industry}
             </button>
@@ -281,10 +281,12 @@ const MobileCaseStudies: React.FC = () => {
 
               {/* CTA */}
               <div className="mt-8">
-                <button className="flex items-center gap-2 px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-brand-blue cursor-pointer hover:shadow-lg transition-colors">
-                  <span>View Full Case Study</span>
-                  <FaArrowRight className="w-4 h-4" />
-                </button>
+                <Link href="/case-studies" className="inline-block">
+                  <button className="flex items-center gap-2 px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-brand-blue cursor-pointer hover:shadow-lg transition-colors">
+                    <span>View Full Case Study</span>
+                    <FaArrowRight className="w-4 h-4" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -375,9 +377,7 @@ const MobileCaseStudies: React.FC = () => {
               >
                 Start Your Mobile Project
               </Link>
-              <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-brand-blue transition-colors">
-                Download Case Studies
-              </button>
+
             </div>
           </div>
         </div>

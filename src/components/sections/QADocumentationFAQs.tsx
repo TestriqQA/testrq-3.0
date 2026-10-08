@@ -71,7 +71,7 @@ const QADocumentationFAQs = () => {
               className={`px-4 py-2 rounded-lg text-sm font-medium border transition ${selectedCategory === category
                 ? 'bg-blue-600 text-white border-blue-600'
                 : 'bg-white text-gray-600 hover:bg-gray-100 border-gray-200'
-                }`}
+                } cursor-pointer`}
             >
               {category}
             </button>
@@ -87,7 +87,7 @@ const QADocumentationFAQs = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
               >
                 <div className="flex items-start space-x-4">
                   <span className="inline-flex items-center px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium">

@@ -164,7 +164,7 @@ const ExploratoryCaseStudies: React.FC = () => {
               className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeCase === index
                   ? "bg-green-600 text-white shadow-lg"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                } cursor-pointer`}
             >
               Case {study.id}
             </button>
@@ -289,7 +289,7 @@ const ExploratoryCaseStudies: React.FC = () => {
         <div className="flex justify-center items-center space-x-6">
           <button
             onClick={prevCase}
-            className="bg-white border-2 border-gray-300 text-gray-600 w-12 h-12 rounded-full flex items-center justify-center hover:border-green-600 hover:text-green-600 transition-all duration-300"
+            className="bg-white border-2 border-gray-300 text-gray-600 w-12 h-12 rounded-full flex items-center justify-center hover:border-green-600 hover:text-green-600 transition-all duration-300 cursor-pointer"
             aria-label="Previous Case Study"
           >
             <FaChevronLeft />
@@ -304,7 +304,7 @@ const ExploratoryCaseStudies: React.FC = () => {
 
           <button
             onClick={nextCase}
-            className="bg-white border-2 border-gray-300 text-gray-600 w-12 h-12 rounded-full flex items-center justify-center hover:border-green-600 hover:text-green-600 transition-all duration-300"
+            className="bg-white border-2 border-gray-300 text-gray-600 w-12 h-12 rounded-full flex items-center justify-center hover:border-green-600 hover:text-green-600 transition-all duration-300 cursor-pointer"
             aria-label="Next Case Study"
           >
             <FaChevronRight />

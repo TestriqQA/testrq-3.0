@@ -176,8 +176,8 @@ const CareersPage = async () => {
       <StructuredData data={createBreadcrumbSchema(breadcrumbItems)} />
       <main className="min-h-screen bg-gray-50">
         <CareersHeroSection />
-        <CareersValuesSection />
         <CareersOpenPositions jobOpenings={jobOpenings} />
+        <CareersValuesSection />
         <CareersBenefitsSection />
         {/* <CareersCultureSection /> */}
         <CareersApplicationProcessSection />

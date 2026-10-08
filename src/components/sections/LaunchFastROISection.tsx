@@ -1,6 +1,7 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import React from "react";
 import { FaRocket, FaDollarSign, FaClock, FaChartLine } from "react-icons/fa";
+import Link from "next/link";
 
 const LaunchFastROISection: React.FC = () => {
   const roiMetrics = [
@@ -67,9 +68,11 @@ const LaunchFastROISection: React.FC = () => {
           <p className="text-gray-600 mb-6">
             Calculate your potential savings and see how LaunchFast QA can accelerate your success.
           </p>
-          <button className="bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
-            Calculate Your ROI
-          </button>
+          <Link href="/roi-calculator" className="inline-block">
+            <button className="bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer">
+              Calculate Your ROI
+            </button>
+          </Link>
         </div>
       </div>
     </section>

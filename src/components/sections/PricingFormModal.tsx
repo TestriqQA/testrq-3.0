@@ -210,7 +210,7 @@ const PricingFormModal: React.FC<PricingFormModalProps> = ({
                         <div className={`bg-gradient-to-r ${gradient} px-6 py-5 relative`}>
                             <button
                                 onClick={onClose}
-                                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+                                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors cursor-pointer"
                                 aria-label="Close"
                             >
                                 <FaTimes className="w-3.5 h-3.5" />
@@ -246,7 +246,7 @@ const PricingFormModal: React.FC<PricingFormModalProps> = ({
                                     </p>
                                     <button
                                         onClick={onClose}
-                                        className={`mt-8 px-8 py-3 ${bg} text-white rounded-xl font-semibold hover:opacity-90 transition-opacity`}
+                                        className={`mt-8 px-8 py-3 ${bg} text-white rounded-xl font-semibold hover:opacity-90 transition-opacity cursor-pointer`}
                                     >
                                         Close
                                     </button>
@@ -386,7 +386,7 @@ const PricingFormModal: React.FC<PricingFormModalProps> = ({
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r ${gradient} text-white py-3 px-6 rounded-xl font-bold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed`}
+                                        className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r ${gradient} text-white py-3 px-6 rounded-xl font-bold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer`}
                                     >
                                         {isSubmitting ? (
                                             <>

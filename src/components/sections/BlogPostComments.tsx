@@ -112,18 +112,18 @@ const BlogPostComments: React.FC<BlogPostCommentsProps> = ({ }) => {
           </p>
 
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 text-gray-500 hover:text-green-600 transition-colors">
+            <button className="flex items-center gap-2 text-gray-500 hover:text-green-600 transition-colors cursor-pointer">
               <FaThumbsUp className="w-4 h-4" />
               <span>{comment.likes}</span>
             </button>
 
-            <button className="flex items-center gap-2 text-gray-500 hover:text-red-600 transition-colors">
+            <button className="flex items-center gap-2 text-gray-500 hover:text-red-600 transition-colors cursor-pointer">
               <FaThumbsDown className="w-4 h-4" />
               <span>{comment.dislikes}</span>
             </button>
 
             {!isReply && (
-              <button
+              <button className="cursor-pointer"
                 onClick={() => setReplyTo(replyTo === comment.id ? null : comment.id)}
               >
                 <FaReply className="w-4 h-4" />
@@ -131,7 +131,7 @@ const BlogPostComments: React.FC<BlogPostCommentsProps> = ({ }) => {
               </button>
             )}
 
-            <button className="flex items-center gap-2 text-gray-500 hover:text-red-600 transition-colors">
+            <button className="flex items-center gap-2 text-gray-500 hover:text-red-600 transition-colors cursor-pointer">
               <FaFlag className="w-4 h-4" />
               <span>Report</span>
             </button>
@@ -158,14 +158,14 @@ const BlogPostComments: React.FC<BlogPostCommentsProps> = ({ }) => {
               <div className="flex items-center gap-3 mt-3">
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
                 >
                   Post Reply
                 </button>
                 <button
                   type="button"
                   onClick={() => setReplyTo(null)}
-                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -225,13 +225,13 @@ const BlogPostComments: React.FC<BlogPostCommentsProps> = ({ }) => {
               <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   Preview
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
                 >
                   Post Comment
                 </button>
@@ -248,7 +248,7 @@ const BlogPostComments: React.FC<BlogPostCommentsProps> = ({ }) => {
       </div>
 
       <div className="text-center mt-8">
-        <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
           Load More Comments
         </button>
       </div>

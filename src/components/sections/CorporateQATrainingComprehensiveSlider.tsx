@@ -19,7 +19,7 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
   const trainingModules = [
     {
       id: 0,
-      // Plain string title: it renders inside the tab <button>, and a <Link> nested
+      // Plain string title: it renders inside the tab <button className="cursor-pointer">, and a <Link> nested
       // in a button is invalid HTML that also left the button unnamed on mobile
       // (button-name / agent-accessibility-tree failures). The internal link to
       // /manual-testing-services is preserved via titleHref, rendered around the
@@ -149,7 +149,7 @@ const CorporateQATrainingComprehensiveSlider: React.FC = () => {
                 className={`flex items-center space-x-3 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === index
                   ? "bg-brand-blue text-white shadow-lg"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                  } cursor-pointer`}
               >
                 {module.icon}
                 <span className="hidden sm:inline">{module.title}</span>

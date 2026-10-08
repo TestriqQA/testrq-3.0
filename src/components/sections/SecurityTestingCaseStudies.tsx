@@ -196,7 +196,7 @@ const SecurityTestingCaseStudies: React.FC = () => {
         <div className="flex justify-center items-center space-x-4 mb-12">
           <button
             onClick={prevStudy}
-            className="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition-colors duration-300"
+            className="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition-colors duration-300 cursor-pointer"
             aria-label="Left navigation button"
           >
             <FaChevronLeft className="text-gray-600" />
@@ -210,14 +210,14 @@ const SecurityTestingCaseStudies: React.FC = () => {
                 aria-label="Navigation dots"
                 className={`w-3 h-3 rounded-full transition-colors duration-300 ${
                   index === currentStudy ? "bg-brand-blue" : "bg-gray-300"
-                }`}
+                } cursor-pointer`}
               />
             ))}
           </div>
 
           <button
             onClick={nextStudy}
-            className="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition-colors duration-300"
+            className="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition-colors duration-300 cursor-pointer"
             aria-label="Right navigation button"
           >
             <FaChevronRight className="text-gray-600" />

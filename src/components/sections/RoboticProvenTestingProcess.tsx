@@ -171,7 +171,7 @@ const RoboticProvenTestingProcess: React.FC = () => {
                     className={`w-12 h-12 rounded-full border-4 border-white shadow-lg flex items-center justify-center transition-all duration-300 ${activeStep === index
                       ? getColorClasses(step.color)
                       : "bg-gray-300 text-gray-600"
-                      }`}
+                      } cursor-pointer`}
                     aria-label={`Step ${step.id}: ${step.title}`}
                   >
                     <span className="font-bold text-sm">{step.id}</span>
@@ -263,7 +263,7 @@ const RoboticProvenTestingProcess: React.FC = () => {
                                 }}
                                 className={`px-4 py-2 rounded-lg min-h-[44px] min-w-[44px] text-sm font-semibold transition-colors duration-300 ${getColorClasses(
                                   step.color
-                                )} hover:opacity-90`}
+                                )} hover:opacity-90 cursor-pointer`}
                               >
                                 {processSteps[index + 1].title}
                               </button>
@@ -280,7 +280,7 @@ const RoboticProvenTestingProcess: React.FC = () => {
                                 }}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300 ${getColorClasses(
                                   step.color
-                                )} hover:opacity-90`}
+                                )} hover:opacity-90 cursor-pointer`}
                               >
                                 Restart from Step 1
                               </button>

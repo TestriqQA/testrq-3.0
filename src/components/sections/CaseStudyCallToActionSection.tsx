@@ -79,9 +79,11 @@ const CaseStudyCallToActionSection: React.FC = () => {
               <p className="text-blue-100 mb-4">
                 Begin your testing journey immediately
               </p>
-              <button className="text-white font-semibold hover:text-blue-200 transition-colors">
-                Get Free Quote
-              </button>
+              <Link href="/contact-us" className="inline-block">
+                <button className="text-white font-semibold hover:text-blue-200 transition-colors cursor-pointer">
+                  Get Free Quote
+                </button>
+              </Link>
             </div>
           </div>
 

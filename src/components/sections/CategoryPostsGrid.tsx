@@ -216,7 +216,7 @@ const CategoryPostsGrid: React.FC<CategoryPostsGridProps> = ({ category, posts }
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               Previous
             </button>
@@ -228,7 +228,7 @@ const CategoryPostsGrid: React.FC<CategoryPostsGridProps> = ({ category, posts }
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentPage === index + 1
                   ? "bg-[theme(color.brand.blue)] text-white"
                   : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                  } cursor-pointer`}
               >
                 {index + 1}
               </button>
@@ -237,7 +237,7 @@ const CategoryPostsGrid: React.FC<CategoryPostsGridProps> = ({ category, posts }
             <button
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               Next
             </button>
@@ -258,7 +258,7 @@ const CategoryPostsGrid: React.FC<CategoryPostsGridProps> = ({ category, posts }
               setFilterBy("all");
               setSortBy("latest");
             }}
-            className="px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
+            className="px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors cursor-pointer"
           >
             Reset Filters
           </button>

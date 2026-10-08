@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FaCheckCircle, FaUsers, FaArrowRight, FaBriefcase, FaLightbulb } from "react-icons/fa";
+import { FaCheckCircle, FaUsers, FaBriefcase, FaLightbulb } from "react-icons/fa";
 
 const UATWhatIsSection: React.FC = () => {
     const characteristics = [
@@ -80,10 +80,7 @@ const UATWhatIsSection: React.FC = () => {
                         </div>
 
                         <div className="mt-8 pt-8 border-t border-gray-100">
-                            <button className="w-full flex items-center justify-between text-brand-blue font-bold group cursor-pointer">
-                                <span>Download UAT Checklist</span>
-                                <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-                            </button>
+
                         </div>
                     </div>
                 </div>

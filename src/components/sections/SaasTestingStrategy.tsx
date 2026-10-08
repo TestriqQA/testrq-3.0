@@ -144,7 +144,7 @@ const SaasTestingStrategy: React.FC = () => {
                             <div key={index} className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition-all">
                                 <button
                                     onClick={() => setOpenStep(openStep === index ? null : index)}
-                                    className="w-full px-8 py-5 text-left flex items-center justify-between hover:bg-gray-100 transition-colors"
+                                    className="w-full px-8 py-5 text-left flex items-center justify-between hover:bg-gray-100 transition-colors cursor-pointer"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center font-bold text-sm">

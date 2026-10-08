@@ -132,7 +132,7 @@ const DatingAppChooseYourPlan = () => {
                   plan.popular
                     ? "bg-brand-blue text-white hover:bg-[#1e90d4]"
                     : "bg-gray-900 text-white hover:bg-gray-800"
-                } hover:scale-102 transition-transform active:scale-98`}
+                } hover:scale-102 transition-transform active:scale-98 cursor-pointer`}
     >
                 Get Started
               </button>

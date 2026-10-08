@@ -119,7 +119,7 @@ const ISO42001ComprehensiveSlider: React.FC = () => {
                   activeTab === index
                     ? `bg-gradient-to-r ${service.gradientColor} text-white shadow-2xl border-transparent scale-105`
                     : "bg-gray-50 text-gray-700 hover:bg-gray-100 border-gray-100"
-                }`}
+                } cursor-pointer`}
               >
                 <div
                   className={`p-3 rounded-xl ${
@@ -200,7 +200,7 @@ const ISO42001ComprehensiveSlider: React.FC = () => {
                   onClick={() =>
                     setActiveTab((prev) => (prev + 1) % services.length)
                   }
-                  className="flex items-center justify-center gap-3 px-10 py-5 bg-white text-gray-700 font-black rounded-2xl hover:bg-gray-100 transition-all border border-gray-200"
+                  className="flex items-center justify-center gap-3 px-10 py-5 bg-white text-gray-700 font-black rounded-2xl hover:bg-gray-100 transition-all border border-gray-200 cursor-pointer"
                 >
                   Explore Next
                 </button>

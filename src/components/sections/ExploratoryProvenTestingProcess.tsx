@@ -131,7 +131,7 @@ const ExploratoryProvenTestingProcess: React.FC = () => {
               className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${activeStep === step.id
                 ? "bg-green-600 text-white shadow-lg"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                } cursor-pointer`}
             >
               <span className="text-2xl">{step.id}</span>
               <span className="hidden sm:inline">{step.title}</span>

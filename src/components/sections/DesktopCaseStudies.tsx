@@ -170,7 +170,7 @@ const DesktopCaseStudies: React.FC = () => {
                 activeCase === index
                   ? "bg-[theme(color.brand.blue)] text-white shadow-lg"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              } cursor-pointer`}
             >
               {study.industry}
             </button>
@@ -280,10 +280,12 @@ const DesktopCaseStudies: React.FC = () => {
 
               {/* CTA */}
               <div className="mt-8">
-                <button className="flex items-center gap-2 px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-brand-blue hover:shadow-lg cursor-pointer transition-colors">
-                  <span>View Full Case Study</span>
-                  <FaArrowRight className="w-4 h-4" />
-                </button>
+                <Link href="/case-studies" className="inline-block">
+                  <button className="flex items-center gap-2 px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-brand-blue hover:shadow-lg cursor-pointer transition-colors">
+                    <span>View Full Case Study</span>
+                    <FaArrowRight className="w-4 h-4" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

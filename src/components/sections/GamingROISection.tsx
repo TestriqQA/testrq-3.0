@@ -488,7 +488,7 @@ const GamingROISection: React.FC = () => {
               your gaming project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center text-[theme(color.brand.blue)]">
-              <button className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 hover:text-sky-700 transition-all">
+              <button className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 hover:text-sky-700 transition-all cursor-pointer">
                 Get ROI Analysis
               </button>
               <Link href="/roi-calculator">

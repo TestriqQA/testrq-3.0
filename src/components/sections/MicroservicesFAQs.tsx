@@ -79,7 +79,7 @@ const MicroservicesFAQs: React.FC = () => {
                             className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                         >
                             <button
-                                className="w-full px-6 py-5 text-left bg-white hover:bg-gray-50 transition-colors duration-300 flex justify-between items-center"
+                                className="w-full px-6 py-5 text-left bg-white hover:bg-gray-50 transition-colors duration-300 flex justify-between items-center cursor-pointer"
                                 onClick={() => toggleFAQ(index)}
                             >
                                 <span className="font-bold text-gray-900 pr-8">

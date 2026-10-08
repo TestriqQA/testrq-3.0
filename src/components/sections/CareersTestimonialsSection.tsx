@@ -252,7 +252,7 @@ const CareersTestimonialsSection: React.FC = () => {
           <div className="flex items-center justify-between mt-12">
             <button
               onClick={prevTestimonial}
-              className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
             >
               <FaChevronLeft className="w-4 h-4" />
               <span className="hidden sm:inline">Previous</span>
@@ -267,14 +267,14 @@ const CareersTestimonialsSection: React.FC = () => {
                     index === currentTestimonial
                       ? "bg-[theme(color.brand.blue)]"
                       : "bg-gray-300 hover:bg-gray-400"
-                  }`}
+                  } cursor-pointer`}
                 />
               ))}
             </div>
 
             <button
               onClick={nextTestimonial}
-              className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
             >
               <span className="hidden sm:inline">Next</span>
               <FaChevronRight className="w-4 h-4" />

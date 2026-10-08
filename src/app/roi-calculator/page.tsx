@@ -45,7 +45,7 @@ const ROICalculatorPage: React.FC = () => {
               </p>
               <button
                 onClick={closeLightbox}
-                className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300"
+                className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 cursor-pointer"
               >
                 Close
               </button>
@@ -390,7 +390,7 @@ const ROICalculatorPage: React.FC = () => {
               />
               <button
                 type="submit"
-                className="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-all duration-300"
+                className="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-all duration-300 cursor-pointer"
               >
                 Notify Me When Available
               </button>

@@ -311,7 +311,7 @@ const BlogHeroSection: React.FC = () => {
                   />
                   <button
                     type="submit"
-                    className="m-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 whitespace-nowrap shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50"
+                    className="m-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 whitespace-nowrap shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 cursor-pointer"
                   >
                     Search
                   </button>

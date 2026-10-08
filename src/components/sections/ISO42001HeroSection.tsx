@@ -78,7 +78,7 @@ const ISO42001HeroSection: React.FC = () => {
                 </button>
               </Link>
               <Link href="/pricing">
-                <button className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-emerald-50 transition-colors duration-300 flex items-center justify-center">
+                <button className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-emerald-50 transition-colors duration-300 flex items-center justify-center cursor-pointer">
                   View Pricing
                 </button>
               </Link>
