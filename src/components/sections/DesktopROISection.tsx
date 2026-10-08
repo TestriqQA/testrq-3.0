@@ -254,9 +254,11 @@ const DesktopROISection: React.FC = () => {
               <div className="text-gray-600 mb-4">
                 Return on Investment in Year 1
               </div>
-              <button className="w-full px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors">
-                Calculate Your ROI
-              </button>
+              <Link href="/roi-calculator" className="inline-block">
+                <button className="w-full px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors cursor-pointer">
+                  Calculate Your ROI
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -272,7 +274,7 @@ const DesktopROISection: React.FC = () => {
               and achieved significant cost savings with Testriq.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button onClick={scrollToROICalculator} className="px-8 py-3 bg-white text-[theme(color.brand.blue)] font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+              <button onClick={scrollToROICalculator} className="px-8 py-3 bg-white text-[theme(color.brand.blue)] font-semibold rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                 Get ROI Analysis
               </button>
               <Link href="/contact-us" className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[theme(color.brand.blue)] transition-colors">

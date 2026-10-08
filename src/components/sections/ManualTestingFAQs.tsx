@@ -69,7 +69,7 @@ const ManualTestingFAQs: React.FC = () => {
               <button
                 onClick={() => toggleFAQ(index)}
                 aria-label="faq_question"
-                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-300"
+                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-300 cursor-pointer"
               >
                 <h3 className="text-lg font-semibold text-gray-900 pr-4">
                   {faq.question}

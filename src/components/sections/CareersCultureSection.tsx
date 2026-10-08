@@ -1,6 +1,7 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 
 import React from "react";
+import Link from "next/link";
 import {
   FaUsers,
   FaLightbulb,
@@ -247,10 +248,7 @@ const CareersCultureSection: React.FC = () => {
           </div>
 
           <div className="text-center mt-8">
-            <button className="inline-flex items-center gap-2 bg-[theme(color.brand.blue)] text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300">
-              <FaCamera className="w-4 h-4" />
-              View More Photos
-            </button>
+
           </div>
         </div>
 
@@ -331,9 +329,11 @@ const CareersCultureSection: React.FC = () => {
 
           {/* CTA Button */}
           <div className="text-center mt-12">
-            <button className="bg-gray-100 text-[theme(color.brand.blue)] px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-blue-100 transition-colors duration-300">
-              Experience Our Culture
-            </button>
+            <Link href="/careers" className="inline-block">
+              <button className="bg-gray-100 text-[theme(color.brand.blue)] px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-blue-100 transition-colors duration-300 cursor-pointer">
+                Experience Our Culture
+              </button>
+            </Link>
           </div>
         </div>
       </div>

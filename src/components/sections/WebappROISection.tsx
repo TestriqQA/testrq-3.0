@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // Data constants
 const roiBenefits = [
   {
@@ -93,9 +95,11 @@ export default function WebappROISection() {
           </div>
 
           <div className="flex justify-center">
-            <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold px-5 py-2 rounded-md transition">
-              Calculate Your ROI
-            </button>
+            <Link href="/roi-calculator" className="inline-block">
+              <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold px-5 py-2 rounded-md transition cursor-pointer">
+                Calculate Your ROI
+              </button>
+            </Link>
           </div>
         </div>
       </div>

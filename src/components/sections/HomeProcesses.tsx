@@ -107,7 +107,7 @@ const HomeProcesses = () => {
           </div>
         </div>
         <Link title="Get Started" href="/contact-us">
-          <button className="whitespace-nowrap bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-xl font-bold hover:bg-sky-600 transition-all hover:scale-105">
+          <button className="whitespace-nowrap bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-xl font-bold hover:bg-sky-600 transition-all hover:scale-105 cursor-pointer">
             Optimize My QA
           </button>
         </Link>

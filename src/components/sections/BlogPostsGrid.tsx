@@ -470,7 +470,7 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                     {page > 1 ? (
                       <button
                         onClick={() => handlePageChange(page - 1)}
-                        className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300"
+                        className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300 cursor-pointer"
                         disabled={isLoading}
                         aria-label={`Go to previous page, page ${page - 1}`}
                       >
@@ -512,7 +512,7 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                           className={`relative w-11 h-11 flex items-center justify-center rounded-xl font-semibold transition-all duration-300 ${isActive
                             ? "text-white"
                             : "text-slate-400 hover:bg-slate-800/50 hover:text-white"
-                            }`}
+                            } cursor-pointer`}
                         >
                           {isActive && (
                             <>
@@ -528,7 +528,7 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                     {page < totalPagesState ? (
                       <button
                         onClick={() => handlePageChange(page + 1)}
-                        className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300"
+                        className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300 cursor-pointer"
                         disabled={isLoading}
                         aria-label={`Go to next page, page ${page + 1}`}
                       >

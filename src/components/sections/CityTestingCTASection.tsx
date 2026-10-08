@@ -30,7 +30,7 @@ const CityTestingCTASection: React.FC<CityTestingCTASectionProps> = ({ cityData 
             {cityData.ctaContent.description && cityData.ctaContent.description.length > 250 && (
               <button 
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="text-blue-300 font-medium mt-2 hover:text-white hover:underline focus:outline-none inline-flex items-center text-sm transition-colors"
+                className="text-blue-300 font-medium mt-2 hover:text-white hover:underline focus:outline-none inline-flex items-center text-sm transition-colors cursor-pointer"
               >
                 {isExpanded ? 'Show Less' : 'Read More'}
               </button>

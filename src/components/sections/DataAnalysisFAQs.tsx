@@ -79,7 +79,7 @@ const DataAnalysisFAQs = () => {
                     <div key={faqIndex} className="p-6">
                       <button
                         onClick={() => toggleFAQ(categoryIndex, faqIndex)}
-                        className="w-full flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-lg p-2"
+                        className="w-full flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-lg p-2 cursor-pointer"
                       >
                         <h4 className="text-lg font-semibold text-gray-900 pr-4">
                           {faq.question}

@@ -331,7 +331,7 @@ const QADocumentationComprehensiveSlider = () => {
                 className={`flex items-center px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-200 ${isActive
                   ? `${tabColors.bg} ${tabColors.text} ${tabColors.border} border-2 shadow-md`
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent"
-                  }`}
+                  } cursor-pointer`}
               >
                 <IconComponent className="mr-2 text-sm" />
                 <span className="text-sm">{doc.title}</span>

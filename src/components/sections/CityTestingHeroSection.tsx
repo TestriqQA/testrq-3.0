@@ -78,7 +78,7 @@ const CityTestingHeroSection: React.FC<CityTestingHeroSectionProps> = ({ cityDat
               {cityData.heroContent.description && cityData.heroContent.description.length > 200 && (
                 <button 
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="text-brand-blue font-medium mt-2 hover:underline focus:outline-none flex items-center text-sm"
+                  className="text-brand-blue font-medium mt-2 hover:underline focus:outline-none flex items-center text-sm cursor-pointer"
                 >
                   {isExpanded ? 'Show Less' : 'Read More'}
                 </button>

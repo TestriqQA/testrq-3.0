@@ -254,7 +254,7 @@ export default function CardSlider() {
                                     </div>
 
                                 </div>
-                                <button className={`mt-4 w-full bg-${card.colordark} min-h-[44px] min-w-[44px] text-white py-2 rounded-lg hover:bg-${cards[activeCard].colordark.replace('500', '600')}`}>
+                                <button className={`mt-4 w-full bg-${card.colordark} min-h-[44px] min-w-[44px] text-white py-2 rounded-lg hover:bg-${cards[activeCard].colordark.replace('500', '600')} cursor-pointer`}>
                                     Learn More About {card.title}
                                 </button>
                             </div>

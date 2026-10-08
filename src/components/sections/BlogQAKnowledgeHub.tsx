@@ -313,7 +313,7 @@ const QAKnowledgeHub: React.FC<QAKnowledgeHubProps> = ({ trendingPosts = [] }) =
                                 {resources.map((resource, idx) => (
                                     <button
                                         key={idx}
-                                        className="w-full flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800/80 transition-all group"
+                                        className="w-full flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800/80 transition-all group cursor-pointer"
                                     >
                                         <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-violet-600 rounded-lg flex items-center justify-center text-white">
                                             {resource.icon}

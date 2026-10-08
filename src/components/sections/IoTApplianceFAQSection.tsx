@@ -224,7 +224,7 @@ const IoTFAQSection: React.FC = () => {
                       >
                         <button
                           onClick={() => toggleFAQ(categoryIndex, faqIndex)}
-                          className="w-full p-6 text-left hover:bg-gray-50 transition-colors flex items-center justify-between"
+                          className="w-full p-6 text-left hover:bg-gray-50 transition-colors flex items-center justify-between cursor-pointer"
                         >
                           <h4 className="text-lg font-semibold text-gray-900 pr-4">
                             {faq.question}

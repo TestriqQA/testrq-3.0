@@ -65,7 +65,7 @@ const QAOutsourcingFAQs: React.FC = () => {
                 className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition-all"
               >
                 <button
-                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors cursor-pointer"
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   aria-expanded={openIndex === index}
                 >

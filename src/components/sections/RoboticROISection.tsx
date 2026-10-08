@@ -1,6 +1,7 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import React from "react";
 import { FaDollarSign, FaClock, FaShieldAlt, FaChartLine } from "react-icons/fa";
+import Link from "next/link";
 
 const RoboticROISection: React.FC = () => {
   const roiMetrics = [
@@ -81,9 +82,11 @@ const RoboticROISection: React.FC = () => {
             Discover how much you can save and gain with our comprehensive robotic testing services.
             Get a personalized ROI analysis for your robotic project.
           </p>
-          <button className="bg-brand-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-brand-blue transition-colors duration-300 shadow-lg">
-            Get ROI Analysis
-          </button>
+          <Link href="/roi-calculator" className="inline-block">
+            <button className="bg-brand-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-brand-blue transition-colors duration-300 shadow-lg cursor-pointer">
+              Get ROI Analysis
+            </button>
+          </Link>
         </div>
       </div>
     </section>

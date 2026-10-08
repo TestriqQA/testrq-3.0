@@ -837,6 +837,11 @@ export interface CaseStudy {
     duration: string;
     description: string;
     image: string;
+    /**
+     * Optional editor-uploaded gallery (Sanity `gallery` field, max 5).
+     * Empty array when nothing was uploaded — the UI renders no row at all.
+     */
+    gallery: { url: string; alt: string; width?: number; height?: number }[];
     metadata: {
         title: string;
         description: string;
@@ -954,6 +959,21 @@ export function adaptSanityCaseStudy(raw: any): CaseStudy {
         duration: raw.duration || '',
         description: raw.description || '',
         image: raw.image || '',
+        // Capped at 5 here as well as in the Studio validation: a document
+        // saved before that rule existed could still carry more. Entries
+        // without a resolved asset URL are dropped rather than rendered broken.
+        gallery: Array.isArray(raw.gallery)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ? (raw.gallery as any[])
+                .filter((g) => g && typeof g.url === 'string' && g.url.length > 0)
+                .slice(0, 5)
+                .map((g) => ({
+                    url: g.url as string,
+                    alt: typeof g.alt === 'string' ? g.alt : '',
+                    width: typeof g.width === 'number' ? g.width : undefined,
+                    height: typeof g.height === 'number' ? g.height : undefined,
+                }))
+            : [],
         // F-60.1 cleanup — legacy `seoMetadata` fallback paths dropped now
         // that all case studies have been migrated to `seo` (seoFields shape)
         // + sibling `openGraph` / `twitter` fields. Migration verified.

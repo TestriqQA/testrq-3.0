@@ -628,7 +628,7 @@ const HealthcareContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-98 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3"
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-98 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>

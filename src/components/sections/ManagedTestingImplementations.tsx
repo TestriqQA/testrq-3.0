@@ -164,7 +164,7 @@ const ManagedTestingImplementations: React.FC = () => {
                                     className={`flex-1 min-w-0 px-3 py-3 text-xs font-medium transition-all duration-300 ${activeTab === index
                                             ? `${colors.bg} ${colors.text} border-b-2 border-current`
                                             : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-                                        }`}
+                                        } cursor-pointer`}
                                 >
                                     <div className="flex flex-col items-center gap-1">
                                         <span className={activeTab === index ? colors.text : "text-gray-400"}>{impl.icon}</span>
@@ -195,14 +195,14 @@ const ManagedTestingImplementations: React.FC = () => {
                                                 <button
                                                     onClick={() => setActiveTab(activeTab === 0 ? implementations.length - 1 : activeTab - 1)}
                                                     aria-label="Previous implementation"
-                                                    className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                                                    className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
                                                 >
                                                     <FaArrowLeft className="text-gray-500 text-sm" />
                                                 </button>
                                                 <button
                                                     onClick={() => setActiveTab(activeTab === implementations.length - 1 ? 0 : activeTab + 1)}
                                                     aria-label="Next implementation"
-                                                    className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                                                    className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
                                                 >
                                                     <FaArrowRight className="text-gray-500 text-sm" />
                                                 </button>

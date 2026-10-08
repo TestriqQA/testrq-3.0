@@ -235,7 +235,7 @@ const ResourceSidebar = ({ relatedPosts: propRelatedPosts, categories: propCateg
                     ].map((resource, index) => (
                         <button
                             key={index}
-                            className="group w-full flex items-center justify-between p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all"
+                            className="group w-full flex items-center justify-between p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer"
                         >
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">

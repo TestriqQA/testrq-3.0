@@ -83,7 +83,7 @@ const FantasyAppFAQs = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[#25A8E0] focus:ring-opacity-50 rounded-xl"
+                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[#25A8E0] focus:ring-opacity-50 rounded-xl cursor-pointer"
               >
                 <h3 className="text-lg font-semibold text-gray-900 pr-4">
                   {faq.question}

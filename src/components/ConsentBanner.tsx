@@ -16,7 +16,7 @@ import { setConsent } from "@/lib/consent/consentStore";
  *
  * This is a non-blocking banner, not a modal: it does not trap focus or overlay the
  * page, so it cannot break keyboard navigation or hurt INP. Both actions are native
- * <button>s with comfortable hit areas (target-size compliant).
+ * <button className="cursor-pointer">s with comfortable hit areas (target-size compliant).
  */
 export default function ConsentBanner() {
   const consent = useConsent();
@@ -50,14 +50,14 @@ export default function ConsentBanner() {
           <button
             type="button"
             onClick={() => setConsent("declined")}
-            className="rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+            className="rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50 cursor-pointer"
           >
             Decline
           </button>
           <button
             type="button"
             onClick={() => setConsent("accepted")}
-            className="rounded-lg bg-[theme(color.brand.blue)] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:brightness-110"
+            className="rounded-lg bg-[theme(color.brand.blue)] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:brightness-110 cursor-pointer"
           >
             Accept
           </button>

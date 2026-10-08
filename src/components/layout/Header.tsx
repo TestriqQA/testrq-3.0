@@ -198,8 +198,16 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-[60] w-full">
-      {/* Top Utility Contact Bar - Premium Design (Full Space Utilized) */}
-      <div className="bg-gradient-to-r from-[#030917] via-[#0a1936] to-[#030917] text-white px-4 sm:px-6 md:px-16 py-2.5 flex flex-col lg:flex-row justify-between items-center text-[12px] sm:text-[13px] border-b border-white/10 relative overflow-hidden z-[65] gap-3 lg:gap-0">
+      {/* Top Utility Contact Bar — desktop only.
+          Hidden below lg: stacked, it was 124px of a 812px phone viewport,
+          permanently, because this wrapper is sticky. The three contacts it
+          carries (email, phone, WhatsApp) are also in <FloatingContact>, so
+          on mobile this was mostly duplication.
+          NOTE: FloatingContact only appears after 300px of scroll, so mobile
+          visitors now have no visible contact above that point — the mobile
+          menu's "Talk to Expert" is the only route. Lower that threshold in
+          FloatingContact.tsx if that gap matters. */}
+      <div className="bg-gradient-to-r from-[#030917] via-[#0a1936] to-[#030917] text-white px-4 sm:px-6 md:px-16 py-1 hidden lg:flex justify-between items-center text-[12px] sm:text-[13px] border-b border-white/10 relative overflow-hidden z-[65]">
 
         {/* Background ambient glows */}
         <div className="absolute -left-20 -top-20 w-60 h-60 bg-[theme(color.brand.blue)] rounded-full blur-[90px] opacity-20 pointer-events-none"></div>
@@ -217,21 +225,13 @@ const Navbar = () => {
 
           <div className="w-[1px] h-4 bg-white/10 hidden sm:block"></div>
 
-          <div className="flex items-center gap-2 text-gray-400 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+          {/* Whole pill highlighted, not just the "24/7" token — the phrase
+              reads as one claim and splitting the emphasis made it look like a
+              styling accident rather than a deliberate highlight. */}
+          <div className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/5">
             <FaClock className="text-[theme(color.brand.blue)] text-[11px]" />
-            <span className="tracking-wide text-[11px] sm:text-[12px]">24/7 QA Support Available</span>
-          </div>
-        </div>
-
-        {/* CENTER: Trust Badge / Announcement */}
-        <div className="hidden xl:flex items-center justify-center z-10 w-auto">
-          <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-1.5 rounded-full backdrop-blur-sm hover:bg-white/10 transition-colors cursor-default shadow-sm">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500 shadow-[0_0_5px_#3b82f6]"></span>
-            </span>
-            <span className="font-medium tracking-wide text-gray-300 text-[12.5px]">
-              ISTQB® Certified Testers <span className="text-white/20 mx-2">|</span> <span className="text-white font-semibold">16+ Years</span> of Excellence
+            <span className="tracking-wide text-[11px] sm:text-[12px] font-semibold text-white">
+              24/7 QA Support Available
             </span>
           </div>
         </div>
@@ -344,7 +344,7 @@ const Navbar = () => {
                                 className={`w-full text-left px-4 py-3 rounded-lg text-[15px] font-semibold transition-all duration-200 flex items-center justify-between group ${isActive
                                     ? "bg-white text-[theme(color.brand.blue)] shadow-sm border border-gray-100"
                                     : "text-gray-600 hover:bg-white hover:text-gray-900 border border-transparent"
-                                  }`}
+                                  } cursor-pointer`}
                               >
                                 {column.heading}
                                 <FaArrowRight className={`w-3 h-3 transition-all duration-200 ${isActive ? 'translate-x-0 opacity-100 text-[theme(color.brand.blue)]' : '-translate-x-2 opacity-0 text-gray-400 group-hover:opacity-50 group-hover:-translate-x-1'}`} />
@@ -473,7 +473,7 @@ const Navbar = () => {
           {/* Tablet Menu (simplified horizontal) */}
           <div className="hidden md:flex xl:hidden items-center">
             <button
-              className="text-gray-700 text-xl p-2"
+              className="text-gray-700 text-xl p-2 cursor-pointer"
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
@@ -497,7 +497,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700 text-xl"
+            className="md:hidden text-gray-700 text-xl cursor-pointer"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -570,7 +570,7 @@ const Navbar = () => {
                                     toggleMobileMegaCategory(colIdx);
                                   }}
                                   className={`w-full text-left px-4 py-3 flex items-center justify-between font-semibold text-sm transition-colors ${isActive ? "text-[theme(color.brand.blue)] bg-blue-50/50" : "text-gray-700 hover:bg-gray-100"
-                                    }`}
+                                    } cursor-pointer`}
                                 >
                                   {column.heading}
                                   <MdKeyboardArrowDown className={`w-4 h-4 transition-transform duration-200 ${isActive ? 'rotate-180 text-[theme(color.brand.blue)]' : 'text-gray-400'}`} />
@@ -639,7 +639,7 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 onClick={() => handleLinkClick("", "")}
               >
-                <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center gap-2">
+                <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center gap-2 cursor-pointer">
                   <span className="text-sm">Talk to Expert</span>
                   <FaArrowRight className="w-3 h-3" />
                 </button>
@@ -716,7 +716,7 @@ const Navbar = () => {
                                     toggleMobileMegaCategory(colIdx);
                                   }}
                                   className={`w-full text-left px-4 py-3 flex items-center justify-between font-semibold text-[15px] transition-colors ${isActive ? "bg-blue-50 text-[theme(color.brand.blue)]" : "text-gray-700 hover:bg-gray-100"
-                                    }`}
+                                    } cursor-pointer`}
                                 >
                                   {column.heading}
                                   <MdKeyboardArrowDown className={`w-5 h-5 transition-transform duration-200 ${isActive ? 'rotate-180 text-[theme(color.brand.blue)]' : 'text-gray-400'}`} />
@@ -784,7 +784,7 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 onClick={() => handleLinkClick("", "")}
               >
-                <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center justify-center gap-2">
+                <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center justify-center gap-2 cursor-pointer">
                   <span className="text-sm">Talk to Expert</span>
                   <FaArrowRight className="w-3 h-3" />
                 </button>

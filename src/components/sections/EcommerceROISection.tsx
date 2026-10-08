@@ -201,12 +201,16 @@ const EcommerceROISection: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-brand-blue px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-95 transition-all shadow-lg">
-              Get Free ROI Analysis
-            </button>
-            <button className="bg-white bg-opacity-20 text-brand-blue px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-95 transition-all border border-white border-opacity-30">
-              Schedule ROI Consultation
-            </button>
+            <Link href="/roi-calculator" className="inline-block">
+              <button className="bg-white text-brand-blue px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-95 transition-all shadow-lg cursor-pointer">
+                Get Free ROI Analysis
+              </button>
+            </Link>
+            <Link href="/contact-us" className="inline-block">
+              <button className="bg-white bg-opacity-20 text-brand-blue px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-95 transition-all border border-white border-opacity-30 cursor-pointer">
+                Schedule ROI Consultation
+              </button>
+            </Link>
           </div>
 
           <div className="mt-8 text-green-100 text-sm">

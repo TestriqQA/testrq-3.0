@@ -204,7 +204,7 @@ const SecurityTestingFAQs: React.FC = () => {
                       <div key={faqIndex} className="p-6">
                         <button
                           onClick={() => toggleFAQ(categoryIndex, faqIndex)}
-                          className="w-full flex items-center justify-between text-left group"
+                          className="w-full flex items-center justify-between text-left group cursor-pointer"
                         >
                           <h4 className="text-lg font-semibold text-gray-900 group-hover:text-brand-blue transition-colors duration-300">
                             {faq.question}

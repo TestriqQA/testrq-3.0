@@ -250,15 +250,15 @@ const ElearningCaseStudiesSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <button
-                      className={`w-full bg-${study.accentColor} text-white py-3 px-6 rounded-xl font-semibold hover:opacity-90 hover:scale-98 transition-all duration-200 ease-in-out flex items-center justify-center gap-2`}
-                    >
-                      Read Full Case Study
-                      <FaArrowRight className="w-4 h-4" />
-                    </button>
-                    <button className="w-full border-2 border-gray-300 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:border-gray-400 hover:scale-98 transition-all duration-200 ease-in-out">
-                      Download PDF Report
-                    </button>
+                    <Link href="/case-studies" className="inline-block">
+                      <button
+                        className={`w-full bg-${study.accentColor} text-white py-3 px-6 rounded-xl font-semibold hover:opacity-90 hover:scale-98 transition-all duration-200 ease-in-out flex items-center justify-center gap-2 cursor-pointer`}
+                      >
+                        Read Full Case Study
+                        <FaArrowRight className="w-4 h-4" />
+                      </button>
+                    </Link>
+
                   </div>
                 </div>
               </div>

@@ -91,7 +91,7 @@ const ISO42001FAQs: React.FC = () => {
               }`}
             >
               <button
-                className="w-full px-8 py-6 text-left transition-colors flex justify-between items-center group"
+                className="w-full px-8 py-6 text-left transition-colors flex justify-between items-center group cursor-pointer"
                 onClick={() => toggleFAQ(index)}
               >
                 <span

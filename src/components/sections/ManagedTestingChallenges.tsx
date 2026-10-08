@@ -139,7 +139,7 @@ const ManagedTestingChallenges: React.FC = () => {
                             <div key={index} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
                                 <button
                                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                                    className="w-full px-8 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                                    className="w-full px-8 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className={`w-10 h-10 ${colors.iconBg} rounded-lg flex items-center justify-center flex-shrink-0`}>

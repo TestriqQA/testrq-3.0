@@ -114,7 +114,7 @@ const AgileTestingSolutions: React.FC = () => {
                                 className={`w-full text-left p-6 rounded-2xl transition-all duration-300 flex items-center gap-4 group border ${activeTab === index
                                         ? `bg-gradient-to-r ${type.gradientColor} text-white shadow-2xl border-transparent scale-105`
                                         : "bg-gray-50 text-gray-700 hover:bg-gray-100 border-gray-100"
-                                    }`}
+                                    } cursor-pointer`}
                             >
                                 <div className={`p-3 rounded-xl ${activeTab === index ? "bg-white/20" : "bg-white shadow-sm group-hover:bg-brand-blue/10"}`}>
                                     {React.cloneElement(type.icon as React.ReactElement, {

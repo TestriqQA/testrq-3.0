@@ -197,7 +197,7 @@ const ETLComprehensiveSlider: React.FC = () => {
                   {`Explore ${activeTestingType.title}`}
                 </Link>
                 <button
-                  className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3.5 text-base font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3.5 text-base font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
                   onClick={nextTab}
                 >
                   Next

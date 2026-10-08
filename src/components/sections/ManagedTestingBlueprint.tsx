@@ -116,7 +116,7 @@ const ManagedTestingBlueprint: React.FC = () => {
                                         className={`w-full flex items-center gap-4 px-5 py-4 rounded-xl text-left transition-all duration-300 ${activePhase === index
                                                 ? `${colors.bg} ring-2 ${colors.ring} shadow-md`
                                                 : "bg-gray-50 hover:bg-gray-100"
-                                            }`}
+                                            } cursor-pointer`}
                                     >
                                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${activePhase === index
                                                 ? `bg-gradient-to-br ${colors.gradient} text-white`

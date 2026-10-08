@@ -84,7 +84,7 @@ export default function ECommerceTesting() {
           <p className="text-xl mb-8 animate-fade-in-up animation-delay-200">
             Testriq’s comprehensive testing services ensure your online store is secure, fast, and user-friendly, driving conversions and customer loyalty.
           </p>
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-transform duration-300 hover:scale-105 active:scale-95">
+          <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer">
             Start Testing Now
           </button>
         </div>
@@ -184,10 +184,10 @@ export default function ECommerceTesting() {
             Don’t let bugs or performance issues hold your business back. Contact Testriq now for expert testing solutions.
           </p>
           <div className="flex justify-center gap-4">
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-transform duration-300 hover:scale-105 active:scale-95">
+            <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer">
               Contact Us
             </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-300">
+            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-300 cursor-pointer">
               Learn More
             </button>
           </div>

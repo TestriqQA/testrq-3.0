@@ -216,7 +216,7 @@ const TelecomTestingServicesSection: React.FC = () => {
               </div>
 {/* 
               <div className="mt-6 pt-4 border-t border-gray-200">
-                <button className="text-[theme(color.brand.blue)] font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                <button className="text-[theme(color.brand.blue)] font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300 cursor-pointer">
                   Learn More
                   <FaArrowRight className="w-3 h-3" />
                 </button>

@@ -218,7 +218,7 @@ function CertificateContent() {
                         <div className="flex flex-wrap shrink-0 gap-4 lg:mb-1">
                             <button
                                 onClick={() => setShowDownloadForm(true)}
-                                className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-blue-700 font-black rounded-2xl hover:bg-blue-50 transition-all duration-500 shadow-xl"
+                                className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-blue-700 font-black rounded-2xl hover:bg-blue-50 transition-all duration-500 shadow-xl cursor-pointer"
                             >
                                 <Download size={22} className="group-hover:bounce-y" />
                                 DOWNLOAD
@@ -319,7 +319,7 @@ function CertificateContent() {
                         <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white relative">
                             <button
                                 onClick={() => setShowDownloadForm(false)}
-                                className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                                className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
                             >
                                 <X size={20} />
                             </button>
@@ -350,7 +350,7 @@ function CertificateContent() {
                                         </a>
                                         <button
                                             onClick={() => setShowDownloadForm(false)}
-                                            className="mt-4 px-6 py-2 border border-gray-200 rounded-lg text-xs font-bold text-gray-400 hover:bg-gray-50 hover:text-gray-600 transition-all"
+                                            className="mt-4 px-6 py-2 border border-gray-200 rounded-lg text-xs font-bold text-gray-400 hover:bg-gray-50 hover:text-gray-600 transition-all cursor-pointer"
                                         >
                                             Close Window
                                         </button>
@@ -429,7 +429,7 @@ function CertificateContent() {
                                     <button
                                         disabled={isSubmitting}
                                         type="submit"
-                                        className="w-full mt-4 flex items-center justify-center gap-2 bg-blue-600 text-white font-black py-4 rounded-xl hover:bg-blue-700 transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
+                                        className="w-full mt-4 flex items-center justify-center gap-2 bg-blue-600 text-white font-black py-4 rounded-xl hover:bg-blue-700 transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
                                     >
                                         {isSubmitting ? (
                                             <Loader2 size={20} className="animate-spin" />

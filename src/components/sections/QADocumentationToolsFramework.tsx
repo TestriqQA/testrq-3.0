@@ -215,7 +215,7 @@ const QADocumentationToolsFramework = () => {
                 className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-200 ${isActive
                   ? `${categoryColors.bg} ${categoryColors.text} ${categoryColors.border} border-2 shadow-md`
                   : "bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200"
-                  }`}
+                  } cursor-pointer`}
               >
                 <IconComponent className="mr-2 text-sm" />
                 <span className="text-sm">{category.title}</span>

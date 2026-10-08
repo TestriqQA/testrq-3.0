@@ -2,7 +2,6 @@
 import React from "react";
 import {
   FaArrowRight,
-  FaPlay,
   FaChartLine,
   FaUsers,
   FaAward,
@@ -77,14 +76,15 @@ const CaseStudiesHeroSection = () => {
                 <span className="text-base">View Case Studies</span>
                 <FaArrowRight className="w-4 h-5" />
               </button>
-              <button className="flex items-center gap-2 py-3 px-5 border border-[theme(color.brand.blue)] text-[theme(color.brand.blue)] font-semibold text-base md:text-lg rounded-md hover:cursor-pointer hover:bg-sky-50 transition-all duration-200 w-full sm:w-auto">
-                <FaPlay className="w-4 h-4" />
-                Watch Success Stories
-              </button>
+
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap justify-center md:justify-center xl:justify-start gap-6 lg:mx-0">
+            {/* 5 stats in one row from lg up. Was flex-wrap, which fitted four and
+                dropped "24/7 Support Success" onto a second line on its own. A
+                fixed 5-column grid keeps them on one line and keeps the columns
+                aligned; the long labels wrap inside their own cell instead. */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 justify-items-center xl:justify-items-start lg:mx-0">
               {[
                 ["500+", "Successful Projects"],
                 ["99%", "Bug Reduction Rate"],

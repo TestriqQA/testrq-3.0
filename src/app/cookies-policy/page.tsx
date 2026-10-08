@@ -158,7 +158,7 @@ const CookiesPolicy = () => {
               More Information about Cookies
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              You can learn more about cookies: <Link href="#" className="text-blue-600 hover:text-blue-800 underline">What Are Cookies?</Link>
+              You can learn more about cookies: What Are Cookies?
             </p>
           </section>
 

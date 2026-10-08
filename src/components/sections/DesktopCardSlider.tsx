@@ -398,7 +398,7 @@ export default function CardSlider() {
                   className={`mt-4 w-full bg-${card.colordark
                     } text-white py-2 rounded-lg hover:bg-${cards[
                       activeCard
-                    ].colordark.replace("500", "600")}`}
+                    ].colordark.replace("500", "600")} cursor-pointer`}
                 >
                   Learn More About {card.title}
                 </button>

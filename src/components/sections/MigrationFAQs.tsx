@@ -49,7 +49,7 @@ const MigrationFAQs: React.FC = () => {
                         <div key={index} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:border-brand-blue/30 transition-colors">
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full px-6 py-5 text-left flex justify-between items-center group"
+                                className="w-full px-6 py-5 text-left flex justify-between items-center group cursor-pointer"
                             >
                                 <span className="font-bold text-gray-900 group-hover:text-brand-blue transition-colors leading-tight">
                                     {faq.question}

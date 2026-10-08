@@ -160,7 +160,7 @@ const JobCardItem: React.FC<JobCardItemProps> = memo(({ position, isExpanded, on
                                     </p>
                                     <button
                                         onClick={(e) => onApply(position, e)}
-                                        className="w-full bg-white text-[theme(color.brand.blue)] font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-gray-50 transition-colors duration-300 text-sm sm:text-base min-h-[44px] touch-manipulation"
+                                        className="w-full bg-white text-[theme(color.brand.blue)] font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-gray-50 transition-colors duration-300 text-sm sm:text-base min-h-[44px] touch-manipulation cursor-pointer"
                                     >
                                         Apply Now
                                     </button>

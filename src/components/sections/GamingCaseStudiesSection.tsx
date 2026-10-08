@@ -242,10 +242,12 @@ const GamingCaseStudiesSection: React.FC = () => {
                 </div>
 
                 {/* CTA */}
-                <button className="w-full bg-brand-blue text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                  View Full Case Study
-                  <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                <Link href="/case-studies" className="inline-block">
+                  <button className="w-full bg-brand-blue text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer">
+                    View Full Case Study
+                    <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
               </div>
             </div>
           ))}

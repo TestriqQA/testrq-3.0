@@ -580,7 +580,7 @@ const LocationsWeServe: React.FC = () => {
               </p>
               <button
                 onClick={() => setSearchTerm("")}
-                className="bg-[theme(color.brand.blue)] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                className="bg-[theme(color.brand.blue)] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity cursor-pointer"
               >
                 Show All Testing Service Locations
               </button>

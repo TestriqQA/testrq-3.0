@@ -138,7 +138,7 @@ const VisualTableOfContents: React.FC<VisualTableOfContentsProps> = ({ headings 
                                         key={`${section.id}-${index}`}
                                         ref={isActive ? activeItemRef : null}
                                         onClick={() => scrollToSection(section.id, index)}
-                                        className={`group relative w-full flex items-center gap-4 p-2 rounded-xl transition-all duration-300 text-left shrink-0`}
+                                        className={`group relative w-full flex items-center gap-4 p-2 rounded-xl transition-all duration-300 text-left shrink-0 cursor-pointer`}
                                     >
                                         {/* Node Indicator */}
                                         <div className={`relative z-20 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-300 bg-white ${isActive

@@ -51,7 +51,7 @@ const QAOutsourcingHeroSection: React.FC = () => {
                             </button>
                         </Link>
                         <Link href="/contact-us">
-                            <button className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-indigo-50 transition-colors duration-300 flex items-center justify-center">
+                            <button className="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-indigo-50 transition-colors duration-300 flex items-center justify-center cursor-pointer">
                                 Get a Quote
                             </button>
                         </Link>
