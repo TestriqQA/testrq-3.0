@@ -103,7 +103,7 @@ const RegressionTestingCaseStudies: React.FC = () => {
                   activeCase === index
                     ? `${colors.bg} ${colors.text} ${colors.border} border-2`
                     : "bg-white text-gray-600 border-2 border-gray-200 hover:border-gray-300"
-                }`}
+                } cursor-pointer`}
               >
                 {study.industry}
               </button>

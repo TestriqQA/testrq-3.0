@@ -121,7 +121,7 @@ const AgileTestingMethodology: React.FC = () => {
                                     key={index}
                                     onClick={() => setActiveStep(index)}
                                     className={`w-20 h-20 rounded-2xl flex items-center justify-center text-white font-bold transition-all duration-500 transform ${activeStep === index ? `bg-gradient-to-br ${step.gradient} shadow-2xl scale-125 rotate-6` : activeStep > index ? "bg-brand-blue" : "bg-gray-300"
-                                        }`}
+                                        } cursor-pointer`}
                                 >
                                     {activeStep > index ? <FaCheckCircle className="text-2xl" /> : step.icon}
                                 </button>
@@ -141,7 +141,7 @@ const AgileTestingMethodology: React.FC = () => {
                                 key={index}
                                 onClick={() => setActiveStep(index)}
                                 className={`flex-shrink-0 px-6 py-3 rounded-xl font-bold transition-all ${activeStep === index ? `bg-brand-blue text-white shadow-lg` : "bg-white text-gray-500 border border-gray-100"
-                                    }`}
+                                    } cursor-pointer`}
                             >
                                 {step.shortTitle}
                             </button>
@@ -185,7 +185,7 @@ const AgileTestingMethodology: React.FC = () => {
                                 <button
                                     onClick={() => setActiveStep((activeStep + 1) % steps.length)}
                                     aria-label={`Next phase: ${steps[(activeStep + 1) % steps.length].title}`}
-                                    className={`p-4 rounded-full bg-gradient-to-r ${steps[activeStep].gradient} text-white shadow-lg hover:shadow-2xl transition-all transform hover:scale-110`}
+                                    className={`p-4 rounded-full bg-gradient-to-r ${steps[activeStep].gradient} text-white shadow-lg hover:shadow-2xl transition-all transform hover:scale-110 cursor-pointer`}
                                 >
                                     <FaArrowRight />
                                 </button>

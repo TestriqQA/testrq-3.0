@@ -46,7 +46,7 @@ const ShiftLeftFAQs: React.FC = () => {
                         >
                             <button
                                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                                className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                                className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors cursor-pointer"
                             >
                                 <span className="font-bold text-gray-900 pr-4">{faq.question}</span>
                                 <FaChevronDown className={`w-4 h-4 text-brand-blue transition-transform ${activeIndex === index ? 'rotate-180' : ''}`} />

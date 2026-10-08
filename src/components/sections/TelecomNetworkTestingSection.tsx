@@ -280,7 +280,7 @@ const TelecomSoftwareTestingSection: React.FC = () => {
               </div>
 {/* 
               <div className="pt-4 border-t border-gray-200">
-                <button className="text-[theme(color.brand.blue)] font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                <button className="text-[theme(color.brand.blue)] font-semibold text-sm hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300 cursor-pointer">
                   Learn More
                   <FaArrowRight className="w-3 h-3" />
                 </button>
@@ -427,7 +427,7 @@ const TelecomSoftwareTestingSection: React.FC = () => {
                 Start Software Testing
               </button>
             </Link>
-            {/* <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
+            {/* <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30 cursor-pointer">
               Download Testing Guide
             </button> */}
           </div>

@@ -2,7 +2,6 @@
 import React from "react";
 import {
   FaArrowRight,
-  FaPlay,
   FaChartLine,
   FaUsers,
   FaAward,
@@ -77,10 +76,7 @@ const CaseStudiesHeroSection = () => {
                 <span className="text-base">View Case Studies</span>
                 <FaArrowRight className="w-4 h-5" />
               </button>
-              <button className="flex items-center gap-2 py-3 px-5 border border-[theme(color.brand.blue)] text-[theme(color.brand.blue)] font-semibold text-base md:text-lg rounded-md hover:cursor-pointer hover:bg-sky-50 transition-all duration-200 w-full sm:w-auto">
-                <FaPlay className="w-4 h-4" />
-                Watch Success Stories
-              </button>
+
             </div>
 
             {/* Stats */}

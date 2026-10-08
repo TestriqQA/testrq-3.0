@@ -308,7 +308,7 @@ const CareersApplicationProcessSection: React.FC = () => {
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-4 py-4 sm:px-8 sm:py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-300 min-h-[60px] touch-manipulation"
+                  className="w-full px-4 py-4 sm:px-8 sm:py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-300 min-h-[60px] touch-manipulation cursor-pointer"
                   aria-label={faq.question}
                 >
                   <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 pr-4 leading-tight">
@@ -349,7 +349,7 @@ const CareersApplicationProcessSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button
               onClick={scrollToOpenPostions}
-              className="bg-white text-[theme(color.brand.blue)] px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg hover:bg-gray-100 transition-colors shadow-lg min-h-[48px] touch-manipulation"
+              className="bg-white text-[theme(color.brand.blue)] px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg hover:bg-gray-100 transition-colors shadow-lg min-h-[48px] touch-manipulation cursor-pointer"
             >
               Browse Open Positions
             </button>

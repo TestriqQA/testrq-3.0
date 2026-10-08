@@ -49,7 +49,7 @@ const TimezoneFAQs: React.FC = () => {
                         >
                             <button
                                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                                className="w-full flex items-center justify-between p-6 text-left bg-white hover:bg-slate-50 transition-colors"
+                                className="w-full flex items-center justify-between p-6 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer"
                             >
                                 <span className="text-lg font-bold text-gray-900 pr-8">
                                     {faq.question}

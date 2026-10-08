@@ -633,7 +633,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
               <div className="p-4 sm:p-6 lg:p-8">
                 <button
                   onClick={handleCloseModal}
-                  className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 z-20 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 touch-manipulation"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 z-20 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 touch-manipulation cursor-pointer"
                 >
                   <FaTimes className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
@@ -884,7 +884,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                             aria-required="true"
                             aria-invalid={!!domainError}
                             aria-describedby={domainError ? "careers-domainKnowledge-error" : undefined}
-                            className={`w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-left flex items-center justify-between text-sm sm:text-base min-h-[44px] touch-manipulation ${domainError ? "border-red-500" : "border-gray-300"}`}
+                            className={`w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-left flex items-center justify-between text-sm sm:text-base min-h-[44px] touch-manipulation ${domainError ? "border-red-500" : "border-gray-300"} cursor-pointer`}
                           >
                             <span className="text-gray-500">
                               {formData.domainKnowledge.length > 0
@@ -937,7 +937,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                                 <button
                                   type="button"
                                   onClick={() => handleDomainKnowledgeChange(domain)}
-                                  className="ml-1 text-blue-600 hover:text-blue-800"
+                                  className="ml-1 text-blue-600 hover:text-blue-800 cursor-pointer"
                                 >
                                   <FaTimes className="w-3 h-3" />
                                 </button>
@@ -964,7 +964,7 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); setResumeFile(null); }}
                                 aria-label="Remove uploaded resume"
-                                className="ml-1 text-red-500 hover:text-red-700 p-1"
+                                className="ml-1 text-red-500 hover:text-red-700 p-1 cursor-pointer"
                               >
                                 <FaTrash className="w-3 h-3" aria-hidden="true" />
                               </button>
@@ -1000,14 +1000,14 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex-1 bg-[theme(color.brand.blue)] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base min-h-[48px] touch-manipulation"
+                      className="flex-1 bg-[theme(color.brand.blue)] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base min-h-[48px] touch-manipulation cursor-pointer"
                     >
                       {isSubmitting ? "Submitting..." : "Submit Application"}
                     </button>
                     <button
                       type="button"
                       onClick={handleCloseModal}
-                      className="px-6 py-3 sm:px-8 sm:py-4 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-300 text-sm sm:text-base min-h-[48px] touch-manipulation"
+                      className="px-6 py-3 sm:px-8 sm:py-4 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-300 text-sm sm:text-base min-h-[48px] touch-manipulation cursor-pointer"
                     >
                       Cancel
                     </button>

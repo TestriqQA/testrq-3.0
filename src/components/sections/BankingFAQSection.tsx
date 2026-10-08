@@ -73,7 +73,7 @@ const BankingFAQSection: React.FC = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
               >
                 <h3 className="text-lg font-semibold text-gray-900 pr-4">
                   {faq.question}
@@ -142,7 +142,7 @@ const BankingFAQSection: React.FC = () => {
             <Link href="/contact-us" className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out">
               Browse Knowledge Base
             </Link>
-            {/* <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
+            {/* <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30 cursor-pointer">
               Download Testing Guide
             </button> */}
           </div>

@@ -1,5 +1,6 @@
 import { FaShoppingCart, FaTrophy } from "react-icons/fa";
 import { MdCastForEducation } from "react-icons/md";
+import Link from "next/link";
 
 const caseStudies = [
   {
@@ -170,12 +171,14 @@ export default function CaseStudies() {
                       {point}
                     </div>
                   ))}
-                  <button
-                    className={`mt-2 px-5 py-2 rounded-md text-white font-semibold text-sm flex items-center justify-center gap-2 ${study.color.buttonColor}`}
-                  >
-                    View Full Case Study
-                    <span className="ml-1">→</span>
-                  </button>
+                  <Link href="/case-studies" className="inline-block">
+                    <button
+                      className={`mt-2 px-5 py-2 rounded-md text-white font-semibold text-sm flex items-center justify-center gap-2 ${study.color.buttonColor} cursor-pointer`}
+                    >
+                      View Full Case Study
+                      <span className="ml-1">→</span>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -148,7 +148,7 @@ const MobileComprehensiveSlider: React.FC = () => {
                           ))}
                         </div>
 
-                        <button className="bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors w-fit">
+                        <button className="bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors w-fit cursor-pointer">
                           Learn More
                         </button>
                       </div>
@@ -196,7 +196,7 @@ const MobileComprehensiveSlider: React.FC = () => {
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-1 lg:left-4 top-10 lg:top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-200"
+            className="absolute left-1 lg:left-4 top-10 lg:top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-200 cursor-pointer"
             aria-label="Previous Slide"
           >
             <FaChevronLeft className="w-5 h-5 text-gray-700" />
@@ -204,7 +204,7 @@ const MobileComprehensiveSlider: React.FC = () => {
 
           <button
             onClick={nextSlide}
-            className="absolute right-1 lg:right-4 top-10 lg:top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-200"
+            className="absolute right-1 lg:right-4 top-10 lg:top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-200 cursor-pointer"
             aria-label="Next Slide"
           >
             <FaChevronRight className="w-5 h-5 text-gray-700" />
@@ -220,7 +220,7 @@ const MobileComprehensiveSlider: React.FC = () => {
               className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentSlide
                 ? "bg-[theme(color.brand.blue)] scale-125"
                 : "bg-gray-300 hover:bg-gray-400"
-                }`}
+                } cursor-pointer`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

@@ -174,13 +174,13 @@ const SapComprehensiveSlider: React.FC = () => {
                                 </Link>
                                 <div className="flex gap-4 w-full sm:w-auto">
                                     <button
-                                        className="w-full sm:w-auto px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
+                                        className="w-full sm:w-auto px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 cursor-pointer"
                                         onClick={prevTab}
                                     >
                                         Previous
                                     </button>
                                     <button
-                                        className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                                        className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
                                         onClick={nextTab}
                                     >
                                         Next

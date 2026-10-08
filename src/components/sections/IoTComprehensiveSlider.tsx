@@ -119,7 +119,7 @@ const IoTComprehensiveSlider: React.FC = () => {
               className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:scale-105 ${activeTab === index
                 ? `bg-${type.color}-500 text-white shadow-lg`
                 : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-                }`}
+                } cursor-pointer`}
             >
               <div className="flex items-center gap-2">
                 <div

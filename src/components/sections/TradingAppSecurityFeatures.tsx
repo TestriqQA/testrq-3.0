@@ -167,12 +167,12 @@ const TradingAppSecurityFeatures = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={scrollToSection}
-                className="bg-white text-brand-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2"
+                className="bg-white text-brand-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer"
               >
                 View Certification Process
                 <ArrowRight className="w-5 h-5" />
               </button>
-              {/* <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-brand-blue transition-colors duration-300">
+              {/* <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-brand-blue transition-colors duration-300 cursor-pointer">
                 Download Requirements
               </button> */}
             </div>

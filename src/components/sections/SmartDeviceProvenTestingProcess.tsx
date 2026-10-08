@@ -170,7 +170,7 @@ const SmartDeviceProvenTestingProcess: React.FC = () => {
                     className={`w-12 h-12 rounded-full border-4 border-white shadow-lg flex items-center justify-center transition-all duration-300 ${activeStep === index
                       ? getColorClasses(step.color)
                       : "bg-gray-300 text-gray-600"
-                      }`}
+                      } cursor-pointer`}
                   >
                     <span className="font-bold text-sm">{step.id}</span>
                   </button>
@@ -261,7 +261,7 @@ const SmartDeviceProvenTestingProcess: React.FC = () => {
                                 }}
                                 className={`px-4 py-2 rounded-lg text-sm min-h-[44px] min-w-[44px] font-semibold transition-colors duration-300 ${getColorClasses(
                                   step.color
-                                )} hover:opacity-90`}
+                                )} hover:opacity-90 cursor-pointer`}
                                 aria-label={`Go to ${processSteps[index + 1].title}`}
                               >
                                 {processSteps[index + 1].title}
@@ -279,7 +279,7 @@ const SmartDeviceProvenTestingProcess: React.FC = () => {
                                 }}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300 ${getColorClasses(
                                   step.color
-                                )} hover:opacity-90`}
+                                )} hover:opacity-90 cursor-pointer`}
                               >
                                 Restart from Step 1
                               </button>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   FaBuilding,
   FaChartLine,
@@ -242,12 +243,16 @@ const CorporateQATrainingCaseStudies: React.FC = () => {
               capabilities with our proven training programs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-brand-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                Start Your Transformation
-              </button>
-              <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
-                View More Case Studies
-              </button>
+              <Link href="/contact-us" className="inline-block">
+                <button className="bg-brand-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors cursor-pointer">
+                  Start Your Transformation
+                </button>
+              </Link>
+              <Link href="/case-studies" className="inline-block">
+                <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors cursor-pointer">
+                  View More Case Studies
+                </button>
+              </Link>
             </div>
           </div>
         </div>

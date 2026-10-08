@@ -187,7 +187,7 @@ export default function ComprehensiveTestingSlider() {
         <div className="flex justify-between items-center">
           <button
             onClick={prev}
-            className="w-10 h-10 flex items-center justify-center bg-black/20 rounded-full hover:bg-white/30"
+            className="w-10 h-10 flex items-center justify-center bg-black/20 rounded-full hover:bg-white/30 cursor-pointer"
             aria-label="Previous"
           >
             <FaChevronLeft className="w-5 h-5" />
@@ -206,7 +206,7 @@ export default function ComprehensiveTestingSlider() {
 
           <button
             onClick={next}
-            className="w-10 h-10 flex items-center justify-center bg-black/20 rounded-full hover:bg-white/30"
+            className="w-10 h-10 flex items-center justify-center bg-black/20 rounded-full hover:bg-white/30 cursor-pointer"
             aria-label="Next"
           >
             <FaChevronRight className="w-5 h-5" />

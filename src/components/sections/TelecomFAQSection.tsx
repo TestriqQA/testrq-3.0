@@ -170,7 +170,7 @@ const TelecomFAQSection: React.FC = () => {
                       className="border border-gray-200 rounded-2xl overflow-hidden hover:border-[theme(color.brand.blue)] transition-colors duration-300"
                     >
                       <button
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-300"
+                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-300 cursor-pointer"
                         onClick={() => toggleFAQ(categoryIndex, questionIndex)}
                       >
                         <span className="font-semibold text-gray-900 pr-4">

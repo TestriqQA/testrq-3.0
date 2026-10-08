@@ -15,10 +15,10 @@ const ShoppingAppFAQs = () => {
         <>
           Shopping app certification is a comprehensive validation process that
           ensures your platform meets standards for{" "}
-          <Link href="">security</Link>, <Link href="">performance</Link>,{" "}
-          <Link href="">compliance</Link>, and user trust. It’s crucial for
+          <Link href="/security-testing" className="text-brand-blue hover:underline">security</Link>, <Link href="/performance-testing-services" className="text-brand-blue hover:underline">performance</Link>,{" "}
+          compliance, and user trust. It’s crucial for
           enhancing credibility, minimizing risk, and boosting user retention in
-          competitive <Link href="">e-commerce</Link> markets.
+          competitive <Link href="/e-commerce-testing-services" className="text-brand-blue hover:underline">e-commerce</Link> markets.
         </>
       ),
     },
@@ -177,7 +177,7 @@ const ShoppingAppFAQs = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[#25A8E0] focus:ring-opacity-50 rounded-xl"
+                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[#25A8E0] focus:ring-opacity-50 rounded-xl cursor-pointer"
               >
                 <h3 className="text-lg font-semibold text-gray-900 pr-4">
                   {faq.question}

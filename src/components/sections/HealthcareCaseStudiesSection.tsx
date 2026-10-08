@@ -240,10 +240,12 @@ const HealthcareCaseStudiesSection: React.FC = () => {
                 </div>
 
                 {/* CTA */}
-                <button className="w-full bg-brand-blue text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                  View Full Case Study
-                  <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                <Link href="/case-studies" className="inline-block">
+                  <button className="w-full bg-brand-blue text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer">
+                    View Full Case Study
+                    <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -303,9 +305,7 @@ const HealthcareCaseStudiesSection: React.FC = () => {
                 Start Your Success Story
               </Link>
 
-              <button className="bg-white cursor-pointer bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all border border-white border-opacity-30">
-                Download Case Studies
-              </button>
+
             </div>
           </div>
         </div>

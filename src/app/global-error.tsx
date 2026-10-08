@@ -71,7 +71,7 @@ export default function GlobalError({
               Digest: {error.digest}
             </p>
           )}
-          <button
+          <button className="cursor-pointer"
             onClick={() => reset()}
             style={{
               backgroundColor: '#2563eb',

@@ -30,7 +30,7 @@ const CyberSecurityCTASection: React.FC = () => {
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
                             <Link href="/contact-us" className="w-full sm:w-auto">
-                                <button className="w-full sm:w-auto px-10 py-5 bg-white text-brand-blue font-black rounded-2xl hover:bg-blue-50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center uppercase tracking-widest text-sm">
+                                <button className="w-full sm:w-auto px-10 py-5 bg-white text-brand-blue font-black rounded-2xl hover:bg-blue-50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center uppercase tracking-widest text-sm cursor-pointer">
                                     Free Consultation
                                     <FaArrowRight className="ml-3" />
                                 </button>

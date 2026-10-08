@@ -145,7 +145,7 @@ const JobApplicationModal: React.FC<{ job: SanityJobOpening | null; onClose: () 
       <div ref={modalRef} className="bg-white rounded-2xl shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl"
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl cursor-pointer"
         >
           &times;
         </button>
@@ -281,7 +281,7 @@ const JobApplicationModal: React.FC<{ job: SanityJobOpening | null; onClose: () 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-8 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-8 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </button>
@@ -407,14 +407,14 @@ const JobDetailsPage: React.FC<JobDetailsPageProps> = ({ job }) => {
                     <button
                       onClick={() => setIsBookmarked(!isBookmarked)}
                       className={`p-2 rounded-lg transition-colors duration-300 ${isBookmarked ? 'bg-red-500 text-white' : 'bg-white/20 text-white hover:bg-white/30'
-                        }`}
+                        } cursor-pointer`}
                     >
                       <FaHeart className="w-4 h-4" />
                     </button>
                     <div className="relative">
                       <button
                         onClick={() => setShowShareMenu(!showShareMenu)}
-                        className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors duration-300"
+                        className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors duration-300 cursor-pointer"
                       >
                         <FaShare className="w-4 h-4" />
                       </button>
@@ -422,25 +422,25 @@ const JobDetailsPage: React.FC<JobDetailsPageProps> = ({ job }) => {
                         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                           <button
                             onClick={() => handleShare('linkedin')}
-                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left cursor-pointer"
                           >
                             <FaLinkedin className="mr-2" /> LinkedIn
                           </button>
                           <button
                             onClick={() => handleShare('twitter')}
-                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left cursor-pointer"
                           >
                             <FaTwitter className="mr-2" /> Twitter
                           </button>
                           <button
                             onClick={() => handleShare('facebook')}
-                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left cursor-pointer"
                           >
                             <FaFacebook className="mr-2" /> Facebook
                           </button>
                           <button
                             onClick={() => handleShare('copy')}
-                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left cursor-pointer"
                           >
                             <FaCopy className="mr-2" /> Copy Link
                           </button>
@@ -451,7 +451,7 @@ const JobDetailsPage: React.FC<JobDetailsPageProps> = ({ job }) => {
                 </div>
                 <button
                   onClick={() => setShowApplyModal(true)}
-                  className="w-full px-6 py-3 bg-white text-[theme(color.brand.blue)] font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2"
+                  className="w-full px-6 py-3 bg-white text-[theme(color.brand.blue)] font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <FaRocket className="w-5 h-5" /> Apply Now
                 </button>
@@ -520,7 +520,7 @@ const JobDetailsPage: React.FC<JobDetailsPageProps> = ({ job }) => {
             </ul>
             <button
               onClick={() => setShowApplyModal(true)}
-              className="mt-8 w-full px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"
+              className="mt-8 w-full px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer"
             >
               <FaRocket className="w-5 h-5" /> Apply Now
             </button>

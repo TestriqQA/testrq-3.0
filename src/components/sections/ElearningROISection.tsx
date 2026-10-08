@@ -1,5 +1,6 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import React from "react";
+import Link from "next/link";
 import {
   FaChartLine,
   FaGraduationCap,
@@ -314,12 +315,16 @@ const ElearningROISection: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row text-brand-blue gap-4 justify-center">
-            <button className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out shadow-lg">
-              Get Free ROI Analysis
-            </button>
-            <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
-              Schedule ROI Consultation
-            </button>
+            <Link href="/roi-calculator" className="inline-block">
+              <button className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all duration-200 ease-in-out shadow-lg cursor-pointer">
+                Get Free ROI Analysis
+              </button>
+            </Link>
+            <Link href="/contact-us" className="inline-block">
+              <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30 cursor-pointer">
+                Schedule ROI Consultation
+              </button>
+            </Link>
           </div>
 
           <div className="mt-8 text-white text-sm">

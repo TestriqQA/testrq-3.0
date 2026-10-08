@@ -68,7 +68,7 @@ const DatingAppFAQs = () => {
               className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
             >
               <button
-                className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors"
+                className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors cursor-pointer"
                 onClick={() =>
                   setExpandedFAQ(expandedFAQ === index ? null : index)
                 }

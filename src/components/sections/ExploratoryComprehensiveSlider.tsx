@@ -168,7 +168,7 @@ const ExploratoryComprehensiveSlider: React.FC = () => {
                 activeTab === index
                   ? `${getColorClasses(type.color)} border-2`
                   : "text-gray-600 bg-white border-2 border-gray-200 hover:bg-gray-50"
-              }`}
+              } cursor-pointer`}
             >
               <span className={activeTab === index ? "" : "text-gray-400"}>
                 {type.icon}

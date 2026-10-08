@@ -210,7 +210,7 @@ const BlogNewsletter: React.FC = () => {
                               className={`flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all border ${isSelected
                                 ? 'bg-blue-50 border-blue-300 text-blue-700'
                                 : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
-                                }`}
+                                } cursor-pointer`}
                             >
                               <span aria-hidden="true">{interest.icon}</span>
                               {interest.name}
@@ -223,7 +223,7 @@ const BlogNewsletter: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-600/25"
+                      className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-600/25 cursor-pointer"
                     >
                       {isSubmitting ? (
                         <>

@@ -53,7 +53,7 @@ const ManagedTestingFAQs: React.FC = () => {
                         <div key={index} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition-all">
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full px-8 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                                className="w-full px-8 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer"
                             >
                                 <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
                                 {openIndex === index ? (

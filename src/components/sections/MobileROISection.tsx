@@ -1,6 +1,7 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import React from "react";
 import { FaDollarSign, FaClock, FaUsers, FaChartLine, FaShieldAlt, FaRocket } from "react-icons/fa";
+import Link from "next/link";
 
 const MobileROISection: React.FC = () => {
   const roiMetrics = [
@@ -257,9 +258,11 @@ const MobileROISection: React.FC = () => {
               <div className="text-gray-600 mb-4">
                 Return on Investment in Year 1
               </div>
-              <button className="w-full px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors">
-                Calculate Your Mobile ROI
-              </button>
+              <Link href="/roi-calculator" className="inline-block">
+                <button className="w-full px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors cursor-pointer">
+                  Calculate Your Mobile ROI
+                </button>
+              </Link>
             </div>
           </div>
         </div>

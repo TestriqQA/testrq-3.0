@@ -41,21 +41,21 @@ const ShareArticleBottom: React.FC<ShareArticleBottomProps> = ({ title }) => {
                 <div className="flex justify-center gap-3 flex-wrap">
                     <button
                         onClick={shareOnX}
-                        className="bg-black text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2"
+                        className="bg-black text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2 cursor-pointer"
                     >
                         <FaSquareXTwitter />
                         <span>X (Twitter)</span>
                     </button>
                     <button
                         onClick={shareOnLinkedin}
-                        className="bg-blue-700 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2"
+                        className="bg-blue-700 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2 cursor-pointer"
                     >
                         <FaLinkedin />
                         <span>LinkedIn</span>
                     </button>
                     <button
                         onClick={shareOnFacebook}
-                        className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2"
+                        className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2 cursor-pointer"
                     >
                         <FaFacebook />
                         <span>Facebook</span>
@@ -67,7 +67,7 @@ const ShareArticleBottom: React.FC<ShareArticleBottomProps> = ({ title }) => {
                         for exactly this reason. */}
                     <button
                         onClick={shareOnReddit}
-                        className="bg-orange-700 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2"
+                        className="bg-orange-700 text-white px-4 py-2 rounded-lg hover:brightness-110 transition-transform flex items-center gap-2 cursor-pointer"
                     >
                         <FaReddit />
                         <span>Reddit</span>

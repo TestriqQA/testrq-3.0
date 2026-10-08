@@ -176,7 +176,7 @@ const ApiCaseStudies: React.FC = () => {
               className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${activeCase === index
                 ? `bg-gradient-to-r ${study.gradient} text-white shadow-lg`
                 : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 shadow-md"
-                }`}
+                } cursor-pointer`}
             >
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{study.icon}</span>
@@ -346,7 +346,7 @@ const ApiCaseStudies: React.FC = () => {
                 activeCase > 0 ? activeCase - 1 : caseStudies.length - 1
               )
             }
-            className="flex items-center gap-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-300"
+            className="flex items-center gap-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-300 cursor-pointer"
           >
             <FaArrowRight className="w-4 h-4 transform rotate-180" />
             <span>Previous Case</span>
@@ -357,7 +357,7 @@ const ApiCaseStudies: React.FC = () => {
                 activeCase < caseStudies.length - 1 ? activeCase + 1 : 0
               )
             }
-            className="flex items-center gap-2 px-6 py-3 bg-[theme(color.brand.blue)] text-white rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300"
+            className="flex items-center gap-2 px-6 py-3 bg-[theme(color.brand.blue)] text-white rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300 cursor-pointer"
           >
             <span>Next Case</span>
             <FaArrowRight className="w-4 h-4" />

@@ -214,7 +214,7 @@ const DataAnalysisToolsFramework = () => {
                 className={`flex items-center px-4 py-3 rounded-lg font-medium transition-all duration-200 ${activeCategory === index
                   ? "bg-blue-600 text-white shadow-lg"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
+                  } cursor-pointer`}
               >
                 {category.icon}
                 <span className="ml-2 hidden sm:inline">{category.title}</span>

@@ -1,5 +1,6 @@
 // F-21.1 — Converted to Server Component. Audited for zero interactive APIs.
 import React from "react";
+import Link from "next/link";
 import {
   FaChartLine,
   FaDollarSign,
@@ -97,9 +98,11 @@ const AIROISection: React.FC = () => {
             testing services. Get a personalized ROI analysis for your AI
             project.
           </p>
-          <button className="bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300">
-            Get AI ROI Analysis
-          </button>
+          <Link href="/roi-calculator" className="inline-block">
+            <button className="bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300 cursor-pointer">
+              Get AI ROI Analysis
+            </button>
+          </Link>
         </div>
       </div>
     </section>

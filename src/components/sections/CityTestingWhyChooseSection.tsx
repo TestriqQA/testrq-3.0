@@ -58,7 +58,7 @@ const CityTestingWhyChooseSection: React.FC<CityTestingWhyChooseSectionProps> = 
             {cityData.whyChooseContent.subtitle && cityData.whyChooseContent.subtitle.length > 200 && (
               <button 
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="text-brand-blue font-medium mt-6 hover:underline focus:outline-none inline-flex items-center text-sm"
+                className="text-brand-blue font-medium mt-6 hover:underline focus:outline-none inline-flex items-center text-sm cursor-pointer"
               >
                 {isExpanded ? 'Show Less' : 'Read More'}
               </button>

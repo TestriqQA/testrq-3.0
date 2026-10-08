@@ -47,7 +47,7 @@ const HomeFAQSection = () => {
                         <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden transition-all shadow-sm">
                             <button
                                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-sky-50 transition-colors"
+                                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-sky-50 transition-colors cursor-pointer"
                             >
                                 <span className="font-bold text-gray-900 md:text-lg">{faq.question}</span>
                                 {openIndex === i ? <ChevronUp className="text-[theme(color.brand.blue)]" /> : <ChevronDown className="text-gray-400" />}

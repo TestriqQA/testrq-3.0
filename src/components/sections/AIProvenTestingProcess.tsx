@@ -145,7 +145,7 @@ const AIProvenTestingProcess: React.FC = () => {
                         : activeStep > index
                           ? "bg-green-500 shadow-md"
                           : "bg-gray-400"
-                        }`}
+                        } cursor-pointer`}
                       aria-label={`Step ${step.number}: ${step.title}`}
                     >
                       {activeStep > index ? (
@@ -213,7 +213,7 @@ const AIProvenTestingProcess: React.FC = () => {
                   className={`w-full p-4 rounded-lg border-2 transition-all duration-300 ${activeStep === index
                     ? `border-${step.color}-500 bg-${step.color}-50`
                     : "border-gray-200 bg-white hover:border-gray-300"
-                    }`}
+                    } cursor-pointer`}
                   aria-label={`Step ${step.number}: ${step.title}`}
                 >
                   <div className="flex items-center">
@@ -292,7 +292,7 @@ const AIProvenTestingProcess: React.FC = () => {
                 {(
                   <button
                     onClick={() => setActiveStep((activeStep + 1) % steps.length)}
-                    className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${steps[activeStep].gradient} text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105`}
+                    className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${steps[activeStep].gradient} text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer`}
                   >
                     <span>Next Step</span>
                     <FaArrowRight className="w-4 h-4" />

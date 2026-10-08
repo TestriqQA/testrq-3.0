@@ -2,6 +2,7 @@
 
 import React from "react";
 import { FaClipboardList, FaFileAlt, FaUserTie, FaPlayCircle, FaTools, FaCheckDouble } from "react-icons/fa";
+import Link from "next/link";
 
 const UATProcessSection: React.FC = () => {
     const steps = [
@@ -91,9 +92,11 @@ const UATProcessSection: React.FC = () => {
                             <p className="text-gray-600">Our ISTQB-certified professionals can help you design a custom UAT strategy tailored to your industry and scale.</p>
                         </div>
                         <div className="flex justify-end">
-                            <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-brand-blue transition-colors shadow-lg shadow-slate-200 cursor-pointer">
-                                Request Strategy Session
-                            </button>
+                            <Link href="/contact-us" className="inline-block">
+                              <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-brand-blue transition-colors shadow-lg shadow-slate-200 cursor-pointer">
+                                  Request Strategy Session
+                              </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

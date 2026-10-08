@@ -67,7 +67,7 @@ export default function WebappFAQs() {
           >
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full px-6 py-5 flex justify-between items-center text-left text-gray-900 font-semibold text-base sm:text-lg"
+              className="w-full px-6 py-5 flex justify-between items-center text-left text-gray-900 font-semibold text-base sm:text-lg cursor-pointer"
             >
               <span>{item.question}</span>
               {activeIndex === index ? (

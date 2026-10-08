@@ -338,7 +338,7 @@ const TelecomToolsFrameworksSection: React.FC = () => {
                 Request Demo
               </button>
             </Link>
-            {/* <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30">
+            {/* <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all duration-200 ease-in-out border border-white border-opacity-30 cursor-pointer">
               Download QA Framework Guide
             </button> */}
           </div>

@@ -208,7 +208,7 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
           </p>
           <button
             onClick={() => setSearchTerm("")}
-            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors cursor-pointer"
           >
             Clear Search
           </button>

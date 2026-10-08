@@ -82,7 +82,7 @@ const CaseStudiesFeaturedSection = ({ caseStudies }: CaseStudiesFeaturedSectionP
               className={`min-h-[44px] px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedIndustry === null
                 ? "bg-[theme(color.brand.blue)] text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                } cursor-pointer`}
             >
               All Industries
               <span className="ml-1.5 text-xs opacity-75">({caseStudies.length})</span>
@@ -99,7 +99,7 @@ const CaseStudiesFeaturedSection = ({ caseStudies }: CaseStudiesFeaturedSectionP
                   className={`min-h-[44px] px-4 py-2 rounded-full text-sm font-medium transition-colors ${active
                     ? "bg-[theme(color.brand.blue)] text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                    } cursor-pointer`}
                 >
                   {industry}
                   <span className="ml-1.5 text-xs opacity-75">({count})</span>

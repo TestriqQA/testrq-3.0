@@ -103,7 +103,7 @@ const ApiROISection: React.FC = () => {
             testing services. Get a personalized ROI analysis for your project.
           </p>
           <Link href="/roi-calculator">
-            <button className="bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300">
+            <button className="bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300 cursor-pointer">
               Get ROI Analysis
             </button>
           </Link>
