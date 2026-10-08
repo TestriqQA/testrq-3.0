@@ -158,6 +158,12 @@ export const allCaseStudiesQuery = groq`*[_type == "caseStudy"] | order(_created
   duration,
   description,
   image,
+  "gallery": gallery[]{
+    "url": asset->url,
+    "alt": alt,
+    "width": asset->metadata.dimensions.width,
+    "height": asset->metadata.dimensions.height
+  },
   seo,
   openGraph,
   twitter,
@@ -183,6 +189,12 @@ export const caseStudyBySlugQuery = groq`*[_type == "caseStudy" && slug.current 
   duration,
   description,
   image,
+  "gallery": gallery[]{
+    "url": asset->url,
+    "alt": alt,
+    "width": asset->metadata.dimensions.width,
+    "height": asset->metadata.dimensions.height
+  },
   seo,
   openGraph,
   twitter,
@@ -210,6 +222,12 @@ export const relatedCaseStudiesQuery = groq`*[_type == "caseStudy" && slug.curre
   duration,
   description,
   image,
+  "gallery": gallery[]{
+    "url": asset->url,
+    "alt": alt,
+    "width": asset->metadata.dimensions.width,
+    "height": asset->metadata.dimensions.height
+  },
   results
 }`;
 

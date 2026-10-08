@@ -80,7 +80,11 @@ const CaseStudiesHeroSection = () => {
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap justify-center md:justify-center xl:justify-start gap-6 lg:mx-0">
+            {/* 5 stats in one row from lg up. Was flex-wrap, which fitted four and
+                dropped "24/7 Support Success" onto a second line on its own. A
+                fixed 5-column grid keeps them on one line and keeps the columns
+                aligned; the long labels wrap inside their own cell instead. */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 justify-items-center xl:justify-items-start lg:mx-0">
               {[
                 ["500+", "Successful Projects"],
                 ["99%", "Bug Reduction Rate"],

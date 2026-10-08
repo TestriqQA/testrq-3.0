@@ -505,11 +505,14 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
           border-radius: 1rem;
         }
 
-        /* Mobile modal improvements */
+        /* Mobile modal improvements.
+           No margin here: the overlay already supplies the gap with p-2, and
+           adding margin on top of that made the modal taller than the space
+           it had, which clipped it at the top and bottom. dvh rather than vh
+           so the mobile address bar is accounted for. */
         @media (max-width: 768px) {
           .modal-content {
-            margin: 0.5rem;
-            max-height: calc(100vh - 1rem);
+            max-height: calc(100dvh - 2rem);
           }
         }
       `}</style>
@@ -607,12 +610,17 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
           </div>
         </div>
 
-        {/* Application Modal - Fully mobile optimized */}
+        {/* Application Modal - Fully mobile optimized.
+            z-[70] clears the sticky header (z-[60], with its contact strip at
+            z-[65]). At z-50 the header painted straight over the top of the
+            modal, so the dialog looked flush against it and its first rows
+            were unreachable. The overlay padding is the ONLY gap — the panel
+            inside subtracts exactly that, so the two cannot disagree. */}
         {showApplicationModal && selectedPosition && (
-          <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-start justify-center z-50 p-2 sm:p-4 overflow-y-auto">
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-start sm:items-center justify-center z-[70] p-4 sm:p-6 overflow-y-auto">
             <div
               ref={modalContentRef}
-              className="bg-white rounded-xl sm:rounded-2xl shadow-xl w-full max-w-4xl my-2 sm:my-4 relative modal-content max-h-[calc(100vh-1rem)] sm:max-h-[calc(100vh-2rem)] overflow-y-auto"
+              className="bg-white rounded-xl sm:rounded-2xl shadow-xl w-full max-w-4xl relative modal-content max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)] overflow-y-auto"
             >
               {/* Centered Success Message Overlay */}
               {showSuccessMessage && (
