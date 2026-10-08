@@ -7,21 +7,56 @@ import {
   FaLock,
   FaPlane,
   FaRoute,
+  FaGlobe,
+  FaRobot,
 } from "react-icons/fa";
 
 const AboutStorySection = () => {
+  // Newest first. The list is authored in the order it is displayed rather
+  // than being sorted at render: the zigzag layout below alternates sides on
+  // index, so the array order IS the visual order and sorting it elsewhere
+  // would silently change which side each card lands on.
   const milestones = [
     {
-      year: "2010",
-      title: "Foundation",
-      description: "A Team of 2 members started working in a shared workspace",
-      icon: FaRocket,
+      year: "2027",
+      title: "The Road Ahead",
+      description:
+        "Vision to expand into the GCC and Singapore markets.",
+      icon: FaGlobe,
     },
     {
-      year: "2015",
-      title: "Team Expansion",
+      year: "2026",
+      title: "Product Launch & Group Growth",
       description:
-        "Grew to 50+ certified testing professionals across multiple domains.",
+        "Delivered 80+ Fintech and Cybersecurity projects, launched our own LLM validation tool llmqa.ai, and welcomed Cinute Infomedia — founded in October 2026 — into the group.",
+      icon: FaRobot,
+    },
+    {
+      year: "2025",
+      title: "Drone QA Success",
+      description:
+        "Delivered our first successful QA project in the Drone industry.",
+      icon: FaPlane,
+    },
+    {
+      year: "2024",
+      title: "Tech Expansion",
+      description:
+        "Ventured into Cybersecurity and Artificial Intelligence testing.",
+      icon: FaLock,
+    },
+    {
+      year: "2023",
+      title: "Major Milestone",
+      description:
+        "Completed 8+ years with the world’s #1 VPN and launched CDPL Pvt. Ltd.",
+      icon: FaHandshake,
+    },
+    {
+      year: "2020",
+      title: "Scaling Up",
+      description:
+        "Achieved 100+ QA experts and scaled delivery across critical verticals.",
       icon: FaUsers,
     },
     {
@@ -32,32 +67,17 @@ const AboutStorySection = () => {
       icon: FaBuilding,
     },
     {
-      year: "2020",
-      title: "Scaling Up",
+      year: "2015",
+      title: "Team Expansion",
       description:
-        "Achieved 100+ QA experts and scaled delivery across critical verticals.",
+        "Grew to 50+ certified testing professionals across multiple domains.",
       icon: FaUsers,
     },
     {
-      year: "2023",
-      title: "Major Milestone",
-      description:
-        "Completed 8+ years with the world’s #1 VPN and launched CDPL Pvt. Ltd.",
-      icon: FaHandshake,
-    },
-    {
-      year: "2024",
-      title: "Tech Expansion",
-      description:
-        "Ventured into Cybersecurity and Artificial Intelligence testing.",
-      icon: FaLock,
-    },
-    {
-      year: "2025",
-      title: "Drone QA Success",
-      description:
-        "Delivered our first successful QA project in the Drone industry.",
-      icon: FaPlane,
+      year: "2010",
+      title: "Foundation",
+      description: "A Team of 2 members started working in a shared workspace",
+      icon: FaRocket,
     },
   ];
 
