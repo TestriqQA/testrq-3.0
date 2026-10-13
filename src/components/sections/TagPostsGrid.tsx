@@ -250,23 +250,30 @@ const TagPostsGrid: React.FC<TagPostsGridProps> = ({ tag, posts }) => {
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           {/* You can add related tags here based on your logic */}
+          {/* Semrush audit (05 Oct 2026) issue 214 "Permanent redirects": all
+              three chips here pointed at taxonomy slugs that no longer exist,
+              so every click cost a 308 hop. Per redirect-map.ts they resolved
+              /blog/tag/automation -> /blog/tag/automation-testing,
+              /blog/tag/qa -> /blog/category/qa-testing (a category, not a
+              tag) and /blog/tag/testing -> /blog.
+
+              The two that still have a real destination now link to it
+              directly, with labels corrected to match where they actually go —
+              a chip reading #qa that lands on the qa-testing category is a
+              small lie to the reader and to the crawler. The #testing chip is
+              gone: its tag was deleted, and a tag chip whose only destination
+              is the blog index promises a filtered view it cannot deliver. */}
           <Link
-            href="/blog/tag/automation"
+            href="/blog/tag/automation-testing"
             className="px-4 py-2 bg-white text-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors border border-purple-200"
           >
-            #automation
+            #automation-testing
           </Link>
           <Link
-            href="/blog/tag/testing"
+            href="/blog/category/qa-testing"
             className="px-4 py-2 bg-white text-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors border border-purple-200"
           >
-            #testing
-          </Link>
-          <Link
-            href="/blog/tag/qa"
-            className="px-4 py-2 bg-white text-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors border border-purple-200"
-          >
-            #qa
+            #qa-testing
           </Link>
           <Link
             href="/blog/categories"

@@ -65,7 +65,7 @@ const MobileComprehensive: React.FC = () => {
       description: (
         <>
           Testing real-world{" "}
-          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue underline">
+          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2026" className="text-brand-blue underline">
             5G/Wi-Fi 6
           </Link>{" "}
           handovers. We replicate latency and throttling to prevent the 42% of crashes caused by network-edge connectivity shifts.

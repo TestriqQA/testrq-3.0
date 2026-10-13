@@ -13,7 +13,7 @@ const ToolsAutomationSection = () => {
   const automationCapabilities = [
     {
       icon: FaRobot,
-      title: (<><Link href="/blog/post/ai-testing-learning-guide">AI-Powered Test Generation</Link></>),
+      title: (<><Link href="/blog/post/ai-model-accuracy-testing-step-by-step-guide">AI-Powered Test Generation</Link></>),
       description:
         "We prioritize client privacy by ensuring that AI models are only used with exclusive permission, safeguarding proprietary information and algorithms at all times.",
       features: [

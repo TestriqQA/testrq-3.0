@@ -91,7 +91,7 @@ const TradingAppSecurityFeatures = () => {
       description:
         "We assess your fraud detection capabilities to ensure suspicious activity is quickly identified and addressed.",
       features: [
-        (<><Link href="/blog/post/ai-testing-learning-guide">Machine learning algorithms</Link></>),
+        (<><Link href="/blog/post/ai-model-accuracy-testing-step-by-step-guide">Machine learning algorithms</Link></>),
         "Pattern recognition",
         "Risk scoring",
         "Automated alerts",

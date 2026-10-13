@@ -182,7 +182,7 @@ const ShoppingAppTestingServices = () => {
         "Payment, tax, and shipping APIs",
         <>
           ERP, CRM, and analytics{" "}
-          <Link href="/blog/post/api-test-automation-strategy-faster-releases-reliable-integrations">
+          <Link href="/blog/post/api-test-automation-strategy-faster-ci-cd">
             integrations
           </Link>
         </>,

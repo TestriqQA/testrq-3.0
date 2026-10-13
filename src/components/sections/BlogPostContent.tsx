@@ -20,6 +20,21 @@ const getBlockText = (block: any) =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   block.children?.map((child: any) => child.text).join('') || '';
 
+// True when a mark's rendered children contain at least one non-whitespace
+// character. PortableText hands mark serializers React nodes rather than the
+// raw text, so this walks them; nested marks (a link inside a <strong>, say)
+// keep their text, which is why it recurses instead of only checking strings.
+const hasRenderableText = (nodes: React.ReactNode): boolean =>
+  React.Children.toArray(nodes).some((child) => {
+    if (typeof child === "string") return child.trim().length > 0;
+    if (typeof child === "number") return true;
+    if (React.isValidElement(child)) {
+      const { children } = child.props as { children?: React.ReactNode };
+      return hasRenderableText(children);
+    }
+    return false;
+  });
+
 // Helper to extract dimensions from Sanity asset ref
 const getImageDimensions = (ref: string) => {
   if (!ref) return { width: 1200, height: 800, aspectRatio: 1.5 };
@@ -126,6 +141,26 @@ const components = {
     },
   },
   block: {
+    // Semrush audit (05 Oct 2026) flagged issue 104 "Multiple h1 tags" on
+    // exactly 37 pages. Cause: 37 published posts carry body blocks with
+    // style "h1" (GROQ: count(*[_type=="post" && count(body[style=="h1"])>0])
+    // === 37), left over from the content import — blockContent.ts has never
+    // offered H1 in its style list, so the editor cannot produce one. With no
+    // h1 override here, PortableText's default serializer emitted a real <h1>
+    // on top of the post title's h1.
+    //
+    // Demoted to <h2> rather than patching the 37 documents: the schema's own
+    // style list establishes that body headings start at H2, so rendering is
+    // where the intent belongs, and this also absorbs any future import. The
+    // block data keeps style "h1", so anything deriving a TOC from body styles
+    // is unaffected. Styling matches the h2 override so the visual hierarchy
+    // is unchanged for readers.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    h1: ({ children, value }: any) => {
+      const text = getBlockText(value);
+      const slug = slugify(text);
+      return <h2 id={slug} className="text-3xl font-bold mt-12 mb-4 scroll-mt-24">{children}</h2>;
+    },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     h2: ({ children, value }: any) => {
       const text = getBlockText(value);
@@ -214,6 +249,16 @@ const components = {
     link: ({ children, value }: any) => {
       const href = value?.href || "#";
       const isExternal = !href.startsWith("/") && !href.startsWith("https://www.testriq.com");
+      // Semrush audit (05 Oct 2026) issue 216 "Links with no anchor text".
+      // Crawling all 1434 sitemap URLs found 10 anchors with no text, no
+      // aria-label and no titled image — every one of them a link mark in a
+      // post body (e.g. /blog/post/5g-mobile-app-testing-strategies... ->
+      // /contact-us), where the annotation got applied to a span that ended up
+      // empty. An anchor with nothing inside is invisible to readers while
+      // still being a crawlable link with no signal, so render the (empty)
+      // content unwrapped rather than emit the anchor. Guarding here instead
+      // of patching 10 documents also covers the next one an editor creates.
+      if (!hasRenderableText(children)) return <>{children}</>;
       return (
         <Link
           href={href}

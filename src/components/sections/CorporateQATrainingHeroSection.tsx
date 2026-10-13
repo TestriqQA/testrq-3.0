@@ -48,7 +48,7 @@ const CorporateQATrainingHeroSection: React.FC = () => {
             </h1>
 
             <p className="text-lg text-gray-600 leading-relaxed">
-              Upskill your QA team with Testriq’s corporate training programs. From manual testing fundamentals to <Link href="/software-testing-guide" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">software QA training</Link>, <Link href="/automation-testing-services" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">advanced quality engineering</Link>, and <Link href="/ai-application-testing" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">AI, hyper-automation</Link>, we customize curriculums to align with your business goals.
+              Upskill your QA team with Testriq’s corporate training programs. From manual testing fundamentals to <Link href="/blog" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">software QA training</Link>, <Link href="/automation-testing-services" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">advanced quality engineering</Link>, and <Link href="/ai-application-testing" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">AI, hyper-automation</Link>, we customize curriculums to align with your business goals.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

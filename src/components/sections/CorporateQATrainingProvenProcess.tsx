@@ -17,7 +17,7 @@ const CorporateQATrainingProvenProcess: React.FC = () => {
       title: "Assessment & Planning",
       icon: <FaClipboardList className="text-2xl text-blue-600" />,
       description:
-        (<>We analyze your team&apos;s current skill level and create a <Link href="/software-testing-guide" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">customized training roadmap</Link>.</>),
+        (<>We analyze your team&apos;s current skill level and create a <Link href="/blog" className="text-gray-600 hover:text-brand-blue hover:underline decoration-brand-blue">customized training roadmap</Link>.</>),
       details: [
         "Skills gap analysis",
         "Learning objectives definition",

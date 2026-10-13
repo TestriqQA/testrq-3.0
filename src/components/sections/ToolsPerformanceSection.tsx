@@ -70,7 +70,15 @@ const ToolsPerformanceSection = () => {
     },
     {
       icon: FaChartBar,
-      category: (<><Link href="/blog/post/validation-optimization-in-desktop-app-testing-retesting-performance-ux-assurances">Performance Monitoring</Link></>),
+      // Semrush audit (05 Oct 2026) issue 214 "Permanent redirects". This
+      // label linked to a deleted post that redirects to
+      // /desktop-application-testing-services — a desktop-testing service
+      // page reached from the "Performance Monitoring" label on a Gatling
+      // card, which is both a 308 hop and the wrong topic. Repointed to the
+      // performance service page: it exists, it matches the label and the
+      // surrounding section, and it keeps the internal link rather than
+      // dropping it. Swap in a replacement article if one is written.
+      category: (<><Link href="/performance-testing-services">Performance Monitoring</Link></>),
       title: "Gatling",
       description:
         "High-performance load testing framework with detailed reporting",

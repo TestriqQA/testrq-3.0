@@ -1,5 +1,19 @@
 import { Suspense } from "react";
-import { BlogHeroSection } from "@/components/client-wrappers/BlogClientComponents";
+// Semrush audit (05 Oct 2026) issue 103 "Missing h1" = 1 page, and that page
+// is this one. BlogHeroSection owns the only <h1> on /blog (line 272 of the
+// section), but it was reached through client-wrappers/BlogClientComponents,
+// where it is wrapped in next/dynamic with a `loading` fallback. dynamic() is
+// invoked inside a "use client" module, so the hero resolves in the browser
+// and never lands in the server payload: `curl https://www.testriq.com/blog`
+// returned 120,759 bytes whose only headings were the footer's three <h3>s —
+// no h1, and not even the "Loading..." fallback.
+//
+// Imported directly instead. A "use client" component imported into a Server
+// Component is still server-rendered and then hydrated, so the h1 is back in
+// the initial HTML with no change to behaviour or appearance. Same trap as the
+// next/script JSON-LD note in (services)/agile-testing-services/page.tsx:
+// markup a crawler cannot see may as well not exist.
+import BlogHeroSection from "@/components/sections/BlogHeroSection";
 import BlogPostsGrid from "@/components/sections/BlogPostsGrid";
 import MainLayout from "@/components/layout/MainLayout";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
@@ -73,6 +87,32 @@ export async function generateMetadata(): Promise<Metadata> {
 // F-48.1 — No `searchParams` prop. Always renders page 1's posts. Client
 // component (BlogPostsGrid) handles per-page navigation via the getBlogPosts
 // Server Action triggered by useSearchParams changes.
+// Fallback for the BlogPostsGrid boundary. Deliberately plain markup: the
+// moment this calls useSearchParams (directly or through a child) the CSR
+// bailout escalates past this boundary and takes the whole page's HTML with
+// it — see the note on the Suspense below. Mirrors the card geometry in
+// blog/loading.tsx so the grid does not shift when the real one hydrates.
+function BlogPostsGridSkeleton() {
+  return (
+    <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-24 py-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="bg-white border border-gray-100 rounded-xl overflow-hidden">
+            <div className="h-48 bg-gray-200 animate-pulse" />
+            <div className="p-5">
+              <div className="h-4 w-20 bg-gray-200 rounded animate-pulse mb-3" />
+              <div className="h-6 w-full bg-gray-200 rounded animate-pulse mb-2" />
+              <div className="h-6 w-3/4 bg-gray-200 rounded animate-pulse mb-4" />
+              <div className="h-4 w-full bg-gray-100 rounded animate-pulse mb-1" />
+              <div className="h-4 w-5/6 bg-gray-100 rounded animate-pulse" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default async function BlogPage() {
   const postsPerPage = 9;
 
@@ -115,19 +155,29 @@ export default async function BlogPage() {
       {/* F-48.1 — Suspense boundary is REQUIRED because BlogPostsGrid uses
           useSearchParams(); without this, the whole route would silently
           opt back into Dynamic Rendering and the Cache-Control header win
-          would be lost. The fallback uses the same posts grid pre-rendered
-          with page-1 data — visually identical, so users never see a
-          loading state on first paint. */}
-      <Suspense
-        fallback={
-          <BlogPostsGrid
-            initialPosts={currentPosts}
-            totalPages={totalPages}
-            featuredPosts={featuredPosts}
-            trendingPosts={trendingPosts}
-          />
-        }
-      >
+          would be lost.
+
+          The fallback used to render BlogPostsGrid itself, pre-filled with
+          page-1 data, on the reasoning that an identical grid means no
+          visible loading state. It cost the entire page instead: a fallback
+          that calls useSearchParams cannot satisfy the CSR bailout, so Next
+          escalated to the next boundary up — blog/loading.tsx — and
+          prerendered *that* as the whole route. Verified in
+          .next/server/app/blog.html, which held 78 animate-pulse skeleton
+          divs and zero <h1>, while about-us.html held its h1 normally. That
+          is Semrush issue 103 "Missing h1" = 1, and this was the page: the
+          hero, the h1 and the JSON-LD all existed only after hydration.
+          Removing loading.tsx to test it made the build fail outright with
+          "useSearchParams() should be wrapped in a suspense boundary at
+          page /blog", which confirmed the escalation.
+
+          The fallback is now markup that does not touch useSearchParams, so
+          the bailout resolves here and the shell above — hero, h1 and
+          structured data — prerenders into the static HTML. Only the grid
+          stays client-rendered. Post links are unaffected for discovery:
+          sitemap.ts, /website-map and the category/tag pages all link them
+          server-side. */}
+      <Suspense fallback={<BlogPostsGridSkeleton />}>
         <BlogPostsGrid
           initialPosts={currentPosts}
           totalPages={totalPages}

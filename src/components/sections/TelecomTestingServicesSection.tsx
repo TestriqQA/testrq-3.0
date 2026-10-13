@@ -246,7 +246,7 @@ const TelecomTestingServicesSection: React.FC = () => {
               <p className="text-sm text-gray-600">
                 20+ years of experience validating telecom software platforms
                 worldwide with deep knowledge of industry standards and{" "}
-                <Link href="/blog/post/api-test-automation-strategy-faster-releases-reliable-integrations">integrations</Link>.
+                <Link href="/blog/post/api-test-automation-strategy-faster-ci-cd">integrations</Link>.
               </p>
             </div>
 
