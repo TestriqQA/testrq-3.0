@@ -173,7 +173,7 @@ const GamingChallengesSection: React.FC = () => {
               </div>
               <div className="text-center p-4 text-brand-blue bg-white bg-opacity-10 rounded-2xl">
                 <div className="text-2xl font-bold mb-2">85%</div>
-                <div className="text-sm"><Link href="/blog/post/bug-discovery-find-hidden-defects-with-heuristic-exploratory-testing">Bug Reduction Rate</Link></div>
+                <div className="text-sm"><Link href="/blog/post/heuristic-exploratory-testing-guide">Bug Reduction Rate</Link></div>
               </div>
             </div>
 

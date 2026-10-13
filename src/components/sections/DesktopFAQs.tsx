@@ -21,7 +21,7 @@ const DesktopFAQs: React.FC = () => {
       question: "How to test desktop software without an internet connection?",
       answer: (
         <>
-          To ensure a reliable user experience, we <Link href="/manual-testing" className="text-[theme(color.brand.blue)] underline">test</Link> local data caching and offline stability. We then confirm that all data syncs correctly the moment the application reconnects to the internet.
+          To ensure a reliable user experience, we <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline">test</Link> local data caching and offline stability. We then confirm that all data syncs correctly the moment the application reconnects to the internet.
         </>
       ),
     },

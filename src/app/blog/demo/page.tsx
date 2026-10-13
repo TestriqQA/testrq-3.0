@@ -375,10 +375,10 @@ export default function BlogDemoPage() {
                                                 Our team of performance testing experts is here to help you implement these strategies and achieve measurable results.
                                             </p>
                                             <div className="flex flex-wrap gap-4">
-                                                <Link href="/contact" className="px-6 py-3 bg-white text-blue-700 font-bold rounded-xl hover:bg-blue-50 transition-all">
+                                                <Link href="/contact-us" className="px-6 py-3 bg-white text-blue-700 font-bold rounded-xl hover:bg-blue-50 transition-all">
                                                     Schedule Consultation
                                                 </Link>
-                                                <Link href="/services/performance-testing" className="px-6 py-3 bg-blue-500/30 backdrop-blur-sm border-2 border-white/30 text-white font-bold rounded-xl hover:bg-blue-500/50 transition-all">
+                                                <Link href="/performance-testing-services" className="px-6 py-3 bg-blue-500/30 backdrop-blur-sm border-2 border-white/30 text-white font-bold rounded-xl hover:bg-blue-500/50 transition-all">
                                                     Explore Services
                                                 </Link>
                                             </div>

@@ -409,7 +409,7 @@ const ROICalculatorPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-block bg-brand-blue text-white font-semibold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors duration-200"
             >
               Schedule a Consultation

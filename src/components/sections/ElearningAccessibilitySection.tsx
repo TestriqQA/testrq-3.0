@@ -162,7 +162,7 @@ const ElearningAccessibilitySection: React.FC = () => {
               {" "}
               comprehensive
             </Link>{" "}
-            <Link href="/blog/post/accessibility-testing-in-manual-testing-use-cases-techniques">
+            <Link href="/blog/post/usability-testing-in-manual-testing-use-cases-techniques">
               accessibility testing
             </Link>{" "}
             services help you reach every student and meet global compliance

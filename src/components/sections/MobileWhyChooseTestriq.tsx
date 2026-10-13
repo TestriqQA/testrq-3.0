@@ -39,7 +39,7 @@ const MobileWhyChooseTestriq: React.FC = () => {
       description: (
         <>
           Specialized in testing for{" "}
-          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2025" className="text-brand-blue underline">
+          <Link href="/blog/post/5g-mobile-app-testing-strategies-for-smooth-performance-in-2026" className="text-brand-blue underline">
             5G
           </Link>
           , edge computing, AR/VR, and the latest iOS 19/Android 15 features across 24,000+ devices.

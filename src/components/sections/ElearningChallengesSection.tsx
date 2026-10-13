@@ -190,7 +190,7 @@ const ElearningChallengesSection: React.FC = () => {
             <Link href="/performance-testing-services">performance</Link>, and
             learner satisfaction. Our e-learning testing solutions address these
             critical issues through{" "}
-            <Link href="/blog/post/accessibility-testing-in-manual-testing-use-cases-techniques">
+            <Link href="/blog/post/usability-testing-in-manual-testing-use-cases-techniques">
               accessibility compliance
             </Link>
             ,{" "}

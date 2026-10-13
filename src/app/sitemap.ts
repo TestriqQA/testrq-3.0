@@ -8,7 +8,22 @@ import {
   CaseStudy
 } from '@/lib/sanity-data-adapter';
 import { getAllCities, CityData, isCityIndexed } from '@/app/lib/CityData';
-import { redirects } from '@/lib/redirects';
+// Semrush audit (05 Oct 2026) issue 18 "Incorrect pages found in sitemap.xml"
+// = 1: the live sitemap advertised /blog/tag/user-experience-ux, which 308s to
+// /blog/tag/user-experience. The exclusion filter below has been correct since
+// Feb 2026 — it was reading the wrong list. F-15 (2026-05-15) moved the real
+// redirect table to src/lib/seo/redirect-map.ts and repointed next.config.ts,
+// but this import was left on the pre-extraction copy at src/lib/redirects.ts,
+// which has since drifted: 775 sources there vs 800 live, and the offending
+// tag redirect exists only in the live table. next.config.ts is the only thing
+// that actually serves redirects, so the sitemap has to filter against the
+// same module or it will keep advertising redirecting URLs.
+//
+// Measured before switching: of the 1434 URLs in the live sitemap, the paths
+// present only in the stale copy intersect the sitemap in 0 places, so this
+// newly excludes exactly one URL — the one Semrush flagged — and newly
+// includes none. src/lib/redirects.ts had no other importer and is now dead.
+import { redirects } from '@/lib/seo/redirect-map';
 // F-31: discoverRoutes extracted to a shared lib so /website-map (HTML
 // sitemap) can use the same auto-discovery instead of a hardcoded
 // manualLinks array that drifts out of sync.

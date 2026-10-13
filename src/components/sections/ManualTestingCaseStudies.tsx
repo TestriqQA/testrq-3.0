@@ -170,7 +170,7 @@ const ManualTestingCaseStudies: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Discover how our comprehensive manual testing services have helped
-            organizations across industries achieve <Link href="/blog/post/the-future-of-qa-trends-shaping-software-testing-in-2025" className="text-brand-blue underline">exceptional software
+            organizations across industries achieve <Link href="/blog/post/the-future-of-qa-trends-shaping-software-testing-in-2026" className="text-brand-blue underline">exceptional software
               quality</Link>, enhanced <Link href="/blog/post/user-experience-testing-for-smart-devices-usability-accessibility" className="text-brand-blue underline">user experiences</Link>, and measurable business
             outcomes.
           </p>

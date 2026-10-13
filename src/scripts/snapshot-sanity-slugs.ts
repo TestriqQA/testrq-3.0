@@ -60,7 +60,21 @@ const client = createClient({
 });
 
 async function fetchSlugList(docType: string): Promise<string[]> {
-    const query = `*[_type == "${docType}" && defined(slug.current)][].slug.current`;
+    // Drafts are excluded deliberately. The client above authenticates with
+    // SANITY_API_TOKEN, and a token-authenticated read returns drafts.* docs
+    // alongside published ones. Their slugs then reached postSlugs, which is
+    // what generateStaticParams in blog/post/[slug] prerenders — so every
+    // draft became a built page whose own postBySlugQuery (unauthenticated,
+    // published-only) found nothing and called notFound(). The result was a
+    // soft 404: HTTP 200 serving "Post Not Found".
+    //
+    // Found 13 Oct 2026 while chasing 8 such pages in .next/server/app/blog/
+    // post/. Six were simply stale — the snapshot had not been regenerated
+    // since 19 May 2026 — and refreshing it cleared those. The remaining two
+    // (government-certified-ai-testing-services,
+    // web-app-performance-load-vs-stress-testing) survived the refresh
+    // because they are live drafts, which is what identified this.
+    const query = `*[_type == "${docType}" && defined(slug.current) && !(_id in path("drafts.**"))][].slug.current`;
     try {
         const result = await client.fetch<string[]>(query);
         return result || [];
@@ -132,7 +146,11 @@ async function main() {
         // Inline a richer query that mirrors postBySlugQuery shape across all posts.
         fetchOrEmpty(
             'posts (full)',
-            `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+            // Same drafts exclusion as fetchSlugList, and it matters more here:
+            // a draft carries the same slug.current as the document it drafts,
+            // so an unfiltered list lets unreviewed draft bodies overwrite the
+            // published ones in the slug-keyed snapshot map the adapter serves.
+            `*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc) {
                 _id,
                 title,
                 slug,

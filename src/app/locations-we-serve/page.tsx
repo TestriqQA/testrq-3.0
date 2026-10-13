@@ -21,30 +21,68 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
+      // The same ld+json sweep found https://www.testriq.com/#organization is
+      // the one @id on the site declared with two different types: Organization
+      // on 19 pages, LocalBusiness only here. LocalBusiness is a subtype of
+      // Organization, so this was a narrowing rather than a contradiction, but
+      // one @id should present one stable type to the Knowledge Graph. Both
+      // types are declared so the canonical type holds everywhere and the
+      // local-business refinement still applies on the page where it earns
+      // its place.
+      "@type": ["Organization", "LocalBusiness"],
       "@id": "https://www.testriq.com/#organization",
       "name": "Testriq QA Lab LLP",
       "alternateName": "Testriq",
       "url": "https://www.testriq.com/",
       "logo": "https://www.testriq.com/testriq-logo.png",
       "description": "Leading software testing company providing comprehensive QA services across multiple locations including web application testing, mobile app testing, API testing, and test automation services.",
+      // Semrush audit (05 Oct 2026) issue 45 "Structured data that contains
+      // markup errors" = 1 page. This is the only page on the site that emits
+      // a LocalBusiness node (verified by extracting every ld+json block from
+      // 138 live URLs: LocalBusiness appears once, here), and every field
+      // below contradicted organizationSchema in src/components/seo/
+      // StructuredData.tsx, which is the canonical entity record Google reads:
+      //
+      //   numberOfEmployees  "50-100"            -> string where schema.org
+      //                                            requires QuantitativeValue
+      //                                            or Number. This is the hard
+      //                                            validation error.
+      //   telephone          +91-9876543210      -> placeholder digits; the
+      //                                            real line is +91-915-2929-343
+      //   email              info@               -> canonical is contact@
+      //   foundingDate       "2020"              -> canonical is "2010" (also
+      //                                            in aboutPageSchema and
+      //                                            pricingServiceSchema)
+      //   address            "Mumbai" / 400001   -> the office is in Mira
+      //                                            Bhayandar, 401107
+      //
+      // Same failure the organizationSchema comment records fixing ("the page
+      // shipped two contradicting locations") — it just never reached this
+      // page. A location claim the rest of the site contradicts lowers entity
+      // confidence, so these now mirror the canonical record exactly.
+      //
+      // geo removed rather than corrected: the old coordinates (19.0760,
+      // 72.8777) are Mumbai city centre, ~23km from the Mira Bhayandar office,
+      // and guessing replacement coordinates would be the same fabrication in
+      // a new costume. Re-add with surveyed values for the real office.
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Mumbai",
-        "addressLocality": "Mumbai",
+        "streetAddress": "Office Number 2 & 3, 2nd Floor, Ashley Towers, Kanakia Rd, Vagad Nagar",
+        "addressLocality": "Mira Bhayandar",
         "addressRegion": "Maharashtra",
-        "postalCode": "400001",
+        "postalCode": "401107",
         "addressCountry": "IN"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "19.0760",
-        "longitude": "72.8777"
+      "telephone": "+91-915-2929-343",
+      "email": "contact@testriq.com",
+      "foundingDate": "2010",
+      // Range carried over from the previous value and still unverified — it
+      // is now at least type-valid. Correct the bounds if HR has real numbers.
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "minValue": 50,
+        "maxValue": 100
       },
-      "telephone": "+91-9876543210",
-      "email": "info@testriq.com",
-      "foundingDate": "2020",
-      "numberOfEmployees": "50-100",
       "priceRange": "$$",
       "serviceArea": [
         {
