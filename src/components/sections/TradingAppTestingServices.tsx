@@ -40,7 +40,7 @@ const TradingAppTestingServices = () => {
         (<><Link href="/blog/post/cross-platform-testing-ensuring-seamless-gaming-experiences-across-devices">Cross-platform compatibility testing</Link></>),
         "Responsive design validation",
         "Progressive web app (PWA) testing",
-        (<>SEO and <Link href="/blog/post/accessibility-testing-in-manual-testing-use-cases-techniques">accessibility compliance</Link></>),
+        (<>SEO and <Link href="/blog/post/usability-testing-in-manual-testing-use-cases-techniques">accessibility compliance</Link></>),
       ],
       color: "text-green-600",
       bgColor: "bg-green-50",

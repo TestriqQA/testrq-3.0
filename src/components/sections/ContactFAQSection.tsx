@@ -25,7 +25,7 @@ const ContactFAQSection: React.FC = () => {
         (+91) 915-2929-343 during business hours (9 AM – 6 PM IST). For critical
         production issues, our 24/7 emergency QA support is available. You can
         also use our live chat for immediate QA assistance with{" "}
-        <Link href="/software-testing-guide">
+        <Link href="/blog">
           Software Testing
         </Link>
         , bug resolution, or deployment-related incidents.

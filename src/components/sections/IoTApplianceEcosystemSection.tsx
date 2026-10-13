@@ -66,7 +66,7 @@ const IoTEcosystemSection: React.FC = () => {
       examples: [
         "AWS IoT, Azure IoT, Google Cloud IoT",
         "Data Lakes & Warehouses",
-        (<><Link href="/blog/post/ai-testing-learning-guide">AI/ML Services</Link></>),
+        (<><Link href="/blog/post/ai-model-accuracy-testing-step-by-step-guide">AI/ML Services</Link></>),
         "Dashboarding & Visualization",
       ],
       color: "from-orange-500 to-orange-600",
@@ -154,7 +154,7 @@ const IoTEcosystemSection: React.FC = () => {
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
             Understanding the intricate layers of IoT architecture is crucial
             for successful deployment. We provide <Link href="/blog/post/test-execution-comprehensive-testing-implementation">comprehensive IoT testing</Link>{" "}
-            services across every component of your IoT <Link href="/blog/post/beginners-guide-to-iot-testing-types-tools-protocol-ecosystem">ecosystem</Link>-from edge
+            services across every component of your IoT <Link href="/blog/post/interoperability-testing-for-iot-ensuring-seamless-protocol-device-interaction">ecosystem</Link>-from edge
             devices and <Link href="/blog/post/functional-testing-for-robotic-systems-precision-sensors-control">sensors</Link> to gateways, protocols, and cloud platforms.
           </p>
         </div>

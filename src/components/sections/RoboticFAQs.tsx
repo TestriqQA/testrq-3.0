@@ -81,7 +81,7 @@ const RoboticFAQs: React.FC = () => {
         <>
           Physical AI refers to the trend where robots use{" "}
           <Link
-            href="/blog/post/ai-testing-learning-guide"
+            href="/blog/post/ai-model-accuracy-testing-step-by-step-guide"
             className="text-brand-blue underline font-medium"
           >
             Generative AI

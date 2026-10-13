@@ -82,7 +82,7 @@ const DataAnalysisProvenTestingProcess = () => {
         "Apply sophisticated analytical techniques and build predictive models",
       details: [
         "Statistical modeling and analysis",
-        (<><Link href="/blog/post/ai-testing-learning-guide">Machine learning model development</Link></>),
+        (<><Link href="/blog/post/ai-model-accuracy-testing-step-by-step-guide">Machine learning model development</Link></>),
         "Model validation and testing",
         (<><Link href="/blog/post/performance-optimization-ensuring-smooth-gameplay-and-reduced-lag-across-platforms">Performance optimization</Link></>),
       ],
