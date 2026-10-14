@@ -2497,3 +2497,136 @@ export const qaServicesServiceSchema = {
   "serviceType": "Software Quality Assurance & Testing Services",
   "areaServed": "Worldwide"
 };
+
+/**
+ * /dpdp-compliance-testing-services
+ *
+ * Deliberately NOT modelled with aggregateRating, review or any award/
+ * certification property. There is no official DPDP certificate for ordinary
+ * businesses, and the page's entire positioning is that it sells test evidence
+ * rather than a compliance claim — schema that implied certification would
+ * contradict the visible copy, which is both a rich-result violation and the
+ * specific thing the competitor audit flagged as dishonest in this market.
+ *
+ * areaServed is India-first because the DPDP Act is Indian law, with the
+ * secondary audience being overseas companies serving Indian users; that is
+ * why "Worldwide" also appears rather than India alone.
+ */
+export const dpdpComplianceTestingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.testriq.com/dpdp-compliance-testing-services/#service",
+      "name": "DPDP Compliance Testing Services",
+      "alternateName": "DPDP Technical Readiness Testing",
+      "serviceType": "Privacy & Data Protection Testing",
+      "url": "https://www.testriq.com/dpdp-compliance-testing-services",
+      "description":
+        "Technical verification of consent flows, data rights workflows, deletion and retention behaviour, access controls and breach-response processes inside web, mobile and API-based products, against the obligations your organisation has identified under India's Digital Personal Data Protection Act and Rules. Delivered as reproducible findings, evidence and a retest. This is a technical testing service, not legal advice and not a government certification.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Testriq QA Lab",
+        "url": "https://www.testriq.com",
+        "image": "https://www.testriq.com/testriq-logo.png",
+        "telephone": "+91-915-2929-343",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress":
+            "Office #2, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road",
+          "addressLocality": "Mira Bhayandar",
+          "addressRegion": "Maharashtra",
+          "postalCode": "401107",
+          "addressCountry": "IN"
+        },
+        "priceRange": "$$"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "India" },
+        "Worldwide"
+      ],
+      "audience": {
+        "@type": "BusinessAudience",
+        "name": "SaaS, fintech, healthtech, edtech and e-commerce companies processing Indian users' digital personal data"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "DPDP Testing Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "DPDP technical readiness gap assessment",
+              "description":
+                "Mapping of where personal data enters, moves and is stored in the product, then testing of a prioritised set of controls against the obligations you define. Produces a risk-ranked list of technical gaps with evidence."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Consent and privacy notice testing",
+              "description":
+                "Verification of purpose-wise consent options, absence of pre-ticked boxes, the withdrawal path against the giving path, processing behaviour after withdrawal, notice display on web and mobile, and consent record creation (Rule 3)."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Data Principal rights workflow testing",
+              "description":
+                "End-to-end testing of access, correction and erasure requests, nominee flows, identity checks, request status tracking and the published grievance mechanism (Rules 9 and 14)."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Data deletion and retention behaviour verification",
+              "description":
+                "Testing of account deletion across primary databases, replicas, caches, search indexes, file stores, analytics and third-party tools, alongside scheduled-erasure jobs and retention rules (Rule 8)."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Security safeguards verification for APIs and applications",
+              "description":
+                "Testing of the minimum safeguards listed in Rule 6: encryption, masking or tokenisation, access control, logging and monitoring, and log completeness for access to personal data, using OWASP Top 10-aligned methods."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Test data masking and synthetic data validation",
+              "description":
+                "Checks that QA and staging environments use masked or synthetic data rather than copied production data, and that masking is irreversible where required."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Breach detection and notification workflow testing",
+              "description":
+                "Testing of whether the technical workflow can support notifying affected Data Principals and the Board without delay, with detailed information within seventy-two hours (Rule 7)."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Privacy regression testing in CI/CD",
+              "description":
+                "Automation of consent behaviour, rights-request flows and personal-data-in-logs checks so each release is tested before it ships."
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
