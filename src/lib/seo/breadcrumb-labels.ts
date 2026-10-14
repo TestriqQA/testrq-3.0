@@ -37,6 +37,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   "embedded-testing-services":                      "Embedded Testing Services",
   "etl-testing-services":                           "ETL Testing",
   "exploratory-testing":                            "Exploratory Testing",
+  "dpdp-compliance-testing-services":               "DPDP Compliance Testing Services",
   "functional-testing-services":                    "Functional Testing",
   "iot-device-testing-services":                    "IoT Device Testing",
   "iso-iec-42001-compliance-testing-services":      "ISO/IEC 42001 Compliance Testing",
