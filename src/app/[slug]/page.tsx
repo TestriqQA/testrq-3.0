@@ -95,19 +95,39 @@ function generateCaseStudySchema(caseStudy: CaseStudy) {
 
     // VISUAL SNIPPETS (The Stars)
     "name": caseStudy.title,
-    "review": {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": caseStudy.testimonial.rating,
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": caseStudy.testimonial.author
-      },
-      "reviewBody": caseStudy.testimonial.quote
-    },
+    // Review is emitted only when the testimonial is actually on the page and
+    // carries the parts Google requires. It used to be unconditional, so a case
+    // study with an empty testimonial published a Review with a blank author,
+    // an empty reviewBody and ratingValue 5 — a rating produced by the adapter's
+    // old `|| 5` fallback, not by any client. Structured data has to describe
+    // content a visitor can see, so this now follows the same three conditions
+    // CaseStudyTestimonialSection renders on: switched on, has a quote, and —
+    // for Review specifically — names an author, which Google requires.
+    ...(caseStudy.testimonial.show &&
+    caseStudy.testimonial.quote?.trim() &&
+    caseStudy.testimonial.author?.trim()
+      ? {
+        "review": {
+          "@type": "Review",
+          // Omitted when no rating was given; a Review is valid without one,
+          // whereas inventing a value is not.
+          ...(typeof caseStudy.testimonial.rating === "number"
+            ? {
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": caseStudy.testimonial.rating,
+                "bestRating": "5"
+              }
+            }
+            : {}),
+          "author": {
+            "@type": "Person",
+            "name": caseStudy.testimonial.author
+          },
+          "reviewBody": caseStudy.testimonial.quote
+        }
+      }
+      : {}),
 
   };
 }

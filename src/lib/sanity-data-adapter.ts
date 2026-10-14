@@ -931,11 +931,14 @@ export interface CaseStudy {
         link: string;
     }[];
     testimonial: {
+        /** False only when an editor switched the section off in Studio. */
+        show: boolean;
         quote: string;
         author: string;
         role: string;
         company: string;
-        rating: number;
+        /** undefined when no rating was given — distinct from a rating of 0. */
+        rating?: number;
     };
     timeline: {
         phase: string;
@@ -1071,11 +1074,22 @@ export function adaptSanityCaseStudy(raw: any): CaseStudy {
             (t: any) => ({ name: t.name || '', link: t.link || '#' })
         ),
         testimonial: {
+            // `!== false` rather than `=== true`: case studies published before
+            // the `show` field existed store no value, and those must keep
+            // rendering. Only an explicit switch-off hides the section.
+            show: raw.testimonial?.show !== false,
             quote: raw.testimonial?.quote || '',
             author: raw.testimonial?.author || '',
             role: raw.testimonial?.role || '',
             company: raw.testimonial?.company || '',
-            rating: raw.testimonial?.rating || 5,
+            // Was `|| 5`, which turned "no rating given" into five filled stars
+            // on the page and a 5-star Review in the page's JSON-LD — a rating
+            // no client had actually given. undefined now means no rating, and
+            // both the stars and the Review's reviewRating are omitted.
+            rating:
+                typeof raw.testimonial?.rating === 'number' && raw.testimonial.rating > 0
+                    ? raw.testimonial.rating
+                    : undefined,
         },
         timeline: (raw.timeline || []).map(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any

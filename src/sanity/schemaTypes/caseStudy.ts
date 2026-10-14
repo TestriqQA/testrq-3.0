@@ -261,11 +261,46 @@ export default defineType({
             title: 'Testimonial',
             type: 'object',
             fields: [
-                defineField({ name: 'quote', title: 'Quote', type: 'text' }),
+                // Visibility switch for the whole "What Our Client Says" section.
+                //
+                // initialValue only applies to documents created after this field
+                // existed, so every case study published before today stores no
+                // value at all. The frontend therefore treats "not set" as visible
+                // (it checks `show !== false`, not `show === true`), which keeps
+                // existing case studies on screen instead of silently emptying
+                // them the moment this ships.
+                defineField({
+                    name: 'show',
+                    title: 'Show testimonial section',
+                    type: 'boolean',
+                    description:
+                        'Off hides the entire testimonial section on the case study page, including the star rating and author details. The quote stays saved here and reappears when switched back on.',
+                    initialValue: true,
+                }),
+                // Quote carries the section: the other four fields decorate it.
+                // Fill only this and the page shows just the quote — the stars and
+                // the author card stay hidden rather than rendering empty.
+                defineField({
+                    name: 'quote',
+                    title: 'Quote',
+                    type: 'text',
+                    description:
+                        'Required for the section to appear. Every field below is optional and is hidden on the website when left empty.',
+                }),
                 defineField({ name: 'author', title: 'Author', type: 'string' }),
                 defineField({ name: 'role', title: 'Role', type: 'string' }),
                 defineField({ name: 'company', title: 'Company', type: 'string' }),
-                defineField({ name: 'rating', title: 'Rating', type: 'number', validation: (Rule) => Rule.min(1).max(5) }),
+                // No initialValue, deliberately. The adapter used to fall back to
+                // 5 when this was blank, so a case study with no rating published
+                // five filled stars and a 5-star Review in its JSON-LD that nobody
+                // had given. Blank now means "no rating" and renders no stars.
+                defineField({
+                    name: 'rating',
+                    title: 'Rating',
+                    type: 'number',
+                    description: 'Leave empty if the client did not give a rating — no stars are shown.',
+                    validation: (Rule) => Rule.min(1).max(5),
+                }),
             ],
         }),
 
