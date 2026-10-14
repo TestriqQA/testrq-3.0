@@ -132,6 +132,11 @@ const Navbar = () => {
             { label: "Performance Testing", link: "/performance-testing-services" },
             { label: "Security Testing", link: "/security-testing" },
             { label: "Cyber Security Testing", link: "/cyber-security-testing-services" },
+            // Placed next to the two security entries rather than at the end of
+            // the list: DPDP testing is privacy-behaviour QA that builds on the
+            // same security and API capability, and the service page links back
+            // to both. Keeps the scent of the group intact for anyone scanning.
+            { label: "DPDP Compliance Testing", link: "/dpdp-compliance-testing-services" },
             { label: "Compatibility Testing", link: "/compatibility-testing-services" },
             { label: "Continuous Testing (CI/CD)", link: "/continuous-testing-services-cicd-pipeline" },
             { label: "QA Documentation Services", link: "/qa-documentation-services" },
