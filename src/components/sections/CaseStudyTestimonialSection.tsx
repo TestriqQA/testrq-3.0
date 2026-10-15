@@ -10,6 +10,29 @@ interface CaseStudyTestimonialSectionProps {
 const CaseStudyTestimonialSection: React.FC<
   CaseStudyTestimonialSectionProps
 > = ({ caseStudy }) => {
+  const { show, quote, author, role, company, rating } = caseStudy.testimonial;
+
+  // Every field below the quote is optional in Studio, and each one is hidden
+  // independently when empty. Before this, the section rendered its markup
+  // regardless: a case study with only a quote showed five stars nobody had
+  // given, an empty name chip, and a bare comma where "role, company" should be.
+  const hasRating = typeof rating === "number" && rating > 0;
+  const hasAuthor = Boolean(author?.trim());
+  const roleAndCompany = [role, company].map((v) => v?.trim()).filter(Boolean).join(", ");
+  const hasAuthorBlock = hasAuthor || Boolean(roleAndCompany);
+
+  // Hidden by the Studio switch, or nothing to quote. The quote is the section:
+  // without it there is no testimonial to show, and the surrounding header and
+  // trust blocks would frame an empty card. The page keeps its own
+  // CaseStudyCallToActionSection further down, so hiding this costs no CTA.
+  //
+  // `show === false`, not `!show`: case studies saved before the switch existed
+  // carry no value, and `!undefined` would hide every one of them. The adapter
+  // already normalises undefined to true, so this is belt and braces — but the
+  // two layers now agree on what "not set" means, instead of depending on the
+  // adapter being the only path data ever takes.
+  if (show === false || !quote?.trim()) return null;
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <FaStar
@@ -46,35 +69,43 @@ const CaseStudyTestimonialSection: React.FC<
               <FaQuoteLeft className="w-6 h-6 text-white" />
             </div>
 
-            {/* Rating */}
-            <div className="flex justify-center mb-8 mt-4">
-              <div className="flex gap-1">
-                {renderStars(caseStudy.testimonial.rating)}
+            {/* Rating — omitted entirely when no rating was given, rather than
+                rendering five grey stars that read as a zero score. */}
+            {hasRating && (
+              <div className="flex justify-center mb-8 mt-4">
+                <div className="flex gap-1">{renderStars(rating as number)}</div>
               </div>
-            </div>
+            )}
 
-            {/* Quote */}
-            <blockquote className="text-xl md:text-2xl text-gray-800 text-center leading-relaxed mb-8 font-medium">
-              &quot;{caseStudy.testimonial.quote}&quot;
+            {/* Quote. The extra top margin stands in for the rating block when
+                that is hidden, so the quote never collides with the quote icon. */}
+            <blockquote
+              className={`text-xl md:text-2xl text-gray-800 text-center leading-relaxed mb-8 font-medium ${hasRating ? "" : "mt-12"}`}
+            >
+              &quot;{quote}&quot;
             </blockquote>
 
-            {/* Author Info */}
-            <div className="text-center">
-              <div className="inline-flex items-center gap-4 bg-white rounded-full px-6 py-4 shadow-sm">
-                <div className="w-12 h-12 bg-[theme(color.brand.blue)] rounded-full flex items-center justify-center">
-                  <FaUser className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-left">
-                  <div className="font-semibold text-gray-900">
-                    {caseStudy.testimonial.author}
+            {/* Author Info — the whole chip goes when there is no name, role or
+                company, since an avatar beside blank lines looks like a bug. */}
+            {hasAuthorBlock && (
+              <div className="text-center">
+                <div className="inline-flex items-center gap-4 bg-white rounded-full px-6 py-4 shadow-sm">
+                  <div className="w-12 h-12 bg-[theme(color.brand.blue)] rounded-full flex items-center justify-center">
+                    <FaUser className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-gray-600 text-sm">
-                    {caseStudy.testimonial.role},{" "}
-                    {caseStudy.testimonial.company}
+                  <div className="text-left">
+                    {hasAuthor && (
+                      <div className="font-semibold text-gray-900">{author}</div>
+                    )}
+                    {/* Joined with ", " only when both parts exist, so a role
+                        with no company no longer renders a trailing comma. */}
+                    {roleAndCompany && (
+                      <div className="text-gray-600 text-sm">{roleAndCompany}</div>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
