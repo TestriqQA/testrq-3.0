@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { FaArrowRight, FaPhone } from "react-icons/fa";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const QAOutsourcingReadyToStart: React.FC = () => {
     return (
@@ -34,12 +35,12 @@ const QAOutsourcingReadyToStart: React.FC = () => {
                             </button>
                         </Link>
 
-                        <Link href="tel:+919152929343">
+                        <span>
                             <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors duration-300 flex items-center justify-center cursor-pointer">
                                 <FaPhone className="mr-2" />
-                                (+91) 915-2929-343
+                                <PhoneLinks />
                             </button>
-                        </Link>
+                        </span>
                     </div>
                 </div>
             </div>

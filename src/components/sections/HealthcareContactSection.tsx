@@ -22,6 +22,8 @@ import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
+import ContactCard from "@/components/ui/ContactCard";
 
 const HealthcareContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -262,8 +264,8 @@ const HealthcareContactSection: React.FC = () => {
       icon: FaPhone,
       title: "Speak with Healthcare Experts",
       description: "Direct consultation with our healthcare compliance specialists",
-      text: "(+91) 915-2929-343",
-      action: "tel:(+91) 915-2929-343",
+      text: <PhoneLinks />,
+      action: "tel:+919152929343",
       color: "from-green-500 to-emerald-600",
     },
     {
@@ -354,7 +356,7 @@ const HealthcareContactSection: React.FC = () => {
             </h3>
 
             {contactOptions.map((option, index) => (
-              <a
+              <ContactCard
                 key={index}
                 href={option.action}
                 target={option.action.startsWith("http") ? "_blank" : undefined}
@@ -379,7 +381,7 @@ const HealthcareContactSection: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </a>
+              </ContactCard>
             ))}
 
             {/* Expertise Areas */}

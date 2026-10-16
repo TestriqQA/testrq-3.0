@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { FaEnvelope, FaPhoneAlt, FaGlobeAmericas, FaArrowRight } from "react-icons/fa";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const UATNextStepsSection: React.FC = () => {
     const steps = [
@@ -58,15 +59,15 @@ const UATNextStepsSection: React.FC = () => {
                                     </div>
                                 </a>
 
-                                <a href="tel:+919152929343" className="flex items-center gap-4 hover:text-brand-blue transition-colors group">
+                                <span className="flex items-center gap-4 hover:text-brand-blue transition-colors group">
                                     <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-xl group-hover:bg-brand-blue group-hover:scale-110 transition-all">
                                         <FaPhoneAlt />
                                     </div>
                                     <div className="text-left">
                                         <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Call Us</p>
-                                        <p className="font-bold">(+91) 915-2929-343</p>
+                                        <p className="font-bold"><PhoneLinks /></p>
                                     </div>
-                                </a>
+                                </span>
 
                                 <div className="flex items-center gap-4 group cursor-default">
                                     <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-xl group-hover:bg-brand-blue group-hover:scale-110 transition-all">

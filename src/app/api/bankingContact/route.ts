@@ -390,7 +390,7 @@ async function sendClientConfirmation(data: BankingContactFormData) {
                 <li>Visit our website: <a href="https://www.testriq.com" style="color: #2563eb;">https://www.testriq.com</a></li>
                 <li>Learn more about our banking testing services: <a href="https://www.testriq.com/banking-testing-services" style="color: #2563eb;">Banking Testing</a></li>
                 <li>Follow us on LinkedIn: <a href="https://www.linkedin.com/company/testriq-qa-lab" style="color: #2563eb;">Testriq QA Lab</a></li>
-                <li>Call us directly: <a href="tel:+919152929343" style="color: #2563eb;">(+91) 915-2929-343</a></li>
+                <li>Call us directly: <a href="tel:+919152929343" style="color: #2563eb;">(+91) 915-2929-343</a> / <a href="tel:+919833096129" style="color: #2563eb;">(+91) 983-3096-129</a></li>
               </ul>
             </div>
             
@@ -408,7 +408,7 @@ async function sendClientConfirmation(data: BankingContactFormData) {
             <div style="text-align: center; color: #6b7280; font-size: 14px; line-height: 1.5;">
               <img src="https://www.testriq.com/images/testriq-logo.jpg" alt="Testriq QA Lab" style="height: 35px; margin-bottom: 15px;" />
               <p style="margin: 0 0 5px 0;">Testriq QA Lab LLP - Professional Software Testing Services</p>
-              <p style="margin: 0 0 10px 0;">📧 contact@testriq.com | 📞 (+91) 915-2929-343</p>
+              <p style="margin: 0 0 10px 0;">📧 contact@testriq.com | 📞 <a href="tel:+919152929343" style="color: inherit; text-decoration: none;">(+91) 915-2929-343</a> / <a href="tel:+919833096129" style="color: inherit; text-decoration: none;">(+91) 983-3096-129</a></p>
               <p style="margin: 0; font-size: 12px; color: #9ca3af;">
                 This is an automated confirmation email. Please do not reply to this email.
               </p>

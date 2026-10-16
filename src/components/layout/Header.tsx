@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import { PHONES } from "@/lib/contact";
 import { FaArrowRight, FaBars, FaTimes, FaEnvelope, FaPhoneAlt, FaWhatsapp, FaClock } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Image from "next/image";
@@ -243,17 +244,38 @@ const Navbar = () => {
 
         {/* RIGHT: Phone & WhatsApp */}
         <div className="flex flex-wrap justify-center lg:justify-end items-center gap-4 sm:gap-5 z-10 w-full lg:w-auto">
-          {/* Phone */}
-          <Link href="tel:+919152929343" className="flex items-center gap-2 text-gray-300 hover:text-white transition-all duration-300 group">
-            <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[theme(color.brand.blue)] group-hover:border-[theme(color.brand.blue)] transition-all duration-300 relative">
+          {/* Phone — both lines, each its own tel: link.
+              The icon sits outside the links so it is not repeated per number,
+              and `group` moved to this wrapper so its hover state still fires
+              when either number is hovered. The number list is flex-wrap: the
+              two sit side by side when the strip has room and stack when it
+              does not, instead of forcing a horizontal scroll. */}
+          <div className="flex items-center gap-2 text-gray-300 group">
+            <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[theme(color.brand.blue)] group-hover:border-[theme(color.brand.blue)] transition-all duration-300 relative shrink-0">
               <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 border border-[#0a1936]"></span>
               </span>
               <FaPhoneAlt className="text-[11px]" />
             </div>
-            <span className="font-bold tracking-wider text-[13px] sm:text-[14px] text-gray-100 group-hover:text-white transition-colors">(+91) 915-2929-343</span>
-          </Link>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+              {PHONES.map((phone, i) => (
+                <React.Fragment key={phone.tel}>
+                  {i > 0 && (
+                    <span aria-hidden="true" className="text-white/20 hidden sm:inline">
+                      |
+                    </span>
+                  )}
+                  <Link
+                    href={`tel:${phone.tel}`}
+                    className="whitespace-nowrap font-bold tracking-wider text-[13px] sm:text-[14px] text-gray-100 hover:text-white transition-colors"
+                  >
+                    {phone.display}
+                  </Link>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
 
           <div className="w-[1px] h-5 bg-white/10 hidden sm:block"></div>
 

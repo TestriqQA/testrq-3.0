@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const ExploratoryFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -134,7 +135,7 @@ const ExploratoryFAQs: React.FC = () => {
             </Link>
           </div>
           <div className="mt-6 text-green-100 text-sm">
-            📞 Call us: (+91) 915-2929-343 | ✉️ Email: contact@testriq.com
+            📞 Call us: <PhoneLinks /> | ✉️ Email: contact@testriq.com
           </div>
         </div>
 

@@ -372,7 +372,7 @@ async function sendClientThankYou(data: PricingFormData) {
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                   <td style="padding: 8px 0;">
-                    <a href="tel:+919152929343" style="color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 600;">(+91) 915-2929-343</a>
+                    <a href="tel:+919152929343" style="color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 600;">(+91) 915-2929-343</a> / <a href="tel:+919833096129" style="color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 600;">(+91) 983-3096-129</a>
                   </td>
                 </tr>
                 <tr>

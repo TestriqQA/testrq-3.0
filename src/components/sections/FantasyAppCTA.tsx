@@ -11,6 +11,8 @@ import {
   MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
+import PhoneLinks from "@/components/ui/PhoneLinks";
+import ContactCard from "@/components/ui/ContactCard";
 
 const FantasyAppCTA = () => {
   const ctaFeatures = [
@@ -32,7 +34,7 @@ const FantasyAppCTA = () => {
     {
       icon: <Phone className="w-5 h-5" />,
       label: "Call Us",
-      value: "+91-915-2929-343",
+      value: <PhoneLinks />,
       action: "tel:+919152929343",
     },
     {
@@ -110,7 +112,7 @@ const FantasyAppCTA = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {contactMethods.map((method, index) => (
-                  <a
+                  <ContactCard
       key={index}
       href={method.action}
       className="flex flex-col items-center gap-2 p-3 bg-white rounded-lg hover:bg-[#25A8E0] hover:text-white transition-colors duration-300 group"
@@ -124,7 +126,7 @@ const FantasyAppCTA = () => {
                     <div className="text-sm font-medium text-gray-900 group-hover:text-white">
                       {method.value}
                     </div>
-                  </a>
+                  </ContactCard>
                 ))}
               </div>
             </div>

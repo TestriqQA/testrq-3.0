@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const ETLAnyQuestions: React.FC = () => {
   return (
@@ -27,7 +28,7 @@ const ETLAnyQuestions: React.FC = () => {
         </div>
         <div className="mt-8 text-blue-100">
           <p className="text-sm">
-            📞 Call us: (+91) 915-2929-343 | ✉️ Email: contact@testriq.com
+            📞 Call us: <PhoneLinks /> | ✉️ Email: contact@testriq.com
           </p>
         </div>
       </div>

@@ -18,6 +18,8 @@ import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
+import ContactCard from "@/components/ui/ContactCard";
 
 const ContactHeroSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -271,8 +273,8 @@ const ContactHeroSection: React.FC = () => {
     {
       icon: FaPhone,
       label: "Call Now",
-      value: "(+91) 915-2929-343",
-      action: "tel:(+91) 915-2929-343",
+      value: <PhoneLinks />,
+      action: "tel:+919152929343",
       color: "bg-green-500",
     },
     {
@@ -611,7 +613,7 @@ const ContactHeroSection: React.FC = () => {
               </h2>
               <div className="space-y-3">
                 {quickContactMethods.map((method, index) => (
-                  <a
+                  <ContactCard
                     key={index}
                     href={method.action}
                     className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100"
@@ -629,7 +631,7 @@ const ContactHeroSection: React.FC = () => {
                         {method.value}
                       </div>
                     </div>
-                  </a>
+                  </ContactCard>
                 ))}
               </div>
             </div>

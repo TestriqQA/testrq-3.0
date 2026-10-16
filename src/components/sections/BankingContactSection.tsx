@@ -17,6 +17,8 @@ import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
+import ContactCard from "@/components/ui/ContactCard";
 
 const BankingContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -245,8 +247,8 @@ const BankingContactSection: React.FC = () => {
       title: "Speak with Banking Experts",
       description:
         "Direct consultation with our banking and finance testing specialists",
-      text: "(+91) 915-2929-343",
-      action: "tel:(+91) 915-2929-343",
+      text: <PhoneLinks />,
+      action: "tel:+919152929343",
       color: "from-blue-500 to-cyan-600",
     },
     {
@@ -309,7 +311,7 @@ const BankingContactSection: React.FC = () => {
             </h3>
 
             {contactMethods.map((method, index) => (
-              <a
+              <ContactCard
                 key={index}
                 href={method.action}
                 target={method.action.startsWith("http") ? "_blank" : undefined}
@@ -334,7 +336,7 @@ const BankingContactSection: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </a>
+              </ContactCard>
             ))}
 
             {/* Benefits */}

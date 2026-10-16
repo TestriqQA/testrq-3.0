@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 import {
   FaQuestionCircle,
   FaChevronDown,
@@ -22,7 +23,7 @@ const ContactFAQSection: React.FC = () => {
       answer: (
       <>
         For urgent QA issues, we recommend calling our direct support line at
-        (+91) 915-2929-343 during business hours (9 AM – 6 PM IST). For critical
+        <PhoneLinks /> during business hours (9 AM – 6 PM IST). For critical
         production issues, our 24/7 emergency QA support is available. You can
         also use our live chat for immediate QA assistance with{" "}
         <Link href="/blog">
