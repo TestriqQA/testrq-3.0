@@ -17,6 +17,8 @@ import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
+import ContactCard from "@/components/ui/ContactCard";
 
 const EcommerceContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -246,8 +248,8 @@ const EcommerceContactSection: React.FC = () => {
       icon: FaPhone,
       title: "Call Our E-Commerce Experts",
       description: "Speak directly with our e-commerce testing specialists",
-      text: "(+91) 915-2929-343",
-      action: "tel: (+91) 915-2929-343",
+      text: <PhoneLinks />,
+      action: "tel:+919152929343",
       color: "from-green-500 to-emerald-600",
     },
     {
@@ -320,12 +322,18 @@ const EcommerceContactSection: React.FC = () => {
                     <p className="text-sky-700 text-sm mb-4 leading-relaxed">
                       {method.description}
                     </p>
-                    <Link
-                      href={method.action} target={"_blank"}
+                    {/* ContactCard renders a plain element for tel: methods so
+                        the two phone links inside are not nested in an anchor.
+                        target is now conditional too: it was "_blank" for every
+                        method, which is meaningless on a tel: or mailto: URL. */}
+                    <ContactCard
+                      href={method.action}
+                      target={method.action?.startsWith("http") ? "_blank" : undefined}
+                      rel={method.action?.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="text-sky-700 font-semibold flex items-center gap-2 group"
                     >
                       {method.text}
-                    </Link>
+                    </ContactCard>
                   </div>
                 </div>
               </div>

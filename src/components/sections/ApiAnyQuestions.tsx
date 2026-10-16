@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { FaPhone, FaEnvelope, FaComments, FaArrowRight } from "react-icons/fa";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const ApiAnyQuestions: React.FC = () => {
   const contactMethods = [
@@ -10,8 +11,8 @@ const ApiAnyQuestions: React.FC = () => {
       title: "Phone Consultation",
       description: "Speak directly with our API testing experts",
       text: "Call Now",
-      action: "tel:(+91) 915-2929-343",
-      contact: "+(+91) 915-2929-343",
+      action: "tel:+919152929343",
+      contact: <PhoneLinks />,
     },
     {
       icon: <FaEnvelope className="w-6 h-6 text-[theme(color.brand.blue)]" />,

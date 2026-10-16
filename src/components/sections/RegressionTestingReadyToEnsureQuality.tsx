@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 import {
   FaArrowRight,
   FaPhone,
@@ -148,7 +149,7 @@ const RegressionTestingReadyToEnsureQuality: React.FC = () => {
                 >
                   <FaPhone className="text-green-600 group-hover:scale-110 transition-transform" />
                   <span className="font-medium text-gray-700">
-                    Call Now: (+91) 915-2929-343
+                    Call Now: <PhoneLinks />
                   </span>
                 </button>
 

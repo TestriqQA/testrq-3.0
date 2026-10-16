@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { FaPhone, FaEnvelope, FaComments, FaArrowRight } from "react-icons/fa";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const AIAnyQuestions: React.FC = () => {
   const contactMethods = [
@@ -11,8 +12,8 @@ const AIAnyQuestions: React.FC = () => {
       title: "AI Expert Consultation",
       description: "Speak directly with our AI testing specialists",
       text: "Call Now",
-      action: "tel:(+91) 915-2929-343",
-      contact: "(+91) 915-2929-343",
+      action: "tel:+919152929343",
+      contact: <PhoneLinks />,
     },
     {
       icon: <FaEnvelope className="w-6 h-6 text-[theme(color.brand.blue)]" />,

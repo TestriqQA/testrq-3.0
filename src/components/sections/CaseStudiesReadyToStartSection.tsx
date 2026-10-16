@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 import {
   FaArrowRight,
   FaCalendarAlt,
@@ -45,8 +46,8 @@ const CaseStudiesReadyToStartSection = () => {
     {
       icon: FaPhone,
       title: "Call Us Directly",
-      description: "(+91) 915-2929-343",
-      action: "tel:(+91) 915-2929-343",
+      description: <PhoneLinks />,
+      action: "tel:+919152929343",
       text: "Call Now",
       primary: false,
     },

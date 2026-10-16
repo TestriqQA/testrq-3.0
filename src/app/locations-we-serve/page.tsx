@@ -48,7 +48,7 @@ const structuredData = {
       //                                            or Number. This is the hard
       //                                            validation error.
       //   telephone          +91-9876543210      -> placeholder digits; the
-      //                                            real line is +91-915-2929-343
+      //                                            real line is +91-915-2929-343 / +91-983-3096-129
       //   email              info@               -> canonical is contact@
       //   foundingDate       "2020"              -> canonical is "2010" (also
       //                                            in aboutPageSchema and

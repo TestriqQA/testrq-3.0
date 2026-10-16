@@ -3,6 +3,7 @@ import React from "react";
 
 import { FaRocket, FaPhone, FaEnvelope } from "react-icons/fa";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const CaseStudyCallToActionSection: React.FC = () => {
   return (
@@ -47,12 +48,9 @@ const CaseStudyCallToActionSection: React.FC = () => {
               <p className="text-blue-100 mb-4">
                 Speak directly with our testing experts
               </p>
-              <a
-                href="tel:+1234567890"
-                className="text-white font-semibold hover:text-blue-200 transition-colors"
-              >
-                (+91) 915-2929-343
-              </a>
+              <span className="text-white font-semibold hover:text-blue-200 transition-colors">
+                <PhoneLinks />
+              </span>
             </div>
 
             <div className="text-center">

@@ -91,7 +91,7 @@ const CityTestingCTASection: React.FC<CityTestingCTASectionProps> = ({ cityData 
                 Schedule Free Consultation
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Link>
-              <Link href="tel: (+91) 915-2929-343" className="w-xs md:w-md border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-gray-900 transition-all duration-200 flex items-center">
+              <Link href="tel:+919152929343" className="w-xs md:w-md border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-gray-900 transition-all duration-200 flex items-center">
                 Get Instant Quote
                 <Phone className="ml-3 h-6 w-6" />
               </Link>

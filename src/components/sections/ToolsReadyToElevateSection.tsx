@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 import {
   FaArrowRight,
   FaPhone,
@@ -25,8 +26,8 @@ const ToolsReadyToElevateSection = () => {
       title: "Speak with Expert",
       description: "Talk directly with our testing specialists",
       text: "Call Now",
-      action: "tel:(+91) 915-2929-343",
-      detail: "(+91) 915-2929-343",
+      action: "tel:+919152929343",
+      detail: <PhoneLinks />,
       highlight: false,
     },
     {

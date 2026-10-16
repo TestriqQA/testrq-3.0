@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next';
 import Link from 'next/link';
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 export const metadata: Metadata = {
   // `absolute` bypasses the root layout's "%s | Testriq" template,
@@ -217,7 +218,7 @@ const TermsOfService = () => {
                 <strong>Address:</strong> Office #2, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Phone:</strong> <Link href="tel:+919152929343" className="text-blue-600 hover:text-blue-800 underline">(+91) 915-2929-343</Link>
+                <strong>Phone:</strong> <span className="text-blue-600 hover:text-blue-800 underline"><PhoneLinks /></span>
               </p>
               <p className="text-gray-700">
                 <strong>Email:</strong> <Link href="mailto:contact@testriq.com" className="text-blue-600 hover:text-blue-800 underline">contact@testriq.com</Link>

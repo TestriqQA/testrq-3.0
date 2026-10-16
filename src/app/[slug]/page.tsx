@@ -164,7 +164,7 @@ function generateCitySchema(cityData: CityData) {
       "@id": "https://www.testriq.com/#organization",
       "name": "Testriq QA Lab",
       "url": "https://www.testriq.com/",
-      "telephone": "+91 915-2929-343",
+      "telephone": "+91-915-2929-343",
       "email": "contact@testriq.com",
       "logo": {
         "@type": "ImageObject",

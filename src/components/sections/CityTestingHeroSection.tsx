@@ -15,6 +15,7 @@ import { FaHome, FaChevronRight } from 'react-icons/fa';
 import { CityData } from '@/app/lib/CityData';
 import Link from 'next/link';
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 interface CityTestingHeroSectionProps {
   cityData: CityData;
@@ -112,7 +113,7 @@ const CityTestingHeroSection: React.FC<CityTestingHeroSectionProps> = ({ cityDat
             <div className="flex flex-col sm:flex-row gap-6 text-sm text-gray-600">
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2 text-brand-blue" />
-                <span>+91 915-2929-343</span>
+                <span><PhoneLinks /></span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2 text-brand-blue" />

@@ -1,7 +1,12 @@
 
 // City Data Structure for Dynamic QA Testing Services Pages
 
+import React from "react";
 import { Url } from "next/dist/shared/lib/router/router";
+// Relative, not the "@/" alias: the metadata test suite imports this file
+// directly under vitest, which has no alias resolution configured, and an
+// aliased runtime import fails there with "Cannot find package".
+import PhoneLinks from "../../components/ui/PhoneLinks";
 
 export interface CityData {
   slug: string;
@@ -92,7 +97,11 @@ export interface CityData {
     subtitle: string; // Added subtitle
     benefits?: string[]; // Added benefits for CTASection
     contactInfo: {
-      phone: string;
+      // ReactNode, not string: every city renders <PhoneLinks />, which gives
+      // each of the two numbers its own tel: link rather than one string that
+      // dials only the first. Consumed in exactly two places
+      // (CityTestingCTASection, CityTestingFAQsSection), both as JSX children.
+      phone: React.ReactNode;
       email: string;
       address: string; // Added address
     };
@@ -290,7 +299,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Talk to our QA leads about the test coverage your application architecture needs and how quickly we can stand up the engagement.",
       benefits: ["48-Hour Team Activation", "ISTQB-Certified Engineers", "OMR / Sriperumbudur Coverage", "SaaS, Automotive, EV & BFSI Domain Experience"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "OMR Corridor, Chennai, Tamil Nadu, India",
       },
@@ -817,7 +826,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Never allow hidden structural bugs to crash booking engines, bleed sensitive international data, or rupture logistics chains. Secure your destiny.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Hospitality & Export Ready", "International Compliance Standards"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Modern Commercial Zone / Transport Corridor Area, Agra, Uttar Pradesh, India",
       },
@@ -1184,7 +1193,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "From Global Tourism status to AI-governance, Ajmer's reputation is built on reliability. Your software deserves the same foundation.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Tourism & Govt Ready", "Regulatory Compliance Built-In"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Ajmer, Rajasthan, India",
       },
@@ -1379,7 +1388,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Amritsar is forging a new economic identity. Your software quality should be the foundation of that credibility.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "Trade & Governance Ready", "Audit-Grade Documentation"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Amritsar, Punjab, India",
       },
@@ -1582,7 +1591,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Bhopal is building Central India's tech future. Your software quality should reflect that scale.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "CI/CD Integration", "Compliance Audit-Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Bhopal, Madhya Pradesh, India",
       },
@@ -1782,7 +1791,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Infocity & Odisha Tech Experts", "Eastern India Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Bhubaneswar, Odisha, India",
       },
@@ -2131,7 +2140,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Don't let software defects derail your Industry 4.0 transformation or compromise your global credibility. Build software that lasts.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Industry 4.0 & IoT Ready", "Global HQ Compliance Standards"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "TIDEL Park / CHIL SEZ Corridor, Coimbatore, Tamil Nadu, India",
       },
@@ -2346,7 +2355,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Extensively guarantee startup launch dominance by arming with Testriq. Deploy fully certified ISTQB software assassins today.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "EdTech & Tourism Industry Hub", "NCR-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "STPI IT Park / Institution Hub, Dehradun, Uttarakhand, India",
       },
@@ -2542,7 +2551,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Ernakulam is building world-class software. Your software deserves world-class testing.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "CI/CD Integration", "Compliance Audit-Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Infopark / SmartCity Kakkanad, Ernakulam, Kerala, India",
       },
@@ -2698,7 +2707,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free assessment. We'll evaluate your testing approach, identify the highest-risk quality gaps, and recommend a practical plan - no obligation.",
       benefits: ["ISTQB Certified Experts", "48hr Team Integration", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving businesses in the Faridabad Industrial Backbone and NCR",
       },
@@ -2854,7 +2863,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free project assessment. We'll evaluate your current testing posture, map the risks specific to your project, and recommend a clear path forward - no obligation.",
       benefits: ["ISTQB Certified Experts", "48hr Team Integration", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving businesses in Infocity and Gandhinagar, Gujarat",
       },
@@ -3054,7 +3063,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Refuse to let undetected script flaws collapse warehouse gateways, shatter critical APIs, or expose highly confidential cloud databanks. Secure your destiny.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Industrial & Manufacturing Ready", "NCR-wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Gateway Corridor / Industrial Zone, Ghaziabad, Uttar Pradesh, India",
       },
@@ -3253,7 +3262,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Stop allowing overlooked errors to obliterate massive databases, compromise delicate financial pathways, or paralyze local e-commerce chains. Secure your destiny.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Industrial & Railway Ready", "Purvanchal-wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Industrial Development Zone / Transit Corridor, Gorakhpur, Uttar Pradesh, India",
       },
@@ -3452,7 +3461,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Do not allow basic untested script errors to shatter GCC compliance goals, sever complex IoT APIs, or compromise multi-tenant databanks. Secure your vision.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "GCC & SaaS Ready", "NCR-wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Sector 62 IT Corridor / YEIDA Industrial Belt, Greater Noida, Uttar Pradesh, India",
       },
@@ -3608,7 +3617,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free consultation. We'll assess your current QA posture, identify the highest-impact gaps, and outline a plan that matches your engineering velocity - no obligation.",
       benefits: ["ISTQB Certified Experts", "48hr Team Integration", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving GCCs and Startups across Cyber City, GCR, and Udyog Vihar",
       },
@@ -3936,7 +3945,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Gwalior is transitioning from a historic stronghold to a technology capital. Your software quality should reflect that scale.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "Defence-Grade Security", "Compliance Audit-Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Gwalior, Madhya Pradesh, India",
       },
@@ -4135,7 +4144,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Talk to our QA leads about the test coverage your application architecture needs and how quickly we can stand up the engagement.",
       benefits: ["48-Hour Team Activation", "ISTQB-Certified Engineers", "HITEC City & Genome Valley Experience", "SaaS, BFSI & Life Sciences Domain Coverage"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "HITEC City / Financial District Corridor, Hyderabad, Telangana, India",
       },
@@ -4330,7 +4339,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Indore has built a tech sector that competes globally. Your software quality should reflect that scale.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "SaaS-Scale Performance", "Compliance Audit-Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Indore, Madhya Pradesh, India",
       },
@@ -4525,7 +4534,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "From iStart unicorns to Mahindra World City GCCs, Jaipur is built on quality. Your software deserves the same standard.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "FinTech & GCC Ready", "Regulatory Compliance Built-In"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Jaipur, Rajasthan, India",
       },
@@ -4720,7 +4729,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "From sports goods to surgical instruments, Jalandhar's reputation is built on quality. Your digital products deserve the same foundation.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "D2C & ERP Ready", "Zero-Defect Documentation"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Jalandhar, Punjab, India",
       },
@@ -4876,7 +4885,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free consultation. We'll identify the quality gaps with the highest impact for your Jammu project.",
       benefits: ["ISTQB Certified Experts", "UT Governance Compliance", "RFID & Load Testing Depth", "Remote-Integrated Model"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving Government, Pilgrimage, and Logistics across Jammu and J&K",
       },
@@ -5033,7 +5042,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free assessment. We'll evaluate your current testing approach and map your risk gaps.",
       benefits: ["ISTQB Certified Experts", "Industrial Compliance (IEC 62443)", "SCADA & IoT Testing Depth", "Traceable Audit-Ready Reporting"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving Steel, Mining, and Manufacturing across Jamshedpur and Jharkhand",
       },
@@ -5229,7 +5238,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "From defence research to solar grids, Jodhpur builds for the future. Your software deserves the same foundation of reliability.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Defence & Energy Ready", "Regulatory Compliance Built-In"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Jodhpur, Rajasthan, India",
       },
@@ -5432,7 +5441,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Stop allowing overlooked errors to obliterate massive databases, compromise delicate supply chains, or paralyze global SaaS distribution. Secure your destiny.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Industrial & Export Ready", "Northern India-wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Industrial Export Zone / Technology Hub, Kanpur, Uttar Pradesh, India",
       },
@@ -5627,7 +5636,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Kochi is graduate from volume-driven services to value-driven products. Your QA should reflect that.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "CI/CD Integration", "Compliance Audit-Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Cyber Valley / Infopark Phase III, Kochi, Kerala, India",
       },
@@ -5826,7 +5835,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Eastern IT & Industrial Industry Hub", "NCR-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Salt Lake Sector V / New Town, Kolkata, West Bengal, India",
       },
@@ -6025,7 +6034,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Deploy our uncompromising vanguard composed of engineering assassins internally to build impenetrable automation frameworks. Secure your vision.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Smart City & Defense Ready", "Capital Region Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "IT City Corridor / Defence Industrial Zone, Lucknow, Uttar Pradesh, India",
       },
@@ -6220,7 +6229,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "From Olympic bicycles to global textiles, Ludhiana's reputation is built on quality. Your software powering these operations deserves the same zero-tolerance standard.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Industrial-Grade Testing", "Regulatory Compliance Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Ludhiana, Punjab, India",
       },
@@ -6415,7 +6424,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Don't let software defects derail your ELCOT expansion or compromise your industrial credibility. Secure your future.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Healthcare & SEZ Ready", "International SLA Standards"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "ELCOT IT Park / SEZ Corridor, Madurai, Tamil Nadu, India",
       },
@@ -6610,7 +6619,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Mangalore is positioning itself as India's next major tech destination. Your software should reflect that.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "CI/CD Integration", "Compliance Audit-Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Derebail IT Park / Mangalore Tier-2 Corridor, Karnataka, India",
       },
@@ -6809,7 +6818,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Deploy our uncompromising vanguard composed of engineering assassins internally to build impenetrable automation frameworks. Secure your vision.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Sports & Transit Industry Ready", "NCR-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Sports Export Hub / Industrial Corridor, Meerut, Uttar Pradesh, India",
       },
@@ -7008,7 +7017,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Engage our absolute deployment vanguard utilizing only certified ISTQB assassins to guarantee perfect deployment functionality locally.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Handicrafts & Export Industry Ready", "NCR-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Brass Export Hub / Industrial Corridor, Moradabad, Uttar Pradesh, India",
       },
@@ -7207,7 +7216,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "BFSI & OTT Industry Hub", "NCR-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Bandra Kurla Complex (BKC), Mumbai, Maharashtra, India",
       },
@@ -7406,7 +7415,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "MIHAN & Logistics Hub Experts", "NCR-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Nagpur, Maharashtra, India",
       },
@@ -7605,7 +7614,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Industrial & AgriTech Experts", "NCR-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Nashik, Maharashtra, India",
       },
@@ -7797,7 +7806,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Contact us for a free consultation and a tailored quote.",
       benefits: ["Expert QA Team", "Tailored Solutions", "Cost-Effective", "Timely Delivery"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: " Navi Mumbai, Maharashtra, India",
       },
@@ -7989,7 +7998,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Contact us for a free consultation and a tailored quote.",
       benefits: ["Expert QA Team", "Tailored Solutions", "Cost-Effective", "Timely Delivery"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: " Noida, Uttar Pradesh, India",
       },
@@ -8325,7 +8334,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Talk to our QA leads about the test coverage your application architecture needs and how quickly we can stand up the engagement.",
       benefits: ["48-Hour Team Activation", "ISTQB-Certified Engineers", "Pune IT Corridor Coverage", "Automotive, EdTech & BFSI Domain Experience"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Pune, Maharashtra, India",
       },
@@ -8618,7 +8627,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free consultation. We'll review your current testing approach, identify where defects carry the highest business risk, and recommend a practical plan - no obligation.",
       benefits: ["ISTQB Certified Experts", "48hr Team Integration", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving businesses in the Rajkot Industrial Area and Saurashtra",
       },
@@ -8775,7 +8784,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free consultation. We'll assess your current testing approach and map your high-impact quality gaps.",
       benefits: ["ISTQB Certified Experts", "State Governance Compliance", "Rural Connectivity Testing", "Governance-Ready Reporting"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving Government, Welfare, and Mining Missions across Ranchi and Jharkhand",
       },
@@ -8971,7 +8980,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Never allow unchecked bugs to paralyze operations, breach sensitive commercial databanks, or compromise operational logistics. Secure your destiny.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Logistics & Manufacturing Ready", "Military-Grade Compliance"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "South Central Corridor Area, Secunderabad, Telangana, India",
       },
@@ -9127,7 +9136,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free consultation. We'll identify the quality gaps with the highest impact for your Himachal project.",
       benefits: ["ISTQB Certified Experts", "Remote-First Delivery", "Flexible Scaling Models", "Government Compliance Depth"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving Government, Tourism, and Tech across Shimla and Himachal Pradesh",
       },
@@ -9283,7 +9292,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free consultation. We'll review your current testing approach, identify where defects carry the highest commercial risk, and outline a practical plan - no obligation.",
       benefits: ["ISTQB Certified Experts", "48hr Team Integration", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving businesses in the Surat Industrial Area, Diamond Bourse, and South Gujarat",
       },
@@ -9483,7 +9492,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "From industrial mining to world-class hospitality, Udaipur is built on excellence. Your software deserves the same standard.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Engineers", "Mining & Hospitality Ready", "Regulatory Compliance Built-In"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Udaipur, Rajasthan, India",
       },
@@ -9639,7 +9648,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Start with a free assessment. We'll evaluate your current testing maturity, surface the areas with the highest defect risk, and recommend a practical path forward - no obligation.",
       benefits: ["ISTQB Certified Experts", "48hr Team Integration", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Serving businesses in the Vadodara Industrial Area and Tech Corridors",
       },
@@ -9848,7 +9857,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "From state governance to space technology, Trivandrum is building world-class software. Your QA should match that.",
       benefits: ["48-Hour Onboarding", "ISTQB-Certified Team", "CI/CD Integration", "Compliance Audit-Ready"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Technopark Phase III / Technocity, Trivandrum, Kerala, India",
       },
@@ -10061,7 +10070,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Contact us for a free consultation and a tailored quote.",
       benefits: ["Expert QA Team", "Tailored Solutions", "Cost-Effective", "Timely Delivery"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Abu Dhabi, UAE",
       },
@@ -10257,7 +10266,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "EdTech & SAIF Zone Experts", "UAE-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Sharjah, UAE",
       },
@@ -10452,7 +10461,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Industrial & RAKEZ Experts", "UAE-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Ras Al Khaimah, UAE",
       },
@@ -10648,7 +10657,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Maritime & Industrial Experts", "UAE-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Ar Rams, Ras Al Khaimah, UAE",
       },
@@ -10843,7 +10852,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "UAQ FTZ & Industrial Experts", "UAE-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Umm Al Quwain, UAE",
       },
@@ -11032,7 +11041,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Contact us for a free consultation and a tailored quote.",
       benefits: ["Expert QA Team", "Tailored Solutions", "Cost-Effective", "Timely Delivery"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Al Jazirah Al Hamra, Ras Al Khaimah, UAE",
       },
@@ -11229,7 +11238,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "FinTech & AI Experts", "Canada-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Toronto, Ontario, Canada",
       },
@@ -11424,7 +11433,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "VFX & GreenTech Experts", "Canada-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Vancouver, British Columbia, Canada",
       },
@@ -11619,7 +11628,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "AAA Gaming & AI Experts", "Quebec-Wide Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Montreal, Quebec, Canada",
       },
@@ -11814,7 +11823,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Hollywood & Aerospace Experts", "Silicon Beach Rapid Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Los Angeles, California, US",
       },
@@ -12009,7 +12018,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Logistics & FinTech Experts", "Industry 4.0 Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Chicago, Illinois, US",
       },
@@ -12204,7 +12213,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "MediaCity & Retail Experts", "Industry 4.0 Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Manchester, England, UK",
       },
@@ -12399,7 +12408,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "FinTech & Travel Tech Experts", "Big Data Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Edinburgh, Scotland, UK",
       },
@@ -12594,7 +12603,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "FinTech & PropTech Experts", "APRA Compliance Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Sydney, New South Wales, Australia",
       },
@@ -12789,7 +12798,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "HealthTech & Sports Tech Experts", "APRA & Medical Compliance Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Melbourne, Victoria, Australia",
       },
@@ -12984,7 +12993,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Mining & AgTech Experts", "State & Industrial Compliance Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Brisbane, Queensland, Australia",
       },
@@ -13179,7 +13188,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "SaaS & AgriTech Experts", "RBNZ & Maritime Compliance Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Auckland, New Zealand",
       },
@@ -13374,7 +13383,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "GovTech & VFX Experts", "Civic & Defense Compliance Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Wellington, New Zealand",
       },
@@ -13569,7 +13578,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Leverage an exceptionally precise structural deployment force extensively protecting massive local operations seamlessly.",
       benefits: ["48-Hour Tactical Onboarding", "ISTQB-Certified Engineers", "Aerospace & IoT Experts", "CAA & Manufacturing Compliance Support"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Christchurch, New Zealand",
       },
@@ -14075,7 +14084,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Al Ain operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Al Ain, UAE",
       },
@@ -14244,7 +14253,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Al Dhannah operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Al Dhannah, UAE",
       },
@@ -14413,7 +14422,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Dibba Al Hisn operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Dibba Al Hisn, UAE",
       },
@@ -14582,7 +14591,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Dhaid operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Dhaid, UAE",
       },
@@ -14751,7 +14760,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Fujairah operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Fujairah, UAE",
       },
@@ -14920,7 +14929,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Ghayathi operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Ghayathi, UAE",
       },
@@ -15089,7 +15098,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Hatta operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Hatta, UAE",
       },
@@ -15258,7 +15267,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Jebel Ali operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Jebel Ali, UAE",
       },
@@ -15427,7 +15436,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Kalba operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Kalba, UAE",
       },
@@ -15596,7 +15605,7 @@ export const cityData: Record<string, CityData> = {
       subtitle: "Schedule your free QA strategy session and discover how Testriq can fortify your Liwa Oasis operations.",
       benefits: ["ISTQB Certified Experts", "48hr Team Deployment", "Flexible Scaling Models", "Compliance-Ready Testing"],
       contactInfo: {
-        phone: "+91 915-2929-343",
+        phone: <PhoneLinks />,
         email: "contact@testriq.com",
         address: "Liwa Oasis, UAE",
       },
