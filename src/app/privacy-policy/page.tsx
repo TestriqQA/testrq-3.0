@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next';
 import Link from 'next/link';
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 export const metadata: Metadata = {
   // `absolute` bypasses the root layout's "%s | Testriq" template,
@@ -524,7 +525,7 @@ const PrivacyPolicy = () => {
               <ul className="space-y-2 text-gray-700">
                 <li>– By email: <Link href="mailto:contact@testriq.com" className="text-blue-600 hover:text-blue-800 underline">contact@testriq.com</Link></li>
                 <li>– By visiting this page on our website: <Link href="https://www.testriq.com/contact-us" className="text-blue-600 hover:text-blue-800 underline">Contact Our QA Experts</Link></li>
-                <li>– By phone number: <Link href="tel:+919152929343" className="text-blue-600 hover:text-blue-800 underline">(+91) 915-2929-343</Link></li>
+                <li>– By phone number: <span className="text-blue-600 hover:text-blue-800 underline"><PhoneLinks /></span></li>
               </ul>
             </div>
           </section>
@@ -535,7 +536,7 @@ const PrivacyPolicy = () => {
                 <strong>Address:</strong> Office #2, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Phone:</strong> <Link href="tel:+919152929343" className="text-blue-600 hover:text-blue-800 underline">(+91) 915-2929-343</Link>
+                <strong>Phone:</strong> <span className="text-blue-600 hover:text-blue-800 underline"><PhoneLinks /></span>
               </p>
               <p className="text-gray-700">
                 <strong>Email:</strong> <Link href="mailto:contact@testriq.com" className="text-blue-600 hover:text-blue-800 underline">contact@testriq.com</Link>

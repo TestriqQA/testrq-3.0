@@ -17,6 +17,8 @@ import PhoneInput from "@/components/ui/PhoneInput";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useRecaptchaForm } from "@/lib/recaptcha/useRecaptchaForm";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
+import ContactCard from "@/components/ui/ContactCard";
 
 const TelecomContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -233,8 +235,8 @@ const TelecomContactSection: React.FC = () => {
       icon: FaPhone,
       title: "Speak with Telecom Experts",
       description: "Speak directly with our telecom software QA specialists",
-      text: "(+91) 915-2929-343",
-      action: "tel:(+91) 915-2929-343",
+      text: <PhoneLinks />,
+      action: "tel:+919152929343",
       color: "from-blue-500 to-cyan-600",
     },
     {
@@ -297,7 +299,7 @@ const TelecomContactSection: React.FC = () => {
             </h3>
 
             {contactMethods.map((method, index) => (
-              <a
+              <ContactCard
                 key={index}
                 href={method.action}
                 target={method.action.startsWith("http") ? "_blank" : undefined}
@@ -322,7 +324,7 @@ const TelecomContactSection: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </a>
+              </ContactCard>
             ))}
 
             {/* Benefits */}

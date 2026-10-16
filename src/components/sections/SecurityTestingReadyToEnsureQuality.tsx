@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 import {
   FaShieldAlt,
   FaPhone,
@@ -77,7 +78,7 @@ const SecurityTestingReadyToEnsureQuality: React.FC = () => {
             </p>
             <div className="space-y-3">
               <div className="text-red-600 font-bold text-lg">
-                (+91) 915-2929-343
+                <PhoneLinks />
               </div>
               <div className="text-gray-500 text-sm">
                 Available 24/7 for security emergencies

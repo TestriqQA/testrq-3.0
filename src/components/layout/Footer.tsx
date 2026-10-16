@@ -1,4 +1,6 @@
 "use client";
+import React from "react";
+import { PHONES } from "@/lib/contact";
 import {
   FaFacebookF,
   FaInstagram,
@@ -122,14 +124,25 @@ const Footer = () => {
                   401107
                 </p>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-gray-800">
-                <FaPhoneAlt className="h-4 w-4 text-brand-blue" />
-                <Link
-                  href="tel:+919152929343"
-                  className="inline-block py-2 -my-1 hover:text-brand-blue transition-colors"
-                >
-                  (+91) 915-2929-343
-                </Link>
+              {/* One tel: link per line. A single link labelled with two
+                  numbers dials only the first, so the second would read as
+                  callable and silently place the wrong call.
+                  Stacked rather than wrapped: this column is narrow at every
+                  breakpoint, so a horizontal pair always broke anyway, and a
+                  "/" separator was left stranded at the end of the first line. */}
+              <div className="flex items-start space-x-2 text-sm text-gray-800">
+                <FaPhoneAlt className="h-4 w-4 text-brand-blue mt-2.5 shrink-0" />
+                <div className="flex flex-col">
+                  {PHONES.map((phone) => (
+                    <Link
+                      key={phone.tel}
+                      href={`tel:${phone.tel}`}
+                      className="inline-block whitespace-nowrap py-1 hover:text-brand-blue transition-colors"
+                    >
+                      {phone.display}
+                    </Link>
+                  ))}
+                </div>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-800">
                 <FaEnvelope className="h-4 w-4 text-brand-blue" />

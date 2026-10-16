@@ -17,6 +17,7 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 
 const ContactMethodsSection: React.FC = () => {
@@ -37,7 +38,7 @@ const ContactMethodsSection: React.FC = () => {
       icon: FaPhone,
       title: "Phone Support",
       description: "Speak directly with our team for immediate assistance",
-      details: "(+91) 915-2929-343 • Mon-Fri, 9 AM - 6 PM IST",
+      details: <><PhoneLinks /> • Mon-Fri, 9 AM - 6 PM IST</>,
       value: "Call Now",
       action: "tel:+919152929343",
       color: "from-green-500 to-green-700",
@@ -77,9 +78,17 @@ const ContactMethodsSection: React.FC = () => {
       icon: FaWhatsapp,
       title: "WhatsApp Business",
       description: "Quick questions and updates via WhatsApp",
+      // Primary line only, deliberately. The second number was added across the
+      // site on 16 Oct 2026, but this card is WhatsApp: listing a number here
+      // promises a WhatsApp account on it, and only the primary line is
+      // confirmed registered. Add the second once someone verifies it — and
+      // update the wa.me link below at the same time.
       details: "(+91) 915-2929-343 • Business hours only",
       value: "Message Us",
-      action: "https://wa.me/9152929343",
+      // Was wa.me/9152929343 — missing the 91 country code, so WhatsApp could
+      // not resolve it and the button opened an "invalid number" screen. The
+      // header's link has always used the full form; this one is now the same.
+      action: "https://wa.me/919152929343",
       color: "from-green-400 to-green-600",
       highlight: false,
     },
@@ -296,7 +305,7 @@ const ContactMethodsSection: React.FC = () => {
                 </h4>
                 <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
                   <p className="text-sm text-red-700 mb-2">
-                    <strong>Critical Issues:</strong> (+91) 915-2929-343
+                    <strong>Critical Issues:</strong> <PhoneLinks />
                   </p>
                   <p className="text-xs text-red-700">
                     Available 24/7 for production emergencies

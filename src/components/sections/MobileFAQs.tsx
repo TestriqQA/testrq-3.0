@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const MobileFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -160,7 +161,7 @@ const MobileFAQs: React.FC = () => {
               Direct line to mobile experts
             </p>
             <p className="text-[theme(color.brand.blue)] text-sm font-semibold mt-2">
-              (+91) 915-2929-343
+              <PhoneLinks />
             </p>
           </div>
 

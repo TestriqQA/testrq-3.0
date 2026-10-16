@@ -3,6 +3,7 @@
 import React from "react";
 import { ArrowRight, Phone, ArrowUp } from "lucide-react";
 import Link from "next/link";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const DatingAppReadyToBuild = () => {
   return (
@@ -30,13 +31,10 @@ const DatingAppReadyToBuild = () => {
                 </button>
               </Link>
 
-              <a
-      href="tel:(+91) 915-2929-343"
-      className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-brand-blue transition-all duration-300 flex items-center justify-center hover:scale-105 transition-transform active:scale-95"
-    >
+              <span className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-brand-blue transition-all duration-300 flex items-center justify-center hover:scale-105 transition-transform active:scale-95">
                 <Phone className="mr-2 w-5 h-5" />
-                Call (+91) 915-2929-343
-              </a>
+                Call <PhoneLinks />
+              </span>
             </div>
 
             <div className="text-center opacity-90">

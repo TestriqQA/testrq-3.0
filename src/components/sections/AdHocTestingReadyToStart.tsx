@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { FaArrowRight, FaPhoneAlt, FaEnvelope, FaCalendarAlt, FaCheckCircle } from "react-icons/fa";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const AdHocTestingReadyToStart: React.FC = () => {
     const steps = [
@@ -69,15 +70,18 @@ const AdHocTestingReadyToStart: React.FC = () => {
                                     </div>
                                 </Link>
 
-                                <Link href="tel:+919152929343" className="group flex items-center gap-4 sm:gap-6 w-full">
+                                <span className="group flex items-center gap-4 sm:gap-6 w-full">
                                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 rounded-2xl flex items-center justify-center text-xl sm:text-2xl group-hover:bg-green-500 transition-colors flex-shrink-0">
                                         <FaPhoneAlt />
                                     </div>
                                     <div className="min-w-0 flex-1">
                                         <div className="text-xs text-brand-blue font-bold uppercase tracking-wider mb-1">24/7 Hotline</div>
-                                        <div className="text-base sm:text-xl font-bold truncate">(+91) 915-2929-343</div>
+                                        {/* `truncate` dropped: it sets white-space:nowrap with
+                                            overflow:hidden, which stopped the two numbers wrapping
+                                            and clipped the second one instead. */}
+                                        <div className="text-base sm:text-xl font-bold"><PhoneLinks /></div>
                                     </div>
-                                </Link>
+                                </span>
 
                                 <div className="pt-6 sm:pt-8 border-t border-white/10 mt-6 sm:mt-8">
                                     <div className="flex -space-x-3 sm:-space-x-4 mb-4">

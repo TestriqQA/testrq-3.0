@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 import {
     FaArrowRight,
     FaPhone,
@@ -115,7 +116,7 @@ const ManagedTestingReadyToStart: React.FC = () => {
                                     className="flex w-full items-center justify-center cursor-pointer space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all duration-300 group"
                                 >
                                     <FaPhone className="text-green-600 group-hover:scale-110 transition-transform" />
-                                    <span className="font-medium text-gray-700">(+91) 915-2929-343</span>
+                                    <span className="font-medium text-gray-700"><PhoneLinks /></span>
                                 </button>
 
                                 <button

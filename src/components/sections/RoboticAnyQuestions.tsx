@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { FaPhone, FaEnvelope, FaComments } from "react-icons/fa";
 import { BOOKING_URL } from "@/lib/booking";
+import PhoneLinks from "@/components/ui/PhoneLinks";
 
 const RoboticAnyQuestions: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ const RoboticAnyQuestions: React.FC = () => {
           <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 text-blue-500">
             <FaPhone className="w-8 h-8 mx-auto mb-4 text-blue-500" />
             <h3 className="font-semibold mb-2">Call Us</h3>
-            <h3 className="font-semibold mb-2">(+91) 915-2929-343</h3>
+            <h3 className="font-semibold mb-2"><PhoneLinks /></h3>
             <p className="text-blue-500 text-sm">
               Speak directly with our robotic testing experts
             </p>
