@@ -162,7 +162,7 @@ const Footer = () => {
                 <Image title="ISO 27001 Certification Badge" src="/Footer_Images/ISO-27001-100x40-1.png" alt='ISO 27001 Certified' width={120} height={100} />
                 <div className="inline-flex items-center bg-brand-blue px-3 py-2 rounded gap-2 h-10">
                   <FaCertificate className="text-white" />
-                  <span className="text-white text-sm font-semibold">ISTQB Certified</span>
+                  <span className="text-white text-sm font-semibold">ISTQB Certified Engineers</span>
                 </div>
               </div>
               <div>
