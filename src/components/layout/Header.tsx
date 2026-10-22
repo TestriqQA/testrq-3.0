@@ -28,6 +28,44 @@ interface MenuItem {
 
 import { usePathname } from "next/navigation";
 
+/**
+ * "Talk to Expert" CTA.
+ *
+ * Lives in two places, never both at once, split at xl (1280px) — the width
+ * where the navbar stops collapsing and shows its full menu:
+ *   >= xl  the strip carries it, beside WhatsApp Us.
+ *   <  xl  the navbar is collapsed to a hamburger, so the CTA sits next to
+ *          that button instead.
+ *
+ * The split is xl rather than lg even though the strip itself appears at lg.
+ * Between 1024 and 1279px the strip is visible but already full — email,
+ * support hours, two phone numbers and the WhatsApp badge — and adding the
+ * CTA there wrapped it onto a second row, making the whole sticky header
+ * taller. At those widths the hamburger is showing anyway, so the button
+ * belongs beside it.
+ *
+ * `className` styles the button itself so it can be a pill on the dark strip
+ * and a rounded rectangle in the white navbar without duplicating the link.
+ */
+const TalkToExpertButton: React.FC<{ className?: string; wrapperClassName?: string }> = ({
+  className = "",
+  wrapperClassName = "",
+}) => (
+  <Link
+    href={BOOKING_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={wrapperClassName}
+  >
+    <button
+      className={`bg-[theme(color.brand.blue)] text-white hover:bg-[#057db0] cursor-pointer flex items-center gap-2 whitespace-nowrap ${className}`}
+    >
+      <span>Talk to Expert</span>
+      <FaArrowRight className="w-3 h-3" />
+    </button>
+  </Link>
+);
+
 const Navbar = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -204,24 +242,41 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-[60] w-full">
-      {/* Top Utility Contact Bar — desktop only.
-          Hidden below lg: stacked, it was 124px of a 812px phone viewport,
-          permanently, because this wrapper is sticky. The three contacts it
-          carries (email, phone, WhatsApp) are also in <FloatingContact>, so
-          on mobile this was mostly duplication.
-          NOTE: FloatingContact only appears after 300px of scroll, so mobile
-          visitors now have no visible contact above that point — the mobile
-          menu's "Talk to Expert" is the only route. Lower that threshold in
-          FloatingContact.tsx if that gap matters. */}
-      <div className="bg-gradient-to-r from-[#030917] via-[#0a1936] to-[#030917] text-white px-4 sm:px-6 md:px-16 py-1 hidden lg:flex justify-between items-center text-[12px] sm:text-[13px] border-b border-white/10 relative overflow-hidden z-[65]">
+      {/* Top Utility Contact Bar — every width, but the contents are tiered.
+          It used to be `hidden lg:flex`, because showing all of it on a phone
+          stacked into 124px of a 812px viewport, permanently, since this
+          wrapper is sticky. It is back on small screens carrying only what
+          fits in one short row:
+            phones        the two numbers, centred
+            md (tablet)   + email address, numbers move right
+            lg            + 24/7 pill and the WhatsApp badge
+            xl            + Talk to Expert, and the wider 64px gutter
+          Each item is hidden individually rather than the bar as a whole, so
+          nothing wraps and the bar stays a single row at every width.
+          NOTE: FloatingContact only appears after 300px of scroll. That used
+          to leave mobile visitors with no visible contact above that point
+          except the "Talk to Expert" buried in the open menu; the CTA now sits
+          beside the hamburger in the navbar row, so it is on screen from the
+          first paint without opening anything.
+
+          The 64px gutter starts at xl, not md. Once the second phone line was
+          added the row needs 960px laid out flat; at 1024px the element is
+          ~1009px wide once the scrollbar is taken off, so a 64px gutter each
+          side left 881px and both halves wrapped, making this sticky bar 91px
+          instead of 43px on every page between 1024 and 1279px. 24px gutters
+          plus the tighter gap on the right-hand group give it ~33px of slack
+          there, and xl restores the original spacing. */}
+      <div className="bg-gradient-to-r from-[#030917] via-[#0a1936] to-[#030917] text-white px-4 sm:px-6 xl:px-16 py-1 flex justify-between items-center text-[12px] sm:text-[13px] border-b border-white/10 relative overflow-hidden z-[65]">
 
         {/* Background ambient glows */}
         <div className="absolute -left-20 -top-20 w-60 h-60 bg-[theme(color.brand.blue)] rounded-full blur-[90px] opacity-20 pointer-events-none"></div>
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-full bg-blue-400/5 blur-[50px] pointer-events-none"></div>
         <div className="absolute -right-20 -bottom-20 w-60 h-60 bg-green-500 rounded-full blur-[90px] opacity-10 pointer-events-none"></div>
 
-        {/* LEFT: Email & Availability */}
-        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-5 z-10 w-full lg:w-auto">
+        {/* LEFT: Email & Availability — hidden on phones, where the strip
+            carries the two numbers and nothing else. Email joins at md, where
+            there is room to spare; the 24/7 pill waits until lg. */}
+        <div className="hidden md:flex flex-wrap items-center justify-start gap-4 sm:gap-5 z-10 w-auto">
           <Link href="mailto:contact@testriq.com" className="flex items-center gap-2.5 text-gray-300 hover:text-white transition-all duration-300 group">
             <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[theme(color.brand.blue)] group-hover:border-[theme(color.brand.blue)] group-hover:shadow-[0_0_10px_rgba(var(--brand-blue),0.5)] transition-all duration-300">
               <FaEnvelope className="text-[12px]" />
@@ -229,12 +284,13 @@ const Navbar = () => {
             <span className="font-medium tracking-wide">contact@testriq.com</span>
           </Link>
 
-          <div className="w-[1px] h-4 bg-white/10 hidden sm:block"></div>
+          {/* Divider only once the pill it separates is actually there. */}
+          <div className="w-[1px] h-4 bg-white/10 hidden lg:block"></div>
 
           {/* Whole pill highlighted, not just the "24/7" token — the phrase
               reads as one claim and splitting the emphasis made it look like a
               styling accident rather than a deliberate highlight. */}
-          <div className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+          <div className="hidden lg:flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/5">
             <FaClock className="text-[theme(color.brand.blue)] text-[11px]" />
             <span className="tracking-wide text-[11px] sm:text-[12px] font-semibold text-white">
               24/7 QA Support Available
@@ -243,7 +299,7 @@ const Navbar = () => {
         </div>
 
         {/* RIGHT: Phone & WhatsApp */}
-        <div className="flex flex-wrap justify-center lg:justify-end items-center gap-4 sm:gap-5 z-10 w-full lg:w-auto">
+        <div className="flex flex-wrap justify-center md:justify-end items-center gap-3 xl:gap-5 z-10 w-full md:w-auto">
           {/* Phone — both lines, each its own tel: link.
               The icon sits outside the links so it is not repeated per number,
               and `group` moved to this wrapper so its hover state still fires
@@ -251,7 +307,11 @@ const Navbar = () => {
               two sit side by side when the strip has room and stack when it
               does not, instead of forcing a horizontal scroll. */}
           <div className="flex items-center gap-2 text-gray-300 group">
-            <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[theme(color.brand.blue)] group-hover:border-[theme(color.brand.blue)] transition-all duration-300 relative shrink-0">
+            {/* Icon from sm up. On a 320px screen the row needs 304px against
+                288px of usable width, and this badge is 28px plus its 8px gap
+                — dropping it is what keeps the two numbers on one line there.
+                The numbers read as phone numbers without it. */}
+            <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 hidden sm:flex items-center justify-center group-hover:bg-[theme(color.brand.blue)] group-hover:border-[theme(color.brand.blue)] transition-all duration-300 relative shrink-0">
               <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 border border-[#0a1936]"></span>
@@ -277,10 +337,13 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="w-[1px] h-5 bg-white/10 hidden sm:block"></div>
+          <div className="w-[1px] h-5 bg-white/10 hidden lg:block"></div>
 
-          {/* WhatsApp Premium Badge */}
-          <Link href="https://wa.me/919152929343" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center sm:ml-1">
+          {/* WhatsApp Premium Badge — lg and up. Below that the strip is
+              deliberately sparse (numbers on phones, numbers + email on
+              tablets) so it stays one short row on a small viewport, and
+              WhatsApp is already in <FloatingContact> there. */}
+          <Link href="https://wa.me/919152929343" target="_blank" rel="noopener noreferrer" className="relative group hidden lg:flex items-center justify-center sm:ml-1">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-300"></div>
             <div className="relative flex items-center gap-2 bg-[#050f24] border border-green-500/40 group-hover:border-green-400/80 px-4 py-1.5 rounded-full transition-all duration-300 overflow-hidden shadow-[0_0_15px_rgba(34,197,94,0.15)]">
               <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-emerald-500/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
@@ -288,9 +351,17 @@ const Navbar = () => {
               <span className="font-bold text-white relative z-10 tracking-wide text-[12px] sm:text-[13px] drop-shadow-md">WhatsApp Us</span>
             </div>
           </Link>
+
+          {/* Moved here from the navbar. Pill-shaped and sized to match the
+              WhatsApp badge it sits beside rather than the rounded rectangle
+              it used to be in the white navbar. */}
+          <TalkToExpertButton
+            wrapperClassName="hidden xl:block sm:ml-1"
+            className="px-4 py-1.5 rounded-full font-bold tracking-wide text-[12px] sm:text-[13px] shadow-[0_0_15px_rgba(3,151,209,0.25)] transition-colors duration-300"
+          />
         </div>
       </div>
-      <nav className="bg-white shadow-md px-4 sm:px-6 md:px-16 relative">
+      <nav className="bg-white shadow-md px-px sm:px-6 md:px-16 relative">
         <div className="flex justify-between items-center px-2 sm:px-5 md:px-8 py-3 sm:py-4">
           {/* Logo */}
           <Link href="/" onClick={() => handleLinkClick("/", "")} aria-label="Testriq Home">
@@ -497,8 +568,12 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Tablet Menu (simplified horizontal) */}
-          <div className="hidden md:flex xl:hidden items-center">
+          {/* Tablet / collapsed navbar (768px - 1279px): the CTA sits beside
+              the menu button. This whole block is already xl:hidden, which is
+              exactly the range where the navbar is collapsed, so the button
+              needs no breakpoint class of its own. */}
+          <div className="hidden md:flex xl:hidden items-center gap-3">
+            <TalkToExpertButton className="px-3 py-2 rounded-xl text-sm" />
             <button
               className="text-gray-700 text-xl p-2 cursor-pointer"
               onClick={toggleMenu}
@@ -508,28 +583,20 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Actions */}
-          <div className="hidden xl:flex items-center gap-3 2xl:gap-4">
-            <Link
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="bg-[theme(color.brand.blue)] text-white px-3 xl:px-4 py-2 rounded-xl hover:bg-[#057db0] cursor-pointer flex items-center gap-2">
-                <span className="text-sm xl:text-base">Talk to Expert</span>
-                <FaArrowRight className="w-3 h-3 xl:w-4 xl:h-5" />
-              </button>
-            </Link>
-          </div>
+          {/* The desktop "Actions" block that held this CTA is gone: the button
+              now lives in the top utility strip, beside WhatsApp Us. */}
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-700 text-xl cursor-pointer"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <FaTimes /> : <FaBars />}
-          </button>
+          {/* Mobile Menu Button, with the CTA alongside it */}
+          <div className="md:hidden flex items-center gap-2">
+            <TalkToExpertButton className="px-3 py-2 rounded-xl text-xs sm:text-sm" />
+            <button
+              className="text-gray-700 text-xl cursor-pointer p-1"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
 
         {/* Tablet Dropdown Menu */}
@@ -659,19 +726,11 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t">
-              <Link
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleLinkClick("", "")}
-              >
-                <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center gap-2 cursor-pointer">
-                  <span className="text-sm">Talk to Expert</span>
-                  <FaArrowRight className="w-3 h-3" />
-                </button>
-              </Link>
-            </div>
+            {/* The "Talk to Expert" block that sat here is gone: the button
+                moved to the navbar row, beside the menu button that opens this
+                dropdown, so it is on screen whether the menu is open or not.
+                The wrapper went with it — it held nothing else, and an empty
+                one would have left its pt-4 border-t divider behind. */}
           </div>
         )}
 
@@ -804,19 +863,8 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <div className="mt-6 flex flex-col gap-4 pt-4 border-t">
-              <Link
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleLinkClick("", "")}
-              >
-                <button className="bg-[theme(color.brand.blue)] text-white px-4 py-2 rounded-xl hover:bg-blue-400 flex items-center justify-center gap-2 cursor-pointer">
-                  <span className="text-sm">Talk to Expert</span>
-                  <FaArrowRight className="w-3 h-3" />
-                </button>
-              </Link>
-            </div>
+            {/* Same here: the CTA now sits next to the hamburger in the navbar
+                row above, visible without opening the menu. */}
           </div>
         )}
       </nav>
