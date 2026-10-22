@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { FaWhatsapp, FaPhoneAlt, FaEnvelope, FaTimes } from "react-icons/fa";
+import { FaWhatsapp, FaPhoneAlt, FaEnvelope, FaCommentSlash } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const FloatingContact = () => {
@@ -112,11 +112,19 @@ const FloatingContact = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative flex items-center justify-center w-14 h-14 bg-[theme(color.brand.blue)] hover:bg-[#046a96] text-white rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:scale-105 transition-all duration-300 cursor-pointer"
-        aria-label="Contact Options"
+        aria-label={isOpen ? "Close contact options" : "Contact options"}
+        aria-expanded={isOpen}
       >
         <span className="absolute inset-0 rounded-full animate-ping bg-[theme(color.brand.blue)] opacity-20"></span>
+        {/* Crossed-out chat bubble, not FaTimes. A bare ✕ centred in a solid
+            brand circle read as the X (Twitter) logo rather than a close
+            control, which is the wrong brand to evoke on a contact widget.
+            This one also mirrors the open state's chat bubble, so the pair
+            reads as one control toggling rather than two unrelated glyphs.
+            Its viewBox is 640x512 against the bubble's 512x512, so it draws
+            slightly wider at the same font size — intended, not a bug. */}
         {isOpen ? (
-          <FaTimes className="text-2xl animate-in spin-in-90 duration-300" />
+          <FaCommentSlash className="text-2xl animate-in zoom-in duration-300" />
         ) : (
           <IoChatbubbleEllipsesOutline className="text-2xl animate-in zoom-in duration-300" />
         )}
