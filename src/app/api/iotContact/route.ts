@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { toEmailSafeText } from '@/lib/email-safe-text';
 
 interface IoTContactFormData {
   fullName: string;
@@ -108,14 +109,14 @@ async function sendProfessionalNotification(data: IoTContactFormData) {
     to: process.env.SMTP_USER,
     subject: `New IoT Contact Form Submission from ${data.fullName}`,
     html: `<h2>New IoT Contact Form Submission</h2>
-           <p><strong>Name:</strong> ${data.fullName}</p>
-           <p><strong>Email:</strong> ${data.businessEmail}</p>
-           <p><strong>Phone:</strong> ${data.businessPhone}</p>
-           <p><strong>Company:</strong> ${data.companyName}</p>
-           <p><strong>IoT Solution Type:</strong> ${data.iotSolutionType}</p>
-           <p><strong>Testing Requirements:</strong> ${data.testingRequirements}</p>
-           <p><strong>Project Details:</strong> ${data.projectDetails}</p>
-           <p><strong>Source:</strong> ${data.source}</p>`
+           <p><strong>Name:</strong> ${toEmailSafeText(data.fullName)}</p>
+           <p><strong>Email:</strong> ${toEmailSafeText(data.businessEmail)}</p>
+           <p><strong>Phone:</strong> ${toEmailSafeText(data.businessPhone)}</p>
+           <p><strong>Company:</strong> ${toEmailSafeText(data.companyName)}</p>
+           <p><strong>IoT Solution Type:</strong> ${toEmailSafeText(data.iotSolutionType)}</p>
+           <p><strong>Testing Requirements:</strong> ${toEmailSafeText(data.testingRequirements)}</p>
+           <p><strong>Project Details:</strong> ${toEmailSafeText(data.projectDetails)}</p>
+           <p><strong>Source:</strong> ${toEmailSafeText(data.source)}</p>`
   });
 }
 
@@ -132,7 +133,7 @@ async function sendClientConfirmation(data: IoTContactFormData) {
     from: process.env.SMTP_USER,
     to: data.businessEmail,
     subject: 'Thank you for contacting Testriq QA Lab - IoT Testing',
-    html: `<p>Dear ${data.fullName},</p>
+    html: `<p>Dear ${toEmailSafeText(data.fullName)},</p>
            <p>Thank you for your inquiry. We'll get back to you within 24 hours.</p>
            <p>Best regards,<br>Testriq QA Lab Team</p>`
   });
