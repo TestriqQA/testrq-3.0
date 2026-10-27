@@ -13,7 +13,7 @@ import StructuredData, { createCanonicalBreadcrumb, telecommunicationTestingSche
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Telecommunication Testing Services",
+  title: "Telecom Testing Services | OSS/BSS & 5G QA",
   description: "Comprehensive telecommunication testing services including 5G, IoT, VoIP, network security, NFV/SDN, and performance optimization.Ensure seamless connectivity with Testriq’s telecom testing services: performance, security, and compliance testing for telecom systems.",
   keywords: [
     "telecommunication testing",

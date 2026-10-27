@@ -14,7 +14,7 @@ import StructuredData, { createCanonicalBreadcrumb, gamingTestingServiceSchema }
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Gaming App Testing Services" ,
+  title: "Game Testing Services | QA for Mobile & PC" ,
   description: "Launch flawless, secure, and immersive games. Testriq offers expert gaming app testing services across platforms for peak performance and player satisfaction.",
   keywords: [
     "game testing services",

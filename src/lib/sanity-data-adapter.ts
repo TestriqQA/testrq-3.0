@@ -1139,6 +1139,32 @@ export async function sanityGetCaseStudyBySlug(slug: string): Promise<CaseStudy 
     }
 }
 
+/**
+ * Case-study slugs straight from Sanity, never the snapshot.
+ *
+ * For generateStaticParams in app/[slug], which runs at build time only — the
+ * one place where a live round trip is both affordable and the correct
+ * freshness. The snapshot-backed function below is right for request-path
+ * reads, but using it to decide which pages exist means the build can only
+ * know about case studies that were present the last time someone ran
+ * `npm run sanity:snapshot`. That file had gone five months stale once
+ * already, and now that app/[slug] sets dynamicParams = false (DEV-12), a slug
+ * missing from the build list is a 404 rather than an on-demand render.
+ *
+ * Falls back to the snapshot if Sanity is unreachable during the build, so a
+ * network blip degrades to the old behaviour instead of emptying the site.
+ */
+export async function sanityGetAllCaseStudySlugsLive(): Promise<string[]> {
+    try {
+        const live = await client.fetch<string[]>(queries.caseStudySlugsQuery);
+        if (live && live.length > 0) return live;
+        console.warn('Live case-study slug query returned nothing; falling back to the snapshot.');
+    } catch (err) {
+        console.warn('Live case-study slug query failed during build; falling back to the snapshot.', err);
+    }
+    return buildSnapshot.caseStudySlugs ?? [];
+}
+
 export async function sanityGetAllCaseStudySlugs(): Promise<string[]> {
     if (buildSnapshot.caseStudySlugs && buildSnapshot.caseStudySlugs.length > 0) {
         return buildSnapshot.caseStudySlugs;

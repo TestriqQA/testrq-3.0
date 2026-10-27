@@ -20,7 +20,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/embedded-testing-services",
-        title: "Embedded Testing Services | Software & Hardware QA | Testriq",
+        title: "Embedded Testing Services | Firmware & HW QA | Testriq",
         description:
             "Ensure precision and reliability with Testriq's embedded testing services. V&V for automotive (ISO 26262), medical, and IoT safety-critical systems.",
         ogImage: {

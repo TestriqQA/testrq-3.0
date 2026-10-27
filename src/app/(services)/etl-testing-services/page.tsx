@@ -22,7 +22,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/etl-testing-services",
-    title: "Cloud ETL Testing Services & Data Integrity | Testriq",
+    title: "ETL Testing Services | Data Integrity & Cloud | Testriq",
     description:
       "Validate cloud ETL pipelines with Testriq's testing services. ISO 8000-1 quality, source-to-target mapping QA, and Snowflake/Databricks migration validation.",
     ogImage: {

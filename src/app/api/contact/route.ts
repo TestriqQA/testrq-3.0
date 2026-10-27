@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
-import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha'; // Added
+import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { readLeadAttribution, leadAttributionEmailHtml } from '@/lib/lead-attribution'; // Added
 
 // Types for form data
 interface ContactFormData {
@@ -14,7 +15,13 @@ interface ContactFormData {
   companyName?: string; // Optional field for E-commerce form
   platform?: string; // Optional field for E-commerce form
   source?: string; // Hidden field for source tracking
-  recaptchaToken?: string; // Added
+  recaptchaToken?: string;
+  // DEV-02 — attached to every submission by useRecaptchaForm. Read via
+  // readLeadAttribution() rather than used directly, so the values are
+  // type-checked and length-capped before reaching an email or a sheet.
+  landingPage?: string;
+  landingReferrer?: string;
+  submittedFrom?: string; // Added
 }
 
 // Helper function to format company stage
@@ -314,6 +321,8 @@ async function sendProfessionalNotification(data: ContactFormData) {
             <p style="white-space: pre-wrap;">${data.message}</p>
           </div>
           
+          ${leadAttributionEmailHtml(readLeadAttribution(data))}
+
           <div style="background-color: #e0f2fe; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #0369a1;">
               <strong>Submitted at:</strong> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}

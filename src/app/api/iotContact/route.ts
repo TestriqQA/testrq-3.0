@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { readLeadAttribution, leadAttributionEmailRows } from '@/lib/lead-attribution';
 
 interface IoTContactFormData {
   fullName: string;
@@ -13,6 +14,12 @@ interface IoTContactFormData {
   projectDetails: string;
   source?: string;
   recaptchaToken?: string;
+  // DEV-02 — attached to every submission by useRecaptchaForm. Read via
+  // readLeadAttribution() rather than used directly, so the values are
+  // type-checked and length-capped before reaching an email or a sheet.
+  landingPage?: string;
+  landingReferrer?: string;
+  submittedFrom?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -115,7 +122,8 @@ async function sendProfessionalNotification(data: IoTContactFormData) {
            <p><strong>IoT Solution Type:</strong> ${data.iotSolutionType}</p>
            <p><strong>Testing Requirements:</strong> ${data.testingRequirements}</p>
            <p><strong>Project Details:</strong> ${data.projectDetails}</p>
-           <p><strong>Source:</strong> ${data.source}</p>`
+           <p><strong>Source:</strong> ${data.source}</p>
+           ${leadAttributionEmailRows(readLeadAttribution(data))}`
   });
 }
 

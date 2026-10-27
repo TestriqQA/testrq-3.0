@@ -17,7 +17,7 @@ export const revalidate = 3600;
 // cluster — do not reword the title or description without an SEO review.
 export const metadata: Metadata = buildPageMetadata({
     pathname: "qa-outsourcing-services",
-    title: "QA Outsourcing Services | Dedicated QA Teams | Testriq",
+    title: "QA Outsourcing Services | Dedicated Test Teams | Testriq",
     description:
         "QA outsourcing services from ISTQB-certified engineers — dedicated QA teams, managed testing & on-demand QA to cut costs and ship faster. Free consultation.",
     keywords: [

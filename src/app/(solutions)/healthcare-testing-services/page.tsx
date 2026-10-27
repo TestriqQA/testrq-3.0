@@ -14,7 +14,7 @@ import StructuredData, { createCanonicalBreadcrumb, healthcareTestingServiceSche
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Healthcare Testing Solutions ",
+  title: "Healthcare Software Testing | HIPAA & HL7 QA",
   description: "Ensure your healthcare software is secure, compliant, and user-friendly. Testriq offers end-to-end healthcare testing services aligned with HIPAA and FDA standards.",
   keywords: [
     "Healthcare Software Testing",

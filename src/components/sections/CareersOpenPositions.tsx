@@ -56,6 +56,9 @@ const CareersOpenPositions: React.FC<{ jobOpenings: SanityJobOpening[] }> = ({ j
 
   const { isSubmitting, submitWithRecaptcha } = useRecaptchaForm({
     action: "career_application",
+    // Not generate_lead for the same reason as the newsletter — a job
+    // application is not a sales enquiry.
+    ga: { name: "career_application", params: { form_name: "career_application" } },
     onSuccess: () => {
       setShowSuccessMessage(true);
       if (modalContentRef.current) {

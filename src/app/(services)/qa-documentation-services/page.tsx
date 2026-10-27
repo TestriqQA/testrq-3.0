@@ -14,7 +14,7 @@ import StructuredData, { createCanonicalBreadcrumb, createFaqPageSchema, qaDocum
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Analyze Data to Improve QA Team Performance",
+  title: "QA Documentation Services | Test Cases & Reports",
   description: "Professional QA documentation services: audit-ready, scalable test documentation aligned with ISO/IEC/IEEE 29119-3 standards for fast, quality-assured delivery.",
   keywords: [
     "QA documentation services",

@@ -2,7 +2,10 @@ import { Metadata } from "next";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 
 export const metadata: Metadata = {
-  title: "Search Testing Articles | Find QA Insights & Best Practices | Testriq Blog",
+  // Carried the brand itself, so the root template appended a second one:
+  // "... | Testriq Blog | Testriq", 85 characters. absolute opts out, and the
+  // text is cut to fit a SERP.
+  title: { absolute: "Search QA Articles | Testriq Blog" },
   description: "Search and find relevant articles, tutorials, and expert insights on software testing and QA. Discover best practices, testing guides, and industry knowledge from Testriq's ISTQB certified experts.",
   keywords: "blog search, software testing articles, QA insights search, test automation tutorials, performance testing guides, security testing resources, mobile testing articles, API testing guides, testing best practices search",
   authors: [{ name: "Testriq QA Lab" }],

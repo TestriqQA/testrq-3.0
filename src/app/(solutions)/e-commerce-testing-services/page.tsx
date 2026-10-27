@@ -19,7 +19,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/e-commerce-testing-services",
-    title: "E-Commerce Testing Services | PCI DSS 4.0 & Platform QA | Testriq",
+    title: "E-Commerce Testing Services | PCI DSS & Load | Testriq",
     description:
       "Optimize conversions and security with Testriq's e-commerce testing. PCI DSS 4.0-compliant QA for Magento, Shopify, and WooCommerce digital commerce platforms.",
     ogImage: {

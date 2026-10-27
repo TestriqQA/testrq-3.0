@@ -27,6 +27,17 @@ export const metadata: Metadata = {
         title: "QA Testing Packages & Pricing | Testriq",
         description: "No fluff, just results. Transparent pricing for world-class software testing services.",
         url: "https://www.testriq.com/pricing",
+        // This page shipped no og:image, so shares of it rendered as a bare
+        // link with no picture. Generic brand card for now — there is no
+        // pricing-specific asset in public/OG; swap it for one when it exists.
+        images: [
+            {
+                url: "https://www.testriq.com/OG/testriq-logo-og.png",
+                width: 1200,
+                height: 630,
+                alt: "QA testing packages and pricing from Testriq QA Lab",
+            },
+        ],
     }
 };
 
