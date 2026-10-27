@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { toEmailSafeText, toEmailSafeAttribute, toEmailSafeLinkLabel } from '@/lib/email-safe-text';
 import { BOOKING_URL } from "@/lib/booking";
 
 // Types for pricing form data
@@ -126,7 +127,7 @@ async function storeInGoogleSheets(data: PricingFormData) {
       data.companyName || 'N/A',
       '', // How Did You Hear — empty for pricing form
       data.message,
-      `Pricing Page - ${data.packageName} (${data.packagePrice})`,
+      `Pricing Page - ${toEmailSafeText(data.packageName)} (${toEmailSafeText(data.packagePrice)})`,
       data.companyName || ''
     ];
 
@@ -214,8 +215,8 @@ async function sendAdminNotification(data: PricingFormData) {
           <!-- Package Info Banner -->
           <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 24px; border-left: 4px solid #2563eb; margin: 24px;">
             <p style="margin: 0 0 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6b7280;">Selected Package</p>
-            <h2 style="margin: 0 0 6px; font-size: 24px; font-weight: 800; color: #1e3a5f;">${data.packageName}</h2>
-            <p style="margin: 0; font-size: 16px; font-weight: 600; color: #2563eb;">${data.packagePrice}</p>
+            <h2 style="margin: 0 0 6px; font-size: 24px; font-weight: 800; color: #1e3a5f;">${toEmailSafeText(data.packageName)}</h2>
+            <p style="margin: 0; font-size: 16px; font-weight: 600; color: #2563eb;">${toEmailSafeText(data.packagePrice)}</p>
           </div>
 
           <!-- Contact Details -->
@@ -224,19 +225,19 @@ async function sendAdminNotification(data: PricingFormData) {
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 10px 0; color: #6b7280; font-size: 13px; font-weight: 600; width: 140px; vertical-align: top;">Full Name</td>
-                <td style="padding: 10px 0; color: #111827; font-size: 14px; font-weight: 500;">${data.fullName}</td>
+                <td style="padding: 10px 0; color: #111827; font-size: 14px; font-weight: 500;">${toEmailSafeText(data.fullName)}</td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; color: #6b7280; font-size: 13px; font-weight: 600; vertical-align: top;">Email</td>
-                <td style="padding: 10px 0; color: #111827; font-size: 14px;"><a href="mailto:${data.businessEmail}" style="color: #2563eb; text-decoration: none;">${data.businessEmail}</a></td>
+                <td style="padding: 10px 0; color: #111827; font-size: 14px;"><a href="mailto:${toEmailSafeAttribute(data.businessEmail)}" style="color: #2563eb; text-decoration: none;">${toEmailSafeLinkLabel(data.businessEmail)}</a></td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; color: #6b7280; font-size: 13px; font-weight: 600; vertical-align: top;">Phone</td>
-                <td style="padding: 10px 0; color: #111827; font-size: 14px;"><a href="tel:${data.businessPhone}" style="color: #2563eb; text-decoration: none;">${data.businessPhone}</a></td>
+                <td style="padding: 10px 0; color: #111827; font-size: 14px;"><a href="tel:${toEmailSafeAttribute(data.businessPhone)}" style="color: #2563eb; text-decoration: none;">${toEmailSafeLinkLabel(data.businessPhone)}</a></td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; color: #6b7280; font-size: 13px; font-weight: 600; vertical-align: top;">Company</td>
-                <td style="padding: 10px 0; color: #111827; font-size: 14px;">${data.companyName || 'N/A'}</td>
+                <td style="padding: 10px 0; color: #111827; font-size: 14px;">${toEmailSafeText(data.companyName || 'N/A')}</td>
               </tr>
             </table>
           </div>
@@ -244,7 +245,7 @@ async function sendAdminNotification(data: PricingFormData) {
           <!-- Message -->
           <div style="margin: 24px; background: #fefce8; padding: 20px; border-radius: 10px; border-left: 4px solid #eab308;">
             <h3 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #854d0e; text-transform: uppercase; letter-spacing: 0.5px;">Message</h3>
-            <p style="margin: 0; font-size: 14px; color: #422006; line-height: 1.6; white-space: pre-wrap;">${data.message}</p>
+            <p style="margin: 0; font-size: 14px; color: #422006; line-height: 1.6; white-space: pre-wrap;">${toEmailSafeText(data.message)}</p>
           </div>
 
           <!-- Timestamp -->
@@ -310,7 +311,7 @@ async function sendClientThankYou(data: PricingFormData) {
           <!-- Header -->
           <div style="text-align: center; padding: 40px 24px 28px; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%); border-radius: 12px 12px 0 0;">
             <img src="https://www.testriq.com/images/testriq-logo.jpg" alt="Testriq QA Lab" style="height: 45px; margin-bottom: 20px;" />
-            <h1 style="margin: 0; font-size: 26px; color: #ffffff; font-weight: 800; letter-spacing: -0.5px;">Thank You, ${data.fullName}!</h1>
+            <h1 style="margin: 0; font-size: 26px; color: #ffffff; font-weight: 800; letter-spacing: -0.5px;">Thank You, ${toEmailSafeText(data.fullName)}!</h1>
             <p style="margin: 12px 0 0; color: #bfdbfe; font-size: 15px; line-height: 1.5;">We've received your inquiry and our team is already on it.</p>
           </div>
 
@@ -319,15 +320,15 @@ async function sendClientThankYou(data: PricingFormData) {
             
             <!-- Greeting -->
             <p style="font-size: 15px; color: #374151; line-height: 1.7; margin: 0 0 24px;">
-              Dear <strong>${data.fullName}</strong>,<br><br>
-              Thank you for your interest in our <strong>${data.packageName}</strong>. We appreciate you taking the time to reach out to us. Your inquiry is important to us, and we want to make sure we provide you with the best possible solution.
+              Dear <strong>${toEmailSafeText(data.fullName)}</strong>,<br><br>
+              Thank you for your interest in our <strong>${toEmailSafeText(data.packageName)}</strong>. We appreciate you taking the time to reach out to us. Your inquiry is important to us, and we want to make sure we provide you with the best possible solution.
             </p>
 
             <!-- Selected Package Card -->
             <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1px solid #bfdbfe; border-radius: 12px; padding: 24px; margin: 0 0 28px; text-align: center;">
               <p style="margin: 0 0 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #6b7280;">Your Selected Package</p>
-              <h2 style="margin: 0 0 8px; font-size: 22px; font-weight: 800; color: #1e3a5f;">${data.packageName}</h2>
-              <p style="margin: 0; font-size: 18px; font-weight: 700; color: #2563eb;">${data.packagePrice}</p>
+              <h2 style="margin: 0 0 8px; font-size: 22px; font-weight: 800; color: #1e3a5f;">${toEmailSafeText(data.packageName)}</h2>
+              <p style="margin: 0; font-size: 18px; font-weight: 700; color: #2563eb;">${toEmailSafeText(data.packagePrice)}</p>
             </div>
 
             <!-- Your Details Summary -->
@@ -336,20 +337,20 @@ async function sendClientThankYou(data: PricingFormData) {
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 13px; font-weight: 600; width: 130px;">Name</td>
-                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${data.fullName}</td>
+                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${toEmailSafeText(data.fullName)}</td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 13px; font-weight: 600;">Email</td>
-                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${data.businessEmail}</td>
+                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${toEmailSafeText(data.businessEmail)}</td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 13px; font-weight: 600;">Phone</td>
-                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${data.businessPhone}</td>
+                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${toEmailSafeText(data.businessPhone)}</td>
                 </tr>
                 ${data.companyName ? `
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280; font-size: 13px; font-weight: 600;">Company</td>
-                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${data.companyName}</td>
+                  <td style="padding: 8px 0; color: #111827; font-size: 14px;">${toEmailSafeText(data.companyName)}</td>
                 </tr>
                 ` : ''}
               </table>

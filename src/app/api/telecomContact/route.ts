@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { toEmailSafeText } from '@/lib/email-safe-text';
 
 // Types for form data
 interface TelecomContactFormData {
@@ -239,17 +240,17 @@ async function sendProfessionalNotification(data: TelecomContactFormData) {
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #1e40af; margin-top: 0;">Contact Details:</h3>
-            <p><strong>Full Name:</strong> ${data.fullName}</p>
-            <p><strong>Business Email:</strong> ${data.businessEmail}</p>
-            <p><strong>Business Phone:</strong> ${data.businessPhone}</p>
-            <p><strong>Company/Organization:</strong> ${data.companyOrganization}</p>
-            <p><strong>Testing Requirements:</strong> ${data.testingRequirements}</p>
-            <p><strong>Source:</strong> ${data.source || 'Telecom Testing Services Page'}</p>
+            <p><strong>Full Name:</strong> ${toEmailSafeText(data.fullName)}</p>
+            <p><strong>Business Email:</strong> ${toEmailSafeText(data.businessEmail)}</p>
+            <p><strong>Business Phone:</strong> ${toEmailSafeText(data.businessPhone)}</p>
+            <p><strong>Company/Organization:</strong> ${toEmailSafeText(data.companyOrganization)}</p>
+            <p><strong>Testing Requirements:</strong> ${toEmailSafeText(data.testingRequirements)}</p>
+            <p><strong>Source:</strong> ${toEmailSafeText(data.source || 'Telecom Testing Services Page')}</p>
           </div>
           
           <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #92400e; margin-top: 0;">Message:</h3>
-            <p style="white-space: pre-wrap;">${data.message}</p>
+            <p style="white-space: pre-wrap;">${toEmailSafeText(data.message)}</p>
           </div>
           
           <div style="background-color: #e0f2fe; padding: 15px; border-radius: 8px; margin: 20px 0;">
@@ -327,7 +328,7 @@ async function sendClientConfirmation(data: TelecomContactFormData) {
           </div>
           
           <div style="padding: 30px; background-color: #ffffff; border: 1px solid #e5e7eb; border-top: none;">
-            <h2 style="color: #2563eb; margin-top: 0;">Dear ${data.fullName},</h2>
+            <h2 style="color: #2563eb; margin-top: 0;">Dear ${toEmailSafeText(data.fullName)},</h2>
             
             <p style="line-height: 1.6; margin-bottom: 20px;">
               Thank you for reaching out to Testriq QA Lab regarding our telecom testing services. We have received your inquiry and appreciate your interest in our solutions.
@@ -336,17 +337,17 @@ async function sendClientConfirmation(data: TelecomContactFormData) {
             <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #2563eb; margin: 25px 0;">
               <h3 style="color: #1e40af; margin-top: 0; margin-bottom: 15px;">Your Submission Summary:</h3>
               <div style="display: grid; gap: 8px;">
-                <p style="margin: 0;"><strong>Full Name:</strong> ${data.fullName}</p>
-                <p style="margin: 0;"><strong>Business Email:</strong> ${data.businessEmail}</p>
-                <p style="margin: 0;"><strong>Business Phone:</strong> ${data.businessPhone}</p>
-                <p style="margin: 0;"><strong>Company/Organization:</strong> ${data.companyOrganization}</p>
-                <p style="margin: 0;"><strong>Testing Requirements:</strong> ${data.testingRequirements}</p>
+                <p style="margin: 0;"><strong>Full Name:</strong> ${toEmailSafeText(data.fullName)}</p>
+                <p style="margin: 0;"><strong>Business Email:</strong> ${toEmailSafeText(data.businessEmail)}</p>
+                <p style="margin: 0;"><strong>Business Phone:</strong> ${toEmailSafeText(data.businessPhone)}</p>
+                <p style="margin: 0;"><strong>Company/Organization:</strong> ${toEmailSafeText(data.companyOrganization)}</p>
+                <p style="margin: 0;"><strong>Testing Requirements:</strong> ${toEmailSafeText(data.testingRequirements)}</p>
               </div>
             </div>
             
             <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin: 25px 0;">
               <h4 style="color: #92400e; margin-top: 0;">Your Message:</h4>
-              <p style="margin: 0; white-space: pre-wrap;">"${data.message}"</p>
+              <p style="margin: 0; white-space: pre-wrap;">"${toEmailSafeText(data.message)}"</p>
             </div>
             
             <div style="background-color: #dcfce7; padding: 20px; border-radius: 8px; margin: 25px 0;">
