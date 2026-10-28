@@ -105,7 +105,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://www.testriq.com/blog/tag/${normalizedTag}`;
 
   return {
-    title: `${tagName}|Testriq Blog`,
+    // Was `${tagName}|Testriq Blog` — brand doubled by the root template on
+    // every tag page, and no space around the pipe. The sibling not-found
+    // branch above already used absolute; this branch had been missed.
+    title: { absolute: `${tagName} | Testriq Blog` },
     description: tagDescription,
     keywords: `${tagName.toLowerCase()}, ${tagName.toLowerCase()} testing, ${tagName.toLowerCase()} qa, software testing, ${tagName.toLowerCase()} best practices, ${tagName.toLowerCase()} tutorials, testing guides, qa insights, ISTQB certified experts`,
     authors: [{ name: "Testriq QA Lab" }],

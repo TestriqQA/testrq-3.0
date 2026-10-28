@@ -22,7 +22,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/api-testing",
-    title: "API Testing Services | REST, GraphQL & SOAP QA | Testriq",
+    title: "API Testing Services | REST, GraphQL & SOAP | Testriq",
     description:
       "Validate REST, GraphQL, and SOAP APIs with Testriq's API testing. OWASP API security, performance, and ISO 29119-compliant QA for microservices teams.",
     ogImage: {

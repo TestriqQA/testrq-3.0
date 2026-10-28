@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getCityData, getAllCities, CityData, isCityIndexed } from '@/app/lib/CityData';
-import { sanityGetCaseStudyBySlug, sanityGetAllCaseStudySlugs, sanityGetRelatedCaseStudies, CaseStudy } from '@/lib/sanity-data-adapter';
+import { sanityGetCaseStudyBySlug, sanityGetAllCaseStudySlugsLive, sanityGetRelatedCaseStudies, CaseStudy } from '@/lib/sanity-data-adapter';
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, { createBreadcrumbSchema, createFAQSchema } from "@/components/seo/StructuredData";
 import CityTestingHeroSection from '@/components/sections/CityTestingHeroSection';
@@ -50,9 +50,14 @@ function generateCaseStudySchema(caseStudy: CaseStudy) {
     },
     "headline": caseStudy.metadata.title || caseStudy.title,
     "description": caseStudy.metadata.description || caseStudy.description,
+    // Same dead reference as the one replaced further down for cities:
+    // /og-image.png is not in public/, and only resolves because this very
+    // route answers for any single-segment path. A case study without its own
+    // artwork now falls back to the case-studies card, which exists and is at
+    // least on topic.
     "image": caseStudy.image
       ? `https://www.testriq.com${caseStudy.image}`
-      : "https://www.testriq.com/og-image.png",
+      : "https://www.testriq.com/OG/case-study-og.webp",
 
     // TRUST SIGNALS (E-E-A-T)
     "author": {
@@ -508,13 +513,13 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-// 1 hour ISR window. The old comment here claimed case studies refresh
-// instantly "via Sanity webhooks" — no such webhook route exists in this
-// repo (checked src/app/api/**), so a Sanity edit is invisible on the live
-// page for up to this full hour, not instantly. A real fix would add a
-// /api/revalidate route (verifying Sanity's webhook signature) that calls
-// revalidatePath for the edited slug. Until then, force a fresh deploy to
-// bust the cache immediately.
+// 1 hour ISR window — the backstop, no longer the only refresh path. An
+// earlier comment here claimed case studies refresh instantly "via Sanity
+// webhooks" when no such route existed; `src/app/api/revalidate/route.ts`
+// now does, verifying Sanity's webhook signature and calling revalidatePath
+// for the edited slug, so a published edit lands in seconds. This hour only
+// applies when the webhook is unconfigured in an environment or a delivery
+// failed. Setup: src/app/api/revalidate/README.md.
 export const revalidate = 3600;
 
 export default async function SlugPage({ params }: PageProps) {
@@ -609,14 +614,43 @@ export default async function SlugPage({ params }: PageProps) {
   );
 }
 
-export const dynamicParams = true;
+// DEV-12. false, so a slug that is not in generateStaticParams below returns
+// a real HTTP 404 without rendering.
+//
+// It was true, and the consequence was that EVERY unknown URL on the site
+// answered 200. This route matches any single-segment path, so that is an
+// unlimited supply of soft 404s: measured on a slug never requested before,
+// on both a local production build and www.testriq.com, the response was
+// 200 with the "Page Not Found" body and x-nextjs-prerender: 1. notFound()
+// is called correctly at the bottom of the component and is not swallowed by
+// any try/catch — Next simply served the rendered not-found page as a
+// successful prerender.
+//
+// Two other fixes were tried and rejected, so they are not re-attempted:
+//   await connection() before notFound()  -> 500 on the unknown-slug path.
+//   notFound() alone                      -> the 200 described above.
+//
+// The cost is that a case study published in Sanity after the last build
+// 404s until the next deploy, rather than rendering on demand. That is why
+// generateStaticParams now reads case-study slugs LIVE from Sanity instead of
+// from the build snapshot: a deploy is now sufficient on its own, with no
+// dependency on someone having run `npm run sanity:snapshot` first.
+//
+// That remaining gap is now closed automatically: publishing or deleting a
+// case study fires the Sanity webhook at /api/revalidate, which pings a
+// Vercel deploy hook precisely because revalidatePath cannot add a param to
+// this route — the valid set lives in the on-disk prerender manifest. The one
+// case still needing a manual redeploy is RENAMING a published case study's
+// slug, which arrives as an ordinary update. See
+// src/app/api/revalidate/README.md.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const cities = getAllCities();
 
   let caseStudySlugs: string[] = [];
   try {
-    caseStudySlugs = await sanityGetAllCaseStudySlugs();
+    caseStudySlugs = await sanityGetAllCaseStudySlugsLive();
     console.log("Generated case study slugs:", caseStudySlugs);
   } catch (err) {
     console.warn("Could not fetch case study slugs from Sanity (network error during build). Case study pages will be rendered on-demand.", err);

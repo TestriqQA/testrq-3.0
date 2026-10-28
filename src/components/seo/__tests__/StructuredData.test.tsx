@@ -219,14 +219,15 @@ describe("<StructuredData> — compact output", () => {
 // ---------------------------------------------------------------------------
 
 describe("<StructuredData> — non-stringifiable schemas (Refinement 2)", () => {
-    const ORIGINAL_NODE_ENV = process.env.NODE_ENV;
-
     beforeEach(() => {
-        process.env.NODE_ENV = "development";
+        // vi.stubEnv rather than a direct assignment: next-env.d.ts types
+        // process.env.NODE_ENV as a read-only literal union, so writing to it
+        // is a TS2540 error. vi.unstubAllEnvs() restores the pre-stub value.
+        vi.stubEnv("NODE_ENV", "development");
     });
 
     afterEach(() => {
-        process.env.NODE_ENV = ORIGINAL_NODE_ENV;
+        vi.unstubAllEnvs();
         vi.restoreAllMocks();
     });
 
@@ -270,7 +271,7 @@ describe("<StructuredData> — non-stringifiable schemas (Refinement 2)", () => 
     });
 
     it("does NOT log to console.error in production mode", () => {
-        process.env.NODE_ENV = "production";
+        vi.stubEnv("NODE_ENV", "production");
         type Circ = { "@type": string; self?: Circ };
         const circular: Circ = { "@type": "Circular" };
         circular.self = circular;

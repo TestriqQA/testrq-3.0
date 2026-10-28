@@ -22,7 +22,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/robotics-testing-services",
-    title: "Enterprise RPA & Robotics Testing Services | Testriq",
+    title: "RPA & Robotics Testing Services | Bot QA | Testriq",
     description:
       "Validate autonomous systems with Testriq's robotics and RPA testing. ISO 10218 compliance, Sim2Real validation, and AI path planning for industrial robots.",
     ogImage: {

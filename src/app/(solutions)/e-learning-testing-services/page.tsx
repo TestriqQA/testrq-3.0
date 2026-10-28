@@ -13,7 +13,7 @@ import StructuredData, { createCanonicalBreadcrumb, elearningTestingServiceSchem
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "E-Learning Testing Services",
+  title: "E-Learning Testing Services | LMS & SCORM QA",
   description:
     "Deliver a flawless online learning experience. Testriq’s e-learning testing services ensure your LMS is functional, secure, accessible, and high-performing.",
   keywords: [

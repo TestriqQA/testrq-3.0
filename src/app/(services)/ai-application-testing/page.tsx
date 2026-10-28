@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   // "Global AI Application Testing Services | Reliable Systems for the Future"
   // — 82ch rendered, so Google truncated it around "Reliable Systems for the
   // Fut…" and the brand never showed. Leads with the two terms buyers search.
-  title: "AI Application Testing Services | LLM & ML QA",
+  title: "AI Application Testing | LLM, ML & Agent QA",
   description:
     "Testriq AI Application Testing services help ensure your ML models are safe, fair, and compliant, connecting MLOps with QA for high-stakes AI systems.",
   keywords: [

@@ -227,17 +227,21 @@ describe("buildCanonicalUrl", () => {
     });
 
     describe("dev-mode assertions", () => {
-        const ORIGINAL_NODE_ENV = process.env.NODE_ENV;
-
         beforeEach(() => {
             // Force dev-mode for assertion checks. NODE_ENV is "test" by
             // default under vitest, which our isDevEnvironment helper
             // already treats as non-production — but be explicit.
-            process.env.NODE_ENV = "development";
+            //
+            // vi.stubEnv rather than a direct assignment: next-env.d.ts types
+            // process.env.NODE_ENV as a read-only literal union, so writing to
+            // it is a TS2540 error. vi.unstubAllEnvs() restores whatever was
+            // there before the first stub, which is what the old
+            // ORIGINAL_NODE_ENV save/restore was doing by hand.
+            vi.stubEnv("NODE_ENV", "development");
         });
 
         afterEach(() => {
-            process.env.NODE_ENV = ORIGINAL_NODE_ENV;
+            vi.unstubAllEnvs();
             vi.restoreAllMocks();
         });
 
@@ -270,14 +274,12 @@ describe("buildCanonicalUrl", () => {
     });
 
     describe("production-mode behavior", () => {
-        const ORIGINAL_NODE_ENV = process.env.NODE_ENV;
-
         beforeEach(() => {
-            process.env.NODE_ENV = "production";
+            vi.stubEnv("NODE_ENV", "production");
         });
 
         afterEach(() => {
-            process.env.NODE_ENV = ORIGINAL_NODE_ENV;
+            vi.unstubAllEnvs();
             vi.restoreAllMocks();
         });
 
@@ -473,8 +475,7 @@ describe("buildPageMetadata", () => {
         });
 
         it("explicit `robots` takes precedence over `noindex`", () => {
-            const ORIGINAL_NODE_ENV = process.env.NODE_ENV;
-            process.env.NODE_ENV = "development";
+            vi.stubEnv("NODE_ENV", "development");
             const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
 
             const m = buildPageMetadata({
@@ -489,31 +490,29 @@ describe("buildPageMetadata", () => {
             expect(warn.mock.calls[0][0]).toMatch(/Both `noindex` and `robots`/);
 
             warn.mockRestore();
-            process.env.NODE_ENV = ORIGINAL_NODE_ENV;
+            vi.unstubAllEnvs();
         });
 
         it("does NOT warn when only noindex is provided (no robots)", () => {
-            const ORIGINAL_NODE_ENV = process.env.NODE_ENV;
-            process.env.NODE_ENV = "development";
+            vi.stubEnv("NODE_ENV", "development");
             const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
 
             buildPageMetadata({ ...minimalOpts, noindex: true });
             expect(warn).not.toHaveBeenCalled();
 
             warn.mockRestore();
-            process.env.NODE_ENV = ORIGINAL_NODE_ENV;
+            vi.unstubAllEnvs();
         });
 
         it("does NOT warn when only robots is provided (no noindex)", () => {
-            const ORIGINAL_NODE_ENV = process.env.NODE_ENV;
-            process.env.NODE_ENV = "development";
+            vi.stubEnv("NODE_ENV", "development");
             const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
 
             buildPageMetadata({ ...minimalOpts, robots: { index: false } });
             expect(warn).not.toHaveBeenCalled();
 
             warn.mockRestore();
-            process.env.NODE_ENV = ORIGINAL_NODE_ENV;
+            vi.unstubAllEnvs();
         });
     });
 
@@ -624,29 +623,30 @@ describe("buildPageMetadata", () => {
 // ---------------------------------------------------------------------------
 
 describe("isDevEnvironment", () => {
-    const ORIGINAL_NODE_ENV = process.env.NODE_ENV;
-
     afterEach(() => {
-        process.env.NODE_ENV = ORIGINAL_NODE_ENV;
+        vi.unstubAllEnvs();
     });
 
     it('returns false when NODE_ENV === "production"', () => {
-        process.env.NODE_ENV = "production";
+        vi.stubEnv("NODE_ENV", "production");
         expect(isDevEnvironment()).toBe(false);
     });
 
     it('returns true when NODE_ENV === "development"', () => {
-        process.env.NODE_ENV = "development";
+        vi.stubEnv("NODE_ENV", "development");
         expect(isDevEnvironment()).toBe(true);
     });
 
     it('returns true when NODE_ENV === "test"', () => {
-        process.env.NODE_ENV = "test";
+        vi.stubEnv("NODE_ENV", "test");
         expect(isDevEnvironment()).toBe(true);
     });
 
     it("returns true when NODE_ENV is undefined", () => {
-        delete process.env.NODE_ENV;
+        // stubEnv accepts undefined to unset the variable, which is what
+        // `delete process.env.NODE_ENV` used to do here (TS2704 on a
+        // read-only property).
+        vi.stubEnv("NODE_ENV", undefined);
         expect(isDevEnvironment()).toBe(true);
     });
 });
@@ -946,6 +946,91 @@ describe("city page titles", () => {
         expect(
             offenders,
             "A city title naming the brand more than once wastes the SERP budget twice over.\n\n  " +
+                offenders.join("\n  ") +
+                "\n",
+        ).toEqual([]);
+    });
+});
+
+/**
+ * DEV-10. The root layout sets `template: "%s | Testriq"`, so any page whose
+ * own top-level `title` is a plain string containing the brand renders it
+ * twice — "ROI Calculator | Testriq QA Lab | Testriq".
+ *
+ * There is already a regression test above for buildPageMetadata, but both
+ * pages that shipped this bug set `export const metadata` directly in a
+ * layout and never went through that helper, which is exactly why it recurred.
+ * This scans the source instead, so it covers every route regardless of how
+ * its metadata is built.
+ *
+ * `title: { absolute: "..." }` is the sanctioned escape hatch and is ignored
+ * here: absolute opts out of the template, so the brand appears once.
+ * openGraph.title and twitter.title are also ignored — no template is applied
+ * to those, so carrying the brand there is correct.
+ */
+describe("no page doubles the brand in its rendered title", () => {
+    const APP_DIR = join(process.cwd(), "src", "app");
+
+    function routeFiles(dir: string, out: string[] = []): string[] {
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const full = join(dir, entry.name);
+            if (entry.isDirectory()) routeFiles(full, out);
+            else if (/^(page|layout)\.tsx$/.test(entry.name)) out.push(full);
+        }
+        return out;
+    }
+
+    /**
+     * Returns the top-level `title:` value of each metadata object in the
+     * file. Depth is tracked from the opening brace so that nested titles
+     * (openGraph, twitter) are skipped.
+     */
+    function topLevelTitles(source: string): string[] {
+        const found: string[] = [];
+        // buildPageMetadata call sites are deliberately NOT scanned: the helper
+        // wraps whatever it is given as `title: { absolute: opts.title }`
+        // (src/lib/seo/metadata.ts), so a brand-suffixed title passed to it is
+        // correct and renders once. Only raw metadata objects reach the root
+        // layout's template, and those are what this guards. `return {` is
+        // included for generateMetadata functions returning a literal;
+        // `return buildPageMetadata({` does not match it, since the brace does
+        // not directly follow `return`.
+        const starts = [
+            ...source.matchAll(/(?:export const metadata[^=]*=|return)\s*\{/g),
+        ];
+        for (const start of starts) {
+            let depth = 0;
+            for (let i = start.index! + start[0].length - 1; i < source.length; i++) {
+                const ch = source[i];
+                if (ch === "{") depth++;
+                else if (ch === "}") {
+                    depth--;
+                    if (depth === 0) break;
+                }
+                if (depth === 1 && source.startsWith("title:", i)) {
+                    const rest = source.slice(i + 6, i + 400);
+                    const str = rest.match(/^\s*(["'`])([^"'`]*)\1/);
+                    if (str) found.push(str[2]);
+                }
+            }
+        }
+        return found;
+    }
+
+    it("never sets a plain-string title containing the brand", () => {
+        const offenders: string[] = [];
+        for (const file of routeFiles(APP_DIR)) {
+            for (const title of topLevelTitles(readFileSync(file, "utf8"))) {
+                if (/testriq/i.test(title)) {
+                    offenders.push(`${relative(process.cwd(), file)} -> ${title}`);
+                }
+            }
+        }
+        expect(
+            offenders,
+            "These titles already contain the brand and will have ' | Testriq'\n" +
+                "appended again by the root layout template. Use\n" +
+                "`title: { absolute: \"...\" }` instead:\n  " +
                 offenders.join("\n  ") +
                 "\n",
         ).toEqual([]);

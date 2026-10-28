@@ -16,6 +16,8 @@
  * Extracted: 2026-05-15. Total entries at extraction: 760.
  */
 import type { NextConfig } from "next";
+// Slug list for the generated /blog/{slug} redirects at the bottom of this file.
+import buildSnapshot from "../sanity-build-snapshot.json";
 
 /**
  * Derived from Next.js's own `redirects()` return type so this file's array
@@ -917,4 +919,44 @@ export const redirects: RedirectRule[] = [
       // surviving article to recover that traffic and consolidate the ranking
       // signals onto one URL. Destination verified live (200, real content).
       { source: "/blog/post/what-is-latency-testing", destination: "/blog/post/what-is-a-latency-test", permanent: true },
+
+      // DEV-07 — external sites link to these two URLs, which 404, so the link
+      // equity they carry is thrown away. Both come from the Semrush
+      // target_pages export (26 Oct 2026), where they are the only two
+      // recoverable broken targets; the third, /assets/images/TESTRIQ_LAB1.png,
+      // is an image and is deliberately left to 404 since there is no page to
+      // send it to.
+      { source: "/nproject/ragnar-is-owned-and-operated-by-ragnar-events-llc", destination: "/ragnar-sports-platform", permanent: true },
+      { source: "/software-qa-testing-services/cloud-applications-testing-services", destination: "/saas-platform-testing-services", permanent: true },
 ];
+
+/**
+ * DEV-05 — `/blog/{slug}` → `/blog/post/{slug}`.
+ *
+ * Posts live at /blog/post/{slug}, but something out there links them without
+ * the /post/ segment, and those URLs 404. One of them,
+ * game-testing-the-complete-guide-to-game-qa-in-2026, earns 49 clicks a
+ * quarter at its correct address, so the broken variant is being linked from
+ * somewhere real.
+ *
+ * Generated from the slug snapshot rather than written as a catch-all on
+ * purpose. A blanket /blog/:slug rule would turn every typo and every crawler
+ * guess into a 301 into a 404 — a soft 404 at scale, which is the problem this
+ * repo has already had to clean up once. Deriving the list means only slugs
+ * that genuinely exist redirect, and anything else still 404s honestly.
+ *
+ * Verified at generation time: none of the 365 slugs collides with a real
+ * /blog child route (post, search, tag, category, categories, demo, feed.xml),
+ * so no working page is shadowed.
+ *
+ * Refreshed by `npm run sanity:snapshot` along with everything else in that
+ * file; a post added after the last snapshot simply has no redirect yet, which
+ * is the safe failure.
+ */
+const blogSlugRedirects: RedirectRule[] = (buildSnapshot.postSlugs ?? []).map((slug: string) => ({
+    source: `/blog/${slug}`,
+    destination: `/blog/post/${slug}`,
+    permanent: true,
+}));
+
+redirects.push(...blogSlugRedirects);

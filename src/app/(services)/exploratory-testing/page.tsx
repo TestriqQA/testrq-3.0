@@ -22,7 +22,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/exploratory-testing",
-    title: "Exploratory Testing Services | ISO 29119-2 & ISTQB | Testriq",
+    title: "Exploratory Testing Services | ISTQB & ISO | Testriq",
     description:
       "Find defects automated tests miss with Testriq's exploratory testing. ISO 29119-2 standards, ISTQB-certified experts, and session-based test management.",
     ogImage: {

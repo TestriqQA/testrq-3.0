@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
   // the "| Testriq" brand suffix to fit under 60.
   return buildPageMetadata({
     pathname: "/security-testing",
-    title: "Penetration Testing Services | VAPT & Ethical Hacking",
+    title: "Penetration Testing Services | VAPT & OWASP | Testriq",
     description:
       "Penetration testing from certified security engineers. Web, API, mobile, network and cloud VAPT, CVSS-ranked and manually verified. US, UK, EU and UAE.",
     ogImage: {

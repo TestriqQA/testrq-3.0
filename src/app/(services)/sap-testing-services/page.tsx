@@ -23,7 +23,7 @@ const SapTestingChallenges = dynamic(
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-    title: "SAP Testing Services: S/4HANA Migrations & Upgrades",
+    title: "SAP Testing Services | S/4HANA Migration QA",
 
     description:
         "Enterprise SAP QA for S/4HANA transitions: end-to-end testing for complex implementations, ensuring global compliance and high-confidence deployments.",

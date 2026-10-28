@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Software Testing Services Locations - India & UAE |Testriq QA Lab",
+  // Same doubled-brand bug as roi-calculator, plus a missing space before the
+  // pipe. 79 characters rendered; this is 52.
+  title: { absolute: "Software Testing Services Locations | Testriq" },
   description: "Professional software testing services across major cities in India and UAE. Expert QA testing, automation testing, performance testing, and API testing solutions tailored to local market needs. Available in Mumbai, Bangalore, Chennai, Dubai, and 129+ locations.",
   keywords: [
     "software testing services locations",

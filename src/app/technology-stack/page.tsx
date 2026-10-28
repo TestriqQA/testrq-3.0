@@ -35,7 +35,20 @@ export const metadata: Metadata = {
     title: "Testing Tools & Frameworks | Professional QA Automation Solutions",
     description: "Discover our comprehensive suite of testing tools and frameworks for web application testing, mobile testing, API testing, and healthcare software testing.",
     type: "website",
-    url: "https://www.testriq.com/OG/Advance-Testing-tools-og.webp",
+    // `url` is the canonical address of the PAGE, not of the image. It held
+    // the OG image path, which meant this page published og:url pointing at a
+    // .webp file and shipped no og:image at all — so a share preview had no
+    // picture and resolved the page to an image URL. The image moves to
+    // `images`, where Next emits og:image/:width/:height/:alt.
+    url: "https://www.testriq.com/technology-stack",
+    images: [
+      {
+        url: "https://www.testriq.com/OG/Advance-Testing-tools-og.webp",
+        width: 1200,
+        height: 800,
+        alt: "Testing tools and frameworks used by Testriq QA Lab",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

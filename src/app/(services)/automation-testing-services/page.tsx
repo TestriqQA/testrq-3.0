@@ -23,7 +23,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/automation-testing-services",
-    title: "Automation Testing Services | ISO 29119-5 & SOC2 | Testriq",
+    title: "Automation Testing Services | Selenium & CI/CD | Testriq",
     description:
       "Scale releases with Testriq's automation testing services. Playwright, Selenium, and Cypress frameworks; ISO 29119-5 and SOC2-aligned QA for enterprise teams.",
     ogImage: {

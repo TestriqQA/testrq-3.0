@@ -22,7 +22,13 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Functional, automation, performance, security, accessibility and UAT testing from a pure-play QA company. ISTQB-certified engineers working inside your sprints.",
     ogImage: {
-      url: "https://www.testriq.com/og-image.png",
+      // Was /og-image.png, which is not in public/. It answers 200 today only
+      // because [slug] matches any single-segment path and serves HTML for it
+      // — so the card was an HTML document pretending to be an image, and it
+      // would start returning the 404 page the moment that route stopped
+      // catching it. Pointed at a card that actually exists; 1200x630 is this
+      // file's real size, not a hopeful guess.
+      url: "https://www.testriq.com/OG/testriq-logo-og.png",
       width: 1200,
       height: 630,
       alt: "Software QA Services - Testriq QA Lab",
