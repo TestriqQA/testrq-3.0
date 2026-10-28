@@ -17,7 +17,6 @@ import HomeOurImpact from "@/components/sections/HomeOurImpact";
 import HomeReadyToElevate from "@/components/sections/HomeReadyToElevate";
 import HomeTechStack from "@/components/sections/HomeTechStack";
 import HomeChooseTestriq from "@/components/sections/HomeChooseTestriq";
-import HomeTrustedCompanies from "@/components/sections/HomeTrustedCompanies";
 import HomeProcesses from "@/components/sections/HomeProcesses";
 import HomeComplianceSection from "@/components/sections/HomeComplianceSection";
 
@@ -74,7 +73,9 @@ export default function Home() {
         <HomeReadyToElevate />
         <HomeIndustryExpert />
         <HomeTechStack />
-        <HomeTrustedCompanies />
+        {/* HomeTrustedCompanies removed here: its marquee now lives at the
+            bottom of HomeHeroSection, above the fold. The component is
+            unchanged and still rendered on /blog/categories. */}
         <HomeChooseTestriq />
         <HomeFAQSection />
         <HomeInsightSection />
