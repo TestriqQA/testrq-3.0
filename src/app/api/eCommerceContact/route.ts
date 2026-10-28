@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
 import { readLeadAttribution, leadAttributionEmailHtml } from '@/lib/lead-attribution';
+import { toEmailSafeText } from '@/lib/email-safe-text';
 
 // Types for form data
 interface ContactFormData {
@@ -287,13 +288,13 @@ async function sendProfessionalNotification(data: ContactFormData) {
     const isEcommerce = (data.source || '').toLowerCase().includes('e-commerce testing services page');
 
     const ecommerceFields = `
-      <p><strong>Company Name:</strong> ${data.companyName || 'N/A'}</p>
-      <p><strong>Platform:</strong> ${data.platform || 'N/A'}</p>
+      <p><strong>Company Name:</strong> ${toEmailSafeText(data.companyName || 'N/A')}</p>
+      <p><strong>Platform:</strong> ${toEmailSafeText(data.platform || 'N/A')}</p>
     `;
 
     const contactUsFields = `
-      <p><strong>Company Stage:</strong> ${data.companyStage || 'N/A'}</p>
-      <p><strong>How Did You Hear:</strong> ${data.howDidYouHear || 'N/A'}</p>
+      <p><strong>Company Stage:</strong> ${toEmailSafeText(data.companyStage || 'N/A')}</p>
+      <p><strong>How Did You Hear:</strong> ${toEmailSafeText(data.howDidYouHear || 'N/A')}</p>
     `;
 
     // Email content
@@ -310,16 +311,16 @@ async function sendProfessionalNotification(data: ContactFormData) {
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #1e40af; margin-top: 0;">Contact Details:</h3>
-            <p><strong>Full Name:</strong> ${data.fullName}</p>
-            <p><strong>Business Email:</strong> ${data.businessEmail}</p>
-            <p><strong>Business Phone:</strong> ${data.businessPhone}</p>
+            <p><strong>Full Name:</strong> ${toEmailSafeText(data.fullName)}</p>
+            <p><strong>Business Email:</strong> ${toEmailSafeText(data.businessEmail)}</p>
+            <p><strong>Business Phone:</strong> ${toEmailSafeText(data.businessPhone)}</p>
             ${isEcommerce ? ecommerceFields : contactUsFields}
-            <p><strong>Source:</strong> ${data.source || 'E-commerce Testing Services Page'}</p>
+            <p><strong>Source:</strong> ${toEmailSafeText(data.source || 'E-commerce Testing Services Page')}</p>
           </div>
           
           <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #92400e; margin-top: 0;">Message:</h3>
-            <p style="white-space: pre-wrap;">${data.message}</p>
+            <p style="white-space: pre-wrap;">${toEmailSafeText(data.message)}</p>
           </div>
           
           ${leadAttributionEmailHtml(readLeadAttribution(data))}
@@ -388,13 +389,13 @@ async function sendClientConfirmation(data: ContactFormData) {
     const isEcommerce = (data.source || '').toLowerCase().includes('e-commerce testing services page');
 
     const ecommerceFields = `
-      <p style="margin: 0;"><strong>Company Name:</strong> ${data.companyName || 'N/A'}</p>
-      <p style="margin: 0;"><strong>Platform:</strong> ${data.platform || 'N/A'}</p>
+      <p style="margin: 0;"><strong>Company Name:</strong> ${toEmailSafeText(data.companyName || 'N/A')}</p>
+      <p style="margin: 0;"><strong>Platform:</strong> ${toEmailSafeText(data.platform || 'N/A')}</p>
     `;
 
     const contactUsFields = `
-      <p style="margin: 0;"><strong>Company Stage:</strong> ${data.companyStage || 'N/A'}</p>
-      <p style="margin: 0;"><strong>How You Heard About Us:</strong> ${data.howDidYouHear || 'N/A'}</p>
+      <p style="margin: 0;"><strong>Company Stage:</strong> ${toEmailSafeText(data.companyStage || 'N/A')}</p>
+      <p style="margin: 0;"><strong>How You Heard About Us:</strong> ${toEmailSafeText(data.howDidYouHear || 'N/A')}</p>
     `;
 
     // Email content with logo
@@ -410,7 +411,7 @@ async function sendClientConfirmation(data: ContactFormData) {
           </div>
           
           <div style="padding: 30px; background-color: #ffffff; border: 1px solid #e5e7eb; border-top: none;">
-            <h2 style="color: #2563eb; margin-top: 0;">Dear ${data.fullName},</h2>
+            <h2 style="color: #2563eb; margin-top: 0;">Dear ${toEmailSafeText(data.fullName)},</h2>
             
             <p style="line-height: 1.6; margin-bottom: 20px;">
               Thank you for reaching out to Testriq QA Lab regarding our e-commerce testing services. We have received your inquiry and appreciate your interest in optimizing your e-commerce platform.
@@ -419,16 +420,16 @@ async function sendClientConfirmation(data: ContactFormData) {
             <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #2563eb; margin: 25px 0;">
               <h3 style="color: #1e40af; margin-top: 0; margin-bottom: 15px;">Your Submission Summary:</h3>
               <div style="display: grid; gap: 8px;">
-                <p style="margin: 0;"><strong>Full Name:</strong> ${data.fullName}</p>
-                <p style="margin: 0;"><strong>Business Email:</strong> ${data.businessEmail}</p>
-                <p style="margin: 0;"><strong>Business Phone:</strong> ${data.businessPhone}</p>
+                <p style="margin: 0;"><strong>Full Name:</strong> ${toEmailSafeText(data.fullName)}</p>
+                <p style="margin: 0;"><strong>Business Email:</strong> ${toEmailSafeText(data.businessEmail)}</p>
+                <p style="margin: 0;"><strong>Business Phone:</strong> ${toEmailSafeText(data.businessPhone)}</p>
                 ${isEcommerce ? ecommerceFields : contactUsFields}
               </div>
             </div>
             
             <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin: 25px 0;">
               <h4 style="color: #92400e; margin-top: 0;">Your Message:</h4>
-              <p style="margin: 0; white-space: pre-wrap;">"${data.message}"</p>
+              <p style="margin: 0; white-space: pre-wrap;">"${toEmailSafeText(data.message)}"</p>
             </div>
             
             <div style="background-color: #dcfce7; padding: 20px; border-radius: 8px; margin: 25px 0;">

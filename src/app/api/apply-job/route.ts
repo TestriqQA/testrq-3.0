@@ -5,6 +5,7 @@ import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library';
 import { google } from 'googleapis';
 import { Readable } from 'stream';
+import { toEmailSafeText, toEmailSafeAttribute, toEmailSafeLinkLabel } from '@/lib/email-safe-text';
 
 
 export async function POST(request: NextRequest) {
@@ -93,7 +94,7 @@ export async function POST(request: NextRequest) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>New Job Application - ${jobTitle}</title>
+        <title>New Job Application - ${toEmailSafeText(jobTitle)}</title>
         <style>
             * {
                 margin: 0;
@@ -216,8 +217,8 @@ export async function POST(request: NextRequest) {
             
             <div class="content">
                 <div class="job-info">
-                    <h2>${jobTitle}</h2>
-                    <p>Application ID: #${jobId} • Received: ${new Date().toLocaleDateString('en-US', {
+                    <h2>${toEmailSafeText(jobTitle)}</h2>
+                    <p>Application ID: #${toEmailSafeText(jobId)} • Received: ${new Date().toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
@@ -229,48 +230,48 @@ export async function POST(request: NextRequest) {
                 <div class="applicant-details">
                     <div class="detail-row">
                         <div class="detail-label">👤 Full Name:</div>
-                        <div class="detail-value">${fullName}</div>
+                        <div class="detail-value">${toEmailSafeText(fullName)}</div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">📧 Email:</div>
-                        <div class="detail-value"><a href="mailto:${email}" style="color: #667eea;">${email}</a></div>
+                        <div class="detail-value"><a href="mailto:${toEmailSafeAttribute(email)}" style="color: #667eea;">${toEmailSafeLinkLabel(email)}</a></div>
                     </div>
                     ${phone ? `
                     <div class="detail-row">
                         <div class="detail-label">📱 Phone:</div>
-                        <div class="detail-value"><a href="tel:${phone}" style="color: #667eea;">${phone}</a></div>
+                        <div class="detail-value"><a href="tel:${toEmailSafeAttribute(phone)}" style="color: #667eea;">${toEmailSafeLinkLabel(phone)}</a></div>
                     </div>
                     ` : ''}
                     <div class="detail-row">
                         <div class="detail-label">📍 Location:</div>
-                        <div class="detail-value">${location}</div>
+                        <div class="detail-value">${toEmailSafeText(location)}</div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">💼 Experience:</div>
-                        <div class="detail-value">${experience}</div>
+                        <div class="detail-value">${toEmailSafeText(experience)}</div>
                     </div>
                     ${currentCTC ? `
                     <div class="detail-row">
                         <div class="detail-label">💰 Current CTC:</div>
-                        <div class="detail-value">${currentCTC} LPA</div>
+                        <div class="detail-value">${toEmailSafeText(currentCTC)} LPA</div>
                     </div>
                     ` : ''}
                     ${expectedCTC ? `
                     <div class="detail-row">
                         <div class="detail-label">💸 Expected CTC:</div>
-                        <div class="detail-value">${expectedCTC} LPA</div>
+                        <div class="detail-value">${toEmailSafeText(expectedCTC)} LPA</div>
                     </div>
                     ` : ''}
                     ${noticePeriod ? `
                     <div class="detail-row">
                         <div class="detail-label">⏰ Notice Period:</div>
-                        <div class="detail-value">${noticePeriod}</div>
+                        <div class="detail-value">${toEmailSafeText(noticePeriod)}</div>
                     </div>
                     ` : ''}
                     ${skillsToolsFramework ? `
                     <div class="detail-row">
                         <div class="detail-label">🛠️ Skills & Tools:</div>
-                        <div class="detail-value">${skillsToolsFramework}</div>
+                        <div class="detail-value">${toEmailSafeText(skillsToolsFramework)}</div>
                     </div>
                     ` : ''}
                     ${domainKnowledge.length > 0 ? `
@@ -278,7 +279,7 @@ export async function POST(request: NextRequest) {
                         <div class="detail-label">🎓 Domain Knowledge:</div>
                         <div class="detail-value">
                             <div class="skills-tags">
-                                ${domainKnowledge.map(domain => `<span class="skill-tag">${domain}</span>`).join('')}
+                                ${domainKnowledge.map(domain => `<span class="skill-tag">${toEmailSafeText(domain)}</span>`).join('')}
                             </div>
                         </div>
                     </div>
@@ -466,7 +467,7 @@ export async function POST(request: NextRequest) {
                 </div>
                 
                 <div class="message">
-                    <h2>Hello ${fullName},</h2>
+                    <h2>Hello ${toEmailSafeText(fullName)},</h2>
                     <p>We're excited that you're interested in joining our team. This email confirms that we've successfully received your application for the position of:</p>
                 </div>
 
@@ -474,11 +475,11 @@ export async function POST(request: NextRequest) {
                     <h3>Application Summary</h3>
                     <div class="summary-item">
                         <span class="summary-label">Position Applied For:</span>
-                        <span class="summary-value">${jobTitle}</span>
+                        <span class="summary-value">${toEmailSafeText(jobTitle)}</span>
                     </div>
                     <div class="summary-item">
                         <span class="summary-label">Application ID:</span>
-                        <span class="summary-value">#${jobId}</span>
+                        <span class="summary-value">#${toEmailSafeText(jobId)}</span>
                     </div>
                     <div class="summary-item">
                         <span class="summary-label">Date Submitted:</span>
