@@ -1,18 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaSearch, FaArrowRight, FaClock, FaCalendarAlt, FaBookOpen, FaUsers, FaAward, FaStar, FaCode, FaShieldAlt, FaRocket, FaMobile, FaDesktop, FaCloud, FaCog, FaChartLine, FaLayerGroup } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  sanityGetTotalPostCount as getTotalPostCount,
-  sanityGetTotalCategoryCount as getTotalCategoryCount,
-  sanityGetPosts as getLatestPosts,
-  sanityGetCategories as getCategories,
-  Post,
-  Category
-} from "@/lib/sanity-data-adapter";
+// `import type` on purpose — see the note in CategorySidebar.tsx. A value
+// import from the adapter would pull its 20 MB content-snapshot import into
+// this client component's browser bundle.
+import type { Post, Category } from "@/lib/sanity-data-adapter";
 import { decodeHtmlEntities } from "@/lib/utils";
 import { ChevronRight as ChevronRightIcon, Home } from "lucide-react";
 
@@ -70,14 +66,25 @@ const getCategoryIcon = (categoryName: string): React.ReactElement => {
   return categoryIcons.default;
 };
 
-const BlogHeroSection: React.FC = () => {
+interface BlogHeroSectionProps {
+  /** Total published posts, counted by the server page. */
+  totalPosts: number;
+  /** Total categories, counted by the server page. */
+  totalCategories: number;
+  /** Most recent post, or null when none could be loaded. */
+  latestPost: Post | null;
+  /** Every category, fetched by the server page. */
+  categories: Category[];
+}
+
+const BlogHeroSection: React.FC<BlogHeroSectionProps> = ({
+  totalPosts,
+  totalCategories,
+  latestPost,
+  categories: sourceCategories,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [totalPosts, setTotalPosts] = useState(0);
-  const [totalCategories, setTotalCategories] = useState(0);
-  const [latestPost, setLatestPost] = useState<Post | null>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -97,49 +104,27 @@ const BlogHeroSection: React.FC = () => {
     }
   }, []);
 
-  const fetchData = useCallback(async () => {
-    try {
-      const [postCount, categoryCount, latestPosts, wpCategories] = await Promise.all([
-        getTotalPostCount(),
-        getTotalCategoryCount(),
-        getLatestPosts(1),
-        getCategories(),
-      ]);
-      setTotalPosts(postCount);
-      setTotalCategories(categoryCount);
-      if (latestPosts.length > 0) {
-        setLatestPost(latestPosts[0]);
-      }
+  // The All Posts pseudo-category the old fetch built, now derived from the
+  // prop. The hardcoded error fallback (200 / 15) is gone with the fetch that
+  // could fail; the server page supplies zeroes if Sanity is unavailable.
+  const categories = useMemo<Category[]>(() => {
+    const totalPostsCount = sourceCategories.reduce((sum, cat) => sum + cat.postCount, 0);
+    const allCategory: Category = {
+      id: "all",
+      name: "All Posts",
+      description: "Browse all articles",
+      color: "from-slate-500 to-slate-600",
+      icon: "🏷️",
+      postCount: totalPostsCount,
+      subscribers: Math.floor(totalPostsCount * 25),
+      tags: ["All"],
+      featuredTools: [],
+      seo: { title: "", description: "", keywords: "" }
+    };
+    return [allCategory, ...sourceCategories];
+  }, [sourceCategories]);
 
-      // Categories are already adapted
-      const adaptedCategories = wpCategories;
-      const totalPostsCount = adaptedCategories.reduce((sum: number, cat: Category) => sum + cat.postCount, 0);
 
-      const allCategory: Category = {
-        id: "all",
-        name: "All Posts",
-        description: "Browse all articles",
-        color: "from-slate-500 to-slate-600",
-        icon: "🏷️",
-        postCount: totalPostsCount,
-        subscribers: Math.floor(totalPostsCount * 25),
-        tags: ["All"],
-        featuredTools: [],
-        seo: { title: "", description: "", keywords: "" }
-      };
-
-      setCategories([allCategory, ...adaptedCategories]);
-      setIsLoaded(true);
-    } catch {
-      setTotalPosts(200);
-      setTotalCategories(15);
-      setIsLoaded(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   useEffect(() => {
     checkScrollPosition();
@@ -388,7 +373,7 @@ const BlogHeroSection: React.FC = () => {
 
           {/* Right Side - Latest Post Card (5 columns) */}
           <div className="lg:col-span-5 mt-4 flex items-center justify-center lg:justify-end">
-            {latestPost && isLoaded ? (
+            {latestPost ? (
               <div className="relative group w-full max-w-md lg:max-w-none">
                 {/* Glow effect */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-violet-500/20 rounded-[2rem] blur-2xl opacity-60 group-hover:opacity-100 transition-all duration-500" />

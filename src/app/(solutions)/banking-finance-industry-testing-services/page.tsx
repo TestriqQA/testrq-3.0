@@ -9,6 +9,12 @@ import BankingFAQSection from "@/components/sections/BankingFAQSection";
 import BankingContactSection from "@/components/sections/BankingContactSection";
 import { Metadata } from "next";
 import StructuredData, { bankingFinanceTestingServiceSchema, createCanonicalBreadcrumb } from "@/components/seo/StructuredData";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -16,7 +22,7 @@ export const metadata: Metadata = {
   // `absolute` bypasses the root layout's "%s | Testriq" template,
   // which would otherwise print the brand twice (F-71).
   title: { absolute: "Banking & Finance Testing Services | BFSI QA | Testriq" },
-  description: "Protect your financial ecosystem with Testriq’s BFSI testing services. We ensure 100% audit pass rates, SOC2 Type II compliance, and security that withstands 300x more threats than other sectors.",
+  description: "Protect your financial ecosystem with Testriq’s BFSI testing services: 100% audit pass rates, SOC 2 Type II compliance and bank-grade security.",
   keywords: [
     "banking testing solutions",
     "BFSI QA services",
@@ -90,14 +96,25 @@ const BankingFinanceTestingPage: React.FC = () => {
       />
       <main className="min-h-screen bg-white">
         <BankingHeroSection />
+        <ServiceDirectAnswer slug="banking-finance-industry-testing-services" />
         <BankingChallengesSection />
         <BankingTestingServicesSection />
         <BankingToolsFrameworksSection />
         <BankingComplianceSection />
         {/* <BankingCaseStudiesSection /> */}
         <BankingROISection />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="banking-finance-industry-testing-services" />
+        <ServiceEngagementModels />
         <BankingFAQSection />
         <BankingContactSection />
+      {/* PART 4 / JOB A2 — contextual links to related services that
+          had almost no inbound links. In the body, not the footer:
+          nav and footer already link these pages ~1,457 times and
+          Google discounts boilerplate. Mapping lives in
+          src/lib/seo/related-services.ts. */}
+      <ServiceCrossLinks serviceSlug="banking-finance-industry-testing-services" />
+      <ServiceCta slug="banking-finance-industry-testing-services" />
       </main>
     </div>
   );

@@ -69,9 +69,9 @@ const DatingAppHeroSection = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Build Trust.
+              Dating App Certification:
               <br />
-              <span className="text-brand-blue">Boost Downloads.</span>
+              Build Trust. <span className="text-brand-blue">Boost Downloads.</span>
               <br />
               Keep Users Safe.
             </h1>

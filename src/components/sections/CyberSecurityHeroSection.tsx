@@ -71,9 +71,9 @@ const CyberSecurityHeroSection: React.FC = () => {
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
                             Cyber Security{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
-                                Compliance Audit
+                                Testing
                             </span>{" "}
-                            Services
+                            Services & Compliance Audits
                         </h1>
 
                         {/* Reviewer byline — E-E-A-T signal */}
@@ -90,7 +90,14 @@ const CyberSecurityHeroSection: React.FC = () => {
                             Security Tester, Testriq QA Lab
                             <br />
                             Last updated:{" "}
-                            <time dateTime="2026-09-10">September 10, 2026</time>
+                            {/* Moves only when the named reviewer has actually
+                                re-read the page — the byline above attributes
+                                the review to a person, so the date is her
+                                attestation, not a build timestamp. Confirmed
+                                re-reviewed 2026-10-29. The sibling date on
+                                /security-testing belongs to a different
+                                reviewer; do not move the two together. */}
+                            <time dateTime="2026-10-29">October 29, 2026</time>
                         </p>
 
                         <div className="space-y-4">

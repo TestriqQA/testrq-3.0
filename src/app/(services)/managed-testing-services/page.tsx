@@ -3,10 +3,13 @@ import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
     managedTestingServiceSchema,
     organizationSchema,
-    createFaqPageSchema,
     createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
 import dynamic from "next/dynamic";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 const ManagedTestingHeroSection = dynamic(() => import("@/components/sections/ManagedTestingHeroSection"), { ssr: true });
 const ManagedTestingWhatAre = dynamic(() => import("@/components/sections/ManagedTestingWhatAre"), { ssr: true });
@@ -98,35 +101,11 @@ const breadcrumbSchema = createCanonicalBreadcrumb(
 
 export default function ManagedTestingServicesPage() {
     // F-44.1 batch 4: plain-text mirror of ManagedTestingFAQs UI content for FAQPage JSON-LD.
-    const faqsForSchema = [
-        {
-            question: "What are managed testing services and how do they work?",
-            answer: "Managed testing services represent a strategic partnership where a vendor takes full responsibility for the testing function, including strategy, resources, tools, and outcomes. Unlike traditional outsourcing where you rent headcount, managed testing involves the vendor owning the entire testing process and being accountable for quality outcomes through SLAs and KPIs. The vendor typically assigns a dedicated team that becomes an extension of your organization, manages all testing activities, and provides transparent reporting on quality metrics and SLA compliance.",
-        },
-        {
-            question: "What is the difference between QA outsourcing and managed testing services?",
-            answer: "While traditional QA outsourcing often focuses on staff augmentation (renting headcount), managed testing services involve the vendor owning the entire testing process and being accountable for outcomes. In traditional outsourcing, your organization manages the QA function and directs the vendor's activities. In managed testing, the vendor manages the QA function and is accountable for quality outcomes. Additionally, managed testing typically uses outcome-based or fixed pricing models with SLA-backed accountability, while traditional outsourcing often uses time-and-materials pricing.",
-        },
-        {
-            question: "What are the benefits of managed testing services for enterprises?",
-            answer: "Managed testing services provide multiple benefits for enterprises: cost predictability through fixed or outcome-based pricing, access to specialized global talent without lengthy recruitment, faster time-to-market through accelerated testing, and the ability for internal teams to focus on core innovation rather than QA management. Additional benefits include reduced infrastructure investment, consistent quality through standardized processes, scalable testing capacity without proportional cost increases, and reduced management overhead. For regulated industries, managed testing provides compliance expertise and audit documentation.",
-        },
-        {
-            question: "How to choose the best managed testing service provider?",
-            answer: "When selecting a managed testing service provider, look for several key factors: industry-specific experience (especially if in healthcare, finance, or regulated sectors), technical depth in automation and specialized testing areas, transparent reporting structures and clear SLAs, proven track record of meeting complex quality requirements, ISTQB certification or equivalent credentials for team members, global reach if you need multi-region support, and references from similar-sized organizations in your industry.",
-        },
-        {
-            question: "How do managed testing services reduce software development costs?",
-            answer: "Managed testing services reduce costs by eliminating the need for in-house QA infrastructure, reducing recruitment and training expenses, preventing costly post-release defects through superior test coverage, reducing management overhead, and providing cost predictability through fixed or outcome-based pricing. By shifting from fixed headcount to flexible, outcome-based engagement, organizations pay only for testing capacity they need. The cumulative effect is typically 30-50% reduction in total QA costs compared to maintaining an equivalent in-house team.",
-        },
-    ];
-
     return (
         <MainLayout>
             <StructuredData data={managedTestingServiceSchema} />
             <StructuredData data={organizationSchema} />
             <StructuredData data={breadcrumbSchema} />
-            <StructuredData data={createFaqPageSchema(faqsForSchema)} />
 
             <ManagedTestingHeroSection />
             <ManagedTestingWhatAre />
@@ -138,8 +117,17 @@ export default function ManagedTestingServicesPage() {
             <ManagedTestingMetrics />
             <ManagedTestingComparison />
             <ManagedTestingStrategy />
+            <ServiceTeamSection />
+            <ServiceLastUpdated slug="managed-testing-services" />
             <ManagedTestingFAQs />
             <ManagedTestingReadyToStart />
+        {/* PART 4 / JOB A2 — contextual links to related services that
+            had almost no inbound links. In the body, not the footer:
+            nav and footer already link these pages ~1,457 times and
+            Google discounts boilerplate. Mapping lives in
+            src/lib/seo/related-services.ts. */}
+        <ServiceCrossLinks serviceSlug="managed-testing-services" />
+        <ServiceCta slug="managed-testing-services" />
         </MainLayout>
     );
 }

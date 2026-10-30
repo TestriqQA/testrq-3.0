@@ -15,6 +15,13 @@ import MobileCardSlider from "@/components/sections/MobileCardSlider";
 import MobileProvenTestingProcess from "@/components/sections/MobileProvenTestingProcess";
 import MobileWhyChooseTestriq from "@/components/sections/MobileWhyChooseTestriq";
 import MobileFAQs from "@/components/sections/MobileFAQs";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -22,9 +29,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/mobile-application-testing",
     title:
-      "Mobile App Testing Services | iOS & Android | Testriq",
+      "Mobile Application Testing | iOS & Android | Testriq",
     description:
-      "Validate iOS and Android performance with Testriq's mobile testing services. 5G optimization, security pen-testing, and ISO 29119-compliant QA for global teams.",
+      "Mobile application testing for iOS and Android: 5G optimization, security pen-testing and ISO 29119-compliant QA for global teams, from Testriq QA Lab.",
     ogImage: {
       url: "https://www.testriq.com/OG/Mobile_Application-Services-og.webp",
       width: 1200,
@@ -67,7 +74,7 @@ export default function MobileAppTesting() {
       answer: "To test mobile apps on multiple screen sizes and resolutions, we utilize real device cloud testing platforms. These allow us to run automated mobile testing using Appium across hundreds of physical devices simultaneously, identifying UI glitches that emulators miss.",
     },
     {
-      question: "Why is mobile application security testing critical for Fintech?",
+      question: "Why is mobile application security testing services critical for Fintech?",
       answer: "A security testing checklist for fintech mobile applications is vital because these apps handle PII and financial transactions. Our mobile application penetration testing service ensures that encryption, biometric login, and API endpoints are bulletproof.",
     },
     {
@@ -92,13 +99,30 @@ export default function MobileAppTesting() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <MobileTestingHeroSection />
+        <ServiceDirectAnswer slug="mobile-application-testing" />
         <MobileComprehensiveSection />
         <MobileReadyToEnsureQuality />
         <MobileComprehensiveSlider />
         <MobileCardSlider />
         <MobileProvenTestingProcess />
         <MobileWhyChooseTestriq />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="mobile-application-testing" />
+        <ServiceEngagementModels />
         <MobileFAQs />
+      {/* PART 4 / JOB A3 — contextual links to the case studies that
+          prove this service. In the body, not the footer: the nav and
+          footer already link this page ~1,457 times and Google
+          discounts boilerplate links. Mapping lives in
+          src/lib/seo/related-case-studies.ts. */}
+      <RelatedCaseStudies serviceSlug="mobile-application-testing" />
+      {/* PART 4 / JOB A2 — contextual links to related services that
+          had almost no inbound links. In the body, not the footer:
+          nav and footer already link these pages ~1,457 times and
+          Google discounts boilerplate. Mapping lives in
+          src/lib/seo/related-services.ts. */}
+      <ServiceCrossLinks serviceSlug="mobile-application-testing" />
+      <ServiceCta slug="mobile-application-testing" />
       </MainLayout>
     </div>
   );

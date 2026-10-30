@@ -91,11 +91,9 @@ const MicroservicesFAQs: React.FC = () => {
                                     <FaChevronDown className="w-5 h-5 text-brand-blue shrink-0" />
                                 )}
                             </button>
-                            {openFAQ === index && (
-                                <div className="px-6 py-5 bg-blue-50/30 border-t border-gray-100">
+                            <div className="px-6 py-5 bg-blue-50/30 border-t border-gray-100" hidden={openFAQ !== index}>
                                     <div className="text-gray-700 text-sm leading-relaxed">{faq.answer}</div>
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

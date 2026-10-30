@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft } from "react-icons/fa";
-import { qaOutsourcingReviews, qaOutsourcingRating } from "@/app/(services)/qa-outsourcing-services/reviewsData";
+import { qaOutsourcingReviews, reviewPlatforms } from "@/app/(services)/qa-outsourcing-services/reviewsData";
 
 /** Render a 0–5 rating as filled / half / empty stars. */
 function Stars({ rating, className = "" }: { rating: number; className?: string }) {
@@ -17,12 +17,16 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
 }
 
 /**
- * Verified client reviews for QA Outsourcing.
+ * Third-party client reviews for QA Outsourcing.
  *
- * The reviews and the aggregate score come from src/app/(services)/
- * qa-outsourcing-services/reviewsData.ts, the SAME source the AggregateRating
- * JSON-LD in page.tsx reads — so the visible content and the structured data
- * can never drift (a Google requirement for review rich results).
+ * Both the platform scores and the individual reviews come from src/app/
+ * (services)/qa-outsourcing-services/reviewsData.ts.
+ *
+ * Nothing here is mirrored into JSON-LD. These reviews were collected by
+ * Clutch, G2 and Google rather than by this site, so marking them up as the
+ * page's own AggregateRating would breach Google's review-snippet policy; the
+ * markup was removed on 2026-10-29 and page.tsx records why. Showing the
+ * scores attributed and linked, as below, is the honest alternative.
  */
 export default function QAOutsourcingReviews() {
     return (
@@ -38,20 +42,36 @@ export default function QAOutsourcingReviews() {
                     >
                         What Our Clients Say
                     </h2>
-                    <p className="mt-3 text-lg text-gray-600">
-                        Verified reviews from clients on Clutch and G2.
-                    </p>
-
-                    <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-4">
-                        <span className="text-4xl font-bold text-gray-900 tabular-nums">
-                            {qaOutsourcingRating.value}
-                        </span>
-                        <span className="flex flex-col items-start">
-                            <Stars rating={Number(qaOutsourcingRating.value)} className="text-lg" />
-                            <span className="mt-1 text-sm text-gray-600">
-                                Based on {qaOutsourcingRating.count} verified reviews
-                            </span>
-                        </span>
+                    {/* One figure per platform, each attributed to the platform
+                        that published it and linked to the profile a visitor can
+                        check it against. Deliberately NOT blended into a single
+                        score: the three cover different review sets, so an
+                        average of them would be a number nobody publishes. */}
+                    <div className="mt-8 flex flex-wrap items-stretch justify-center gap-4">
+                        {reviewPlatforms.map((platform) => (
+                            <Link
+                                key={platform.name}
+                                href={platform.profileUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${platform.rating} out of 5 on ${platform.name}, from ${platform.count} ${platform.countLabel} — opens ${platform.name} in a new tab`}
+                                className="flex min-w-[14rem] items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-4 transition-colors hover:border-blue-300 hover:bg-blue-50"
+                            >
+                                <span className="text-4xl font-bold text-gray-900 tabular-nums">
+                                    {platform.rating}
+                                </span>
+                                <span className="flex flex-col items-start text-left">
+                                    <span className="text-base font-semibold text-gray-900">
+                                        {platform.name}
+                                    </span>
+                                    <Stars rating={Number(platform.rating)} className="text-base" />
+                                    <span className="mt-1 text-sm text-gray-600">
+                                        {platform.count} {platform.countLabel}{" "}
+                                        <span aria-hidden="true">&#8599;</span>
+                                    </span>
+                                </span>
+                            </Link>
+                        ))}
                     </div>
                 </div>
 

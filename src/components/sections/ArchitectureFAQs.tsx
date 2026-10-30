@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const ArchitectureFAQs: React.FC = () => {
     const faqs = [
         {
@@ -27,6 +29,8 @@ const ArchitectureFAQs: React.FC = () => {
 
     return (
         <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
+            {/* Built from the same `faqs` array rendered below. */}
+            <FaqJsonLd faqs={faqs} />
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -55,11 +59,9 @@ const ArchitectureFAQs: React.FC = () => {
                                     {activeIndex === index ? <FaChevronUp /> : <FaChevronDown />}
                                 </span>
                             </button>
-                            {activeIndex === index && (
-                                <div className="p-6 pt-0 text-gray-600 leading-relaxed">
+                            <div className="p-6 pt-0 text-gray-600 leading-relaxed" hidden={activeIndex !== index}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

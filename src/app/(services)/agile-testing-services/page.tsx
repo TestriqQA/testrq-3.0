@@ -13,6 +13,11 @@ import AgileTestingSolutions from "@/components/sections/AgileTestingSolutions";
 import AgileTestingMethodology from "@/components/sections/AgileTestingMethodology";
 import AgileTestingFAQs from "@/components/sections/AgileTestingFAQs";
 import AgileTestingCTA from "@/components/sections/AgileTestingCTA";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -77,11 +82,16 @@ export default function AgileTestingServicesPage() {
 
             <MainLayout>
                 <AgileTestingHeroSection />
+                <ServiceDirectAnswer slug="agile-testing-services" />
                 <AgileTestingWhyChoose />
                 <AgileTestingSolutions />
                 <AgileTestingMethodology />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="agile-testing-services" />
+                <ServiceEngagementModels />
                 <AgileTestingFAQs />
                 <AgileTestingCTA />
+                <ServiceCta slug="agile-testing-services" />
             </MainLayout>
         </>
     );

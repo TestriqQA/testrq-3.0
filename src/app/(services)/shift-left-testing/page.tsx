@@ -15,6 +15,11 @@ import ShiftLeftAdvantageSection from "@/components/sections/ShiftLeftAdvantageS
 import ShiftLeftChallengesSection from "@/components/sections/ShiftLeftChallengesSection";
 import ShiftLeftFAQs from "@/components/sections/ShiftLeftFAQs";
 import ShiftLeftNextStepsSection from "@/components/sections/ShiftLeftNextStepsSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -84,13 +89,18 @@ export default function ShiftLeftTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <ShiftLeftHeroSection />
+                <ServiceDirectAnswer slug="shift-left-testing" />
                 <ShiftLeftImperativeSection />
                 <ShiftLeftWhySection />
                 <ShiftLeftSolutionsSection />
                 <ShiftLeftAdvantageSection />
                 <ShiftLeftChallengesSection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="shift-left-testing" />
+                <ServiceEngagementModels />
                 <ShiftLeftFAQs />
                 <ShiftLeftNextStepsSection />
+                <ServiceCta slug="shift-left-testing" />
             </MainLayout>
         </div>
     );

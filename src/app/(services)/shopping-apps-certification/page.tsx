@@ -11,10 +11,10 @@ import { Metadata } from "next";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Shopping App Certification",
+  title: "Shopping Apps Certification",
 
   description:
-    "Certify your shopping and e-commerce apps for security, performance, and global compliance with PCI DSS, GDPR and CCPA-aligned testing that builds user trust.",
+    "Shopping apps certification for security, performance and global compliance, with PCI DSS, GDPR and CCPA-aligned testing from Testriq that builds trust.",
   keywords: [
     "shopping app certification",
     "e-commerce app testing",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title:
       "Shopping App Certification | Secure E-Commerce Testing & PCI Compliance | Testriq",
     description:
-      "Certify your shopping and e-commerce apps for security, performance, and global compliance with PCI DSS, GDPR and CCPA-aligned testing that builds user trust.",
+      "Shopping apps certification for security, performance and global compliance, with PCI DSS, GDPR and CCPA-aligned testing from Testriq that builds trust.",
     images: [
       {
         url: "https://www.testriq.com/OG/shoping-adds-certification-og-image.webp",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title:
       "Shopping App Certification | Secure E-Commerce Testing & PCI Compliance | Testriq",
     description:
-      "Certify your shopping and e-commerce apps for security, performance, and global compliance with PCI DSS, GDPR and CCPA-aligned testing that builds user trust.",
+      "Shopping apps certification for security, performance and global compliance, with PCI DSS, GDPR and CCPA-aligned testing from Testriq that builds trust.",
     images: ["https://www.testriq.com/OG/shoping-adds-certification-og-image.webp"],
   },
   robots: {
@@ -74,6 +74,11 @@ export const metadata: Metadata = {
 };
 
 import ShoppingAppHeroSection from "@/components/sections/ShoppingAppHeroSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 const ShoppingAppCertificationPillars = dynamic(
   () => import("@/components/sections/ShoppingAppCertificationPillars"),
@@ -164,10 +169,10 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What is shopping app certification?",
+      name: "What is shopping app certification and why is it important?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Shopping app certification is a comprehensive audit and certification program that ensures your e-commerce platform meets international standards for security, payment processing, performance, and user experience.",
+        text: "Shopping app certification is a comprehensive validation process that ensures your platform meets standards for security, performance, compliance, and user trust. It’s crucial for enhancing credibility, minimizing risk, and boosting user retention in competitive e-commerce markets.",
       },
     },
     {
@@ -175,18 +180,10 @@ const faqSchema = {
       name: "How long does the shopping app certification process take?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The certification process typically takes 10-16 working days, including initial assessment, security testing, performance optimization, and final certificate issuance.",
+        text: "The certification typically takes 10–15 working days. This includes assessment, security and performance audits, functional testing, and final certification. Timelines may vary based on platform complexity.",
       },
     },
-    {
-      "@type": "Question",
-      name: "What standards do shopping apps need to comply with?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Shopping apps must comply with PCI DSS for payment security, GDPR for privacy, ISO 27001 for information security, and various e-commerce industry standards for user experience and performance.",
-      },
-    },
-  ],
+],
 };
 
 export default function ShoppingAppsCertification() {
@@ -205,13 +202,18 @@ export default function ShoppingAppsCertification() {
       <StructuredData data={faqSchema} />
       <MainLayout>
         <ShoppingAppHeroSection scrollToId="shopping-app-certification-process" />
+        <ServiceDirectAnswer slug="shopping-apps-certification" />
         <ShoppingAppCertificationPillars />
         <ShoppingAppCertificationProcess />
         <ShoppingAppSecurityFeatures />
         <ShoppingAppBenefits />
         <ShoppingAppTestingServices />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="shopping-apps-certification" />
+        <ServiceEngagementModels />
         <ShoppingAppFAQs />
         <ShoppingAppCTA />
+        <ServiceCta slug="shopping-apps-certification" />
       </MainLayout>
     </div>
   );

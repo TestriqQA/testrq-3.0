@@ -86,6 +86,31 @@ const partners = [
     alt: "Clutch.io Logo",
     href: "https://clutch.co/profile/testriq-qa-lab",
   },
+  // 2026-10-30 — DO NOT REMOVE THIS BADGE, AND DO NOT GIVE IT A URL.
+  //
+  // The missing href now has a known cause: the DesignRush agency profile was
+  // DECLINED. Logging in returns "Your Agency profile has been declined", so
+  // there is no listing behind this badge today and nothing to link to.
+  //
+  // It stays anyway. Marketing is following up with DesignRush support; if the
+  // profile is approved the badge becomes valid and gains its href then, and
+  // pulling it out now would only have to be undone. Adding a DesignRush URL
+  // to the Organization `sameAs` is separately ruled out — see the matching
+  // note there. Neither move is anyone's to make until the business team says
+  // so.
+  //
+  // Everything below is kept for context and is NOT an instruction to act on.
+  // It was written on 2026-10-28, before the decline was known.
+  //
+  // No href, and that is known rather than an oversight. The recognition is
+  // real — see /blog/post/top-software-testing-company-designrush-2026 — but
+  // no designrush.com URL exists anywhere in this repo or the built site, and
+  // StructuredData.tsx records the DesignRush listing among the items "to add
+  // later (Phase 2 — user-blocked on account creation)". Checked 2026-10-28.
+  //
+  // If a URL turns up, it wants three places: `href` here, the Organization
+  // `sameAs` in StructuredData.tsx, and the announcement post above, which
+  // currently cites the award without linking to it.
   {
     title: "DesignRush Verified Agency Logo",
     src: "/DesignRush_Logo.png",

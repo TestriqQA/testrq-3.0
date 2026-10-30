@@ -9,6 +9,11 @@ import ElearningFAQSection from "@/components/sections/ElearningFAQSection";
 import ElearningContactSection from "@/components/sections/ElearningContactSection";
 import { Metadata } from "next";
 import StructuredData, { createCanonicalBreadcrumb, elearningTestingServiceSchema } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -92,14 +97,19 @@ const ElearningTestingPage: React.FC = () => {
       />
     <main className="min-h-screen bg-white">
       <ElearningHeroSection />
+      <ServiceDirectAnswer slug="e-learning-testing-services" />
       <ElearningChallengesSection />
       <ElearningTestingServicesSection />
       <ElearningPlatformsSection />
       <ElearningAccessibilitySection />
       <ElearningPerformanceSection />
       {/* <ElearningCaseStudiesSection /> */}
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="e-learning-testing-services" />
+      <ServiceEngagementModels />
       <ElearningFAQSection />
       <ElearningContactSection />
+      <ServiceCta slug="e-learning-testing-services" />
     </main>
     </div>
   );

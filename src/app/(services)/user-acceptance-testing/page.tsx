@@ -20,6 +20,10 @@ import UATFAQs from "@/components/sections/UATFAQs";
 import UATScenariosSection from "@/components/sections/UATScenariosSection";
 import UATWhyChooseSection from "@/components/sections/UATWhyChooseSection";
 import UATNextStepsSection from "@/components/sections/UATNextStepsSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -28,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
         pathname: "/user-acceptance-testing",
         title: "User Acceptance Testing Services | Enterprise UAT | Testriq",
         description:
-            "Validate software with real users through Testriq's UAT services. ISTQB-certified facilitators for ERP, CRM, and digital transformation acceptance testing.",
+            "User acceptance testing with real users from Testriq. ISTQB-certified facilitators for ERP, CRM and digital transformation UAT programmes worldwide.",
         ogImage: {
             url: "https://www.testriq.com/OG/user-acceptance-testing-og-image.webp",
             width: 2752,
@@ -92,9 +96,13 @@ export default function UserAcceptanceTestingPage() {
                 <UATBestPracticesSection />
                 <UATComparisonSection />
                 <UATScenariosSection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="user-acceptance-testing" />
+                <ServiceEngagementModels />
                 <UATFAQs />
                 <UATWhyChooseSection />
                 <UATNextStepsSection />
+                <ServiceCta slug="user-acceptance-testing" />
             </MainLayout>
         </div>
     );

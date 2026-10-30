@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/selenium-testing-services";
 export const metadata: Metadata = {
   title: "Selenium Testing Services — Selenium WebDriver Automation",
   description:
-    "Selenium WebDriver test automation services: Grid scale-out, Page Object architecture, CI integration, cross-browser and cross-device, and framework migration.",
+    "Selenium testing services with WebDriver: Grid scale-out, Page Object architecture, CI integration, cross-browser and cross-device, framework migration.",
   keywords: [
     "Selenium Testing Services",
     "Selenium WebDriver",
@@ -51,7 +51,7 @@ const SeleniumTestingPage: React.FC = () => (
     toolName="Selenium"
     slug="selenium-testing-services"
     breadcrumbName="Selenium Testing Services"
-    heroTitle="Selenium WebDriver Test Automation Services"
+    heroTitle="Selenium Testing Services — WebDriver Automation"
     heroDescription="Production-grade Selenium WebDriver suites — Grid scale-out across browser + OS matrices, Page Object Model architecture that survives UI refactors, CI integration with parallel execution, and clean migrations away from brittle record-and-playback. Built by testers who&apos;ve maintained Selenium suites past 5,000 cases without flake spirals."
     whatIs="Selenium is the original open-source browser-automation framework — the W3C WebDriver protocol's reference implementation, with bindings in Java, Python, C#, JavaScript, and Ruby. It drives real browsers (Chrome, Firefox, Safari, Edge) the way a user would, which makes it the industry default for cross-browser regression at scale. The tradeoff: Selenium is powerful but unopinionated, so suites that grow without a strong framework + Page Object discipline turn flaky fast."
     whenToUse={[

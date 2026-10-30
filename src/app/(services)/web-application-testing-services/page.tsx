@@ -15,15 +15,20 @@ import CardSlider from "@/components/sections/WebAppCardSlider";
 import WebappWhyChooseTestriq from "@/components/sections/WebappWhyChooseTestriq";
 import WebappFAQs from "@/components/sections/WebappFAQs";
 import WebappAnyQuestions from "@/components/sections/WebappAnyQuestions";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/web-application-testing-services",
-    title: "Web Application Testing | Cross-Browser QA | Testriq",
+    title: "Web Application Testing Services | Cross-Browser | Testriq",
     description:
-      "Validate web applications with Testriq's testing. Cross-browser compatibility, OWASP Top 10 security, and Playwright/Cypress automation for global QA teams.",
+      "Web application testing services from Testriq: cross-browser compatibility, OWASP Top 10 security and Playwright/Cypress automation for global QA teams.",
     ogImage: {
       url: "https://www.testriq.com/OG/Web-Application-Service-Og.webp",
       width: 1200,
@@ -76,7 +81,7 @@ export default function WebAppTesting() {
       answer: "Front-end testing focuses on the UI and browser compatibility. Back-end testing involves API testing for web apps, database validation, and server-side logic.",
     },
     {
-      question: "Why does SQL Injection remain a critical risk in 2026?",
+      question: "Analyzing the Persistence: Why SQL Injection Remains a Critical Risk Assessment in 2026?",
       answer: "Our web application penetration testing services specialize in identifying these vulnerabilities in legacy systems and rapid, unreviewed code pushes, ensuring your data remains secure.",
     },
     {
@@ -97,13 +102,18 @@ export default function WebAppTesting() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <WebappTestingHeroSection />
+        <ServiceDirectAnswer slug="web-application-testing-services" />
         <WebappChallenges />
         <WebappCompliance />
         <WebappTechStack />
         <CardSlider />
         <WebappWhyChooseTestriq />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="web-application-testing-services" />
+        <ServiceEngagementModels />
         <WebappFAQs />
         <WebappAnyQuestions />
+        <ServiceCta slug="web-application-testing-services" />
       </MainLayout>
     </div>
   );

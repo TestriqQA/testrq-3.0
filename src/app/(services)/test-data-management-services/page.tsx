@@ -13,15 +13,20 @@ import TDMServicesSection from "@/components/sections/TDMServicesSection";
 import TDMMethodologySection from "@/components/sections/TDMMethodologySection";
 import TDMFAQs from "@/components/sections/TDMFAQs";
 import TDMCTASection from "@/components/sections/TDMCTASection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/test-data-management-services",
-        title: "Test Data Management | TDM & Synthetic Data | Testriq",
+        title: "Test Data Management Services | Synthetic Data | Testriq",
         description:
-            "Power your QA with Testriq's test data management. Secure data masking, synthetic data generation, and GDPR-compliant TDM for safe, scalable testing pipelines.",
+            "Test data management services from Testriq: secure data masking, synthetic data generation and GDPR-compliant TDM for safe, scalable testing pipelines.",
         ogImage: {
             url: "https://www.testriq.com/OG/Test-data-management-service-og-image.webp",
             width: 2752,
@@ -67,11 +72,16 @@ export default function TestDataManagementPage() {
             />
             <MainLayout>
                 <TDMHeroSection />
+                <ServiceDirectAnswer slug="test-data-management-services" />
                 <TDMAdvantageSection />
                 <TDMServicesSection />
                 <TDMMethodologySection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="test-data-management-services" />
+                <ServiceEngagementModels />
                 <TDMFAQs />
                 <TDMCTASection />
+                <ServiceCta slug="test-data-management-services" />
             </MainLayout>
         </div>
     );

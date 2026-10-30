@@ -226,7 +226,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Sanity Tags
     const sanityTagsData = await sanityGetTags();
-    const tagPages = sanityTagsData.map((tag) => ({
+    // Tags with fewer than 2 posts are noindex (see blog/tag/[tag]/page.tsx).
+    // Listing a noindexed URL in the sitemap sends Google two contradictory
+    // instructions, so they are excluded here as well.
+    const tagPages = sanityTagsData
+      .filter((tag) => tag.count >= 2)
+      .map((tag) => ({
       url: `${baseUrl}/blog/tag/${encodeURIComponent(tag.slug)}`,
       lastModified: STATIC_LASTMOD,
       changeFrequency: getChangeFrequency('tag'),

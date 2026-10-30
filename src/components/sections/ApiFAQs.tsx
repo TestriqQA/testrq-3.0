@@ -97,11 +97,15 @@ const ApiFAQs: React.FC = () => {
                   <FaChevronDown className="w-5 h-5 text-[theme(color.brand.blue)]" />
                 )}
               </button>
-              {openFAQ === index && (
-                <div className="px-6 py-4 bg-white">
-                  <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                </div>
-              )}
+              {/* A div, not a p. Several answers here are JSX carrying <ul>
+                  and nested <p>, which a <p> may not contain — the browser
+                  silently closes the paragraph, so the server HTML and the
+                  client tree disagree and hydration fails for this subtree.
+                  It only became visible when these panels started rendering
+                  while collapsed (hidden) instead of being omitted entirely. */}
+              <div className="px-6 py-4 bg-white" hidden={openFAQ !== index}>
+                <div className="text-gray-700 leading-relaxed">{faq.answer}</div>
+              </div>
             </div>
           ))}
         </div>

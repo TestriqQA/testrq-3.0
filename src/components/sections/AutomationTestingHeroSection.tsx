@@ -52,7 +52,7 @@ const AutomationTestingHeroSection: React.FC = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight text-left">
-              Scalable <span className="text-brand-blue">Test Automation</span> Services: Global QA Solutions for 2026
+              Scalable <span className="text-brand-blue">Automation Testing</span> Services: Global QA Solutions for 2026
             </h1>
 
             <div className="space-y-4">

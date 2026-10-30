@@ -131,15 +131,13 @@ const ContactFAQSection: React.FC = () => {
                 </div>
               </button>
 
-              {openFAQ === index && (
-                <div className="px-8 pb-6">
+              <div className="px-8 pb-6" hidden={openFAQ !== index}>
                   <div className="pl-10">
                     <p className="text-gray-600 leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
                 </div>
-              )}
             </div>
           ))}
         </div>

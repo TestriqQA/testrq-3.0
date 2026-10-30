@@ -35,7 +35,7 @@ const AzureTestingHeroSection: React.FC = () => {
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
                             Navigating the <span className="text-brand-blue">Cloud Frontier:</span>
                             <br />
-                            <span className="text-3xl sm:text-4xl md:text-5xl text-gray-700">Azure Excellence in 2026</span>
+                            <span className="text-3xl sm:text-4xl md:text-5xl text-gray-700">Azure Testing Services in 2026</span>
                         </h1>
 
                         <p className="text-gray-700 text-lg md:text-xl mb-8 max-w-2xl leading-relaxed">

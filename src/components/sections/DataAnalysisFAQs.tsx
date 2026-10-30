@@ -8,6 +8,8 @@ import {
   FaDatabase,
 } from 'react-icons/fa';
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const DataAnalysisFAQs = () => {
   const [openFAQ, setOpenFAQ] = useState<string | null>(null);
 
@@ -47,6 +49,9 @@ const DataAnalysisFAQs = () => {
 
   return (
     <section className="py-20 bg-gray-50">
+        {/* Built from the same array rendered below, so the markup and
+            the visible questions cannot drift apart. */}
+        <FaqJsonLd faqs={faqCategories.flatMap((group) => group.faqs)} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
@@ -91,13 +96,11 @@ const DataAnalysisFAQs = () => {
                         )}
                       </button>
 
-                      {isOpen && (
-                        <div className="mt-4 pl-2">
+                      <div className="mt-4 pl-2" hidden={!isOpen}>
                           <p className="text-gray-600 leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>
-                      )}
                     </div>
                   );
                 })}

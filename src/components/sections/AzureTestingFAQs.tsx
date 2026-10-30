@@ -5,12 +5,15 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from "react-icons/fa";
 import { VscAzure } from "react-icons/vsc";
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const AzureTestingFAQs: React.FC = () => {
     const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
     const faqs = [
         {
             question: "What are the best practices for Azure application testing?",
+            answerText: "Best practices include implementing automated testing early in the SDLC, using Infrastructure as Code (ARM/Bicep) for environment consistency, and leveraging Azure Monitor for real-time observability. We also recommend performing regular security audits and scale-testing to validate dynamic elasticity.",
             answer: (
                 <>
                     Best practices include implementing <Link href="/automation-testing-services" className="text-brand-blue underline">automated testing</Link> early in the SDLC, using Infrastructure as Code (ARM/Bicep) for environment consistency, and leveraging Azure Monitor for real-time observability. We also recommend performing regular security audits and scale-testing to validate dynamic elasticity.
@@ -19,6 +22,7 @@ const AzureTestingFAQs: React.FC = () => {
         },
         {
             question: "How to integrate automated testing in Azure DevOps pipelines?",
+            answerText: "This involves configuring YAML-based build and release pipelines to trigger automated test suites (Selenium, Playwright, or unit tests) at every stage. We specialize in setting up quality gates in Azure DevOps that prevent unstable code from reaching production.",
             answer: (
                 <>
                     This involves configuring YAML-based build and release pipelines to trigger automated test suites (Selenium, Playwright, or unit tests) at every stage. We specialize in setting up quality gates in <Link href="/qa-documentation-services" className="text-brand-blue underline">Azure DevOps</Link> that prevent unstable code from reaching production.
@@ -27,6 +31,7 @@ const AzureTestingFAQs: React.FC = () => {
         },
         {
             question: "How to ensure security during Azure cloud migration?",
+            answerText: "Security is ensured through a multi-layered approach: validating IAM configurations in Azure AD, performing network penetration testing on VNets, and conducting data integrity checks before and after the move. We map all testing activities to global standards like SOC2 and ISO 27001.",
             answer: (
                 <>
                     Security is ensured through a multi-layered approach: validating IAM configurations in Azure AD, performing network penetration testing on VNets, and conducting data integrity checks before and after the move. We map all testing activities to global standards like <Link href="/security-testing" className="text-brand-blue underline">SOC2 and ISO 27001</Link>.
@@ -35,6 +40,7 @@ const AzureTestingFAQs: React.FC = () => {
         },
         {
             question: "What are the benefits of managed Azure testing services?",
+            answerText: "Managed services provide access to Azure-certified QA experts, specialized testing tools, and proven methodologies. This reduces the burden on internal teams, accelerates time-to-market, and ensures that your cloud infrastructure is optimized for performance, security, and cost-efficiency.",
             answer:
                 "Managed services provide access to Azure-certified QA experts, specialized testing tools, and proven methodologies. This reduces the burden on internal teams, accelerates time-to-market, and ensures that your cloud infrastructure is optimized for performance, security, and cost-efficiency.",
         },
@@ -46,6 +52,9 @@ const AzureTestingFAQs: React.FC = () => {
 
     return (
         <section className="bg-white py-16 px-8 md:px-12 lg:px-24">
+            {/* The rendered answers are JSX, so the schema is built from
+                each entry's plain-text twin held in the same object. */}
+            <FaqJsonLd faqs={faqs.map((f) => ({ question: f.question, answer: f.answerText }))} />
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                     <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-4 py-2 rounded-full mb-6">
@@ -80,13 +89,11 @@ const AzureTestingFAQs: React.FC = () => {
                                     <FaChevronDown />
                                 </div>
                             </button>
-                            {openFAQ === index && (
-                                <div className="px-8 pb-8 bg-blue-50/50 animate-in fade-in slide-in-from-top-4 duration-300">
+                            <div className="px-8 pb-8 bg-blue-50/50 animate-in fade-in slide-in-from-top-4 duration-300" hidden={openFAQ !== index}>
                                     <p className="text-gray-600 text-lg leading-relaxed pt-2 border-t border-blue-100/50">
                                         {faq.answer}
                                     </p>
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

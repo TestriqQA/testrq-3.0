@@ -8,13 +8,20 @@
 // Do not round, inflate or re-attribute these. If a case study is edited, edit
 // this section or drop the number.
 //
-// The Clutch line is deliberately narrow. Six reviews is verifiable from
-// reviewsData.ts; the 2019-2025 engagement span comes from the review text on
-// the live Clutch profile and is not reproducible from anything in this repo,
-// so it is stated once, plainly, and not embellished.
+// The Clutch line is deliberately narrow. The count and the profile link come
+// from `reviewPlatforms` in reviewsData.ts and must not be retyped here: until
+// 2026-10-29 this said "six client reviews", counting the six Clutch reviews
+// transcribed into the repo rather than the eight the profile actually holds —
+// understating our own record on a page whose whole job is to be checkable.
+// The 2019-2025 engagement span comes from the review text on the live profile
+// and is not reproducible from anything in this repo, so it is stated once,
+// plainly, and not embellished.
 import Link from "next/link";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
+import { platform, spellCount } from "@/app/(services)/qa-outsourcing-services/reviewsData";
+
+const clutch = platform("Clutch");
 
 const CHECKS: { text: string; link?: { href: string; label: string } }[] = [
   { text: "Search and filter results that disagree with the underlying listing data" },
@@ -78,16 +85,16 @@ const NewYorkRealEstateSection: React.FC = () => {
           <p>
             Long engagements are part of the record too. On{" "}
             <Link
-              href="https://clutch.co/profile/testriq-qa-lab"
+              href={clutch.profileUrl}
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="text-brand-blue hover:underline"
             >
               Clutch
             </Link>
-            , where we hold six client reviews, one reviewer (a head of QA at a
-            software company in Australia) describes regression and functional
-            testing work that ran from 2019 to 2025.
+            , where we hold {spellCount(clutch.count)} client reviews, one reviewer
+            (a head of QA at a software company in Australia) describes regression
+            and functional testing work that ran from 2019 to 2025.
           </p>
         </div>
       </div>

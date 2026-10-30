@@ -6,6 +6,7 @@
     "dev": "next dev",
     "dev:api": "cd api && npm start",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
+    "prebuild": "tsx src/scripts/snapshot-sanity-slugs.ts --build",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' next build",
     "start": "next start",
     "lint": "next lint",

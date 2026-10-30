@@ -10,12 +10,17 @@ import IoTFAQSection from "@/components/sections/IoTApplianceFAQSection";
 import IoTContactSection from "@/components/sections/IoTApplianceContactSection";
 import { Metadata } from "next";
 import StructuredData, { createCanonicalBreadcrumb, iotTestingServiceSchema } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "IoT Appliance Testing | Smart Device QA",
-  description: "Testriq offers end-to-end IoT appliances and apps testing services for connected devices, ensuring secure, scalable, and high-performance applications across ecosystems.",
+  title: "IoT Appliances and Apps Testing Services",
+  description: "End-to-end IoT appliances and apps testing services from Testriq: secure, scalable, high-performance validation for connected devices and ecosystems.",
   keywords: [
     "IoT testing",
     "smart device testing",
@@ -87,14 +92,19 @@ const IoTTestingPage: React.FC = () => {
             />
     <main className="min-h-screen bg-white">
       <IoTHeroSection />
+      <ServiceDirectAnswer slug="iot-appliances-and-apps-testing-services" />
       <IoTChallengesSection />
       <IoTTestingServicesSection />
       <IoTTestingProcessSection />
       <IoTEcosystemSection />
       <IoTToolsFrameworkSection />
       <IoTCaseStudies />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="iot-appliances-and-apps-testing-services" />
+      <ServiceEngagementModels />
       <IoTFAQSection />
       <IoTContactSection />
+      <ServiceCta slug="iot-appliances-and-apps-testing-services" />
     </main>
     </div>
   );

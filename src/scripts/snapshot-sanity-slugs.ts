@@ -18,15 +18,32 @@
  * Sanity project until the next snapshot refresh.
  *
  * Usage:
- *   # Make sure SANITY_API_TOKEN (or NEXT_PUBLIC_SANITY_PROJECT_ID etc) is in .env.local
+ *   The CONTENT snapshot is generated per deploy and is NOT committed. The
+ *   `prebuild` npm script runs this file with `--build` (see that flag's
+ *   comment below), so every Vercel build gets fresh content.
+ *
+ *   The copy of sanity-content-snapshot.json in git is an intentionally EMPTY
+ *   stub, and should stay that way. It exists only because the adapter and
+ *   src/lib/seo/redirect-map.ts import both files statically, so they must be
+ *   present for `tsc`, the Vitest suite and local dev to resolve. A populated
+ *   copy is ~20 MB per refresh of git history, and — until the client
+ *   components were changed to take their data as props — it was also compiled
+ *   into the browser bundle as an 11.96 MB chunk.
+ *
+ *   # Refresh by hand. Strict: non-zero exit on any incomplete fetch.
  *   npm run sanity:snapshot
  *
- *   # Then review + commit the two files:
- *   git add src/lib/sanity-build-snapshot.json src/lib/sanity-content-snapshot.json
- *   git commit -m "chore: refresh Sanity snapshot"
+ *   The SLUG snapshot is small (~55 KB) and is worth committing when it drifts,
+ *   since generateStaticParams and the redirect table fall back to it:
+ *     git add src/lib/sanity-build-snapshot.json
+ *     git commit -m "chore: refresh Sanity slug snapshot"
  *
- * Recommended cadence: refresh whenever a batch of new posts/case studies lands
- * in Sanity Studio. Or wire a daily GitHub Action that runs this + auto-PRs.
+ *   Do NOT commit a populated src/lib/sanity-content-snapshot.json.
+ *
+ * Vercel build environment needs NEXT_PUBLIC_SANITY_PROJECT_ID,
+ * NEXT_PUBLIC_SANITY_DATASET and SANITY_API_TOKEN. Without them the prebuild
+ * step warns, the build continues, and the site falls back to live Sanity
+ * reads — the behaviour from before the snapshot existed.
  *
  * Notes:
  *  - Uses `useCdn: false` so we get fresh published data, not stale CDN cache.
@@ -46,6 +63,49 @@ import * as queries from '../lib/sanity-queries';
 // Load .env.local first (Next.js convention), fall back to .env
 dotenv.config({ path: '.env.local' });
 dotenv.config();
+
+// `--build` is how the `prebuild` npm script invokes this (see package.json).
+// It differs from a manual `npm run sanity:snapshot` in two ways:
+//
+//  1. It is a NO-OP outside CI/Vercel. A local `npm run build` would otherwise
+//     rewrite the committed stub with ~20 MB of content — exactly the diff this
+//     arrangement exists to keep out of git history.
+//
+//  2. A Sanity failure warns instead of exiting non-zero. The snapshot is an
+//     optimisation, not a dependency: the runtime adapter falls back to reading
+//     Sanity live. This project has hit `plan_limit_reached` 402 quota locks
+//     repeatedly (see the comment history in src/lib/sanity.ts), and a quota
+//     lock must not block an unrelated hotfix deploy.
+//
+// Run without the flag to get the strict behaviour: non-zero exit on any
+// incomplete fetch, which is what you want when refreshing by hand or in a
+// dedicated CI job.
+const BUILD_MODE = process.argv.includes('--build');
+const IS_CI = Boolean(process.env.VERCEL || process.env.CI);
+
+if (BUILD_MODE && !IS_CI) {
+    console.log(
+        '[snapshot] --build outside CI/Vercel: keeping the committed snapshot files and skipping the refresh.',
+    );
+    process.exit(0);
+}
+
+/**
+ * Exit non-zero normally, but never fail a build.
+ *
+ * Callers have already logged why. In `--build` mode the deploy continues with
+ * whatever snapshot is on disk — the committed stub, or a partial refresh —
+ * and the site reads from Sanity live for anything missing.
+ */
+function failOrWarn(): never {
+    if (BUILD_MODE) {
+        console.warn(
+            '[snapshot] --build: continuing the build regardless. The site will read from Sanity live for anything the snapshot is missing.',
+        );
+        process.exit(0);
+    }
+    process.exit(1);
+}
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '7hxinmig';
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
@@ -88,11 +148,45 @@ async function fetchSlugList(docType: string): Promise<string[]> {
 async function fetchOrEmpty<T = any>(label: string, query: string, params?: Record<string, unknown>): Promise<T[]> {
     try {
         const result = await client.fetch<T[]>(query, params || {});
-        return Array.isArray(result) ? result : [];
+        return Array.isArray(result) ? stripDrafts(result, label) : [];
     } catch (err) {
         console.error(`Failed to fetch ${label}:`, (err as Error).message);
         return [];
     }
+}
+
+/**
+ * Drop `drafts.*` documents from a fetched list.
+ *
+ * The slug queries above carry `!(_id in path("drafts.**"))`, but the FULL
+ * document queries are the shared constants in src/lib/sanity-queries.ts —
+ * `allCaseStudiesQuery` is a bare `*[_type == "caseStudy"]` — and this script
+ * authenticates with SANITY_API_TOKEN, so a token-authenticated read returns
+ * drafts alongside published docs. Measured on 27 Oct 2026: the slug query
+ * returned 19 case studies while the content query returned 20, and the
+ * snapshot shipped two drafts — `drafts.caseStudy-realtytrac-case-study` and
+ * an unpublished skillbrew case study. Because the content snapshot is keyed
+ * by slug, a draft silently REPLACES the published document it drafts, so the
+ * live site would have served draft copy for a published case study and
+ * published an unreleased one outright.
+ *
+ * Filtered here rather than by adding the exclusion to those shared queries:
+ * src/lib/sanity-preview.ts runs the SAME constants through `previewClient`
+ * with `perspective: 'drafts'` precisely to show drafts (F-64), so excluding
+ * them in the query would break editor preview. Doing it in the snapshot
+ * script keeps both behaviours correct, and covers every collection that goes
+ * through this helper rather than one query at a time.
+ */
+function stripDrafts<T>(docs: T[], label: string): T[] {
+    const kept = docs.filter((doc) => {
+        const id = (doc as { _id?: unknown })?._id;
+        return !(typeof id === "string" && id.startsWith("drafts."));
+    });
+    const removed = docs.length - kept.length;
+    if (removed > 0) {
+        console.warn(`  ↳ ${label}: excluded ${removed} draft document(s)`);
+    }
+    return kept;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -166,8 +260,34 @@ async function main() {
             }`,
         ),
         fetchOrEmpty('case studies (full)', queries.allCaseStudiesQuery),
-        fetchOrEmpty('categories (full)', queries.categoriesQuery),
-        fetchOrEmpty('tags (full)', queries.tagsQuery),
+        // Local copies of queries.categoriesQuery / queries.tagsQuery with the
+        // drafts exclusion added. They cannot go through stripDrafts below,
+        // because neither shared projection returns `_id` — so a draft tag is
+        // indistinguishable from a published one once fetched. Measured: the
+        // tag slug list held 937 entries while this content query returned
+        // 940, and the three extra documents were drafts that reached the
+        // snapshot silently. The projections are copied verbatim; only the
+        // filter differs. (Editing the shared constants instead would break
+        // editor preview, which runs them through previewClient to SEE drafts.)
+        fetchOrEmpty(
+            'categories (full)',
+            `*[_type == "category" && !(_id in path("drafts.**"))] {
+  title,
+  slug,
+  description,
+  colorTheme,
+  icon,
+  "count": count(*[_type == "post" && references(^._id)])
+}`,
+        ),
+        fetchOrEmpty(
+            'tags (full)',
+            `*[_type == "tag" && !(_id in path("drafts.**"))] {
+  title,
+  slug,
+  "count": count(*[_type == "post" && references(^._id)])
+}`,
+        ),
         fetchOrEmpty('jobs (full)', queries.allJobPostingsQuery),
     ]);
 
@@ -212,7 +332,11 @@ async function main() {
     if (missingAuthorSlugs.length > 0) {
         const filler = await fetchOrEmpty(
             'authors (postless)',
-            `*[_type == "author" && slug.current in $slugs] {
+            // Drafts excluded here too. No draft authors exist today (21 slugs
+            // and 21 documents), but a draft sharing a published author's slug
+            // would match this filter and, because authors are keyed by slug,
+            // overwrite the published record.
+            `*[_type == "author" && slug.current in $slugs && !(_id in path("drafts.**"))] {
                 _id, name, slug, image, bio, linkedin, credentials, sameAs
             }`,
             { slugs: missingAuthorSlugs },
@@ -248,7 +372,7 @@ async function main() {
     if (allEmpty) {
         console.error('❌ Every Sanity fetch returned empty. Refusing to overwrite committed snapshot files.');
         console.error('   Most likely cause: API Requests quota at 100%. Wait for quota reset or temporarily upgrade.');
-        process.exit(1);
+        failOrWarn();
     }
 
     // Write slug snapshot (existing file, backwards-compatible structure)
@@ -299,15 +423,15 @@ async function main() {
 
     if (postSlugs.length === 0 && caseStudySlugs.length === 0) {
         console.warn('⚠️  All slug lists empty. Sanity may be in 402 quota state OR token missing. Try again after quota resets.');
-        process.exit(1);
+        failOrWarn();
     }
     if (Object.keys(posts).length === 0 && postSlugs.length > 0) {
         console.warn('⚠️  Slug lists fetched but full content empty. Likely partial quota lock. Snapshot files written but content-snapshot will be incomplete.');
-        process.exit(1);
+        failOrWarn();
     }
 }
 
 main().catch(err => {
     console.error('Snapshot generation failed:', err);
-    process.exit(1);
+    failOrWarn();
 });

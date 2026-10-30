@@ -1,18 +1,21 @@
 /**
- * Verified third-party client reviews for the QA Outsourcing Services page.
+ * Third-party client reviews for the QA Outsourcing Services page.
  *
- * COMPLIANCE (Google Review-snippet guidelines):
- *  - Every review here is a REAL, verified review published on Clutch or G2.
- *    Ratings and quotes are transcribed from those platforms — nothing is
- *    invented. The one GoodFirms review was excluded because GoodFirms marked
- *    it "Unable to verify the reviewer" (rejected), so it is not a valid,
- *    published review.
- *  - These same reviews are rendered on-page by <QAOutsourcingReviews>, and the
- *    AggregateRating below is computed from exactly this displayed set. Markup
- *    must reflect visible content, so schema and section share this one source.
- *  - The AggregateRating is attached to the page's `Service` entity (see
- *    page.tsx), NOT to Organization/LocalBusiness — self-serving ratings on
- *    those types are not eligible for rich results.
+ * Two separate things live here, and they must not be conflated:
+ *
+ *  - `reviewPlatforms` — the rating each platform publishes on its own profile.
+ *  - `qaOutsourcingReviews` — the individual reviews transcribed for display.
+ *
+ * NONE of this is marked up as structured data. Every review below was
+ * collected by Clutch or G2, not by this site, and Google's review-snippet
+ * policy lets a site mark up only the reviews it collects itself. The page's
+ * AggregateRating and Review markup were removed on 2026-10-29 for that reason
+ * (see the note in page.tsx) — this file now feeds visible content only.
+ *
+ * Every review here is a REAL, published review. Ratings and quotes are
+ * transcribed from the platforms — nothing is invented. The one GoodFirms
+ * review was excluded because GoodFirms marked it "Unable to verify the
+ * reviewer" (rejected), so it is not a valid, published review.
  *
  * Clutch per-review rating = the simple average of Clutch's four sub-scores
  * (Quality / Schedule / Cost / Willing to Refer), rounded to one decimal.
@@ -120,13 +123,81 @@ export const qaOutsourcingReviews: ClientReview[] = [
     },
 ];
 
-/** AggregateRating computed from exactly the displayed reviews above. */
-export const qaOutsourcingRating = {
-    value: (
-        qaOutsourcingReviews.reduce((sum, r) => sum + r.rating, 0) /
-        qaOutsourcingReviews.length
-    ).toFixed(1),
-    count: qaOutsourcingReviews.length,
-    best: 5,
-    worst: 1,
-};
+/** A rating summary as one platform publishes it on its own profile. */
+export interface ReviewPlatform {
+    /** Platform name, shown as the label. */
+    name: string;
+    /** Score out of 5, exactly as the platform states it. */
+    rating: string;
+    /** How many reviews that score covers, on the platform. */
+    count: number;
+    /**
+     * Wording for the count. Only Clutch verifies reviewers, so only Clutch
+     * gets "verified reviews" — the other two say plain "reviews".
+     */
+    countLabel: string;
+    /** The public profile a visitor can check the score against. */
+    profileUrl: string;
+}
+
+/**
+ * The three platform scores, shown as three separate figures.
+ *
+ * These are the totals the platforms themselves publish — NOT an average of
+ * the reviews transcribed above, and NOT to be derived from them. Clutch
+ * publishes 8 where six are transcribed here, and the Google score covers 41
+ * reviews of which none are. A single blended number replaced all three until
+ * 2026-10-29; it stated a figure no platform publishes, and attributed a
+ * Google-sourced score to "Clutch and G2". Keep them apart and attributed.
+ *
+ * Last checked against the live profiles: 2026-10-29. These move, so re-check
+ * when the page is next reviewed rather than assuming they still hold.
+ */
+export const reviewPlatforms: ReviewPlatform[] = [
+    {
+        name: "Clutch",
+        rating: "4.8",
+        count: 8,
+        countLabel: "verified reviews",
+        profileUrl: CLUTCH_PROFILE,
+    },
+    {
+        name: "G2",
+        rating: "4.8",
+        count: 4,
+        countLabel: "reviews",
+        profileUrl: "https://www.g2.com/products/testriq-qa-lab/reviews",
+    },
+    {
+        name: "Google",
+        rating: "4.7",
+        count: 41,
+        countLabel: "reviews",
+        profileUrl: "https://share.google/dziTNVkbsB2FYdYLm",
+    },
+];
+
+/**
+ * Look up one platform by name, throwing rather than returning undefined.
+ *
+ * The city landing pages state these figures in prose, so a renamed or deleted
+ * entry has to fail the build rather than render "undefined reviews on Clutch"
+ * onto a page meant to prove we are checkable.
+ */
+export function platform(name: string): ReviewPlatform {
+    const found = reviewPlatforms.find((p) => p.name === name);
+    if (!found) {
+        throw new Error(`reviewPlatforms has no "${name}" entry`);
+    }
+    return found;
+}
+
+/**
+ * Spell a review count for prose — "eight reviews", not "8 reviews" — falling
+ * back to the numeral above nine.
+ *
+ * Lives here beside the figures rather than in each section, so the pages that
+ * quote them cannot word the same number two different ways.
+ */
+const SPELLED = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+export const spellCount = (n: number): string => SPELLED[n] ?? String(n);

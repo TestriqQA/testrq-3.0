@@ -9,7 +9,9 @@ import StructuredData, {
 // Server Component — imported directly (not via dynamic()) so its markup and the
 // review section render server-side in the initial HTML.
 import QAOutsourcingReviews from "@/components/sections/QAOutsourcingReviews";
-import { qaOutsourcingReviews, qaOutsourcingRating } from "./reviewsData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -132,31 +134,22 @@ const qaOutsourcingServiceSchema = {
         telephone: "+91-915-2929-343",
     },
     areaServed: ["United States", "United Kingdom", "European Union", "United Arab Emirates", "India"],
-    // Review rich-result markup. Compliant because: (1) these are real, verified
-    // Clutch/G2 reviews rendered on-page by <QAOutsourcingReviews>; (2) the
-    // AggregateRating is computed from exactly that displayed set; (3) it sits on
-    // this Service entity, not Organization/LocalBusiness (self-serving ratings
-    // on those types are ineligible). Source of truth: ./reviewsData.ts.
-    aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: qaOutsourcingRating.value,
-        reviewCount: String(qaOutsourcingRating.count),
-        bestRating: String(qaOutsourcingRating.best),
-        worstRating: String(qaOutsourcingRating.worst),
-    },
-    review: qaOutsourcingReviews.map((r) => ({
-        "@type": "Review",
-        author: { "@type": "Person", name: r.authorName },
-        datePublished: r.date,
-        reviewRating: {
-            "@type": "Rating",
-            ratingValue: String(r.rating),
-            bestRating: "5",
-            worstRating: "1",
-        },
-        reviewBody: r.body,
-        publisher: { "@type": "Organization", name: r.source },
-    })),
+    // No aggregateRating and no review array. Both were here until 2026-10-29;
+    // removed, and not to be re-added, for two independent reasons:
+    //
+    //  1. The reviews are not ours to aggregate. They were collected by Clutch,
+    //     G2 and Google on their own profiles, not on this site. Google's
+    //     review-snippet policy allows a site to mark up only the reviews it
+    //     collects itself, so republishing a third-party score as this page's
+    //     own AggregateRating is a policy violation, not a rich result.
+    //  2. It earned nothing anyway. The markup sat on a Service entity, and
+    //     Service is not among the types eligible for review snippets — so the
+    //     policy risk bought no star rating in return.
+    //
+    // The three platform scores ARE still shown to visitors, each attributed to
+    // its own platform and linked to its own profile, by <QAOutsourcingReviews>.
+    // Visible, attributed and linked is the honest way to present them; schema
+    // is not. Source of truth for those figures: ./reviewsData.ts.
     hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "QA Outsourcing Engagement Models",
@@ -202,8 +195,11 @@ export default function QAOutsourcingServicesPage() {
             <QAOutsourcingWhyTestriq />
             <QAOutsourcingReviews />
             <QAOutsourcingIndustries />
+            <ServiceTeamSection />
+            <ServiceLastUpdated slug="qa-outsourcing-services" />
             <QAOutsourcingFAQs />
             <QAOutsourcingReadyToStart />
+            <ServiceCta slug="qa-outsourcing-services" />
         </MainLayout>
     );
 }

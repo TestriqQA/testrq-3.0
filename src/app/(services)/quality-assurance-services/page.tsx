@@ -12,15 +12,18 @@ import QAServicesCoverageSection from "@/components/sections/QAServicesCoverageS
 import QAServicesProcessSection from "@/components/sections/QAServicesProcessSection";
 import ServiceTeamSection, { AI_TEAM } from "@/components/sections/ServiceTeamSection";
 import QAServicesFAQs, { qaServicesFaqs } from "@/components/sections/QAServicesFAQs";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/quality-assurance-services",
-    title: "Software QA Services | ISTQB-Certified Testing | Testriq",
+    title: "Quality Assurance Services | ISTQB-Certified | Testriq",
     description:
-      "Functional, automation, performance, security, accessibility and UAT testing from a pure-play QA company. ISTQB-certified engineers working inside your sprints.",
+      "Quality assurance services covering functional, automation, performance, security, accessibility and UAT. ISTQB-certified engineers inside your sprints.",
     ogImage: {
       // Was /og-image.png, which is not in public/. It answers 200 today only
       // because [slug] matches any single-segment path and serves HTML for it
@@ -83,7 +86,10 @@ export default function QualityAssuranceServicesPage() {
         <QAServicesCoverageSection />
         <QAServicesProcessSection />
         <ServiceTeamSection people={AI_TEAM} />
+        <ServiceLastUpdated slug="quality-assurance-services" />
+        <ServiceEngagementModels />
         <QAServicesFAQs />
+        <ServiceCta slug="quality-assurance-services" />
       </MainLayout>
     </div>
   );

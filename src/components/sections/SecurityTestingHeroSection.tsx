@@ -43,7 +43,7 @@ const SecurityTestingHeroSection: React.FC = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Penetration Testing Services for
+              Security Testing & Penetration Testing Services for
               <span className="text-transparent bg-clip-text bg-brand-blue">
                 {" "}
                 Global Enterprises

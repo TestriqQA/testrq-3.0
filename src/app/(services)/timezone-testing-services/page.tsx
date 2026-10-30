@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
     timezoneTestingServiceSchema,
-    timezoneFAQSchema,
     createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -13,6 +12,11 @@ import TimezoneServicesGrid from "@/components/sections/TimezoneServicesGrid";
 import TimezoneMethodology from "@/components/sections/TimezoneMethodology";
 import TimezoneFAQs from "@/components/sections/TimezoneFAQs";
 import TimezoneCTA from "@/components/sections/TimezoneCTA";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -21,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
         pathname: "/timezone-testing-services",
         title: "Timezone Testing Services | Follow-the-Sun QA | Testriq",
         description:
-            "Sync global delivery with Testriq's timezone testing. Real-time QA, follow-the-sun cycles, and localized support for distributed enterprise engineering teams.",
+            "Timezone testing services from Testriq: real-time QA, follow-the-sun cycles and localized support for distributed enterprise engineering teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/time-zone-testing-og-image.webp",
             width: 2752,
@@ -64,7 +68,6 @@ export default function TimezoneTestingServices() {
     return (
         <div>
             <StructuredData data={timezoneTestingServiceSchema} />
-            <StructuredData data={timezoneFAQSchema} />
             <StructuredData
                 data={createCanonicalBreadcrumb(
                     "/timezone-testing-services",
@@ -73,11 +76,16 @@ export default function TimezoneTestingServices() {
             />
             <MainLayout>
                 <TimezoneTestingHero />
+                <ServiceDirectAnswer slug="timezone-testing-services" />
                 <TimezoneAdvantageSection />
                 <TimezoneServicesGrid />
                 <TimezoneMethodology />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="timezone-testing-services" />
+                <ServiceEngagementModels />
                 <TimezoneFAQs />
                 <TimezoneCTA />
+                <ServiceCta slug="timezone-testing-services" />
             </MainLayout>
         </div>
     );

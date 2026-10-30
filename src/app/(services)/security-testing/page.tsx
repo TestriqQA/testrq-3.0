@@ -20,6 +20,12 @@ import SecurityTestingCaseStudies from "@/components/sections/SecurityTestingCas
 import PenetrationTestingScopeLimits from "@/components/sections/PenetrationTestingScopeLimits";
 import SecurityTestingFAQs from "@/components/sections/SecurityTestingFAQs";
 import SecurityTestingReadyToEnsureQuality from "@/components/sections/SecurityTestingReadyToEnsureQuality";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -37,9 +43,9 @@ export async function generateMetadata(): Promise<Metadata> {
   // the "| Testriq" brand suffix to fit under 60.
   return buildPageMetadata({
     pathname: "/security-testing",
-    title: "Penetration Testing Services | VAPT & OWASP | Testriq",
+    title: "Security Testing Services | VAPT & OWASP | Testriq",
     description:
-      "Penetration testing from certified security engineers. Web, API, mobile, network and cloud VAPT, CVSS-ranked and manually verified. US, UK, EU and UAE.",
+      "Security testing and VAPT from certified engineers. Web, API, mobile, network and cloud penetration testing, CVSS-ranked and manually verified. US, UK, EU.",
     ogImage: {
       url: "https://www.testriq.com/OG/Security-service-og-image.webp",
       width: 2752,
@@ -150,8 +156,24 @@ export default function SecurityTestingPage() {
         <SecurityTestingToolsFramework />
         <SecurityTestingCaseStudies />
         <PenetrationTestingScopeLimits />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="security-testing" />
+        <ServiceEngagementModels />
         <SecurityTestingFAQs />
         <SecurityTestingReadyToEnsureQuality />
+      {/* PART 4 / JOB A3 — contextual links to the case studies that
+          prove this service. In the body, not the footer: the nav and
+          footer already link this page ~1,457 times and Google
+          discounts boilerplate links. Mapping lives in
+          src/lib/seo/related-case-studies.ts. */}
+      <RelatedCaseStudies serviceSlug="security-testing" />
+      {/* PART 4 / JOB A2 — contextual links to related services that
+          had almost no inbound links. In the body, not the footer:
+          nav and footer already link these pages ~1,457 times and
+          Google discounts boilerplate. Mapping lives in
+          src/lib/seo/related-services.ts. */}
+      <ServiceCrossLinks serviceSlug="security-testing" />
+      <ServiceCta slug="security-testing" />
       </MainLayout>
     </div>
   );

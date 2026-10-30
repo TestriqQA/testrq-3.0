@@ -52,11 +52,9 @@ const UsabilityTestingFAQs: React.FC = () => {
                                 </div>
                             </button>
 
-                            {openIndex === index && (
-                                <div className="px-8 pb-8 text-gray-600 leading-relaxed pt-0 text-lg">
+                            <div className="px-8 pb-8 text-gray-600 leading-relaxed pt-0 text-lg" hidden={openIndex !== index}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

@@ -44,7 +44,7 @@ export interface ServiceLink {
 export const SERVICES: Record<string, ServiceLink> = {
     'automation-testing-services': {
         slug: 'automation-testing-services',
-        title: 'Test Automation Services',
+        title: 'Automation Testing Services',
         description: 'Framework design, CI/CD integration and suite maintenance across web, mobile and API layers.',
     },
     'manual-testing-services': {
@@ -74,7 +74,7 @@ export const SERVICES: Record<string, ServiceLink> = {
     },
     'mobile-application-testing': {
         slug: 'mobile-application-testing',
-        title: 'Mobile App Testing Services',
+        title: 'Mobile Application Testing Services',
         description: 'Real-device coverage across iOS and Android, including automation and performance.',
     },
     'web-application-testing-services': {
@@ -114,7 +114,7 @@ export const SERVICES: Record<string, ServiceLink> = {
     },
     'desktop-application-testing-services': {
         slug: 'desktop-application-testing-services',
-        title: 'Desktop Application Testing',
+        title: 'Desktop Application Testing Services',
         description: 'Installer, compatibility and performance testing across Windows and macOS builds.',
     },
     'smart-device-testing-services': {
@@ -184,7 +184,7 @@ export const SERVICES: Record<string, ServiceLink> = {
     },
     'iot-appliances-and-apps-testing-services': {
         slug: 'iot-appliances-and-apps-testing-services',
-        title: 'IoT Appliances & Apps Testing',
+        title: 'IoT Appliances and Apps Testing Services',
         description: 'Companion-app, appliance firmware and cloud-sync validation for connected products.',
     },
 };
@@ -352,6 +352,28 @@ const DEFAULT_SERVICES = [
     'manual-testing-services',
 ] as const;
 
+/** Collapse to lowercase words so "E-Commerce" and "ecommerce" compare equal. */
+const normalisePhrase = (value: string) =>
+    value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+/**
+ * Service slugs paired with the phrase their page targets, longest phrase
+ * first. Used to spot a post whose headline carries a service page's own
+ * phrase — the cannibalisation case PART 6 exists to fix.
+ *
+ * Longest-first matters: a headline naming "user acceptance testing" must
+ * resolve to that page rather than to a shorter incidental match.
+ */
+const SERVICE_PHRASES: ReadonlyArray<readonly [string, string]> = Object.keys(SERVICES)
+    .map((slug) => {
+        // A sub-page targets its own last segment, not the parent's.
+        const leaf = slug.split('/').pop() as string;
+        return [slug, normalisePhrase(leaf.replace(/-/g, ' '))] as const;
+    })
+    // Two-word phrases are too generic to claim a slot ahead of the category.
+    .filter(([, phrase]) => phrase.split(' ').length >= 3)
+    .sort((a, b) => b[1].length - a[1].length);
+
 /**
  * Resolve the service links for a post.
  *
@@ -385,16 +407,32 @@ export function getRelatedServices(
         if (pattern.test(narrowHaystack)) add(slug);
     }
 
-    // 1. Category match — the strongest signal.
+    // 0.5 Exact service phrase in the headline. A post whose title carries a
+    //     service page's target phrase competes with that page directly, so it
+    //     must link there even when a broad category would otherwise take
+    //     every slot. This runs before the category step for that reason.
+    const titlePhrase = normalisePhrase(title);
+    if (titlePhrase) {
+        for (const [slug, phrase] of SERVICE_PHRASES) {
+            if (picked.length >= limit) break;
+            if (titlePhrase.includes(phrase)) add(slug);
+        }
+    }
+
+    // 1. Category match — still the strongest signal for everything else.
     for (const cat of categorySlugs) {
         for (const slug of CATEGORY_MAP[cat?.toLowerCase()?.trim()] ?? []) {
             add(slug);
         }
     }
 
-    // 2. Tag keywords, if we still have room.
+    // 2. Tag keywords, if we still have room. The title is in the haystack
+    //    because a post's Sanity tags often omit the topic its headline names --
+    //    e.g. the UAT posts named user acceptance testing in the title, carried
+    //    no matching tag, and fell through to DEFAULT_SERVICES, so they linked
+    //    to no service page for the very term they compete with.
     if (picked.length < limit) {
-        const haystack = tags.join(' ');
+        const haystack = [...tags, title].join(' ');
         for (const [pattern, slug] of TAG_KEYWORD_MAP) {
             if (picked.length >= limit) break;
             if (pattern.test(haystack)) add(slug);
