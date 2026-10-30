@@ -2,6 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { FaArrowRight, FaCheckCircle, FaCertificate, FaHome, FaChevronRight } from "react-icons/fa";
 import StructuredData, { createCanonicalBreadcrumb } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
 
 export interface ToolLandingPageProps {
   /** Display name of the tool, e.g. "Selenium" */
@@ -235,6 +239,14 @@ const ToolLandingPage: React.FC<ToolLandingPageProps> = (props) => {
             </div>
           </div>
         </section>
+
+        {/* Blocks 6 and 8 of the service page template. These six tool
+            pages render nothing but <ToolLandingPage />, so they pick the
+            blocks up here rather than from their own page.tsx. */}
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug={props.slug} />
+        <ServiceEngagementModels />
+        <ServiceCrossLinks serviceSlug={props.slug} />
 
         {/* FAQ */}
         <section className="bg-white py-16">
