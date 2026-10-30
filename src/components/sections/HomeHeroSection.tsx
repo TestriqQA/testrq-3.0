@@ -52,7 +52,7 @@ const Hero = () => {
               Services & QA Solutions
             </h1>
 
-            <p className="text-gray-700 text-base md:text-lg xl:mx-0 mb-6 max-w-2xl mx-auto">
+            <p className="text-gray-700 text-base md:text-lg mb-6">
               With global regulations tightening and AI evolving rapidly, software needs more than just basic testing. Testriq delivers end-to-end <Link title="Quality Assurance Solutions" href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline">Quality Assurance</Link> to ensure your rapid development never compromises on reliability.
               We use DevSecOps and advanced quality engineering to reduce risk for global enterprises. As an ISTQB Certified partner, we serve clients across the US, UK, EU, India, Asia, and the UAE.
             </p>
@@ -91,9 +91,9 @@ const Hero = () => {
           </div>
 
           {/* Right Section */}
-          <div className="flex flex-col justify-center text-center mt-20 md:mt-24 xl:mt-20 xl:w-1/2 lg:[my-10] md:my-10">
+          {/* <div className="flex flex-col justify-center text-center mt-20 md:mt-24 xl:mt-20 xl:w-1/2 lg:[my-10] md:my-10">
             <ImageSlider />
-          </div>
+          </div> */}
         </div>
 
         {/* Client logo marquee, moved up from the standalone
