@@ -61,8 +61,13 @@ export const locationData: LocationData = {
         "/software-qa-testing-services-in-ranchi",
     },
     Karnataka: {
+      // The page lives at .../-in-bangalore. This entry pointed at
+      // .../-in-bengaluru, which only exists as a 308 in
+      // src/lib/seo/redirect-map.ts — so every link here cost a redirect hop
+      // and Bangalore (46 GSC clicks, the brief's second-highest city) ended up
+      // with one real inbound link instead of two.
       Bengaluru:
-        "/software-qa-testing-services-in-bengaluru",
+        "/software-qa-testing-services-in-bangalore",
       Mangalore:
         "/software-qa-testing-services-in-mangalore",
     },
@@ -163,8 +168,10 @@ export const locationData: LocationData = {
         "/software-qa-testing-services-in-al-jazirah-al-hamra",
       "Ar Rams":
         "/software-qa-testing-services-in-ar-rams",
-      "Dibba Al Fujairah":
-        "/software-qa-testing-services-in-dibba-al-fujairah",
+      // "Dibba Al Fujairah" removed: there is no such page and no redirect for
+      // it, so the link was a hard 404. It was invisible while the city list
+      // was behind a collapsed accordion; the always-rendered index on
+      // /locations-we-serve would have published it to crawlers.
       "Dibba Al Hisn":
         "/software-qa-testing-services-in-dibba-al-hisn",
       Dhaid: "/software-qa-testing-services-in-dhaid",
@@ -178,8 +185,8 @@ export const locationData: LocationData = {
       Kalba: "/software-qa-testing-services-in-kalba",
       "Liwa Oasis":
         "/software-qa-testing-services-in-liwa-oasis",
-      "Madinat Zayed":
-        "/software-qa-testing-services-in-madinat-zayed",
+      // "Madinat Zayed" removed: no page either, and its redirect points back
+      // to /locations-we-serve, so linking it from this very page was a loop.
       "Ras Al Khaimah":
         "/software-qa-testing-services-in-ras-al-khaimah",
       Sharjah:

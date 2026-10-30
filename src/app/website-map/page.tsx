@@ -1,6 +1,6 @@
 import Link from "next/link";
 import MainLayout from "@/components/layout/MainLayout";
-import { sanityGetPosts as getAllPosts, sanityGetCategories as getAllCategories, sanityGetTags as getAllTags, Post, Category, Tag } from "@/lib/sanity-data-adapter";
+import { sanityGetPosts as getAllPosts, sanityGetCategories as getAllCategories, sanityGetTags as getAllTags, sanityGetAllCaseStudies as getAllCaseStudies, Post, Category, Tag, CaseStudy } from "@/lib/sanity-data-adapter";
 import { Metadata } from "next";
 // F-31: replace the hardcoded 13-entry `manualLinks` array (which already
 // listed only 6 of 45 services + 1 of 7 solutions) with auto-discovery from
@@ -9,6 +9,12 @@ import { Metadata } from "next";
 // of truth, no more drift when a new service/solution lands.
 import { discoverRoutes, slugToTitle } from "@/lib/seo/discover-routes";
 import { MARKET_PAGES } from "@/lib/seo/market-pages";
+// PART 4 / JOB A1 — city pages were reachable from nowhere. Filtered by
+// isCityIndexed so this mirrors the XML sitemap's policy: of the 84 city
+// pages, only 22 are in INDEXED_CITY_SLUGS, and linking the other 62 from the
+// sitemap would spread internal links onto pages we deliberately keep out of
+// the index.
+import { getAllCities, isCityIndexed } from "@/app/lib/CityData";
 
 // Match sitemap.ts revalidation cadence — the HTML sitemap is a low-volatility
 // page that benefits from caching but should pick up filesystem changes within
@@ -61,6 +67,16 @@ export default async function SitemapPage() {
     } catch (err) {
         console.error('Sanity error fetching tags for /website-map:', err);
     }
+    // PART 4 / JOB A3 — case studies were reachable from almost nowhere. The
+    // /case-studies hub linked them with a relative href that 404'd, so a link
+    // crawl found 11 of 14 on zero inbound links. Listing them here gives each
+    // one a second source alongside the fixed hub.
+    let caseStudies: CaseStudy[] = [];
+    try {
+        caseStudies = await getAllCaseStudies();
+    } catch (err) {
+        console.error('Sanity error fetching case studies for /website-map:', err);
+    }
 
     // Group posts by category for better UX
     const postsByCategory: Record<string, Post[]> = {};
@@ -82,6 +98,11 @@ export default async function SitemapPage() {
         slug,
         title: slugToTitle(slug),
     }));
+
+    // Indexed city pages only — see the import note above.
+    const indexedCities = getAllCities()
+        .filter((city) => isCityIndexed(city.slug))
+        .sort((a, b) => a.name.localeCompare(b.name));
 
     return (
         <MainLayout>
@@ -110,6 +131,55 @@ export default async function SitemapPage() {
                                                     className="text-gray-700 hover:text-blue-600 hover:underline decoration-blue-200 underline-offset-2 text-sm block py-1 font-medium"
                                                 >
                                                     {page.title}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+
+                                {/* Locations — PART 4 / JOB A1.
+                                    A link crawl of the build found every city
+                                    page on zero contextual inbound links
+                                    except the two standalone /...-in-london
+                                    and /...-in-new-york routes. This section
+                                    plus the always-rendered index on
+                                    /locations-we-serve gives each indexed city
+                                    page two, which is the brief's threshold.
+                                    Anchor text is the page's own target phrase
+                                    rather than the bare city name. */}
+                                <section>
+                                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2 pb-2 border-b border-gray-200">
+                                        Locations
+                                        <span className="text-sm font-normal text-gray-500 ml-auto">{indexedCities.length}</span>
+                                    </h2>
+                                    <ul className="space-y-2">
+                                        {indexedCities.map((city) => (
+                                            <li key={city.slug}>
+                                                <Link
+                                                    href={`/${city.slug}`}
+                                                    className="text-gray-700 hover:text-blue-600 hover:underline decoration-blue-200 underline-offset-2 text-sm block py-1"
+                                                >
+                                                    Software testing company in {city.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+
+                                {/* Case Studies — PART 4 / JOB A3. */}
+                                <section>
+                                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2 pb-2 border-b border-gray-200">
+                                        Case Studies
+                                        <span className="text-sm font-normal text-gray-500 ml-auto">{caseStudies.length}</span>
+                                    </h2>
+                                    <ul className="space-y-2">
+                                        {caseStudies.map((study) => (
+                                            <li key={study.slug}>
+                                                <Link
+                                                    href={`/${study.slug}`}
+                                                    className="text-gray-700 hover:text-blue-600 hover:underline decoration-blue-200 underline-offset-2 text-sm block py-1"
+                                                >
+                                                    {study.title}
                                                 </Link>
                                             </li>
                                         ))}
