@@ -95,7 +95,7 @@ const IoTHeroSection: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
               Connect Your
               <span className="block text-brand-blue">Smart Ecosystem</span>
-              with Expert IoT Testing
+              with Expert IoT Appliances and Apps Testing Services
             </h1>
 
             {/* Description */}

@@ -14,13 +14,19 @@ import EmbeddedServiceOfferings from "@/components/sections/EmbeddedServiceOffer
 import EmbeddedTestriqAdvantage from "@/components/sections/EmbeddedTestriqAdvantage";
 import EmbeddedFAQs from "@/components/sections/EmbeddedFAQs";
 import EmbeddedAnyQuestions from "@/components/sections/EmbeddedAnyQuestions";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/embedded-testing-services",
-        title: "Embedded Testing Services | Software & Hardware QA | Testriq",
+        title: "Embedded Testing Services | Firmware & HW QA | Testriq",
         description:
             "Ensure precision and reliability with Testriq's embedded testing services. V&V for automotive (ISO 26262), medical, and IoT safety-critical systems.",
         ogImage: {
@@ -94,12 +100,23 @@ export default function EmbeddedTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <EmbeddedTestingHeroSection />
+                <ServiceDirectAnswer slug="embedded-testing-services" />
                 <EmbeddedComplexity />
                 <EmbeddedCritically />
                 <EmbeddedServiceOfferings />
                 <EmbeddedTestriqAdvantage />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="embedded-testing-services" />
+                <ServiceEngagementModels />
                 <EmbeddedFAQs />
                 <EmbeddedAnyQuestions />
+            {/* PART 4 / JOB A2 — contextual links to related services that
+                had almost no inbound links. In the body, not the footer:
+                nav and footer already link these pages ~1,457 times and
+                Google discounts boilerplate. Mapping lives in
+                src/lib/seo/related-services.ts. */}
+            <ServiceCrossLinks serviceSlug="embedded-testing-services" />
+            <ServiceCta slug="embedded-testing-services" />
             </MainLayout>
         </div>
     );

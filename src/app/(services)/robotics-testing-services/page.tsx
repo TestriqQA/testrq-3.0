@@ -16,15 +16,20 @@ import RoboticFAQs from "@/components/sections/RoboticFAQs";
 import RoboticAnyQuestions from "@/components/sections/RoboticAnyQuestions";
 import RoboticComplianceTable from "@/components/sections/RoboticComplianceTable";
 import RoboticRPAServices from "@/components/sections/RoboticRPAServices";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/robotics-testing-services",
-    title: "Enterprise RPA & Robotics Testing Services | Testriq",
+    title: "RPA & Robotics Testing Services | Bot QA | Testriq",
     description:
-      "Validate autonomous systems with Testriq's robotics and RPA testing. ISO 10218 compliance, Sim2Real validation, and AI path planning for industrial robots.",
+      "Robotics testing services from Testriq for autonomous systems and RPA. ISO 10218 compliance, Sim2Real validation and AI path planning for industrial robots.",
     ogImage: {
       url: "https://www.testriq.com/OG/Robotics-Testing-Service-Og.webp",
       width: 1200,
@@ -80,7 +85,7 @@ export default function RoboticTestingPage() {
       answer: "Yes. To validate data from end to end, we configure bots to extract information from emails, ERPs, and spreadsheets, then verify that the data remains consistent across all your software systems. Our data validation protocols ensure 100% integrity.",
     },
     {
-      question: "What is 'Physical AI' in 2026 robotics?",
+      question: 'What is "Physical AI" in 2026 robotics?',
       answer: "Physical AI refers to the trend where robots use Generative AI and simulation to 'train' themselves in virtual environments. Fixed code is replaced by learned experience, making robots much more adaptable in changing, real-world environments.",
     },
   ];
@@ -96,14 +101,19 @@ export default function RoboticTestingPage() {
       />
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <RoboticTestingHeroSection />
+      <ServiceDirectAnswer slug="robotics-testing-services" />
       <RoboticComplianceTable />
       <RoboticComprehensiveSlider />
       <RoboticProvenTestingProcess />
       <RoboticRPAServices />
       <RoboticWhyChooseTestriq />
       <RoboticToolsFramework />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="robotics-testing-services" />
+      <ServiceEngagementModels />
       <RoboticFAQs />
       <RoboticAnyQuestions />
+      <ServiceCta slug="robotics-testing-services" />
     </div>
   );
 }

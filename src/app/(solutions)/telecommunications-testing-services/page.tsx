@@ -9,12 +9,17 @@ import TelecomFAQSection from "@/components/sections/TelecomFAQSection";
 import TelecomContactSection from "@/components/sections/TelecomContactSection";
 import { Metadata } from "next";
 import StructuredData, { createCanonicalBreadcrumb, telecommunicationTestingSchema } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Telecommunication Testing Services",
-  description: "Comprehensive telecommunication testing services including 5G, IoT, VoIP, network security, NFV/SDN, and performance optimization.Ensure seamless connectivity with Testriq’s telecom testing services: performance, security, and compliance testing for telecom systems.",
+  title: "Telecommunications Testing Services",
+  description: "Telecommunications testing services for 5G, VoIP, IoT and NFV/SDN. Testriq validates network performance, security and compliance for connectivity.",
   keywords: [
     "telecommunication testing",
     "5G network testing",
@@ -86,14 +91,19 @@ const TelecommunicationTestingPage: React.FC = () => {
             />
     <main className="min-h-screen bg-white">
       <TelecomHeroSection />
+      <ServiceDirectAnswer slug="telecommunications-testing-services" />
       <TelecomChallengesSection />
       <TelecomTestingServicesSection />
       <TelecomToolsFrameworksSection />
       <TelecomNetworkTestingSection />
       {/* <TelecomCaseStudiesSection /> */}
       <TelecomROISection />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="telecommunications-testing-services" />
+      <ServiceEngagementModels />
       <TelecomFAQSection />
       <TelecomContactSection />
+      <ServiceCta slug="telecommunications-testing-services" />
     </main>
     </div>
   );

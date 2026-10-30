@@ -12,9 +12,11 @@ export const metadata: Metadata = {
     // which would otherwise print the brand twice (F-71).
     title: { absolute: "Performance Testing in 2026 | Testriq Blog Demo" },
     description: "Master performance testing with our comprehensive guide covering types, tools, best practices, and real-world case studies.",
+    // A template demo, not real content: it should not be indexed, and there
+    // is nothing on it worth following either.
     robots: {
-        index: true,
-        follow: true,
+        index: false,
+        follow: false,
     },
 };
 

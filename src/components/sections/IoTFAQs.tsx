@@ -90,11 +90,9 @@ const IoTFAQs: React.FC = () => {
                   <FaChevronDown className="w-5 h-5 text-[theme(color.brand.blue)]" />
                 )}
               </button>
-              {openFAQ === index && (
-                <div className="px-6 py-4 bg-white">
+              <div className="px-6 py-4 bg-white" hidden={openFAQ !== index}>
                   <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
                 </div>
-              )}
             </div>
           ))}
         </div>

@@ -4,6 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const RegressionTestingFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
@@ -41,6 +43,9 @@ const RegressionTestingFAQs: React.FC = () => {
 
   return (
     <section className="py-16 px-8 md:px-12 lg:px-24 bg-white">
+        {/* Built from the same array rendered below, so the markup and
+            the visible questions cannot drift apart. */}
+        <FaqJsonLd faqs={faqs} />
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">

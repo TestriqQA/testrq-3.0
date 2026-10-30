@@ -61,14 +61,12 @@ const AdHocTestingFAQs: React.FC = () => {
                                     {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
                                 </span>
                             </button>
-                            {openIndex === index && (
-                                <div className="px-8 pb-8 animate-fade-in-down">
+                            <div className="px-8 pb-8 animate-fade-in-down" hidden={openIndex !== index}>
                                     <div className="h-px bg-gray-100 mb-6"></div>
                                     <p className="text-gray-600 leading-relaxed">
                                         {faq.answer}
                                     </p>
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

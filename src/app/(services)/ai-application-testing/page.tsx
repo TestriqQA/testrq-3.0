@@ -9,6 +9,10 @@ import StructuredData, {
 } from "@/components/seo/StructuredData";
 import { HeroLoader, ContentLoader, FAQLoader } from "@/components/ui/Loaders";
 import ServiceTeamSection, { AI_TEAM } from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -17,7 +21,7 @@ export const metadata: Metadata = {
   // "Global AI Application Testing Services | Reliable Systems for the Future"
   // — 82ch rendered, so Google truncated it around "Reliable Systems for the
   // Fut…" and the brand never showed. Leads with the two terms buyers search.
-  title: "AI Application Testing Services | LLM & ML QA",
+  title: "AI Application Testing | LLM, ML & Agent QA",
   description:
     "Testriq AI Application Testing services help ensure your ML models are safe, fair, and compliant, connecting MLOps with QA for high-stakes AI systems.",
   keywords: [
@@ -156,6 +160,7 @@ export default function AIApplicationTesting() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <AITestingHeroSection />
+        <ServiceDirectAnswer slug="ai-application-testing" />
         <AIComprehensiveSlider />
         <AICardSlider />
         <AIProvenTestingProcess />
@@ -163,8 +168,11 @@ export default function AIApplicationTesting() {
         <AIToolsFramework />
         <AICaseStudies />
         <ServiceTeamSection people={AI_TEAM} />
+        <ServiceLastUpdated slug="ai-application-testing" />
+        <ServiceEngagementModels />
         <AIFAQs />
         <AIAnyQuestions />
+        <ServiceCta slug="ai-application-testing" />
       </MainLayout>
     </div>
   );

@@ -183,13 +183,11 @@ const TelecomFAQSection: React.FC = () => {
                         )}
                       </button>
 
-                      {isOpen && (
-                        <div className="px-6 pb-4 border-t border-gray-100 bg-gray-50">
+                      <div className="px-6 pb-4 border-t border-gray-100 bg-gray-50" hidden={!isOpen}>
                           <p className="text-gray-600 leading-relaxed pt-4">
                             {faq.answer}
                           </p>
                         </div>
-                      )}
                     </div>
                   );
                 })}

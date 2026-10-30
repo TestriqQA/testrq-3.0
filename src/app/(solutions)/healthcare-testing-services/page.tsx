@@ -10,12 +10,18 @@ import HealthcareFAQSection from "@/components/sections/HealthcareFAQSection";
 import HealthcareContactSection from "@/components/sections/HealthcareContactSection";
 import { Metadata } from "next";
 import StructuredData, { createCanonicalBreadcrumb, healthcareTestingServiceSchema } from "@/components/seo/StructuredData";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Healthcare Testing Solutions ",
-  description: "Ensure your healthcare software is secure, compliant, and user-friendly. Testriq offers end-to-end healthcare testing services aligned with HIPAA and FDA standards.",
+  title: "Healthcare Testing Services | HIPAA QA",
+  description: "Testriq’s end-to-end healthcare testing services keep your software secure, compliant and user-friendly, aligned with HIPAA and FDA standards.",
   keywords: [
     "Healthcare Software Testing",
     "HIPAA Compliance Testing",
@@ -85,6 +91,7 @@ const HealthcareTestingPage: React.FC = () => {
 
     <main className="min-h-screen bg-white">
       <HealthcareHeroSection />
+      <ServiceDirectAnswer slug="healthcare-testing-services" />
       <HealthcareChallengesSection />
       <HealthcareTestingServicesSection />
       <HealthcareTestingProcessSection />
@@ -92,8 +99,18 @@ const HealthcareTestingPage: React.FC = () => {
       <HealthcareToolsFrameworkSection />
       {/* <HealthcareCaseStudiesSection /> */}
       <HealthcareROISection />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="healthcare-testing-services" />
+      <ServiceEngagementModels />
       <HealthcareFAQSection />
       <HealthcareContactSection />
+    {/* PART 4 / JOB A3 — contextual links to the case studies that
+        prove this service. In the body, not the footer: the nav and
+        footer already link this page ~1,457 times and Google
+        discounts boilerplate links. Mapping lives in
+        src/lib/seo/related-case-studies.ts. */}
+    <RelatedCaseStudies serviceSlug="healthcare-testing-services" />
+    <ServiceCta slug="healthcare-testing-services" />
     </main>
     </div>
   );

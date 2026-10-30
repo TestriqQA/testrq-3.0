@@ -13,6 +13,11 @@ import StructuredData, {
   createCanonicalBreadcrumb,
   createFaqPageSchema,
 } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -93,7 +98,7 @@ export default function LaunchFastQAPage() {
       answer: "Our on-demand QA services provide instant access to senior-level engineers. This gives your dev team the flexibility it needs without the overhead of a full-time hire. This is crucial for early-stage companies needing rapid QA testing services during critical build phases.",
     },
     {
-      question: "Does LaunchFast QA support 24/7 agile support for software testing?",
+      question: "Does Launch-Fast QA support 24/7 agile support for software testing?",
       answer: "Yes. We offer 24/7 agile support for software testing by leveraging a global talent pool. Our 'follow-the-sun' model ensures we test your code while you sleep. Your results are ready for review before your morning stand-up begins.",
     },
     {
@@ -114,6 +119,7 @@ export default function LaunchFastQAPage() {
       />
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <LaunchFastQAHeroSection />
+      <ServiceDirectAnswer slug="launchfast-qa" />
       <LaunchFastChallenges />
       <LaunchFastComprehensiveSlider />
       <LaunchFastProvenTestingProcess />
@@ -121,7 +127,11 @@ export default function LaunchFastQAPage() {
       <LaunchFastWhyChooseTestriq />
       <LaunchFastToolsFramework />
       <LaunchFastCaseStudies />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="launchfast-qa" />
+      <ServiceEngagementModels />
       <LaunchFastFAQs />
+      <ServiceCta slug="launchfast-qa" />
     </div>
   );
 }

@@ -52,11 +52,9 @@ const CyberSecurityFAQs: React.FC = () => {
                                 </div>
                             </button>
 
-                            {openIndex === index && (
-                                <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                            <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-50 pt-4" hidden={openIndex !== index}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

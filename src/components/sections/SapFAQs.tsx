@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const SapFAQs: React.FC = () => {
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
@@ -35,6 +37,9 @@ const SapFAQs: React.FC = () => {
 
     return (
         <section className="py-16 px-6 sm:px-6 md:px-12 lg:px-24 bg-white">
+            {/* Built from the same array rendered below, so the markup and
+                the visible questions cannot drift apart. */}
+            <FaqJsonLd faqs={faqs} />
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
@@ -71,15 +76,13 @@ const SapFAQs: React.FC = () => {
                                 </div>
                             </button>
 
-                            {openFAQ === index && (
-                                <div className="px-6 pb-4">
+                            <div className="px-6 pb-4" hidden={openFAQ !== index}>
                                     <div className="border-t border-gray-200 pt-4">
                                         <p className="text-gray-600 leading-relaxed">
                                             {faq.answer}
                                         </p>
                                     </div>
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

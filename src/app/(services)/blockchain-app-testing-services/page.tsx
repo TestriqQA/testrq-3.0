@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
     blockchainServiceSchema,
-    blockchainFAQSchema,
     createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -13,15 +12,20 @@ import BlockchainSolutions from "@/components/sections/BlockchainSolutions";
 import BlockchainMethodology from "@/components/sections/BlockchainMethodology";
 import BlockchainFAQs from "@/components/sections/BlockchainFAQs";
 import BlockchainCTA from "@/components/sections/BlockchainCTA";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/blockchain-app-testing-services",
-        title: "Blockchain App Testing | Smart Contract & dApp QA | Testriq",
+        title: "Blockchain App Testing Services | Smart Contract | Testriq",
         description:
-            "Secure your Web3 stack with Testriq's blockchain testing. Smart contract audits, dApp security testing, and decentralized network validation for enterprises.",
+            "Blockchain app testing services for your Web3 stack: smart contract audits, dApp security testing and decentralized network validation for enterprises.",
         ogImage: {
             url: "https://www.testriq.com/OG/Blockchain-app-testing-og-image.webp",
             width: 2752,
@@ -68,7 +72,6 @@ export default function BlockchainAppTesting() {
     return (
         <div>
             <StructuredData data={blockchainServiceSchema} />
-            <StructuredData data={blockchainFAQSchema} />
             <StructuredData
                 data={createCanonicalBreadcrumb(
                     "/blockchain-app-testing-services",
@@ -77,11 +80,16 @@ export default function BlockchainAppTesting() {
             />
             <MainLayout>
                 <BlockchainHero />
+                <ServiceDirectAnswer slug="blockchain-app-testing-services" />
                 <BlockchainWhyChoose />
                 <BlockchainSolutions />
                 <BlockchainMethodology />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="blockchain-app-testing-services" />
+                <ServiceEngagementModels />
                 <BlockchainFAQs />
                 <BlockchainCTA />
+                <ServiceCta slug="blockchain-app-testing-services" />
             </MainLayout>
         </div>
     );

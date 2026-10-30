@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { FaFont } from "react-icons/fa";
 import { slugify } from "@/lib/utils";
+import { isExternalHref, toInternalHref } from "@/lib/seo/content-links";
 import { PortableText } from "@portabletext/react";
 import { Post } from "@/lib/sanity-data-adapter";
 import { sanityImage } from "@/lib/sanity-image";
@@ -247,8 +248,15 @@ const components = {
   marks: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     link: ({ children, value }: any) => {
-      const href = value?.href || "#";
-      const isExternal = !href.startsWith("/") && !href.startsWith("https://www.testriq.com");
+      // DEV-04 + internal linking. Body hrefs come from Sanity markDefs and
+      // two things were wrong with them, measured across all 4,388 link marks
+      // in live content: seven carry a single-slash scheme
+      // (`https:/www.testriq.com/...`) that browsers repair but a prefix
+      // compare does not, and 4,273 are self-links written as absolute URLs,
+      // which next/link treats as external and loads as a full document.
+      // toInternalHref fixes both; see src/lib/seo/content-links.ts.
+      const href = toInternalHref(value?.href);
+      const isExternal = isExternalHref(href);
       // Semrush audit (05 Oct 2026) issue 216 "Links with no anchor text".
       // Crawling all 1434 sitemap URLs found 10 anchors with no text, no
       // aria-label and no titled image — every one of them a link mark in a

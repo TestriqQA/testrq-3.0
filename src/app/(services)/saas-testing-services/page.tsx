@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import StructuredData, {
     saasTestingServiceSchema,
     createCanonicalBreadcrumb,
+    createFaqPageSchema,
 } from "@/components/seo/StructuredData";
 
 export const revalidate = 3600;
@@ -11,7 +12,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
     // `absolute` bypasses the root layout's "%s | Testriq" template,
     // which would otherwise print the brand twice (F-71).
-    title: { absolute: "SaaS Testing Services | Cloud Application QA | Testriq" },
+    title: { absolute: "SaaS Testing Services | Multi-Tenant Cloud QA | Testriq" },
     description:
         "Premium SaaS testing services for cloud-first companies. Multi-tenant testing, GDPR HIPAA compliance, performance testing, and security audits.",
     keywords: [
@@ -74,6 +75,12 @@ export const metadata: Metadata = {
 
 import SaasTestingHeroSection from "@/components/sections/SaasTestingHeroSection";
 import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import SaasTestingFAQs, { SAAS_TESTING_FAQS } from "@/components/sections/SaasTestingFAQs";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 const SaasTestingWhyDiffers = dynamic(
     () => import("@/components/sections/SaasTestingWhyDiffers"),
@@ -214,6 +221,9 @@ export default function SaasTestingPage() {
     return (
         <div>
             <StructuredData data={saasTestingServiceSchema} />
+            {/* Built from the same array the FAQ section renders, so the
+                markup and the visible Q&As cannot drift apart. */}
+            <StructuredData data={createFaqPageSchema(SAAS_TESTING_FAQS)} />
             <StructuredData
                 data={createCanonicalBreadcrumb(
                     "/saas-testing-services",
@@ -222,6 +232,7 @@ export default function SaasTestingPage() {
             />
             <MainLayout>
                 <SaasTestingHeroSection />
+                <ServiceDirectAnswer slug="saas-testing-services" />
                 <SaasTestingWhyDiffers />
                 <SaasTestingChallenges />
                 <SaasTestingMethodologies />
@@ -231,9 +242,24 @@ export default function SaasTestingPage() {
                 <SaasTestingMetrics />
                 <SaasTestingCompliance />
                 <SaasTestingStrategy />
-                <SaasTestingEngagement />
                 <ServiceTeamSection />
+                <ServiceLastUpdated slug="saas-testing-services" />
+                <SaasTestingEngagement />
+                <SaasTestingFAQs />
                 <SaasTestingReadyToStart />
+            {/* PART 4 / JOB A3 — contextual links to the case studies that
+                prove this service. In the body, not the footer: the nav and
+                footer already link this page ~1,457 times and Google
+                discounts boilerplate links. Mapping lives in
+                src/lib/seo/related-case-studies.ts. */}
+            <RelatedCaseStudies serviceSlug="saas-testing-services" />
+            {/* PART 4 / JOB A2 — contextual links to related services that
+                had almost no inbound links. In the body, not the footer:
+                nav and footer already link these pages ~1,457 times and
+                Google discounts boilerplate. Mapping lives in
+                src/lib/seo/related-services.ts. */}
+            <ServiceCrossLinks serviceSlug="saas-testing-services" />
+            <ServiceCta slug="saas-testing-services" />
             </MainLayout>
         </div>
     );

@@ -1,12 +1,16 @@
 import React from "react";
 import { FaArrowRight, FaHome } from "react-icons/fa";
 import ImageSlider from "../ImageSlider";
+import ImageMarquee from "../ImageMarque";
 import { FaCertificate } from "react-icons/fa6";
 import Link from "next/link";
 
 const Hero = () => {
+  // pb-8 rather than the original pb-16: the client logo strip at the bottom
+  // now closes the section visually, so it occupies the bare padding that used
+  // to sit there rather than stacking on top of it.
   return (
-    <section className="bg-white text-black pt-8 pb-16 px-8 md:px-12 lg:px-24">
+    <section className="bg-white text-black pt-8 pb-8 px-8 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm font-medium text-gray-600 mb-6">
@@ -48,7 +52,7 @@ const Hero = () => {
               Services & QA Solutions
             </h1>
 
-            <p className="text-gray-700 text-base md:text-lg xl:mx-0 mb-6 max-w-2xl mx-auto">
+            <p className="text-gray-700 text-base md:text-lg mb-6">
               With global regulations tightening and AI evolving rapidly, software needs more than just basic testing. Testriq delivers end-to-end <Link title="Quality Assurance Solutions" href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline">Quality Assurance</Link> to ensure your rapid development never compromises on reliability.
               We use DevSecOps and advanced quality engineering to reduce risk for global enterprises. As an ISTQB Certified partner, we serve clients across the US, UK, EU, India, Asia, and the UAE.
             </p>
@@ -87,9 +91,22 @@ const Hero = () => {
           </div>
 
           {/* Right Section */}
-          <div className="flex flex-col justify-center text-center mt-20 md:mt-24 xl:mt-20 xl:w-1/2 lg:[my-10] md:my-10">
+          {/* <div className="flex flex-col justify-center text-center mt-20 md:mt-24 xl:mt-20 xl:w-1/2 lg:[my-10] md:my-10">
             <ImageSlider />
-          </div>
+          </div> */}
+        </div>
+
+        {/* Client logo marquee, moved up from the standalone
+            HomeTrustedCompanies section so the hero's empty bottom carries
+            social proof above the fold.
+
+            Only the home page usage moved: HomeTrustedCompanies is still
+            rendered on /blog/categories, so the component itself stays. */}
+        <div className="mt-6 border-t border-gray-100 pt-6">
+          <p className="text-center text-sm font-semibold uppercase tracking-wider text-gray-500">
+            Trusted by leading companies worldwide
+          </p>
+          <ImageMarquee />
         </div>
       </div>
     </section>

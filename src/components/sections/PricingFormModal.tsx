@@ -61,6 +61,12 @@ const PricingFormModal: React.FC<PricingFormModalProps> = ({
     // Initialize reCAPTCHA form hook
     const { isSubmitting, submitWithRecaptcha } = useRecaptchaForm({
         action: "pricing_form",
+        // DEV-01: this is the "Get a Quote" form, so it reports quote_request
+        // rather than generate_lead. `service` is the plan/service the visitor
+        // was looking at, which is what makes the event actionable.
+        // packageName is the plan the visitor opened the modal from, which is
+        // the closest thing this form has to the service being quoted.
+        ga: { name: "quote_request", params: { service: packageName } },
         onSuccess: () => {
             setIsSubmitted(true);
         },

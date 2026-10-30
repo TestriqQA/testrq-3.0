@@ -14,6 +14,10 @@ import SecurityTestingMethodology from "@/components/sections/SecurityTestingMet
 import CyberSecurityROISection from "@/components/sections/CyberSecurityROISection";
 import CyberSecurityFAQs from "@/components/sections/CyberSecurityFAQs";
 import CyberSecurityCTASection from "@/components/sections/CyberSecurityCTASection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -34,9 +38,9 @@ export async function generateMetadata(): Promise<Metadata> {
     // which no longer describes anything on the page.
     return buildPageMetadata({
         pathname: "/cyber-security-testing-services",
-        title: "Cyber Security Compliance Audits | GDPR & HIPAA | Testriq",
+        title: "Cyber Security Testing Services | GDPR & HIPAA | Testriq",
         description:
-            "Cyber security compliance audits for GDPR, HIPAA, PCI DSS, SOC 2 and ISO 27001. Control-by-control gap analysis, evidence register and remediation plan.",
+            "Cyber security testing services for GDPR, HIPAA, PCI DSS, SOC 2 and ISO 27001. Control-by-control gap analysis, evidence register and remediation plan.",
         ogImage: {
             url: "https://www.testriq.com/OG/Cyber-security-testing-ogimage.webp",
             width: 2752,
@@ -102,8 +106,12 @@ export default function CyberSecurityTestingPage() {
                 <SecurityTestingServicesGrid />
                 <SecurityTestingMethodology />
                 <CyberSecurityROISection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="cyber-security-testing-services" />
+                <ServiceEngagementModels />
                 <CyberSecurityFAQs />
                 <CyberSecurityCTASection />
+                <ServiceCta slug="cyber-security-testing-services" />
             </MainLayout>
         </div>
     );

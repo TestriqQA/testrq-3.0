@@ -106,15 +106,13 @@ const QADocumentationFAQs = () => {
                 </div>
               </button>
 
-              {openFAQ === index && (
-                <div className="px-6 pb-6">
+              <div className="px-6 pb-6" hidden={openFAQ !== index}>
                   <div className="pl-20">
                     <p className="text-gray-600 leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
                 </div>
-              )}
             </div>
           ))}
 

@@ -1,14 +1,20 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { FaCog, FaShieldAlt, FaRocket, FaMobile, FaDesktop, FaCloud, FaCode, FaChartLine, FaChevronLeft, FaChevronRight, FaLayerGroup } from "react-icons/fa";
 import Link from "next/link";
-import { sanityGetCategories as getCategories, Category } from "@/lib/sanity-data-adapter";
+// `import type` on purpose — see the note in CategorySidebar.tsx. A value
+// import from the adapter would pull the 20 MB content snapshot into this
+// client component's bundle.
+import type { Category } from "@/lib/sanity-data-adapter";
 
-const BlogCategories: React.FC = () => {
+interface BlogCategoriesProps {
+  /** Every category, fetched by the server page that renders this. */
+  categories: Category[];
+}
+
+const BlogCategories: React.FC<BlogCategoriesProps> = ({ categories: sourceCategories }) => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -58,69 +64,32 @@ const BlogCategories: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    async function fetchCategories() {
-      try {
-        setLoading(true);
-        const wpCategories = await getCategories();
-        const adaptedCategories = wpCategories;
-        const totalPosts = adaptedCategories.reduce((sum: number, cat: Category) => sum + cat.postCount, 0);
-
-        const allCategory: Category = {
-          id: "all",
-          name: "All Posts",
-          description: "Browse all articles",
-          color: "from-slate-500 to-slate-600",
-          icon: "🏷️",
-          postCount: totalPosts,
-          subscribers: Math.floor(totalPosts * 25),
-          tags: ["All"],
-          featuredTools: [],
-          seo: { title: "", description: "", keywords: "" }
-        };
-
-        setCategories([allCategory, ...adaptedCategories]);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-        setCategories([{
-          id: "all",
-          name: "All Posts",
-          description: "Browse all articles",
-          color: "from-slate-500 to-slate-600",
-          icon: "🏷️",
-          postCount: 156,
-          subscribers: 3900,
-          tags: ["All"],
-          featuredTools: [],
-          seo: { title: "", description: "", keywords: "" }
-        }]);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchCategories();
-  }, []);
+  // The same "All Posts" pseudo-category the fetch used to build, now derived
+  // from the prop. The old hardcoded error fallback (postCount 156) is gone
+  // with the fetch that could fail: an empty `categories` prop simply yields
+  // the All Posts entry with a count of zero.
+  const categories = useMemo<Category[]>(() => {
+    const totalPosts = sourceCategories.reduce((sum, cat) => sum + cat.postCount, 0);
+    const allCategory: Category = {
+      id: "all",
+      name: "All Posts",
+      description: "Browse all articles",
+      color: "from-slate-500 to-slate-600",
+      icon: "🏷️",
+      postCount: totalPosts,
+      subscribers: Math.floor(totalPosts * 25),
+      tags: ["All"],
+      featuredTools: [],
+      seo: { title: "", description: "", keywords: "" }
+    };
+    return [allCategory, ...sourceCategories];
+  }, [sourceCategories]);
 
   useEffect(() => {
     checkScrollPosition();
     window.addEventListener('resize', checkScrollPosition);
     return () => window.removeEventListener('resize', checkScrollPosition);
   }, [categories]);
-
-  if (loading) {
-    return (
-      <section className="bg-white py-12 px-4 sm:px-6 lg:px-8 border-y border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center h-20">
-            <div className="flex items-center gap-3">
-              <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-              <span className="text-slate-500">Loading categories...</span>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="blog-categories" className="bg-white py-16 px-4 sm:px-6 lg:px-8 border-y border-slate-100">

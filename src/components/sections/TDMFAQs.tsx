@@ -52,11 +52,9 @@ const TDMFAQs: React.FC = () => {
                                     {activeIndex === index ? <FaMinus /> : <FaPlus />}
                                 </span>
                             </button>
-                            {activeIndex === index && (
-                                <div className="p-6 pt-0 text-gray-600 leading-relaxed border-t border-slate-50">
+                            <div className="p-6 pt-0 text-gray-600 leading-relaxed border-t border-slate-50" hidden={activeIndex !== index}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

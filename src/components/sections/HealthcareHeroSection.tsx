@@ -90,7 +90,7 @@ const HealthcareHeroSection: React.FC = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Secure Your
               <span className="block text-brand-blue">Healthcare Software</span>
-              with Expert Medical QA
+              with Expert Healthcare Testing Services
             </h1>
 
             {/* Description */}

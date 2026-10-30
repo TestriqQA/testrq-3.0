@@ -4,6 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from "react-icons/fa";
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const CompatibilityTestingFAQs: React.FC = () => {
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
@@ -36,6 +38,9 @@ const CompatibilityTestingFAQs: React.FC = () => {
 
     return (
         <section className="py-20 px-8 md:px-12 lg:px-24 bg-white">
+            {/* Built from the same array rendered below, so the markup and
+                the visible questions cannot drift apart. */}
+            <FaqJsonLd faqs={faqs} />
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16 space-y-4">
                     <div className="inline-flex items-center bg-blue-50 text-brand-blue gap-2 px-4 py-2 rounded-full font-bold text-sm">
@@ -69,13 +74,11 @@ const CompatibilityTestingFAQs: React.FC = () => {
                                 </div>
                             </button>
 
-                            {openFAQ === index && (
-                                <div className="px-8 pb-6">
+                            <div className="px-8 pb-6" hidden={openFAQ !== index}>
                                     <p className="text-gray-600 leading-relaxed italic border-l-2 border-brand-blue pl-4">
                                         {faq.answer}
                                     </p>
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

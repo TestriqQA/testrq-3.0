@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { readLeadAttribution, leadAttributionEmailRows } from '@/lib/lead-attribution';
 import { toEmailSafeText, toEmailSafeAttribute, toEmailSafeLinkLabel } from '@/lib/email-safe-text';
 import { BOOKING_URL } from "@/lib/booking";
 
@@ -15,6 +16,12 @@ interface PricingFormData {
   packageName: string;
   packagePrice: string;
   recaptchaToken?: string;
+  // DEV-02 — attached to every submission by useRecaptchaForm. Read via
+  // readLeadAttribution() rather than used directly, so the values are
+  // type-checked and length-capped before reaching an email or a sheet.
+  landingPage?: string;
+  landingReferrer?: string;
+  submittedFrom?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -246,6 +253,12 @@ async function sendAdminNotification(data: PricingFormData) {
           <div style="margin: 24px; background: #fefce8; padding: 20px; border-radius: 10px; border-left: 4px solid #eab308;">
             <h3 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #854d0e; text-transform: uppercase; letter-spacing: 0.5px;">Message</h3>
             <p style="margin: 0; font-size: 14px; color: #422006; line-height: 1.6; white-space: pre-wrap;">${toEmailSafeText(data.message)}</p>
+          </div>
+
+          <!-- Lead Source -->
+          <div style="margin: 0 24px 24px; background: #eef2ff; padding: 20px; border-radius: 10px; border-left: 4px solid #6366f1;">
+            <h3 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #3730a3; text-transform: uppercase; letter-spacing: 0.5px;">Lead Source</h3>
+            ${leadAttributionEmailRows(readLeadAttribution(data), '<p style="margin: 0 0 4px; font-size: 14px; color: #312e81;">')}
           </div>
 
           <!-- Timestamp -->

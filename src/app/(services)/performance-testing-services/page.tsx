@@ -16,6 +16,13 @@ import PerformanceTestingWhyChooseTestriq from "@/components/sections/Performanc
 import PerformanceTestingToolsFramework from "@/components/sections/PerformanceTestingToolsFramework";
 import PerformanceTestingFAQs from "@/components/sections/PerformanceTestingFAQs";
 import PerformanceTestingReadyToEnsureQuality from "@/components/sections/PerformanceTestingReadyToEnsureQuality";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -82,14 +89,26 @@ export default function PerformanceTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <PerformanceTestingHeroSection />
+                <ServiceDirectAnswer slug="performance-testing-services" />
                 <PerformanceTestingChallenges />
                 <PerformanceTestingComprehensiveSlider />
                 <PerformanceTestingLatencySection />
                 <PerformanceTestingProvenTestingProcess />
                 <PerformanceTestingWhyChooseTestriq />
                 <PerformanceTestingToolsFramework />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="performance-testing-services" />
+                <ServiceEngagementModels />
                 <PerformanceTestingFAQs />
                 <PerformanceTestingReadyToEnsureQuality />
+            {/* PART 4 / JOB A3 — contextual links to the case studies that
+                prove this service. In the body, not the footer: the nav and
+                footer already link this page ~1,457 times and Google
+                discounts boilerplate links. Mapping lives in
+                src/lib/seo/related-case-studies.ts. */}
+            <RelatedCaseStudies serviceSlug="performance-testing-services" />
+            <ServiceCrossLinks serviceSlug="performance-testing-services" />
+            <ServiceCta slug="performance-testing-services" />
             </MainLayout>
         </div>
     );

@@ -7,6 +7,24 @@
 // call sites across the project don't need to update their imports.
 //
 // Extracted: 2026-05-15. Total exports here: 44 of 45 service schemas.
+//
+// ---------------------------------------------------------------------------
+// areaServed — do NOT bulk-replace the "Worldwide" values in this file.
+//
+// The SEO brief (DEV-14) asks for areaServed to name US, UK, India and UAE
+// explicitly on every service page. Reviewed and declined on 2026-10-28:
+// areaServed states where a service is DELIVERED, and Testriq has one office
+// and no regional entity, so a four-country list asserts something narrower
+// than the truth. The notes on cyberSecurityServiceSchema and
+// qaServicesServiceSchema below reached the same conclusion independently.
+//
+// The single exception is /security-testing, which does list four countries,
+// because its own coverage section names those markets in body copy — US, UK,
+// UAE and the EU, deliberately not India. That array is scoped to that page.
+//
+// The values are spelled inconsistently here ("Worldwide", "WorldWide",
+// "Global"). Normalising the spelling is fine; narrowing the claim is not.
+// ---------------------------------------------------------------------------
 
 export const webAppTestingServiceSchema = {
   "@context": "https://schema.org",

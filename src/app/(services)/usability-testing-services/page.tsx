@@ -14,6 +14,11 @@ import UsabilityTestingServicesGrid from "@/components/sections/UsabilityTesting
 import UsabilityTestingMethodology from "@/components/sections/UsabilityTestingMethodology";
 import UsabilityTestingFAQs from "@/components/sections/UsabilityTestingFAQs";
 import UsabilityTestingCTASection from "@/components/sections/UsabilityTestingCTASection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -86,12 +91,17 @@ export default function UsabilityTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <UsabilityTestingHeroSection />
+                <ServiceDirectAnswer slug="usability-testing-services" />
                 <UsabilityTestingCrucialSection />
                 <UsabilityTestingAdvantage />
                 <UsabilityTestingServicesGrid />
                 <UsabilityTestingMethodology />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="usability-testing-services" />
+                <ServiceEngagementModels />
                 <UsabilityTestingFAQs />
                 <UsabilityTestingCTASection />
+                <ServiceCta slug="usability-testing-services" />
             </MainLayout>
         </div>
     );

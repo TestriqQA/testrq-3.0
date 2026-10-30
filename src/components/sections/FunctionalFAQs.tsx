@@ -66,11 +66,9 @@ const FunctionalFAQs: React.FC = () => {
                                 </div>
                             </button>
 
-                            {activeIndex === idx && (
-                                <div className="px-8 pb-6">
+                            <div className="px-8 pb-6" hidden={activeIndex !== idx}>
                                     <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

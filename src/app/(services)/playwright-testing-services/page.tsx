@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/playwright-testing-services";
 export const metadata: Metadata = {
   title: "Playwright Testing Services — Cross-Browser E2E Automation",
   description:
-    "Playwright end-to-end testing services: multi-browser (Chromium, Firefox, WebKit), trace viewer, network interception, parallel sharding, and CI/CD integration.",
+    "Playwright testing services, end to end: multi-browser (Chromium, Firefox, WebKit), trace viewer, network interception, parallel sharding and CI/CD.",
   keywords: [
     "Playwright Testing Services",
     "Playwright Automation",
@@ -49,7 +49,7 @@ const PlaywrightTestingPage: React.FC = () => (
     toolName="Playwright"
     slug="playwright-testing-services"
     breadcrumbName="Playwright Testing Services"
-    heroTitle="Playwright Cross-Browser E2E Test Automation Services"
+    heroTitle="Playwright Testing Services — Cross-Browser E2E Automation"
     heroDescription="Production Playwright suites across Chromium, Firefox, and WebKit (Safari engine) with the trace viewer your team will actually use for failure triage. First-party network interception, auto-waits that eliminate the Thread.sleep tax, sharded parallel execution, and tight CI/CD integration. Built by testers who&apos;ve led migrations from Selenium and Cypress to Playwright at scale."
     whatIs="Playwright is Microsoft's modern browser-automation library, designed to fix Selenium's flake problems and Cypress's single-browser constraint. It drives Chromium, Firefox, and WebKit from one API, supports async/await idioms in TS / JS / Python / .NET / Java, ships first-class network interception, and includes a trace viewer that makes failure debugging dramatically faster than Selenium's screenshot-and-pray model. Auto-waits + retry-on-failure are built in — most flake patterns from older tools simply don't appear."
     whenToUse={[

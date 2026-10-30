@@ -20,7 +20,7 @@
  */
 
 import { useEffect } from "react";
-import { event as gaEvent } from "@/lib/gtag";
+import { trackEvent } from "@/lib/gtag";
 
 export default function ContactLinkTracking() {
   useEffect(() => {
@@ -38,12 +38,16 @@ export default function ContactLinkTracking() {
       const href = link.getAttribute("href") || "";
       const isPhone = href.startsWith("tel:");
 
-      gaEvent({
-        action: isPhone ? "phone_click" : "email_click",
-        category: "contact",
+      // DEV-01. Names and parameters are fixed by the spec — GA4 is
+      // case-sensitive and an unrecognised name becomes a separate event that
+      // is not marked as a key event, so the clicks would not be counted.
+      // Previously these fired as phone_click / email_click with the number in
+      // event_label.
+      trackEvent(isPhone ? "contact_phone_click" : "contact_email_click", {
         // The destination Testriq number/address, not anything the visitor
-        // typed — the number tells us which CTA block is actually used.
-        label: href.slice(isPhone ? "tel:".length : "mailto:".length),
+        // typed — it tells us which CTA block is actually used.
+        link_url: href,
+        page_path: window.location.pathname,
       });
     };
 

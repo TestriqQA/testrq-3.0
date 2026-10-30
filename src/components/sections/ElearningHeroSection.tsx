@@ -76,7 +76,7 @@ const ElearningHeroSection: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
               Empower Learning
               <span className="block text-brand-blue">Through Quality</span>
-              E-Learning Testing
+              E-Learning Testing Services
             </h1>
 
             {/* Description */}

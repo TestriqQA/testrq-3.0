@@ -171,6 +171,23 @@ export const organizationSchema = {
   // active Testriq-branded content. Listings to add later (Phase 2 —
   // user-blocked on account creation): Crunchbase company page,
   // Wikidata entry, DesignRush listing.
+  //
+  // 2026-10-30 — DO NOT ADD DESIGNRUSH TO THIS ARRAY. The line above still
+  // holds for Crunchbase and Wikidata, which are genuinely pending. It does
+  // not hold for DesignRush: that agency profile was DECLINED. Logging in
+  // returns "Your Agency profile has been declined", so there is no listing
+  // and no URL to add.
+  //
+  // This is not a task waiting to be picked up. sameAs asserts "the entity
+  // here is verifiably the same entity over there"; aiming it at a profile
+  // that does not exist is a false signal, not an unfinished chore. Marketing
+  // is following up with DesignRush support — if the profile is approved, the
+  // business team will say so. Until then, no DesignRush URL belongs here
+  // even if one surfaces.
+  //
+  // The paragraph above is kept rather than corrected because that business
+  // decision is still open. The matching note sits beside the footer badge in
+  // src/components/layout/Footer.tsx.
   "sameAs": [
     // Social — pre-existing
     "https://www.linkedin.com/company/testriq-qa-lab/",
@@ -2218,7 +2235,7 @@ export const pricingServiceSchema = {
         "areaServed": ["US", "GB", "IN", "AE", "EU"]
       }],
       "sameAs": [
-        "linkedin.com/company/testriq-qa-lab/",
+        "https://www.linkedin.com/company/testriq-qa-lab/",
         "https://twitter.com/testriq",
         "https://www.facebook.com/testriq.lab/",
         "https://www.instagram.com/testriq/"

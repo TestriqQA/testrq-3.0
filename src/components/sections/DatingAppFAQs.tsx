@@ -4,42 +4,51 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const DatingAppFAQs = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
 
   const faqs = [
     {
       question: "What does the dating app certification process involve?",
+      answerText: "We review your app against our six key pillars of trust and safety, including security, privacy, user protection, content integrity, compliance, and operational transparency. Certification is granted only when all six pillars are fully met.",
       answer:
         "We review your app against our six key pillars of trust and safety, including security, privacy, user protection, content integrity, compliance, and operational transparency. Certification is granted only when all six pillars are fully met.",
     },
     {
       question: "Do you help apps improve if they don't meet the six pillars?",
+      answerText: "Yes. If your app falls short in any area, we provide clear, actionable recommendations so you can make the necessary changes before reapplying for certification.",
       answer:
         "Yes. If your app falls short in any area, we provide clear, actionable recommendations so you can make the necessary changes before reapplying for certification.",
     },
     {
       question: "Is this certification recognized outside my country?",
+      answerText: "Yes. Our six-pillar framework is based on globally accepted best practices, making it relevant for dating apps operating in multiple regions.",
       answer:
         (<>Yes. Our six-pillar framework is based on globally accepted <Link href="/blog/post/web-application-automation-testing-tools-frameworks-best-practices">best practices</Link>, making it relevant for dating apps operating in multiple regions.</>),
     },
     {
       question: "What happens after my app is certified?",
+      answerText: "Once certified, you’ll receive official documentation and the certification badge to display on your app and marketing materials. We also provide periodic reviews to ensure ongoing compliance.",
       answer:
         "Once certified, you’ll receive official documentation and the certification badge to display on your app and marketing materials. We also provide periodic reviews to ensure ongoing compliance.",
     },
     {
       question: "Do you work with all types of dating apps?",
+      answerText: "We work with both established platforms and startups, as long as they are committed to meeting all six pillars of trust and safety.",
       answer:
         "We work with both established platforms and startups, as long as they are committed to meeting all six pillars of trust and safety.",
     },
     {
       question: "What exactly are the six pillars of dating apps?",
+      answerText: "The six pillars include: (1) Data Privacy & Security, (2) User Verification, (3) Content Moderation, (4) Fraud Prevention, (5) Compliance with Relevant Laws, and (6) Transparency & Accountability.",
       answer:
         (<>The six pillars include: (1) <Link href="/blog/post/data-privacy-and-security-for-e-learning-platforms-protecting-student-data-and-ensuring-compliance">Data Privacy & Security</Link>, (2) User Verification, (3) Content Moderation, (4) Fraud Prevention, (5) Compliance with Relevant Laws, and (6) Transparency & Accountability.</>),
     },
     {
       question: "Do you guarantee app success after certification?",
+      answerText: "Our role is to verify that your app meets the six pillars and issue certification. While this can strengthen user trust, we do not guarantee business performance.",
       answer:
         "Our role is to verify that your app meets the six pillars and issue certification. While this can strengthen user trust, we do not guarantee business performance.",
     },
@@ -47,6 +56,9 @@ const DatingAppFAQs = () => {
 
   return (
     <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">
+        {/* The rendered answers are JSX, so the schema is built from
+            each entry's plain-text twin held in the same object. */}
+        <FaqJsonLd faqs={faqs.map((f) => ({ question: f.question, answer: f.answerText }))} />
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-3 py-2 rounded-full mb-5">
@@ -83,11 +95,9 @@ const DatingAppFAQs = () => {
                 />
               </button>
 
-              {expandedFAQ === index && (
-                <div className="px-6 pb-6 text-gray-600 leading-relaxed">
+              <div className="px-6 pb-6 text-gray-600 leading-relaxed" hidden={expandedFAQ !== index}>
                   {faq.answer}
                 </div>
-              )}
             </div>
           ))}
         </div>

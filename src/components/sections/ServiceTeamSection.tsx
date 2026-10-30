@@ -33,7 +33,16 @@ export interface ServiceTeamPerson {
   /** Path under /public. Rendered into an 88×88 circle with object-cover. */
   src: string;
   blurb: string;
+  /**
+   * Topics this person demonstrably works on, restated from their blurb below
+   * rather than assigned. Emitted as `Person.knowsAbout` (DEV-15). These are
+   * areas of work, not qualifications — see the note on `personSchema`.
+   */
+  knowsAbout: readonly string[];
 }
+
+/** The shared placeholder avatar, not a photo of any particular person. */
+const PLACEHOLDER_AVATAR = "/None.webp";
 
 const poojaKatkar: ServiceTeamPerson = {
   name: "Pooja Katkar",
@@ -42,6 +51,7 @@ const poojaKatkar: ServiceTeamPerson = {
   src: "/None.webp",
   blurb:
     "Runs test planning and execution on client engagements, and owns the defect triage your team sees day to day.",
+  knowsAbout: ["Test planning", "Test execution", "Defect triage", "Quality assurance"],
 };
 
 const raginiKumari: ServiceTeamPerson = {
@@ -51,6 +61,7 @@ const raginiKumari: ServiceTeamPerson = {
   src: "/ragini-kumari.webp",
   blurb:
     "Specialises in e-learning platforms and user-experience testing — the cases where a build passes every check and still frustrates the person using it.",
+  knowsAbout: ["E-learning platform testing", "User experience testing", "Usability testing"],
 };
 
 const cezzaneKhan: ServiceTeamPerson = {
@@ -65,6 +76,12 @@ const cezzaneKhan: ServiceTeamPerson = {
   // what went.
   blurb:
     "Builds and runs the adversarial test suites for LLM and AI agent systems prompt injection, hallucination, bias, and the consistency checks that catch a model contradicting itself.",
+  knowsAbout: [
+    "LLM testing",
+    "AI agent testing",
+    "Prompt injection testing",
+    "Model bias and fairness testing",
+  ],
 };
 
 const aakashYadav: ServiceTeamPerson = {
@@ -74,6 +91,7 @@ const aakashYadav: ServiceTeamPerson = {
   src: "/aakash-yadav.webp",
   blurb:
     "Works on the tooling and automation side how a suite is built so it still runs cleanly a year later.",
+  knowsAbout: ["Test automation", "Automation framework design", "QA tooling"],
 };
 
 /** General QA roster. Used by /saas-testing-services and any page that omits the prop. */
@@ -81,6 +99,43 @@ const DEFAULT_TEAM: ServiceTeamPerson[] = [poojaKatkar, raginiKumari, aakashYada
 
 /** AI/LLM roster. Used by /ai-application-testing and /quality-assurance-services. */
 export const AI_TEAM: ServiceTeamPerson[] = [poojaKatkar, cezzaneKhan, aakashYadav];
+
+/**
+ * DEV-15 — a `Person` node for each person this block names.
+ *
+ * Every field restates what the block already renders, which is the point: the
+ * roster is copied from /our-team, so the schema asserts nothing the page does
+ * not show. `url` points at /our-team because that is this person's page on
+ * the site; `sameAs` carries the LinkedIn profile.
+ *
+ * `hasCredential` is deliberately absent. DEV-15 asks for a credential per
+ * person, but no per-person credential is recorded anywhere — the `skills`
+ * arrays on /our-team are per department, not per individual. Emitting an
+ * ISTQB or similar qualification against a named individual without that
+ * record would be inventing one, so this waits for real data.
+ *
+ * The placeholder avatar is not asserted as anyone's photo.
+ */
+function personSchema(person: ServiceTeamPerson) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: person.name,
+    jobTitle: person.role,
+    description: person.blurb,
+    url: "https://www.testriq.com/our-team",
+    sameAs: [person.linkedin],
+    knowsAbout: [...person.knowsAbout],
+    worksFor: {
+      "@type": "Organization",
+      name: "Testriq QA Lab",
+      url: "https://www.testriq.com",
+    },
+    ...(person.src === PLACEHOLDER_AVATAR
+      ? {}
+      : { image: `https://www.testriq.com${person.src}` }),
+  };
+}
 
 interface ServiceTeamSectionProps {
   /** Defaults to DEFAULT_TEAM. Keep it at three people — the grid is md:grid-cols-3. */
@@ -92,6 +147,13 @@ const ServiceTeamSection: React.FC<ServiceTeamSectionProps> = ({
 }) => {
   return (
     <section className="bg-white py-16 px-8 md:px-12 lg:px-24">
+      {/* Inline rather than via next/script, matching StructuredData.tsx: an
+          inline data script must be in the SSR payload to be parsed on the
+          first request, before any JavaScript runs. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(people.map(personSchema)) }}
+      />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

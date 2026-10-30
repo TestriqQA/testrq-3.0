@@ -17,15 +17,22 @@ import IoTToolsFramework from "@/components/sections/IoTToolsFramework";
 import IoTCaseStudies from "@/components/sections/IoTCaseStudies";
 import IoTFAQs from "@/components/sections/IoTFAQs";
 import IoTAnyQuestions from "@/components/sections/IoTAnyQuestions";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/iot-device-testing-services",
-    title: "IoT Testing Services | Firmware, MQTT & Device QA | Testriq",
+    title: "IoT Device Testing Services | MQTT & Firmware | Testriq",
     description:
-      "Validate connected devices with Testriq's IoT testing services. Firmware security (ISO 27404), MQTT/Zigbee compatibility, and 5G-edge resilience testing.",
+      "IoT device testing services from Testriq. Firmware security (ISO 27404), MQTT/Zigbee compatibility and 5G-edge resilience testing for connected devices.",
     ogImage: {
       url: "https://www.testriq.com/OG/IoT-Testing-Services-og.webp",
       width: 1200,
@@ -96,6 +103,7 @@ export default function IoTDeviceTesting() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <IoTTestingHeroSection />
+        <ServiceDirectAnswer slug="iot-device-testing-services" />
         <IoTComprehensiveSlider />
         <IoTCardSlider />
         <IoTProvenTestingProcess />
@@ -103,8 +111,24 @@ export default function IoTDeviceTesting() {
         <IoTWhyChooseTestriq />
         <IoTToolsFramework />
         <IoTCaseStudies />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="iot-device-testing-services" />
+        <ServiceEngagementModels />
         <IoTFAQs />
         <IoTAnyQuestions />
+      {/* PART 4 / JOB A3 — contextual links to the case studies that
+          prove this service. In the body, not the footer: the nav and
+          footer already link this page ~1,457 times and Google
+          discounts boilerplate links. Mapping lives in
+          src/lib/seo/related-case-studies.ts. */}
+      <RelatedCaseStudies serviceSlug="iot-device-testing-services" />
+      {/* PART 4 / JOB A2 — contextual links to related services that
+          had almost no inbound links. In the body, not the footer:
+          nav and footer already link these pages ~1,457 times and
+          Google discounts boilerplate. Mapping lives in
+          src/lib/seo/related-services.ts. */}
+      <ServiceCrossLinks serviceSlug="iot-device-testing-services" />
+      <ServiceCta slug="iot-device-testing-services" />
       </MainLayout>
     </div>
   );

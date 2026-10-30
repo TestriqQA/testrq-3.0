@@ -18,15 +18,20 @@ import StructuredData, {
   createCanonicalBreadcrumb,
   manufacturingIndustryTestingServiceSchema,
 } from "@/components/seo/StructuredData";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 const PAGE_URL = "https://www.testriq.com/manufacturing-industry-testing-services";
 
 export const metadata: Metadata = {
-  title: "Manufacturing & Industry 4.0 Testing Services",
+  title: "Manufacturing Industry Testing Services",
   description:
-    "MES / SCADA validation, IEC 61508 functional-safety, IEC 62443 OT cyber-security, OPC UA / MQTT protocol QA, digital-twin testing, and ERP↔shopfloor integration testing for manufacturers — ISTQB + ISO 9001 + ISO 27001 certified.",
+    "Manufacturing industry testing services: MES/SCADA validation, IEC 61508 functional-safety, IEC 62443 OT cyber-security and OPC UA/MQTT protocol QA.",
   keywords: [
     "Manufacturing Software Testing",
     "Industry 4.0 QA",
@@ -296,6 +301,9 @@ const ManufacturingIndustryTestingPage: React.FC = () => {
           "Manufacturing & Industry 4.0 Testing Services"
         )}
       />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="manufacturing-industry-testing-services" />
+      <ServiceEngagementModels />
       <FaqStructuredData />
 
       <main className="min-h-screen bg-white">
@@ -323,7 +331,7 @@ const ManufacturingIndustryTestingPage: React.FC = () => {
                   <span className="text-white text-sm">ISTQB + ISO 9001 + ISO 27001 Certified Partner</span>
                 </div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-5">
-                  Manufacturing &amp; <span className="text-brand-blue">Industry 4.0</span> Testing Services
+                  Manufacturing Industry Testing Services for <span className="text-brand-blue">Industry 4.0</span>
                 </h1>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6 max-w-2xl">
                   Independent QA for MES, SCADA, industrial IoT, and digital-twin systems — IEC 61508
@@ -514,7 +522,14 @@ const ManufacturingIndustryTestingPage: React.FC = () => {
             </Link>
           </div>
         </section>
+      {/* PART 4 / JOB A3 — contextual links to the case studies that
+          prove this service. In the body, not the footer: the nav and
+          footer already link this page ~1,457 times and Google
+          discounts boilerplate links. Mapping lives in
+          src/lib/seo/related-case-studies.ts. */}
+      <RelatedCaseStudies serviceSlug="manufacturing-industry-testing-services" />
       </main>
+      <ServiceCta slug="manufacturing-industry-testing-services" />
     </div>
   );
 };

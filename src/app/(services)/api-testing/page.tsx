@@ -16,13 +16,20 @@ import ApiToolsFramework from "@/components/sections/ApiToolsFramework";
 import ApiCaseStudies from "@/components/sections/ApiCaseStudies";
 import ApiFAQs from "@/components/sections/ApiFAQs";
 import ApiAnyQuestions from "@/components/sections/ApiAnyQuestions";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/api-testing",
-    title: "API Testing Services | REST, GraphQL & SOAP QA | Testriq",
+    title: "API Testing Services | REST, GraphQL & SOAP | Testriq",
     description:
       "Validate REST, GraphQL, and SOAP APIs with Testriq's API testing. OWASP API security, performance, and ISO 29119-compliant QA for microservices teams.",
     ogImage: {
@@ -86,14 +93,31 @@ export default function ApiTesting() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <ApiTestingHeroSection />
+        <ServiceDirectAnswer slug="api-testing" />
         <ApiComprehensiveSlider />
         <ApiCardSlider />
         <ApiProvenTestingProcess />
         <ApiWhyChooseTestriq />
         <ApiToolsFramework />
         <ApiCaseStudies />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="api-testing" />
+        <ServiceEngagementModels />
         <ApiFAQs />
         <ApiAnyQuestions />
+      {/* PART 4 / JOB A3 — contextual links to the case studies that
+          prove this service. In the body, not the footer: the nav and
+          footer already link this page ~1,457 times and Google
+          discounts boilerplate links. Mapping lives in
+          src/lib/seo/related-case-studies.ts. */}
+      <RelatedCaseStudies serviceSlug="api-testing" />
+      {/* PART 4 / JOB A2 — contextual links to related services that
+          had almost no inbound links. In the body, not the footer:
+          nav and footer already link these pages ~1,457 times and
+          Google discounts boilerplate. Mapping lives in
+          src/lib/seo/related-services.ts. */}
+      <ServiceCrossLinks serviceSlug="api-testing" />
+      <ServiceCta slug="api-testing" />
       </MainLayout>
     </div>
   );

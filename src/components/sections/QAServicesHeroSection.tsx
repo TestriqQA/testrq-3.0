@@ -25,7 +25,7 @@ const QAServicesHeroSection: React.FC = () => {
           </div>
 
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Software QA Services
+            Software Quality Assurance Services
           </h1>
 
           <p className="text-lg text-gray-700">

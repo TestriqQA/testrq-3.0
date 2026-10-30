@@ -16,15 +16,20 @@ import SmartDeviceCaseStudies from "@/components/sections/SmartDeviceCaseStudies
 import SmartDeviceFAQs from "@/components/sections/SmartDeviceFAQs";
 import SmartDeviceAnyQuestions from "@/components/sections/SmartDeviceAnyQuestions";
 import SmartDeviceComplianceTable from "@/components/sections/SmartDeviceComplianceTable";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/smart-device-testing-services",
-    title: "Enterprise Smart Device & IoT Testing Services | Testriq",
+    title: "Smart Device Testing Services | IoT & Firmware | Testriq",
     description:
-      "Validate connected devices with Testriq's smart device and IoT testing. ISO 29119-3 compliance, 5G/Wi-Fi 6 stability, battery life, and security penetration QA.",
+      "Smart device testing services from Testriq: ISO 29119-3 compliance, 5G/Wi-Fi 6 stability, battery life and security penetration QA for connected devices.",
     ogImage: {
       url: "https://www.testriq.com/OG/Smart-Device-Testing-Service-Og.webp",
       width: 1200,
@@ -96,14 +101,19 @@ export default function SmartDeviceTestingPage() {
       />
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <SmartDeviceTestingHeroSection />
+      <ServiceDirectAnswer slug="smart-device-testing-services" />
       <SmartDeviceComplianceTable />
       <SmartDeviceComprehensiveSlider />
       <SmartDeviceProvenTestingProcess />
       <SmartDeviceWhyChooseTestriq />
       <SmartDeviceToolsFramework />
       <SmartDeviceCaseStudies />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="smart-device-testing-services" />
+      <ServiceEngagementModels />
       <SmartDeviceFAQs />
       <SmartDeviceAnyQuestions />
+      <ServiceCta slug="smart-device-testing-services" />
     </div>
   );
 }

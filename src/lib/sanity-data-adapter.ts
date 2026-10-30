@@ -14,6 +14,20 @@ import * as queries from './sanity-queries';
 // GROQ round-trip is only paid once per 60s across all requests, even
 // though page-level rendering remains per-request.
 const BLOG_DATA_REVALIDATE_SECONDS = 60;
+
+// Fallbacks for posts and authors with no image in Sanity. Both were
+// `https://placehold.co/...`, which made a third party the og:image for every
+// post without a main image — an off-domain asset that can rate-limit or
+// disappear, is fetched by every social scraper, and needed placehold.co in
+// next.config's image remotePatterns to render at all.
+//
+// Root-relative on purpose. An absolute same-origin URL would ALSO need a
+// remotePatterns entry (www.testriq.com is not listed), whereas a local path
+// needs none — and `metadataBase` is set in both src/app/layout.tsx and
+// buildPageMetadata, so Next resolves the relative og:image to an absolute URL
+// in the rendered tag.
+export const PLACEHOLDER_AUTHOR_IMAGE = '/images/testriq_logo.webp';
+export const PLACEHOLDER_POST_IMAGE = '/OG/testriq-qa-lab-llp-og-img.webp';
 // Define the interfaces that your components expect
 export interface Category {
     id: string;
@@ -246,7 +260,7 @@ export function adaptSanityPost(sanityPost: any): Post {
         categoryColor,
         author: sanityPost.author?.name || 'Testriq Team',
         authorSlug: sanityPost.author?.slug?.current || undefined,
-        authorImage: sanityPost.author?.image ? sanityImage(sanityPost.author.image, { width: 60, height: 60 }) : 'https://placehold.co/60x60/png',
+        authorImage: sanityPost.author?.image ? sanityImage(sanityPost.author.image, { width: 60, height: 60 }) : PLACEHOLDER_AUTHOR_IMAGE,
         authorImageRaw: sanityPost.author?.image || null,
         authorBio: sanityPost.author?.bio || 'QA Expert',
         authorLinkedin: sanityPost.author?.linkedin || null,
@@ -260,7 +274,7 @@ export function adaptSanityPost(sanityPost: any): Post {
         dateISO: sanityPost.publishedAt || new Date().toISOString(),
         modifiedISO: sanityPost._updatedAt || new Date().toISOString(),
         readTime: estimateReadTime(sanityPost.body || sanityPost.excerpt),
-        image: sanityPost.mainImage ? sanityImage(sanityPost.mainImage, { width: 1200, quality: 90 }) : 'https://placehold.co/1200x675/png',
+        image: sanityPost.mainImage ? sanityImage(sanityPost.mainImage, { width: 1200, quality: 90 }) : PLACEHOLDER_POST_IMAGE,
         mainImage: sanityPost.mainImage || null,
         mainImageAlt: sanityPost.mainImage?.alt || sanityPost.title || '',
         mainImageTitle: sanityPost.mainImage?.title || '',
@@ -1137,6 +1151,32 @@ export async function sanityGetCaseStudyBySlug(slug: string): Promise<CaseStudy 
         console.error('Sanity live case-study-by-slug fetch failed:', err);
         return null;
     }
+}
+
+/**
+ * Case-study slugs straight from Sanity, never the snapshot.
+ *
+ * For generateStaticParams in app/[slug], which runs at build time only — the
+ * one place where a live round trip is both affordable and the correct
+ * freshness. The snapshot-backed function below is right for request-path
+ * reads, but using it to decide which pages exist means the build can only
+ * know about case studies that were present the last time someone ran
+ * `npm run sanity:snapshot`. That file had gone five months stale once
+ * already, and now that app/[slug] sets dynamicParams = false (DEV-12), a slug
+ * missing from the build list is a 404 rather than an on-demand render.
+ *
+ * Falls back to the snapshot if Sanity is unreachable during the build, so a
+ * network blip degrades to the old behaviour instead of emptying the site.
+ */
+export async function sanityGetAllCaseStudySlugsLive(): Promise<string[]> {
+    try {
+        const live = await client.fetch<string[]>(queries.caseStudySlugsQuery);
+        if (live && live.length > 0) return live;
+        console.warn('Live case-study slug query returned nothing; falling back to the snapshot.');
+    } catch (err) {
+        console.warn('Live case-study slug query failed during build; falling back to the snapshot.', err);
+    }
+    return buildSnapshot.caseStudySlugs ?? [];
 }
 
 export async function sanityGetAllCaseStudySlugs(): Promise<string[]> {

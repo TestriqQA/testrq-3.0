@@ -10,11 +10,17 @@ import GamingFAQSection from "@/components/sections/GamingFAQSection";
 import GamingContactSection from "@/components/sections/GamingContactSection";
 import { Metadata } from "next";
 import StructuredData, { createCanonicalBreadcrumb, gamingTestingServiceSchema } from "@/components/seo/StructuredData";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Gaming App Testing Services" ,
+  title: "Gaming App Testing Services | QA for Mobile & PC" ,
   description: "Launch flawless, secure, and immersive games. Testriq offers expert gaming app testing services across platforms for peak performance and player satisfaction.",
   keywords: [
     "game testing services",
@@ -86,6 +92,7 @@ const GamingTestingPage: React.FC = () => {
       />
     <main className="min-h-screen bg-white">
       <GamingHeroSection />
+      <ServiceDirectAnswer slug="gaming-app-testing-services" />
       <GamingChallengesSection />
       <GamingTestingServicesSection />
       <GamingTestingProcessSection />
@@ -93,8 +100,18 @@ const GamingTestingPage: React.FC = () => {
       <GamingToolsFrameworkSection />
       {/* <GamingCaseStudiesSection /> */}
       <GamingROISection />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="gaming-app-testing-services" />
+      <ServiceEngagementModels />
       <GamingFAQSection />
       <GamingContactSection />
+    {/* PART 4 / JOB A3 — contextual links to the case studies that
+        prove this service. In the body, not the footer: the nav and
+        footer already link this page ~1,457 times and Google
+        discounts boilerplate links. Mapping lives in
+        src/lib/seo/related-case-studies.ts. */}
+    <RelatedCaseStudies serviceSlug="gaming-app-testing-services" />
+    <ServiceCta slug="gaming-app-testing-services" />
     </main>
     </div>
   );

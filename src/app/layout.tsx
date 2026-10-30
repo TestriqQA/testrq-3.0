@@ -7,6 +7,7 @@ import RecaptchaLoader from "@/components/RecaptchaLoader"; // Route-scoped reCA
 import ApolloTracking from "@/components/ApolloTracking"; // Apollo tracking script (consent-gated)
 import ConsentBanner from "@/components/ConsentBanner"; // Cookie-consent opt-in for Apollo
 import ContactLinkTracking from "@/components/ContactLinkTracking"; // GA4 tel:/mailto: click tracking
+import LeadAttributionInit from "@/components/LeadAttributionInit"; // DEV-02 first-touch capture
 import { RecaptchaProvider } from "@/lib/recaptcha/RecaptchaContext";
 import FloatingContact from "@/components/layout/FloatingContact";
 
@@ -165,6 +166,7 @@ export default function RootLayout({
         {/* Delegated tel:/mailto: click tracking. Renders null; sits outside
             RecaptchaProvider for the same reason ConsentBanner does. */}
         <ContactLinkTracking />
+        <LeadAttributionInit />
 
         <RecaptchaProvider>
           <header className="sticky top-0 z-[60] w-full">

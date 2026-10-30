@@ -59,7 +59,7 @@ const TelecomHeroSection: React.FC = () => {
               <span className="block bg-gradient-to-r from-[theme(color.brand.blue)] to-sky-600 bg-clip-text text-transparent">
                 Digital Experiences
               </span>
-              for Telecom Applications
+              with Telecommunications Testing Services
             </h1>
 
             {/* Description */}

@@ -110,10 +110,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // canvas, which is what the root layout serves.
     : `${SITE_URL}/OG/testriq-logo-og.png`;
 
+  // An author archive with no posts has nothing on it to index.
+  let authorPostCount = 0;
+  try {
+    authorPostCount = (await sanityGetPostsByAuthor(author.slug)).length;
+  } catch (err) {
+    // On a Sanity error, leave the page indexable rather than hiding a real
+    // archive because of a transient outage.
+    console.error(`Sanity error counting posts for author "${author.slug}":`, err);
+    authorPostCount = 1;
+  }
+
   return {
     title: pageTitle,
     description,
     alternates: { canonical: canonicalUrl },
+    robots: { index: authorPostCount > 0, follow: true },
     openGraph: {
       title: brandedTitle,
       description,

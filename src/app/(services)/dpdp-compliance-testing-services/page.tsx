@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   // otherwise print the brand twice (F-71).
   title: { absolute: "DPDP Compliance Testing Services | Testriq" },
   description:
-    "Testriq QA Lab tests consent, deletion, access control and breach workflows in your app for DPDP readiness. Technical testing, not legal certification.",
+    "DPDP compliance testing services: Testriq tests consent, deletion, access control and breach workflows. Technical testing, not legal certification.",
   keywords: [
     "DPDP compliance testing services",
     "DPDP testing services",
@@ -110,6 +110,10 @@ export const metadata: Metadata = {
 };
 
 import DPDPHeroSection from "@/components/sections/DPDPHeroSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 const DPDPRiskSection = dynamic(
   () => import("@/components/sections/DPDPRiskSection"),
@@ -184,8 +188,12 @@ export default function DPDPComplianceTestingServices() {
         <DPDPProcessSection />
         <DPDPWhyChooseSection />
         <DPDPLegalBoundarySection />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="dpdp-compliance-testing-services" />
+        <ServiceEngagementModels />
         <DPDPFAQs />
         <DPDPReadyToStart />
+        <ServiceCta slug="dpdp-compliance-testing-services" />
       </MainLayout>
     </div>
   );

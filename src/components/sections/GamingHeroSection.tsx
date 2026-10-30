@@ -89,7 +89,7 @@ const GamingHeroSection: React.FC = () => {
               <span className="block text-[theme(color.brand.blue)]">
                 Gaming Experience
               </span>
-              with Expert Game QA
+              with Expert Gaming App Testing Services
             </h1>
 
             {/* Description */}

@@ -14,15 +14,20 @@ import DesktopTechStack from "@/components/sections/DesktopTechStack";
 import DesktopCardSlider from "@/components/sections/DesktopCardSlider";
 import DesktopWhyChooseTestriq from "@/components/sections/DesktopWhyChooseTestriq";
 import DesktopFAQs from "@/components/sections/DesktopFAQs";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     pathname: "/desktop-application-testing-services",
-    title: "Desktop Application Testing | Cross-Platform QA | Testriq",
+    title: "Desktop Application Testing Services | Testriq",
     description:
-      "Validate desktop apps across Windows, macOS, and Linux with Testriq's testing. Installer, performance, and security QA for enterprise software.",
+      "Desktop application testing services from Testriq: installer, performance and security QA across Windows, macOS and Linux for enterprise software.",
     ogImage: {
       url: "https://www.testriq.com/OG/Desktop-Application-Service-OG.webp",
       width: 1200,
@@ -94,12 +99,17 @@ export default function DesktopAppTesting() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <DesktopTestingHeroSection />
+        <ServiceDirectAnswer slug="desktop-application-testing-services" />
         <DesktopChallenges />
         <DesktopCompliance />
         <DesktopTechStack />
         <DesktopCardSlider />
         <DesktopWhyChooseTestriq />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="desktop-application-testing-services" />
+        <ServiceEngagementModels />
         <DesktopFAQs />
+        <ServiceCta slug="desktop-application-testing-services" />
       </MainLayout>
     </div>
   );

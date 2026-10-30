@@ -39,7 +39,7 @@ const DataAnalysisHeroSection = () => {
 
             <div className="space-y-6">
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                Global Data Analytics: Driving{" "}
+                Global Data Analysis Services: Driving{" "}
                 <span className="text-brand-blue">Prescriptive Intelligence</span> Through Advanced Data Evaluation
               </h1>
 

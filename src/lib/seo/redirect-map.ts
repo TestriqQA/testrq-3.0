@@ -16,6 +16,10 @@
  * Extracted: 2026-05-15. Total entries at extraction: 760.
  */
 import type { NextConfig } from "next";
+// The slug snapshot used to be imported here for the generated /blog/{slug}
+// redirects. Those moved to src/proxy.ts (see the note at the bottom of
+// this file), which reads the slug list itself, so this file no longer needs
+// it — and the 54 KB JSON no longer rides along with next.config.
 
 /**
  * Derived from Next.js's own `redirects()` return type so this file's array
@@ -454,7 +458,6 @@ export const redirects: RedirectRule[] = [
       { source: "/mobile-application-testing-services", destination: "/mobile-application-testing", permanent: true },
       { source: "/blog/post/how-to-test-a-websites-performance-2", destination: "/performance-testing-services", permanent: true },
       { source: "/blog/post/what-is-the-latest-thing-going-on-in-automation-testing-2", destination: "/automation-testing-services", permanent: true },
-      { source: "/quality-assurance-services/", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/blog/tag/defect-discovery", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/blog/post/ultrasonic-testing-techniques", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/blog/post/which-iot-platform-is-the-most-secure", destination: "/iot-device-testing-services", permanent: true },
@@ -534,8 +537,8 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/tag/end-to-end-testing", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/blog/post/software-testing", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/data-transformation-testing", destination: "/data-analysis-services", permanent: true },
-      { source: "/case-study/smart-doorbell-case-study", destination: "/smart-video-doorbell-qa-case-study", permanent: true },
-      { source: "/case-study/indo-wings-case-study", destination: "/indo-wings-security-testing-case-study", permanent: true },
+      { source: "/case-study/smart-doorbell-case-study", destination: "/smart-doorbell-case-study", permanent: true },
+      { source: "/case-study/indo-wings-case-study", destination: "/indo-wings-case-study", permanent: true },
       { source: "/case-study/ragnar-case-study", destination: "/ragnar-sports-platform", permanent: true },
       { source: "/data-quality-testing-in-etl", destination: "/data-analysis-services", permanent: true },
       { source: "/contact-uss", destination: "/contact-us", permanent: true },
@@ -565,8 +568,8 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/load-testing-desktop-applications", destination: "/desktop-application-testing-services", permanent: true },
       { source: "/blog/exploratory-software-testing", destination: "/manual-testing-services", permanent: true },
       { source: "/case-studies/canva-design-platform", destination: "/canva-design-platform", permanent: true },
-      { source: "/case-studies/smart-video-doorbell-qa-case-study", destination: "/smart-video-doorbell-qa-case-study", permanent: true },
-      { source: "/case-studies/indo-wings-security-testing-case-study", destination: "/indo-wings-security-testing-case-study", permanent: true },
+      { source: "/case-studies/smart-video-doorbell-qa-case-study", destination: "/smart-doorbell-case-study", permanent: true },
+      { source: "/case-studies/indo-wings-security-testing-case-study", destination: "/indo-wings-case-study", permanent: true },
       { source: "/case-studies/ragnar-sports-platform", destination: "/ragnar-sports-platform", permanent: true },
       { source: "/ai-testing-services", destination: "/ai-application-testing", permanent: true },
       { source: "/desktop-app-testing-services", destination: "/desktop-application-testing-services", permanent: true },
@@ -635,7 +638,7 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/post/10-must-use-mobile-app-testing-tools-in-2025", destination: "/blog/post/mobile-app-testing-tools-2026-guide", permanent: true },
       { source: "/blog/post/cloud-", destination: "/blog/post/cloud-based-performance-testing-scaling-for-modern-architectures", permanent: true },
       { source: "/Best", destination: "/", permanent: true },
-      { source: "/blog/how-to-use-jmeter-for-performance-testing", destination: "/blog/post/how-is-jmeter-used-for-performance-testing", permanent: true },
+      { source: "/blog/how-to-use-jmeter-for-performance-testing", destination: "/blog/post/how-to-use-jmeter-for-performance-testing-step-by-step-guide", permanent: true },
       { source: "/debug", destination: "/", permanent: true },
       { source: "/services/performance-testing-services", destination: "/performance-testing-services", permanent: true },
       { source: "/test-automation-services/", destination: "/automation-testing-services", permanent: true },
@@ -655,7 +658,10 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/tag/healthcare-system-qa", destination: "/blog/tag/healthcare-software-testing", permanent: true },
       { source: "/blog/tag/ci/cd-pipeline", destination: "/blog/tag/ci-cd-pipeline", permanent: true },
       { source: "/blog/post/api-test-automation-strategy-faster-cicd", destination: "/blog/post/ci-cd-test-automation-integration-deliver-faster-with-confidence", permanent: true },
-      { source: "/blog/real-world-examples-of-performance-testing-failures-and-fixes", destination: "/blog/post/real-world-examples-of-performance-testing-failures-and-fixes", permanent: true },
+      // /blog/real-world-examples-of-performance-testing-failures-and-fixes
+      // removed: it was a plain /post/ insertion for a slug that is in the post
+      // list, so src/proxy.ts now produces the identical 308. Keeping both
+      // would make behaviour depend on which runs first, for no gain.
       { source: "/blog/when-and-why-you-should-do-scalability-testing", destination: "/blog/post/when-and-why-you-should-perform-scalability-testing", permanent: true },
       { source: "/blog/tag/big-data-security-", destination: "/blog/tag/big-data-security", permanent: true },
       { source: "/www.testriq.com/manual-testing-services", destination: "/manual-testing-services", permanent: true },
@@ -888,7 +894,9 @@ export const redirects: RedirectRule[] = [
 
       // Legacy WordPress permalinks that omit the /post/ segment. These miss
       // every route (there is no /blog/[slug]) and return a hard 404.
-      { source: "/blog/how-to-simulate-real-user-traffic-in-performance-testing", destination: "/blog/post/how-to-simulate-real-user-traffic-in-performance-testing", permanent: true },
+      // /blog/how-to-simulate-real-user-traffic-in-performance-testing removed
+      // for the same reason as the one above: middleware produces the identical
+      // 308 from the post slug list.
       { source: "/blog/ai-powered-test-generation", destination: "/blog/post/testing-ai-powered-applications-navigating-the-maze-with-a-smile", permanent: true },
       { source: "/blog/api-testing-with-postman-&-rest-assured", destination: "/blog/post/rest-api-testing-guide-endpoints-methods-best-practices", permanent: true },
       { source: "/blog/shift-left-testing-strategies", destination: "/blog/post/the-role-of-automation-in-shift-left-and-shift-right-testing", permanent: true },
@@ -917,4 +925,57 @@ export const redirects: RedirectRule[] = [
       // surviving article to recover that traffic and consolidate the ranking
       // signals onto one URL. Destination verified live (200, real content).
       { source: "/blog/post/what-is-latency-testing", destination: "/blog/post/what-is-a-latency-test", permanent: true },
+
+      // DEV-07 — external sites link to these two URLs, which 404, so the link
+      // equity they carry is thrown away. Both come from the Semrush
+      // target_pages export (26 Oct 2026), where they are the only two
+      // recoverable broken targets; the third, /assets/images/TESTRIQ_LAB1.png,
+      // is an image and is deliberately left to 404 since there is no page to
+      // send it to.
+      { source: "/nproject/ragnar-is-owned-and-operated-by-ragnar-events-llc", destination: "/ragnar-sports-platform", permanent: true },
+      { source: "/software-qa-testing-services/cloud-applications-testing-services", destination: "/saas-platform-testing-services", permanent: true },
 ];
+
+/**
+ * DEV-05 — `/blog/{slug}` → `/blog/post/{slug}`.
+ *
+ * Posts live at /blog/post/{slug}, but something out there links them without
+ * the /post/ segment, and those URLs 404. One of them,
+ * game-testing-the-complete-guide-to-game-qa-in-2026, earns 49 clicks a
+ * quarter at its correct address, so the broken variant is being linked from
+ * somewhere real.
+ *
+ * Generated from the slug snapshot rather than written as a catch-all on
+ * purpose. A blanket /blog/:slug rule would turn every typo and every crawler
+ * guess into a 301 into a 404 — a soft 404 at scale, which is the problem this
+ * repo has already had to clean up once. Deriving the list means only slugs
+ * that genuinely exist redirect, and anything else still 404s honestly.
+ *
+ * Verified at generation time: none of the 365 slugs collides with a real
+ * /blog child route (post, search, tag, category, categories, demo, feed.xml),
+ * so no working page is shadowed.
+ *
+ * Refreshed by `npm run sanity:snapshot` along with everything else in that
+ * file; a post added after the last snapshot simply has no redirect yet, which
+ * is the safe failure.
+ */
+// MOVED TO MIDDLEWARE (28 Oct 2026).
+//
+// This block generated one rule per post slug, which took the project to 1,167
+// custom routes and tripped Next's `max-custom-routes-reached` warning — the
+// soft limit is 1,000, and every request was matched against the whole table in
+// order. The reasoning above still stands in full: a blanket `/blog/:slug` rule
+// is the wrong fix because it turns every typo into a 308 into a 404.
+//
+// So the behaviour is unchanged and the implementation moved: see
+// src/proxy.ts and src/lib/seo/blog-slug-redirect.ts, where the same slug
+// list is a Set lookup scoped to /blog by the middleware matcher. Removing
+// these 365 rules brings this table to 800.
+//
+// Verified before moving: none of the 365 post slugs collides with any
+// single-segment `/blog/...` rule still in this table — including the seven
+// that redirect to a DIFFERENT slug (a renamed post, e.g.
+// /blog/principles-of-exploratory-testing ->
+// /blog/post/what-are-the-principles-of-exploratory-testing). Those seven stay
+// here, and because there is no overlap, middleware can never contradict them
+// whichever runs first.

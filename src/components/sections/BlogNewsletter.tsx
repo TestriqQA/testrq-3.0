@@ -21,6 +21,10 @@ const BlogNewsletter: React.FC = () => {
 
   const { isSubmitting, submitWithRecaptcha } = useRecaptchaForm({
     action: 'newsletter_subscribe',
+    // Deliberately NOT generate_lead: a newsletter signup is not a sales
+    // enquiry, and counting it as one would inflate the lead number the
+    // business is measuring. Still tracked under its own name.
+    ga: { name: 'newsletter_subscribe', params: { form_name: 'blog_newsletter' } },
     onSuccess: () => {
       setSubscribed(true);
       setEmail("");

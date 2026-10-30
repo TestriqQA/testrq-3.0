@@ -2,7 +2,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import { sanityGetPostBySlug, sanityGetRelatedPosts, sanityGetCategories, sanityGetAllPostSlugs, Post } from "@/lib/sanity-data-adapter";
+import { sanityGetPostBySlug, sanityGetRelatedPosts, sanityGetCategories, sanityGetAllPostSlugs, PLACEHOLDER_AUTHOR_IMAGE, Post } from "@/lib/sanity-data-adapter";
 import { extractHeadings } from "@/lib/utils";
 import StructuredData, { createBreadcrumbSchema } from "@/components/seo/StructuredData";
 
@@ -52,8 +52,13 @@ function PostStructuredData({ post }: { post: Post }) {
     ? `https://www.testriq.com/author/${post.authorSlug}`
     : null;
   const authorAtId = authorPageUrl ? `${authorPageUrl}#person` : `${postUrl}#author`;
+  // Keeps a stand-in avatar out of the author's Person JSON-LD, so we never
+  // publish a generic image as somebody's photo. Compares against the exported
+  // constant rather than sniffing for "placehold.co": the fallback is now a
+  // local asset, and a substring check would silently stop matching the moment
+  // that path changes, quietly putting the placeholder back into structured data.
   const isPlaceholderAuthorImage =
-    !post.authorImage || post.authorImage.includes("placehold.co");
+    !post.authorImage || post.authorImage === PLACEHOLDER_AUTHOR_IMAGE;
   const authorSameAs = Array.from(
     new Set(
       [post.authorLinkedin, ...(post.authorSameAs || [])].filter(

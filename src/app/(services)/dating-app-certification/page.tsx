@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Dating App Certification",
 
   description:
-    "Certify your dating app for security, privacy, algorithm fairness, and compliance. Testriq testing builds trust and meets GDPR, CCPA, and ISO 27001 standards.",
+    "Dating app certification for security, privacy, algorithm fairness and compliance. Testriq testing builds trust and meets GDPR, CCPA and ISO 27001 standards.",
   keywords: [
     "Dating App Certification",
     "dating app security",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title:
       "Dating App Certification | Security, Privacy, Trust Compliance - Testriq",
     description:
-      "Certify your dating app for security, privacy, algorithm fairness, and compliance. Testriq testing builds trust and meets GDPR, CCPA, and ISO 27001 standards.",
+      "Dating app certification for security, privacy, algorithm fairness and compliance. Testriq testing builds trust and meets GDPR, CCPA and ISO 27001 standards.",
     images: [
       {
         url: "https://www.testriq.com/OG/Dating-App-Certification-Og.webp",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title:
       "Dating App Certification | Security, Privacy, Trust Compliance - Testriq",
     description:
-      "Certify your dating app for security, privacy, algorithm fairness, and compliance. Testriq testing builds trust and meets GDPR, CCPA, and ISO 27001 standards.",
+      "Dating app certification for security, privacy, algorithm fairness and compliance. Testriq testing builds trust and meets GDPR, CCPA and ISO 27001 standards.",
     images: ["https://www.testriq.com/OG/Dating-App-Certification-Twiiter.webp"],
   },
   robots: {
@@ -73,6 +73,12 @@ export const metadata: Metadata = {
 };
 
 import DatingAppHeroSection from "@/components/sections/DatingAppHeroSection";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 const DatingAppSixPillars = dynamic(
   () => import("@/components/sections/DatingAppSixPillars"),
   {
@@ -157,37 +163,6 @@ const DatingAppReadyToBuild = dynamic(
   }
 );
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What is dating app trust certification?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Dating app trust certification is a third-party audit and certification program that reviews your dating app for identity verification, user safety controls, content moderation, data privacy protection, matchmaking algorithm fairness, and platform stability.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How long does the certification process take?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "The comprehensive audit process typically takes 10-15 working days, followed by remediation support and final certificate issuance.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What are the benefits of dating app certification?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Benefits include 35% increase in user retention, 2x conversion on app store listings, reduced legal and moderation risks, enhanced user trust perception, and improved investor confidence.",
-      },
-    },
-  ],
-};
-
 export default function DatingAppCertification() {
   // TODO(seo phase-3): Pattern D fixed via createCanonicalBreadcrumb helper —
   // breadcrumb reduced from 3 items (intermediate "Services" node with wrong URL)
@@ -200,16 +175,26 @@ export default function DatingAppCertification() {
       <StructuredData
         data={createCanonicalBreadcrumb("/dating-app-certification", "Dating App Certification")}
       />
-      <StructuredData data={faqSchema} />
       <MainLayout>
         <DatingAppHeroSection />
+        <ServiceDirectAnswer slug="dating-app-certification" />
         <DatingAppSixPillars />
         <DatingAppCertificationProcess />
         <DatingAppSecurityChallenges />
         <DatingAppOptimizationBenefits />
         <DatingAppCompetitiveAdvantage />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="dating-app-certification" />
+        <ServiceEngagementModels />
         <DatingAppFAQs />
         <DatingAppReadyToBuild />
+      {/* PART 4 / JOB A2 — contextual links to related services that
+          had almost no inbound links. In the body, not the footer:
+          nav and footer already link these pages ~1,457 times and
+          Google discounts boilerplate. Mapping lives in
+          src/lib/seo/related-services.ts. */}
+      <ServiceCrossLinks serviceSlug="dating-app-certification" />
+      <ServiceCta slug="dating-app-certification" />
       </MainLayout>
     </div>
   );

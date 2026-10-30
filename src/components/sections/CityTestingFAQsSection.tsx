@@ -48,15 +48,13 @@ const CityTestingFAQsSection: React.FC<CityTestingFAQsSectionProps> = ({ cityDat
                       )}
                     </div>
                   </button>
-                  {openFAQ === index && (
-                    <div className="px-6 pb-6">
+                  <div className="px-6 pb-6" hidden={openFAQ !== index}>
                       <div className="pt-4 border-t border-gray-100">
                         <p className="text-gray-700">
                           {faq.answer}
                         </p>
                       </div>
                     </div>
-                  )}
                 </div>
               ))}
             </div>

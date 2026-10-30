@@ -14,6 +14,12 @@ import MigrationSolutionsSection from "@/components/sections/MigrationSolutionsS
 import MigrationAdvantageSection from "@/components/sections/MigrationAdvantageSection";
 import MigrationFAQs from "@/components/sections/MigrationFAQs";
 import MigrationNextStepsSection from "@/components/sections/MigrationNextStepsSection";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -81,12 +87,23 @@ export default function MigrationTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <MigrationHeroSection />
+                <ServiceDirectAnswer slug="migration-testing" />
                 <MigrationCriticalitySection />
                 <MigrationWhySection />
                 <MigrationSolutionsSection />
                 <MigrationAdvantageSection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="migration-testing" />
+                <ServiceEngagementModels />
                 <MigrationFAQs />
                 <MigrationNextStepsSection />
+            {/* PART 4 / JOB A3 — contextual links to the case studies that
+                prove this service. In the body, not the footer: the nav and
+                footer already link this page ~1,457 times and Google
+                discounts boilerplate links. Mapping lives in
+                src/lib/seo/related-case-studies.ts. */}
+            <RelatedCaseStudies serviceSlug="migration-testing" />
+            <ServiceCta slug="migration-testing" />
             </MainLayout>
         </div>
     );

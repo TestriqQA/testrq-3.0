@@ -105,15 +105,13 @@ const ExploratoryFAQs: React.FC = () => {
                 </div>
               </button>
 
-              {openFAQ === index && (
-                <div className="px-6 pb-4">
+              <div className="px-6 pb-4" hidden={openFAQ !== index}>
                   <div className="border-t border-gray-100 pt-4">
                     <p className="text-gray-600 leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
                 </div>
-              )}
             </div>
           ))}
         </div>

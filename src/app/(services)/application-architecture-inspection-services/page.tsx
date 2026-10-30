@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
     architectureServiceSchema,
-    architectureFAQSchema,
     createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -13,15 +12,20 @@ import ArchitectureServicesSection from "@/components/sections/ArchitectureServi
 import ArchitectureMethodologySection from "@/components/sections/ArchitectureMethodologySection";
 import ArchitectureFAQs from "@/components/sections/ArchitectureFAQs";
 import ArchitectureCTASection from "@/components/sections/ArchitectureCTASection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
         pathname: "/application-architecture-inspection-services",
-        title: "App Architecture Inspection | Microservices Audit | Testriq",
+        title: "Application Architecture Inspection Services | Testriq",
         description:
-            "Engineer resilience with Testriq's architecture inspection. Microservices reviews, technical-debt audits, and cloud-native validation for scaling teams.",
+            "Application architecture inspection services from Testriq: microservices reviews, technical-debt audits and cloud-native validation for scaling teams.",
         ogImage: {
             url: "https://www.testriq.com/OG/application-architecture-inspection-services-og-image.webp",
             width: 2752,
@@ -58,7 +62,6 @@ export default function ArchitectureInspectionPage() {
     return (
         <div>
             <StructuredData data={architectureServiceSchema} />
-            <StructuredData data={architectureFAQSchema} />
             <StructuredData
                 data={createCanonicalBreadcrumb(
                     "/application-architecture-inspection-services",
@@ -67,11 +70,16 @@ export default function ArchitectureInspectionPage() {
             />
             <MainLayout>
                 <ArchitectureHeroSection />
+                <ServiceDirectAnswer slug="application-architecture-inspection-services" />
                 <ArchitectureAdvantageSection />
                 <ArchitectureServicesSection />
                 <ArchitectureMethodologySection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="application-architecture-inspection-services" />
+                <ServiceEngagementModels />
                 <ArchitectureFAQs />
                 <ArchitectureCTASection />
+                <ServiceCta slug="application-architecture-inspection-services" />
             </MainLayout>
         </div>
     );

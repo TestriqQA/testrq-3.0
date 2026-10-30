@@ -322,6 +322,24 @@ const LocationsWeServe: React.FC = () => {
     return url;
   };
 
+  // PART 4 / JOB A1. Every city page URL in locationData, flattened and
+  // de-duplicated, for the always-rendered index near the bottom of this page.
+  //
+  // The accordion above already links all of these, but only once a country
+  // AND its state are expanded — and both default to collapsed, so the links
+  // are never in the server-rendered HTML. A link-following crawl of the build
+  // confirmed the cost: 82 of 84 city pages had zero contextual inbound links,
+  // the only two exceptions being the standalone /...-in-london and
+  // /...-in-new-york routes, which are linked from elsewhere.
+  const allCityUrls = Array.from(
+    new Set(
+      Object.values(locationData)
+        .flatMap((states) => Object.values(states))
+        .flatMap((cities) => Object.values(cities))
+        .flat()
+    )
+  ).sort();
+
   const filterLocations = () => {
     if (!searchTerm.trim()) return locationData;
 
@@ -624,6 +642,35 @@ const LocationsWeServe: React.FC = () => {
               </button>
             </div>
           )}
+
+          {/* All locations — PART 4 / JOB A1.
+              Always rendered, unlike the accordion above, so a crawler can
+              reach every city page from here. Anchor text is each page's own
+              target phrase ("Software testing company in Pune") rather than
+              the city name alone or "click here", per the brief. */}
+          <section aria-labelledby="all-locations-heading" className="mt-12">
+            <h2
+              id="all-locations-heading"
+              className="text-2xl font-bold text-gray-900 mb-2"
+            >
+              All locations we serve
+            </h2>
+            <p className="text-sm text-gray-600 mb-6">
+              Every city where Testriq delivers software testing and QA services.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2">
+              {allCityUrls.map((url) => (
+                <li key={url}>
+                  <Link
+                    href={url}
+                    className="text-sm text-[theme(color.brand.blue)] hover:underline"
+                  >
+                    Software testing company in {getLocationName(url)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           {/* Call to Action */}
           <div className="mt-16 bg-gradient-to-br from-[theme(color.brand.blue)] to-blue-700 rounded-2xl p-8 text-white text-center">

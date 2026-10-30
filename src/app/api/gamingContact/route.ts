@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { verifyRecaptcha, isValidRecaptchaScore } from '@/lib/recaptcha/verifyRecaptcha';
+import { readLeadAttribution, leadAttributionEmailHtml } from '@/lib/lead-attribution';
 import { toEmailSafeText } from '@/lib/email-safe-text';
 
 // Types for form data
@@ -15,6 +16,12 @@ interface GamingContactFormData {
   projectDetails: string;
   source?: string;
   recaptchaToken?: string;
+  // DEV-02 — attached to every submission by useRecaptchaForm. Read via
+  // readLeadAttribution() rather than used directly, so the values are
+  // type-checked and length-capped before reaching an email or a sheet.
+  landingPage?: string;
+  landingReferrer?: string;
+  submittedFrom?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -285,6 +292,8 @@ async function sendProfessionalNotification(data: GamingContactFormData) {
             <p style="white-space: pre-wrap;">${toEmailSafeText(data.projectDetails)}</p>
           </div>
           
+          ${leadAttributionEmailHtml(readLeadAttribution(data))}
+
           <div style="background-color: #e0f2fe; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #0369a1;">
               <strong>Submitted at:</strong> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}

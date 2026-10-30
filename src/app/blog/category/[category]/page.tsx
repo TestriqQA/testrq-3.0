@@ -3,7 +3,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 import { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { sanityGetAdaptedCategoryData } from "@/lib/sanity-data-adapter";
+import { sanityGetAdaptedCategoryData, sanityGetCategories, sanityGetTags } from "@/lib/sanity-data-adapter";
 import { normalizeBlogSlug } from "@/lib/blog-slug";
 
 export const revalidate = 60; // Revalidate every minute
@@ -112,6 +112,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     authors: [{ name: "Testriq QA Lab" }],
     creator: "Testriq QA Lab",
     publisher: "Testriq QA Lab",
+    // Categories stay indexed regardless of how few posts they hold, and that
+    // is deliberate — do not copy the tag rule here.
+    //
+    // /blog/tag/[tag] noindexes any tag archive listing fewer than 2 posts
+    // (656 of 937 of them). 31 category archives list exactly one post and so
+    // look like the same case, but they are not: categories are the blog's
+    // navigation — they are linked from /blog/categories, from the post
+    // sidebar and from each post's own breadcrumb — whereas tags are a flat
+    // keyword index with no navigational role. Noindexing a category removes
+    // a page users actually navigate through.
+    //
+    // Reviewed and decided on 2026-10-28. A thin category is better answered
+    // by giving it more posts, or by merging it into a sibling, than by
+    // hiding it from the index.
     robots: {
       index: true,
       follow: true,
@@ -184,6 +198,23 @@ export default async function CategoryPage({ params }: Props) {
   const categoryName = categoryData.category.name;
   const categoryDescription = categoryData.category.description || `Explore expert articles and insights about ${categoryName} testing. Learn best practices, tutorials, and industry insights from Testriq's ISTQB certified experts.`;
 
+  // Sidebar data is fetched here rather than inside CategorySidebar. That is a
+  // "use client" component, and importing the adapter from it pulled the
+  // adapter's 20 MB content-snapshot import into the browser bundle. Fetching
+  // server-side also puts the related-category and tag links into the
+  // server-rendered HTML, where a crawler can see them.
+  //
+  // Same try/catch posture as the fetch above: a Sanity outage degrades the
+  // sidebar to empty rather than failing the whole page. Both calls are already
+  // memoised behind unstable_cache in the adapter, so this adds no Sanity cost.
+  let allCategories: Awaited<ReturnType<typeof sanityGetCategories>> = [];
+  let allTags: Awaited<ReturnType<typeof sanityGetTags>> = [];
+  try {
+    [allCategories, allTags] = await Promise.all([sanityGetCategories(), sanityGetTags()]);
+  } catch (err) {
+    console.error("Sanity error fetching category sidebar data:", err);
+  }
+
   return (
     <div>
       <MainLayout>
@@ -203,7 +234,11 @@ export default async function CategoryPage({ params }: Props) {
               <CategoryPostsGrid category={categoryData.category} posts={categoryData.posts} />
             </div>
             <div className="lg:col-span-1">
-              <CategorySidebar category={categoryData.category} />
+              <CategorySidebar
+                category={categoryData.category}
+                categories={allCategories}
+                tags={allTags}
+              />
             </div>
           </div>
         </div>
