@@ -8,13 +8,15 @@
 // experience. When a named UK reference is cleared for publication, add it here
 // rather than stretching these two.
 //
-// "Independent reviews": counts and the average are DERIVED from
-// qaOutsourcingReviews — the repo's one verified-review source, transcribed from
-// the live platforms — instead of being retyped here. Hardcoding them would give
-// the site two numbers for the same fact, and the stale one always wins an
-// argument with a buyer. Note the second platform is G2, not GoodFirms: the
-// GoodFirms review was excluded because GoodFirms itself marked the reviewer
-// unverifiable (see the header comment in reviewsData.ts).
+// "Independent reviews": the counts, the rating and the profile link all come
+// from `reviewPlatforms` in reviewsData.ts, never retyped here. Two numbers for
+// the same fact is how this went wrong once already — until 2026-10-29 these
+// were derived from the transcribed REVIEWS instead, which counted only the six
+// Clutch and two G2 reviews copied into the repo and so understated both
+// platforms (Clutch publishes 8, G2 4). Derived-but-from-the-wrong-set reads
+// exactly like a correct number, which is what made it survive. Note the second
+// platform is G2, not GoodFirms: the GoodFirms review was excluded because
+// GoodFirms itself marked the reviewer unverifiable (see reviewsData.ts).
 //
 // No aggregateRating schema is emitted for these. A rating shown on a page but
 // sourced from third-party profiles is not eligible for self-serving rich
@@ -22,22 +24,10 @@
 import Link from "next/link";
 import React from "react";
 import { FaStar, FaExternalLinkAlt } from "react-icons/fa";
-import { qaOutsourcingReviews } from "@/app/(services)/qa-outsourcing-services/reviewsData";
+import { platform, spellCount } from "@/app/(services)/qa-outsourcing-services/reviewsData";
 
-const CLUTCH_PROFILE = "https://clutch.co/profile/testriq-qa-lab";
-
-const clutchReviews = qaOutsourcingReviews.filter((r) => r.source === "Clutch");
-const g2Reviews = qaOutsourcingReviews.filter((r) => r.source === "G2");
-
-// Prose spells out small numbers ("six reviews", not "6 reviews"), but the
-// counts are still derived rather than typed, so they cannot go stale. Falls
-// back to the numeral above nine.
-const SPELLED = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-const spell = (n: number) => SPELLED[n] ?? String(n);
-
-const clutchAverage = (
-  clutchReviews.reduce((sum, r) => sum + r.rating, 0) / clutchReviews.length
-).toFixed(1);
+const clutch = platform("Clutch");
+const g2 = platform("G2");
 
 const WORK: { client: string; href: string; detail: string }[] = [
   {
@@ -84,24 +74,40 @@ const LondonEvidenceSection: React.FC = () => {
             <p className="text-gray-700">
               You can check what clients say about us outside our own site:{" "}
               <Link
-                href={CLUTCH_PROFILE}
+                href={clutch.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="text-brand-blue hover:underline inline-flex items-center gap-1"
               >
-                {spell(clutchReviews.length)} reviews on Clutch
+                {spellCount(clutch.count)} reviews on Clutch
                 <FaExternalLinkAlt className="text-xs" aria-hidden="true" />
               </Link>
-              , currently averaging {clutchAverage} out of 5, and{" "}
-              {spell(g2Reviews.length)} on G2. The reviewers so far are based in India,
-              Portugal and Australia.
+              , currently averaging {clutch.rating} out of 5, and{" "}
+              {/* Linked too, so the sentence's own promise — that you can go and
+                  check — holds for both platforms rather than just the first. */}
+              <Link
+                href={g2.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="text-brand-blue hover:underline inline-flex items-center gap-1"
+              >
+                {spellCount(g2.count)} on G2
+                <FaExternalLinkAlt className="text-xs" aria-hidden="true" />
+              </Link>
+              {/* "Reviewers include" rather than the old "the reviewers so far
+                  are based in", which claimed to account for ALL of them. It was
+                  already a stretch over eight transcribed reviews (the two G2
+                  ones state no location) and is plainly wrong over the twelve
+                  the platforms actually hold. These three are the ones a visitor
+                  can see named on /qa-outsourcing-services. */}
+              . Reviewers include teams in India, Portugal and Australia.
             </p>
             <p
               className="text-gray-600 text-sm mt-4 flex items-center gap-2"
-              aria-label={`Average Clutch rating ${clutchAverage} out of 5`}
+              aria-label={`Average Clutch rating ${clutch.rating} out of 5`}
             >
               <FaStar className="text-yellow-500" aria-hidden="true" />
-              {clutchAverage} / 5 on Clutch
+              {clutch.rating} / 5 on Clutch
             </p>
           </div>
         </div>
