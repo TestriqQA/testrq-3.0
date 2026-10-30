@@ -104,6 +104,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // variant — pagination is a UX affordance, not a separate indexable resource.
   const canonicalUrl = `https://www.testriq.com/blog/tag/${normalizedTag}`;
 
+  // A tag listing one post is a thinner duplicate of that post, and a tag
+  // listing none has nothing on it. Neither should compete in the index;
+  // both still pass link equity on to the posts via follow.
+  const isIndexable = tagData.posts.length >= 2;
+
   return {
     // Was `${tagName}|Testriq Blog` — brand doubled by the root template on
     // every tag page, and no space around the pipe. The sibling not-found
@@ -115,10 +120,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     creator: "Testriq QA Lab",
     publisher: "Testriq QA Lab",
     robots: {
-      index: true,
+      index: isIndexable,
       follow: true,
       googleBot: {
-        index: true,
+        index: isIndexable,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
@@ -188,6 +193,19 @@ export default async function TagPage({ params }: Props) {
   const tagName = tagData.tag.name;
   const tagDescription = tagData.tag.description || `Explore all articles tagged with ${tagName}. Find comprehensive guides, tutorials, and best practices related to ${tagName} from Testriq's ISTQB certified experts.`;
 
+  // Sidebar data is fetched here rather than inside TagSidebar. That is a
+  // "use client" component, and importing the adapter from it pulled the
+  // adapter's 20 MB content-snapshot import into the browser bundle. Fetching
+  // server-side also puts the tag links into the server-rendered HTML, where a
+  // crawler can see them. Same try/catch posture as above, and sanityGetTags is
+  // already memoised behind unstable_cache so this adds no Sanity cost.
+  let allTags: Awaited<ReturnType<typeof sanityGetTags>> = [];
+  try {
+    allTags = await sanityGetTags();
+  } catch (err) {
+    console.error("Sanity error fetching tag sidebar data:", err);
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <MainLayout>
@@ -207,7 +225,7 @@ export default async function TagPage({ params }: Props) {
               <TagPostsGrid tag={tagData.tag} posts={adaptedPosts} />
             </div>
             <div className="lg:col-span-1">
-              <TagSidebar tag={tagData.tag} />
+              <TagSidebar tag={tagData.tag} tags={allTags} />
             </div>
           </div>
         </div>

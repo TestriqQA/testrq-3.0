@@ -18,7 +18,16 @@ import BlogPostsGrid from "@/components/sections/BlogPostsGrid";
 import MainLayout from "@/components/layout/MainLayout";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 import { Metadata } from "next";
-import { sanityGetPostsBySlugs, sanityGetAllPostSlugs, Post } from "@/lib/sanity-data-adapter";
+import {
+  sanityGetPostsBySlugs,
+  sanityGetAllPostSlugs,
+  sanityGetPosts,
+  sanityGetCategories,
+  sanityGetTotalPostCount,
+  sanityGetTotalCategoryCount,
+  type Category,
+  Post,
+} from "@/lib/sanity-data-adapter";
 
 export const revalidate = 60; // Revalidate every minute
 
@@ -142,6 +151,31 @@ export default async function BlogPage() {
     console.error("Error fetching paginated posts:", error);
   }
 
+  // Hero data is fetched here rather than inside BlogHeroSection. That is a
+  // "use client" component, and importing the adapter from it pulled the
+  // adapter's 20 MB content-snapshot import into the browser bundle. All four
+  // calls are memoised behind unstable_cache, so this adds no Sanity cost — and
+  // the counts, category chips and latest-post card now render in the server
+  // HTML instead of appearing after a client fetch.
+  let heroTotalPosts = 0;
+  let heroTotalCategories = 0;
+  let heroLatestPost: Post | null = null;
+  let heroCategories: Category[] = [];
+  try {
+    const [postCount, categoryCount, latestPosts, allCategories] = await Promise.all([
+      sanityGetTotalPostCount(),
+      sanityGetTotalCategoryCount(),
+      sanityGetPosts(1),
+      sanityGetCategories(),
+    ]);
+    heroTotalPosts = postCount;
+    heroTotalCategories = categoryCount;
+    heroLatestPost = latestPosts[0] ?? null;
+    heroCategories = allCategories;
+  } catch (error) {
+    console.error("Error fetching blog hero data:", error);
+  }
+
   return (
     <MainLayout>
       <BlogStructuredData
@@ -150,7 +184,12 @@ export default async function BlogPage() {
         description="Stay updated with the latest trends, insights, and best practices in software testing and QA. Explore expert articles, tutorials, and industry news from Testriq's ISTQB certified experts."
         url="https://www.testriq.com/blog"
       />
-      <BlogHeroSection />
+      <BlogHeroSection
+        totalPosts={heroTotalPosts}
+        totalCategories={heroTotalCategories}
+        latestPost={heroLatestPost}
+        categories={heroCategories}
+      />
 
       {/* F-48.1 — Suspense boundary is REQUIRED because BlogPostsGrid uses
           useSearchParams(); without this, the whole route would silently

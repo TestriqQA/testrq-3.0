@@ -2,7 +2,12 @@ import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 import { Metadata } from "next";
-import { sanityGetCategories, type Category } from "@/lib/sanity-data-adapter";
+import {
+  sanityGetCategories,
+  sanityGetTotalPostCount,
+  sanityGetTotalCategoryCount,
+  type Category,
+} from "@/lib/sanity-data-adapter";
 
 // Hero Section - SSR for above-the-fold content
 import CategoriesHeroSection from "@/components/sections/CategoriesHeroSection";
@@ -168,6 +173,22 @@ export default async function CategoriesPage() {
     (cat: Category) => cat.postCount > 0
   );
 
+  // Hero counts are fetched here rather than inside CategoriesHeroSection.
+  // That is a "use client" component, and importing the adapter from it pulled
+  // the adapter's 20 MB content-snapshot import into the browser bundle. Both
+  // counts are memoised behind unstable_cache, so this costs no extra Sanity
+  // request, and the numbers now render in the server HTML.
+  let totalArticles = 0;
+  let totalCategories = 0;
+  try {
+    [totalArticles, totalCategories] = await Promise.all([
+      sanityGetTotalPostCount(),
+      sanityGetTotalCategoryCount(),
+    ]);
+  } catch (err) {
+    console.error('Sanity error fetching hero counts for /blog/categories:', err);
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
       <MainLayout>
@@ -180,7 +201,10 @@ export default async function CategoriesPage() {
         />
 
         {/* 1. Hero Section */}
-        <CategoriesHeroSection />
+        <CategoriesHeroSection
+          totalArticles={totalArticles}
+          totalCategories={totalCategories}
+        />
 
         {/* 2. Trust & Credibility Strip */}
         <CategoriesTrustStrip />
