@@ -52,11 +52,9 @@ const HomeFAQSection = () => {
                                 <span className="font-bold text-gray-900 md:text-lg">{faq.question}</span>
                                 {openIndex === i ? <ChevronUp className="text-[theme(color.brand.blue)]" /> : <ChevronDown className="text-gray-400" />}
                             </button>
-                            {openIndex === i && (
-                                <div className="px-8 pb-6 text-gray-600 leading-relaxed animate-fade-in">
+                            <div className="px-8 pb-6 text-gray-600 leading-relaxed animate-fade-in" hidden={openIndex !== i}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

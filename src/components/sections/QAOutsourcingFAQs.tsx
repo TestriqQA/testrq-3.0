@@ -78,11 +78,9 @@ const QAOutsourcingFAQs: React.FC = () => {
                     <FaChevronDown className="text-brand-blue flex-shrink-0 ml-4" />
                   )}
                 </button>
-                {openIndex === index && (
-                  <div className="px-6 py-4 border-t border-gray-100 text-gray-700 leading-relaxed">
+                <div className="px-6 py-4 border-t border-gray-100 text-gray-700 leading-relaxed" hidden={openIndex !== index}>
                     {faq.answer}
                   </div>
-                )}
               </div>
             ))}
           </div>

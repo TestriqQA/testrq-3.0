@@ -49,11 +49,9 @@ const UATFAQs: React.FC = () => {
                                     {activeIndex === i ? <FaMinus /> : <FaPlus />}
                                 </div>
                             </button>
-                            {activeIndex === i && (
-                                <div className="px-6 lg:px-8 pb-8 text-gray-600 leading-relaxed font-medium">
+                            <div className="px-6 lg:px-8 pb-8 text-gray-600 leading-relaxed font-medium" hidden={activeIndex !== i}>
                                     {faq.a}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

@@ -104,13 +104,11 @@ const TradingAppFAQs = () => {
                 </div>
               </button>
 
-              {openFAQ === index && (
-                <div className="px-6 pb-4">
+              <div className="px-6 pb-4" hidden={openFAQ !== index}>
                   <p className="text-gray-600 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
-              )}
             </div>
           ))}
         </div>

@@ -53,14 +53,12 @@ const AccessibilityFAQSection: React.FC = () => {
                                         {activeIndex === index ? <FaMinus /> : <FaPlus />}
                                     </div>
                                 </button>
-                                {activeIndex === index && (
-                                    <div className="px-6 md:px-8 pb-8 pt-0">
+                                <div className="px-6 md:px-8 pb-8 pt-0" hidden={activeIndex !== index}>
                                         <div className="h-px bg-gray-100 mb-6"></div>
                                         <p className="text-lg text-gray-600 leading-relaxed italic">
                                             &quot;{faq.answer}&quot;
                                         </p>
                                     </div>
-                                )}
                             </div>
                         ))}
                     </div>

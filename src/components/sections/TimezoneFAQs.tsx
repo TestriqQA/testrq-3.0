@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
+
 const faqs = [
     {
         question: "What are the benefits of testing in the same time zone?",
@@ -31,6 +33,9 @@ const TimezoneFAQs: React.FC = () => {
 
     return (
         <section className="py-24 px-8 md:px-12 lg:px-24 bg-white">
+            {/* Built from the same array rendered below, so the markup and
+                the visible questions cannot drift apart. */}
+            <FaqJsonLd faqs={faqs} />
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -59,11 +64,9 @@ const TimezoneFAQs: React.FC = () => {
                                 </div>
                             </button>
 
-                            {activeIndex === index && (
-                                <div className="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50">
+                            <div className="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50" hidden={activeIndex !== index}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

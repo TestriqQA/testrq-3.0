@@ -97,15 +97,13 @@ const DesktopFAQs: React.FC = () => {
                 </div>
               </button>
 
-              {openFAQ === index && (
-                <div className="px-8 pb-6">
+              <div className="px-8 pb-6" hidden={openFAQ !== index}>
                   <div className="border-t border-gray-100 pt-6">
                     <p className="text-gray-600 leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
                 </div>
-              )}
             </div>
           ))}
         </div>

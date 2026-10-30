@@ -220,13 +220,11 @@ const SecurityTestingFAQs: React.FC = () => {
                           </div>
                         </button>
 
-                        {isOpen && (
-                          <div className="mt-4 pl-0">
+                        <div className="mt-4 pl-0" hidden={!isOpen}>
                             <p className="text-gray-600 leading-relaxed">
                               {faq.answer}
                             </p>
                           </div>
-                        )}
                       </div>
                     );
                   })}

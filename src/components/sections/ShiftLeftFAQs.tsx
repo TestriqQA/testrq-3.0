@@ -51,11 +51,9 @@ const ShiftLeftFAQs: React.FC = () => {
                                 <span className="font-bold text-gray-900 pr-4">{faq.question}</span>
                                 <FaChevronDown className={`w-4 h-4 text-brand-blue transition-transform ${activeIndex === index ? 'rotate-180' : ''}`} />
                             </button>
-                            {activeIndex === index && (
-                                <div className="p-6 pt-0 text-gray-600 text-sm leading-relaxed border-t border-gray-50">
+                            <div className="p-6 pt-0 text-gray-600 text-sm leading-relaxed border-t border-gray-50" hidden={activeIndex !== index}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

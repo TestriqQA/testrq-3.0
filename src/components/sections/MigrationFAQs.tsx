@@ -60,11 +60,9 @@ const MigrationFAQs: React.FC = () => {
                                     <FaChevronDown className="text-gray-400 shrink-0 ml-4" />
                                 )}
                             </button>
-                            {openIndex === index && (
-                                <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4">
+                            <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4" hidden={openIndex !== index}>
                                     {faq.answer}
                                 </div>
-                            )}
                         </div>
                     ))}
                 </div>

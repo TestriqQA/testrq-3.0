@@ -38,11 +38,9 @@ const DPDPFAQs: React.FC = () => {
                     className={`shrink-0 text-brand-blue transition-transform ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
-                {isOpen && (
-                  <div className="px-6 pb-5 text-gray-700 leading-relaxed">
+                <div className="px-6 pb-5 text-gray-700 leading-relaxed" hidden={!isOpen}>
                     {faq.answer}
                   </div>
-                )}
               </div>
             );
           })}
