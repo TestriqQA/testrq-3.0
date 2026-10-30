@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import { FaTag, FaArrowRight, FaBell, FaSpinner } from "react-icons/fa";
 import Link from "next/link";
-import { sanityGetTags as getTags, Tag } from "@/lib/sanity-data-adapter";
+// `import type` on purpose — see the note in CategorySidebar.tsx. A value
+// import from the adapter would pull the 20 MB content snapshot into this
+// client component's bundle; a type-only import is erased at compile time.
+import type { Tag } from "@/lib/sanity-data-adapter";
 
 interface TagSidebarProps {
   tag: Tag;
+  /** Every tag, fetched by the server page. */
+  tags: Tag[];
 }
 
 interface RelatedTag {
@@ -15,49 +20,28 @@ interface RelatedTag {
   count: number;
 }
 
-const TagSidebar: React.FC<TagSidebarProps> = ({ tag }) => {
-  const [relatedTags, setRelatedTags] = useState<RelatedTag[]>([]);
-  const [popularTags, setPopularTags] = useState<RelatedTag[]>([]);
-  const [loading, setLoading] = useState(true);
-
+const TagSidebar: React.FC<TagSidebarProps> = ({ tag, tags }) => {
   // Newsletter state
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [newsletterLoading, setNewsletterLoading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchSidebarData = async () => {
-      try {
-        setLoading(true);
-        // Fetch all tags from Sanity
-        const allTags = await getTags();
+  // The same derivation that used to run in a useEffect after fetching. The
+  // filter+map already produces a new array, so the sort below mutates that
+  // copy rather than the `tags` prop.
+  const popularTags = useMemo<RelatedTag[]>(
+    () =>
+      tags
+        .filter((t) => t.slug !== tag.slug)
+        .map((t) => ({ name: t.name, slug: t.slug, count: t.count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 20),
+    [tags, tag.slug],
+  );
 
-        // Filter out current tag and get related/popular tags
-        const otherTags = (allTags as RelatedTag[])
-          .filter((t: RelatedTag) => t.slug !== tag.slug)
-          .map((t: RelatedTag) => ({
-            name: t.name,
-            slug: t.slug,
-            count: t.count
-          }));
-
-        // Sort by count for popular tags
-        const popular = otherTags
-          .sort((a: RelatedTag, b: RelatedTag) => b.count - a.count)
-          .slice(0, 20);
-
-        setPopularTags(popular);
-        setRelatedTags(popular.slice(0, 8)); // Use same as related for now
-      } catch (error) {
-        console.error("Error fetching sidebar data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSidebarData();
-  }, [tag.slug]);
+  // Same list as popular for now, matching the previous behaviour.
+  const relatedTags = useMemo<RelatedTag[]>(() => popularTags.slice(0, 8), [popularTags]);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,21 +85,6 @@ const TagSidebar: React.FC<TagSidebarProps> = ({ tag }) => {
     }
   };
 
-  if (loading) {
-    return (
-      <aside className="space-y-8">
-        <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
-          <div className="animate-pulse">
-            <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-            <div className="space-y-3">
-              <div className="h-3 bg-gray-200 rounded"></div>
-              <div className="h-3 bg-gray-200 rounded w-5/6"></div>
-            </div>
-          </div>
-        </div>
-      </aside>
-    );
-  }
 
   return (
     <aside className="space-y-8">

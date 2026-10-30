@@ -31,7 +31,7 @@ const TimezoneTestingHero: React.FC = () => {
                         </div>
 
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                            Synchronizing Innovation: <br />
+                            Timezone Testing Services: <br />
                             <span className="text-[theme(color.brand.blue)]">Time Zone Aligned</span> <br />
                             QA Excellence in 2026
                         </h1>

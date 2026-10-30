@@ -1,12 +1,25 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import { FaBell, FaArrowRight, FaTags, FaSpinner } from "react-icons/fa";
 import Link from "next/link";
-import { sanityGetCategories as getCategories, sanityGetTags as getTags, Category } from "@/lib/sanity-data-adapter";
+// `import type` on purpose, and load-bearing. This is a "use client"
+// component, so a VALUE import from the adapter pulls that module — and the
+// `import contentSnapshotRaw from './sanity-content-snapshot.json'` inside it —
+// into the browser bundle. With the content snapshot populated (20 MB) that
+// produced a 11.96 MB client chunk, confirmed by finding post bodies in
+// .next/static/chunks. A type-only import is erased at compile time, so the
+// adapter stays server-side. The data now arrives as props from the server
+// page, which also means these links are in the server-rendered HTML and
+// crawlable, rather than appearing after a client fetch.
+import type { Category, Tag } from "@/lib/sanity-data-adapter";
 
 interface CategorySidebarProps {
   category: Category;
+  /** Every category, fetched by the server page. */
+  categories: Category[];
+  /** Every tag, fetched by the server page. */
+  tags: Tag[];
 }
 
 interface RelatedCategory {
@@ -23,52 +36,44 @@ interface PopularTag {
   count: number;
 }
 
-const CategorySidebar: React.FC<CategorySidebarProps> = ({ category }) => {
-  const [relatedCategories, setRelatedCategories] = useState<RelatedCategory[]>([]);
-  const [popularTags, setPopularTags] = useState<PopularTag[]>([]);
-  const [loading, setLoading] = useState(true);
-
+const CategorySidebar: React.FC<CategorySidebarProps> = ({ category, categories, tags }) => {
   // Newsletter state
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [newsletterLoading, setNewsletterLoading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchSidebarData = async () => {
-      try {
-        setLoading(true);
-        // Fetch all categories from Sanity
-        const sanityCategories = await getCategories();
-        const related = (sanityCategories as Category[])
-          .filter((cat: Category) => cat.postCount > 0 && cat.id !== category.id)
-          .sort((a: Category, b: Category) => b.postCount - a.postCount)
-          .slice(0, 4)
-          .map((cat: Category) => ({
-            name: cat.name,
-            slug: cat.id,
-            icon: cat.icon,
-            color: cat.color,
-            postCount: cat.postCount
-          }));
-        setRelatedCategories(related);
+  // The same derivation that used to run in a useEffect after fetching. The
+  // data arrives as props now, so there is nothing to await and no loading
+  // state — which is why the skeleton early-return below is gone.
+  const relatedCategories = useMemo<RelatedCategory[]>(
+    () =>
+      categories
+        .filter((cat) => cat.postCount > 0 && cat.id !== category.id)
+        .sort((a, b) => b.postCount - a.postCount)
+        .slice(0, 4)
+        .map((cat) => ({
+          name: cat.name,
+          slug: cat.id,
+          icon: cat.icon,
+          color: cat.color,
+          postCount: cat.postCount,
+        })),
+    [categories, category.id],
+  );
 
-        // Fetch tags from Sanity
-        const tagsResult = await getTags();
-        const sortedPopularTags = (tagsResult as PopularTag[])
-          .sort((a: PopularTag, b: PopularTag) => b.count - a.count)
-          .slice(0, 20);
-
-        setPopularTags(sortedPopularTags);
-      } catch (error) {
-        console.error("Error fetching sidebar data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSidebarData();
-  }, [category.id]);
+  const popularTags = useMemo<PopularTag[]>(
+    () =>
+      // slice() before sort(): sort mutates in place, and `tags` is a prop the
+      // server page may hand to more than one child. The previous code sorted a
+      // freshly fetched array, so mutation was harmless there; here it is not.
+      tags
+        .slice()
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 20)
+        .map((tag) => ({ name: tag.name, slug: tag.slug, count: tag.count })),
+    [tags],
+  );
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,21 +117,6 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({ category }) => {
     }
   };
 
-  if (loading) {
-    return (
-      <aside className="space-y-8">
-        <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
-          <div className="animate-pulse">
-            <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-            <div className="space-y-3">
-              <div className="h-3 bg-gray-200 rounded"></div>
-              <div className="h-3 bg-gray-200 rounded w-5/6"></div>
-            </div>
-          </div>
-        </div>
-      </aside>
-    );
-  }
 
   return (
     <aside className="space-y-8">

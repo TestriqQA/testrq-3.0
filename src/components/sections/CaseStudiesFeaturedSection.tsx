@@ -354,8 +354,18 @@ const CaseStudiesFeaturedSection = ({ caseStudies }: CaseStudiesFeaturedSectionP
                 </div>
 
                 {/* CTA */}
+                {/* PART 4 / JOB A3. Leading slash is load-bearing: `slug` is
+                    bare ("pro-ficiency-case-study"), so href={caseStudy.slug}
+                    was a RELATIVE link. From /case-studies it resolved to
+                    /case-studies/pro-ficiency-case-study, and there are no
+                    routes under /case-studies — so all 19 "Read Full Case
+                    Study" links 404'd, and the case studies hub passed no link
+                    equity to the pages it exists to promote. A link crawl of
+                    the build found 11 of 14 case studies on zero inbound
+                    links; this was why. CaseStudyRelatedSection already used
+                    the correct `/${slug}` form. */}
                 <Link
-                  href={caseStudy.slug}
+                  href={`/${caseStudy.slug}`}
                   className="inline-flex items-center gap-2 text-[theme(color.brand.blue)] font-semibold hover:text-blue-600 transition-colors"
                 >
                   Read Full Case Study

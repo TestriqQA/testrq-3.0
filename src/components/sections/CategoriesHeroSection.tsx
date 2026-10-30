@@ -13,10 +13,17 @@ import {
   MessageCircle,
   Sparkles,
 } from "lucide-react";
-import {
-  sanityGetTotalPostCount as getTotalPostCount,
-  sanityGetTotalCategoryCount as getTotalCategoryCount,
-} from "@/lib/sanity-data-adapter";
+// No adapter import at all now. This is a "use client" component, and a value
+// import from the adapter pulls its 20 MB content-snapshot import into the
+// browser bundle — see the note in CategorySidebar.tsx. The two counts arrive
+// as props from the server page instead.
+
+interface CategoriesHeroSectionProps {
+  /** Total published posts, counted by the server page. */
+  totalArticles: number;
+  /** Total categories, counted by the server page. */
+  totalCategories: number;
+}
 
 // Custom hook for animated counting
 const useCountUp = (
@@ -100,26 +107,14 @@ const StatCard: React.FC<{
   );
 };
 
-const CategoriesHeroSection: React.FC = () => {
-  const [totalArticles, setTotalArticles] = useState(0);
-  const [totalCategories, setTotalCategories] = useState(0);
-  const ref = useRef(null);  useEffect(() => {
-    const fetchCounts = async () => {
-      try {
-        const [articlesCount, categoriesCount] = await Promise.all([
-          getTotalPostCount(),
-          getTotalCategoryCount(),
-        ]);
-        setTotalArticles(articlesCount);
-        setTotalCategories(categoriesCount);
-      } catch (error) {
-        console.error("Error fetching counts:", error);
-        setTotalArticles(500);
-        setTotalCategories(15);
-      }
-    };
-    fetchCounts();
-  }, []);
+const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
+  totalArticles,
+  totalCategories,
+}) => {
+  const ref = useRef(null);
+  // The two counts used to be fetched here in a useEffect; they arrive as
+  // props now, so the hardcoded error fallback (500 / 15) is gone with the
+  // fetch that could fail.
 
   const stats = [
     {

@@ -44,7 +44,7 @@ const IoTTestingHeroSection: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
               Global{" "}
               <span className="text-[theme(color.brand.blue)]">
-                IoT Testing Services:&nbsp;
+                IoT Device Testing Services:&nbsp;
               </span>
               Ensuring Reliability in a 21.1 Billion Connected Ecosystem
             </h1>
