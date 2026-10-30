@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
     createCanonicalBreadcrumb,
-    createFaqPageSchema,
     regressionTestingServiceSchema,
 } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -16,6 +15,11 @@ import RegressionTestingToolsFramework from "@/components/sections/RegressionTes
 import RegressionTestingCaseStudies from "@/components/sections/RegressionTestingCaseStudies";
 import RegressionTestingReadyToEnsureQuality from "@/components/sections/RegressionTestingReadyToEnsureQuality";
 import RegressionTestingFAQs from "@/components/sections/RegressionTestingFAQs";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -57,36 +61,13 @@ export default function RegressionTestingPage() {
     // authors, creator, publisher, formatDetection (all belong in root layout only). 9 dynamic()
     // → direct imports. PR-3 will fix at breadcrumb component level cascading to 40 pages.
     // F-44.1: plain-text mirror of RegressionTestingFAQs UI content for FAQPage JSON-LD.
-    const faqsForSchema = [
-        {
-            question: "What is the main difference between unit testing and regression testing?",
-            answer: "Unit testing validates individual components in isolation, usually by developers. Regression testing validates the entire system to ensure that these individual changes didn't break existing features.",
-        },
-        {
-            question: "How do you reduce regression testing time with automation?",
-            answer: "We use Regression Test Selection (RTS) to find the most vital tests. Our team then runs them in parallel using cloud environments to save you time. This reduces execution time by up to 80%.",
-        },
-        {
-            question: "What is visual regression testing?",
-            answer: "Visual regression testing focuses on the UI's appearance. We analyze images to find unintended layout shifts and font changes. These visual tools catch color mismatches that standard functional tests often miss.",
-        },
-        {
-            question: "Why is impact analysis important in regression testing?",
-            answer: "Avoid slow, full regression cycles by targeting only the code that changed. Our impact analysis ensures you maintain high quality while significantly cutting execution costs.",
-        },
-        {
-            question: "How do you handle flaky tests in automated regression testing?",
-            answer: "We use 'retry' logic and stabilize environments to stop flaky tests. By regularly pruning your test suite, we ensure your results are always reliable and accurate.",
-        },
-    ];
-
     return (
         <div>
             <StructuredData data={regressionTestingServiceSchema} />
             <StructuredData data={createCanonicalBreadcrumb("/regression-testing", "Regression Testing")} />
-            <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <RegressionTestingHeroSection />
+                <ServiceDirectAnswer slug="regression-testing" />
                 <RegressionTestingComprehensiveSlider />
                 <RegressionTestingROISection />
                 <RegressionTestingProvenTestingProcess />
@@ -94,7 +75,11 @@ export default function RegressionTestingPage() {
                 <RegressionTestingToolsFramework />
                 <RegressionTestingCaseStudies />
                 <RegressionTestingReadyToEnsureQuality />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="regression-testing" />
+                <ServiceEngagementModels />
                 <RegressionTestingFAQs />
+                <ServiceCta slug="regression-testing" />
             </MainLayout>
         </div>
     );

@@ -3,9 +3,13 @@ import MainLayout from "@/components/layout/MainLayout";
 import type { Metadata } from "next";
 import StructuredData, {
     azureTestingSchema,
-    azureFAQSchema,
     createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -112,7 +116,6 @@ export default function AzureTestingPage() {
     return (
         <div>
             <StructuredData data={azureTestingSchema} />
-            <StructuredData data={azureFAQSchema} />
             <StructuredData
                 data={createCanonicalBreadcrumb(
                     "/azure-testing-services",
@@ -121,11 +124,16 @@ export default function AzureTestingPage() {
             />
             <MainLayout>
                 <AzureTestingHeroSection />
+                <ServiceDirectAnswer slug="azure-testing-services" />
                 <AzureTestingWhyTrust />
                 <AzureTestingSolutions />
                 <AzureTestingMethodology />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="azure-testing-services" />
+                <ServiceEngagementModels />
                 <AzureTestingFAQs />
                 <AzureTestingCTA />
+                <ServiceCta slug="azure-testing-services" />
             </MainLayout>
         </div>
     );

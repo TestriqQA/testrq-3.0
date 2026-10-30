@@ -16,6 +16,12 @@ import ETLCaseStudies from "@/components/sections/ETLCaseStudies";
 import ETLFAQs from "@/components/sections/ETLFAQs";
 import ETLAnyQuestions from "@/components/sections/ETLAnyQuestions";
 import ETLComplianceTable from "@/components/sections/ETLComplianceTable";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -24,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     pathname: "/etl-testing-services",
     title: "ETL Testing Services | Data Integrity & Cloud | Testriq",
     description:
-      "Validate cloud ETL pipelines with Testriq's testing services. ISO 8000-1 quality, source-to-target mapping QA, and Snowflake/Databricks migration validation.",
+      "ETL testing services for cloud pipelines: ISO 8000-1 quality, source-to-target mapping QA and Snowflake/Databricks migration validation, from Testriq.",
     ogImage: {
       url: "https://www.testriq.com/OG/ETL-Testing-Service-Og.webp",
       width: 1200,
@@ -92,14 +98,25 @@ export default function ETLTestingPage() {
       />
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <ETLTestingHeroSection />
+      <ServiceDirectAnswer slug="etl-testing-services" />
       <ETLComplianceTable />
       <ETLComprehensiveSlider />
       <ETLProvenTestingProcess />
       <ETLWhyChooseTestriq />
       <ETLToolsFramework />
       <ETLCaseStudies />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="etl-testing-services" />
+      <ServiceEngagementModels />
       <ETLFAQs />
       <ETLAnyQuestions />
+    {/* PART 4 / JOB A2 — contextual links to related services that
+        had almost no inbound links. In the body, not the footer:
+        nav and footer already link these pages ~1,457 times and
+        Google discounts boilerplate. Mapping lives in
+        src/lib/seo/related-services.ts. */}
+    <ServiceCrossLinks serviceSlug="etl-testing-services" />
+    <ServiceCta slug="etl-testing-services" />
     </main>
   );
 }

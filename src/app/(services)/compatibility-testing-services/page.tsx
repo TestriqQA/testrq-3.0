@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
 import StructuredData, {
     compatibilityTestingServiceSchema,
-    compatibilityFAQSchema,
     createCanonicalBreadcrumb,
 } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -14,6 +13,11 @@ import CompatibilityTestingServicesSection from "@/components/sections/Compatibi
 import CompatibilityTestingAdvantageSection from "@/components/sections/CompatibilityTestingAdvantageSection";
 import CompatibilityTestingFAQs from "@/components/sections/CompatibilityTestingFAQs";
 import CompatibilityTestingReadyToStart from "@/components/sections/CompatibilityTestingReadyToStart";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -55,7 +59,6 @@ export default function CompatibilityTestingPage() {
     return (
         <div>
             <StructuredData data={compatibilityTestingServiceSchema} />
-            <StructuredData data={compatibilityFAQSchema} />
             <StructuredData
                 data={createCanonicalBreadcrumb(
                     "/compatibility-testing-services",
@@ -64,12 +67,17 @@ export default function CompatibilityTestingPage() {
             />
             <MainLayout>
                 <CompatibilityTestingHeroSection />
+                <ServiceDirectAnswer slug="compatibility-testing-services" />
                 <CompatibilityTestingDigitalDiversity />
                 <CompatibilityTestingCrucialSection />
                 <CompatibilityTestingServicesSection />
                 <CompatibilityTestingAdvantageSection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="compatibility-testing-services" />
+                <ServiceEngagementModels />
                 <CompatibilityTestingFAQs />
                 <CompatibilityTestingReadyToStart />
+                <ServiceCta slug="compatibility-testing-services" />
             </MainLayout>
         </div>
     );

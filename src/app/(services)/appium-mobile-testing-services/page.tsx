@@ -9,7 +9,7 @@ const PAGE_URL = "https://www.testriq.com/appium-mobile-testing-services";
 export const metadata: Metadata = {
   title: "Appium Mobile Testing Services — iOS + Android Automation",
   description:
-    "Appium mobile test automation: real-device and emulator coverage, iOS XCUITest and Android UiAutomator2, hybrid and native apps, cloud device farms, and CI/CD.",
+    "Appium mobile testing services: real-device and emulator coverage, iOS XCUITest and Android UiAutomator2, hybrid and native apps, device farms and CI/CD.",
   keywords: [
     "Appium Testing Services",
     "Appium Mobile Automation",
@@ -50,7 +50,7 @@ const AppiumTestingPage: React.FC = () => (
     toolName="Appium"
     slug="appium-mobile-testing-services"
     breadcrumbName="Appium Mobile Testing Services"
-    heroTitle="Appium Mobile Test Automation Services — iOS + Android"
+    heroTitle="Appium Mobile Testing Services — iOS + Android Test Automation"
     heroDescription="Cross-platform mobile automation with Appium — real-device + emulator/simulator coverage across iOS (XCUITest driver) and Android (UiAutomator2 driver), native + hybrid + mobile-web flows, cloud device farms for matrix coverage, and tight CI/CD integration. Built by testers who&apos;ve shipped Appium suites on apps with 50M+ installs."
     whatIs="Appium is the W3C WebDriver-compliant automation framework for mobile — driving native iOS apps via XCUITest, native Android apps via UiAutomator2 (and Espresso when needed), hybrid apps via WebView bridging, and mobile-web via Safari + Chrome drivers. One framework + one set of language bindings (Java, Python, JS, C#) across both platforms makes it the default cross-platform mobile QA tool."
     whenToUse={[

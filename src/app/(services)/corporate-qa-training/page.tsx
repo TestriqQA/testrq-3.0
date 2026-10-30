@@ -5,6 +5,11 @@ import StructuredData, {
   createCanonicalBreadcrumb,
   createFaqPageSchema,
 } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -253,13 +258,18 @@ export default function CorporateQATrainingPage() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <CorporateQATrainingHeroSection />
+        <ServiceDirectAnswer slug="corporate-qa-training" />
         <CorporateQATrainingChallenges />
         <CorporateQATrainingComprehensiveSlider />
         <CorporateQATrainingProvenProcess />
         <CorporateQATrainingWhyChooseTestriq />
         <CorporateQATrainingModules />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="corporate-qa-training" />
+        <ServiceEngagementModels />
         <CorporateQATrainingFAQs />
         <CorporateQATrainingReadyToTransform />
+        <ServiceCta slug="corporate-qa-training" />
       </MainLayout>
     </div>
   );

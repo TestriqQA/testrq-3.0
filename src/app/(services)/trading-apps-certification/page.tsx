@@ -15,14 +15,19 @@ import StructuredData, {
   tradingAppCertificationSchema,
   websiteSchema,
 } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Trading App Certification",
+  title: "Trading Apps Certification",
 
   description:
-    "Certify your trading app with Testriq QA: regulatory compliance (FINRA, SEC, MiFID II), algorithm validation, low-latency performance, and data security.",
+    "Trading apps certification by Testriq: regulatory compliance (FINRA, SEC, MiFID II), algorithm validation, low-latency performance and data security.",
   keywords: [
     "Trading App Certification",
     "Trading platform compliance testing",
@@ -138,13 +143,18 @@ export default function TradingAppsCertificationPage() {
 
       <main className="min-h-screen bg-white">
         <TradingAppHeroSection />
+        <ServiceDirectAnswer slug="trading-apps-certification" />
         <TradingAppCertificationPillars />
         <TradingAppCertificationProcess />
         <TradingAppSecurityFeatures />
         <TradingAppBenefits />
         <TradingAppTestingServices />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="trading-apps-certification" />
+        <ServiceEngagementModels />
         <TradingAppFAQs />
         <TradingAppCTA />
+        <ServiceCta slug="trading-apps-certification" />
       </main>
     </div>
   );

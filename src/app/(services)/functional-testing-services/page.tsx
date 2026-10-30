@@ -14,6 +14,11 @@ import FunctionalSolutionsSection from "@/components/sections/FunctionalSolution
 import FunctionalAdvantageSection from "@/components/sections/FunctionalAdvantageSection";
 import FunctionalFAQs from "@/components/sections/FunctionalFAQs";
 import FunctionalNextStepsSection from "@/components/sections/FunctionalNextStepsSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -86,12 +91,17 @@ export default function FunctionalTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <FunctionalHeroSection />
+                <ServiceDirectAnswer slug="functional-testing-services" />
                 <FunctionalCriticalitySection />
                 <FunctionalWhySection />
                 <FunctionalSolutionsSection />
                 <FunctionalAdvantageSection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="functional-testing-services" />
+                <ServiceEngagementModels />
                 <FunctionalFAQs />
                 <FunctionalNextStepsSection />
+                <ServiceCta slug="functional-testing-services" />
             </MainLayout>
         </div>
     );

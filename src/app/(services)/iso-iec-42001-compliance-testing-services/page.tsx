@@ -80,6 +80,10 @@ export const metadata: Metadata = {
 };
 
 import ISO42001HeroSection from "@/components/sections/ISO42001HeroSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 const ISO42001WhatIsSection = dynamic(
   () => import("@/components/sections/ISO42001WhatIsSection"),
@@ -180,8 +184,12 @@ export default function ISO42001ComplianceTestingServices() {
         <ISO42001ProvenTestingProcess />
         <ISO42001WhyChooseTestriq />
         <ISO42001ToolsFramework />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="iso-iec-42001-compliance-testing-services" />
+        <ServiceEngagementModels />
         <ISO42001FAQs />
         <ISO42001ReadyToStart />
+        <ServiceCta slug="iso-iec-42001-compliance-testing-services" />
       </MainLayout>
     </div>
   );

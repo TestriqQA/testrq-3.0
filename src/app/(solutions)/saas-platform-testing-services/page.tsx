@@ -18,6 +18,10 @@ import StructuredData, {
   createCanonicalBreadcrumb,
   saasPlatformTestingServiceSchema,
 } from "@/components/seo/StructuredData";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -26,7 +30,7 @@ const PAGE_URL = "https://www.testriq.com/saas-platform-testing-services";
 export const metadata: Metadata = {
   title: "SaaS Platform Testing Services",
   description:
-    "Multi-tenant QA, SOC 2 + GDPR pre-audit testing, subscription-billing validation, API contract testing, and zero-downtime release verification for B2B and B2C SaaS platforms — ISTQB + ISO 9001 + ISO 27001 certified.",
+    "SaaS platform testing services: multi-tenant QA, SOC 2 and GDPR pre-audit testing, billing validation, API contract testing and zero-downtime releases.",
   keywords: [
     "SaaS Testing Services",
     "Multi-Tenant Testing",
@@ -296,6 +300,9 @@ const SaasPlatformTestingPage: React.FC = () => {
       <StructuredData
         data={createCanonicalBreadcrumb("/saas-platform-testing-services", "SaaS Platform Testing Services")}
       />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="saas-platform-testing-services" />
+      <ServiceEngagementModels />
       <FaqStructuredData />
 
       <main className="min-h-screen bg-white">
@@ -514,6 +521,7 @@ const SaasPlatformTestingPage: React.FC = () => {
           </div>
         </section>
       </main>
+      <ServiceCta slug="saas-platform-testing-services" />
     </div>
   );
 };

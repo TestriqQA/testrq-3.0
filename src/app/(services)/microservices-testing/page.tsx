@@ -21,6 +21,10 @@ import MicroservicesScenariosSection from "@/components/sections/MicroservicesSc
 import MicroservicesWhyChooseSection from "@/components/sections/MicroservicesWhyChooseSection";
 import MicroservicesFAQs from "@/components/sections/MicroservicesFAQs";
 import MicroservicesNextStepsSection from "@/components/sections/MicroservicesNextStepsSection";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -101,8 +105,12 @@ export default function MicroservicesTestingPage() {
                 <MicroservicesMethodologySection />
                 <MicroservicesScenariosSection />
                 <MicroservicesWhyChooseSection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="microservices-testing" />
+                <ServiceEngagementModels />
                 <MicroservicesFAQs />
                 <MicroservicesNextStepsSection />
+                <ServiceCta slug="microservices-testing" />
             </MainLayout>
         </div>
     );

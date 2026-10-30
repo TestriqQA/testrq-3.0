@@ -14,6 +14,11 @@ import ContinuousTestingComprehensiveSlider from "@/components/sections/Continuo
 import ContinuousTestingSpecialized from "@/components/sections/ContinuousTestingSpecialized";
 import ContinuousTestingFAQs from "@/components/sections/ContinuousTestingFAQs";
 import ContinuousTestingReadyToAccelerate from "@/components/sections/ContinuousTestingReadyToAccelerate";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -89,12 +94,17 @@ export default function ContinuousTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <ContinuousTestingHeroSection />
+                <ServiceDirectAnswer slug="continuous-testing-services-cicd-pipeline" />
                 <ContinuousTestingWhyDevOps />
                 <ContinuousTestingBenefits />
                 <ContinuousTestingComprehensiveSlider />
                 <ContinuousTestingSpecialized />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="continuous-testing-services-cicd-pipeline" />
+                <ServiceEngagementModels />
                 <ContinuousTestingFAQs />
                 <ContinuousTestingReadyToAccelerate />
+                <ServiceCta slug="continuous-testing-services-cicd-pipeline" />
             </MainLayout>
         </div>
     );

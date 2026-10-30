@@ -10,6 +10,12 @@ import QADocumentationFAQs from '@/components/sections/QADocumentationFAQs';
 import QADocumentationReadyToEnsureQuality from '@/components/sections/QADocumentationReadyToEnsureQuality';
 import { Metadata } from 'next';
 import StructuredData, { createCanonicalBreadcrumb, createFaqPageSchema, qaDocumentationServiceSchema } from '@/components/seo/StructuredData';
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -105,14 +111,20 @@ const QADocumentationServicesPage = () => {
       />
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <QADocumentationHeroSection />
+      <ServiceDirectAnswer slug="qa-documentation-services" />
       <QADocumentationChallenges />
       <QADocumentationComprehensiveSlider />
       <QADocumentationProvenTestingProcess />
       <QADocumentationWhyChooseTestriq />
       <QADocumentationToolsFramework />
       <QADocumentationCaseStudies />
+      <ServiceTeamSection />
+      <ServiceLastUpdated slug="qa-documentation-services" />
+      <ServiceEngagementModels />
       <QADocumentationFAQs />
+      <ServiceCrossLinks serviceSlug="qa-documentation-services" />
       <QADocumentationReadyToEnsureQuality />
+      <ServiceCta slug="qa-documentation-services" />
     </div>
   );
 };

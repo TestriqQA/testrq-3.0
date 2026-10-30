@@ -17,6 +17,12 @@ import AutomationTestingToolsFramework from "@/components/sections/AutomationTes
 import AutomationTestingCaseStudies from "@/components/sections/AutomationTestingCaseStudies";
 import AutomationTestingFAQs from "@/components/sections/AutomationTestingFAQs";
 import ManualTestingFrameworkArchitecture from "@/components/sections/ManualTestingFrameworkArchitecture";
+import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -91,6 +97,7 @@ export default function AutomationTestingServices() {
       <StructuredData data={createFaqPageSchema(faqsForSchema)} />
       <MainLayout>
         <AutomationTestingHeroSection />
+        <ServiceDirectAnswer slug="automation-testing-services" />
         <AutomationComplianceTable />
         <AutomationTestingROISection />
         <AutomationTestingComprehensiveSlider />
@@ -98,8 +105,18 @@ export default function AutomationTestingServices() {
         <ManualTestingFrameworkArchitecture />
         <AutomationTestingToolsFramework />
         <AutomationTestingCaseStudies />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="automation-testing-services" />
+        <ServiceEngagementModels />
         <AutomationTestingFAQs />
         <AutomationTestingReadyToEnsureQuality />
+      {/* PART 4 / JOB A2 — contextual links to related services that
+          had almost no inbound links. In the body, not the footer:
+          nav and footer already link these pages ~1,457 times and
+          Google discounts boilerplate. Mapping lives in
+          src/lib/seo/related-services.ts. */}
+      <ServiceCrossLinks serviceSlug="automation-testing-services" />
+      <ServiceCta slug="automation-testing-services" />
       </MainLayout>
     </div>
   );

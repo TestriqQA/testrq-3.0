@@ -14,6 +14,11 @@ import AccessibilityServicesListSection from "@/components/sections/Accessibilit
 import AccessibilityProcessSection from "@/components/sections/AccessibilityProcessSection";
 import AccessibilityFAQSection from "@/components/sections/AccessibilityFAQSection";
 import AccessibilityAnyQuestions from "@/components/sections/AccessibilityAnyQuestions";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -95,12 +100,17 @@ export default function AccessibilityTestingPage() {
             <StructuredData data={createFaqPageSchema(faqsForSchema)} />
             <MainLayout>
                 <AccessibilityHeroSection />
+                <ServiceDirectAnswer slug="accessibility-testing-services" />
                 <AccessibilitySolutionsSection />
                 <AccessibilityWhySection />
                 <AccessibilityServicesListSection />
                 <AccessibilityProcessSection />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="accessibility-testing-services" />
+                <ServiceEngagementModels />
                 <AccessibilityFAQSection />
                 <AccessibilityAnyQuestions />
+                <ServiceCta slug="accessibility-testing-services" />
             </MainLayout>
         </div>
     );

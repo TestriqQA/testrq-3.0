@@ -13,6 +13,12 @@ import EcommerceTestingProcessSection from "@/components/sections/EcommerceTesti
 import EcommercePlatformsSection from "@/components/sections/EcommercePlatformsSection";
 import EcommerceFAQSection from "@/components/sections/EcommerceFAQSection";
 import EcommerceContactSection from "@/components/sections/EcommerceContactSection";
+import RelatedCaseStudies from "@/components/sections/RelatedCaseStudies";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -21,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     pathname: "/e-commerce-testing-services",
     title: "E-Commerce Testing Services | PCI DSS & Load | Testriq",
     description:
-      "Optimize conversions and security with Testriq's e-commerce testing. PCI DSS 4.0-compliant QA for Magento, Shopify, and WooCommerce digital commerce platforms.",
+      "E-commerce testing services from Testriq: PCI DSS 4.0-compliant QA for Magento, Shopify and WooCommerce, optimizing conversions and payment security.",
     ogImage: {
       url: "https://www.testriq.com/OG/E-commerce-Testing-Service-Og.webp",
       width: 1200,
@@ -67,12 +73,23 @@ const EcommerceTestingPage: React.FC = () => {
       />
       <main className="min-h-screen bg-white">
         <EcommerceHeroSection />
+        <ServiceDirectAnswer slug="e-commerce-testing-services" />
         <EcommerceChallengesSection />
         <EcommerceTestingServicesSection />
         <EcommerceTestingProcessSection />
         <EcommercePlatformsSection />
+        <ServiceTeamSection />
+        <ServiceLastUpdated slug="e-commerce-testing-services" />
+        <ServiceEngagementModels />
         <EcommerceFAQSection />
         <EcommerceContactSection />
+      {/* PART 4 / JOB A3 — contextual links to the case studies that
+          prove this service. In the body, not the footer: the nav and
+          footer already link this page ~1,457 times and Google
+          discounts boilerplate links. Mapping lives in
+          src/lib/seo/related-case-studies.ts. */}
+      <RelatedCaseStudies serviceSlug="e-commerce-testing-services" />
+      <ServiceCta slug="e-commerce-testing-services" />
       </main>
     </div>
   );

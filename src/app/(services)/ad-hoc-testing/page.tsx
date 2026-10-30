@@ -19,6 +19,10 @@ import AdHocTestingStrategy from "@/components/sections/AdHocTestingStrategy";
 import AdHocTestingWhyTestriq from "@/components/sections/AdHocTestingWhyTestriq";
 import AdHocTestingFAQs from "@/components/sections/AdHocTestingFAQs";
 import AdHocTestingReadyToStart from "@/components/sections/AdHocTestingReadyToStart";
+import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
+import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
+import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import ServiceCta from "@/components/sections/ServiceCta";
 
 export const revalidate = 3600;
 
@@ -96,8 +100,12 @@ export default function AdHocTestingPage() {
                 <AdHocTestingBestPractices />
                 <AdHocTestingStrategy />
                 <AdHocTestingWhyTestriq />
+                <ServiceTeamSection />
+                <ServiceLastUpdated slug="ad-hoc-testing" />
+                <ServiceEngagementModels />
                 <AdHocTestingFAQs />
                 <AdHocTestingReadyToStart />
+                <ServiceCta slug="ad-hoc-testing" />
             </MainLayout>
         </div>
     );
