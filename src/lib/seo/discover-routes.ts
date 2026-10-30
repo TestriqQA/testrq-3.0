@@ -102,6 +102,11 @@ const TITLE_PASCAL_OVERRIDES: Record<string, string> = {
     saas: "SaaS",
     iot: "IoT",
     cicd: "CI/CD",
+    // Comparison-page slugs: "vs" stays lowercase mid-title, and these two
+    // tool names have their own casing.
+    vs: "vs",
+    jmeter: "JMeter",
+    k6: "k6",
 };
 
 /**
