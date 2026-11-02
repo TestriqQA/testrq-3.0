@@ -32,13 +32,14 @@
 // Setup runbook (Studio webhook config, projection, env vars, how to test):
 //   src/app/api/revalidate/README.md
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 import {
     OPERATION_HEADER_NAME,
     SIGNATURE_HEADER_NAME,
     derivePathsToRevalidate,
+    deriveTagsToRevalidate,
     parseOperation,
     requiresDeploy,
     verifySanityWebhookSignature,
@@ -144,6 +145,18 @@ export async function POST(request: Request) {
         });
     }
 
+    // Tags before paths, deliberately. revalidatePath only marks a route for
+    // regeneration; the regeneration itself reads through unstable_cache, so
+    // dropping the data tags first means the re-render fetches fresh results
+    // rather than repopulating the page from the entry we are about to expire.
+    // "max" is Next 16's replacement for the old single-argument call: expire
+    // every entry carrying the tag, whatever cache-life profile wrote it.
+    // Calling it with one argument logs a deprecation warning and is going away.
+    const tags = deriveTagsToRevalidate(payload);
+    for (const tag of tags) {
+        revalidateTag(tag, "max");
+    }
+
     for (const path of paths) {
         revalidatePath(path);
     }
@@ -154,7 +167,8 @@ export async function POST(request: Request) {
 
     console.log(
         `[revalidate] _type="${payload._type}" operation="${operation ?? "unknown"}" ` +
-            `revalidated ${paths.length} path(s): ${paths.join(", ")} | deploy=${deploy.triggered}` +
+            `revalidated ${paths.length} path(s): ${paths.join(", ")} | ` +
+            `${tags.length} tag(s): ${tags.join(", ") || "none"} | deploy=${deploy.triggered}` +
             `${deploy.reason ? ` (${deploy.reason})` : ""}`,
     );
 
@@ -163,6 +177,7 @@ export async function POST(request: Request) {
         type: payload._type ?? null,
         operation,
         revalidated: paths,
+        tags,
         deploy,
     });
 }
