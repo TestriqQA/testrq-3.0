@@ -373,7 +373,7 @@ export async function sanityGetPostBySlug(slug: string, draft = false) {
     // Snapshot-first (Plan C) — only for published reads (draft mode must
     // always go live so editors see fresh unpublished changes).
     if (!draft) {
-        const snap = contentSnapshot.posts?.[slug];
+        const snap = snapshotDoc('posts', slug);
         if (snap) return adaptSanityPost(snap);
     }
 
@@ -459,9 +459,52 @@ import contentSnapshotRaw from './sanity-content-snapshot.json';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const contentSnapshot = contentSnapshotRaw as any;
 
+/**
+ * Is the content snapshot allowed to answer this read?
+ *
+ * Only while the site is being built. That is the job the snapshot was created
+ * for — prerendering ~1,600 pages without making ~1,600 Sanity round trips —
+ * and it is the only job it should keep.
+ *
+ * At REQUEST time it must not answer, because the snapshot is a file baked into
+ * the bundle at build time and nothing can refresh it afterwards. Until
+ * 2026-11-02 these reads were snapshot-first unconditionally, so on Vercel
+ * (where the prebuild populates the file) every list on the site was frozen at
+ * the last deploy: a post published afterwards was missing from /blog, from its
+ * category and tag pages and from search, and an edited post served its old
+ * body — while the same post loaded correctly at its own URL, because a by-slug
+ * read misses the snapshot and falls through to live. Locally none of this
+ * showed, since the committed snapshot is deliberately empty and every read
+ * already fell through.
+ *
+ * Nothing is lost by going live at runtime. These fetches sit behind
+ * unstable_cache at 60s, so it is one GROQ query a minute across all traffic,
+ * and if Sanity is unreachable during revalidation Next keeps serving the last
+ * successfully rendered page — a better fallback than build-time content, since
+ * it is a render that actually worked.
+ *
+ * NEXT_PHASE is set to 'phase-production-build' by next build, including in its
+ * static workers; Next tests the same value internally.
+ */
+function snapshotIsAuthoritative(): boolean {
+    return process.env.NEXT_PHASE === 'phase-production-build';
+}
+
 function snapshotHasMap(field: string): boolean {
+    if (!snapshotIsAuthoritative()) return false;
     const v = contentSnapshot?.[field];
     return v && typeof v === 'object' && Object.keys(v).length > 0;
+}
+
+/**
+ * One document from a snapshot map, or null when the snapshot may not answer.
+ * Use this for by-slug reads instead of indexing contentSnapshot directly, so
+ * they observe the same build-only rule as the list reads.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function snapshotDoc(field: string, key: string): any | null {
+    if (!snapshotIsAuthoritative()) return null;
+    return contentSnapshot?.[field]?.[key] ?? null;
 }
 
 export async function sanityGetAllPostSlugs(): Promise<string[]> {
@@ -510,7 +553,7 @@ function adaptSanityAuthor(raw: any): Author {
 
 export async function sanityGetAuthorBySlug(slug: string): Promise<Author | null> {
     // Snapshot-first (Plan C)
-    const snap = contentSnapshot.authors?.[slug];
+    const snap = snapshotDoc('authors', slug);
     if (snap) return adaptSanityAuthor(snap);
 
     try {
@@ -649,7 +692,7 @@ const fetchCategoryDataRaw = unstable_cache(
 
 export async function sanityGetAdaptedCategoryData(categorySlug: string) {
     // Snapshot-first (Plan C) via denormalized index
-    const snapCat = contentSnapshot.categories?.[categorySlug];
+    const snapCat = snapshotDoc('categories', categorySlug);
     if (snapCat) {
         const slugList: string[] = contentSnapshot.indexes?.postsByCategory?.[categorySlug] || [];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -736,7 +779,7 @@ const fetchTagDataRaw = unstable_cache(
 
 export async function sanityGetPostsByTag(tagSlug: string) {
     // Snapshot-first (Plan C) via denormalized index
-    const snapTag = contentSnapshot.tags?.[tagSlug];
+    const snapTag = snapshotDoc('tags', tagSlug);
     if (snapTag) {
         const slugList: string[] = contentSnapshot.indexes?.postsByTag?.[tagSlug] || [];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -1141,7 +1184,7 @@ export async function sanityGetAllCaseStudies(): Promise<CaseStudy[]> {
 
 export async function sanityGetCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
     // Snapshot-first (Plan C)
-    const snap = contentSnapshot.caseStudies?.[slug];
+    const snap = snapshotDoc('caseStudies', slug);
     if (snap) return adaptSanityCaseStudy(snap);
 
     try {
@@ -1286,7 +1329,7 @@ export async function sanityGetAllJobOpenings(): Promise<SanityJobOpening[]> {
 
 export async function sanityGetJobOpeningBySlug(slug: string): Promise<SanityJobOpening | null> {
     // Snapshot-first (Plan C)
-    const snap = contentSnapshot.jobs?.[slug];
+    const snap = snapshotDoc('jobs', slug);
     if (snap) return adaptSanityJobPosting(snap, 0);
 
     try {

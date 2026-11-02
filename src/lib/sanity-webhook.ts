@@ -277,6 +277,37 @@ export function derivePathsToRevalidate(payload: SanityWebhookPayload): string[]
 }
 
 /**
+ * Data-cache tags to drop for this delivery.
+ *
+ * revalidatePath re-renders a route, but the GROQ results behind it live in
+ * unstable_cache, which only revalidateTag clears. Without this a publish
+ * re-rendered each page against the SAME cached query result, so the change
+ * did not appear until that entry aged out on its own 60s timer. The tags
+ * below have existed since the cache layer was added — the comment on
+ * fetchPostsRaw says "so a future webhook can invalidate" — but nothing ever
+ * called revalidateTag. This is that caller.
+ *
+ * Tag names must match the `tags` arrays in sanity-data-adapter.ts:
+ * 'posts', 'categories' and 'tags'. An author edit drops 'posts' because the
+ * author projection is embedded in every post document the list queries
+ * return, so a renamed author is stale everywhere until posts are refetched.
+ */
+export function deriveTagsToRevalidate(payload: SanityWebhookPayload): string[] {
+    switch (payload._type) {
+        case "post":
+            return ["posts"];
+        case "author":
+            return ["posts"];
+        case "category":
+            return ["categories", "posts"];
+        case "tag":
+            return ["tags", "posts"];
+        default:
+            return [];
+    }
+}
+
+/**
  * Whether this delivery needs a full redeploy on top of revalidation.
  *
  * `src/app/[slug]/page.tsx` is the only route in the app that pins
