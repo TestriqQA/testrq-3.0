@@ -72,7 +72,9 @@ const ClientRatingSection = () => {
       clientName: "Loren De Camas",
       designation: "QA Lead at Canva",
       company: "Canva",
-      action: "canva-case-study",
+      // Was "canva-case-study" — no leading slash, so it resolved relative to
+      // whatever page this section was on, and then 301'd. Absolute, direct.
+      action: "/canva-design-platform",
       icon: (
         <Image
           title="Canva Logo"

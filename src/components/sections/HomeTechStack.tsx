@@ -328,7 +328,9 @@ const techStack = {
     },
     {
       title: "CI/CD & DevOps",
-      action: "/automation-testing-services",
+      // Not /automation-testing-services: these tools are the pipeline itself,
+      // and /continuous-testing-services-cicd-pipeline is the page about it.
+      action: "/continuous-testing-services-cicd-pipeline",
       items: [
         { name: "Jenkins", icon: <SiJenkins aria-hidden size={20} color="#D24939" /> },
         { name: "GitLab CI", icon: <SiGitlab aria-hidden size={20} color="#FC6D26" /> },
