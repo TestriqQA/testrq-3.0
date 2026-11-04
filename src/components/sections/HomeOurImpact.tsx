@@ -30,7 +30,7 @@ const impactSection: {
       subtitle:
         (
           <>
-            Testriq’s enterprise <Link href="/blog/post/a-complete-guide-to-compatibility-testing-in-manual-software-qa" className="text-[theme(color.brand.blue)] underline">QA solutions</Link> deliver real-world success-accelerating performance, securing <Link href="/banking-finance-industry-testing-services" className="text-[theme(color.brand.blue)] underline">fintech apps</Link>, and ensuring compatibility across <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] underline">web</Link>, <Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] underline">mobile</Link>, and <Link href="/iot-device-testing-services" className="text-[theme(color.brand.blue)] underline">IoT</Link> through proven software testing <Link href="/case-studies" className="text-[theme(color.brand.blue)] underline">case studies</Link>.
+            Testriq’s enterprise <Link href="/quality-assurance-services" className="text-[theme(color.brand.blue)] underline">QA solutions</Link> deliver real-world success-accelerating performance, securing <Link href="/banking-finance-industry-testing-services" className="text-[theme(color.brand.blue)] underline">fintech apps</Link>, and ensuring compatibility across <Link href="/web-application-testing-services" className="text-[theme(color.brand.blue)] underline">web</Link>, <Link href="/mobile-application-testing" className="text-[theme(color.brand.blue)] underline">mobile</Link>, and <Link href="/iot-device-testing-services" className="text-[theme(color.brand.blue)] underline">IoT</Link> through proven software testing <Link href="/case-studies" className="text-[theme(color.brand.blue)] underline">case studies</Link>.
           </>
         ),
       caseStudies: [
@@ -39,7 +39,9 @@ const impactSection: {
           badge: "Graphic design Success Story",
           description:
             "Ensured smooth UI updates and feature rollouts with a complete testing strategy across all devices and platforms.",
-          action: "/canva-case-study",
+          // The real route. /canva-case-study only 301s here (redirect-map.ts),
+          // and an internal link should not spend a redirect hop to arrive.
+          action: "/canva-design-platform",
         },
         {
           title: "Milton Smart Stainless Steel Water Bottle Case Study",

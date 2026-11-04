@@ -13,7 +13,7 @@ const HomeComprehensiveSoftwareTesting = () => {
         title: 'The Global Paradigm Shift: Solving the 5 Biggest Challenges in QA (2025-2026)',
         info: (
             <>
-                The software landscape has evolved. We designed our <Link title='Managed QA Services' href="/automation-testing-services" className="text-[theme(color.brand.blue)] underline">Managed QA Services</Link> to eliminate the five biggest obstacles currently blocking global digital progress.
+                The software landscape has evolved. We designed our <Link title='Managed QA Services' href="/managed-testing-services" className="text-[theme(color.brand.blue)] underline">Managed QA Services</Link> to eliminate the five biggest obstacles currently blocking global digital progress.
             </>
         )
     };
@@ -22,7 +22,7 @@ const HomeComprehensiveSoftwareTesting = () => {
         {
             icon: TbWorld,
             title: 'Bridging the Skilled Workforce Shortage',
-            detail: <>Talent gaps in <Link href="/ai-application-testing" className="text-[theme(color.brand.blue)] underline">AI</Link> and <Link href="/security-testing" className="text-[theme(color.brand.blue)] underline">cyber-security</Link> often lead to defect leakage. Testriq offers <Link href="/qa-outsourcing-services" className="text-[theme(color.brand.blue)] underline">QA team augmentation</Link> with experts in ISO/IEC/IEEE 29119-2 processes to ensure secure, on-time releases.</>
+            detail: <>Talent gaps in <Link href="/ai-application-testing" className="text-[theme(color.brand.blue)] underline">AI</Link> and <Link href="/cyber-security-testing-services" className="text-[theme(color.brand.blue)] underline">cyber-security</Link> often lead to defect leakage. Testriq offers <Link href="/qa-outsourcing-services" className="text-[theme(color.brand.blue)] underline">QA team augmentation</Link> with experts in ISO/IEC/IEEE 29119-2 processes to ensure secure, on-time releases.</>
         },
         {
             icon: IoServerOutline,
