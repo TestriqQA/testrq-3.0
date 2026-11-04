@@ -92,6 +92,11 @@ const partners = [
   // DECLINED. Logging in returns "Your Agency profile has been declined", so
   // there is no listing behind this badge today and nothing to link to.
   //
+  // 2026-11-04 — re-checked, unchanged. designrush.com/agency/profile/
+  // testriq-qa-lab returns HTTP 404, and their agency directory turns up no
+  // Testriq listing. So this is still a badge with no profile behind it, and
+  // the instruction above still stands in full: leave it, and give it no href.
+  //
   // It stays anyway. Marketing is following up with DesignRush support; if the
   // profile is approved the badge becomes valid and gains its href then, and
   // pulling it out now would only have to be undone. Adding a DesignRush URL

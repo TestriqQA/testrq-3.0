@@ -178,6 +178,11 @@ export const organizationSchema = {
   // returns "Your Agency profile has been declined", so there is no listing
   // and no URL to add.
   //
+  // 2026-11-04 — re-checked from the public side, unchanged. The profile URL
+  // returns HTTP 404 and the agency directory lists no Testriq. Nothing to
+  // add here; the GoodFirms entry below is a separate, live profile and was
+  // already in this array.
+  //
   // This is not a task waiting to be picked up. sameAs asserts "the entity
   // here is verifiably the same entity over there"; aiming it at a profile
   // that does not exist is a false signal, not an unfinished chore. Marketing
