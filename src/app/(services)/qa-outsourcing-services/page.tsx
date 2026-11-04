@@ -138,7 +138,10 @@ const qaOutsourcingServiceSchema = {
     // removed, and not to be re-added, for two independent reasons:
     //
     //  1. The reviews are not ours to aggregate. They were collected by Clutch,
-    //     G2 and Google on their own profiles, not on this site. Google's
+    //     G2, GoodFirms and Google on their own profiles, not on this site.
+    //     (GoodFirms joined the visible row on 2026-11-04; adding a source
+    //     changes nothing here — the test is who collected the reviews, not
+    //     how many platforms agree on the score.) Google's
     //     review-snippet policy allows a site to mark up only the reviews it
     //     collects itself, so republishing a third-party score as this page's
     //     own AggregateRating is a policy violation, not a rich result.
@@ -146,7 +149,7 @@ const qaOutsourcingServiceSchema = {
     //     Service is not among the types eligible for review snippets — so the
     //     policy risk bought no star rating in return.
     //
-    // The three platform scores ARE still shown to visitors, each attributed to
+    // The four platform scores ARE still shown to visitors, each attributed to
     // its own platform and linked to its own profile, by <QAOutsourcingReviews>.
     // Visible, attributed and linked is the honest way to present them; schema
     // is not. Source of truth for those figures: ./reviewsData.ts.
