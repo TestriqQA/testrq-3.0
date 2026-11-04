@@ -3,27 +3,13 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaQuestionCircle } from "react-icons/fa";
 
+// Single source for both this accordion and the page's FAQPage JSON-LD.
+// These used to be two hand-maintained copies and they had drifted — see the
+// note in faqs.ts. Add questions there, not here.
+import { usabilityTestingFaqs as faqs } from "@/app/(services)/usability-testing-services/faqs";
+
 const UsabilityTestingFAQs: React.FC = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-    const faqs = [
-        {
-            question: "What are the benefits of professional usability testing services?",
-            answer: "Professional usability testing services significantly enhance user satisfaction, reduce development costs by identifying issues early, improve conversion rates, and strengthen brand loyalty. It ensures your product is intuitive, efficient, and enjoyable for its target audience."
-        },
-        {
-            question: "How much does a usability audit cost for a mobile app?",
-            answer: "The cost is customized based on scope and complexity. Testriq offers tailored quotes following an initial ROI-focused consultation to ensure you get the most value for your specific mobile platform needs."
-        },
-        {
-            question: "Why is usability testing important for software development?",
-            answer: "It validates design decisions through real-user eyes, uncovering critical point points that developers might miss. This leads to minimized rework, faster market adoption, and ultimately higher business success."
-        },
-        {
-            question: "How to choose the best usability testing company?",
-            answer: "Look for a combination of ISTQB certified expertise, global reach, and a methodology that integrates AI-driven insights. Testriq combines 15+ years of experience with predictive analytics to deliver unparalleled UX value."
-        }
-    ];
 
     return (
         <section className="py-16 px-8 md:px-12 lg:px-24 bg-gray-50">

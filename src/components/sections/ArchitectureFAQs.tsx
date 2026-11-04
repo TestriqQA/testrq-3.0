@@ -23,6 +23,26 @@ const ArchitectureFAQs: React.FC = () => {
             question: "What are the benefits of a cloud-native architecture review?",
             answer: "A cloud-native review ensures that your application fully leverages the benefits of the cloud, such as dynamic scaling, self-healing, and cost-optimization. It validates that your architecture is resilient to infrastructure failures and can be deployed rapidly through automated pipelines.",
         },
+        // Added 2026-11-04. The four above define the service; these four
+        // answer what a team weighing one up actually asks — how it differs
+        // from a code review, what it needs from them, when to repeat it,
+        // and what the two headline qualities mean in practice.
+        {
+            question: "How is an architecture inspection different from a code review?",
+            answer: "A code review looks at correctness inside a file or a pull request. An architecture inspection looks at the system between them — service boundaries, data ownership, coupling, deployment topology and failure domains. A codebase can pass every code review it has ever had and still have an architecture that cannot scale, because those problems live in the relationships between components rather than inside any one of them.",
+        },
+        {
+            question: "What do you need from us to begin an inspection?",
+            answer: "Read access to the repositories, whatever architecture diagrams and decision records already exist, the deployment topology, and a statement of the non-functional requirements the system is meant to meet. Where documentation is thin or out of date, the inspection reconstructs the real architecture from the code and the infrastructure rather than from the diagram — and the distance between the two is often a finding in itself.",
+        },
+        {
+            question: "How often should an architecture review be repeated?",
+            answer: "Tie it to events rather than to the calendar: before a major scaling step, ahead of a platform or cloud migration, when a monolith is being split apart, or after a stretch of rapid feature delivery that outpaced design. A system that changes slowly can go a long time between reviews, while one under active expansion drifts from its intended design faster than most teams expect.",
+        },
+        {
+            question: "What is the difference between scalability and resilience in a review?",
+            answer: "Scalability asks whether the system can absorb more — more users, more data, more throughput — without being redesigned. Resilience asks what happens when part of it fails: whether the failure stays contained, whether the system recovers without manual intervention, and whether degraded operation is graceful. An architecture can be strong on one and weak on the other, so the two are assessed separately.",
+        },
     ];
 
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
