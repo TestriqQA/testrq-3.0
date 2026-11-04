@@ -226,13 +226,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }));
 
     // Sanity Categories
+    // 2026-11-04: categories with fewer than 2 posts became noindex (see
+    // blog/category/[category]/page.tsx), so they are excluded here for the
+    // same reason tags are below — advertising a noindexed URL in the sitemap
+    // sends Google two contradictory instructions. The threshold is repeated
+    // rather than shared because the two routes read different shapes
+    // (`postCount` here, `count` for tags); if a third ever needs it, lift it
+    // into a constant.
     const sanityCategoriesData = await sanityGetCategories();
-    const categoryPages = sanityCategoriesData.map((category) => ({
-      url: `${baseUrl}/blog/category/${encodeURIComponent(category.id)}`,
-      lastModified: STATIC_LASTMOD,
-      changeFrequency: getChangeFrequency('category'),
-      priority: getPriority('category'),
-    }));
+    const categoryPages = sanityCategoriesData
+      .filter((category) => category.postCount >= 2)
+      .map((category) => ({
+        url: `${baseUrl}/blog/category/${encodeURIComponent(category.id)}`,
+        lastModified: STATIC_LASTMOD,
+        changeFrequency: getChangeFrequency('category'),
+        priority: getPriority('category'),
+      }));
 
     // Sanity Tags
     const sanityTagsData = await sanityGetTags();
