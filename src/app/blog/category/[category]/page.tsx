@@ -105,6 +105,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // affordance, not a separate indexable resource.
   const canonicalUrl = `https://www.testriq.com/blog/category/${normalizedCategory}`;
 
+  // Same threshold the tag archives use. See the note on `robots` below for
+  // why this changed on 2026-11-04 and why `follow` stays true regardless.
+  const isIndexable = categoryData.posts.length >= 2;
+
   return {
     title: `${categoryName} | Insights & Best Practices`,
     description: categoryDescription,
@@ -112,6 +116,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     authors: [{ name: "Testriq QA Lab" }],
     creator: "Testriq QA Lab",
     publisher: "Testriq QA Lab",
+    // 2026-11-04 — categories now follow the same threshold as tags: a
+    // category archive listing fewer than 2 posts is noindex, follow.
+    //
+    // This reverses the 2026-10-28 decision recorded below, on the user's
+    // instruction. The measurement behind it, taken 2026-11-04: of 73
+    // categories, 6 hold no posts at all and 31 hold exactly one, leaving 36
+    // with two or more. An archive with zero posts is an empty page, and one
+    // holding a single post is a thinner duplicate of that post — neither is
+    // a useful search result, whatever its navigational role. (The 2026-10-28
+    // note below counted 31 single-post categories as well; the figure of 30
+    // quoted during the 2026-11-04 review was one short.)
+    //
+    // `follow` is the important half. Noindex does NOT remove these pages
+    // from the site: they stay linked from /blog/categories, from the post
+    // sidebar and from every breadcrumb, they still render, and they still
+    // pass link equity to the posts they list. Users navigate through them
+    // exactly as before. Only the archive's own thin page stops competing in
+    // the index — which is the objection below answered rather than ignored.
+    //
+    // Expressed as a rule, not as today's list of 36: counts drift as posts
+    // are published, and a hardcoded list would quietly rot. The matching
+    // exclusion in src/app/sitemap.ts uses the same threshold, so a noindexed
+    // category is never advertised in the sitemap.
+    //
+    // ---- Superseded, kept for the reasoning ----
     // Categories stay indexed regardless of how few posts they hold, and that
     // is deliberate — do not copy the tag rule here.
     //
@@ -127,10 +156,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // by giving it more posts, or by merging it into a sibling, than by
     // hiding it from the index.
     robots: {
-      index: true,
+      index: isIndexable,
       follow: true,
       googleBot: {
-        index: true,
+        index: isIndexable,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",

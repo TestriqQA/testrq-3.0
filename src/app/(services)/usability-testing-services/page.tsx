@@ -6,6 +6,7 @@ import StructuredData, {
     createFaqPageSchema,
 } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import { usabilityTestingFaqs } from "./faqs";
 
 import UsabilityTestingHeroSection from "@/components/sections/UsabilityTestingHeroSection";
 import UsabilityTestingCrucialSection from "@/components/sections/UsabilityTestingCrucialSection";
@@ -59,25 +60,12 @@ export default function UsabilityTestingPage() {
     // description rewritten to 159 chars. Keywords lowercased. 6
     // dynamic() imports converted to direct ES imports. Breadcrumb
     // already migrated in PR-3 — unchanged.
-    // F-44.1 batch 5: plain-text mirror of UsabilityTestingFAQs UI content for FAQPage JSON-LD.
-    const faqsForSchema = [
-        {
-            question: "What are the benefits of professional usability testing services?",
-            answer: "Professional usability testing services significantly enhance user satisfaction, reduce development costs by identifying issues early, improve conversion rates, and strengthen brand loyalty. It ensures your product is intuitive, efficient, and enjoyable for its target audience.",
-        },
-        {
-            question: "How much does a usability audit cost for a mobile app?",
-            answer: "The cost is customized based on scope and complexity. Testriq offers tailored quotes following an initial ROI-focused consultation to ensure you get the most value for your specific mobile platform needs.",
-        },
-        {
-            question: "Why is usability testing important for software development?",
-            answer: "It validates design decisions through real-user eyes, uncovering critical pain points that developers might miss. This leads to minimized rework, faster market adoption, and ultimately higher business success.",
-        },
-        {
-            question: "How to choose the best usability testing company?",
-            answer: "Look for a combination of ISTQB certified expertise, global reach, and a methodology that integrates AI-driven insights. Testriq combines 15+ years of experience with predictive analytics to deliver unparalleled UX value.",
-        },
-    ];
+    // F-44.1 batch 5 originally kept a plain-text mirror of the
+    // UsabilityTestingFAQs UI content here, so the FAQPage JSON-LD could be
+    // built on the server from a client component's list. 2026-11-04: the two
+    // copies had drifted on a typo, so the list moved to ./faqs.ts and both
+    // the accordion and the markup below now read that one array.
+    const faqsForSchema = usabilityTestingFaqs;
 
     return (
         <div className="scroll-smooth">

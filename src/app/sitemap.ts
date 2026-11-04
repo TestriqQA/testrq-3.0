@@ -28,7 +28,6 @@ import { redirects } from '@/lib/seo/redirect-map';
 // sitemap) can use the same auto-discovery instead of a hardcoded
 // manualLinks array that drifts out of sync.
 import { discoverRoutes } from '@/lib/seo/discover-routes';
-import { MARKET_PAGES } from '@/lib/seo/market-pages';
 
 // Revalidate the sitemap every hour (matches service page revalidation)
 export const revalidate = 3600;
@@ -109,28 +108,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const STATIC_LASTMOD = new Date('2026-07-22T00:00:00Z');
 
   try {
-    // Static Next.js pages
+    // Top-level static pages — auto-discovered from src/app, the same way
+    // services and solutions are below.
+    //
+    // This was a hardcoded 15-entry list until 2026-11-04, and it had drifted
+    // badly: 19 real, indexable pages were absent from the sitemap entirely —
+    // the six comparison pages (playwright-vs-cypress and friends), the four
+    // hiring pages, the four test templates, plus /pricing, /qa-process,
+    // /stlc-explained, /test-case-estimator and /verify-certificate. Each one
+    // existed, rendered and was linked from the site; none was ever submitted.
+    //
+    // A list that must be edited by hand every time someone adds a route will
+    // drift again, which is exactly what happened to the service list before
+    // it was switched to discoverRoutes. So the fix is discovery, not 19 more
+    // hardcoded lines.
+    //
+    // discoverRoutes skips dynamic segments, private folders and route groups,
+    // so (services) and (solutions) are not double-counted here — they are
+    // added separately below. The London and New York market pages no longer
+    // need spreading in from market-pages.ts either: they are ordinary static
+    // routes and discovery finds them. That module is still the single source
+    // for /website-map and both llms files, which do import it.
+    const STATIC_EXCLUDED_FROM_SITEMAP = new Set<string>([
+      // Deliberately noindex; a noindex page in a sitemap is a contradiction
+      // Search Console reports as an error.
+      'blog/demo',
+    ]);
+
     const staticNextJSPages = [
-      { slug: '', title: 'Home' },
-      { slug: 'about-us', title: 'About Us' },
-      { slug: 'our-team', title: 'Our Team' },
-      { slug: 'careers', title: 'Careers' },
-      { slug: 'contact-us', title: 'Contact Us' },
-      { slug: 'case-studies', title: 'Case Studies' },
-      { slug: 'technology-stack', title: 'Tools' },
-      { slug: 'roi-calculator', title: 'ROI Calculator' },
-      { slug: 'locations-we-serve', title: 'Locations We Serve' },
-      // Bespoke market landing pages (London, New York). Static routes, so
-      // neither discoverRoutes nor the city loop sees them. Declared once in
-      // src/lib/seo/market-pages.ts and consumed here, by /website-map and by
-      // both llms files.
-      ...MARKET_PAGES.map((p) => ({ slug: p.slug, title: p.title })),
-      { slug: 'privacy-policy', title: 'Privacy Policy' },
-      { slug: 'terms-of-service', title: 'Terms of Service' },
-      { slug: 'cookies-policy', title: 'Cookies Policy' },
-      { slug: 'blog', title: 'Blog' },
-      { slug: 'blog/categories', title: 'Blog Categories' },
-      { slug: 'blog/search', title: 'Blog Search' },
+      // Discovery walks subdirectories, so the root is never among them.
+      { slug: '' },
+      ...discoverRoutes('src/app')
+        .filter((slug) => !STATIC_EXCLUDED_FROM_SITEMAP.has(slug))
+        .map((slug) => ({ slug })),
     ];
 
     const staticPages = staticNextJSPages.map(page => ({
@@ -216,13 +226,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }));
 
     // Sanity Categories
+    // 2026-11-04: categories with fewer than 2 posts became noindex (see
+    // blog/category/[category]/page.tsx), so they are excluded here for the
+    // same reason tags are below — advertising a noindexed URL in the sitemap
+    // sends Google two contradictory instructions. The threshold is repeated
+    // rather than shared because the two routes read different shapes
+    // (`postCount` here, `count` for tags); if a third ever needs it, lift it
+    // into a constant.
     const sanityCategoriesData = await sanityGetCategories();
-    const categoryPages = sanityCategoriesData.map((category) => ({
-      url: `${baseUrl}/blog/category/${encodeURIComponent(category.id)}`,
-      lastModified: STATIC_LASTMOD,
-      changeFrequency: getChangeFrequency('category'),
-      priority: getPriority('category'),
-    }));
+    const categoryPages = sanityCategoriesData
+      .filter((category) => category.postCount >= 2)
+      .map((category) => ({
+        url: `${baseUrl}/blog/category/${encodeURIComponent(category.id)}`,
+        lastModified: STATIC_LASTMOD,
+        changeFrequency: getChangeFrequency('category'),
+        priority: getPriority('category'),
+      }));
 
     // Sanity Tags
     const sanityTagsData = await sanityGetTags();

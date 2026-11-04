@@ -22,6 +22,12 @@ import { FaCheck } from "react-icons/fa";
 import { platform, spellCount } from "@/app/(services)/qa-outsourcing-services/reviewsData";
 
 const clutch = platform("Clutch");
+// Clutch only, and deliberately so. GoodFirms joined `reviewPlatforms` on
+// 2026-11-04 and was added to the London section, whose sentence is a list of
+// platforms. The sentence here is not: it names one specific Clutch reviewer
+// and the 2019–2025 engagement they describe, so a second platform has no
+// place in it. If this page should cite GoodFirms, it needs its own sentence
+// rather than an insertion into this one.
 
 const CHECKS: { text: string; link?: { href: string; label: string } }[] = [
   { text: "Search and filter results that disagree with the underlying listing data" },

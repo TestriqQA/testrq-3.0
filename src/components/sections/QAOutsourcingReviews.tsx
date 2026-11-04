@@ -23,10 +23,12 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
  * (services)/qa-outsourcing-services/reviewsData.ts.
  *
  * Nothing here is mirrored into JSON-LD. These reviews were collected by
- * Clutch, G2 and Google rather than by this site, so marking them up as the
- * page's own AggregateRating would breach Google's review-snippet policy; the
- * markup was removed on 2026-10-29 and page.tsx records why. Showing the
- * scores attributed and linked, as below, is the honest alternative.
+ * Clutch, G2, GoodFirms and Google rather than by this site, so marking them
+ * up as the page's own AggregateRating would breach Google's review-snippet
+ * policy; the markup was removed on 2026-10-29 and page.tsx records why.
+ * Showing the scores attributed and linked, as below, is the honest
+ * alternative — and a fourth platform does not change that, since the test is
+ * who collected the reviews, not how many sources agree.
  */
 export default function QAOutsourcingReviews() {
     return (
@@ -45,8 +47,10 @@ export default function QAOutsourcingReviews() {
                     {/* One figure per platform, each attributed to the platform
                         that published it and linked to the profile a visitor can
                         check it against. Deliberately NOT blended into a single
-                        score: the three cover different review sets, so an
-                        average of them would be a number nobody publishes. */}
+                        score: the four cover different review sets, so an
+                        average of them would be a number nobody publishes.
+                        The row wraps, so platforms can be added or dropped in
+                        reviewsData.ts without touching this layout. */}
                     <div className="mt-8 flex flex-wrap items-stretch justify-center gap-4">
                         {reviewPlatforms.map((platform) => (
                             <Link

@@ -305,6 +305,25 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/tag/environment-validation", destination: "/automation-testing-services", permanent: true },
       { source: "/blog/category/Robotics Testing", destination: "/robotics-testing-services", permanent: true },
       { source: "/blog/post/devsecops-integrating-security-in-your-ci-cd-pipeline", destination: "/security-testing", permanent: true },
+
+      // The three "-2" posts whose un-suffixed URL was still being requested
+      // and answered with a 200 "Post Not Found" body.
+      //
+      // Read the direction carefully: the "-2" slug is the LIVE ARTICLE, not a
+      // duplicate. Sanity holds no post at the un-suffixed slug for any of
+      // these three, and across all 370 posts there is not one repeated title,
+      // so nothing here was ever published twice. The 4 Nov audit read the
+      // suffix as evidence of duplication and proposed redirecting "-2" to the
+      // original; doing that would have pointed six substantial articles
+      // (5.5k-22k characters each) at URLs that do not exist.
+      //
+      // So the redirect runs the other way: the dead bare slug to the article.
+      // The remaining three "-2" posts need no entry, because their bare slugs
+      // already redirect (two to service pages, one to a replacement post).
+      { source: "/blog/post/how-to-write-secure-test-cases", destination: "/blog/post/how-to-write-secure-test-cases-2", permanent: true },
+      { source: "/blog/post/security-testing-checklist-before-go-live", destination: "/blog/post/security-testing-checklist-before-go-live-2", permanent: true },
+      { source: "/blog/post/what-is-a-load-test-and-how-is-it-used-in-programming", destination: "/blog/post/what-is-a-load-test-and-how-is-it-used-in-programming-2", permanent: true },
+
       { source: "/blog/tag/device-compatibility", destination: "/mobile-application-testing", permanent: true },
       { source: "/blog/tag/browser-testing", destination: "/web-application-testing-services", permanent: true },
       { source: "/blog/tag/software-development", destination: "/blog/category/qa-testing", permanent: true },
