@@ -47,7 +47,7 @@ const HomeIndustryExpert = () => {
         { icon: '📚', title: 'EdTech', detail: 'Learning platforms, accessibility, scalability, LMS testing, online assessments, and student data privacy', action: "/e-learning-testing-services" },
         { icon: '🎮', title: 'Gaming', detail: 'Performance, multiplayer, cross-platform, load handling,  mobile game compatibility,  FairPlay Testing', action: "/gaming-app-testing-services" },
         { icon: '🌐', title: 'IoT', detail: 'Device connectivity, data integrity, security, firmware testing, real-time monitoring', action: "/iot-device-testing-services" },
-        { icon: '☁️', title: 'SaaS', detail: 'Multi-tenancy, scalability, integration, CI/CD validation, role-based access, cloud performance', action: "/software-testing-guide" },
+        { icon: '☁️', title: 'SaaS', detail: 'Multi-tenancy, scalability, integration, CI/CD validation, role-based access, cloud performance', action: "/saas-testing-services" },
         { icon: '📱', title: 'Mobile Apps', detail: 'Cross-platform, performance, usability,  network testing, and real device testing', action: "/mobile-application-testing" }
     ]
     return (
