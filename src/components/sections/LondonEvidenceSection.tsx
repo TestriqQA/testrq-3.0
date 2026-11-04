@@ -18,6 +18,17 @@
 // platform is G2, not GoodFirms: the GoodFirms review was excluded because
 // GoodFirms itself marked the reviewer unverifiable (see reviewsData.ts).
 //
+// 2026-11-04 — that last sentence has been overtaken. GoodFirms is now in
+// `reviewPlatforms` at 4.8 over two reviews it verified itself, and the
+// sentence below names it as a third platform. What stays excluded is the
+// single review GoodFirms rejected, which is a separate matter and is still
+// absent from the transcribed set — see reviewsData.ts.
+//
+// The sentence was rewritten to carry three figures rather than having a
+// third dropped into prose built for two. Any fourth platform needs the same
+// treatment: the list, the Oxford comma and the count below all have to move
+// together, so do not just add another `platform(...)` call.
+//
 // No aggregateRating schema is emitted for these. A rating shown on a page but
 // sourced from third-party profiles is not eligible for self-serving rich
 // results, and the page.tsx Service entity deliberately omits it.
@@ -28,6 +39,7 @@ import { platform, spellCount } from "@/app/(services)/qa-outsourcing-services/r
 
 const clutch = platform("Clutch");
 const g2 = platform("G2");
+const goodFirms = platform("GoodFirms");
 
 const WORK: { client: string; href: string; detail: string }[] = [
   {
@@ -82,9 +94,10 @@ const LondonEvidenceSection: React.FC = () => {
                 {spellCount(clutch.count)} reviews on Clutch
                 <FaExternalLinkAlt className="text-xs" aria-hidden="true" />
               </Link>
-              , currently averaging {clutch.rating} out of 5, and{" "}
+              , currently averaging {clutch.rating} out of 5,{" "}
               {/* Linked too, so the sentence's own promise — that you can go and
-                  check — holds for both platforms rather than just the first. */}
+                  check — holds for every platform named rather than just the
+                  first. */}
               <Link
                 href={g2.profileUrl}
                 target="_blank"
@@ -94,11 +107,21 @@ const LondonEvidenceSection: React.FC = () => {
                 {spellCount(g2.count)} on G2
                 <FaExternalLinkAlt className="text-xs" aria-hidden="true" />
               </Link>
+              , and{" "}
+              <Link
+                href={goodFirms.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="text-brand-blue hover:underline inline-flex items-center gap-1"
+              >
+                {spellCount(goodFirms.count)} on GoodFirms
+                <FaExternalLinkAlt className="text-xs" aria-hidden="true" />
+              </Link>
               {/* "Reviewers include" rather than the old "the reviewers so far
                   are based in", which claimed to account for ALL of them. It was
                   already a stretch over eight transcribed reviews (the two G2
-                  ones state no location) and is plainly wrong over the twelve
-                  the platforms actually hold. These three are the ones a visitor
+                  ones state no location) and is plainly wrong over the fourteen
+                  the three platforms actually hold. These three are the ones a visitor
                   can see named on /qa-outsourcing-services. */}
               . Reviewers include teams in India, Portugal and Australia.
             </p>

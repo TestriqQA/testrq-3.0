@@ -17,6 +17,14 @@
  * review was excluded because GoodFirms marked it "Unable to verify the
  * reviewer" (rejected), so it is not a valid, published review.
  *
+ * That exclusion still stands and is unchanged. It is about `qaOutsourcingReviews`
+ * only. Since 2026-11-04 GoodFirms also appears in `reviewPlatforms`, because
+ * its profile now publishes 4.8 over two reviews it verified itself — the
+ * platform's own total, not the rejected review, and not something derived
+ * from it. One rejected review does not disqualify a platform's published
+ * score, and a platform's published score does not rehabilitate a rejected
+ * review. Keep the two apart.
+ *
  * Clutch per-review rating = the simple average of Clutch's four sub-scores
  * (Quality / Schedule / Cost / Willing to Refer), rounded to one decimal.
  */
@@ -132,8 +140,11 @@ export interface ReviewPlatform {
     /** How many reviews that score covers, on the platform. */
     count: number;
     /**
-     * Wording for the count. Only Clutch verifies reviewers, so only Clutch
-     * gets "verified reviews" — the other two say plain "reviews".
+     * Wording for the count. Only the platforms that verify reviewers get
+     * "verified reviews" — Clutch, and (since 2026-11-04) GoodFirms, which
+     * states the same on its own profile. G2 and Google say plain "reviews".
+     * Follow the platform's own wording; do not promote a count to "verified"
+     * because it reads better.
      */
     countLabel: string;
     /** The public profile a visitor can check the score against. */
@@ -141,17 +152,24 @@ export interface ReviewPlatform {
 }
 
 /**
- * The three platform scores, shown as three separate figures.
+ * The four platform scores, shown as four separate figures.
  *
  * These are the totals the platforms themselves publish — NOT an average of
  * the reviews transcribed above, and NOT to be derived from them. Clutch
- * publishes 8 where six are transcribed here, and the Google score covers 41
- * reviews of which none are. A single blended number replaced all three until
- * 2026-10-29; it stated a figure no platform publishes, and attributed a
- * Google-sourced score to "Clutch and G2". Keep them apart and attributed.
+ * publishes 8 where six are transcribed here, the Google score covers 41
+ * reviews of which none are, and no GoodFirms review is transcribed at all.
+ * A single blended number replaced all of them until 2026-10-29; it stated a
+ * figure no platform publishes, and attributed a Google-sourced score to
+ * "Clutch and G2". Keep them apart and attributed.
  *
- * Last checked against the live profiles: 2026-10-29. These move, so re-check
- * when the page is next reviewed rather than assuming they still hold.
+ * Adding a platform here changes only the card row on the QA Outsourcing page.
+ * The city pages name their platforms explicitly via `platform("Clutch")` and
+ * `platform("G2")`, so they are unaffected — by design, since a city page's
+ * prose has to be written around the figure, not just fed it.
+ *
+ * Last checked against the live profiles: Clutch, G2 and Google 2026-10-29;
+ * GoodFirms 2026-11-04. These move, so re-check when the page is next reviewed
+ * rather than assuming they still hold.
  */
 export const reviewPlatforms: ReviewPlatform[] = [
     {
@@ -167,6 +185,25 @@ export const reviewPlatforms: ReviewPlatform[] = [
         count: 4,
         countLabel: "reviews",
         profileUrl: "https://www.g2.com/products/testriq-qa-lab/reviews",
+    },
+    {
+        // Added 2026-11-04 from the live profile, which states "4.8" over
+        // "2 Verified Reviews" with sub-scores Quality 5.0 / Schedule & Timing
+        // 4.5 / Communication 5.0. GoodFirms states on the profile itself that
+        // "Every review is verified through Goodfirms before it's published",
+        // so "verified reviews" is its own wording, not ours.
+        //
+        // This does NOT contradict the exclusion recorded at the top of this
+        // file. That exclusion is about one individual review GoodFirms marked
+        // "Unable to verify the reviewer" and which is therefore absent from
+        // `qaOutsourcingReviews`. The figure below is the platform's own
+        // published total over the reviews it did verify — a different fact,
+        // from a different set. Neither one licenses the other.
+        name: "GoodFirms",
+        rating: "4.8",
+        count: 2,
+        countLabel: "verified reviews",
+        profileUrl: "https://www.goodfirms.co/company/testriq-qa-lab",
     },
     {
         name: "Google",

@@ -25,6 +25,31 @@ const BlockchainFAQs: React.FC = () => {
             question: "What is the difference between blockchain testing and traditional software testing?",
             answer: "Unlike traditional testing, blockchain testing must account for decentralized consensus, cryptographic security, gas costs, and the immutability of data. It requires specialized knowledge of peer-to-peer networking and distributed ledgers.",
         },
+        // Added 2026-11-04. The four above answer "what is this and why",
+        // which left the page with no answer to the questions a team actually
+        // arrives with. These five cover the mechanics. They are deliberately
+        // written as domain answers rather than as claims about our timelines
+        // or pricing, which date badly and cannot be checked by the reader.
+        {
+            question: "What are the most common smart contract vulnerabilities?",
+            answer: "The recurring ones are reentrancy, integer overflow and underflow, broken access control on privileged functions, unchecked return values from external calls, and front-running or MEV exposure on a public mempool. Most are design flaws rather than typos, which is why reading the code line by line is not enough — the contract has to be reviewed against its intended economic behaviour as well as its syntax.",
+        },
+        {
+            question: "How do you test gas consumption and transaction costs?",
+            answer: "Gas is profiled per function against realistic input sizes, then compared against the block gas limit so that no code path can become unexecutable as data grows. Costs are re-measured after every optimisation, because a change that saves gas in one function often moves it into another. Loops over unbounded arrays are the usual cause behind a sudden fee spike in production.",
+        },
+        {
+            question: "Can a blockchain app be tested before it goes to mainnet?",
+            answer: "Yes, and it should be. A local chain gives fast, deterministic runs for unit and integration tests; a public testnet exercises real consensus timing and wallet behaviour; and a forked mainnet reproduces live contract state, so integrations with existing protocols can be tested against the data they will actually meet. Each layer catches a different class of defect, so none of them replaces the others.",
+        },
+        {
+            question: "What is checked when testing a crypto wallet integration?",
+            answer: "Key handling and signing flows, network and chain-switching behaviour, transaction states from pending through confirmed to failed, nonce handling when several transactions are sent at once, and what the interface does when a user rejects a prompt or loses connectivity mid-transaction. Wallet defects rarely lose funds outright — more often they leave the user unable to tell whether a transaction happened at all.",
+        },
+        {
+            question: "Does an audit guarantee that a smart contract is safe?",
+            answer: "No, and a provider who says otherwise is overselling. An audit substantially reduces risk by finding known vulnerability classes and logic errors, but it is a point-in-time review of one specific version of the code. Changes made after the audit, upgradeable proxy patterns, and the behaviour of external protocols a contract depends on all sit outside that snapshot and need their own coverage.",
+        },
     ];
 
     return (
