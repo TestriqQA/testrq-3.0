@@ -121,8 +121,31 @@ export default function StructuredData({ data }: StructuredDataProps) {
 }
 
 // Organization Schema for Testriq
+//
+// 2026-11-04 — the "@id" below was added, and it is a one-line fix for a
+// site-wide inconsistency found while wiring the manual-testing graph.
+//
+// This constant is the canonical company record: it carries the real Mira
+// Bhayandar address, the verified sameAs profiles and the contact point. It
+// had no identifier. Meanwhile 112 built pages reference
+// `https://www.testriq.com/#organization` as their provider or publisher, and
+// some page graphs (toolsPageSchema, for one) declare their OWN Organization
+// node under that id with different data — "Testriq QA LAB LLP" against this
+// file's "Testriq QA Lab", and a logo URL with a doubled slash.
+//
+// So the identifier every page points at was never attached to the record
+// that actually holds the company's details. Adding it here is additive — no
+// existing property changes, nothing that renders moves — and it makes those
+// references resolve to this node instead of to nothing.
+//
+// Deliberately NOT changed in this pass, and listed as follow-up instead:
+// `websiteSchema.publisher` below is still an inline anonymous Organization,
+// which is a third representation of the same company; and the page-level
+// graphs that declare their own #organization node should be reduced to
+// references. Both touch many pages at once and want their own review.
 export const organizationSchema = {
   "@context": "https://schema.org",
+  "@id": "https://www.testriq.com/#organization",
   "@type": "Organization",
   "name": "Testriq QA Lab",
   "alternateName": "Testriq",
@@ -296,8 +319,12 @@ export const organizationSchema = {
 };
 
 // Website Schema
+// 2026-11-04 — "@id" added, for the same reason as organizationSchema above:
+// pages reference https://www.testriq.com/#website in `isPartOf` and nothing
+// declared it. Additive; no existing property changed.
 export const websiteSchema = {
   "@context": "https://schema.org",
+  "@id": "https://www.testriq.com/#website",
   "@type": "WebSite",
   "name": "Testriq - Professional Software Testing Services",
   "url": "https://www.testriq.com",
@@ -1847,6 +1874,51 @@ export const createFaqPageSchema = (faqs: Array<{ question: string; answer: stri
     },
   })),
 });
+
+// ---------------------------------------------------------------------------
+// Node builders — 2026-11-04, international-SEO pass.
+//
+// The two helpers above each return a COMPLETE JSON-LD document, with its own
+// "@context", because every caller renders them as their own <script> block.
+// That is why the F-44.2 note further up this file had to delete a
+// `breadcrumb` pointer: an "@id" reference cannot reach out of the block it
+// is written in, so a WebPage in block 1 can never resolve a BreadcrumbList
+// in block 2.
+//
+// These return the same entities as GRAPH NODES instead — no "@context", and
+// the BreadcrumbList carries a stable "@id" derived from the canonical URL.
+// A page can then put Service, WebPage, BreadcrumbList and FAQPage in one
+// "@graph" in one block, where every cross-reference resolves.
+//
+// Deliberately additive. The document-returning helpers above are untouched
+// and still used by ~40 service pages; nothing changes for them. Convert a
+// page only together with the rest of its graph, or it will emit a breadcrumb
+// node with no document around it.
+// ---------------------------------------------------------------------------
+
+/**
+ * A BreadcrumbList graph node (Home → this page) carrying a stable `@id` of
+ * `<canonical>#breadcrumb`, so a sibling WebPage node can reference it.
+ *
+ * Same URL derivation as {@link createCanonicalBreadcrumb} — see that helper
+ * for why the pathname, rather than a hand-written URL, is the input.
+ */
+export const createCanonicalBreadcrumbNode = (pathname: string, pageName: string) => {
+  const { "@context": _context, ...node } = createCanonicalBreadcrumb(pathname, pageName);
+  return {
+    "@id": `${buildCanonicalUrl(pathname)}#breadcrumb`,
+    ...node,
+  };
+};
+
+/**
+ * An FAQPage graph node. Takes the same plain-text `{question, answer}` array
+ * as {@link createFaqPageSchema} — strip JSX before passing it in.
+ */
+export const createFaqPageNode = (faqs: Array<{ question: string; answer: string }>) => {
+  const { "@context": _context, ...node } = createFaqPageSchema(faqs);
+  return node;
+};
 
 /**
  * Build a canonical 2-item BreadcrumbList (Home → this page) for any Testriq

@@ -8,6 +8,7 @@ import {
   FaChevronRight
 } from "react-icons/fa";
 import ManualTestingAnimation from "./ManualTestingAnimation";
+import TrackedCtaLink from "@/components/analytics/TrackedCtaLink";
 
 const ManualTestingHeroSection: React.FC = () => {
   return (
@@ -35,58 +36,115 @@ const ManualTestingHeroSection: React.FC = () => {
               Manual Testing Specialists
             </div>
 
+            {/* The gradient-clip span this H1 used was `text-transparent
+                bg-clip-text bg-brand-blue` — transparent text clipped to a
+                SOLID colour, so it rendered as plain brand-blue text while
+                being one CSS property away from invisible. Replaced with the
+                colour it was already producing. */}
+            {/* The {" "} is load-bearing. `block` on the span puts the second
+                line below the first on screen, so the heading LOOKS right
+                either way — but the h1's text content is what a crawler reads,
+                and without it that string is "Manual Software Testing
+                Servicesfor Global Product Teams". Verified in the built HTML. */}
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Global Manual Testing Services:
-              <span className="text-transparent block bg-clip-text bg-brand-blue">
-                {" "}
-                Strategic Software QA for 2026
+              Manual Software Testing Services{" "}
+              <span className="block text-brand-blue">
+                for Global Product Teams
               </span>
             </h1>
 
             <p className="text-xl text-gray-600 leading-relaxed font-semibold">
-              Use ISO 29119 Standards and Human Intelligence to navigate complex micro-services and rapid CI/CD releases.
+              Testriq provides expert manual software testing services to help
+              businesses identify defects, validate critical user journeys and
+              improve software reliability.
             </p>
 
             <p className="text-lg text-gray-600 leading-relaxed">
-              As we move into 2026, the role of manual software testing is undergoing a fundamental shift. <Link href="/automation-testing-services" className="text-brand-blue underline">Automation and AI testing</Link> are expanding, but the State of Testing™ report reveals a critical reality. Organizations now find that balancing automation with manual testing is the only way to achieve true quality in 2026.
+              Our ISTQB-certified QA professionals work with product managers,
+              CTOs and engineering teams to deliver structured testing across
+              web, mobile and enterprise applications, following the{" "}
+              ISO/IEC/IEEE 29119 standard so coverage is repeatable and
+              reportable rather than ad-hoc.
               <br /><br />
-              Automation is growing fast. By 2026, 30% of companies will automate over half of their QA, making manual testing harder to justify. Testriq solves this by using ISO 29119 standards. We put human insight where it matters most—focusing on the risky logic and complex paths that AI can’t handle yet.
+              Whether you need project-based testing, additional QA capacity or
+              a dedicated testing team, we offer flexible engagement models
+              aligned with your development lifecycle — and work alongside{" "}
+              <Link href="/automation-testing-services" className="text-brand-blue underline">
+                your existing automation
+              </Link>{" "}
+              rather than asking you to replace it.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact-us">
-                <button className="bg-brand-blue cursor-pointer text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center">
-                  Get Started Today
-                  <FaArrowRight className="ml-2" />
-                </button>
-              </Link>
+              <TrackedCtaLink
+                href="/contact-us"
+                eventName="manual_qa_cta_click"
+                placement="hero_primary"
+                pagePath="/manual-testing-services"
+                className="bg-brand-blue cursor-pointer text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center"
+              >
+                Request a QA Consultation
+                <FaArrowRight className="ml-2" />
+              </TrackedCtaLink>
+              <TrackedCtaLink
+                href="/case-studies"
+                eventName="manual_qa_cta_click"
+                placement="hero_secondary"
+                pagePath="/manual-testing-services"
+                className="border border-brand-blue text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-brand-blue/5 transition-all duration-300 flex items-center justify-center"
+              >
+                Explore Our Case Studies
+              </TrackedCtaLink>
             </div>
 
-            {/* Stats */}
+            {/* Trust indicators.
+                2026-11-04 — all four of these were replaced, because all four
+                were wrong in some way:
+
+                  - "5,000+ Test Cases Executed" contradicted the rest of the
+                    site by a factor of 100. The approved figure, used on every
+                    city page, is 500K+ for that same metric. This understated
+                    our own record by two orders of magnitude.
+                  - "98% Bug Detection Rate" appears nowhere else in the
+                    codebase. The nearest real figures are a case study's "98%
+                    Regression Detection" and security's "98% Vulnerability
+                    Detection" — neither is a general bug-detection rate, and
+                    a blanket 98% is not something we can evidence.
+                  - "800+ Applications Tested" appears nowhere else at all.
+                  - "24/7 Expert Support" directly contradicts the delivery
+                    model described in ManualTestingGlobalReach, which is
+                    overlapping working hours from one location, not
+                    round-the-clock staffing.
+
+                What replaces them are the four the brief specifies, each
+                checked against existing approved copy before being used here:
+                15+ years (about-us), 180 certified professionals (home hero,
+                ManagedTestingStrategy), 500K+ test cases (CityData), and the
+                two ISO certifications (named across several service pages). */}
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 pt-8">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-600">
-                  5,000+
+                <div className="text-2xl md:text-3xl font-bold text-brand-blue">
+                  15+
+                </div>
+                <div className="text-sm text-gray-600">Years of Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-brand-blue">
+                  180
+                </div>
+                <div className="text-sm text-gray-600">Certified Professionals</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-brand-blue">
+                  500K+
                 </div>
                 <div className="text-sm text-gray-600">Test Cases Executed</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-purple-600">
-                  98%
+                <div className="text-2xl md:text-3xl font-bold text-brand-blue">
+                  ISO
                 </div>
-                <div className="text-sm text-gray-600">Bug Detection Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-600">
-                  800+
-                </div>
-                <div className="text-sm text-gray-600">Applications Tested</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-orange-600">
-                  24/7
-                </div>
-                <div className="text-sm text-gray-600">Expert Support</div>
+                <div className="text-sm text-gray-600">9001 &amp; 27001 Certified</div>
               </div>
             </div>
           </div>

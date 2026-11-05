@@ -4,40 +4,15 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
+// Single source for both this accordion and the page's FAQPage JSON-LD.
+// These used to be two hand-maintained copies and they HAD drifted — the
+// wording of the ISO 29119 answer differed between what visitors read here
+// and what was sent to Google. See the note in faqs.tsx. Add questions
+// there, not here.
+import { manualTestingFaqs as faqs } from "@/app/(services)/manual-testing-services/faqs";
+
 const ManualTestingFAQs: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
-
-  const faqs = [
-    {
-      question: "Why is manual testing still important in 2026?",
-      answer:
-        (
-          <>
-            AI is rising, but <Link href="/blog/post/the-future-of-manual-testing-adapting-in-an-automated-world" className="text-brand-blue underline">manual testing</Link> remains vital. It handles exploratory work and complex logic. This is where &apos;human-in-the-loop&apos; intuition is vital for finding what scripts miss. It fills the &quot;coverage gaps&quot; that <Link href="/automation-testing-services" className="text-brand-blue underline">automation</Link> cannot reach in complex micro-services architectures.
-          </>
-        ),
-    },
-    {
-      question: "How does ISO/IEC/IEEE 29119 improve manual testing?",
-      answer:
-        (<>This international standard provides a structured, risk-based framework. This standard ensures manual testing is never ad-hoc. It follows a repeatable process for planning, design, and reporting. This approach increases visibility for stakeholders and makes your software more reliable.</>),
-    },
-    {
-      question: "Can manual testing fit into a CI/CD pipeline?",
-      answer:
-        (<>Yes. We use the ISO 29119-2 standard to create repeatable test processes. This allows us to sync manual regression with your fast release cycles. You get high-quality results without losing speed.</>),
-    },
-    {
-      question: "What is the cost of outsourcing manual testing?",
-      answer:
-        "Outsourcing manual testing is more cost-effective than building an in-house team. It removes the extra costs of tool licensing and specialized training. Plus, it makes it easier to scale during busy development periods.",
-    },
-    {
-      question: "Does Testriq provide manual testing for mobile apps?",
-      answer:
-        (<>Yes, we offer <Link href="/mobile-application-testing" className="text-brand-blue underline">manual testing for both iOS and Android</Link>. We use real devices from our global farm to ensure your app works across all OS versions and screen sizes.</>),
-    },
-  ];
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -66,9 +41,21 @@ const ManualTestingFAQs: React.FC = () => {
               key={index}
               className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300"
             >
+              {/* `aria-label="faq_question"` was removed from this button on
+                  2026-11-04. aria-label REPLACES an element's accessible name,
+                  so every one of these buttons announced itself to a screen
+                  reader as "faq_question" and the actual question — the only
+                  thing distinguishing twelve identical controls — was thrown
+                  away. The <h3> text below is the correct accessible name, so
+                  the button now simply has no label override.
+
+                  aria-expanded / aria-controls added so the control also
+                  reports whether its answer is open, and says which region it
+                  opens. */}
               <button
                 onClick={() => toggleFAQ(index)}
-                aria-label="faq_question"
+                aria-expanded={openFAQ === index}
+                aria-controls={`manual-testing-faq-answer-${index}`}
                 className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-300 cursor-pointer"
               >
                 <h3 className="text-lg font-semibold text-gray-900 pr-4">
@@ -83,14 +70,26 @@ const ManualTestingFAQs: React.FC = () => {
                 </div>
               </button>
 
+              {/* Was a `max-h-96` / `max-h-0` opacity transition. The
+                  animation looked fine but capped every answer at 24rem and
+                  silently CLIPPED anything longer, with `overflow-hidden`
+                  hiding the evidence. The original five answers all fit; the
+                  buyer questions added on 2026-11-04 do not — the service list
+                  alone is over twice that height on a phone.
+
+                  `hidden` has no height ceiling, so an answer cannot be cut
+                  off by its own length, and it is the same pattern
+                  UsabilityTestingFAQs uses. The content stays server-rendered
+                  either way, so the FAQ text remains crawlable whether or not
+                  a visitor opens the accordion. */}
               <div
-                className={`overflow-hidden transition-all duration-300 ${openFAQ === index
-                  ? "max-h-96 opacity-100"
-                  : "max-h-0 opacity-0"
-                  }`}
+                id={`manual-testing-faq-answer-${index}`}
+                hidden={openFAQ !== index}
               >
                 <div className="px-8 pb-6">
-                  <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  <p className="text-gray-600 leading-relaxed">
+                    {faq.answerJsx ?? faq.answer}
+                  </p>
                 </div>
               </div>
             </div>
