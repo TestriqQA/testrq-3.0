@@ -18,7 +18,7 @@ const DesktopWhyChooseTestriq: React.FC = () => {
     },
     {
       icon: <FaDesktop className="w-8 h-8" />,
-      title: <Link href="manual-testing" className="text-[theme(color.brand.blue)] underline">Cross-Platform Mastery</Link>,
+      title: <Link href="/manual-testing-services" className="text-[theme(color.brand.blue)] underline">Cross-Platform Mastery</Link>,
       description:
         "We provide the dedicated infrastructure to test applications across Linux environments and the latest macOS updates.",
       stats: "Linux & macOS Ready",

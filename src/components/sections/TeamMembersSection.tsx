@@ -94,7 +94,7 @@ const TeamMembersSection = () => {
         "Regression Testing",
         "UAT",
       ],
-      action: "manual-testing"
+      action: "/manual-testing-services"
     },
   ];
 
@@ -269,7 +269,7 @@ const TeamMembersSection = () => {
           </h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             Our team is organized into specialized QA departments, each bringing
-            deep expertise in <Link title="automation testing" href='automation-testing-services'>automation testing</Link>, <Link title="manual testing" href='manual-testing'>manual testing</Link>,
+            deep expertise in <Link title="automation testing" href='automation-testing-services'>automation testing</Link>, <Link title="manual testing" href='/manual-testing-services'>manual testing</Link>,
             <Link title="performance testing" href='performance-testing-services'> performance testing</Link>, and digital solutions to deliver comprehensive quality assurance services.
           </p>
 

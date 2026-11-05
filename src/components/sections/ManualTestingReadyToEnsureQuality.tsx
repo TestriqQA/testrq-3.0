@@ -4,6 +4,24 @@ import Link from "next/link";
 import React from "react";
 import { BOOKING_URL } from "@/lib/booking";
 import PhoneLinks from "@/components/ui/PhoneLinks";
+// GA4, 2026-11-04. Extends the site's existing single implementation
+// (src/lib/gtag.tsx) — no second gtag script, no second measurement ID.
+//
+// Two of the brief's five named events are fired from this component
+// (manual_qa_cta_click, manual_qa_booking) and one from the hero. The other
+// two are deliberately NOT fired, for reasons recorded in the implementation
+// report rather than invented here:
+//
+//   - manual_qa_email_click would double-count. ContactLinkTracking.tsx
+//     already fires contact_email_click on these links site-wide, and the
+//     brief requires duplicate events be avoided. One click, one event.
+//   - manual_qa_form_start / manual_qa_form_submit have no form on this page
+//     to attach to. Its CTAs navigate to /contact-us, so firing them here
+//     would report a form interaction that never happened.
+//
+// No PII is sent: event parameters are a placement label, the page path and
+// the destination URL.
+import { trackEvent } from "@/lib/gtag";
 import {
   FaArrowRight,
   FaPhone,
@@ -138,9 +156,18 @@ const ManualTestingReadyToEnsureQuality: React.FC = () => {
 
             <div className="space-y-6">
               {/* Primary CTA */}
-              <Link href="/contact-us">
+              <Link
+                href="/contact-us"
+                onClick={() =>
+                  trackEvent("manual_qa_cta_click", {
+                    cta_placement: "final_primary",
+                    page_path: "/manual-testing-services",
+                    link_url: "/contact-us",
+                  })
+                }
+              >
                 <button className="w-full cursor-pointer bg-gradient-to-br from-brand-blue to-blue-600 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 group">
-                  <span>Get Free Consultation</span>
+                  <span>Request a QA Consultation</span>
                   <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </Link>
@@ -151,7 +178,17 @@ const ManualTestingReadyToEnsureQuality: React.FC = () => {
 
               {/* Contact Options */}
               <div className="grid grid-cols-1 gap-4">
-                <Link href={BOOKING_URL} target={ "_blank" }>
+                <Link
+                  href={BOOKING_URL}
+                  target={ "_blank" }
+                  onClick={() =>
+                    trackEvent("manual_qa_booking", {
+                      cta_placement: "final_booking",
+                      page_path: "/manual-testing-services",
+                      link_url: BOOKING_URL,
+                    })
+                  }
+                >
                   <button className="flex w-full items-center cursor-pointer justify-center space-x-3 py-3 px-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 group">
                     <FaCalendarAlt className="text-blue-600 group-hover:scale-110 transition-transform" />
                     <span className="font-medium text-gray-700">
@@ -225,12 +262,30 @@ const ManualTestingReadyToEnsureQuality: React.FC = () => {
               software delivers exceptional user experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-us">
+              <Link
+                href="/contact-us"
+                onClick={() =>
+                  trackEvent("manual_qa_cta_click", {
+                    cta_placement: "closing_primary",
+                    page_path: "/manual-testing-services",
+                    link_url: "/contact-us",
+                  })
+                }
+              >
                 <button className="bg-yellow-400 cursor-pointer text-blue-900 px-8 py-3 rounded-xl font-semibold hover:bg-yellow-300 transition-all duration-300">
-                  Start Free Consultation
+                  Discuss Your Testing Requirements
                 </button>
               </Link>
-              <Link href="/case-studies">
+              <Link
+                href="/case-studies"
+                onClick={() =>
+                  trackEvent("manual_qa_cta_click", {
+                    cta_placement: "closing_secondary",
+                    page_path: "/manual-testing-services",
+                    link_url: "/case-studies",
+                  })
+                }
+              >
                 <button className="border-2 cursor-pointer border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-brand-blue transition-all duration-300">
                   View Case Studies
                 </button>
