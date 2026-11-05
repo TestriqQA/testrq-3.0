@@ -436,7 +436,7 @@ const LocationsWeServe: React.FC = () => {
             </h1>
 
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-              Discover our comprehensive <Link href='blog/post/the-future-of-qa-trends-shaping-software-testing-in-2025'>QA testing services</Link> across major cities and regions in India and UAE. We provide world-class software testing solutions including <Link href='manual-testing'>manual testing</Link>, <Link href='automation-testing-services'>automation testing</Link>, <Link href='performance-testing-services'>performance testing</Link>, and <Link href='api-testing'>API testing</Link> tailored to local market needs and business requirements.
+              Discover our comprehensive <Link href='blog/post/the-future-of-qa-trends-shaping-software-testing-in-2025'>QA testing services</Link> across major cities and regions in India and UAE. We provide world-class software testing solutions including <Link href='/manual-testing-services'>manual testing</Link>, <Link href='automation-testing-services'>automation testing</Link>, <Link href='performance-testing-services'>performance testing</Link>, and <Link href='api-testing'>API testing</Link> tailored to local market needs and business requirements.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
@@ -738,7 +738,7 @@ const LocationsWeServe: React.FC = () => {
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                   <FaGlobe className="w-6 h-6 text-[theme(color.brand.blue)]" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2"><Link href='manual-testing'>Manual Testing</Link></h3>
+                <h3 className="font-semibold text-gray-900 mb-2"><Link href='/manual-testing-services'>Manual Testing</Link></h3>
                 <p className="text-sm text-gray-600">Comprehensive manual testing services including <Link href='blog/post/functional-testing-in-manual-testing-use-cases-techniques-best-practices'>functional</Link>, <Link href='blog/post/usability-testing-in-manual-testing-use-cases-techniques'>usability</Link>, and <Link href='exploratory-testing'>exploratory testing</Link></p>
               </div>
               <div className="text-center p-4">

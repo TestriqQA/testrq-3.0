@@ -28,6 +28,7 @@ import { redirects } from '@/lib/seo/redirect-map';
 // sitemap) can use the same auto-discovery instead of a hardcoded
 // manualLinks array that drifts out of sync.
 import { discoverRoutes } from '@/lib/seo/discover-routes';
+import { STATIC_EXCLUDED_FROM_SITEMAP } from '@/lib/seo/sitemap-exclusions';
 
 // Revalidate the sitemap every hour (matches service page revalidation)
 export const revalidate = 3600;
@@ -112,15 +113,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // services and solutions are below.
     //
     // This was a hardcoded 15-entry list until 2026-11-04, and it had drifted
-    // badly: 19 real, indexable pages were absent from the sitemap entirely —
+    // badly: 18 real, indexable pages were absent from the sitemap entirely —
     // the six comparison pages (playwright-vs-cypress and friends), the four
     // hiring pages, the four test templates, plus /pricing, /qa-process,
-    // /stlc-explained, /test-case-estimator and /verify-certificate. Each one
-    // existed, rendered and was linked from the site; none was ever submitted.
+    // /stlc-explained and /test-case-estimator. Each one existed, rendered and
+    // was linked from the site; none was ever submitted.
+    //
+    // (This said 19 and included /verify-certificate until 2026-11-05. That
+    // page is noindex and belongs in the exclusion set below, not in the
+    // sitemap — see the note there.)
     //
     // A list that must be edited by hand every time someone adds a route will
     // drift again, which is exactly what happened to the service list before
-    // it was switched to discoverRoutes. So the fix is discovery, not 19 more
+    // it was switched to discoverRoutes. So the fix is discovery, not 18 more
     // hardcoded lines.
     //
     // discoverRoutes skips dynamic segments, private folders and route groups,
@@ -129,12 +134,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // need spreading in from market-pages.ts either: they are ordinary static
     // routes and discovery finds them. That module is still the single source
     // for /website-map and both llms files, which do import it.
-    const STATIC_EXCLUDED_FROM_SITEMAP = new Set<string>([
-      // Deliberately noindex; a noindex page in a sitemap is a contradiction
-      // Search Console reports as an error.
-      'blog/demo',
-    ]);
-
+    //
+    // Routes discovery finds that must NOT be advertised — a noindex page in
+    // a sitemap is a contradiction Search Console reports as an error. The
+    // list lives in src/lib/seo/sitemap-exclusions.ts so a test can check it
+    // against what the routes themselves declare; see that file for the rule
+    // and for why /verify-certificate was missed.
     const staticNextJSPages = [
       // Discovery walks subdirectories, so the root is never among them.
       { slug: '' },

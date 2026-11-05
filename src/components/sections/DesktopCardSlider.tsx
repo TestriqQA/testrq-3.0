@@ -167,7 +167,7 @@ export default function CardSlider() {
       colorlight: "yellow-50",
       progress: "100%",
       keyTitle: "Key Activities",
-      action: "/manual-testing",
+      action: "/manual-testing-services",
       keys: [
         { key: "UAT Coordination" },
         { key: "Beta Feedback Loop" },

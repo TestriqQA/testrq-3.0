@@ -694,63 +694,161 @@ export const etlTestingSchema = {
 export const manualTestingServiceSchema = {
   "@context": "https://schema.org",
   "@graph": [
+    // 2026-11-04, international-SEO pass. Four defects fixed here; each is
+    // recorded because the wrong version read as plausible and survived
+    // several reviews.
+    //
+    // 1. `offers` claimed `price: "0"` USD with `priceValidUntil:
+    //    "2026-12-31"` and a URL of /contact. That asserted in machine-
+    //    readable form that manual testing costs nothing — an invented price,
+    //    not an omitted one, and the single most misleading property on the
+    //    page. There is no published price for this service, so the correct
+    //    representation is no `offers` node at all rather than a zero. (The
+    //    /contact URL was also a 308 redirect source; the real route is
+    //    /contact-us. Both gone with the node.)
+    //
+    // 2. `provider` was an inline Organization with no @id, which makes a
+    //    SECOND Organization node on a page that already emits the canonical
+    //    one. Two unlinked Organization nodes compete to represent the same
+    //    company. It is now an @id reference to
+    //    https://www.testriq.com/#organization — the identifier used by
+    //    StructuredData.tsx and the pricing page — so provider resolves to
+    //    the entity that actually carries sameAs, address and contactPoint.
+    //
+    // 3. The @id carried a trailing slash before the fragment
+    //    (/manual-testing-services/#service) while the canonical URL has
+    //    none. Entity IDs are compared as opaque strings, so the slash made
+    //    this node unreachable from any reference written against the
+    //    canonical form.
+    //
+    // 4. `hasOfferCatalog` listed Exploratory, UAT, WCAG and Localization
+    //    testing. Only one of those was described anywhere on the page: the
+    //    slider it supposedly mirrored is about industry trends ("Bridging
+    //    the Automation-AI Gap"), not services. The catalog now lists the
+    //    nine services ManualTestingServices.tsx actually renders, so the
+    //    markup matches what a visitor reads.
+    //
+    // `areaServed` deliberately stays the broad "Worldwide" rather than a
+    // country list. Narrowing it to the six target markets would be LESS
+    // accurate for a remote provider, and naming countries we cannot evidence
+    // delivery in would be the same kind of guess as the price above. If the
+    // business supplies a verified country list, this is where it goes.
     {
       "@type": "Service",
-      "@id": "https://www.testriq.com/manual-testing-services/#service",
-      "name": "Manual & Exploratory Testing Services",
-      "serviceType": "Software Quality Assurance",
-      "provider": {
-        "@type": "Organization",
-        "name": "Testriq QA Lab",
-        "url": "https://www.testriq.com",
-        "logo": "https://www.testriq.com/testriq-logo.png"
-      },
+      "@id": "https://www.testriq.com/manual-testing-services#service",
+      "name": "Manual Software Testing Services",
+      "serviceType": "Manual Software Testing and Quality Assurance",
+      "url": "https://www.testriq.com/manual-testing-services",
+      "provider": { "@id": "https://www.testriq.com/#organization" },
       "image": "https://www.testriq.com/testriq-logo.png",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/OnlineOnly",
-        "url": "https://www.testriq.com/contact",
-      },
       "areaServed": "Worldwide",
-      "description": "Expert Manual Testing services focusing on Exploratory Testing, User Acceptance Testing (UAT), and WCAG Accessibility Audits to find bugs automation misses.",
+      "audience": {
+        "@type": "BusinessAudience",
+        "name": "Product and engineering teams",
+      },
+      "description": "Manual software testing services delivered remotely by ISTQB-certified QA engineers: functional, regression, exploratory, usability, compatibility, cross-browser, mobile and user acceptance testing for web, mobile and enterprise applications.",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Manual Testing Capabilities",
+        "name": "Manual Software Testing Services",
         "itemListElement": [
+          // Mirrors MANUAL_TESTING_SERVICES in
+          // src/components/sections/ManualTestingServices.tsx, in the same
+          // order. If a service is added or dropped there, change it here too
+          // — a catalog entry with nothing visible behind it is the defect
+          // this list was rebuilt to remove.
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Exploratory Testing (Ad-hoc)"
-            }
+              "name": "Functional Testing",
+              "url": "https://www.testriq.com/functional-testing-services",
+            },
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "User Acceptance Testing (UAT) Management"
-            }
+              "name": "Regression Testing",
+              "url": "https://www.testriq.com/regression-testing",
+            },
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "WCAG 2.1 Accessibility Audits"
-            }
+              "name": "Exploratory Testing",
+              "url": "https://www.testriq.com/exploratory-testing",
+            },
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Localization (L10n) Testing"
-            }
-          }
+              "name": "Usability Testing",
+              "url": "https://www.testriq.com/usability-testing-services",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Compatibility and Cross-Browser Testing",
+              "url": "https://www.testriq.com/compatibility-testing-services",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "User Acceptance Testing",
+              "url": "https://www.testriq.com/user-acceptance-testing",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Web Application Testing",
+              "url": "https://www.testriq.com/web-application-testing-services",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mobile Application Testing",
+              "url": "https://www.testriq.com/mobile-application-testing",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Accessibility Testing",
+              "url": "https://www.testriq.com/accessibility-testing-services",
+            },
+          },
         ]
       },
-
+    },
+    // WebPage, per the brief's §11.3. It is the node that ties the page to
+    // the site and to the Service above: without it the Service floats with
+    // no stated relationship to the URL it describes.
+    //
+    // `breadcrumb` deliberately points at the node the PAGE emits via
+    // createCanonicalBreadcrumb rather than declaring a BreadcrumbList here
+    // — see the F-44 note below for why there must be exactly one.
+    {
+      "@type": "WebPage",
+      "@id": "https://www.testriq.com/manual-testing-services#webpage",
+      "url": "https://www.testriq.com/manual-testing-services",
+      "name": "Manual Testing Services for Global Teams | Testriq",
+      "description": "Expert manual testing services for global businesses. Work with ISTQB-certified QA professionals for functional, regression, exploratory and mobile testing.",
+      "isPartOf": { "@id": "https://www.testriq.com/#website" },
+      "about": { "@id": "https://www.testriq.com/#organization" },
+      "mainEntity": { "@id": "https://www.testriq.com/manual-testing-services#service" },
+      "breadcrumb": { "@id": "https://www.testriq.com/manual-testing-services#breadcrumb" },
+      "inLanguage": "en",
     }
     // F-44: BreadcrumbList intentionally NOT in @graph — page-side
     // createCanonicalBreadcrumb (PR-3) is the single source of truth for
