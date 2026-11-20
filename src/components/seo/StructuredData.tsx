@@ -25,6 +25,7 @@ import { buildCanonicalUrl, SITE_URL } from "../../lib/seo/metadata";
 import { getBreadcrumbLabel } from "../../lib/seo/breadcrumb-labels";
 import { pricingPackages } from "../../data/pricingPackages";
 import { SERVICE_AREA_SERVED } from "../../lib/seo/target-markets";
+import { teamLeaders, teamMemberSlug, cleanProfileUrl } from "../../data/teamLeaders";
 
 type JsonLd = Record<string, unknown>;
 
@@ -1457,43 +1458,19 @@ export const ourTeamPageSchema = {
   "hasPart": {
     "@type": "ItemList",
     "name": "Testriq Team Members",
-    "itemListElement": [
-      {
+    // Built from src/data/teamLeaders.ts (the same data the cards render), so
+    // titles cannot drift from the page. sameAs carries each person's LinkedIn
+    // profile, already linked from their card (SEO report E-2, Nov 2026).
+    "itemListElement": teamLeaders
+      .filter((leader) => leader.inPageSchema)
+      .map((leader) => ({
         "@type": "Person",
-        "name": "Sandeep Maske",
-        "jobTitle": "Founder & CEO",
+        "name": leader.name,
+        "jobTitle": leader.position,
         "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#sandeep-maske"
-      },
-      {
-        "@type": "Person",
-        "name": "Santosh Kakade",
-        "jobTitle": "VP Operations",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#santosh-kakade"
-      },
-      {
-        "@type": "Person",
-        "name": "Goutam Mishra",
-        "jobTitle": "Head of QA and BD",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#goutam-mishra"
-      },
-      {
-        "@type": "Person",
-        "name": "Rohan Maske",
-        "jobTitle": "VP - Marketing",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#rohan-maske"
-      },
-      {
-        "@type": "Person",
-        "name": "Aatish Jadhav",
-        "jobTitle": "Senior Manager - Strategic Growth",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#aatish-jadhav"
-      }
-    ]
+        "url": `https://www.testriq.com/our-team#${teamMemberSlug(leader.name)}`,
+        "sameAs": [cleanProfileUrl(leader.linkedin)]
+      }))
   }
 };
 

@@ -25,10 +25,12 @@ import StructuredData, {
     createBreadcrumbSchema,
     createCanonicalBreadcrumb,
     pricingBundleOffer,
+    ourTeamPageSchema,
     pricingServiceSchema,
 } from "../StructuredData";
 import { pricingPackages } from "../../../data/pricingPackages";
 import { SERVICE_AREA_SERVED, TARGET_MARKET_COUNTRIES } from "../../../lib/seo/target-markets";
+import { cleanProfileUrl, teamLeaders, teamMemberSlug } from "../../../data/teamLeaders";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -591,5 +593,63 @@ describe("service areaServed (SEO report D-17)", () => {
             )
             .map((file) => relative(process.cwd(), file));
         expect(offenders).toEqual([]);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// SEO report E-2 (Nov 2026): /our-team Person entries link to LinkedIn
+// ---------------------------------------------------------------------------
+
+describe("ourTeamPageSchema people (SEO report E-2)", () => {
+    type Person = { "@type": string; name: string; jobTitle: string; url: string; sameAs?: string[] };
+    const people = (ourTeamPageSchema as unknown as { hasPart: { itemListElement: Person[] } }).hasPart
+        .itemListElement;
+
+    it("keeps the same five people as before the data was shared", () => {
+        expect(people.map((p) => p.name)).toEqual([
+            "Sandeep Maske",
+            "Santosh Kakade",
+            "Goutam Mishra",
+            "Rohan Maske",
+            "Aatish Jadhav",
+        ]);
+    });
+
+    it("gives every Person a real LinkedIn profile in sameAs", () => {
+        for (const p of people) {
+            expect(p["@type"]).toBe("Person");
+            expect(p.sameAs, p.name).toHaveLength(1);
+            expect(p.sameAs![0], p.name).toMatch(/^https:\/\/www\.linkedin\.com\/in\/[^/?#]+\/?$/);
+        }
+    });
+
+    it("uses the title and LinkedIn link shown on the person's card", () => {
+        for (const p of people) {
+            const card = teamLeaders.find((l) => l.name === p.name)!;
+            expect(p.jobTitle).toBe(card.position);
+            expect(p.sameAs).toEqual([cleanProfileUrl(card.linkedin)]);
+        }
+    });
+
+    it("gives each Person a distinct url fragment", () => {
+        const urls = people.map((p) => p.url);
+        expect(new Set(urls).size).toBe(urls.length);
+        expect(urls).toContain("https://www.testriq.com/our-team#sandeep-maske");
+    });
+});
+
+describe("team data helpers", () => {
+    it("slugs a name for the url fragment", () => {
+        expect(teamMemberSlug("Sandeep Maske")).toBe("sandeep-maske");
+        expect(teamMemberSlug("  Rohan  Maske ")).toBe("rohan-maske");
+    });
+
+    it("strips tracking parameters from a profile URL", () => {
+        expect(
+            cleanProfileUrl("https://www.linkedin.com/in/neelamchavan9892/?original_referer=https%3A%2F%2Ftestriq.com%2F"),
+        ).toBe("https://www.linkedin.com/in/neelamchavan9892/");
+        expect(cleanProfileUrl("https://www.linkedin.com/in/sandeepmaske")).toBe(
+            "https://www.linkedin.com/in/sandeepmaske",
+        );
     });
 });
