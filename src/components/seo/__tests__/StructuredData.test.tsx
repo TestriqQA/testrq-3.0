@@ -14,13 +14,20 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { readdirSync, readFileSync } from "node:fs";
+import { join, relative } from "node:path";
+
 import { renderToStaticMarkup } from "react-dom/server";
 
+import * as Schemas from "../StructuredData";
 import StructuredData, {
     caseStudiesSchema,
     createBreadcrumbSchema,
     createCanonicalBreadcrumb,
+    pricingBundleOffer,
+    pricingServiceSchema,
 } from "../StructuredData";
+import { pricingPackages } from "../../../data/pricingPackages";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -409,5 +416,100 @@ describe("caseStudiesSchema - @graph reference integrity", () => {
     it("declares no BreadcrumbList of its own (page-side script owns it)", () => {
         const crumbs = graph.filter((n) => n["@type"] === "BreadcrumbList");
         expect(crumbs).toHaveLength(0);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// SEO report D-14 / D-15 / D-16 (Nov 2026): no "free" offers on service pages
+// ---------------------------------------------------------------------------
+//
+// Service schemas used to carry an Offer with price "0" (and on some pages a
+// priceValidUntil of 2026-12-31 and a url of /contact). That told Google and
+// AI assistants the services were free. The offers were removed; /pricing now
+// states each bundle's real "starting from" price, read from the same data
+// the pricing cards render.
+
+describe("service offers (SEO report D-14)", () => {
+    /**
+     * Files allowed to declare a zero price. The Test Case Estimator is a
+     * genuinely free tool, its page says so, and Google requires a price on a
+     * SoftwareApplication offer.
+     */
+    const ZERO_PRICE_ALLOWED = [join("src", "app", "test-case-estimator", "layout.tsx")];
+
+    const sourceFiles = (dir: string): string[] =>
+        readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+            const full = join(dir, entry.name);
+            if (entry.isDirectory()) return entry.name === "__tests__" ? [] : sourceFiles(full);
+            return /\.(ts|tsx)$/.test(entry.name) ? [full] : [];
+        });
+
+    it("declares no zero or 'Free' price anywhere in src", () => {
+        const offenders = sourceFiles(join(process.cwd(), "src"))
+            .filter((file) => !ZERO_PRICE_ALLOWED.some((allowed) => file.endsWith(allowed)))
+            .filter((file) => /["']?price["']?\s*:\s*["']?(0|Free)["']?\s*[,}\r\n]/.test(readFileSync(file, "utf8")))
+            .map((file) => relative(process.cwd(), file));
+        expect(offenders).toEqual([]);
+    });
+
+    it("leaves no exported schema with a hardcoded 2026-12-31 offer expiry (D-15)", () => {
+        const stale = Object.entries(Schemas)
+            .filter(([, value]) => typeof value === "object" && value !== null)
+            .filter(([, value]) => JSON.stringify(value).includes('"priceValidUntil":"2026-12-31"'))
+            .map(([name]) => name);
+        expect(stale).toEqual([]);
+    });
+
+    it("leaves no exported schema pointing an offer at the /contact redirect (D-16)", () => {
+        /** Every value found under an `offers` key, at any depth. */
+        const offersIn = (node: unknown): unknown[] => {
+            if (Array.isArray(node)) return node.flatMap(offersIn);
+            if (typeof node !== "object" || node === null) return [];
+            return Object.entries(node).flatMap(([key, value]) =>
+                key === "offers" ? [value, ...offersIn(value)] : offersIn(value),
+            );
+        };
+        const stale = Object.entries(Schemas)
+            .filter(([, value]) =>
+                offersIn(value).some((offer) =>
+                    JSON.stringify(offer).includes('"url":"https://www.testriq.com/contact"'),
+                ),
+            )
+            .map(([name]) => name);
+        expect(stale).toEqual([]);
+    });
+});
+
+describe("pricingBundleOffer (/pricing starting prices)", () => {
+    type Spec = { minPrice: number; priceCurrency: string; unitText: string };
+
+    it.each(pricingPackages.map((p) => [p.id, p] as const))(
+        "%s: minPrice equals the number on the pricing card",
+        (id, pkg) => {
+            const offer = pricingBundleOffer(id) as { priceSpecification?: Spec; price?: unknown };
+            // Same extraction Pricing5Cards uses to render the big number.
+            const shown = Number(pkg.price.match(/\d+/)?.[0]);
+            expect(offer.priceSpecification?.minPrice).toBe(shown);
+            expect(offer.priceSpecification?.priceCurrency).toBe("USD");
+            expect(pkg.price).toContain(offer.priceSpecification!.unitText);
+            // A floor, never a fixed price.
+            expect(offer).not.toHaveProperty("price");
+        },
+    );
+
+    it("emits no price at all for an unknown package rather than guessing", () => {
+        const offer = pricingBundleOffer("does-not-exist");
+        expect(offer).not.toHaveProperty("priceSpecification");
+        expect(offer).not.toHaveProperty("priceCurrency");
+    });
+
+    it("gives every bundle in pricingServiceSchema a starting price", () => {
+        const graph = (pricingServiceSchema as { "@graph": Array<Record<string, unknown>> })["@graph"];
+        const bundles = graph.filter((n) => n["@type"] === "Service");
+        expect(bundles).toHaveLength(pricingPackages.length);
+        for (const bundle of bundles) {
+            const offer = bundle.offers as { priceSpecification?: Spec };
+            expect(offer.priceSpecification?.minPrice).toBeGreaterThan(0);
+        }
     });
 });

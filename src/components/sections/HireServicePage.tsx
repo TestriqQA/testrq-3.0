@@ -70,12 +70,6 @@ function ServiceStructuredData(props: HireServicePageProps) {
         },
       })),
     },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/OnlineOnly",
-      priceCurrency: "USD",
-      priceSpecification: { "@type": "PriceSpecification", price: "0" },
-    },
   };
   return <StructuredData data={schema} />;
 }

@@ -23,6 +23,7 @@
  */
 import { buildCanonicalUrl, SITE_URL } from "../../lib/seo/metadata";
 import { getBreadcrumbLabel } from "../../lib/seo/breadcrumb-labels";
+import { pricingPackages } from "../../data/pricingPackages";
 
 type JsonLd = Record<string, unknown>;
 
@@ -343,29 +344,6 @@ export const websiteSchema = {
   }
 };
 
-// Product/Service Schema with Aggregate Rating for Homepage
-export const productServiceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Testriq QA Lab - Comprehensive Software Testing Services",
-  "description": "Leading software testing company providing comprehensive QA services including web app testing, mobile testing, API testing, and automation testing solutions.",
-  "url": "https://www.testriq.com/",
-  "image": "https://www.testriq.com/testriq-logo.png",
-  "brand": {
-    "@type": "Brand",
-    "name": "Testriq QA Lab"
-  },
-  "sku": "TQ-QA-001",
-  "mpn": "TQ-QA-MAIN",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "price": "0",
-    "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/OnlineOnly",
-  }
-};
-
 // Home Page FAQ Schema
 export const homeFAQSchema = {
   "@context": "https://schema.org",
@@ -683,16 +661,6 @@ export const completeTestingGuideSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "Free"
-    }
   }
 };
 
@@ -764,16 +732,6 @@ export const ecommerceTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -859,16 +817,6 @@ export const elearningTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -939,16 +887,6 @@ export const healthcareTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1023,16 +961,6 @@ export const saasPlatformTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1105,16 +1033,6 @@ export const manufacturingIndustryTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1200,16 +1118,6 @@ export const gamingTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1271,16 +1179,6 @@ export const iotTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1358,16 +1256,6 @@ export const bankingFinanceTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1437,16 +1325,6 @@ export const telecommunicationTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -2278,6 +2156,40 @@ export const timezoneFAQSchema = {
   ]
 };
 
+/**
+ * Offer for one /pricing bundle, built from the same pricingPackages entry the
+ * pricing card renders, so the markup can never disagree with the visible
+ * price. The card text reads "Starting from 400 USD per mid size project":
+ * the number becomes minPrice (a floor, not a fixed price) and the rest
+ * becomes unitText.
+ *
+ * SEO report D-14 (Nov 2026): these offers used to say price "0", which told
+ * Google and AI assistants the bundles were free. If a package's price text
+ * ever stops matching the pattern, no price is emitted rather than a guessed
+ * one; the pricing-offer test in StructuredData.test.tsx catches that case.
+ */
+export function pricingBundleOffer(packageId: string) {
+  const pkg = pricingPackages.find((p) => p.id === packageId);
+  const match = pkg?.price.match(/^Starting from (\d+) USD (.+)$/);
+  const priceSpecification = match
+    ? {
+        "@type": "UnitPriceSpecification",
+        "minPrice": Number(match[1]),
+        "priceCurrency": "USD",
+        "unitText": match[2],
+        "description": `Starting from ${match[1]} USD ${match[2]}. Final quote depends on scope.`
+      }
+    : undefined;
+  return {
+    "@type": "Offer",
+    ...(priceSpecification ? { "priceCurrency": "USD", priceSpecification } : {}),
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-01-01",
+    "url": "https://www.testriq.com/contact-us",
+    "seller": { "@id": "https://www.testriq.com/#organization" }
+  };
+}
+
 export const pricingServiceSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -2411,21 +2323,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "2 bug verification cycles free of cost",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per mid size project",
-          "description": "Custom pricing per mid size project. Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("web"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Browser Coverage", "value": "Windows, MAC, Android Phone & Tablets, Apple Phone & Tablets" },
         { "@type": "PropertyValue", "name": "Deliverables", "value": "Bug List (Video/Screenshot + Steps), Vulnerability Report, Performance Scorecard" },
@@ -2461,21 +2359,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "2 bug verification cycles free of cost",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per mid size App, iOS + Android",
-          "description": "Custom pricing per mid size mobile app (iOS + Android). Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("mobile"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Device Coverage", "value": "Real iOS & Android devices, latest to lowest OS versions" },
         { "@type": "PropertyValue", "name": "Special Tests", "value": "Battery drain & heat check, Push notification delivery, Real world network conditions" },
@@ -2511,21 +2395,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "2 bug verification cycles free of cost",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per project (up to 20 endpoints)",
-          "description": "Custom pricing per project covering up to 20 API endpoints. Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("api"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Architecture Support", "value": "REST, GraphQL, SOAP" },
         { "@type": "PropertyValue", "name": "Environment Support", "value": "Dev, Staging, Production" },
@@ -2562,21 +2432,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "1 complimentary re-scan after vulnerability fixes",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per audit (Web or Mobile)",
-          "description": "Custom pricing per security audit. Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("vapt"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Approach", "value": "Hybrid — Automated Tools + Manual Expert Review" },
         { "@type": "PropertyValue", "name": "Special Inclusions", "value": "Business Logic Audit, PoC for every vulnerability, Executive Summary + Tech Details" },

@@ -161,15 +161,6 @@ export const aiTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -238,15 +229,6 @@ export const launchFastQASchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -315,15 +297,6 @@ export const exploratoryTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -392,15 +365,6 @@ export const desktopAppTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -461,15 +425,6 @@ export const mobileAppTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -493,13 +448,6 @@ export const iotDeviceTestingSchema = {
       },
       "areaServed": "Worldwide",
       "description": "End-to-end IoT testing services including Firmware (OTA) validation, MQTT/Zigbee protocol testing, and Security Pen-testing for smart devices.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/OnlineOnly",
-        "url": "https://www.testriq.com/contact"
-      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "IoT Testing Capabilities",
@@ -601,16 +549,6 @@ export const roboticTestingSchema = {
         }
       }
     ]
-  },
-
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -679,15 +617,6 @@ export const etlTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -883,14 +812,6 @@ export const automationTestingServiceSchema = {
       "areaServed": "Worldwide",
       "description": "Transform your testing strategy with AI-powered automation. We use Selenium, Playwright, and API automation to reduce testing time by 80% and improve coverage.",
       "image": "https://www.testriq.com/testriq-logo.png",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/OnlineOnly",
-        "url": "https://www.testriq.com/contact",
-      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Automation Capabilities",
@@ -989,15 +910,6 @@ export const apiTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1066,15 +978,6 @@ export const regressionTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1135,15 +1038,6 @@ export const agileTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1212,15 +1106,6 @@ export const performanceTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1242,14 +1127,6 @@ export const securityTestingServiceSchema = {
         "logo": "https://www.testriq.com/testriq-logo.png"
       },
       "image": "https://www.testriq.com/testriq-logo.png",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/OnlineOnly",
-        "url": "https://www.testriq.com/contact",
-      },
       // SEO handoff (Sept 2026) PART D, change 1: the "Worldwide" string is
       // REPLACED (not supplemented) with the four markets the page's new
       // coverage section names in body copy. `provider` above is intentionally
@@ -1378,16 +1255,6 @@ export const qaDocumentationServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1448,16 +1315,6 @@ export const dataAnalysisServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1526,16 +1383,6 @@ export const smartDeviceTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1604,16 +1451,6 @@ export const matrimonialAppCertificationSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1630,14 +1467,6 @@ export const datingAppCertificationSchema = {
     "logo": "https://www.testriq.com/testriq-logo.png"
   },
   "image": "https://www.testriq.com/testriq-logo.png",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "price": "0",
-    "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/OnlineOnly",
-    "url": "https://www.testriq.com/contact",
-  },
   "category": "Quality Assurance and Certification",
   "areaServed": "Worldwide",
   "hasOfferCatalog": {
@@ -1732,16 +1561,6 @@ export const fantasyAppCertificationSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1802,16 +1621,6 @@ export const tradingAppCertificationSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1881,14 +1690,6 @@ export const sapTestingSchema = {
       },
       "areaServed": "Worldwide",
       "description": "Comprehensive SAP testing services including S/4HANA migration validation, SAP Fiori testing, and automated regression testing for enterprise landscapes.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/OnlineOnly",
-        "url": "https://www.testriq.com/contact-us",
-      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "SAP Testing Capabilities",
@@ -2063,15 +1864,6 @@ export const continuousTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -2487,15 +2279,6 @@ export const iso42001ComplianceTestingSchema = {
             }
           }
         ]
-      },
-      "offers": {
-        "@type": "Offer",
-        "availability": "https://schema.org/OnlineOnly",
-        "priceCurrency": "USD",
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "0"
-        }
       }
     }
     // F-44.1: FAQPage intentionally NOT in @graph — page-side
@@ -2579,12 +2362,6 @@ export const latencyTestingServiceSchema = {
             }
           }
         ]
-      },
-      "offers": {
-        "@type": "Offer",
-        "availability": "https://schema.org/InStock",
-        "priceCurrency": "USD",
-        "price": "0"
       }
     }
     // FAQPage intentionally NOT in @graph — page-side

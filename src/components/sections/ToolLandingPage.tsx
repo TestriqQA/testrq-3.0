@@ -68,13 +68,6 @@ function ServiceStructuredData(props: ToolLandingPageProps) {
         },
       })),
     },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/OnlineOnly",
-      priceCurrency: "USD",
-      priceValidUntil: "2026-12-31",
-      priceSpecification: { "@type": "PriceSpecification", price: "0" },
-    },
   };
   return <StructuredData data={schema} />;
 }
