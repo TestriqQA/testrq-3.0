@@ -24,6 +24,7 @@
 import { buildCanonicalUrl, SITE_URL } from "../../lib/seo/metadata";
 import { getBreadcrumbLabel } from "../../lib/seo/breadcrumb-labels";
 import { pricingPackages } from "../../data/pricingPackages";
+import { SERVICE_AREA_SERVED } from "../../lib/seo/target-markets";
 
 type JsonLd = Record<string, unknown>;
 
@@ -543,7 +544,7 @@ export const toolsPageSchema = {
         "@id": "https://www.testriq.com/#organization"
       },
       "serviceType": "Software Testing Services",
-      "areaServed": "Global",
+      "areaServed": SERVICE_AREA_SERVED,
       "description": "Implementation of advanced QA automation frameworks using Selenium, Cypress, Appium, and JMeter for web, mobile, and API testing.",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -615,7 +616,7 @@ export const completeTestingGuideSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing Education",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Software Testing Guide Services",
@@ -678,7 +679,7 @@ export const ecommerceTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "E-Commerce QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "E-Commerce QA Testing Services",
@@ -748,7 +749,7 @@ export const elearningTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "E-Learning Testing Services",
@@ -833,7 +834,7 @@ export const healthcareTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Healthcare Software QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Healthcare Testing Services",
@@ -907,7 +908,7 @@ export const saasPlatformTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "SaaS Platform QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "SaaS Platform Testing Services",
@@ -979,7 +980,7 @@ export const manufacturingIndustryTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Manufacturing & Industry 4.0 QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Manufacturing Industry Testing Services",
@@ -1048,7 +1049,7 @@ export const gamingTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Game Testing & QA",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Gaming App Testing Services",
@@ -1133,7 +1134,7 @@ export const iotTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "IoT Quality Assurance",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "IoT Testing Services",
@@ -1194,7 +1195,7 @@ export const bankingFinanceTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Banking & Finance Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "BFSI Testing Services",
@@ -1271,7 +1272,7 @@ export const telecommunicationTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Telecom Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Telecommunication Testing Services",
@@ -1932,7 +1933,7 @@ export const functionalServiceSchema = {
       },
       "url": "https://www.testriq.com/services/functional-testing-services",
       "description": "Ensure flawless software performance with Testriq's expert Functional Testing Services. Comprehensive QA, automation & validation for web, mobile & enterprise applications.",
-      "areaServed": "WorldWide",
+      "areaServed": SERVICE_AREA_SERVED,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Functional QA Solutions",

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { FaArrowRight, FaCheckCircle, FaCertificate, FaHome, FaChevronRight } from "react-icons/fa";
 import StructuredData, { createCanonicalBreadcrumb } from "@/components/seo/StructuredData";
+import { SERVICE_AREA_SERVED } from "@/lib/seo/target-markets";
 
 export interface HireServicePageProps {
   /** Display name of the offering, e.g. "Hire QA Engineer" */
@@ -57,7 +58,7 @@ function ServiceStructuredData(props: HireServicePageProps) {
       url: SITE_URL,
     },
     serviceType: props.serviceTypeForSchema,
-    areaServed: "Worldwide",
+    areaServed: SERVICE_AREA_SERVED,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `${props.offeringName} — Engagement Models`,

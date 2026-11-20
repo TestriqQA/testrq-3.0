@@ -10,6 +10,7 @@ import ServiceEngagementModels from "@/components/sections/ServiceEngagementMode
 import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
 import ServiceDirectAnswer from "@/components/sections/ServiceDirectAnswer";
 import ServiceCta from "@/components/sections/ServiceCta";
+import { SERVICE_AREA_SERVED } from "@/lib/seo/target-markets";
 
 export const revalidate = 3600;
 
@@ -185,7 +186,7 @@ const corporateQATrainingServiceSchema = {
     url: "https://www.testriq.com",
   },
   serviceType: "Corporate Training",
-  areaServed: "Worldwide",
+  areaServed: SERVICE_AREA_SERVED,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Corporate QA Training Programs",

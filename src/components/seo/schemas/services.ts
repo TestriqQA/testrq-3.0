@@ -7,24 +7,8 @@
 // call sites across the project don't need to update their imports.
 //
 // Extracted: 2026-05-15. Total exports here: 44 of 45 service schemas.
-//
-// ---------------------------------------------------------------------------
-// areaServed — do NOT bulk-replace the "Worldwide" values in this file.
-//
-// The SEO brief (DEV-14) asks for areaServed to name US, UK, India and UAE
-// explicitly on every service page. Reviewed and declined on 2026-10-28:
-// areaServed states where a service is DELIVERED, and Testriq has one office
-// and no regional entity, so a four-country list asserts something narrower
-// than the truth. The notes on cyberSecurityServiceSchema and
-// qaServicesServiceSchema below reached the same conclusion independently.
-//
-// The single exception is /security-testing, which does list four countries,
-// because its own coverage section names those markets in body copy — US, UK,
-// UAE and the EU, deliberately not India. That array is scoped to that page.
-//
-// The values are spelled inconsistently here ("Worldwide", "WorldWide",
-// "Global"). Normalising the spelling is fine; narrowing the claim is not.
-// ---------------------------------------------------------------------------
+
+import { SERVICE_AREA_SERVED } from "../../../lib/seo/target-markets";
 
 export const webAppTestingServiceSchema = {
   "@context": "https://schema.org",
@@ -51,7 +35,7 @@ export const webAppTestingServiceSchema = {
       },
       "url": "https://www.testriq.com/web-application-testing-services",
       "description": "Professional web application testing services including functional, performance, and security testing to ensure cross-browser compatibility and bug-free web apps.",
-      "areaServed": "WorldWide",
+      "areaServed": SERVICE_AREA_SERVED,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Web Testing Solutions",
@@ -107,7 +91,7 @@ export const aiTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "AI Testing Services",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "AI Testing Services",
@@ -175,7 +159,7 @@ export const launchFastQASchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Rapid QA for Startups",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "LaunchFast QA Services",
@@ -243,7 +227,7 @@ export const exploratoryTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Exploratory Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Exploratory Testing Services",
@@ -311,7 +295,7 @@ export const desktopAppTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Desktop App QA Services",
@@ -379,7 +363,7 @@ export const mobileAppTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Mobile Quality Assurance",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Advanced Mobile QA Solutions",
@@ -446,7 +430,7 @@ export const iotDeviceTestingSchema = {
           "https://clutch.co/profile/testriq-qa-lab"
         ]
       },
-      "areaServed": "Worldwide",
+      "areaServed": SERVICE_AREA_SERVED,
       "description": "End-to-end IoT testing services including Firmware (OTA) validation, MQTT/Zigbee protocol testing, and Security Pen-testing for smart devices.",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -495,7 +479,7 @@ export const roboticTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Robotics Quality Assurance",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Global Robotics & Automation Testing Solutions",
@@ -563,7 +547,7 @@ export const etlTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "ETL QA Services",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "ETL Testing Services",
@@ -670,7 +654,7 @@ export const manualTestingServiceSchema = {
       "url": "https://www.testriq.com/manual-testing-services",
       "provider": { "@id": "https://www.testriq.com/#organization" },
       "image": "https://www.testriq.com/testriq-logo.png",
-      "areaServed": "Worldwide",
+      "areaServed": SERVICE_AREA_SERVED,
       "audience": {
         "@type": "BusinessAudience",
         "name": "Product and engineering teams",
@@ -809,7 +793,7 @@ export const automationTestingServiceSchema = {
         "url": "https://www.testriq.com",
         "logo": "https://www.testriq.com/testriq-logo.png"
       },
-      "areaServed": "Worldwide",
+      "areaServed": SERVICE_AREA_SERVED,
       "description": "Transform your testing strategy with AI-powered automation. We use Selenium, Playwright, and API automation to reduce testing time by 80% and improve coverage.",
       "image": "https://www.testriq.com/testriq-logo.png",
       "hasOfferCatalog": {
@@ -872,7 +856,7 @@ export const apiTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "API Testing Services",
@@ -924,7 +908,7 @@ export const regressionTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Regression Testing Services",
@@ -992,7 +976,7 @@ export const agileTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Agile Quality Assurance",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Agile Testing Solutions",
@@ -1052,7 +1036,7 @@ export const performanceTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Performance Testing Services",
@@ -1201,7 +1185,7 @@ export const qaDocumentationServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "QA Documentation Services",
@@ -1269,7 +1253,7 @@ export const dataAnalysisServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Data Analysis & Analytics",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Data Analytics Services",
@@ -1329,7 +1313,7 @@ export const smartDeviceTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "IoT & Smart Device Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Smart Device Testing Services",
@@ -1397,7 +1381,7 @@ export const matrimonialAppCertificationSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Application Security & Compliance Certification",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Matrimonial App Certification Services",
@@ -1468,7 +1452,7 @@ export const datingAppCertificationSchema = {
   },
   "image": "https://www.testriq.com/testriq-logo.png",
   "category": "Quality Assurance and Certification",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Dating App Certification Tiers",
@@ -1507,7 +1491,7 @@ export const fantasyAppCertificationSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Fantasy Sports Platform Security & Compliance Certification",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Fantasy App Certification Services",
@@ -1575,7 +1559,7 @@ export const tradingAppCertificationSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Trading Platform Certification",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Trading App Certification Services",
@@ -1642,7 +1626,7 @@ export const shoppingAppCertificationSchema = {
     },
   },
   serviceType: "Quality Assurance and Certification",
-  areaServed: "Worldwide",
+  areaServed: SERVICE_AREA_SERVED,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Shopping App Certification Services",
@@ -1688,7 +1672,7 @@ export const sapTestingSchema = {
           "https://clutch.co/profile/testriq-qa-lab"
         ]
       },
-      "areaServed": "Worldwide",
+      "areaServed": SERVICE_AREA_SERVED,
       "description": "Comprehensive SAP testing services including S/4HANA migration validation, SAP Fiori testing, and automated regression testing for enterprise landscapes.",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -1756,7 +1740,7 @@ export const usabilityTestingServiceSchema = {
       },
       "url": "https://www.testriq.com/usability-testing-services",
       "description": "Expert usability testing services and UX audits to elevate user experience and drive conversions. AI-driven insights and real-user testing for web and mobile apps.",
-      "areaServed": "WorldWide",
+      "areaServed": SERVICE_AREA_SERVED,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Usability Testing Solutions",
@@ -1810,7 +1794,7 @@ export const continuousTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Continuous Testing & CI/CD Quality Engineering",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Continuous Testing Solutions",
@@ -1878,7 +1862,7 @@ export const tdmServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Quality Assurance",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "TDM Solutions",
@@ -1952,7 +1936,7 @@ export const uatServiceSchema = {
       },
       "url": "https://www.testriq.com/services/user-acceptance-testing",
       "description": "Testriq's user acceptance testing services provide professional UAT testing, beta testing management, and end-user validation for enterprise software, ERP, CRM, and digital transformation projects.",
-      "areaServed": "WorldWide",
+      "areaServed": SERVICE_AREA_SERVED,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "UAT Testing Solutions",
@@ -2006,7 +1990,7 @@ export const accessibilityServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Accessibility & WCAG Compliance Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const adHocTestingServiceSchema = {
@@ -2020,7 +2004,7 @@ export const adHocTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Ad Hoc & Exploratory Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const architectureServiceSchema = {
@@ -2034,7 +2018,7 @@ export const architectureServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Application Architecture Audit",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const azureTestingSchema = {
@@ -2048,7 +2032,7 @@ export const azureTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Cloud & Azure Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const blockchainServiceSchema = {
@@ -2062,7 +2046,7 @@ export const blockchainServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Blockchain & Smart Contract Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const compatibilityTestingServiceSchema = {
@@ -2076,7 +2060,7 @@ export const compatibilityTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Cross-Browser & Cross-Device Compatibility Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 // SEO handoff (Sept 2026) PART E: retargeted from penetration testing to
@@ -2084,8 +2068,7 @@ export const compatibilityTestingServiceSchema = {
 // "penetration testing, vulnerability assessments, VAPT" — which would have
 // kept this node signalling penetration-testing intent from a page whose
 // visible content no longer covers it, and kept it competing with
-// /security-testing. `areaServed` is intentionally left as "Worldwide": the
-// four-country array in PART D was scoped to /security-testing only.
+// /security-testing.
 export const cyberSecurityServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -2097,7 +2080,7 @@ export const cyberSecurityServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Compliance Auditing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const embeddedTestingSchema = {
@@ -2111,7 +2094,7 @@ export const embeddedTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Embedded & Firmware Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const managedTestingServiceSchema = {
@@ -2125,7 +2108,7 @@ export const managedTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Managed QA & Testing Outsourcing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const microservicesServiceSchema = {
@@ -2139,7 +2122,7 @@ export const microservicesServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Microservices & API Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const migrationServiceSchema = {
@@ -2153,7 +2136,7 @@ export const migrationServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Data & System Migration Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const saasTestingServiceSchema = {
@@ -2167,7 +2150,7 @@ export const saasTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "SaaS & Cloud Application Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const shiftLeftServiceSchema = {
@@ -2181,7 +2164,7 @@ export const shiftLeftServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Shift-Left QA & Early Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const timezoneTestingServiceSchema = {
@@ -2195,7 +2178,7 @@ export const timezoneTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Timezone & Follow-the-Sun Testing",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 export const iso42001ComplianceTestingSchema = {
@@ -2225,7 +2208,7 @@ export const iso42001ComplianceTestingSchema = {
       },
       "url": "https://www.testriq.com/iso-iec-42001-compliance-testing-services",
       "description": "Expert ISO/IEC 42001:2023 compliance testing for Artificial Intelligence Management Systems (AIMS). We help organizations achieve certification readiness with comprehensive gap analysis, AI risk assessment, bias testing, explainability validation, data governance audits, and regulatory alignment with the EU AI Act and NIST AI RMF.",
-      "areaServed": "Worldwide",
+      "areaServed": SERVICE_AREA_SERVED,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "ISO 42001 Compliance Testing Suite",
@@ -2314,7 +2297,7 @@ export const latencyTestingServiceSchema = {
       },
       "url": "https://www.testriq.com/performance-testing-services/latency-testing",
       "description": "Enterprise latency testing services measuring P50, P95, and P99 response times across network, application, database, and API layers. ISO 29119-aligned methodology for global enterprises.",
-      "areaServed": "WorldWide",
+      "areaServed": SERVICE_AREA_SERVED,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Latency Testing Solutions",
@@ -2374,8 +2357,7 @@ export const latencyTestingServiceSchema = {
 // the catch-all's not-found page: "software QA services" was one of three
 // keywords being targeted for UK/US leads and had no page at all, while the
 // nearest match, /qa-outsourcing-services, is an engagement-model page whose H1
-// reads "QA Outsourcing Services". areaServed stays "Worldwide" — Testriq has
-// one office and no regional entity, so nothing narrower would be true.
+// reads "QA Outsourcing Services".
 export const qaServicesServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -2388,7 +2370,7 @@ export const qaServicesServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Quality Assurance & Testing Services",
-  "areaServed": "Worldwide"
+  "areaServed": SERVICE_AREA_SERVED
 };
 
 /**
@@ -2434,10 +2416,9 @@ export const dpdpComplianceTestingSchema = {
         },
         "priceRange": "$$"
       },
-      "areaServed": [
-        { "@type": "Country", "name": "India" },
-        "Worldwide"
-      ],
+      // India leads the shared list, which already ends in "Worldwide", so
+      // this keeps the page's India-first claim and gains the other markets.
+      "areaServed": SERVICE_AREA_SERVED,
       "audience": {
         "@type": "BusinessAudience",
         "name": "SaaS, fintech, healthtech, edtech and e-commerce companies processing Indian users' digital personal data"

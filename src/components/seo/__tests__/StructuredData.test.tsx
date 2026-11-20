@@ -28,6 +28,7 @@ import StructuredData, {
     pricingServiceSchema,
 } from "../StructuredData";
 import { pricingPackages } from "../../../data/pricingPackages";
+import { SERVICE_AREA_SERVED, TARGET_MARKET_COUNTRIES } from "../../../lib/seo/target-markets";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -511,5 +512,84 @@ describe("pricingBundleOffer (/pricing starting prices)", () => {
             const offer = bundle.offers as { priceSpecification?: Spec };
             expect(offer.priceSpecification?.minPrice).toBeGreaterThan(0);
         }
+    });
+});
+
+// ---------------------------------------------------------------------------
+// SEO report D-17 (Nov 2026): services name their target countries
+// ---------------------------------------------------------------------------
+//
+// Service areaServed used to be the bare string "Worldwide" (or "WorldWide",
+// "Global"), which names no country. Generic services now use the shared
+// SERVICE_AREA_SERVED: each target market as a Country entity, then
+// "Worldwide". Countries are added, "Worldwide" is never dropped, because
+// Testriq delivers remotely to clients anywhere.
+
+describe("service areaServed (SEO report D-17)", () => {
+    const BARE_GLOBAL = /^(worldwide|global|world)$/i;
+
+    /** Every node with @type Service, at any depth of every exported schema. */
+    const serviceNodes = (node: unknown, found: Array<Record<string, unknown>> = []) => {
+        if (Array.isArray(node)) node.forEach((n) => serviceNodes(n, found));
+        else if (typeof node === "object" && node !== null) {
+            const obj = node as Record<string, unknown>;
+            if (obj["@type"] === "Service") found.push(obj);
+            Object.values(obj).forEach((v) => serviceNodes(v, found));
+        }
+        return found;
+    };
+
+    it("lists each target market as a Country, then Worldwide", () => {
+        expect(SERVICE_AREA_SERVED).toEqual([
+            ...TARGET_MARKET_COUNTRIES.map((name) => ({ "@type": "Country", name })),
+            "Worldwide",
+        ]);
+        expect(new Set(TARGET_MARKET_COUNTRIES).size).toBe(TARGET_MARKET_COUNTRIES.length);
+        expect(TARGET_MARKET_COUNTRIES.length).toBeGreaterThan(0);
+    });
+
+    it("leaves no exported Service with a bare Worldwide/Global areaServed", () => {
+        const bare = Object.entries(Schemas)
+            .filter(([, value]) =>
+                serviceNodes(value).some(
+                    (s) => typeof s.areaServed === "string" && BARE_GLOBAL.test(s.areaServed),
+                ),
+            )
+            .map(([name]) => name);
+        expect(bare).toEqual([]);
+    });
+
+    it("never pairs Worldwide with zero countries", () => {
+        const worldwideOnly = Object.entries(Schemas)
+            .filter(([, value]) =>
+                serviceNodes(value).some(
+                    (s) =>
+                        Array.isArray(s.areaServed) &&
+                        s.areaServed.some((a) => typeof a === "string" && BARE_GLOBAL.test(a)) &&
+                        !s.areaServed.some((a) => (a as { "@type"?: string })?.["@type"] === "Country"),
+                ),
+            )
+            .map(([name]) => name);
+        expect(worldwideOnly).toEqual([]);
+    });
+
+    it("has no page or template outside StructuredData declaring a bare Worldwide areaServed", () => {
+        // StructuredData.tsx is covered by the export walk above; its remaining
+        // "Worldwide" values sit on ContactPoint nodes, which say where a phone
+        // line answers, not where a service is delivered.
+        const SCHEMA_MODULES = [join("components", "seo", "StructuredData.tsx")];
+        const files = (dir: string): string[] =>
+            readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+                const full = join(dir, entry.name);
+                if (entry.isDirectory()) return entry.name === "__tests__" ? [] : files(full);
+                return /\.(ts|tsx)$/.test(entry.name) ? [full] : [];
+            });
+        const offenders = files(join(process.cwd(), "src"))
+            .filter((file) => !SCHEMA_MODULES.some((m) => file.endsWith(m)))
+            .filter((file) =>
+                /["']?areaServed["']?\s*:\s*["'](worldwide|global|world)["']/i.test(readFileSync(file, "utf8")),
+            )
+            .map((file) => relative(process.cwd(), file));
+        expect(offenders).toEqual([]);
     });
 });
