@@ -29,12 +29,13 @@ import { redirects } from '@/lib/seo/redirect-map';
 // manualLinks array that drifts out of sync.
 import { discoverRoutes } from '@/lib/seo/discover-routes';
 import { STATIC_EXCLUDED_FROM_SITEMAP } from '@/lib/seo/sitemap-exclusions';
+import { authorSitemapEntries } from '@/lib/seo/author-sitemap';
 
 // Revalidate the sitemap every hour (matches service page revalidation)
 export const revalidate = 3600;
 
 // Function to determine change frequency based on content type and last modified date
-function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study', lastModified?: string): 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' {
+function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study' | 'author', lastModified?: string): 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' {
   const now = new Date();
   const modifiedDate = lastModified ? new Date(lastModified) : now;
   const daysSinceModified = Math.floor((now.getTime() - modifiedDate.getTime()) / (1000 * 60 * 60 * 24));
@@ -54,6 +55,10 @@ function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' |
       return 'monthly';
     case 'case-study':
       return 'yearly';
+    case 'author':
+      // An author page changes when its author publishes, so it follows the
+      // same cadence as a post.
+      return daysSinceModified < 30 ? 'weekly' : 'monthly';
     case 'page':
     default:
       return daysSinceModified < 90 ? 'monthly' : 'yearly';
@@ -61,7 +66,7 @@ function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' |
 }
 
 // Function to determine priority based on content type and importance
-function getPriority(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study', slug?: string): number {
+function getPriority(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study' | 'author', slug?: string): number {
   switch (contentType) {
     case 'home':
       return 1.0;
@@ -83,6 +88,10 @@ function getPriority(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' 
     case 'category':
       return 0.6;
     case 'tag':
+      return 0.5;
+    case 'author':
+      // Below posts (0.7) and case studies (0.6): an author page is a hub for
+      // posts, not a destination in itself.
       return 0.5;
     default:
       return 0.5;
@@ -230,6 +239,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         images: post.image ? [escapeImage(post.image)] : undefined,
       }));
 
+    // Author pages (SEO report E-1, 20 Nov 2026). Derived from the posts
+    // already fetched above, so this adds no Sanity request. Only authors with
+    // at least one post are listed, because /author/[slug] is noindex without
+    // one; lastmod is the author's newest post. All posts are counted, not
+    // just the blogPosts that survive the canonical filter, because the author
+    // page lists them all. See src/lib/seo/author-sitemap.ts.
+    const authorPages = authorSitemapEntries(sanityPostsData).map((author) => {
+      const lastModified = author.lastModified ?? STATIC_LASTMOD;
+      return {
+        url: `${baseUrl}/author/${encodeURIComponent(author.slug)}`,
+        lastModified,
+        changeFrequency: getChangeFrequency('author', lastModified.toISOString()),
+        priority: getPriority('author'),
+      };
+    });
+
     // Sanity Categories
     // 2026-11-04: categories with fewer than 2 posts became noindex (see
     // blog/category/[category]/page.tsx), so they are excluded here for the
@@ -271,6 +296,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...caseStudyPages,
       ...sanityPages,
       ...blogPosts,
+      ...authorPages,
       ...categoryPages,
       ...tagPages,
     ];
