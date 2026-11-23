@@ -125,6 +125,40 @@ const AIProvenTestingProcess: React.FC = () => {
           </p>
         </div>
 
+        {/* SEO report D-3 (Nov 2026): carried over from the blog post "Top 5
+            Reasons to Choose Our AI Testing Services", which now redirects
+            here. Its "Full-Spectrum QA Lifecycle" section described the
+            application-level testing this page did not list; each item links
+            to its own service page. */}
+        <div className="mb-12 rounded-2xl border border-gray-200 bg-white p-6 md:p-8">
+          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center">
+            End-to-End AI Application Quality Assurance
+          </h3>
+          <p className="text-gray-700 max-w-3xl mx-auto text-center mb-6">
+            Our end-to-end QA approach validates the complete AI application, from
+            user interactions and application functionality to integrations and
+            production performance.
+          </p>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { name: "Functional Testing", href: "/functional-testing-services", text: "Validate application workflows and expected behaviour." },
+              { name: "Regression Testing", href: "/regression-testing", text: "Identify issues introduced by model updates and application changes." },
+              { name: "Performance Testing", href: "/performance-testing-services", text: "Evaluate response times, scalability and concurrent-user workloads." },
+              { name: "Security Testing", href: "/security-testing", text: "Identify vulnerabilities across application and AI integration layers." },
+            ].map((item) => (
+              <li key={item.name} className="rounded-xl bg-gray-50 p-4">
+                <Link
+                  href={item.href}
+                  className="font-semibold text-[theme(color.brand.blue)] hover:underline"
+                >
+                  {item.name}
+                </Link>
+                <p className="mt-1 text-sm text-gray-700">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* Interactive Neural Network Timeline */}
         <div className="relative mb-12">
           {/* Desktop Neural Network Visualization */}

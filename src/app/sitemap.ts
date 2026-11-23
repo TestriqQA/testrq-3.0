@@ -123,7 +123,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 5 Nov is the latest content release on develop. When a release changes
   // page content, bump this to that date, and also bump the page's own entry
   // in src/lib/seo/service-page-dates.ts (its visible "Last updated" line).
-  const STATIC_LASTMOD = new Date('2026-11-05T00:00:00Z');
+  // Bumped 2026-11-05 -> 2026-11-23 for SEO report D-3: /ai-application-testing
+  // gained the API integration card and the end-to-end QA scope block.
+  const STATIC_LASTMOD = new Date('2026-11-23T00:00:00Z');
 
   try {
     // Top-level static pages — auto-discovered from src/app, the same way

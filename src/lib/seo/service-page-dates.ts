@@ -40,7 +40,7 @@ export const SERVICE_PAGE_REVIEWED: Readonly<Record<string, string>> = {
     "accessibility-testing-services": "2026-10-28",
     "ad-hoc-testing": "2026-10-28",
     "agile-testing-services": "2026-10-28",
-    "ai-application-testing": "2026-10-28",
+    "ai-application-testing": "2026-11-23",
     "api-testing": "2026-10-28",
     "appium-mobile-testing-services": "2026-10-28",
     "application-architecture-inspection-services": "2026-11-04",

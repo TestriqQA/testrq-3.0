@@ -424,6 +424,11 @@ export const redirects: RedirectRule[] = [
       { source: "/blog/post/game-testing-service-for-android-and-ios", destination: "/gaming-app-testing-services", permanent: true },
       { source: "/blog/post/hipaa-compliance-testing-guide", destination: "/healthcare-testing-services", permanent: true },
       { source: "/blog/post/top-5-reasons-to-choose-our-ai-testing-services", destination: "/ai-application-testing", permanent: true },
+      // SEO report D-3 (Nov 2026): the rule above was meant to retire this post but
+      // names a shortened slug the post never had, so the live post (long slug below)
+      // kept serving 200. Its API and end-to-end QA content moved into the service page
+      // (AICardSlider, AIProvenTestingProcess) first. The short-slug rule stays.
+      { source: "/blog/post/top-5-reasons-to-choose-our-ai-testing-services-the-best-api-testing-company-and-qa-experts", destination: "/ai-application-testing", permanent: true },
       { source: "/blog/post/version-compatibility-testing-best-practices", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/accessibility-testing", destination: "/web-application-testing-services", permanent: true },
       { source: "/automation-testing", destination: "/automation-testing-services", permanent: true },
