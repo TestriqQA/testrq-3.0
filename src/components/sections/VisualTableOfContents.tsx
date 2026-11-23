@@ -102,7 +102,7 @@ const VisualTableOfContents: React.FC<VisualTableOfContentsProps> = ({ headings 
     };
 
     return (
-        <aside className="hidden xl:block sticky top-24 h-[calc(100vh-6rem)] overflow-hidden">
+        <aside className="hidden xl:block sticky top-[calc(var(--blog-nav-bottom,168px)_+_8px)] transition-[top] duration-300 ease-out h-[calc(100vh_-_var(--blog-nav-bottom,168px)_-_16px)] overflow-hidden">
             {sections.length > 0 ? (
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col h-full max-h-full">
                     <h3 className="text-sm font-bold text-brand-blue uppercase tracking-wider mb-6 flex items-center gap-2 flex-shrink-0">

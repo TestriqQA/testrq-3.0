@@ -113,7 +113,7 @@ const ResourceSidebar = ({ relatedPosts: propRelatedPosts, categories: propCateg
     };
 
     return (
-        <aside className="sticky top-24 space-y-6 max-h-[calc(100vh-120px)] overflow-y-auto pr-2" style={{ scrollbarWidth: 'thin', scrollbarColor: '#93c5fd #f1f5f9' }}>
+        <aside className="sticky top-[calc(var(--blog-nav-bottom,168px)_+_8px)] transition-[top] duration-300 ease-out space-y-6 max-h-[calc(100vh_-_var(--blog-nav-bottom,168px)_-_24px)] overflow-y-auto pr-2" style={{ scrollbarWidth: 'thin', scrollbarColor: '#93c5fd #f1f5f9' }}>
             {/* Related Blog Posts */}
             <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">

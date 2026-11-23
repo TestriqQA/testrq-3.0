@@ -16,6 +16,7 @@ import { Suspense } from "react";
 import BlogHeroSection from "@/components/sections/BlogHeroSection";
 import BlogPostsGrid from "@/components/sections/BlogPostsGrid";
 import MainLayout from "@/components/layout/MainLayout";
+import BlogCategoryNav from "@/components/sections/BlogCategoryNav";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 import { Metadata } from "next";
 import {
@@ -174,6 +175,7 @@ export default async function BlogPage() {
     heroCategories = allCategories;
   } catch (error) {
     console.error("Error fetching blog hero data:", error);
+      <BlogCategoryNav />
   }
 
   return (

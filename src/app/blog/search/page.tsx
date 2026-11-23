@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Metadata } from "next";
 import MainLayout from "@/components/layout/MainLayout";
+import BlogCategoryNav from "@/components/sections/BlogCategoryNav";
 import { SearchResults, SearchInsights, SearchResultsLoading } from "./SearchContent";
 
 export const revalidate = 60; // Revalidate every minute
@@ -63,6 +64,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 export default function SearchPage() {
   return (
     <MainLayout>
+      <BlogCategoryNav />
       <Suspense fallback={<SearchResultsLoading />}>
         <SearchResults />
       </Suspense>

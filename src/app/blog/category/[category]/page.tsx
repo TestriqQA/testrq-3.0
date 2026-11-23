@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
+import BlogCategoryNav from "@/components/sections/BlogCategoryNav";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 import { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -250,6 +251,7 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <div>
       <MainLayout>
+        <BlogCategoryNav />
         <BlogStructuredData
           type="category"
           title={`${categoryName} Testing Articles | Expert Insights & Best Practices | Testriq`}

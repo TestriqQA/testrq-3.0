@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
+import BlogCategoryNav from "@/components/sections/BlogCategoryNav";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 import { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -212,6 +213,7 @@ export default async function TagPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-gray-50">
       <MainLayout>
+        <BlogCategoryNav />
         <BlogStructuredData
           type="tag"
           title={`${tagName} Articles | Expert Testing Insights & Best Practices | Testriq`}

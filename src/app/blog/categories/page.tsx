@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import MainLayout from "@/components/layout/MainLayout";
+import BlogCategoryNav from "@/components/sections/BlogCategoryNav";
 import BlogStructuredData from "@/components/seo/BlogStructuredData";
 import { Metadata } from "next";
 import {
@@ -192,6 +193,7 @@ export default async function CategoriesPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       <MainLayout>
+        <BlogCategoryNav />
         <BlogStructuredData
           type="category"
           title="Testing Categories | Software Testing & QA Topics | Testriq Blog"
