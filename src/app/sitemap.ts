@@ -115,7 +115,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // only changes when the team ships a meaningful content update to those
   // pages; bump it then. Sanity-sourced pages/posts keep their real per-doc
   // modified dates (see the `page.date` / `post.modifiedISO` usages below).
-  const STATIC_LASTMOD = new Date('2026-07-22T00:00:00Z');
+  //
+  // Bumped 2026-07-22 -> 2026-11-05 for SEO report D-5: it had not moved since
+  // July, so pages expanded on 4-5 Nov 2026 (manual, usability, blockchain,
+  // architecture, QA outsourcing) still told Google they last changed in July.
+  // 5 Nov is the latest content release on develop. When a release changes
+  // page content, bump this to that date, and also bump the page's own entry
+  // in src/lib/seo/service-page-dates.ts (its visible "Last updated" line).
+  const STATIC_LASTMOD = new Date('2026-11-05T00:00:00Z');
 
   try {
     // Top-level static pages — auto-discovered from src/app, the same way
