@@ -67,7 +67,7 @@ const HomeInsightSection = async () => {
                                 {post.category}
                             </p>
                             <div className="flex text-sm text-gray-500 space-x-3">
-                                <p>{post.date}</p> <span>.</span> <p>{post.readTime}</p>
+                                <p>{post.date}</p>
                             </div>
                             <h2 className="text-xl">{post.title}</h2>
                             <p className="text-gray-500 text-sm">{post.excerpt.substring(0, 100)}...</p>

@@ -4,7 +4,6 @@ import Image from "next/image";
 import React from "react";
 import {
   FaCalendarAlt,
-  FaClock,
 } from "react-icons/fa";
 import { Post } from "@/lib/sanity-data-adapter";
 import { decodeHtmlEntities } from "@/lib/utils"; // Import the new utility function
@@ -83,10 +82,6 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
                 <div className="flex items-center gap-2">
                   <FaCalendarAlt className="w-4 h-4" />
                   <span>{post.date}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <FaClock className="w-4 h-4" />
-                  <span>{post.readTime}</span>
                 </div>
 
               </div>

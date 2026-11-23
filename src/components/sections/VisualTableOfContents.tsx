@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { FaCheck, FaClock, FaBookOpen, FaChartLine, FaTools, FaLightbulb, FaBriefcase, FaRocket } from "react-icons/fa";
+import { FaCheck, FaBookOpen, FaChartLine, FaTools, FaLightbulb, FaBriefcase, FaRocket } from "react-icons/fa";
 
 interface Section {
     id: string;
@@ -160,10 +160,6 @@ const VisualTableOfContents: React.FC<VisualTableOfContentsProps> = ({ headings 
                                                 }`}>
                                                 {section.title}
                                             </p>
-                                            <div className="flex items-center gap-2 text-xs text-slate-800 font-medium">
-                                                <FaClock className="w-3 h-3" />
-                                                <span>{section.time}</span>
-                                            </div>
                                         </div>
 
                                         {/* Active Glow Effect */}
