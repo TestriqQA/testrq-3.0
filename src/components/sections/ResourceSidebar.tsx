@@ -113,7 +113,7 @@ const ResourceSidebar = ({ relatedPosts: propRelatedPosts, categories: propCateg
     };
 
     return (
-        <aside className="sticky top-24 space-y-6 max-h-[calc(100vh-120px)] overflow-y-auto pr-2" style={{ scrollbarWidth: 'thin', scrollbarColor: '#93c5fd #f1f5f9' }}>
+        <aside className="sticky top-[calc(var(--blog-nav-bottom,168px)_+_8px)] transition-[top] duration-300 ease-out space-y-6 max-h-[calc(100vh_-_var(--blog-nav-bottom,168px)_-_24px)] overflow-y-auto pr-2" style={{ scrollbarWidth: 'thin', scrollbarColor: '#93c5fd #f1f5f9' }}>
             {/* Related Blog Posts */}
             <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">
@@ -147,8 +147,7 @@ const ResourceSidebar = ({ relatedPosts: propRelatedPosts, categories: propCateg
                                 <h4 className="text-sm font-bold text-slate-900 leading-tight mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
                                     {post.title}
                                 </h4>
-                                <div className="flex items-center justify-between text-xs text-slate-500">
-                                    <span>{post.readTime} read</span>
+                                <div className="flex items-center justify-end text-xs text-slate-500">
                                     <FaChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                 </div>
                             </div>

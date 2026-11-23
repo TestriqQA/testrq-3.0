@@ -3,7 +3,6 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import {
   FaCalendarAlt,
-  FaClock,
   FaArrowRight,
   FaFire,
   FaStar,
@@ -153,121 +152,114 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
     return decodeHtmlEntities(textOnly);
   };
 
-  return (
-    <section className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-blog-orb-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-blog-orb-pulse" style={{ animationDelay: '1s' }} />
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.3) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-          }}
-        />
-      </div>
+  // One featured post gets the wide horizontal card; two share the row.
+  // Plain derived value, not a hook — safe with the hydration note above.
+  const singleFeatured = featuredPosts.slice(0, 2).length === 1;
 
-      <div className="relative z-10 max-w-[1400px] mx-auto">
+  // Light theme to match the rest of the site: #F5F5F5 band under the white
+  // hero, white rounded cards, centred section headings with the brand-blue
+  // pill badge (same pattern as HomeProcesses). Markup order, links, hooks and
+  // aria labels are unchanged — see the hydration note at the top of the file.
+  return (
+    <section className="relative bg-[theme(color.background.gray)] py-16 lg:py-20 px-8 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto">
 
         {/* Featured Posts */}
         {page === 1 && featuredPosts.length > 0 && (
-          <div className="mb-16 lg:mb-24">
-            <div className="flex items-center gap-4 mb-8 lg:mb-12">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl blur-xl opacity-50" />
-                <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg">
-                  <FaStar className="w-6 h-6 text-white" />
-                </div>
+          <div className="mb-16 lg:mb-20">
+            <div className="text-center mb-10 lg:mb-12">
+              <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-5 py-2 rounded-full mb-5">
+                <FaStar className="w-3.5 h-3.5" />
+                <span className="text-sm">Handpicked by our editors</span>
               </div>
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-1">Featured Articles</h2>
-                <p className="text-slate-400">Handpicked by our editors</p>
-              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Featured <span className="text-[theme(color.brand.blue)]">Articles</span>
+              </h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            {/* flex-wrap + justify-center rather than a grid, so a single
+                featured post sits centred instead of leaving an empty column
+                beside it (page 1 often has just one).
+
+                Compact layout: a lone featured post is a wide horizontal card
+                (image left, text right) from md up, instead of a 600px-tall
+                stacked card. With two, each is a shorter stacked card. */}
+            <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
               {featuredPosts.slice(0, 2).map((post) => (
                 <article
                   key={post.id}
-                  className="group relative"
+                  className={`group relative bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300 flex flex-col ${singleFeatured
+                    ? "w-full max-w-5xl md:flex-row"
+                    : "w-full lg:w-[calc(50%-1rem)]"
+                    }`}
                 >
-                  {/* Glow effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-br from-amber-500/20 via-orange-500/20 to-amber-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                  <div
+                    className={`relative overflow-hidden bg-gray-100 shrink-0 ${singleFeatured ? "h-52 md:h-auto md:w-1/2 md:min-h-[17rem]" : "h-52"
+                      }`}
+                  >
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
 
-                  <div className="relative bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-slate-700/50 shadow-2xl hover:border-amber-500/30 transition-all duration-500">
-                    <div className="relative overflow-hidden h-72 lg:h-80">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      <span className="px-2.5 py-1 bg-brand-blue text-white text-xs font-semibold rounded-full flex items-center gap-1.5 shadow-sm">
+                        <FaStar className="w-3 h-3" />
+                        Featured
+                      </span>
+                    </div>
+                  </div>
 
-                      <div className="absolute top-5 left-5 flex items-center gap-2">
-                        <span className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold rounded-full flex items-center gap-2 shadow-lg shadow-amber-500/30">
-                          <FaStar className="w-3 h-3" />
-                          Featured
+                  <div className="p-5 lg:p-6 flex flex-col flex-1 justify-center">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2 text-xs text-gray-500">
+                      <Link href={`/blog/category/${post.categorySlug}`} className="w-fit">
+                        <span className="inline-block px-2.5 py-0.5 bg-sky-50 text-[theme(color.brand.blue)] font-semibold rounded-full border border-sky-100 hover:bg-sky-100 transition-colors">
+                          {post.category}
                         </span>
-                      </div>
-
-                      <div className="absolute bottom-5 left-5 right-5">
-                        <Link href={`/blog/category/${post.categorySlug}`}>
-                          <span className="inline-block px-4 py-1.5 bg-blue-500/20 backdrop-blur-md text-blue-300 text-xs font-medium rounded-full border border-blue-400/30 mb-3 hover:bg-blue-500/30 transition-colors">
-                            {post.category}
-                          </span>
-                        </Link>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white line-clamp-2 group-hover:text-amber-400 transition-colors leading-tight">
-                          <Link href={`/blog/post/${post.id}`}>{post.title}</Link>
-                        </h3>
-                      </div>
+                      </Link>
+                      <span>{post.date}</span>
                     </div>
 
-                    <div className="p-6 lg:p-8">
-                      <p className="text-slate-300 mb-6 line-clamp-2 text-sm lg:text-base leading-relaxed">
-                        {cleanExcerpt(post.excerpt)}
-                      </p>
+                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 line-clamp-2 group-hover:text-[theme(color.brand.blue)] transition-colors leading-snug mb-2">
+                      <Link href={`/blog/post/${post.id}`}>{post.title}</Link>
+                    </h3>
 
-                      <div className="flex items-center justify-between pt-6 border-t border-slate-700/50">
-                        <div className="flex items-center gap-3">
-                          <Image
-                            src={post.authorImage}
-                            alt={post.author}
-                            width={44}
-                            height={44}
-                            className="rounded-full ring-2 ring-amber-500/30"
-                          />
-                          <div>
-                            <div className="text-sm font-semibold text-white">
-                              {post.authorSlug ? (
-                                <Link
-                                  href={`/author/${post.authorSlug}`}
-                                  className="hover:text-amber-400 hover:underline transition-colors"
-                                >
-                                  {post.author}
-                                </Link>
-                              ) : (
-                                post.author
-                              )}
-                            </div>
-                            <div className="flex items-center gap-2 text-xs text-slate-400">
-                              <span>{post.date}</span>
-                              <span>·</span>
-                              <span>{post.readTime}</span>
-                            </div>
-                          </div>
+                    <p className={`text-gray-600 mb-4 text-sm leading-relaxed ${singleFeatured ? "line-clamp-3" : "line-clamp-2"}`}>
+                      {cleanExcerpt(post.excerpt)}
+                    </p>
+
+                    <div className="flex items-center justify-between gap-3 pt-3 border-t border-gray-100 mt-auto">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <Image
+                          src={post.authorImage}
+                          alt={post.author}
+                          width={32}
+                          height={32}
+                          className="rounded-full ring-2 ring-sky-100 shrink-0"
+                        />
+                        <div className="text-sm font-semibold text-gray-900 truncate">
+                          {post.authorSlug ? (
+                            <Link
+                              href={`/author/${post.authorSlug}`}
+                              className="hover:text-[theme(color.brand.blue)] hover:underline transition-colors"
+                            >
+                              {post.author}
+                            </Link>
+                          ) : (
+                            post.author
+                          )}
                         </div>
-                        <Link
-                          href={`/blog/post/${post.id}`}
-                          className="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl hover:from-amber-400 hover:to-orange-400 transition-all shadow-lg shadow-amber-500/30 group/btn"
-                          aria-label="Read article"
-                        >
-                          <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
-                        </Link>
                       </div>
+                      <Link
+                        href={`/blog/post/${post.id}`}
+                        className="w-9 h-9 shrink-0 flex items-center justify-center bg-[theme(color.brand.blue)] text-white rounded-lg hover:bg-sky-800 transition-colors group/btn"
+                        aria-label="Read article"
+                      >
+                        <FaArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                      </Link>
                     </div>
                   </div>
                 </article>
@@ -278,69 +270,56 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
 
         {/* Trending Section */}
         {page === 1 && trendingPosts.length > 0 && (
-          <div className="mb-16 lg:mb-24">
-            <div className="flex items-center gap-4 mb-8 lg:mb-12">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl blur-xl opacity-50" />
-                <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl shadow-lg">
-                  <FaFire className="w-6 h-6 text-white" />
-                </div>
+          <div className="mb-16 lg:mb-20">
+            <div className="text-center mb-10 lg:mb-12">
+              <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-5 py-2 rounded-full mb-5">
+                <FaFire className="w-3.5 h-3.5" />
+                <span className="text-sm">Most popular this week</span>
               </div>
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-1">Trending Now</h2>
-                <p className="text-slate-400">Most popular this week</p>
-              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Trending <span className="text-[theme(color.brand.blue)]">Now</span>
+              </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Same centring as Featured, for when fewer than three are trending. */}
+            <div className="flex flex-wrap justify-center gap-6">
               {trendingPosts.slice(0, 3).map((post, index) => (
                 <article
                   key={post.id}
-                  className="group relative"
+                  className="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] group relative bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300"
                 >
-                  {/* Glow effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-br from-brand-blue/20 via-brand-blue/20 to-brand-blue/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
-
-                  <div className="relative bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-slate-700/50 shadow-xl hover:border-brand-blue/30 transition-all duration-500">
-                    {/* Rank badge */}
-                    <div className="absolute top-4 right-4 z-10">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 rounded-full blur-md" />
-                        <div className="relative w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                          {index + 1}
-                        </div>
-                      </div>
+                  {/* Rank badge */}
+                  <div className="absolute top-3 right-3 z-10">
+                    <div className="w-9 h-9 bg-brand-blue rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md ring-4 ring-white/70">
+                      {index + 1}
                     </div>
+                  </div>
 
-                    <div className="relative h-52 overflow-hidden">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
-                    </div>
+                  {/* Compact: shorter image, and the category pill sits on the
+                      image instead of taking its own row. */}
+                  <div className="relative h-44 overflow-hidden bg-gray-100">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
 
-                    <div className="p-6">
-                      <Link href={`/blog/category/${post.categorySlug}`}>
-                        <span className="inline-block px-3 py-1 bg-brand-blue/10 text-brand-blue text-xs font-medium rounded-full border border-brand-blue/20 mb-3 hover:bg-brand-blue/20 transition-colors">
-                          {post.category}
-                        </span>
-                      </Link>
+                    <Link href={`/blog/category/${post.categorySlug}`} className="absolute bottom-3 left-3">
+                      <span className="inline-block px-2.5 py-1 bg-white/95 text-[theme(color.brand.blue)] text-xs font-semibold rounded-full shadow-sm hover:bg-white transition-colors">
+                        {post.category}
+                      </span>
+                    </Link>
+                  </div>
 
-                      <h3 className="text-lg lg:text-xl font-bold text-white mb-4 line-clamp-2 group-hover:text-brand-blue transition-colors leading-tight">
-                        <Link href={`/blog/post/${post.id}`}>{post.title}</Link>
-                      </h3>
+                  <div className="p-5">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[theme(color.brand.blue)] transition-colors leading-snug">
+                      <Link href={`/blog/post/${post.id}`}>{post.title}</Link>
+                    </h3>
 
-                      <div className="flex items-center justify-between text-sm text-slate-400 pt-4 border-t border-slate-700/50">
-                        <span>{post.date}</span>
-                        <span className="flex items-center gap-1.5">
-                          <FaClock className="w-3 h-3" />
-                          {post.readTime}
-                        </span>
-                      </div>
+                    <div className="flex items-center justify-between text-xs text-gray-500 pt-3 border-t border-gray-100">
+                      <span>{post.date}</span>
                     </div>
                   </div>
                 </article>
@@ -350,34 +329,28 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
         )}
 
         {/* All Articles */}
-        <div id="all-articles">
-          <div className="flex items-center gap-4 mb-8 lg:mb-12">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl blur-xl opacity-50" />
-              <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl shadow-lg">
-                <FaRocket className="w-6 h-6 text-white" />
-              </div>
+        <div id="all-articles" className="scroll-mt-28">
+          <div className="text-center mb-10 lg:mb-12">
+            <div className="inline-flex items-center bg-brand-blue gap-2 text-white px-5 py-2 rounded-full mb-5">
+              <FaRocket className="w-3.5 h-3.5" />
+              <span className="text-sm">Browse our complete collection</span>
             </div>
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-1">All Articles</h2>
-              <p className="text-slate-400">Browse our complete collection</p>
-            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              All <span className="text-[theme(color.brand.blue)]">Articles</span>
+            </h2>
           </div>
 
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-slate-900/40 rounded-3xl h-96 animate-blog-orb-pulse border border-slate-800" />
+                <div key={i} className="bg-white rounded-2xl h-[22rem] animate-pulse border border-gray-100" />
               ))}
             </div>
           ) : currentPosts.length === 0 ? (
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 rounded-3xl blur-2xl" />
-              <div className="relative text-center py-24 bg-slate-900/40 backdrop-blur-sm rounded-3xl border border-slate-700/50">
-                <div className="text-7xl mb-6 opacity-50">📝</div>
-                <h3 className="text-2xl font-bold text-white mb-3">No articles found</h3>
-                <p className="text-slate-400 text-lg">Check back later for new content.</p>
-              </div>
+            <div className="text-center py-24 bg-white rounded-2xl border border-gray-100 shadow-sm">
+              <div className="text-7xl mb-6 opacity-50">📝</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">No articles found</h3>
+              <p className="text-gray-600 text-lg">Check back later for new content.</p>
             </div>
           ) : (
             <>
@@ -385,78 +358,69 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                 {currentPosts.map((post) => (
                   <article
                     key={post.id}
-                    className="group relative"
+                    className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
                   >
-                    {/* Subtle glow on hover */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-violet-500/10 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    {/* Compact card: shorter image, category pill on the image
+                        instead of its own row, tighter padding and footer.
+                        Was 477px tall at desktop width. */}
+                    <div className="relative h-44 overflow-hidden bg-gray-100">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
 
-                    <div className="relative bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-slate-700/50 shadow-xl hover:border-slate-600/50 transition-all duration-500 h-full flex flex-col">
-                      <div className="relative h-56 overflow-hidden">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent" />
+                      <Link href={`/blog/category/${post.categorySlug}`} className="absolute bottom-3 left-3">
+                        <span className="inline-block px-2.5 py-1 bg-white/95 text-[theme(color.brand.blue)] text-xs font-semibold rounded-full shadow-sm hover:bg-white transition-colors">
+                          {post.category}
+                        </span>
+                      </Link>
 
-                        <div className="absolute top-4 left-4">
-                          <Link href={`/blog/category/${post.categorySlug}`}>
-                            <span className="px-3 py-1.5 bg-blue-500/20 backdrop-blur-md text-blue-300 text-xs font-medium rounded-full border border-blue-400/30 shadow-lg hover:bg-blue-500/30 transition-colors">
-                              {post.category}
-                            </span>
-                          </Link>
-                        </div>
-
-                        {post.trending && (
-                          <div className="absolute top-4 right-4">
-                            <div className="relative">
-                              <div className="absolute inset-0 bg-red-500 rounded-full blur-md" />
-                              <span className="relative px-2.5 py-1.5 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold rounded-full flex items-center gap-1 shadow-lg">
-                                <FaFire className="w-3 h-3" />
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="p-6 flex flex-col flex-1">
-                        <h3 className="text-lg lg:text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
-                          <Link href={`/blog/post/${post.id}`}>{post.title}</Link>
-                        </h3>
-
-                        <p className="text-slate-400 mb-5 line-clamp-2 text-sm leading-relaxed flex-1">
-                          {cleanExcerpt(post.excerpt)}
-                        </p>
-
-                        <div className="flex items-center justify-between pt-5 border-t border-slate-700/50 mt-auto">
-                          <div className="flex items-center gap-2.5">
-                            <Image
-                              src={post.authorImage}
-                              alt={post.author}
-                              width={32}
-                              height={32}
-                              className="rounded-full ring-2 ring-blue-500/20"
-                            />
-                            <span className="text-sm text-slate-300 font-medium">
-                              {post.authorSlug ? (
-                                <Link
-                                  href={`/author/${post.authorSlug}`}
-                                  className="hover:text-blue-400 hover:underline transition-colors"
-                                >
-                                  {post.author}
-                                </Link>
-                              ) : (
-                                post.author
-                              )}
-                            </span>
-                          </div>
-                          <span className="text-xs text-slate-500 flex items-center gap-1">
-                            <FaClock className="w-3 h-3" />
-                            {post.readTime}
+                      {post.trending && (
+                        <div className="absolute top-3 right-3">
+                          <span className="px-2.5 py-1.5 bg-white text-orange-500 text-xs font-bold rounded-full flex items-center gap-1 shadow-sm">
+                            <FaFire className="w-3 h-3" />
                           </span>
                         </div>
+                      )}
+                    </div>
+
+                    <div className="p-5 flex flex-col flex-1">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[theme(color.brand.blue)] transition-colors leading-snug">
+                        <Link href={`/blog/post/${post.id}`}>{post.title}</Link>
+                      </h3>
+
+                      <p className="text-gray-600 mb-4 line-clamp-2 text-sm leading-normal flex-1">
+                        {cleanExcerpt(post.excerpt)}
+                      </p>
+
+                      <div className="flex items-center justify-between gap-3 pt-3 border-t border-gray-100 mt-auto">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Image
+                            src={post.authorImage}
+                            alt={post.author}
+                            width={24}
+                            height={24}
+                            className="rounded-full ring-2 ring-sky-100 shrink-0"
+                          />
+                          <span className="text-sm text-gray-800 font-medium truncate">
+                            {post.authorSlug ? (
+                              <Link
+                                href={`/author/${post.authorSlug}`}
+                                className="hover:text-[theme(color.brand.blue)] hover:underline transition-colors"
+                              >
+                                {post.author}
+                              </Link>
+                            ) : (
+                              post.author
+                            )}
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-500 shrink-0 whitespace-nowrap">
+                          {post.date}
+                        </span>
                       </div>
                     </div>
                   </article>
@@ -465,12 +429,12 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
 
               {/* Pagination */}
               {totalPagesState > 1 && (
-                <div className="flex justify-center mt-16">
-                  <nav className="inline-flex items-center gap-2 p-2 bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-xl" aria-label="Pagination">
+                <div className="flex justify-center mt-14">
+                  <nav className="inline-flex items-center gap-1.5 p-2 bg-white rounded-2xl border border-gray-200 shadow-sm" aria-label="Pagination">
                     {page > 1 ? (
                       <button
                         onClick={() => handlePageChange(page - 1)}
-                        className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300 cursor-pointer"
+                        className="w-11 h-11 flex items-center justify-center rounded-xl text-gray-600 hover:bg-sky-50 hover:text-[theme(color.brand.blue)] transition-colors cursor-pointer"
                         disabled={isLoading}
                         aria-label={`Go to previous page, page ${page - 1}`}
                       >
@@ -481,7 +445,7 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                         <FaChevronLeft className="w-4 h-4" aria-hidden="true" />
                       </button>
                     ) : (
-                      <span className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-700 cursor-not-allowed">
+                      <span className="w-11 h-11 flex items-center justify-center rounded-xl text-gray-300 cursor-not-allowed">
                         <FaChevronLeft className="w-4 h-4" />
                       </span>
                     )}
@@ -497,10 +461,10 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                         (pageNum >= page - 1 && pageNum <= page + 1);
 
                       if (!showPage && pageNum === 2 && page > 3) {
-                        return <span key={pageNum} className="px-2 text-slate-600">...</span>;
+                        return <span key={pageNum} className="px-2 text-gray-400">...</span>;
                       }
                       if (!showPage && pageNum === totalPagesState - 1 && page < totalPagesState - 2) {
-                        return <span key={pageNum} className="px-2 text-slate-600">...</span>;
+                        return <span key={pageNum} className="px-2 text-gray-400">...</span>;
                       }
                       if (!showPage) return null;
 
@@ -509,17 +473,11 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                           key={pageNum}
                           onClick={() => handlePageChange(pageNum)}
                           disabled={isLoading}
-                          className={`relative w-11 h-11 flex items-center justify-center rounded-xl font-semibold transition-all duration-300 ${isActive
-                            ? "text-white"
-                            : "text-slate-400 hover:bg-slate-800/50 hover:text-white"
+                          className={`relative w-11 h-11 flex items-center justify-center rounded-xl font-semibold transition-colors ${isActive
+                            ? "bg-[theme(color.brand.blue)] text-white"
+                            : "text-gray-600 hover:bg-sky-50 hover:text-[theme(color.brand.blue)]"
                             } cursor-pointer`}
                         >
-                          {isActive && (
-                            <>
-                              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl blur-md opacity-50" />
-                              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl" />
-                            </>
-                          )}
                           <span className="relative z-10">{pageNum}</span>
                         </button>
                       );
@@ -528,14 +486,14 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
                     {page < totalPagesState ? (
                       <button
                         onClick={() => handlePageChange(page + 1)}
-                        className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-all duration-300 cursor-pointer"
+                        className="w-11 h-11 flex items-center justify-center rounded-xl text-gray-600 hover:bg-sky-50 hover:text-[theme(color.brand.blue)] transition-colors cursor-pointer"
                         disabled={isLoading}
                         aria-label={`Go to next page, page ${page + 1}`}
                       >
                         <FaChevronRight className="w-4 h-4" aria-hidden="true" />
                       </button>
                     ) : (
-                      <span className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-700 cursor-not-allowed">
+                      <span className="w-11 h-11 flex items-center justify-center rounded-xl text-gray-300 cursor-not-allowed">
                         <FaChevronRight className="w-4 h-4" />
                       </span>
                     )}
@@ -546,55 +504,49 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({
           )}
         </div>
 
-        {/* Footer CTA */}
-        <div className="mt-20 lg:mt-28 relative">
-          {/* Enhanced glow effects */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-violet-500/20 rounded-[3rem] blur-3xl" />
-
-          <div className="relative bg-gradient-to-br from-slate-900/80 via-blue-900/40 to-slate-900/80 backdrop-blur-xl rounded-[2.5rem] border border-slate-700/50 overflow-hidden shadow-2xl">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl" />
-
-            <div className="relative z-10 p-10 md:p-16 lg:p-20 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 rounded-full mb-6">
-                <FaTrophy className="w-4 h-4 text-blue-400" />
-                <span className="text-sm text-blue-300 font-medium">ISTQB Certified Team</span>
+        {/* Footer CTA — brand-blue band, same treatment as the CTA sections on
+            the service and case-study pages. Compact strip: text left, buttons
+            right from lg up (stacked and centred below that), so it no longer
+            takes a full screen-height block at the end of the page. */}
+        <div className="mt-14 lg:mt-16 bg-gradient-to-br from-brand-blue to-sky-700 rounded-2xl overflow-hidden shadow-lg">
+          <div className="px-6 py-8 md:px-10 lg:py-9 flex flex-col lg:flex-row items-center lg:justify-between gap-6 lg:gap-10 text-center lg:text-left text-white">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 border border-white/25 rounded-full mb-3">
+                <FaTrophy className="w-3.5 h-3.5" />
+                <span className="text-xs font-medium">ISTQB Certified Team</span>
               </div>
 
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 lg:mb-6 leading-tight">
+              <h3 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
                 Need Expert QA Assistance?
               </h3>
-              <p className="text-slate-300 mb-8 lg:mb-10 max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
+              <p className="text-sky-50 text-sm md:text-base leading-relaxed">
                 Our ISTQB-certified professionals are ready to help you deliver flawless software with comprehensive testing solutions.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contact-us"
-                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50"
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="relative">Get Free Consultation</span>
-                  <FaArrowRight className="relative w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="/case-studies"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800/50 backdrop-blur-sm text-slate-200 font-semibold rounded-xl border border-slate-700/50 hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 shadow-lg"
-                >
-                  View Case Studies
-                </Link>
-              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <Link
+                href="/contact-us"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[theme(color.brand.blue)] font-bold rounded-lg hover:shadow-xl transition-all duration-200 whitespace-nowrap"
+              >
+                Get Free Consultation
+                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/case-studies"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent text-white font-semibold rounded-lg border border-white/70 hover:bg-white/10 transition-colors duration-200 whitespace-nowrap"
+              >
+                View Case Studies
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Custom CSS for animations */}
       {/* The <style jsx> block that lived here overrode @keyframes pulse. It now
           lives in globals.css as `blog-orb-pulse` (a distinct name, so it cannot
-          clash with Tailwind's own animate-pulse), applied via
-          `animate-blog-orb-pulse` on the three elements that relied on it. */}
+          clash with Tailwind's own animate-pulse). Nothing on this section uses
+          it any more since the light-theme restyle; the keyframes are left in
+          globals.css in case another blog section picks them up. */}
     </section>
   );
 };

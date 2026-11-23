@@ -200,8 +200,6 @@ const BlogPostSidebar: React.FC<BlogPostSidebarProps> = ({ post }) => {
                   </h4>
                   <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
                     <span className="truncate">{relatedPost.category}</span>
-                    <span>•</span>
-                    <span className="whitespace-nowrap">{relatedPost.readTime}</span>
                   </div>
                 </div>
               </Link>

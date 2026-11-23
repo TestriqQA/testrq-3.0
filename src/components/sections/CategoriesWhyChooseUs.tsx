@@ -63,24 +63,27 @@ const features: FeatureItem[] = [
 ];
 
 const CategoriesWhyChooseUs: React.FC = () => {
-    const ref = useRef(null);    return (
+    const ref = useRef(null);    // Restyled to the light theme to match the rest of the site: white band,
+    // brand-blue pill badge and accent word, white cards with sky icon tiles.
+    // `feature.gradient` is no longer rendered.
+    return (
         <section ref={ref} className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div
       className="text-center mb-16"
     >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-600 rounded-full text-sm font-semibold mb-4">
+                    <span className="inline-flex items-center bg-brand-blue gap-2 text-white px-5 py-2 rounded-full mb-5">
                         <Award className="w-4 h-4" />
-                        Why Choose Us
+                        <span className="text-sm">Why Choose Us</span>
                     </span>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                         The Testriq{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
+                        <span className="text-[theme(color.brand.blue)]">
                             Advantage
                         </span>
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                    <p className="text-lg text-gray-700 max-w-2xl mx-auto">
                         What sets us apart as your trusted software testing partner
                     </p>
                 </div>
@@ -92,21 +95,18 @@ const CategoriesWhyChooseUs: React.FC = () => {
       key={feature.title}
       className="group relative"
     >
-                            {/* Hover glow effect */}
-                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-
-                            <div className="relative bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-xl hover:border-slate-200 transition-all duration-300 h-full">
+                            <div className="relative bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300 h-full">
                                 {/* Icon */}
                                 <div
-                                    className={`w-14 h-14 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                                    className="w-14 h-14 bg-sky-50 border border-sky-100 rounded-xl flex items-center justify-center text-[theme(color.brand.blue)] mb-5 group-hover:scale-110 transition-transform duration-300"
                                 >
                                     {feature.icon}
                                 </div>
 
-                                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">
                                     {feature.title}
                                 </h3>
-                                <p className="text-slate-500 leading-relaxed">
+                                <p className="text-gray-600 leading-relaxed">
                                     {feature.description}
                                 </p>
                             </div>

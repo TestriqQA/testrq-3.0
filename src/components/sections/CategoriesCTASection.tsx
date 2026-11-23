@@ -8,32 +8,16 @@ const CategoriesCTASection: React.FC = () => {
     const ref = useRef(null);    return (
         <section
             ref={ref}
-            className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900"
+            className="relative py-24 px-4 sm:px-6 lg:px-8 bg-white"
         >
-            {/* Animated background elements */}
-            <div className="absolute inset-0">
-                {/* Gradient orbs */}
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-                <div
-                    className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse"
-                    style={{ animationDelay: "1s" }}
-                />
-
-                {/* Grid pattern */}
-                <div
-                    className="absolute inset-0 opacity-[0.03]"
-                    style={{
-                        backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.5) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(59, 130, 246, 0.5) 1px, transparent 1px)`,
-                        backgroundSize: "50px 50px",
-                    }}
-                />
-            </div>
-
-            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            {/* Restyled to the light theme to match the rest of the site: a white
+                section holding a brand-blue CTA card (same treatment as the CTA
+                band in BlogPostsGrid). The dark navy background, gradient orbs
+                and grid overlay were decorative only and have been dropped. */}
+            <div className="relative max-w-4xl mx-auto px-6 py-14 sm:px-10 md:px-14 md:py-16 text-center text-white bg-gradient-to-br from-brand-blue to-sky-700 rounded-3xl shadow-lg overflow-hidden">
                 {/* Badge */}
                 <div
-      className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-blue-300 text-sm font-medium mb-8"
+      className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 border border-white/25 rounded-full text-white text-sm font-medium mb-8"
     >
                     <Sparkles className="w-4 h-4" />
                     Ready to Get Started?
@@ -44,14 +28,14 @@ const CategoriesCTASection: React.FC = () => {
       className="text-4xl lg:text-5xl font-bold text-white mb-6"
     >
                     Let&apos;s Make Your Software{" "}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400">
+                    <span className="text-white">
                         Flawless
                     </span>
                 </h2>
 
                 {/* Description */}
                 <p
-      className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto"
+      className="text-xl text-sky-50 mb-10 max-w-2xl mx-auto"
     >
                     Partner with our ISTQB-certified experts and experience enterprise-grade
                     quality assurance that delivers results.
@@ -64,9 +48,8 @@ const CategoriesCTASection: React.FC = () => {
                     {/* Primary CTA */}
                     <Link
                         href="/contact-us"
-                        className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl overflow-hidden transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105"
+                        className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[theme(color.brand.blue)] font-bold rounded-lg transition-all duration-300 hover:shadow-xl"
                     >
-                        <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <MessageCircle className="relative w-5 h-5" />
                         <span className="relative">Talk to Expert</span>
                         <ArrowRight className="relative w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -75,7 +58,7 @@ const CategoriesCTASection: React.FC = () => {
                     {/* Secondary CTA */}
                     <Link
                         href="/contact-us"
-                        className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold rounded-xl hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:scale-105"
+                        className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-white/70 text-white font-bold rounded-lg hover:bg-white/10 transition-colors duration-300"
                     >
                         <FileText className="w-5 h-5" />
                         <span>Request Quote</span>
@@ -85,18 +68,18 @@ const CategoriesCTASection: React.FC = () => {
 
                 {/* Trust indicators */}
                 <div
-      className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400"
+      className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-sky-50"
     >
                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-emerald-400 rounded-full" />
+                        <div className="w-2 h-2 bg-white rounded-full" />
                         <span>Free Consultation</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full" />
+                        <div className="w-2 h-2 bg-white rounded-full" />
                         <span>24h Response Time</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-violet-400 rounded-full" />
+                        <div className="w-2 h-2 bg-white rounded-full" />
                         <span>No Commitment Required</span>
                     </div>
                 </div>

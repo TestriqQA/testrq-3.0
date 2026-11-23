@@ -11,7 +11,7 @@ import { FaSearch, FaCalendar, FaUser, FaTag, FaArrowRight, FaLightbulb } from "
 // Loading component
 export const SearchResultsLoading = () => (
     <div className="flex items-center justify-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[theme(color.brand.blue)]"></div>
     </div>
 );
 
@@ -28,12 +28,12 @@ const BlogSearchHub: React.FC<{ searchQuery: string; setSearchQuery: (value: str
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Search testing topics, tools, or best practices..."
-                            className="w-full pl-12 pr-32 py-4 rounded-xl bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition"
+                            className="w-full pl-12 pr-32 py-4 rounded-xl bg-white text-gray-900 placeholder-gray-500 border border-gray-200 shadow-sm focus:border-[theme(color.brand.blue)] focus:ring-2 focus:ring-sky-100 focus:outline-none transition"
                         />
                         <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <button
                             type="submit"
-                            className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-lg text-white font-medium transition cursor-pointer"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 bg-[theme(color.brand.blue)] hover:bg-sky-800 rounded-lg text-white font-semibold transition cursor-pointer"
                         >
                             Search
                         </button>
@@ -48,7 +48,7 @@ const BlogSearchHub: React.FC<{ searchQuery: string; setSearchQuery: (value: str
 // Search Insights component
 export const SearchInsights: React.FC = () => {
     return (
-        <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#0B0F1C]/10 to-[#1B2A5A]/10 backdrop-blur-md animate-fade-in">
+        <div className="py-16 px-4 sm:px-6 lg:px-8 bg-[theme(color.background.gray)] animate-fade-in">
             <div className="py-12 px-4 sm:px-6 lg:px-8 animate-fade-in text-center max-w-6xl mx-auto">
                 <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
                     Discover Expert QA Insights
@@ -60,7 +60,7 @@ export const SearchInsights: React.FC = () => {
                 </p>
 
                 {/* Enhanced Introduction Section */}
-                <div className="bg-white rounded-lg p-8 shadow-lg mb-12 text-left">
+                <div className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm mb-12 text-left">
                     <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Your Gateway to Comprehensive QA Knowledge</h2>
                     <div className="grid md:grid-cols-2 gap-8">
                         <div>
@@ -85,61 +85,61 @@ export const SearchInsights: React.FC = () => {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto bg-white/10 border border-cyan-300/20 rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto bg-white border border-gray-100 rounded-2xl shadow-sm p-8 md:p-12 relative overflow-hidden">
                 {/* Decorative Element */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+                <div className="absolute top-0 left-0 w-full h-1 bg-brand-blue"></div>
                 <div className="flex items-center justify-center mb-8">
-                    <FaLightbulb className="w-10 h-10 text-cyan-500 mr-3" />
+                    <FaLightbulb className="w-10 h-10 text-[theme(color.brand.blue)] mr-3" />
                     <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center">
                         Unlock QA Excellence with Testriq
                     </h2>
                 </div>
 
                 <p className="text-lg text-gray-700 mb-8 text-center leading-relaxed">
-                    Testriq&apos;s <strong className="text-cyan-600">software testing search</strong> hub is your go-to resource for <strong className="text-cyan-600">QA blog search</strong> and expert insights. Discover why our blog is trusted by professionals worldwide:
+                    Testriq&apos;s <strong className="text-[theme(color.brand.blue)]">software testing search</strong> hub is your go-to resource for <strong className="text-[theme(color.brand.blue)]">QA blog search</strong> and expert insights. Discover why our blog is trusted by professionals worldwide:
                 </p>
 
                 {/* Enhanced Features Section */}
                 <div className="grid md:grid-cols-2 gap-8 mb-10">
-                    <div className="bg-white/20 rounded-lg p-6">
+                    <div className="bg-gray-50 border border-gray-100 rounded-lg p-6">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">Comprehensive Testing Coverage</h3>
                         <ul className="space-y-3 text-gray-700 text-base">
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
-                                Find <strong className="text-cyan-600">test automation best practices</strong> and tools like <Link href="/blog/search?q=selenium" className="text-cyan-600 hover:text-cyan-800 underline">Selenium</Link>, Cypress, and Playwright for streamlined QA workflows.
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
+                                Find <strong className="text-[theme(color.brand.blue)]">test automation best practices</strong> and tools like <Link href="/blog/search?q=selenium" className="text-[theme(color.brand.blue)] hover:text-sky-800 underline">Selenium</Link>, Cypress, and Playwright for streamlined QA workflows.
                             </li>
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
-                                Explore <strong className="text-cyan-600">Agile testing methodologies</strong> and <strong className="text-cyan-600">best practices for QA search</strong> in CI/CD pipelines and DevOps environments.
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
+                                Explore <strong className="text-[theme(color.brand.blue)]">Agile testing methodologies</strong> and <strong className="text-[theme(color.brand.blue)]">best practices for QA search</strong> in CI/CD pipelines and DevOps environments.
                             </li>
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
-                                Access actionable guides on <strong className="text-cyan-600">test-driven development (TDD)</strong>, <strong className="text-cyan-600">integration testing strategies</strong>, and performance testing tools like <Link href="/blog/search?q=jmeter" className="text-cyan-600 hover:text-cyan-800 underline">JMeter</Link>.
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
+                                Access actionable guides on <strong className="text-[theme(color.brand.blue)]">test-driven development (TDD)</strong>, <strong className="text-[theme(color.brand.blue)]">integration testing strategies</strong>, and performance testing tools like <Link href="/blog/search?q=jmeter" className="text-[theme(color.brand.blue)] hover:text-sky-800 underline">JMeter</Link>.
                             </li>
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
-                                Dive into <strong className="text-cyan-600">search QA insights</strong> for <Link href="/blog/search?q=security" className="text-cyan-600 hover:text-cyan-800 underline">security testing</Link>, API testing, and AI-driven testing trends.
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
+                                Dive into <strong className="text-[theme(color.brand.blue)]">search QA insights</strong> for <Link href="/blog/search?q=security" className="text-[theme(color.brand.blue)] hover:text-sky-800 underline">security testing</Link>, API testing, and AI-driven testing trends.
                             </li>
                         </ul>
                     </div>
 
-                    <div className="bg-white/20 rounded-lg p-6">
+                    <div className="bg-gray-50 border border-gray-100 rounded-lg p-6">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">Industry-Leading Expertise</h3>
                         <ul className="space-y-3 text-gray-700 text-base">
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
                                 Content authored by ISTQB-certified professionals with extensive industry experience across multiple domains and technologies.
                             </li>
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
                                 Real-world case studies and examples from successful testing implementations in fintech, healthcare, e-commerce, and enterprise software.
                             </li>
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
                                 Up-to-date coverage of emerging trends including AI testing, IoT device testing, blockchain application testing, and cloud-native testing strategies.
                             </li>
                             <li>
-                                <span className="text-cyan-500 mr-2">•</span>
+                                <span className="text-[theme(color.brand.blue)] mr-2">•</span>
                                 Practical tutorials with step-by-step instructions, code examples, and downloadable resources for immediate implementation.
                             </li>
                         </ul>
@@ -147,7 +147,7 @@ export const SearchInsights: React.FC = () => {
                 </div>
 
                 {/* Search Tips Section */}
-                <div className="bg-white/30 rounded-lg p-8 mb-8">
+                <div className="bg-gray-50 border border-gray-100 rounded-lg p-8 mb-8">
                     <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Maximize Your Search Results</h3>
                     <div className="grid md:grid-cols-3 gap-6">
                         <div>
@@ -155,7 +155,7 @@ export const SearchInsights: React.FC = () => {
                             <p className="text-gray-700 text-sm mb-3">
                                 Use specific terms like &quot;automation frameworks&quot;, &quot;manual testing tips&quot;, &quot;performance bottlenecks&quot;, or &quot;security vulnerabilities&quot; to find targeted content.
                             </p>
-                            <div className="bg-gray-100 rounded p-3">
+                            <div className="bg-white border border-gray-200 rounded p-3">
                                 <p className="text-xs text-gray-600 font-mono">
                                     Examples: &quot;selenium grid setup&quot;, &quot;api testing postman&quot;, &quot;mobile testing appium&quot;
                                 </p>
@@ -167,7 +167,7 @@ export const SearchInsights: React.FC = () => {
                             <p className="text-gray-700 text-sm mb-3">
                                 Use quotes for exact phrases, OR for multiple terms, and minus (-) to exclude terms from your search results.
                             </p>
-                            <div className="bg-gray-100 rounded p-3">
+                            <div className="bg-white border border-gray-200 rounded p-3">
                                 <p className="text-xs text-gray-600 font-mono">
                                     &quot;test automation&quot; OR &quot;automated testing&quot; -manual
                                 </p>
@@ -179,7 +179,7 @@ export const SearchInsights: React.FC = () => {
                             <p className="text-gray-700 text-sm mb-3">
                                 Browse by categories like automation, performance, security, or mobile testing to discover comprehensive topic coverage.
                             </p>
-                            <div className="bg-gray-100 rounded p-3">
+                            <div className="bg-white border border-gray-200 rounded p-3">
                                 <p className="text-xs text-gray-600 font-mono">
                                     Categories: Tools, Methodologies, Best Practices
                                 </p>
@@ -189,11 +189,11 @@ export const SearchInsights: React.FC = () => {
                 </div>
 
                 <p className="text-lg text-gray-700 mb-8 text-center">
-                    Optimize your <strong className="text-cyan-600">QA blog search</strong> experience by combining specific keywords with our advanced filtering options. Whether you&apos;re looking for beginner tutorials, advanced techniques, or industry-specific solutions, our comprehensive search system will connect you with the most relevant and valuable content.
+                    Optimize your <strong className="text-[theme(color.brand.blue)]">QA blog search</strong> experience by combining specific keywords with our advanced filtering options. Whether you&apos;re looking for beginner tutorials, advanced techniques, or industry-specific solutions, our comprehensive search system will connect you with the most relevant and valuable content.
                 </p>
 
                 {/* Popular Search Terms */}
-                <div className="bg-white/20 rounded-lg p-6 mb-8">
+                <div className="bg-gray-50 border border-gray-100 rounded-lg p-6 mb-8">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Popular Search Terms</h3>
                     <div className="flex flex-wrap justify-center gap-3">
                         {[
@@ -213,7 +213,7 @@ export const SearchInsights: React.FC = () => {
                             <Link
                                 key={index}
                                 href={`/blog/search?q=${encodeURIComponent(term)}`}
-                                className="bg-cyan-100 hover:bg-cyan-200 text-cyan-800 px-3 py-1 rounded-full text-sm font-medium transition-colors"
+                                className="bg-sky-50 hover:bg-sky-100 text-[theme(color.brand.blue)] border border-sky-100 px-3 py-1 rounded-full text-sm font-medium transition-colors"
                             >
                                 {term}
                             </Link>
@@ -222,10 +222,10 @@ export const SearchInsights: React.FC = () => {
                 </div>
 
                 <div className="text-center">
-                    <Link href="/blog" className="inline-block bg-cyan-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300 hover:shadow-lg mr-4">
+                    <Link href="/blog" className="inline-block bg-[theme(color.brand.blue)] text-white font-semibold py-3 px-8 rounded-md transition-all duration-300 hover:shadow-xl mr-4">
                         Explore More QA Insights
                     </Link>
-                    <Link href="/case-studies" className="inline-block bg-gray-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-gray-700 transition-all duration-300 hover:shadow-lg">
+                    <Link href="/case-studies" className="inline-block bg-white border border-[theme(color.brand.blue)] text-[theme(color.brand.blue)] font-semibold py-3 px-8 rounded-md hover:bg-sky-50 transition-all duration-300">
                         View Success Stories
                     </Link>
                 </div>
@@ -303,10 +303,11 @@ export const SearchResults: React.FC = () => {
                 }
                 url={`https://www.testriq.com/blog/search${query ? `?q=${encodeURIComponent(query)}` : ''}`}
             />
-            <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+            <div className="min-h-screen bg-[theme(color.background.gray)]">
                 {/* Search Header */}
-                <div className="bg-gradient-to-br from-[#0B0F1C] via-[#112042] to-[#1B2A5A] text-white py-8 px-6 md:px-12 lg:px-24 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-5 bg-[url('/images/noise-pattern.png')]"></div>
+                {/* Restyled to the light theme to match the rest of the site: white search
+                    band (was dark navy with a noise overlay), gray results area, white cards. */}
+                <div className="bg-white border-b border-gray-100 py-8 px-6 md:px-12 lg:px-24 relative">
                     <div className="max-w-7xl mx-auto relative z-10">
                         {/* Blog Search Hub - Contains the remaining search bar */}
                         <BlogSearchHub searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
@@ -314,7 +315,7 @@ export const SearchResults: React.FC = () => {
                 </div>
 
                 {/* Search Results */}
-                <div className="max-w-7xl mx-auto py-16">
+                <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
                     {query && (
                         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
                             {loading ? "Searching..." : `${totalResults} Results Found for "${query}"`}
@@ -329,7 +330,7 @@ export const SearchResults: React.FC = () => {
                                     {currentPosts.map((post) => (
                                         <article
                                             key={post.id}
-                                            className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105"
+                                            className="bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                                         >
                                             <div className="p-6">
                                                 {post.category && (
@@ -359,25 +360,25 @@ export const SearchResults: React.FC = () => {
                                                         */}
                                                         <Link
                                                             href={`/blog/category/${post.categorySlug}`}
-                                                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800 hover:bg-cyan-200 transition-colors"
+                                                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-sky-50 text-[theme(color.brand.blue)] border border-sky-100 hover:bg-sky-100 transition-colors"
                                                         >
                                                             <FaTag className="w-3 h-3 mr-1" />
                                                             {post.category}
                                                         </Link>
                                                     </div>
                                                 )}
-                                                <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-cyan-600 transition-colors">
+                                                <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-[theme(color.brand.blue)] transition-colors">
                                                     <Link href={`/blog/post/${post.slug}`}>
                                                         {post.title}
                                                     </Link>
                                                 </h3>
                                                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
                                                     <div className="flex items-center">
-                                                        <FaCalendar className="w-4 h-4 mr-2 text-cyan-500" />
+                                                        <FaCalendar className="w-4 h-4 mr-2 text-[theme(color.brand.blue)]" />
                                                         {post.date}
                                                     </div>
                                                     <div className="flex items-center">
-                                                        <FaUser className="w-4 h-4 mr-2 text-cyan-500" />
+                                                        <FaUser className="w-4 h-4 mr-2 text-[theme(color.brand.blue)]" />
                                                         {post.author}
                                                     </div>
                                                 </div>
@@ -386,7 +387,7 @@ export const SearchResults: React.FC = () => {
                                                 </p>
                                                 <Link
                                                     href={`/blog/post/${post.slug}`}
-                                                    className="inline-flex items-center text-cyan-600 hover:text-cyan-800 font-medium transition-colors"
+                                                    className="inline-flex items-center text-[theme(color.brand.blue)] hover:text-sky-800 font-medium transition-colors"
                                                 >
                                                     Read More <FaArrowRight className="ml-2" />
                                                 </Link>
@@ -395,8 +396,8 @@ export const SearchResults: React.FC = () => {
                                     ))}
                                 </div>
                             ) : query ? (
-                                <div className="text-center py-20 bg-white rounded-2xl shadow-xl max-w-2xl mx-auto">
-                                    <FaSearch className="w-16 h-16 text-cyan-500 mx-auto mb-6" />
+                                <div className="text-center py-20 bg-white border border-gray-100 rounded-2xl shadow-sm max-w-2xl mx-auto">
+                                    <FaSearch className="w-16 h-16 text-[theme(color.brand.blue)] mx-auto mb-6" />
                                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                                         No Results Found
                                     </h3>
@@ -405,14 +406,14 @@ export const SearchResults: React.FC = () => {
                                     </p>
                                     <Link
                                         href="/blog"
-                                        className="inline-block bg-cyan-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300"
+                                        className="inline-block bg-[theme(color.brand.blue)] text-white font-semibold py-3 px-8 rounded-md hover:shadow-xl transition-all duration-300"
                                     >
                                         Browse All Articles
                                     </Link>
                                 </div>
                             ) : (
-                                <div className="text-center py-20 bg-white rounded-2xl shadow-xl max-w-2xl mx-auto">
-                                    <FaSearch className="w-16 h-16 text-cyan-500 mx-auto mb-6" />
+                                <div className="text-center py-20 bg-white border border-gray-100 rounded-2xl shadow-sm max-w-2xl mx-auto">
+                                    <FaSearch className="w-16 h-16 text-[theme(color.brand.blue)] mx-auto mb-6" />
                                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                                         Start Your Search
                                     </h3>
@@ -423,11 +424,11 @@ export const SearchResults: React.FC = () => {
                             )}
                             {totalPages > 1 && (
                                 <div className="flex justify-center mt-12">
-                                    <div className="flex items-center gap-2 bg-white rounded-full shadow-md p-2">
+                                    <div className="flex items-center gap-2 bg-white border border-gray-100 rounded-full shadow-sm p-2">
                                         <button
                                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                                             disabled={currentPage === 1}
-                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-cyan-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-sky-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                                         >
                                             Previous
                                         </button>
@@ -436,8 +437,8 @@ export const SearchResults: React.FC = () => {
                                                 key={index + 1}
                                                 onClick={() => setCurrentPage(index + 1)}
                                                 className={`px-4 py-2 rounded-full font-semibold transition-colors ${currentPage === index + 1
-                                                    ? "bg-cyan-500 text-white"
-                                                    : "text-gray-600 hover:bg-cyan-100"
+                                                    ? "bg-[theme(color.brand.blue)] text-white"
+                                                    : "text-gray-600 hover:bg-sky-50"
                                                     } cursor-pointer`}
                                             >
                                                 {index + 1}
@@ -448,7 +449,7 @@ export const SearchResults: React.FC = () => {
                                                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                                             }
                                             disabled={currentPage === totalPages}
-                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-cyan-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                                            className="px-4 py-2 rounded-full text-gray-600 hover:bg-sky-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                                         >
                                             Next
                                         </button>

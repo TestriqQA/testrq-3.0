@@ -46,7 +46,6 @@ const BlogPostHeroSection = ({ post }: BlogPostHeroSectionProps) => {
     const authorBio = post?.authorBio;
     const authorLinkedin = post?.authorLinkedin;
     const date = post?.date || "January 31, 2026";
-    const readTime = post?.readTime || "21 min read";
     const category = post?.categories?.[0]?.name || "Performance Testing";
     const categorySlug = post?.categories?.[0]?.slug || post?.categorySlug || "performance-testing";
 
@@ -200,13 +199,11 @@ const BlogPostHeroSection = ({ post }: BlogPostHeroSectionProps) => {
                     {/* Separator - Desktop only */}
                     <div className="hidden sm:block w-px h-8 bg-gray-200" aria-hidden="true" />
 
-                    {/* Date & Read Time */}
+                    {/* Date (read time removed: the estimate came out as "1 min read" on almost every post) */}
                     <div className="flex items-center gap-4 text-sm text-gray-500">
                         <time dateTime={post?.dateISO || "2026-01-31"}>
                             {date}
                         </time>
-                        <span aria-hidden="true" className="text-gray-300">•</span>
-                        <span>{readTime}</span>
                     </div>
                 </div>
             </div>

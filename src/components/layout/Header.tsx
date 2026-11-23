@@ -241,7 +241,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="sticky top-0 z-[60] w-full">
+    <div className="sticky top-0 z-[60] w-full" data-menu-open={menuOpen ? "true" : undefined}>
       {/* Top Utility Contact Bar — every width, but the contents are tiered.
           It used to be `hidden lg:flex`, because showing all of it on a phone
           stacked into 124px of a 812px viewport, permanently, since this
@@ -266,7 +266,7 @@ const Navbar = () => {
           instead of 43px on every page between 1024 and 1279px. 24px gutters
           plus the tighter gap on the right-hand group give it ~33px of slack
           there, and xl restores the original spacing. */}
-      <div className="bg-gradient-to-r from-[#030917] via-[#0a1936] to-[#030917] text-white px-4 sm:px-6 xl:px-16 py-1 flex justify-between items-center text-[12px] sm:text-[13px] border-b border-white/10 relative overflow-hidden z-[65]">
+      <div data-header-contact className="bg-gradient-to-r from-[#030917] via-[#0a1936] to-[#030917] text-white px-4 sm:px-6 xl:px-16 py-1 flex justify-between items-center text-[12px] sm:text-[13px] border-b border-white/10 relative overflow-hidden z-[65]">
 
         {/* Background ambient glows */}
         <div className="absolute -left-20 -top-20 w-60 h-60 bg-[theme(color.brand.blue)] rounded-full blur-[90px] opacity-20 pointer-events-none"></div>

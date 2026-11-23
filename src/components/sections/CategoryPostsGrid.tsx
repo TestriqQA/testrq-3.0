@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaCalendarAlt, FaClock, FaArrowRight, FaSort } from "react-icons/fa";
+import { FaCalendarAlt, FaArrowRight, FaSort } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { Category, Post } from "@/lib/sanity-data-adapter";
@@ -187,10 +187,6 @@ const CategoryPostsGrid: React.FC<CategoryPostsGridProps> = ({ category, posts }
                     <div className="flex items-center gap-1">
                       <FaCalendarAlt className="w-3 h-3" />
                       <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FaClock className="w-3 h-3" />
-                      <span>{post.readTime}</span>
                     </div>
                   </div>
 

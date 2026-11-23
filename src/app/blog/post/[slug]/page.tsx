@@ -1,4 +1,5 @@
 import MainLayout from "@/components/layout/MainLayout";
+import BlogCategoryNav from "@/components/sections/BlogCategoryNav";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
@@ -284,6 +285,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
       <MainLayout>
+        <BlogCategoryNav />
         {/* Custom Structured Data from WordPress */}
         <PostStructuredData post={post} />
         <PostBreadcrumbStructuredData post={post} />
@@ -296,7 +298,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
             {/* Left: Visual TOC */}
             <div className="xl:col-span-3">
-              <div className="sticky top-24">
+              <div className="sticky top-[calc(var(--blog-nav-bottom,168px)_+_8px)] transition-[top] duration-300 ease-out">
                 <VisualTableOfContents headings={extractHeadings(post.content)} />
               </div>
             </div>

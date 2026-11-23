@@ -237,7 +237,6 @@ function PostCard({ post }: { post: Post }) {
         <p className="text-sm text-gray-600 line-clamp-2 mb-4">{post.excerpt}</p>
         <div className="flex items-center justify-between text-xs text-gray-500">
           <time dateTime={post.dateISO}>{post.date}</time>
-          <span>{post.readTime}</span>
         </div>
       </div>
     </article>
