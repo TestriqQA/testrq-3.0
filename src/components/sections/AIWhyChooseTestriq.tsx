@@ -21,7 +21,7 @@ const AIWhyChooseTestriq: React.FC = () => {
       title: "Global Standards",
       shortTitle: "Global ISO",
       description:
-        "We use ISO/IEC/IEEE 29119. This is the gold standard for managing AI risks and validating models globally.",
+        "We apply ISO/IEC/IEEE 29119, the international software testing standard, to AI testing for consistent, risk-based planning and reporting.",
       stats: "ISO/IEC/IEEE 29119",
       color: "purple",
       gradient: "from-purple-500 to-purple-600",
@@ -281,7 +281,7 @@ const AIWhyChooseTestriq: React.FC = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="relative">
-              <div className="text-3xl font-bold text-purple-600 mb-2">10+</div>
+              <div className="text-3xl font-bold text-purple-600 mb-2">150+</div>
               <div className="text-gray-700 text-sm">AI Models</div>
               <div className="absolute top-0 right-0 w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
             </div>
