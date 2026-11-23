@@ -254,9 +254,9 @@ const DesktopROISection: React.FC = () => {
               <div className="text-gray-600 mb-4">
                 Return on Investment in Year 1
               </div>
-              <Link href="/roi-calculator" className="inline-block">
+              <Link href="/contact-us" className="inline-block">
                 <button className="w-full px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors cursor-pointer">
-                  Calculate Your ROI
+                  Get Your ROI Analysis
                 </button>
               </Link>
             </div>

@@ -14,13 +14,24 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { readdirSync, readFileSync } from "node:fs";
+import { join, relative } from "node:path";
+
 import { renderToStaticMarkup } from "react-dom/server";
 
+import * as Schemas from "../StructuredData";
 import StructuredData, {
     caseStudiesSchema,
     createBreadcrumbSchema,
     createCanonicalBreadcrumb,
+    pricingBundleOffer,
+    ourTeamPageSchema,
+    pricingServiceSchema,
 } from "../StructuredData";
+import { pricingPackages } from "../../../data/pricingPackages";
+import { SERVICE_AREA_SERVED, TARGET_MARKET_COUNTRIES } from "../../../lib/seo/target-markets";
+import { cdplTeamLeaders, cleanProfileUrl, teamLeaders, teamMemberSlug } from "../../../data/teamLeaders";
+import { teamMembers } from "../../../data/teamMembers";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -409,5 +420,275 @@ describe("caseStudiesSchema - @graph reference integrity", () => {
     it("declares no BreadcrumbList of its own (page-side script owns it)", () => {
         const crumbs = graph.filter((n) => n["@type"] === "BreadcrumbList");
         expect(crumbs).toHaveLength(0);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// SEO report D-14 / D-15 / D-16 (Nov 2026): no "free" offers on service pages
+// ---------------------------------------------------------------------------
+//
+// Service schemas used to carry an Offer with price "0" (and on some pages a
+// priceValidUntil of 2026-12-31 and a url of /contact). That told Google and
+// AI assistants the services were free. The offers were removed; /pricing now
+// states each bundle's real "starting from" price, read from the same data
+// the pricing cards render.
+
+describe("service offers (SEO report D-14)", () => {
+    /**
+     * Files allowed to declare a zero price. The Test Case Estimator is a
+     * genuinely free tool, its page says so, and Google requires a price on a
+     * SoftwareApplication offer.
+     */
+    const ZERO_PRICE_ALLOWED = [join("src", "app", "test-case-estimator", "layout.tsx")];
+
+    const sourceFiles = (dir: string): string[] =>
+        readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+            const full = join(dir, entry.name);
+            if (entry.isDirectory()) return entry.name === "__tests__" ? [] : sourceFiles(full);
+            return /\.(ts|tsx)$/.test(entry.name) ? [full] : [];
+        });
+
+    it("declares no zero or 'Free' price anywhere in src", () => {
+        const offenders = sourceFiles(join(process.cwd(), "src"))
+            .filter((file) => !ZERO_PRICE_ALLOWED.some((allowed) => file.endsWith(allowed)))
+            .filter((file) => /["']?price["']?\s*:\s*["']?(0|Free)["']?\s*[,}\r\n]/.test(readFileSync(file, "utf8")))
+            .map((file) => relative(process.cwd(), file));
+        expect(offenders).toEqual([]);
+    });
+
+    it("leaves no exported schema with a hardcoded 2026-12-31 offer expiry (D-15)", () => {
+        const stale = Object.entries(Schemas)
+            .filter(([, value]) => typeof value === "object" && value !== null)
+            .filter(([, value]) => JSON.stringify(value).includes('"priceValidUntil":"2026-12-31"'))
+            .map(([name]) => name);
+        expect(stale).toEqual([]);
+    });
+
+    // D-16's own check is "No schema URL points at /contact": /contact is a 308
+    // to /contact-us, so any URL naming it points search engines at a redirect.
+    // Matches /contact, /contact/, /contact#… and /contact?… but not /contact-us.
+    const CONTACT_REDIRECT = /testriq\.com\/contact(?![\w-])/;
+
+    it("leaves no URL in any exported schema pointing at the /contact redirect (D-16)", () => {
+        /** Every string value at any depth. */
+        const strings = (node: unknown): string[] => {
+            if (typeof node === "string") return [node];
+            if (Array.isArray(node)) return node.flatMap(strings);
+            if (typeof node === "object" && node !== null) return Object.values(node).flatMap(strings);
+            return [];
+        };
+        const stale = Object.entries(Schemas)
+            .filter(([, value]) => strings(value).some((s) => CONTACT_REDIRECT.test(s)))
+            .map(([name]) => name);
+        expect(stale).toEqual([]);
+    });
+
+    it("has no source file naming the /contact redirect as an absolute URL (D-16)", () => {
+        // Catches schemas built inline in pages and templates, which the export
+        // walk above cannot see.
+        const offenders = sourceFiles(join(process.cwd(), "src"))
+            .filter((file) => CONTACT_REDIRECT.test(readFileSync(file, "utf8")))
+            .map((file) => relative(process.cwd(), file));
+        expect(offenders).toEqual([]);
+    });
+});
+
+describe("pricingBundleOffer (/pricing starting prices)", () => {
+    type Spec = { minPrice: number; priceCurrency: string; unitText: string };
+
+    it.each(pricingPackages.map((p) => [p.id, p] as const))(
+        "%s: minPrice equals the number on the pricing card",
+        (id, pkg) => {
+            const offer = pricingBundleOffer(id) as { priceSpecification?: Spec; price?: unknown };
+            // Same extraction Pricing5Cards uses to render the big number.
+            const shown = Number(pkg.price.match(/\d+/)?.[0]);
+            expect(offer.priceSpecification?.minPrice).toBe(shown);
+            expect(offer.priceSpecification?.priceCurrency).toBe("USD");
+            expect(pkg.price).toContain(offer.priceSpecification!.unitText);
+            // A floor, never a fixed price.
+            expect(offer).not.toHaveProperty("price");
+        },
+    );
+
+    it("emits no price at all for an unknown package rather than guessing", () => {
+        const offer = pricingBundleOffer("does-not-exist");
+        expect(offer).not.toHaveProperty("priceSpecification");
+        expect(offer).not.toHaveProperty("priceCurrency");
+    });
+
+    it("gives every bundle in pricingServiceSchema a starting price", () => {
+        const graph = (pricingServiceSchema as { "@graph": Array<Record<string, unknown>> })["@graph"];
+        const bundles = graph.filter((n) => n["@type"] === "Service");
+        expect(bundles).toHaveLength(pricingPackages.length);
+        for (const bundle of bundles) {
+            const offer = bundle.offers as { priceSpecification?: Spec };
+            expect(offer.priceSpecification?.minPrice).toBeGreaterThan(0);
+        }
+    });
+});
+
+// ---------------------------------------------------------------------------
+// SEO report D-17 (Nov 2026): services name their target countries
+// ---------------------------------------------------------------------------
+//
+// Service areaServed used to be the bare string "Worldwide" (or "WorldWide",
+// "Global"), which names no country. Generic services now use the shared
+// SERVICE_AREA_SERVED: each target market as a Country entity, then
+// "Worldwide". Countries are added, "Worldwide" is never dropped, because
+// Testriq delivers remotely to clients anywhere.
+
+describe("service areaServed (SEO report D-17)", () => {
+    const BARE_GLOBAL = /^(worldwide|global|world)$/i;
+
+    /** Every node with @type Service, at any depth of every exported schema. */
+    const serviceNodes = (node: unknown, found: Array<Record<string, unknown>> = []) => {
+        if (Array.isArray(node)) node.forEach((n) => serviceNodes(n, found));
+        else if (typeof node === "object" && node !== null) {
+            const obj = node as Record<string, unknown>;
+            if (obj["@type"] === "Service") found.push(obj);
+            Object.values(obj).forEach((v) => serviceNodes(v, found));
+        }
+        return found;
+    };
+
+    it("lists each target market as a Country, then Worldwide", () => {
+        expect(SERVICE_AREA_SERVED).toEqual([
+            ...TARGET_MARKET_COUNTRIES.map((name) => ({ "@type": "Country", name })),
+            "Worldwide",
+        ]);
+        expect(new Set(TARGET_MARKET_COUNTRIES).size).toBe(TARGET_MARKET_COUNTRIES.length);
+        expect(TARGET_MARKET_COUNTRIES.length).toBeGreaterThan(0);
+    });
+
+    it("leaves no exported Service with a bare Worldwide/Global areaServed", () => {
+        const bare = Object.entries(Schemas)
+            .filter(([, value]) =>
+                serviceNodes(value).some(
+                    (s) => typeof s.areaServed === "string" && BARE_GLOBAL.test(s.areaServed),
+                ),
+            )
+            .map(([name]) => name);
+        expect(bare).toEqual([]);
+    });
+
+    it("never pairs Worldwide with zero countries", () => {
+        const worldwideOnly = Object.entries(Schemas)
+            .filter(([, value]) =>
+                serviceNodes(value).some(
+                    (s) =>
+                        Array.isArray(s.areaServed) &&
+                        s.areaServed.some((a) => typeof a === "string" && BARE_GLOBAL.test(a)) &&
+                        !s.areaServed.some((a) => (a as { "@type"?: string })?.["@type"] === "Country"),
+                ),
+            )
+            .map(([name]) => name);
+        expect(worldwideOnly).toEqual([]);
+    });
+
+    it("has no page or template outside StructuredData declaring a bare Worldwide areaServed", () => {
+        // StructuredData.tsx is covered by the export walk above; its remaining
+        // "Worldwide" values sit on ContactPoint nodes, which say where a phone
+        // line answers, not where a service is delivered.
+        const SCHEMA_MODULES = [join("components", "seo", "StructuredData.tsx")];
+        const files = (dir: string): string[] =>
+            readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+                const full = join(dir, entry.name);
+                if (entry.isDirectory()) return entry.name === "__tests__" ? [] : files(full);
+                return /\.(ts|tsx)$/.test(entry.name) ? [full] : [];
+            });
+        const offenders = files(join(process.cwd(), "src"))
+            .filter((file) => !SCHEMA_MODULES.some((m) => file.endsWith(m)))
+            .filter((file) =>
+                /["']?areaServed["']?\s*:\s*["'](worldwide|global|world)["']/i.test(readFileSync(file, "utf8")),
+            )
+            .map((file) => relative(process.cwd(), file));
+        expect(offenders).toEqual([]);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// SEO report E-2 + E-3 (Nov 2026): every person on /our-team is a Person
+// ---------------------------------------------------------------------------
+
+describe("ourTeamPageSchema people", () => {
+    type Person = {
+        "@type": string;
+        name: string;
+        jobTitle: string;
+        url: string;
+        worksFor: { name: string };
+        sameAs?: string[];
+    };
+    const people = (ourTeamPageSchema as unknown as { hasPart: { itemListElement: Person[] } }).hasPart
+        .itemListElement;
+    const cards: { name: string; title: string; linkedin?: string }[] = [
+        ...teamLeaders.map((l) => ({ name: l.name, title: l.position, linkedin: l.linkedin })),
+        ...cdplTeamLeaders.map((l) => ({ name: l.name, title: l.position, linkedin: l.linkedin })),
+        ...teamMembers.map((m) => ({ name: m.name, title: m.role, linkedin: m.linkedin })),
+    ];
+
+    it("lists everyone shown on the page, in page order", () => {
+        expect(people.map((p) => p.name)).toEqual(cards.map((c) => c.name));
+        expect(people).toHaveLength(19);
+    });
+
+    it("gives the 18 people with a real profile their LinkedIn in sameAs", () => {
+        const linked = people.filter((p) => p.sameAs);
+        expect(linked).toHaveLength(18);
+        for (const p of linked) {
+            expect(p["@type"]).toBe("Person");
+            expect(p.sameAs, p.name).toHaveLength(1);
+            expect(p.sameAs![0], p.name).toMatch(/^https:\/\/www\.linkedin\.com\/in\/[^/?#]+\/?$/);
+        }
+        expect(people.find((p) => p.name === "Mandar Salkar")!.sameAs).toBeUndefined();
+    });
+
+    it("uses the title and LinkedIn link shown on the person's card", () => {
+        for (const p of people) {
+            const card = cards.find((c) => c.name === p.name)!;
+            expect(p.jobTitle).toBe(card.title);
+            expect(p.sameAs).toEqual(card.linkedin ? [cleanProfileUrl(card.linkedin)] : undefined);
+        }
+    });
+
+    it("names Cinute Digital as employer for the CDPL wing only", () => {
+        const cdpl = cdplTeamLeaders.map((l) => l.name);
+        for (const p of people) {
+            expect(p.worksFor.name, p.name).toBe(cdpl.includes(p.name) ? "Cinute Digital" : "Testriq QA Lab");
+        }
+    });
+
+    it("gives each Person a distinct url fragment that matches a card id", () => {
+        const urls = people.map((p) => p.url);
+        expect(new Set(urls).size).toBe(urls.length);
+        for (const p of people) {
+            expect(p.url).toBe(`https://www.testriq.com/our-team#${teamMemberSlug(p.name)}`);
+        }
+        const read = (f: string) =>
+            readFileSync(join(process.cwd(), "src", "components", "sections", `${f}.tsx`), "utf8");
+        expect(read("TeamLeadershipSection").match(/id=\{teamMemberSlug\(leader\.name\)\}/g)).toHaveLength(2);
+        expect(read("TeamMembersSection")).toContain("id={teamMemberSlug(member.name)}");
+    });
+
+    it("has no bare LinkedIn profile link (E-5)", () => {
+        for (const c of cards) {
+            if (c.linkedin) expect(c.linkedin, c.name).toMatch(/linkedin\.com\/in\/[^/?#]+/);
+        }
+    });
+});
+
+describe("team data helpers", () => {
+    it("slugs a name for the url fragment", () => {
+        expect(teamMemberSlug("Sandeep Maske")).toBe("sandeep-maske");
+        expect(teamMemberSlug("  Rohan  Maske ")).toBe("rohan-maske");
+    });
+
+    it("strips tracking parameters from a profile URL", () => {
+        expect(
+            cleanProfileUrl("https://www.linkedin.com/in/neelamchavan9892/?original_referer=https%3A%2F%2Ftestriq.com%2F"),
+        ).toBe("https://www.linkedin.com/in/neelamchavan9892/");
+        expect(cleanProfileUrl("https://www.linkedin.com/in/sandeepmaske")).toBe(
+            "https://www.linkedin.com/in/sandeepmaske",
+        );
     });
 });

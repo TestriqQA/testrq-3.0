@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { sanityGetAdaptedCategoryData, sanityGetCategories, sanityGetTags } from "@/lib/sanity-data-adapter";
 import { normalizeBlogSlug } from "@/lib/blog-slug";
+import { isArchiveIndexable } from "@/lib/seo/archive-indexing";
 
 export const revalidate = 60; // Revalidate every minute
 export const dynamicParams = true; // Allow on-demand rendering for new/unknown categories
@@ -107,7 +108,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   // Same threshold the tag archives use. See the note on `robots` below for
   // why this changed on 2026-11-04 and why `follow` stays true regardless.
-  const isIndexable = categoryData.posts.length >= 2;
+  // Threshold shared with sitemap.ts so a noindexed archive is never listed
+  // there (SEO report D-2). See src/lib/seo/archive-indexing.ts.
+  const isIndexable = isArchiveIndexable(categoryData.posts.length);
 
   return {
     title: `${categoryName} | Insights & Best Practices`,

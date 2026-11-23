@@ -29,12 +29,14 @@ import { redirects } from '@/lib/seo/redirect-map';
 // manualLinks array that drifts out of sync.
 import { discoverRoutes } from '@/lib/seo/discover-routes';
 import { STATIC_EXCLUDED_FROM_SITEMAP } from '@/lib/seo/sitemap-exclusions';
+import { authorSitemapEntries } from '@/lib/seo/author-sitemap';
+import { countArchivePosts, isArchiveIndexable } from '@/lib/seo/archive-indexing';
 
 // Revalidate the sitemap every hour (matches service page revalidation)
 export const revalidate = 3600;
 
 // Function to determine change frequency based on content type and last modified date
-function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study', lastModified?: string): 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' {
+function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study' | 'author', lastModified?: string): 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' {
   const now = new Date();
   const modifiedDate = lastModified ? new Date(lastModified) : now;
   const daysSinceModified = Math.floor((now.getTime() - modifiedDate.getTime()) / (1000 * 60 * 60 * 24));
@@ -54,6 +56,10 @@ function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' |
       return 'monthly';
     case 'case-study':
       return 'yearly';
+    case 'author':
+      // An author page changes when its author publishes, so it follows the
+      // same cadence as a post.
+      return daysSinceModified < 30 ? 'weekly' : 'monthly';
     case 'page':
     default:
       return daysSinceModified < 90 ? 'monthly' : 'yearly';
@@ -61,7 +67,7 @@ function getChangeFrequency(contentType: 'home' | 'page' | 'post' | 'category' |
 }
 
 // Function to determine priority based on content type and importance
-function getPriority(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study', slug?: string): number {
+function getPriority(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' | 'service' | 'solution' | 'city' | 'case-study' | 'author', slug?: string): number {
   switch (contentType) {
     case 'home':
       return 1.0;
@@ -83,6 +89,10 @@ function getPriority(contentType: 'home' | 'page' | 'post' | 'category' | 'tag' 
     case 'category':
       return 0.6;
     case 'tag':
+      return 0.5;
+    case 'author':
+      // Below posts (0.7) and case studies (0.6): an author page is a hub for
+      // posts, not a destination in itself.
       return 0.5;
     default:
       return 0.5;
@@ -106,7 +116,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // only changes when the team ships a meaningful content update to those
   // pages; bump it then. Sanity-sourced pages/posts keep their real per-doc
   // modified dates (see the `page.date` / `post.modifiedISO` usages below).
-  const STATIC_LASTMOD = new Date('2026-07-22T00:00:00Z');
+  //
+  // Bumped 2026-07-22 -> 2026-11-05 for SEO report D-5: it had not moved since
+  // July, so pages expanded on 4-5 Nov 2026 (manual, usability, blockchain,
+  // architecture, QA outsourcing) still told Google they last changed in July.
+  // 5 Nov is the latest content release on develop. When a release changes
+  // page content, bump this to that date, and also bump the page's own entry
+  // in src/lib/seo/service-page-dates.ts (its visible "Last updated" line).
+  // Bumped 2026-11-05 -> 2026-11-23 for SEO report D-3: /ai-application-testing
+  // gained the API integration card and the end-to-end QA scope block.
+  const STATIC_LASTMOD = new Date('2026-11-23T00:00:00Z');
 
   try {
     // Top-level static pages — auto-discovered from src/app, the same way
@@ -230,17 +249,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         images: post.image ? [escapeImage(post.image)] : undefined,
       }));
 
+    // Author pages (SEO report E-1, 20 Nov 2026). Derived from the posts
+    // already fetched above, so this adds no Sanity request. Only authors with
+    // at least one post are listed, because /author/[slug] is noindex without
+    // one; lastmod is the author's newest post. All posts are counted, not
+    // just the blogPosts that survive the canonical filter, because the author
+    // page lists them all. See src/lib/seo/author-sitemap.ts.
+    const authorPages = authorSitemapEntries(sanityPostsData).map((author) => {
+      const lastModified = author.lastModified ?? STATIC_LASTMOD;
+      return {
+        url: `${baseUrl}/author/${encodeURIComponent(author.slug)}`,
+        lastModified,
+        changeFrequency: getChangeFrequency('author', lastModified.toISOString()),
+        priority: getPriority('author'),
+      };
+    });
+
+    // Tag and category archives are noindex below MIN_POSTS_FOR_INDEXED_ARCHIVE
+    // posts (see blog/tag/[tag] and blog/category/[category]), and listing a
+    // noindexed URL here sends Google two contradictory instructions. So the
+    // sitemap counts each archive's posts the way the pages do, from the
+    // published posts already fetched above, and applies the same shared
+    // threshold. It deliberately ignores the stored `count` / `postCount`: on
+    // production that number also counted drafts, which put 20 one-post
+    // archives in the sitemap (SEO report D-2, Nov 2026). See
+    // src/lib/seo/archive-indexing.ts.
+    const archivePostCounts = countArchivePosts(sanityPostsData);
+
     // Sanity Categories
-    // 2026-11-04: categories with fewer than 2 posts became noindex (see
-    // blog/category/[category]/page.tsx), so they are excluded here for the
-    // same reason tags are below — advertising a noindexed URL in the sitemap
-    // sends Google two contradictory instructions. The threshold is repeated
-    // rather than shared because the two routes read different shapes
-    // (`postCount` here, `count` for tags); if a third ever needs it, lift it
-    // into a constant.
     const sanityCategoriesData = await sanityGetCategories();
     const categoryPages = sanityCategoriesData
-      .filter((category) => category.postCount >= 2)
+      .filter((category) => isArchiveIndexable(archivePostCounts.categories.get(category.id) ?? 0))
       .map((category) => ({
         url: `${baseUrl}/blog/category/${encodeURIComponent(category.id)}`,
         lastModified: STATIC_LASTMOD,
@@ -248,13 +287,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: getPriority('category'),
       }));
 
-    // Sanity Tags
+    // Sanity Tags (same rule as categories above)
     const sanityTagsData = await sanityGetTags();
-    // Tags with fewer than 2 posts are noindex (see blog/tag/[tag]/page.tsx).
-    // Listing a noindexed URL in the sitemap sends Google two contradictory
-    // instructions, so they are excluded here as well.
     const tagPages = sanityTagsData
-      .filter((tag) => tag.count >= 2)
+      .filter((tag) => isArchiveIndexable(archivePostCounts.tags.get(tag.slug) ?? 0))
       .map((tag) => ({
       url: `${baseUrl}/blog/tag/${encodeURIComponent(tag.slug)}`,
       lastModified: STATIC_LASTMOD,
@@ -271,6 +307,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...caseStudyPages,
       ...sanityPages,
       ...blogPosts,
+      ...authorPages,
       ...categoryPages,
       ...tagPages,
     ];

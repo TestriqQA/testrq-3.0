@@ -39,7 +39,7 @@ const corePages: { slug: string; title: string }[] = [
     { slug: "technology-stack", title: "Technology Stack" },
     { slug: "case-studies", title: "Case Studies" },
     { slug: "pricing", title: "Pricing" },
-    { slug: "roi-calculator", title: "ROI Calculator" },
+    { slug: "test-case-estimator", title: "Test Case Estimator" },
     { slug: "locations-we-serve", title: "Locations We Serve" },
     // Bespoke market landing pages — see src/lib/seo/market-pages.ts.
     ...MARKET_PAGES.map((p) => ({ slug: p.slug, title: p.title })),

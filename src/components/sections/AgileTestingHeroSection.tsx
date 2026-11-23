@@ -57,9 +57,9 @@ const AgileTestingHeroSection: React.FC = () => {
                                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </Link>
-                            <Link href="/roi-calculator">
+                            <Link href="/contact-us">
                                 <button className="border-2 border-brand-blue cursor-pointer text-brand-blue px-8 py-4 rounded-xl font-bold hover:bg-brand-blue/10 transition-colors duration-300 flex items-center justify-center w-full sm:w-auto">
-                                    Calculate QA ROI
+                                    Get a QA ROI Analysis
                                 </button>
                             </Link>
                         </div>

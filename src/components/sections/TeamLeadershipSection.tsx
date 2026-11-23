@@ -2,211 +2,20 @@ import React from "react";
 import { FaLinkedin, FaUserTie } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import { teamLeaders, cdplTeamLeaders, teamMemberSlug, type TeamLeader } from "@/data/teamLeaders";
 
 const TeamLeadershipSection = () => {
-  const leaders = [
-
-    {
-      name: "Prashant Shukla",
-      position: "Senior Advisor",
-      experience: "20+ Years",
-      specialization: "IT Strategy & Leadership",
-      bio: "Prashant Shukla, former Managing Director at Udemy (India & South Asia) and National Technology Officer at Microsoft India, has over 20 years of leadership experience in digital transformation, strategy, and innovation. As Senior Advisor at Testriq, he brings his expertise to drive growth, technology innovation, and strategic expansion.",
-      label: "Prashant Shukla linkedin",
-      achievements: [
-
-      ],
-      linkedin: "https://www.linkedin.com/in/shukp/",
-      img: (
-        <Image
-          title="Prashant Shukla"
-          src="/prashant-shukla.png"
-          alt="Prashant-shukla"
-          width={350}
-          height={250}
-          className="object-cover rounded-full"
-        />
-      ),
-    },
-
-    {
-      name: "Sandeep Maske",
-      position: "Founder & CEO",
-      experience: "20+ Years",
-      specialization: "QA Strategy & Leadership",
-      bio: "Sandeep Maske, Founder & CEO of TESTRIQ QA LAB & Cinute Digital, drives unparalleled excellence in software testing, empowering diverse industries with QA expertise.",
-      label: "Sandeep Maske linkedin",
-      achievements: [
-        "Founded Testriq in 2010",
-        "Scaled company to 50+ employees",
-        "ISTQB Advanced Level Certified",
-        "Speaker at 20+ industry conferences",
-      ],
-      linkedin: "https://www.linkedin.com/in/sandeepmaske",
-      img: (
-        <Image
-          title="Sandeep Maske"
-          src="/sandeep-maske-img.webp"
-          alt="Sandeep Maske"
-          width={350}
-          height={250}
-          className="object-cover rounded-full"
-        />
-      ),
-    },
-    {
-      name: "Santosh Kakade",
-      position: "VP Operations",
-      experience: "17+ Years",
-      specialization: "QA & Digital Solutions",
-      bio: "Santosh Kakade, With 17+ years in QA & digital solutions, lead TESTRIQ QA Lab & Cinute Digital, delivering top-tier testing services and upskilling professionals in tech.",
-      label: "Santosh Kakade linkedin",
-      achievements: [
-        "Led 100+ automation projects",
-        "Expert in Selenium, Cypress, Playwright",
-        "DevOps and CI/CD specialist",
-        "Published 15+ technical articles",
-      ],
-      linkedin: "https://www.linkedin.com/in/santoshkakade/",
-      img: (
-        <Image
-          title="Santosh Kakade"
-          src="/Santosh_Kakade.webp"
-          alt="Santosh_Kakade"
-          width={350}
-          height={250}
-          className="object-cover rounded-full"
-        />
-      ),
-    },
-    {
-      name: "Goutam Mishra",
-      position: "VP of QA and BD",
-      experience: "20+ Years",
-      specialization: "Software Testing & BD ",
-      bio: "Goutam Mishra, With 20+ years in tech, excel in QA, testing, and project management, mentoring QA professionals while ensuring top-tier software quality across platforms.",
-      label: "Goutam Mishra linkedin",
-      achievements: [
-        "Designed QA processes for 200+ projects",
-        "ISTQB Expert Level Certified",
-        "Reduced bug leakage by 95%",
-        "Mentored 30+ junior testers",
-      ],
-      linkedin: "https://www.linkedin.com/in/goutam-mishra-96194117/",
-      img: (
-        <Image
-          title="Goutam Mishra"
-          src="/Goutam_Mishra.webp"
-          alt="Goutam_Mishra"
-          width={350}
-          height={250}
-          className="object-cover rounded-full"
-        />
-      ),
-    },
-    {
-      name: "Rohan Maske",
-      position: "VP - Marketing",
-      experience: "8+ Years",
-      specialization: "Expertise in BD and QA testing",
-      bio: "A results-driven leader with 8+ years of expertise in BD, QA testing, HR, data analysis, talent acquisition & performance marketing, excelling in strategy, resource optimization, and innovation to drive efficiency.",
-      label: "Rohan Maske linkedin",
-      achievements: [
-        "Designed QA processes for 200+ projects",
-        "ISTQB Expert Level Certified",
-        "Reduced bug leakage by 95%",
-        "Mentored 30+ junior testers",
-      ],
-      linkedin: "https://www.linkedin.com/in/rohan-maske/",
-      img: (
-        <Image
-          title="Rohan Maske"
-          src="/Rohan_Maske.png"
-          alt="Rohan_Maske"
-          width={350}
-          height={250}
-          className="object-cover rounded-full"
-        />
-      ),
-    },
-    {
-      name: "Aatish Jadhav",
-      position: "VP Strategic Growth",
-      experience: "16+ Years",
-      specialization: "Strategic Innovation Alignment",
-      bio: "Senior Manager at TESTRIQ QA Lab with 16 years of industry experience. Driving strategic growth, aligning projects with innovation & quality, and empowering teams through Agile excellence.",
-      label: "Aatish Jadhav linkedin",
-      achievements: [
-        "Designed QA processes for 200+ projects",
-        "ISTQB Expert Level Certified",
-        "Reduced bug leakage by 95%",
-        "Mentored 30+ junior testers",
-      ],
-      linkedin: "https://www.linkedin.com/in/aatishjadhav/",
-      img: (
-        <Image
-          title="Aatish Jadhav"
-          src="/Aatish_Jadhav.webp"
-          alt="Aatish_Jadhav"
-          width={350}
-          height={250}
-          className="object-cover rounded-full"
-        />
-      ),
-    },
-  ];
-
-  const cdplLeaders = [
-    {
-      name: "Shoeb Shaikh",
-      position: "Head - Learning and Development",
-      experience: "14+ Years",
-      specialization: "Software Testing and Data Science Expert",
-      bio: "Shoeb Shaikh is a seasoned Software Testing and Data Science Expert and a Mentor with over 14 years of experience in the field. Specialist in designing and managing processes, and leading high-performing teams to deliver impactful results.",
-      achievements: [
-        "Designed & Delivered 50+ QA and Data Science training programs",
-        "Trained 1000+ professionals in QA and Data Science",
-        "ISTQB Certified Test Manager (Selenium, Pytest, API, DBMS)",
-        "Led L&D initiatives in academic and corporate environments"
-      ],
-      linkedin: "https://www.linkedin.com/in/ishaikhshoeb/",
-      label: "Shoeb Shaikh linkedin",
-      img: (
-        <Image
-          title="Shoeb Shaikh"
-          src="/ShoebShaikh.webp"
-          alt="ShoebShaikh"
-          width={350}
-          height={250}
-          className="object-cover rounded-full"
-        />
-      ),
-    },
-    {
-      name: "Ashish Shetty",
-      position: "Business Intelligence & Data Analytics Specialist | L&D Expert",
-      experience: "11+ Years",
-      specialization: "Business Intelligence and learning and development professional",
-      bio: "Ashish Shetty is a seasoned Business Intelligence and learning and development professional with over 11 years of experience empowering students and professionals to unlock career success through data-driven skills. Specializing in Power BI, Tableau, and Prompt Engineering, Ashish is known for delivering practical, high-impact workshops and training programs across academic and corporate sectors.",
-      achievements: [
-        "Trained 7,000+ students & professionals in BI, ML, and Analytics",
-        "Delivered 50+ workshops and national-level programs",
-        "Keynote speaker at leading conferences and UGC events",
-        "Designed industry-certified training and faculty development courses",
-        "Advanced Data Science & Machine Learning certified"
-      ],
-      linkedin: "https://www.linkedin.com/in/profashishshetty/",
-      label: "Ashish Shetty linkedin",
-      img: <Image
-        title="Ashish Shetty"
-        src="/AshishShetty.png"
-        alt="ShoebShaikh"
-        width={550}
-        height={450}
-        className="object-cover rounded-full"
-      />
-    }
-  ]
+  // Leader data lives in src/data/teamLeaders.ts so the cards and the page's
+  // Person structured data read the same names, titles and LinkedIn links.
+  const withImage = (leader: TeamLeader) => {
+    const { alt, ...image } = leader.image;
+    return {
+      ...leader,
+      img: <Image alt={alt} {...image} className="object-cover rounded-full" />,
+    };
+  };
+  const leaders = teamLeaders.map(withImage);
+  const cdplLeaders = cdplTeamLeaders.map(withImage);
 
   return (
     <section className="bg-[theme(color.background.gray)] pt-16 pb-1 px-8 xl:px-24">
@@ -234,7 +43,8 @@ const TeamLeadershipSection = () => {
           {leaders.map((leader, index) => (
             <div
               key={index}
-              className={`lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
+              id={teamMemberSlug(leader.name)}
+              className={`scroll-mt-24 lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
                 }`}
             >
               <div
@@ -369,7 +179,8 @@ const TeamLeadershipSection = () => {
           {cdplLeaders.map((leader, index) => (
             <div
               key={index}
-              className={`lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
+              id={teamMemberSlug(leader.name)}
+              className={`scroll-mt-24 lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
                 }`}
             >
               <div

@@ -21,10 +21,15 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+import { authorRedirectTarget } from "@/lib/seo/author-slug-redirect";
 import { blogPostRedirectTarget } from "@/lib/seo/blog-slug-redirect";
 
 export function proxy(request: NextRequest) {
-    const target = blogPostRedirectTarget(request.nextUrl.pathname);
+    const { pathname } = request.nextUrl;
+    // D-20: capitalised author slugs -> lowercase.
+    const target = pathname.startsWith("/author/")
+        ? authorRedirectTarget(pathname)
+        : blogPostRedirectTarget(pathname);
     if (!target) return NextResponse.next();
 
     // clone() preserves the query string and hash, which the redirect table
@@ -42,5 +47,5 @@ export const config = {
     // One segment under /blog only. Two-segment paths (/blog/post/x,
     // /blog/tag/x) never reach this, and neither does anything outside /blog,
     // so the other ~1,200 routes pay nothing for it.
-    matcher: "/blog/:slug",
+    matcher: ["/blog/:slug", "/author/:slug"],
 };

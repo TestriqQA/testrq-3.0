@@ -98,7 +98,7 @@ const AIROISection: React.FC = () => {
             testing services. Get a personalized ROI analysis for your AI
             project.
           </p>
-          <Link href="/roi-calculator" className="inline-block">
+          <Link href="/contact-us" className="inline-block">
             <button className="bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300 cursor-pointer">
               Get AI ROI Analysis
             </button>

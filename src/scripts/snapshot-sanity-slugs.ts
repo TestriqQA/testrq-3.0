@@ -269,6 +269,11 @@ async function main() {
         // snapshot silently. The projections are copied verbatim; only the
         // filter differs. (Editing the shared constants instead would break
         // editor preview, which runs them through previewClient to SEE drafts.)
+        //
+        // The post COUNT inside each needs the same exclusion (SEO report D-2,
+        // Nov 2026). Without it a published post with an open draft counted
+        // twice, so 20 one-post tags and categories reported 2, were listed in
+        // sitemap.xml, and contradicted their own noindex.
         fetchOrEmpty(
             'categories (full)',
             `*[_type == "category" && !(_id in path("drafts.**"))] {
@@ -277,7 +282,7 @@ async function main() {
   description,
   colorTheme,
   icon,
-  "count": count(*[_type == "post" && references(^._id)])
+  "count": count(*[_type == "post" && references(^._id) && !(_id in path("drafts.**"))])
 }`,
         ),
         fetchOrEmpty(
@@ -285,7 +290,7 @@ async function main() {
             `*[_type == "tag" && !(_id in path("drafts.**"))] {
   title,
   slug,
-  "count": count(*[_type == "post" && references(^._id)])
+  "count": count(*[_type == "post" && references(^._id) && !(_id in path("drafts.**"))])
 }`,
         ),
         fetchOrEmpty('jobs (full)', queries.allJobPostingsQuery),

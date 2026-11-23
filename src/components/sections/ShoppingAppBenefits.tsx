@@ -255,9 +255,9 @@ const ShoppingAppBenefits = () => {
               within 2–4 months through higher retention, trust, and conversion.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/roi-calculator">
+              <Link href="/contact-us">
                 <button className="bg-white cursor-pointer text-brand-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
-                  Calculate ROI
+                  Get an ROI Analysis
                 </button>
               </Link>
             </div>

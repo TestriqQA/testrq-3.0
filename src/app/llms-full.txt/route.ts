@@ -97,10 +97,10 @@ const CORE_PAGES: Array<{ slug: string; title: string; description: string }> = 
             "Transparent QA testing bundles for web app, mobile, API, and VAPT security testing. Fixed-scope deliverables with clear pricing.",
     },
     {
-        slug: "roi-calculator",
-        title: "QA ROI Calculator",
+        slug: "test-case-estimator",
+        title: "Test Case Estimator",
         description:
-            "Free tool to estimate the cost of NOT testing — calculate the financial impact of production defects vs. proactive QA investment.",
+            "Free tool to estimate total test cases, effort in hours and recommended team size from module, feature and complexity inputs.",
     },
     {
         slug: "technology-stack",

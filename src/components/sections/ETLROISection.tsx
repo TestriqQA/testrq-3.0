@@ -89,7 +89,7 @@ const ETLROISection: React.FC = () => {
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
             Discover how much you can save and gain with our comprehensive ETL testing services. Request a personalized ROI analysis to measure the impact on your data integration project’s cost, accuracy, and performance.
           </p>
-          <Link href="/roi-calculator" className="inline-block">
+          <Link href="/contact-us" className="inline-block">
             <button className="bg-brand-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-brand-blue transition-colors duration-300 shadow-lg cursor-pointer">
               Get ROI Analysis
             </button>

@@ -86,6 +86,24 @@ const AICardSlider: React.FC = () => {
       highlight: "Watched After Launch",
       action: "/model-validation-for-ai-applications",
     },
+    // SEO report D-3 (Nov 2026): carried over from the blog post "Top 5
+    // Reasons to Choose Our AI Testing Services", which now redirects here.
+    // Its "Why API Testing is the Backbone of AI" section was the one part of
+    // that post this page did not already cover. Links to the API testing
+    // service page rather than a blog post, hence `href`.
+    {
+      title: <>API Integration &amp; Reliability</>,
+      description:
+        "AI applications depend on APIs to exchange data between models, applications and connected services. We validate these integration points to ensure reliable communication, accurate data exchange and consistent performance.",
+      features: [
+        "API Payload & Schema Validation (JSON/XML)",
+        "Latency, Timeout & Error-Handling Testing",
+        "API Authentication & Security Testing",
+        "Integration & Load Testing",
+      ],
+      highlight: "Every Integration Point Checked",
+      href: "/api-testing",
+    },
   ];
 
   return (
@@ -110,7 +128,11 @@ const AICardSlider: React.FC = () => {
           {testingTypes.map((type, index) => (
             <div
               key={index}
-              className="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300"
+              // A lone card on the last row of the 3-column grid is centred
+              // rather than left hanging on the left.
+              className={`bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300${
+                testingTypes.length % 3 === 1 && index === testingTypes.length - 1 ? " md:col-start-2" : ""
+              }`}
             >
               <div className="mb-4">
                 <div className="text-[theme(color.brand.blue)] font-bold text-lg mb-2">
@@ -140,7 +162,7 @@ const AICardSlider: React.FC = () => {
                   multiple cards on the page emit identical link text, leaving
                   screen-reader users with no per-card context. */}
               <Link
-                href={`blog/post${type.action}`}
+                href={"href" in type && type.href ? type.href : `blog/post${type.action}`}
                 aria-label={`Learn more about ${type.title}`}
                 className="flex items-center text-[theme(color.brand.blue)] font-semibold hover:text-blue-400 transition-colors duration-300"
               >

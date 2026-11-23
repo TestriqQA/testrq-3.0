@@ -283,9 +283,9 @@ const HealthcareROISection: React.FC = () => {
               <button className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 transition-all cursor-pointer">
                 Get ROI Analysis
               </button>
-              <Link href="/roi-calculator">
+              <Link href="/contact-us">
                 <button className="bg-white bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 transition-all border border-white border-opacity-30 cursor-pointer">
-                Calculate ROI
+                Get an ROI Analysis
               </button>
               </Link>
             </div>

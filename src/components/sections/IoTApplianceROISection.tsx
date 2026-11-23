@@ -352,7 +352,7 @@ const IoTROISection: React.FC = () => {
               Get a personalized ROI analysis for your IoT project.
             </p>
             <div className="flex flex-col sm:flex-row text-[theme(color.brand.blue)] gap-4 justify-center">
-              <Link href="/roi-calculator" className="inline-block">
+              <Link href="/contact-us" className="inline-block">
                 <button className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 hover:text-sky-700 transition-all cursor-pointer">
                   Get ROI Analysis
                 </button>

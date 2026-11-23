@@ -23,6 +23,17 @@
  */
 import { buildCanonicalUrl, SITE_URL } from "../../lib/seo/metadata";
 import { getBreadcrumbLabel } from "../../lib/seo/breadcrumb-labels";
+import { pricingPackages } from "../../data/pricingPackages";
+import { SERVICE_AREA_SERVED } from "../../lib/seo/target-markets";
+import { teamLeaders, cdplTeamLeaders, teamMemberSlug, cleanProfileUrl } from "../../data/teamLeaders";
+import { teamMembers } from "../../data/teamMembers";
+
+// Everyone on /our-team, in page order (E-3).
+const ourTeamPeople = [
+  ...teamLeaders.map((l) => ({ name: l.name, jobTitle: l.position, linkedin: l.linkedin, employer: "Testriq QA Lab" })),
+  ...cdplTeamLeaders.map((l) => ({ name: l.name, jobTitle: l.position, linkedin: l.linkedin, employer: "Cinute Digital" })),
+  ...teamMembers.map((m) => ({ name: m.name, jobTitle: m.role, linkedin: m.linkedin, employer: "Testriq QA Lab" })),
+];
 
 type JsonLd = Record<string, unknown>;
 
@@ -193,29 +204,7 @@ export const organizationSchema = {
   // Verified 2026-05-16 via Chrome MCP — each URL returns HTTP 200 with
   // active Testriq-branded content. Listings to add later (Phase 2 —
   // user-blocked on account creation): Crunchbase company page,
-  // Wikidata entry, DesignRush listing.
-  //
-  // 2026-10-30 — DO NOT ADD DESIGNRUSH TO THIS ARRAY. The line above still
-  // holds for Crunchbase and Wikidata, which are genuinely pending. It does
-  // not hold for DesignRush: that agency profile was DECLINED. Logging in
-  // returns "Your Agency profile has been declined", so there is no listing
-  // and no URL to add.
-  //
-  // 2026-11-04 — re-checked from the public side, unchanged. The profile URL
-  // returns HTTP 404 and the agency directory lists no Testriq. Nothing to
-  // add here; the GoodFirms entry below is a separate, live profile and was
-  // already in this array.
-  //
-  // This is not a task waiting to be picked up. sameAs asserts "the entity
-  // here is verifiably the same entity over there"; aiming it at a profile
-  // that does not exist is a false signal, not an unfinished chore. Marketing
-  // is following up with DesignRush support — if the profile is approved, the
-  // business team will say so. Until then, no DesignRush URL belongs here
-  // even if one surfaces.
-  //
-  // The paragraph above is kept rather than corrected because that business
-  // decision is still open. The matching note sits beside the footer badge in
-  // src/components/layout/Footer.tsx.
+  // Wikidata entry.
   "sameAs": [
     // Social — pre-existing
     "https://www.linkedin.com/company/testriq-qa-lab/",
@@ -228,6 +217,7 @@ export const organizationSchema = {
     // B2B review directories — added Phase 1
     "https://clutch.co/profile/testriq-qa-lab",
     "https://www.goodfirms.co/company/testriq-qa-lab",
+    "https://www.designrush.com/agency/profile/testriq-qa-lab",
     "https://www.g2.com/products/testriq-qa-lab/reviews"
   ],
   // F-58 Phase 1 — Founder Person reference. The founder's Crunchbase
@@ -340,29 +330,6 @@ export const websiteSchema = {
       "urlTemplate": "https://www.testriq.com/blog/search?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
-  }
-};
-
-// Product/Service Schema with Aggregate Rating for Homepage
-export const productServiceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Testriq QA Lab - Comprehensive Software Testing Services",
-  "description": "Leading software testing company providing comprehensive QA services including web app testing, mobile testing, API testing, and automation testing solutions.",
-  "url": "https://www.testriq.com/",
-  "image": "https://www.testriq.com/testriq-logo.png",
-  "brand": {
-    "@type": "Brand",
-    "name": "Testriq QA Lab"
-  },
-  "sku": "TQ-QA-001",
-  "mpn": "TQ-QA-MAIN",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "price": "0",
-    "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/OnlineOnly",
   }
 };
 
@@ -565,7 +532,7 @@ export const toolsPageSchema = {
         "@id": "https://www.testriq.com/#organization"
       },
       "serviceType": "Software Testing Services",
-      "areaServed": "Global",
+      "areaServed": SERVICE_AREA_SERVED,
       "description": "Implementation of advanced QA automation frameworks using Selenium, Cypress, Appium, and JMeter for web, mobile, and API testing.",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -637,7 +604,7 @@ export const completeTestingGuideSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing Education",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Software Testing Guide Services",
@@ -683,16 +650,6 @@ export const completeTestingGuideSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "Free"
-    }
   }
 };
 
@@ -710,7 +667,7 @@ export const ecommerceTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "E-Commerce QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "E-Commerce QA Testing Services",
@@ -764,16 +721,6 @@ export const ecommerceTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -790,7 +737,7 @@ export const elearningTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "E-Learning Testing Services",
@@ -859,16 +806,6 @@ export const elearningTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -885,7 +822,7 @@ export const healthcareTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Healthcare Software QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Healthcare Testing Services",
@@ -939,16 +876,6 @@ export const healthcareTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -969,7 +896,7 @@ export const saasPlatformTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "SaaS Platform QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "SaaS Platform Testing Services",
@@ -1023,16 +950,6 @@ export const saasPlatformTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1051,7 +968,7 @@ export const manufacturingIndustryTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Manufacturing & Industry 4.0 QA Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Manufacturing Industry Testing Services",
@@ -1105,16 +1022,6 @@ export const manufacturingIndustryTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1130,7 +1037,7 @@ export const gamingTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Game Testing & QA",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Gaming App Testing Services",
@@ -1200,16 +1107,6 @@ export const gamingTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1225,7 +1122,7 @@ export const iotTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "IoT Quality Assurance",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "IoT Testing Services",
@@ -1271,16 +1168,6 @@ export const iotTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1296,7 +1183,7 @@ export const bankingFinanceTestingServiceSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Banking & Finance Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "BFSI Testing Services",
@@ -1358,16 +1245,6 @@ export const bankingFinanceTestingServiceSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1383,7 +1260,7 @@ export const telecommunicationTestingSchema = {
     "url": "https://www.testriq.com"
   },
   "serviceType": "Telecom Software Testing",
-  "areaServed": "Worldwide",
+  "areaServed": SERVICE_AREA_SERVED,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Telecommunication Testing Services",
@@ -1437,16 +1314,6 @@ export const telecommunicationTestingSchema = {
         }
       }
     ]
-  },
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/OnlineOnly",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "0"
-    }
   }
 };
 
@@ -1578,43 +1445,14 @@ export const ourTeamPageSchema = {
   "hasPart": {
     "@type": "ItemList",
     "name": "Testriq Team Members",
-    "itemListElement": [
-      {
-        "@type": "Person",
-        "name": "Sandeep Maske",
-        "jobTitle": "Founder & CEO",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#sandeep-maske"
-      },
-      {
-        "@type": "Person",
-        "name": "Santosh Kakade",
-        "jobTitle": "VP Operations",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#santosh-kakade"
-      },
-      {
-        "@type": "Person",
-        "name": "Goutam Mishra",
-        "jobTitle": "Head of QA and BD",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#goutam-mishra"
-      },
-      {
-        "@type": "Person",
-        "name": "Rohan Maske",
-        "jobTitle": "VP - Marketing",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#rohan-maske"
-      },
-      {
-        "@type": "Person",
-        "name": "Aatish Jadhav",
-        "jobTitle": "Senior Manager - Strategic Growth",
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": "https://www.testriq.com/our-team#aatish-jadhav"
-      }
-    ]
+    "itemListElement": ourTeamPeople.map((person) => ({
+      "@type": "Person",
+      "name": person.name,
+      "jobTitle": person.jobTitle,
+      "worksFor": { "@type": "Organization", "name": person.employer },
+      "url": `https://www.testriq.com/our-team#${teamMemberSlug(person.name)}`,
+      ...(person.linkedin ? { "sameAs": [cleanProfileUrl(person.linkedin)] } : {})
+    }))
   }
 };
 
@@ -1789,7 +1627,10 @@ export const contactUsPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   "name": "Contact Us",
-  "url": "https://www.testriq.com/contact",
+  // The page's real address. /contact is a 308 to /contact-us, so naming it
+  // here told search engines the contact page lived at a redirect
+  // (SEO report D-16, Nov 2026).
+  "url": "https://www.testriq.com/contact-us",
   "description": "Reach out to Testriq QA Lab for expert QA consultation, project inquiries, support requests, or partnership opportunities. Get in touch via call, email, video consultation, or schedule a meeting.",
   "mainEntity": {
     "@type": "Organization",
@@ -2054,7 +1895,7 @@ export const functionalServiceSchema = {
       },
       "url": "https://www.testriq.com/services/functional-testing-services",
       "description": "Ensure flawless software performance with Testriq's expert Functional Testing Services. Comprehensive QA, automation & validation for web, mobile & enterprise applications.",
-      "areaServed": "WorldWide",
+      "areaServed": SERVICE_AREA_SERVED,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Functional QA Solutions",
@@ -2278,6 +2119,40 @@ export const timezoneFAQSchema = {
   ]
 };
 
+/**
+ * Offer for one /pricing bundle, built from the same pricingPackages entry the
+ * pricing card renders, so the markup can never disagree with the visible
+ * price. The card text reads "Starting from 400 USD per mid size project":
+ * the number becomes minPrice (a floor, not a fixed price) and the rest
+ * becomes unitText.
+ *
+ * SEO report D-14 (Nov 2026): these offers used to say price "0", which told
+ * Google and AI assistants the bundles were free. If a package's price text
+ * ever stops matching the pattern, no price is emitted rather than a guessed
+ * one; the pricing-offer test in StructuredData.test.tsx catches that case.
+ */
+export function pricingBundleOffer(packageId: string) {
+  const pkg = pricingPackages.find((p) => p.id === packageId);
+  const match = pkg?.price.match(/^Starting from (\d+) USD (.+)$/);
+  const priceSpecification = match
+    ? {
+        "@type": "UnitPriceSpecification",
+        "minPrice": Number(match[1]),
+        "priceCurrency": "USD",
+        "unitText": match[2],
+        "description": `Starting from ${match[1]} USD ${match[2]}. Final quote depends on scope.`
+      }
+    : undefined;
+  return {
+    "@type": "Offer",
+    ...(priceSpecification ? { "priceCurrency": "USD", priceSpecification } : {}),
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-01-01",
+    "url": "https://www.testriq.com/contact-us",
+    "seller": { "@id": "https://www.testriq.com/#organization" }
+  };
+}
+
 export const pricingServiceSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -2411,21 +2286,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "2 bug verification cycles free of cost",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per mid size project",
-          "description": "Custom pricing per mid size project. Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("web"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Browser Coverage", "value": "Windows, MAC, Android Phone & Tablets, Apple Phone & Tablets" },
         { "@type": "PropertyValue", "name": "Deliverables", "value": "Bug List (Video/Screenshot + Steps), Vulnerability Report, Performance Scorecard" },
@@ -2461,21 +2322,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "2 bug verification cycles free of cost",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per mid size App, iOS + Android",
-          "description": "Custom pricing per mid size mobile app (iOS + Android). Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("mobile"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Device Coverage", "value": "Real iOS & Android devices, latest to lowest OS versions" },
         { "@type": "PropertyValue", "name": "Special Tests", "value": "Battery drain & heat check, Push notification delivery, Real world network conditions" },
@@ -2511,21 +2358,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "2 bug verification cycles free of cost",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per project (up to 20 endpoints)",
-          "description": "Custom pricing per project covering up to 20 API endpoints. Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("api"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Architecture Support", "value": "REST, GraphQL, SOAP" },
         { "@type": "PropertyValue", "name": "Environment Support", "value": "Dev, Staging, Production" },
@@ -2562,21 +2395,7 @@ export const pricingServiceSchema = {
         ]
       },
       "termsOfService": "1 complimentary re-scan after vulnerability fixes",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "unitText": "per audit (Web or Mobile)",
-          "description": "Custom pricing per security audit. Contact for a personalized quote."
-        },
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01",
-        "url": "https://www.testriq.com/contact-us",
-        "seller": { "@id": "https://www.testriq.com/#organization" }
-      },
+      "offers": pricingBundleOffer("vapt"),
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Approach", "value": "Hybrid — Automated Tools + Manual Expert Review" },
         { "@type": "PropertyValue", "name": "Special Inclusions", "value": "Business Logic Audit, PoC for every vulnerability, Executive Summary + Tech Details" },

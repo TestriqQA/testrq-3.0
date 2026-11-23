@@ -6,6 +6,7 @@ import ServiceTeamSection from "@/components/sections/ServiceTeamSection";
 import ServiceEngagementModels from "@/components/sections/ServiceEngagementModels";
 import ServiceCrossLinks from "@/components/sections/ServiceCrossLinks";
 import ServiceLastUpdated from "@/components/sections/ServiceLastUpdated";
+import { SERVICE_AREA_SERVED } from "@/lib/seo/target-markets";
 
 export interface ToolLandingPageProps {
   /** Display name of the tool, e.g. "Selenium" */
@@ -55,7 +56,7 @@ function ServiceStructuredData(props: ToolLandingPageProps) {
       url: SITE_URL,
     },
     serviceType: props.serviceTypeForSchema,
-    areaServed: "Worldwide",
+    areaServed: SERVICE_AREA_SERVED,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `${props.toolName} Testing Services`,
@@ -67,13 +68,6 @@ function ServiceStructuredData(props: ToolLandingPageProps) {
           description: s.description,
         },
       })),
-    },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/OnlineOnly",
-      priceCurrency: "USD",
-      priceValidUntil: "2026-12-31",
-      priceSpecification: { "@type": "PriceSpecification", price: "0" },
     },
   };
   return <StructuredData data={schema} />;
