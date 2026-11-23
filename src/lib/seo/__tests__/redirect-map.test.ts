@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { describe, expect, it } from "vitest";
@@ -26,6 +26,28 @@ describe("SEO report D-3: AI testing blog post retired into the service page", (
     it("lands on a real page, in one hop", () => {
         expect(existsSync(join(process.cwd(), "src", "app", "(services)", "ai-application-testing", "page.tsx"))).toBe(true);
         expect(ruleFor("/ai-application-testing")).toHaveLength(0);
+    });
+});
+
+describe("SEO report D-4: ai-bias-audit merged into the bias and fairness audit guide", () => {
+    const OLD = "/blog/post/ai-bias-audit";
+    const NEW = "/blog/post/ai-bias-fairness-audit-guide";
+
+    it("permanently redirects the old post to the guide, in one hop", () => {
+        const rules = ruleFor(OLD);
+        expect(rules).toHaveLength(1);
+        expect(rules[0].destination).toBe(NEW);
+        expect(rules[0].permanent).toBe(true);
+        expect(ruleFor(NEW)).toHaveLength(0);
+    });
+
+    it("the New York page links straight to the guide, not through the redirect", () => {
+        const src = readFileSync(
+            join(process.cwd(), "src", "components", "sections", "NewYorkUSRequirementsSection.tsx"),
+            "utf8",
+        );
+        expect(src).not.toContain(`"${OLD}"`);
+        expect(src).toContain(`"${NEW}"`);
     });
 });
 

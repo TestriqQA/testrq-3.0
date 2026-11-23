@@ -53,7 +53,7 @@ const REQUIREMENTS: Requirement[] = [
         The law requires an independent bias audit of automated employment
         decision tools. We can support the technical testing behind an audit, and
         the audit itself must be carried out to the law&rsquo;s own terms. See our{" "}
-        <Link href="/blog/post/ai-bias-audit" className="text-brand-blue hover:underline">
+        <Link href="/blog/post/ai-bias-fairness-audit-guide" className="text-brand-blue hover:underline">
           AI bias audit guide
         </Link>{" "}
         and{" "}

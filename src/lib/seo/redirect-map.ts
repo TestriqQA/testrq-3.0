@@ -429,6 +429,12 @@ export const redirects: RedirectRule[] = [
       // kept serving 200. Its API and end-to-end QA content moved into the service page
       // (AICardSlider, AIProvenTestingProcess) first. The short-slug rule stays.
       { source: "/blog/post/top-5-reasons-to-choose-our-ai-testing-services-the-best-api-testing-company-and-qa-experts", destination: "/ai-application-testing", permanent: true },
+      // SEO report D-4 (Nov 2026): ai-bias-audit duplicated the longer bias and
+      // fairness audit guide. The content team deleted the post in Sanity; this
+      // sends its old URL (and any backlinks) to the guide. The other D-4 post,
+      // enterprise-ai-compliance-llm-testing, was kept on purpose: its content is
+      // different enough to stand on its own.
+      { source: "/blog/post/ai-bias-audit", destination: "/blog/post/ai-bias-fairness-audit-guide", permanent: true },
       { source: "/blog/post/version-compatibility-testing-best-practices", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/accessibility-testing", destination: "/web-application-testing-services", permanent: true },
       { source: "/automation-testing", destination: "/automation-testing-services", permanent: true },
