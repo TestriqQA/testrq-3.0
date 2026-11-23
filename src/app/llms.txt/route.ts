@@ -147,7 +147,7 @@ export async function GET() {
         "",
         "## Free Tools",
         "",
-        `- [QA ROI Calculator](${BASE}/roi-calculator): Estimate the cost of not testing.`,
+        `- [Test Case Estimator](${BASE}/test-case-estimator): Estimate test cases, effort and team size.`,
         "",
         "## Reference",
         "",

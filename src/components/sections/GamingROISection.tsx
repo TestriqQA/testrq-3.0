@@ -491,9 +491,9 @@ const GamingROISection: React.FC = () => {
               <button className="bg-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-98 hover:text-sky-700 transition-all cursor-pointer">
                 Get ROI Analysis
               </button>
-              <Link href="/roi-calculator">
+              <Link href="/contact-us">
                 <button className="bg-white cursor-pointer bg-opacity-20 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-opacity-30 hover:scale-98 hover:text-sky-700 transition-all border border-white border-opacity-30">
-                  Download ROI Calculator
+                  Get Your ROI Analysis
                 </button>
               </Link>
             </div>

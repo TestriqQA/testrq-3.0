@@ -35,8 +35,8 @@ const CompatibilityTestingReadyToStart: React.FC = () => {
                         Start Your Free Consultation
                         <FaArrowRight className="ml-3 group-hover:translate-x-2 transition-transform h-5 w-5" />
                     </Link>
-                    <Link href="/roi-calculator" className="bg-white/5 text-white border border-white/20 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
-                        Calculate Testing ROI
+                    <Link href="/contact-us" className="bg-white/5 text-white border border-white/20 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
+                        Get a Testing ROI Analysis
                     </Link>
                 </div>
 

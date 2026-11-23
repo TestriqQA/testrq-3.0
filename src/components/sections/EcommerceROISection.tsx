@@ -201,7 +201,7 @@ const EcommerceROISection: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/roi-calculator" className="inline-block">
+            <Link href="/contact-us" className="inline-block">
               <button className="bg-white text-brand-blue px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-95 transition-all shadow-lg cursor-pointer">
                 Get Free ROI Analysis
               </button>

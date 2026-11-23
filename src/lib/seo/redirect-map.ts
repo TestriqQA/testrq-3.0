@@ -435,6 +435,8 @@ export const redirects: RedirectRule[] = [
       // enterprise-ai-compliance-llm-testing, was kept on purpose: its content is
       // different enough to stand on its own.
       { source: "/blog/post/ai-bias-audit", destination: "/blog/post/ai-bias-fairness-audit-guide", permanent: true },
+      // D-18: ROI calculator was never built; page removed (Nov 2026).
+      { source: "/roi-calculator", destination: "/contact-us", permanent: true },
       { source: "/blog/post/version-compatibility-testing-best-practices", destination: "/blog/category/qa-testing", permanent: true },
       { source: "/accessibility-testing", destination: "/web-application-testing-services", permanent: true },
       { source: "/automation-testing", destination: "/automation-testing-services", permanent: true },

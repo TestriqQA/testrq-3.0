@@ -73,9 +73,9 @@ const AutomationTestingROISection: React.FC = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/roi-calculator">
+          <Link href="/contact-us">
             <button className="bg-brand-blue text-white cursor-pointer px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
-              Calculate Your Automation ROI
+              Get Your Automation ROI Analysis
             </button>
           </Link>
         </div>

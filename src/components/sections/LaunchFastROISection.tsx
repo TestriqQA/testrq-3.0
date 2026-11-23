@@ -68,9 +68,9 @@ const LaunchFastROISection: React.FC = () => {
           <p className="text-gray-600 mb-6">
             Calculate your potential savings and see how LaunchFast QA can accelerate your success.
           </p>
-          <Link href="/roi-calculator" className="inline-block">
+          <Link href="/contact-us" className="inline-block">
             <button className="bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer">
-              Calculate Your ROI
+              Get Your ROI Analysis
             </button>
           </Link>
         </div>

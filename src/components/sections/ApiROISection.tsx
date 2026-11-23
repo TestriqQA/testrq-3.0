@@ -15,7 +15,7 @@ const ApiROISection: React.FC = () => {
         <FaDollarSign className="w-12 h-12 text-[theme(color.brand.blue)]" />
       ),
       value: "40%",
-      label: (<Link href="/roi-calculator" className="hover:underline">Cost Reduction</Link>),
+      label: "Cost Reduction",
       description:
         "Average cost savings through early bug detection and prevention",
     },
@@ -102,7 +102,7 @@ const ApiROISection: React.FC = () => {
             Discover how much you can save and gain with our comprehensive API
             testing services. Get a personalized ROI analysis for your project.
           </p>
-          <Link href="/roi-calculator">
+          <Link href="/contact-us">
             <button className="bg-[theme(color.brand.blue)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors duration-300 cursor-pointer">
               Get ROI Analysis
             </button>

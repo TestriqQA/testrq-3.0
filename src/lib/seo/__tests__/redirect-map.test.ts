@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 import { describe, expect, it } from "vitest";
@@ -48,6 +48,32 @@ describe("SEO report D-4: ai-bias-audit merged into the bias and fairness audit 
         );
         expect(src).not.toContain(`"${OLD}"`);
         expect(src).toContain(`"${NEW}"`);
+    });
+});
+
+describe("D-18: /roi-calculator removed", () => {
+    it("permanently redirects to /contact-us", () => {
+        const rules = ruleFor("/roi-calculator");
+        expect(rules).toHaveLength(1);
+        expect(rules[0].destination).toBe("/contact-us");
+        expect(rules[0].permanent).toBe(true);
+    });
+
+    it("the page is gone and nothing in src links to it", () => {
+        expect(existsSync(join(process.cwd(), "src", "app", "roi-calculator"))).toBe(false);
+        const offenders: string[] = [];
+        const walk = (dir: string) => {
+            for (const name of readdirSync(dir)) {
+                const p = join(dir, name);
+                if (statSync(p).isDirectory()) {
+                    if (name !== "__tests__") walk(p);
+                } else if (/\.(tsx?|json)$/.test(name) && !name.startsWith("sanity-") && name !== "redirect-map.ts") {
+                    if (readFileSync(p, "utf8").includes("/roi-calculator")) offenders.push(p);
+                }
+            }
+        };
+        walk(join(process.cwd(), "src"));
+        expect(offenders).toEqual([]);
     });
 });
 
