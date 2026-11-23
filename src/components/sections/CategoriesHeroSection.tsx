@@ -66,42 +66,36 @@ const StatCard: React.FC<{
   gradient: string;
   delay: number;
   shouldAnimate: boolean;
-}> = ({ icon, value, label, sublabel, gradient, delay, shouldAnimate }) => {
+}> = ({ icon, value, label, sublabel, delay, shouldAnimate }) => {
+  // `gradient` stays on the props type (and in the stats data) but is no
+  // longer read: the light theme uses one brand-blue icon tile for every stat.
   const count = useCountUp(value, 2500, shouldAnimate);
 
   return (
     <div
       className="group relative"
     >
-      {/* Hover glow */}
-      <div
-        className={`absolute -inset-1 bg-gradient-to-br ${gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}
-      />
-
-      <div className="relative bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl lg:rounded-3xl p-5 lg:p-6 hover:border-blue-500/30 transition-all duration-500">
+      <div className="relative bg-white border border-gray-100 rounded-2xl lg:rounded-3xl p-5 lg:p-6 shadow-sm hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300">
         {/* Icon */}
         <div className="relative mb-4">
           <div
-            className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-xl lg:rounded-2xl blur-md opacity-40`}
-          />
-          <div
-            className={`relative w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-br ${gradient} rounded-xl lg:rounded-2xl flex items-center justify-center text-white`}
+            className="relative w-12 h-12 lg:w-14 lg:h-14 bg-sky-50 border border-sky-100 rounded-xl lg:rounded-2xl flex items-center justify-center text-[theme(color.brand.blue)]"
           >
             {icon}
           </div>
         </div>
 
         {/* Value */}
-        <div className="text-3xl lg:text-4xl font-black text-white mb-1">
+        <div className="text-3xl lg:text-4xl font-bold text-[theme(color.brand.blue)] mb-1">
           {count.toLocaleString()}
-          <span className="text-blue-400">+</span>
+          <span className="text-[theme(color.brand.blue)]">+</span>
         </div>
 
         {/* Labels */}
-        <div className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-0.5">
+        <div className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-0.5">
           {label}
         </div>
-        <div className="text-xs text-slate-500">{sublabel}</div>
+        <div className="text-xs text-gray-500">{sublabel}</div>
       </div>
     </div>
   );
@@ -147,34 +141,15 @@ const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
     },
   ];
 
+  // Light theme to match the rest of the site (white hero, brand-blue accents,
+  // gray-900 headings — same tokens as BlogHeroSection / CaseStudiesHeroSection).
+  // The dark navy treatment (glow orbs, grid overlay, pulse keyframes) is gone;
+  // copy, links, the single <h1> and the stats are unchanged.
   return (
     <section
       ref={ref}
-      className="relative min-h-[90vh] lg:min-h-screen bg-gradient-to-br from-slate-950 via-blue-950/80 to-slate-900 overflow-hidden flex items-center"
+      className="relative min-h-[90vh] lg:min-h-screen bg-white text-gray-900 overflow-hidden flex items-center"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        {/* Gradient orbs - simplified for performance */}
-        <div
-          className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-3xl"
-          style={{ animation: "pulse 6s ease-in-out infinite" }}
-        />
-        <div
-          className="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-3xl"
-          style={{ animation: "pulse 8s ease-in-out infinite 2s" }}
-        />
-
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.5) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(59, 130, 246, 0.5) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         {/* Breadcrumb */}
         <nav
@@ -185,28 +160,28 @@ const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
             <li>
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors group"
+                className="inline-flex items-center gap-2 text-gray-600 hover:text-[theme(color.brand.blue)] transition-colors group"
               >
                 <Home className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span className="font-medium">Home</span>
               </Link>
             </li>
             <li>
-              <ChevronRight className="w-3 h-3 text-white/20" />
+              <ChevronRight className="w-3 h-3 text-gray-400" />
             </li>
             <li>
               <Link
                 href="/blog"
-                className="text-white/60 hover:text-white transition-colors font-medium"
+                className="text-gray-600 hover:text-[theme(color.brand.blue)] transition-colors font-medium"
               >
                 Blog
               </Link>
             </li>
             <li>
-              <ChevronRight className="w-3 h-3 text-white/20" />
+              <ChevronRight className="w-3 h-3 text-gray-400" />
             </li>
             <li>
-              <span className="text-white font-semibold">Categories</span>
+              <span className="text-[theme(color.brand.blue)] font-semibold">Categories</span>
             </li>
           </ol>
         </nav>
@@ -220,10 +195,9 @@ const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
       className="inline-flex items-center gap-2 mx-auto lg:mx-0"
     >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur-lg opacity-50" />
-                <div className="relative px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center gap-2 border border-blue-400/30">
-                  <Sparkles className="w-4 h-4 text-blue-200" />
-                  <span className="text-xs font-bold text-white uppercase tracking-wider">
+                <div className="relative inline-flex items-center bg-brand-blue gap-2 text-white px-5 py-2 rounded-full">
+                  <Sparkles className="w-4 h-4 text-white" />
+                  <span className="text-sm text-white">
                     Knowledge Base
                   </span>
                 </div>
@@ -234,14 +208,14 @@ const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
             <div
       className="space-y-4"
     >
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1]">
                 Enterprise-Grade{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400">
+                <span className="text-[theme(color.brand.blue)]">
                   Testing Expertise
                 </span>
               </h1>
 
-              <p className="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg lg:text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Access comprehensive guides, proven methodologies, and industry
                 best practices across all areas of software testing and quality
                 assurance.
@@ -260,10 +234,10 @@ const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
               ].map((text, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-full"
+                  className="flex items-center gap-2 px-4 py-2 bg-sky-50 border border-sky-100 rounded-full"
                 >
-                  <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
-                  <span className="text-sm font-medium text-slate-300">
+                  <div className="w-1.5 h-1.5 bg-green-600 rounded-full" />
+                  <span className="text-sm font-medium text-[theme(color.brand.blue)]">
                     {text}
                   </span>
                 </div>
@@ -277,7 +251,7 @@ const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
 
               <Link
                 href="/contact-us"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold rounded-xl hover:bg-white/20 hover:border-white/30 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[theme(color.brand.blue)] text-white font-semibold rounded-md hover:shadow-xl transition-all duration-300"
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>Free Consultation</span>
@@ -298,22 +272,6 @@ const CategoriesHeroSection: React.FC<CategoriesHeroSectionProps> = ({
           </div>
         </div>
       </div>
-
-      {/* Bottom gradient line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
-
-      {/* Keyframe animation for pulse */}
-      <style jsx>{`
-        @keyframes pulse {
-          0%,
-          100% {
-            opacity: 0.15;
-          }
-          50% {
-            opacity: 0.25;
-          }
-        }
-      `}</style>
     </section>
   );
 };

@@ -48,8 +48,12 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
     }
   });
 
+  // Restyled to the light theme to match the rest of the site: #F5F5F5 band,
+  // white cards with a brand-blue icon tile (no per-category gradients), sky
+  // chips and brand-blue buttons. Text on the grey band is gray-600 or darker
+  // (gray-500 on #F5F5F5 is 4.43:1 and fails AA).
   return (
-    <section ref={ref} id="categories" className="scroll-mt-20">
+    <section ref={ref} id="categories" className="scroll-mt-20 bg-[theme(color.background.gray)] rounded-2xl p-4 sm:p-6">
       {/* Search & Filter Bar */}
       <div
       className="mb-10"
@@ -57,19 +61,19 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
         <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
           {/* Search */}
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
             <input
               type="text"
               placeholder="Search categories..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-sm"
+              className="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-[theme(color.brand.blue)] focus:ring-2 focus:ring-sky-100 focus:outline-none transition-all shadow-sm"
             />
           </div>
 
           {/* Sort */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 text-slate-500">
+            <div className="flex items-center gap-2 text-gray-600">
               <SlidersHorizontal className="w-4 h-4" />
               <span className="text-sm font-medium hidden sm:inline">
                 Sort by:
@@ -78,7 +82,7 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="appearance-none bg-white border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer shadow-sm"
+              className="appearance-none bg-white border border-gray-200 rounded-xl px-4 py-3 pr-10 text-sm font-medium text-gray-900 focus:border-[theme(color.brand.blue)] focus:ring-2 focus:ring-sky-100 focus:outline-none cursor-pointer shadow-sm"
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -90,13 +94,13 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
         </div>
 
         {/* Results count */}
-        <div className="mt-4 text-sm text-slate-500">
+        <div className="mt-4 text-sm text-gray-600">
           Showing{" "}
-          <span className="font-semibold text-slate-700">
+          <span className="font-semibold text-gray-900">
             {sortedCategories.length}
           </span>{" "}
           of{" "}
-          <span className="font-semibold text-slate-700">
+          <span className="font-semibold text-gray-900">
             {categories.length}
           </span>{" "}
           categories
@@ -104,7 +108,7 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
             <span>
               {" "}
               for &ldquo;
-              <span className="font-semibold text-slate-900">{searchTerm}</span>
+              <span className="font-semibold text-gray-900">{searchTerm}</span>
               &rdquo;
             </span>
           )}
@@ -118,41 +122,27 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
       key={category.id}
       className="group relative"
     >
-            {/* Hover glow effect */}
-            <div
-              className={`absolute -inset-0.5 bg-gradient-to-r ${category.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300`}
-            />
-
             <Link
               href={`/blog/category/${category.id}`}
-              className="relative block bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-xl hover:border-slate-200 transition-all duration-300 h-full"
+              className="relative block bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300 h-full"
             >
-              {/* Card Header with Gradient */}
+              {/* Card Header */}
               <div
-                className={`relative bg-gradient-to-r ${category.color} p-5 overflow-hidden`}
+                className="relative p-5 pb-0"
               >
-                {/* Background pattern */}
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                    backgroundSize: "16px 16px",
-                  }}
-                />
-
                 {/* Icon */}
                 <div className="relative flex items-center justify-between">
                   {(() => {
                     const IconComponent = getCategoryIcon(category.name);
                     return (
-                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20 group-hover:scale-110 transition-transform duration-300">
-                        <IconComponent className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 bg-sky-50 border border-sky-100 rounded-xl text-[theme(color.brand.blue)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent className="w-6 h-6" />
                       </div>
                     );
                   })()}
-                  <div className="flex items-center gap-1.5 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
-                    <BookOpen className="w-3.5 h-3.5 text-white" />
-                    <span className="text-sm font-bold text-white">
+                  <div className="flex items-center gap-1.5 bg-sky-50 text-[theme(color.brand.blue)] border border-sky-100 rounded-full px-3 py-1.5">
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span className="text-sm font-bold">
                       {category.postCount}
                     </span>
                   </div>
@@ -161,11 +151,11 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
 
               {/* Card Content */}
               <div className="p-5">
-                <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[theme(color.brand.blue)] transition-colors">
                   {category.name}
                 </h3>
 
-                <p className="text-sm text-slate-500 line-clamp-2 mb-4 leading-relaxed">
+                <p className="text-sm text-gray-600 line-clamp-2 mb-4 leading-relaxed">
                   {category.description.replace(/<[^>]*>?/gm, "")}
                 </p>
 
@@ -174,7 +164,7 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
                   {category.tags?.slice(0, 3).map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs rounded-md font-medium"
+                      className="px-2 py-0.5 bg-sky-50 text-[theme(color.brand.blue)] border border-sky-100 rounded-full text-xs font-medium"
                     >
                       {tag}
                     </span>
@@ -182,7 +172,7 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
                 </div>
 
                 {/* CTA */}
-                <div className="flex items-center gap-2 text-sm font-semibold text-blue-600 group-hover:text-blue-700">
+                <div className="flex items-center gap-2 text-sm font-semibold text-[theme(color.brand.blue)]">
                   <span>Explore Articles</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -197,18 +187,18 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
         <div
       className="text-center py-16"
     >
-          <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Search className="w-8 h-8 text-slate-400" />
+          <div className="w-16 h-16 bg-sky-50 border border-sky-100 rounded-2xl text-[theme(color.brand.blue)] flex items-center justify-center mx-auto mb-4">
+            <Search className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">
+          <h3 className="text-xl font-bold text-gray-900 mb-2">
             No categories found
           </h3>
-          <p className="text-slate-500 mb-6">
+          <p className="text-gray-600 mb-6">
             Try adjusting your search terms or browse all categories.
           </p>
           <button
             onClick={() => setSearchTerm("")}
-            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors cursor-pointer"
+            className="px-6 py-3 bg-[theme(color.brand.blue)] text-white font-semibold rounded-md hover:shadow-xl transition-all cursor-pointer"
           >
             Clear Search
           </button>
@@ -217,18 +207,18 @@ const CategoriesGrid: React.FC<CategoriesGridProps> = ({ categories }) => {
 
       {/* Bottom CTA */}
       <div
-      className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-center text-white"
+      className="mt-12 bg-[theme(color.brand.blue)] rounded-2xl p-8 text-center text-white shadow-sm"
     >
         <h3 className="text-2xl font-bold mb-3">
           Can&apos;t find what you&apos;re looking for?
         </h3>
-        <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+        <p className="text-sky-50 mb-6 max-w-2xl mx-auto">
           Our comprehensive testing blog covers everything from basic concepts
           to advanced techniques. Explore our latest articles or suggest a topic.
         </p>
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[theme(color.brand.blue)] font-semibold rounded-md hover:shadow-xl transition-all"
         >
           Browse All Articles
           <ArrowRight className="w-4 h-4" />

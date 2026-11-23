@@ -75,17 +75,17 @@ const StatCard: React.FC<{ stat: StatItem; index: number; shouldAnimate: boolean
 
     return (
         <div
-      className="flex items-center gap-4 px-6 py-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-blue-500/30 hover:bg-white/10 transition-all duration-300 group"
+      className="flex items-center gap-4 px-6 py-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:shadow-sky-100 hover:-translate-y-1 transition-all duration-300 group"
     >
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl text-white group-hover:scale-110 transition-transform duration-300">
+            <div className="flex items-center justify-center w-12 h-12 bg-sky-50 border border-sky-100 rounded-xl text-[theme(color.brand.blue)] group-hover:scale-110 transition-transform duration-300">
                 {stat.icon}
             </div>
             <div>
-                <div className="text-3xl font-bold text-white">
+                <div className="text-3xl font-bold text-[theme(color.brand.blue)]">
                     {count}
-                    <span className="text-blue-400">{stat.suffix}</span>
+                    <span className="text-[theme(color.brand.blue)]">{stat.suffix}</span>
                 </div>
-                <div className="text-sm text-slate-400 font-medium">{stat.label}</div>
+                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
             </div>
         </div>
     );
@@ -95,17 +95,11 @@ const CategoriesTrustStrip: React.FC = () => {
     const ref = useRef(null);    return (
         <section
             ref={ref}
-            className="relative py-8 bg-gradient-to-r from-slate-900 via-blue-950/50 to-slate-900 border-y border-white/10"
+            className="relative py-8 bg-[theme(color.background.gray)] border-y border-gray-200"
         >
-            {/* Subtle background pattern */}
-            <div
-                className="absolute inset-0 opacity-[0.02]"
-                style={{
-                    backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-                    backgroundSize: "24px 24px",
-                }}
-            />
-
+            {/* Restyled to the light theme to match the rest of the site: light
+                gray band, white stat cards, brand-blue numbers. The dark gradient
+                and dot-pattern overlay are gone; the stats are unchanged. */}
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                     {stats.map((stat, index) => (
