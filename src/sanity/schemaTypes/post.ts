@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { requiredLowercaseSlug } from './lowercaseSlug'
 
 export default defineType({
     name: 'post',
@@ -23,7 +24,7 @@ export default defineType({
                 source: 'title',
                 maxLength: 96,
             },
-            validation: (Rule) => Rule.required(),
+            validation: requiredLowercaseSlug,
         }),
         defineField({
             name: 'author',

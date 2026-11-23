@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { requiredLowercaseSlug } from './lowercaseSlug'
 
 export default defineType({
     name: 'author',
@@ -18,7 +19,7 @@ export default defineType({
                 source: 'name',
                 maxLength: 96,
             },
-            validation: (Rule) => Rule.required(),
+            validation: requiredLowercaseSlug,
         }),
         defineField({
             name: 'image',

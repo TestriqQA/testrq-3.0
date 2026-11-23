@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { requiredLowercaseSlug } from './lowercaseSlug'
 
 export default defineType({
     name: 'tag',
@@ -18,7 +19,7 @@ export default defineType({
                 source: 'title',
                 maxLength: 96,
             },
-            validation: (Rule) => Rule.required(),
+            validation: requiredLowercaseSlug,
         }),
         // F-60: shared SEO field group — gives editors per-tag meta controls
         // for the /blog/tag/[slug] route. Same pattern as category.
