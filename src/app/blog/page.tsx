@@ -23,10 +23,8 @@ import {
   sanityGetPostsBySlugs,
   sanityGetAllPostSlugs,
   sanityGetPosts,
-  sanityGetCategories,
   sanityGetTotalPostCount,
   sanityGetTotalCategoryCount,
-  type Category,
   Post,
 } from "@/lib/sanity-data-adapter";
 
@@ -104,8 +102,8 @@ export async function generateMetadata(): Promise<Metadata> {
 // blog/loading.tsx so the grid does not shift when the real one hydrates.
 function BlogPostsGridSkeleton() {
   return (
-    <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-24 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="bg-[theme(color.background.gray)] px-8 md:px-12 lg:px-24 py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="bg-white border border-gray-100 rounded-xl overflow-hidden">
             <div className="h-48 bg-gray-200 animate-pulse" />
@@ -154,32 +152,30 @@ export default async function BlogPage() {
 
   // Hero data is fetched here rather than inside BlogHeroSection. That is a
   // "use client" component, and importing the adapter from it pulled the
-  // adapter's 20 MB content-snapshot import into the browser bundle. All four
+  // adapter's 20 MB content-snapshot import into the browser bundle. All three
   // calls are memoised behind unstable_cache, so this adds no Sanity cost — and
-  // the counts, category chips and latest-post card now render in the server
-  // HTML instead of appearing after a client fetch.
+  // the counts and latest-post card render in the server HTML instead of
+  // appearing after a client fetch. (The hero's category chips, and the
+  // categories fetch they needed, were removed: BlogCategoryNav covers that.)
   let heroTotalPosts = 0;
   let heroTotalCategories = 0;
   let heroLatestPost: Post | null = null;
-  let heroCategories: Category[] = [];
   try {
-    const [postCount, categoryCount, latestPosts, allCategories] = await Promise.all([
+    const [postCount, categoryCount, latestPosts] = await Promise.all([
       sanityGetTotalPostCount(),
       sanityGetTotalCategoryCount(),
       sanityGetPosts(1),
-      sanityGetCategories(),
     ]);
     heroTotalPosts = postCount;
     heroTotalCategories = categoryCount;
     heroLatestPost = latestPosts[0] ?? null;
-    heroCategories = allCategories;
   } catch (error) {
     console.error("Error fetching blog hero data:", error);
-      <BlogCategoryNav />
   }
 
   return (
     <MainLayout>
+      <BlogCategoryNav />
       <BlogStructuredData
         type="blog"
         title="Software Testing Blog | Expert QA Insights & Best Practices | Testriq"
@@ -190,7 +186,6 @@ export default async function BlogPage() {
         totalPosts={heroTotalPosts}
         totalCategories={heroTotalCategories}
         latestPost={heroLatestPost}
-        categories={heroCategories}
       />
 
       {/* F-48.1 — Suspense boundary is REQUIRED because BlogPostsGrid uses

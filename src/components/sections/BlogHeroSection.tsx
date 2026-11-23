@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FaSearch, FaArrowRight, FaClock, FaCalendarAlt, FaBookOpen, FaUsers, FaAward, FaStar, FaCode, FaShieldAlt, FaRocket, FaMobile, FaDesktop, FaCloud, FaCog, FaChartLine, FaLayerGroup } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaSearch, FaArrowRight, FaCalendarAlt, FaBookOpen, FaUsers, FaAward, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 // `import type` on purpose — see the note in CategorySidebar.tsx. A value
 // import from the adapter would pull its 20 MB content-snapshot import into
 // this client component's browser bundle.
-import type { Post, Category } from "@/lib/sanity-data-adapter";
+import type { Post } from "@/lib/sanity-data-adapter";
 import { decodeHtmlEntities } from "@/lib/utils";
 import { ChevronRight as ChevronRightIcon, Home } from "lucide-react";
 
@@ -37,34 +37,9 @@ const useCountUp = (end: number, duration: number = 2000) => {
   return count;
 };
 
-// Category icons mapping
-const categoryIcons: Record<string, React.ReactElement> = {
-  'test automation': <FaCode className="w-3.5 h-3.5" />,
-  'automation': <FaCode className="w-3.5 h-3.5" />,
-  'performance testing': <FaRocket className="w-3.5 h-3.5" />,
-  'performance': <FaRocket className="w-3.5 h-3.5" />,
-  'security testing': <FaShieldAlt className="w-3.5 h-3.5" />,
-  'security': <FaShieldAlt className="w-3.5 h-3.5" />,
-  'mobile testing': <FaMobile className="w-3.5 h-3.5" />,
-  'mobile': <FaMobile className="w-3.5 h-3.5" />,
-  'web testing': <FaDesktop className="w-3.5 h-3.5" />,
-  'web': <FaDesktop className="w-3.5 h-3.5" />,
-  'cloud testing': <FaCloud className="w-3.5 h-3.5" />,
-  'cloud': <FaCloud className="w-3.5 h-3.5" />,
-  'qa analytics': <FaChartLine className="w-3.5 h-3.5" />,
-  'analytics': <FaChartLine className="w-3.5 h-3.5" />,
-  'all': <FaLayerGroup className="w-3.5 h-3.5" />,
-  'default': <FaCog className="w-3.5 h-3.5" />
-};
-
-const getCategoryIcon = (categoryName: string): React.ReactElement => {
-  const lowerName = categoryName.toLowerCase();
-  if (lowerName === 'all posts') return categoryIcons.all;
-  for (const [key, icon] of Object.entries(categoryIcons)) {
-    if (lowerName.includes(key)) return icon;
-  }
-  return categoryIcons.default;
-};
+// The category chips ("Browse by topic") and everything that fed them — the
+// icon map, the All Posts pseudo-category and the categories prop — were
+// removed: the sticky BlogCategoryNav bar above the page now does that job.
 
 interface BlogHeroSectionProps {
   /** Total published posts, counted by the server page. */
@@ -73,64 +48,19 @@ interface BlogHeroSectionProps {
   totalCategories: number;
   /** Most recent post, or null when none could be loaded. */
   latestPost: Post | null;
-  /** Every category, fetched by the server page. */
-  categories: Category[];
 }
 
 const BlogHeroSection: React.FC<BlogHeroSectionProps> = ({
   totalPosts,
   totalCategories,
   latestPost,
-  categories: sourceCategories,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-
-  void (canScrollLeft);
-  void (canScrollRight);
 
   const animatedPosts = useCountUp(totalPosts, 2500);
   const animatedCategories = useCountUp(totalCategories, 2500);
-
-  const checkScrollPosition = useCallback(() => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  }, []);
-
-  // The All Posts pseudo-category the old fetch built, now derived from the
-  // prop. The hardcoded error fallback (200 / 15) is gone with the fetch that
-  // could fail; the server page supplies zeroes if Sanity is unavailable.
-  const categories = useMemo<Category[]>(() => {
-    const totalPostsCount = sourceCategories.reduce((sum, cat) => sum + cat.postCount, 0);
-    const allCategory: Category = {
-      id: "all",
-      name: "All Posts",
-      description: "Browse all articles",
-      color: "from-slate-500 to-slate-600",
-      icon: "🏷️",
-      postCount: totalPostsCount,
-      subscribers: Math.floor(totalPostsCount * 25),
-      tags: ["All"],
-      featuredTools: [],
-      seo: { title: "", description: "", keywords: "" }
-    };
-    return [allCategory, ...sourceCategories];
-  }, [sourceCategories]);
-
-
-
-  useEffect(() => {
-    checkScrollPosition();
-    window.addEventListener('resize', checkScrollPosition);
-    return () => window.removeEventListener('resize', checkScrollPosition);
-  }, [categories, checkScrollPosition]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -144,128 +74,49 @@ const BlogHeroSection: React.FC<BlogHeroSectionProps> = ({
     return decodeHtmlEntities(textOnly);
   };
 
+  // Light theme to match the rest of the site (white hero, brand-blue accents,
+  // gray-900 headings — same tokens as CaseStudiesHeroSection / HomeProcesses).
+  // The dark navy "futuristic" treatment (gradient orbs, grid, scan line) was
+  // the only one of its kind on the site. Copy, links, the single <h1> and the
+  // search form are unchanged; only the styling moved.
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 overflow-hidden">
-      {/* Futuristic Background Elements */}
-      <div className="absolute inset-0">
-        {/* Animated gradient orbs */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/3 right-0 w-72 h-72 bg-violet-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+    <section className="relative bg-white text-gray-900 pt-8 pb-16 px-8 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        {/* Breadcrumb */}
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-2 text-sm font-medium text-gray-600 mb-6"
+        >
+          <Link
+            href="/"
+            className="flex items-center gap-2 hover:text-[theme(color.brand.blue)] transition-colors"
+          >
+            <Home className="w-4 h-4" />
+            Home
+          </Link>
+          <ChevronRightIcon className="w-3.5 h-3.5 text-gray-400" />
+          <span className="text-[theme(color.brand.blue)]">Blog</span>
+        </nav>
 
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.5) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(59, 130, 246, 0.5) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-          }}
-        />
-
-        {/* Scan line effect */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div className="h-full w-full bg-gradient-to-b from-transparent via-blue-400/10 to-transparent animate-scan" />
-        </div>
-      </div>
-
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Category Tabs - Top Section */}
-        <div className="pt-8 pb-4">
-          <div className="flex flex-wrap gap-5 items-center">
-            {categories.slice(0, 5).map((category) => (
-              <Link
-                key={category.id}
-                href={category.id === "all" ? "/blog" : `/blog/category/${category.id}`}
-                className="group/card flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-blue-500/50 hover:bg-slate-800/80 transition-all duration-300"
-              >
-                <span className="text-blue-400 group-hover/card:text-blue-300 transition-colors">
-                  {getCategoryIcon(category.name)}
-                </span>
-                <span className="text-sm font-medium text-slate-200 whitespace-nowrap group-hover/card:text-white transition-colors">
-                  {category.name}
-                </span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-700/50 text-slate-400 group-hover/card:bg-blue-500/20 group-hover/card:text-blue-300 transition-all">
-                  {category.postCount}
-                </span>
-              </Link>
-            ))}
-
-            {/* View All Categories Button */}
-            <Link
-              href="/blog/categories"
-              className="group/btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600/20 to-indigo-600/20 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 hover:from-blue-600/30 hover:to-indigo-600/30 transition-all duration-300"
-            >
-              <span className="text-sm font-semibold text-blue-300 whitespace-nowrap group-hover/btn:text-blue-200 transition-colors">
-                View All Categories
-              </span>
-              <FaArrowRight className="w-3 h-3 text-blue-400 group-hover/btn:translate-x-0.5 group-hover/btn:text-blue-300 transition-all" />
-            </Link>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 min-h-[85vh] items-start py-8 lg:py-0">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
           {/* Left Side - Content (7 columns) */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-4 py-4">
-            {/* Breadcrumb */}
-            <nav
-              aria-label="Breadcrumb"
-              className="inline-flex w-fit items-center gap-2"
-            >
-              <Link
-                href="/"
-                className="text-white hover:text-blue-400 transition-colors duration-200 flex items-center gap-1"
-              >
-                <Home className="w-4 h-4" />
-                Home
-              </Link>
-
-              {/* Chevron */}
-              <ChevronRightIcon className="w-4 h-4 text-[theme(color.brand.blue)]" />
-
-              <span className="text-[theme(color.brand.blue)] font-semibold tracking-wide">
-                Blog
-              </span>
-            </nav>
-
-
-            {/* Premium Badge */}
-            <div className="relative mt-2 w-fit inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-slate-900/60 border border-white/10 shadow-brand-blue shadow-sm animate-pulse overflow-hidden group">
-
-              {/* Animated Gradient Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 via-cyan-400/30 to-indigo-500/30 opacity-40 blur-xl group-hover:opacity-70 transition-opacity" />
-
-              {/* Pulse Dot */}
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-60 animate-ping" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400" />
-              </span>
-
-              {/* Star Icon */}
-              <FaStar className="relative w-4 h-4 text-cyan-300 drop-shadow-sm" />
-
-              {/* Text */}
-              <span className="relative text-sm font-semibold tracking-wide bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
-                16+ Years of Testing Excellence
-              </span>
+          <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left items-center lg:items-start">
+            {/* Badge */}
+            <div className="inline-flex w-fit items-center gap-2 bg-brand-blue text-white px-4 py-2 rounded-full">
+              <FaStar className="w-3.5 h-3.5" />
+              <span className="text-sm">16+ Years of Testing Excellence</span>
             </div>
-
 
             {/* Main Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-gray-900">
                 Insights & Expertise in{" "}
-                <span className="relative inline-block">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400 animate-gradient">
-                    Software Testing
-                  </span>
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 rounded-full blur-sm"></span>
-                </span>
+                <span className="text-[theme(color.brand.blue)]">Software Testing</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl">
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-2xl">
                 Discover expert articles, hands-on tutorials, and proven best practices
                 from our ISTQB-certified QA professionals.
               </p>
@@ -276,95 +127,81 @@ const BlogHeroSection: React.FC<BlogHeroSectionProps> = ({
               <label htmlFor="blogHero-search" className="sr-only">
                 Search blog articles
               </label>
-              <div className={`relative transition-all duration-300 ${isSearchFocused ? 'scale-[1.01]' : ''}`}>
-                <div className={`absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 rounded-2xl transition-all duration-300 ${isSearchFocused ? 'opacity-30 blur-lg' : 'opacity-0'}`} />
-                <div className="relative flex items-center bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/10">
-                  <div className="pl-5 pr-3">
-                    <FaSearch className="w-5 h-5 text-slate-400" aria-hidden="true" />
-                  </div>
-                  <input
-                    id="blogHero-search"
-                    type="search"
-                    name="q"
-                    autoComplete="off"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setIsSearchFocused(true)}
-                    onBlur={() => setIsSearchFocused(false)}
-                    placeholder="Search articles, tutorials, guides..."
-                    className="w-full px-2 py-4 bg-transparent text-slate-100 placeholder-slate-500 focus:outline-none text-base"
-                  />
-                  <button
-                    type="submit"
-                    className="m-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 whitespace-nowrap shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 cursor-pointer"
-                  >
-                    Search
-                  </button>
+              <div
+                className={`flex items-center bg-white border rounded-xl overflow-hidden shadow-sm transition-all duration-200 ${isSearchFocused
+                  ? "border-[theme(color.brand.blue)] ring-2 ring-sky-100"
+                  : "border-gray-200"
+                  }`}
+              >
+                <div className="pl-4 pr-2">
+                  <FaSearch className="w-4 h-4 text-gray-400" aria-hidden="true" />
                 </div>
+                <input
+                  id="blogHero-search"
+                  type="search"
+                  name="q"
+                  autoComplete="off"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                  placeholder="Search articles, tutorials, guides..."
+                  className="w-full px-2 py-3.5 bg-transparent text-gray-900 placeholder-gray-500 focus:outline-none text-base"
+                />
+                <button
+                  type="submit"
+                  className="m-1.5 px-6 py-2.5 bg-[theme(color.brand.blue)] text-white font-semibold rounded-lg hover:bg-sky-800 transition-colors whitespace-nowrap cursor-pointer"
+                >
+                  Search
+                </button>
               </div>
             </form>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 max-w-2xl">
-              <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                <div className="relative bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-4 hover:border-blue-500/50 transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-xl flex items-center justify-center border border-blue-500/30">
-                      <FaBookOpen className="w-5 h-5 text-blue-400" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-white">{animatedPosts}+</div>
-                      <div className="text-sm text-slate-400">Articles</div>
-                    </div>
-                  </div>
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 lg:gap-6 w-full max-w-2xl">
+              <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center gap-3">
+                <div className="w-11 h-11 shrink-0 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center">
+                  <FaBookOpen className="w-5 h-5 text-[theme(color.brand.blue)]" />
+                </div>
+                <div className="text-center sm:text-left">
+                  <div className="text-2xl font-bold text-[theme(color.brand.blue)]">{animatedPosts}+</div>
+                  <div className="text-sm text-gray-600">Articles</div>
                 </div>
               </div>
 
-              <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-indigo-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                <div className="relative bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-4 hover:border-indigo-500/50 transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-indigo-500/20 to-indigo-600/20 rounded-xl flex items-center justify-center border border-indigo-500/30">
-                      <FaAward className="w-5 h-5 text-indigo-400" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-white">{animatedCategories}+</div>
-                      <div className="text-sm text-slate-400">Topics</div>
-                    </div>
-                  </div>
+              <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center gap-3">
+                <div className="w-11 h-11 shrink-0 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center">
+                  <FaAward className="w-5 h-5 text-[theme(color.brand.blue)]" />
+                </div>
+                <div className="text-center sm:text-left">
+                  <div className="text-2xl font-bold text-[theme(color.brand.blue)]">{animatedCategories}+</div>
+                  <div className="text-sm text-gray-600">Topics</div>
                 </div>
               </div>
 
-              <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-violet-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                <div className="relative bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-4 hover:border-violet-500/50 transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-violet-500/20 to-violet-600/20 rounded-xl flex items-center justify-center border border-violet-500/30">
-                      <FaUsers className="w-5 h-5 text-violet-400" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-white">10K+</div>
-                      <div className="text-sm text-slate-400">Readers</div>
-                    </div>
-                  </div>
+              <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center gap-3">
+                <div className="w-11 h-11 shrink-0 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center">
+                  <FaUsers className="w-5 h-5 text-[theme(color.brand.blue)]" />
+                </div>
+                <div className="text-center sm:text-left">
+                  <div className="text-2xl font-bold text-[theme(color.brand.blue)]">10K+</div>
+                  <div className="text-sm text-gray-600">Readers</div>
                 </div>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-2xl">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Link
                 href="#all-articles"
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50"
+                className="group inline-flex items-center justify-center gap-2 py-3 px-6 bg-[theme(color.brand.blue)] text-white font-semibold text-base rounded-md hover:shadow-xl transition-all duration-200"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative">Explore Articles</span>
-                <FaArrowRight className="relative w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Explore Articles
+                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/contact-us"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900/50 backdrop-blur-sm text-slate-200 font-semibold rounded-xl border border-slate-700/50 hover:bg-slate-800/50 hover:border-slate-600 transition-all duration-300 shadow-lg"
+                className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-white text-[theme(color.brand.blue)] font-semibold text-base rounded-md border border-[theme(color.brand.blue)] hover:bg-sky-50 transition-colors duration-200"
               >
                 Talk to Experts
               </Link>
@@ -372,112 +209,101 @@ const BlogHeroSection: React.FC<BlogHeroSectionProps> = ({
           </div>
 
           {/* Right Side - Latest Post Card (5 columns) */}
-          <div className="lg:col-span-5 mt-4 flex items-center justify-center lg:justify-end">
+          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
             {latestPost ? (
-              <div className="relative group w-full max-w-md lg:max-w-none">
-                {/* Glow effect */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-violet-500/20 rounded-[2rem] blur-2xl opacity-60 group-hover:opacity-100 transition-all duration-500" />
+              <div className="group relative w-full max-w-md lg:max-w-none bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-xl hover:shadow-sky-100 transition-all duration-300 flex flex-col">
+                {/* Latest badge */}
+                <div className="absolute top-4 left-4 z-20">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-blue text-white text-xs font-semibold rounded-full shadow-sm">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    </span>
+                    Latest Post
+                  </div>
+                </div>
 
-                {/* Main card */}
-                <div className="relative bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-slate-700/50 shadow-2xl shadow-blue-500/10 hover:border-slate-600/50 transition-all duration-500 h-full flex flex-col">
-                  {/* Latest badge */}
-                  <div className="absolute top-4 left-4 z-20">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold rounded-full shadow-lg shadow-blue-600/30">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                {/* Image */}
+                <div className="relative h-56 sm:h-60 overflow-hidden bg-gray-100">
+                  <Image
+                    src={latestPost.image}
+                    alt={latestPost.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-5 flex flex-col justify-between flex-1 space-y-3">
+                  <div className="space-y-2">
+                    {/* Category */}
+                    <Link href={`/blog/category/${latestPost.categorySlug}`}>
+                      <span className="inline-block mb-2 px-3 py-1 bg-sky-50 text-[theme(color.brand.blue)] text-xs font-medium rounded-full border border-sky-100 hover:bg-sky-100 transition-colors">
+                        {latestPost.category}
                       </span>
-                      Latest Post
-                    </div>
+                    </Link>
+
+                    {/* Title */}
+                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 line-clamp-2 group-hover:text-[theme(color.brand.blue)] transition-colors leading-tight">
+                      <Link href={`/blog/post/${latestPost.id}`}>{latestPost.title}</Link>
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-gray-600 line-clamp-2 text-sm lg:text-base leading-relaxed">
+                      {cleanExcerpt(latestPost.excerpt)}
+                    </p>
                   </div>
 
-                  {/* Image */}
-                  <div className="relative h-56 sm:h-60 overflow-hidden">
-                    <Image
-                      src={latestPost.image}
-                      alt={latestPost.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-4 flex flex-col justify-between flex-1 space-y-2">
-                    <div className="space-y-2">
-                      {/* Category */}
-                      <Link href={`/blog/category/${latestPost.categorySlug}`}>
-                        <span className="inline-block mb-2 px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-medium rounded-full border border-blue-500/20 hover:bg-blue-500/20 transition-colors">
-                          {latestPost.category}
-                        </span>
-                      </Link>
-
-                      {/* Title */}
-                      <h3 className="text-xl lg:text-2xl font-bold text-white line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
-                        <Link href={`/blog/post/${latestPost.id}`}>{latestPost.title}</Link>
-                      </h3>
-
-                      {/* Excerpt */}
-                      <p className="text-slate-400 line-clamp-2 text-sm lg:text-base leading-relaxed">
-                        {cleanExcerpt(latestPost.excerpt)}
-                      </p>
-                    </div>
-
-                    {/* Meta */}
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-700/50">
-                      <div className="flex items-center gap-3">
-                        <Image
-                          src={latestPost.authorImage}
-                          alt={latestPost.author}
-                          width={40}
-                          height={40}
-                          className="rounded-full ring-2 ring-blue-500/30"
-                        />
-                        <div>
-                          <div className="font-semibold text-white text-sm">{latestPost.author}</div>
-                          <div className="flex items-center gap-3 text-xs text-slate-400">
-                            <span className="flex items-center gap-1">
-                              <FaCalendarAlt className="w-3 h-3" />
-                              {latestPost.date}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <FaClock className="w-3 h-3" />
-                              {latestPost.readTime}
-                            </span>
-                          </div>
+                  {/* Meta */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src={latestPost.authorImage}
+                        alt={latestPost.author}
+                        width={40}
+                        height={40}
+                        className="rounded-full ring-2 ring-sky-100"
+                      />
+                      <div>
+                        <div className="font-semibold text-gray-900 text-sm">{latestPost.author}</div>
+                        <div className="flex items-center gap-3 text-xs text-gray-500">
+                          <span className="flex items-center gap-1">
+                            <FaCalendarAlt className="w-3 h-3" />
+                            {latestPost.date}
+                          </span>
                         </div>
                       </div>
-                      <Link
-                        href={`/blog/post/${latestPost.id}`}
-                        className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl text-white hover:from-blue-500 hover:to-indigo-500 transition-all shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 group/btn"
-                        aria-label="Read article"
-                      >
-                        <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
-                      </Link>
                     </div>
+                    <Link
+                      href={`/blog/post/${latestPost.id}`}
+                      className="flex items-center justify-center w-11 h-11 bg-[theme(color.brand.blue)] rounded-xl text-white hover:bg-sky-800 transition-colors group/btn"
+                      aria-label="Read article"
+                    >
+                      <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+                    </Link>
                   </div>
                 </div>
               </div>
             ) : (
-              // Enhanced skeleton loader
-              <div className="relative bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-slate-700/50 shadow-xl h-full animate-pulse w-full max-w-md lg:max-w-none">
-                <div className="h-56 sm:h-64 lg:h-72 bg-slate-800/50" />
-                <div className="p-6 lg:p-8 space-y-4">
-                  <div className="h-5 bg-slate-800/50 rounded-full w-20" />
+              // Skeleton loader
+              <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-full animate-pulse w-full max-w-md lg:max-w-none">
+                <div className="h-56 sm:h-60 bg-gray-200" />
+                <div className="p-5 space-y-4">
+                  <div className="h-5 bg-gray-200 rounded-full w-20" />
                   <div className="space-y-2">
-                    <div className="h-6 bg-slate-800/50 rounded-lg w-full" />
-                    <div className="h-6 bg-slate-800/50 rounded-lg w-3/4" />
+                    <div className="h-6 bg-gray-200 rounded-lg w-full" />
+                    <div className="h-6 bg-gray-200 rounded-lg w-3/4" />
                   </div>
                   <div className="space-y-2">
-                    <div className="h-4 bg-slate-800/30 rounded-lg w-full" />
-                    <div className="h-4 bg-slate-800/30 rounded-lg w-2/3" />
+                    <div className="h-4 bg-gray-100 rounded-lg w-full" />
+                    <div className="h-4 bg-gray-100 rounded-lg w-2/3" />
                   </div>
                   <div className="flex items-center gap-3 pt-4">
-                    <div className="w-10 h-10 bg-slate-800/50 rounded-full" />
+                    <div className="w-10 h-10 bg-gray-200 rounded-full" />
                     <div className="flex-1 space-y-2">
-                      <div className="h-4 bg-slate-800/50 rounded w-24" />
-                      <div className="h-3 bg-slate-800/30 rounded w-32" />
+                      <div className="h-4 bg-gray-200 rounded w-24" />
+                      <div className="h-3 bg-gray-100 rounded w-32" />
                     </div>
                   </div>
                 </div>
@@ -485,9 +311,9 @@ const BlogHeroSection: React.FC<BlogHeroSectionProps> = ({
             )}
           </div>
         </div>
+
       </div>
 
-      {/* Additional CSS for animations */}
       {/* The <style jsx> block that lived here (scan + gradient keyframes) now
           sits in globals.css. styled-jsx injects its CSS from a client runtime at
           hydration, which prevented /blog from being server-rendered. */}
