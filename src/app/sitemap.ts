@@ -30,6 +30,7 @@ import { redirects } from '@/lib/seo/redirect-map';
 import { discoverRoutes } from '@/lib/seo/discover-routes';
 import { STATIC_EXCLUDED_FROM_SITEMAP } from '@/lib/seo/sitemap-exclusions';
 import { authorSitemapEntries } from '@/lib/seo/author-sitemap';
+import { countArchivePosts, isArchiveIndexable } from '@/lib/seo/archive-indexing';
 
 // Revalidate the sitemap every hour (matches service page revalidation)
 export const revalidate = 3600;
@@ -262,17 +263,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
     });
 
+    // Tag and category archives are noindex below MIN_POSTS_FOR_INDEXED_ARCHIVE
+    // posts (see blog/tag/[tag] and blog/category/[category]), and listing a
+    // noindexed URL here sends Google two contradictory instructions. So the
+    // sitemap counts each archive's posts the way the pages do, from the
+    // published posts already fetched above, and applies the same shared
+    // threshold. It deliberately ignores the stored `count` / `postCount`: on
+    // production that number also counted drafts, which put 20 one-post
+    // archives in the sitemap (SEO report D-2, Nov 2026). See
+    // src/lib/seo/archive-indexing.ts.
+    const archivePostCounts = countArchivePosts(sanityPostsData);
+
     // Sanity Categories
-    // 2026-11-04: categories with fewer than 2 posts became noindex (see
-    // blog/category/[category]/page.tsx), so they are excluded here for the
-    // same reason tags are below — advertising a noindexed URL in the sitemap
-    // sends Google two contradictory instructions. The threshold is repeated
-    // rather than shared because the two routes read different shapes
-    // (`postCount` here, `count` for tags); if a third ever needs it, lift it
-    // into a constant.
     const sanityCategoriesData = await sanityGetCategories();
     const categoryPages = sanityCategoriesData
-      .filter((category) => category.postCount >= 2)
+      .filter((category) => isArchiveIndexable(archivePostCounts.categories.get(category.id) ?? 0))
       .map((category) => ({
         url: `${baseUrl}/blog/category/${encodeURIComponent(category.id)}`,
         lastModified: STATIC_LASTMOD,
@@ -280,13 +285,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: getPriority('category'),
       }));
 
-    // Sanity Tags
+    // Sanity Tags (same rule as categories above)
     const sanityTagsData = await sanityGetTags();
-    // Tags with fewer than 2 posts are noindex (see blog/tag/[tag]/page.tsx).
-    // Listing a noindexed URL in the sitemap sends Google two contradictory
-    // instructions, so they are excluded here as well.
     const tagPages = sanityTagsData
-      .filter((tag) => tag.count >= 2)
+      .filter((tag) => isArchiveIndexable(archivePostCounts.tags.get(tag.slug) ?? 0))
       .map((tag) => ({
       url: `${baseUrl}/blog/tag/${encodeURIComponent(tag.slug)}`,
       lastModified: STATIC_LASTMOD,

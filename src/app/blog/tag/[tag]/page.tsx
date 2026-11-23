@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { sanityGetPostsByTag, sanityGetTags } from "@/lib/sanity-data-adapter";
 import { normalizeBlogSlug } from "@/lib/blog-slug";
+import { isArchiveIndexable } from "@/lib/seo/archive-indexing";
 
 export const revalidate = 60; // Revalidate every minute
 export const dynamicParams = true; // Allow on-demand rendering for new tags
@@ -107,7 +108,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // A tag listing one post is a thinner duplicate of that post, and a tag
   // listing none has nothing on it. Neither should compete in the index;
   // both still pass link equity on to the posts via follow.
-  const isIndexable = tagData.posts.length >= 2;
+  // Threshold shared with sitemap.ts so a noindexed archive is never listed
+  // there (SEO report D-2). See src/lib/seo/archive-indexing.ts.
+  const isIndexable = isArchiveIndexable(tagData.posts.length);
 
   return {
     // Was `${tagName}|Testriq Blog` — brand doubled by the root template on
