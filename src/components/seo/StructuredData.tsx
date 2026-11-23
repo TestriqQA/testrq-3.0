@@ -196,29 +196,7 @@ export const organizationSchema = {
   // Verified 2026-05-16 via Chrome MCP — each URL returns HTTP 200 with
   // active Testriq-branded content. Listings to add later (Phase 2 —
   // user-blocked on account creation): Crunchbase company page,
-  // Wikidata entry, DesignRush listing.
-  //
-  // 2026-10-30 — DO NOT ADD DESIGNRUSH TO THIS ARRAY. The line above still
-  // holds for Crunchbase and Wikidata, which are genuinely pending. It does
-  // not hold for DesignRush: that agency profile was DECLINED. Logging in
-  // returns "Your Agency profile has been declined", so there is no listing
-  // and no URL to add.
-  //
-  // 2026-11-04 — re-checked from the public side, unchanged. The profile URL
-  // returns HTTP 404 and the agency directory lists no Testriq. Nothing to
-  // add here; the GoodFirms entry below is a separate, live profile and was
-  // already in this array.
-  //
-  // This is not a task waiting to be picked up. sameAs asserts "the entity
-  // here is verifiably the same entity over there"; aiming it at a profile
-  // that does not exist is a false signal, not an unfinished chore. Marketing
-  // is following up with DesignRush support — if the profile is approved, the
-  // business team will say so. Until then, no DesignRush URL belongs here
-  // even if one surfaces.
-  //
-  // The paragraph above is kept rather than corrected because that business
-  // decision is still open. The matching note sits beside the footer badge in
-  // src/components/layout/Footer.tsx.
+  // Wikidata entry.
   "sameAs": [
     // Social — pre-existing
     "https://www.linkedin.com/company/testriq-qa-lab/",
@@ -231,6 +209,7 @@ export const organizationSchema = {
     // B2B review directories — added Phase 1
     "https://clutch.co/profile/testriq-qa-lab",
     "https://www.goodfirms.co/company/testriq-qa-lab",
+    "https://www.designrush.com/agency/profile/testriq-qa-lab",
     "https://www.g2.com/products/testriq-qa-lab/reviews"
   ],
   // F-58 Phase 1 — Founder Person reference. The founder's Crunchbase
