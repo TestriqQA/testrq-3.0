@@ -463,23 +463,32 @@ describe("service offers (SEO report D-14)", () => {
         expect(stale).toEqual([]);
     });
 
-    it("leaves no exported schema pointing an offer at the /contact redirect (D-16)", () => {
-        /** Every value found under an `offers` key, at any depth. */
-        const offersIn = (node: unknown): unknown[] => {
-            if (Array.isArray(node)) return node.flatMap(offersIn);
-            if (typeof node !== "object" || node === null) return [];
-            return Object.entries(node).flatMap(([key, value]) =>
-                key === "offers" ? [value, ...offersIn(value)] : offersIn(value),
-            );
+    // D-16's own check is "No schema URL points at /contact": /contact is a 308
+    // to /contact-us, so any URL naming it points search engines at a redirect.
+    // Matches /contact, /contact/, /contact#… and /contact?… but not /contact-us.
+    const CONTACT_REDIRECT = /testriq\.com\/contact(?![\w-])/;
+
+    it("leaves no URL in any exported schema pointing at the /contact redirect (D-16)", () => {
+        /** Every string value at any depth. */
+        const strings = (node: unknown): string[] => {
+            if (typeof node === "string") return [node];
+            if (Array.isArray(node)) return node.flatMap(strings);
+            if (typeof node === "object" && node !== null) return Object.values(node).flatMap(strings);
+            return [];
         };
         const stale = Object.entries(Schemas)
-            .filter(([, value]) =>
-                offersIn(value).some((offer) =>
-                    JSON.stringify(offer).includes('"url":"https://www.testriq.com/contact"'),
-                ),
-            )
+            .filter(([, value]) => strings(value).some((s) => CONTACT_REDIRECT.test(s)))
             .map(([name]) => name);
         expect(stale).toEqual([]);
+    });
+
+    it("has no source file naming the /contact redirect as an absolute URL (D-16)", () => {
+        // Catches schemas built inline in pages and templates, which the export
+        // walk above cannot see.
+        const offenders = sourceFiles(join(process.cwd(), "src"))
+            .filter((file) => CONTACT_REDIRECT.test(readFileSync(file, "utf8")))
+            .map((file) => relative(process.cwd(), file));
+        expect(offenders).toEqual([]);
     });
 });
 

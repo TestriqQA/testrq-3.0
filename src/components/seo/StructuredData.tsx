@@ -1645,7 +1645,10 @@ export const contactUsPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   "name": "Contact Us",
-  "url": "https://www.testriq.com/contact",
+  // The page's real address. /contact is a 308 to /contact-us, so naming it
+  // here told search engines the contact page lived at a redirect
+  // (SEO report D-16, Nov 2026).
+  "url": "https://www.testriq.com/contact-us",
   "description": "Reach out to Testriq QA Lab for expert QA consultation, project inquiries, support requests, or partnership opportunities. Get in touch via call, email, video consultation, or schedule a meeting.",
   "mainEntity": {
     "@type": "Organization",
