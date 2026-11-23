@@ -8,10 +8,6 @@
  * structured data was a hand-typed copy of five of these people and had
  * drifted (it still said "Head of QA and BD" and "Senior Manager - Strategic
  * Growth" after the cards were retitled) and carried no LinkedIn links.
- *
- * `inPageSchema` marks who is listed as a Person in the page's structured
- * data. E-2 kept the same five people as before; E-3 extends the markup to
- * the rest of the team.
  */
 export interface TeamLeaderImage {
     src: string;
@@ -32,7 +28,6 @@ export interface TeamLeader {
     achievements: string[];
     linkedin: string;
     image: TeamLeaderImage;
-    inPageSchema?: boolean;
 }
 
 export const teamLeaders: TeamLeader[] = [
@@ -62,7 +57,6 @@ export const teamLeaders: TeamLeader[] = [
         ],
         linkedin: "https://www.linkedin.com/in/sandeepmaske",
         image: { title: "Sandeep Maske", src: "/sandeep-maske-img.webp", alt: "Sandeep Maske", width: 350, height: 250 },
-        inPageSchema: true,
     },
     {
         name: "Santosh Kakade",
@@ -79,7 +73,6 @@ export const teamLeaders: TeamLeader[] = [
         ],
         linkedin: "https://www.linkedin.com/in/santoshkakade/",
         image: { title: "Santosh Kakade", src: "/Santosh_Kakade.webp", alt: "Santosh_Kakade", width: 350, height: 250 },
-        inPageSchema: true,
     },
     {
         name: "Goutam Mishra",
@@ -96,7 +89,6 @@ export const teamLeaders: TeamLeader[] = [
         ],
         linkedin: "https://www.linkedin.com/in/goutam-mishra-96194117/",
         image: { title: "Goutam Mishra", src: "/Goutam_Mishra.webp", alt: "Goutam_Mishra", width: 350, height: 250 },
-        inPageSchema: true,
     },
     {
         name: "Rohan Maske",
@@ -113,7 +105,6 @@ export const teamLeaders: TeamLeader[] = [
         ],
         linkedin: "https://www.linkedin.com/in/rohan-maske/",
         image: { title: "Rohan Maske", src: "/Rohan_Maske.png", alt: "Rohan_Maske", width: 350, height: 250 },
-        inPageSchema: true,
     },
     {
         name: "Aatish Jadhav",
@@ -130,7 +121,6 @@ export const teamLeaders: TeamLeader[] = [
         ],
         linkedin: "https://www.linkedin.com/in/aatishjadhav/",
         image: { title: "Aatish Jadhav", src: "/Aatish_Jadhav.webp", alt: "Aatish_Jadhav", width: 350, height: 250 },
-        inPageSchema: true,
     },
 ];
 

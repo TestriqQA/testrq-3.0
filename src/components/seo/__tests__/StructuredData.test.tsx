@@ -30,7 +30,8 @@ import StructuredData, {
 } from "../StructuredData";
 import { pricingPackages } from "../../../data/pricingPackages";
 import { SERVICE_AREA_SERVED, TARGET_MARKET_COUNTRIES } from "../../../lib/seo/target-markets";
-import { cleanProfileUrl, teamLeaders, teamMemberSlug } from "../../../data/teamLeaders";
+import { cdplTeamLeaders, cleanProfileUrl, teamLeaders, teamMemberSlug } from "../../../data/teamLeaders";
+import { teamMembers } from "../../../data/teamMembers";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -606,44 +607,73 @@ describe("service areaServed (SEO report D-17)", () => {
 });
 
 // ---------------------------------------------------------------------------
-// SEO report E-2 (Nov 2026): /our-team Person entries link to LinkedIn
+// SEO report E-2 + E-3 (Nov 2026): every person on /our-team is a Person
 // ---------------------------------------------------------------------------
 
-describe("ourTeamPageSchema people (SEO report E-2)", () => {
-    type Person = { "@type": string; name: string; jobTitle: string; url: string; sameAs?: string[] };
+describe("ourTeamPageSchema people", () => {
+    type Person = {
+        "@type": string;
+        name: string;
+        jobTitle: string;
+        url: string;
+        worksFor: { name: string };
+        sameAs?: string[];
+    };
     const people = (ourTeamPageSchema as unknown as { hasPart: { itemListElement: Person[] } }).hasPart
         .itemListElement;
+    const cards: { name: string; title: string; linkedin?: string }[] = [
+        ...teamLeaders.map((l) => ({ name: l.name, title: l.position, linkedin: l.linkedin })),
+        ...cdplTeamLeaders.map((l) => ({ name: l.name, title: l.position, linkedin: l.linkedin })),
+        ...teamMembers.map((m) => ({ name: m.name, title: m.role, linkedin: m.linkedin })),
+    ];
 
-    it("keeps the same five people as before the data was shared", () => {
-        expect(people.map((p) => p.name)).toEqual([
-            "Sandeep Maske",
-            "Santosh Kakade",
-            "Goutam Mishra",
-            "Rohan Maske",
-            "Aatish Jadhav",
-        ]);
+    it("lists everyone shown on the page, in page order", () => {
+        expect(people.map((p) => p.name)).toEqual(cards.map((c) => c.name));
+        expect(people).toHaveLength(19);
     });
 
-    it("gives every Person a real LinkedIn profile in sameAs", () => {
-        for (const p of people) {
+    it("gives the 18 people with a real profile their LinkedIn in sameAs", () => {
+        const linked = people.filter((p) => p.sameAs);
+        expect(linked).toHaveLength(18);
+        for (const p of linked) {
             expect(p["@type"]).toBe("Person");
             expect(p.sameAs, p.name).toHaveLength(1);
             expect(p.sameAs![0], p.name).toMatch(/^https:\/\/www\.linkedin\.com\/in\/[^/?#]+\/?$/);
         }
+        expect(people.find((p) => p.name === "Mandar Salkar")!.sameAs).toBeUndefined();
     });
 
     it("uses the title and LinkedIn link shown on the person's card", () => {
         for (const p of people) {
-            const card = teamLeaders.find((l) => l.name === p.name)!;
-            expect(p.jobTitle).toBe(card.position);
-            expect(p.sameAs).toEqual([cleanProfileUrl(card.linkedin)]);
+            const card = cards.find((c) => c.name === p.name)!;
+            expect(p.jobTitle).toBe(card.title);
+            expect(p.sameAs).toEqual(card.linkedin ? [cleanProfileUrl(card.linkedin)] : undefined);
         }
     });
 
-    it("gives each Person a distinct url fragment", () => {
+    it("names Cinute Digital as employer for the CDPL wing only", () => {
+        const cdpl = cdplTeamLeaders.map((l) => l.name);
+        for (const p of people) {
+            expect(p.worksFor.name, p.name).toBe(cdpl.includes(p.name) ? "Cinute Digital" : "Testriq QA Lab");
+        }
+    });
+
+    it("gives each Person a distinct url fragment that matches a card id", () => {
         const urls = people.map((p) => p.url);
         expect(new Set(urls).size).toBe(urls.length);
-        expect(urls).toContain("https://www.testriq.com/our-team#sandeep-maske");
+        for (const p of people) {
+            expect(p.url).toBe(`https://www.testriq.com/our-team#${teamMemberSlug(p.name)}`);
+        }
+        const read = (f: string) =>
+            readFileSync(join(process.cwd(), "src", "components", "sections", `${f}.tsx`), "utf8");
+        expect(read("TeamLeadershipSection").match(/id=\{teamMemberSlug\(leader\.name\)\}/g)).toHaveLength(2);
+        expect(read("TeamMembersSection")).toContain("id={teamMemberSlug(member.name)}");
+    });
+
+    it("has no bare LinkedIn profile link (E-5)", () => {
+        for (const c of cards) {
+            if (c.linkedin) expect(c.linkedin, c.name).toMatch(/linkedin\.com\/in\/[^/?#]+/);
+        }
     });
 });
 

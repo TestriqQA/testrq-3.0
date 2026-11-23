@@ -2,7 +2,7 @@ import React from "react";
 import { FaLinkedin, FaUserTie } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import { teamLeaders, cdplTeamLeaders, type TeamLeader } from "@/data/teamLeaders";
+import { teamLeaders, cdplTeamLeaders, teamMemberSlug, type TeamLeader } from "@/data/teamLeaders";
 
 const TeamLeadershipSection = () => {
   // Leader data lives in src/data/teamLeaders.ts so the cards and the page's
@@ -43,7 +43,8 @@ const TeamLeadershipSection = () => {
           {leaders.map((leader, index) => (
             <div
               key={index}
-              className={`lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
+              id={teamMemberSlug(leader.name)}
+              className={`scroll-mt-24 lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
                 }`}
             >
               <div
@@ -178,7 +179,8 @@ const TeamLeadershipSection = () => {
           {cdplLeaders.map((leader, index) => (
             <div
               key={index}
-              className={`lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
+              id={teamMemberSlug(leader.name)}
+              className={`scroll-mt-24 lg bg-white rounded-2xl p-4 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? "" : ""
                 }`}
             >
               <div

@@ -25,7 +25,15 @@ import { buildCanonicalUrl, SITE_URL } from "../../lib/seo/metadata";
 import { getBreadcrumbLabel } from "../../lib/seo/breadcrumb-labels";
 import { pricingPackages } from "../../data/pricingPackages";
 import { SERVICE_AREA_SERVED } from "../../lib/seo/target-markets";
-import { teamLeaders, teamMemberSlug, cleanProfileUrl } from "../../data/teamLeaders";
+import { teamLeaders, cdplTeamLeaders, teamMemberSlug, cleanProfileUrl } from "../../data/teamLeaders";
+import { teamMembers } from "../../data/teamMembers";
+
+// Everyone on /our-team, in page order (E-3).
+const ourTeamPeople = [
+  ...teamLeaders.map((l) => ({ name: l.name, jobTitle: l.position, linkedin: l.linkedin, employer: "Testriq QA Lab" })),
+  ...cdplTeamLeaders.map((l) => ({ name: l.name, jobTitle: l.position, linkedin: l.linkedin, employer: "Cinute Digital" })),
+  ...teamMembers.map((m) => ({ name: m.name, jobTitle: m.role, linkedin: m.linkedin, employer: "Testriq QA Lab" })),
+];
 
 type JsonLd = Record<string, unknown>;
 
@@ -1437,19 +1445,14 @@ export const ourTeamPageSchema = {
   "hasPart": {
     "@type": "ItemList",
     "name": "Testriq Team Members",
-    // Built from src/data/teamLeaders.ts (the same data the cards render), so
-    // titles cannot drift from the page. sameAs carries each person's LinkedIn
-    // profile, already linked from their card (SEO report E-2, Nov 2026).
-    "itemListElement": teamLeaders
-      .filter((leader) => leader.inPageSchema)
-      .map((leader) => ({
-        "@type": "Person",
-        "name": leader.name,
-        "jobTitle": leader.position,
-        "worksFor": { "@type": "Organization", "name": "Testriq QA Lab" },
-        "url": `https://www.testriq.com/our-team#${teamMemberSlug(leader.name)}`,
-        "sameAs": [cleanProfileUrl(leader.linkedin)]
-      }))
+    "itemListElement": ourTeamPeople.map((person) => ({
+      "@type": "Person",
+      "name": person.name,
+      "jobTitle": person.jobTitle,
+      "worksFor": { "@type": "Organization", "name": person.employer },
+      "url": `https://www.testriq.com/our-team#${teamMemberSlug(person.name)}`,
+      ...(person.linkedin ? { "sameAs": [cleanProfileUrl(person.linkedin)] } : {})
+    }))
   }
 };
 
